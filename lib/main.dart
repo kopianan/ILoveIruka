@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:i_love_iruka/routes/route.dart';
 import 'package:i_love_iruka/screens/login/login_page.dart';
 
 void main() => runApp(MyApp());
@@ -10,9 +11,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'I Love Iruka',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.orange,
+        accentColor: Colors.blue, 
+        iconTheme: IconThemeData(color: Colors.blue),
+        errorColor: Colors.red, 
+        
       ),
       home: LoginPage(),
+      initialRoute: "/",
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
