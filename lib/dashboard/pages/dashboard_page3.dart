@@ -9,36 +9,44 @@ class DashboardPage3 extends StatefulWidget {
 class _DashboardPage3State extends State<DashboardPage3> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          child: Card(
-            
-            child: Row(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(),
+        body: Container(
+          child: buildCard(),
+        ),
+      ),
+    );
+  }
+
+  Card buildCard() {
+    return Card(
+      color: Colors.grey,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      elevation: 8.0,
+      margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+      child: Container(
+        child: ListTile(
+            contentPadding: EdgeInsets.symmetric(horizontal: 10),
+            leading: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              child: CircleAvatar(),
+            ),
+            title: Text(
+              "Introduction to Driving",
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+            // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
+
+            subtitle: Row(
               children: <Widget>[
-                Container(
-                    width: 80.0,
-                    height: 80.0,
-                    decoration: new BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: new DecorationImage(
-                            fit: BoxFit.fill,
-                            image: new NetworkImage(
-                                "https://i.imgur.com/BoN9kdC.png")
-                        )
-                    )),
-                Container(
-                  child: Column(children: <Widget>[
-                    ListTile(
-                      title: Text("Groomer Name"),
-                      subtitle: Text("Ini adalh groomar yang lakdjfl;"),
-                    )
-                  ],),
-                )
+                Icon(Icons.linear_scale, color: Colors.blue),
+                Text(" Intermediate", style: TextStyle(color: Colors.white))
               ],
             ),
-          ),
-        ),
+            trailing: Icon(Icons.keyboard_arrow_right,
+                color: Colors.white, size: 30.0)),
       ),
     );
   }

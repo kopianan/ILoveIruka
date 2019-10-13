@@ -10,6 +10,7 @@ class _DashboardPage2State extends State<DashboardPage2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: AppBar(),
       body: Icon(Icons.arrow_forward_ios),
     ); 
   }
