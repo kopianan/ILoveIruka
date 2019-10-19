@@ -11,10 +11,13 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   int bottomSelectedIndex = 0;
+  List<String> appBarTitleList = ["Dashboard", "Dashboard2", "Dashboard3"];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text(appBarTitleList[bottomSelectedIndex])),
+      drawer: buildDrawer(context),
       body: buildPageView(),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
@@ -22,6 +25,43 @@ class _DashboardPageState extends State<DashboardPage> {
         },
         currentIndex: bottomSelectedIndex,
         items: buildBottomNavBarItems(),
+      ),
+    );
+  }
+
+  Drawer buildDrawer(BuildContext context) {
+    return Drawer(
+      child: Column(
+        children: <Widget>[
+          UserAccountsDrawerHeader(
+            accountName: Text("This Is Drawer"),
+            accountEmail: Text("bobasoft@boba.com"),
+            currentAccountPicture: CircleAvatar(
+              backgroundColor: Theme.of(context).platform == TargetPlatform.iOS
+                  ? Colors.blue
+                  : Colors.white,
+              child: Text(
+                "A",
+                style: TextStyle(fontSize: 40.0),
+              ),
+            ),
+          ),
+          Column(
+            children: <Widget>[
+              ListTile(
+                onTap: () {},
+                title: Text("Profile"),
+                trailing: Icon(Icons.person),
+              ),
+              Divider(),
+              ListTile(
+                onTap: (){},
+                title: Text("Log Out"),
+                trailing: Icon(Icons.exit_to_app),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

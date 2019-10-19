@@ -11,10 +11,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'I Love Iruka',
       theme: ThemeData(
+
         primarySwatch: Colors.yellow,
         primaryColor: Colors.white,
         accentColor: Colors.blue, 
-        iconTheme: IconThemeData(color: Colors.blue),
+        iconTheme: IconThemeData(color: Colors.white),
         errorColor: Colors.red, 
         
       ),
