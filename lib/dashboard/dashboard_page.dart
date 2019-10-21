@@ -13,7 +13,7 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   int bottomSelectedIndex = 0;
-  List<String> appBarTitleList = ["Dashboard", "Dashboard2", "Dashboard3"];
+  List<String> appBarTitleList = ["Feed", "Account", "Groomer List"];
 
   @override
   Widget build(BuildContext context) {

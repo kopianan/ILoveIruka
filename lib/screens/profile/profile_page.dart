@@ -12,6 +12,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
         // appBar: AppBar(
         //   title: Text("Profile View"),
         //   actions: <Widget>[
@@ -39,22 +40,21 @@ class _ProfilePageState extends State<ProfilePage> {
             ],
             title: Text("Profile View"),
             expandedHeight: 300,
-            pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.parallax,
               background: buildContainerHeaderProfile(),
             ),
           ),
           SliverFillRemaining(
-              hasScrollBody: false,
+              fillOverscroll: false,
               child: Container(
                 margin: EdgeInsets.all(20),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     buildTextFieldProfile("Fullname"),
-                    buildTextFieldProfile("Username"),
-                    buildTextFieldProfile("Email"),
+                    SizedBox(height: 20),
+                    buildTextFieldProfile("Username"),SizedBox(height: 20),
+                    buildTextFieldProfile("Email"),SizedBox(height: 20),
                     buildTextFieldProfile("Phone Number"),
                   ],
                 ),
