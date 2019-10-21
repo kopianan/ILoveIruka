@@ -15,6 +15,11 @@ class _DashboardPage2State extends State<DashboardPage2> {
         children: <Widget>[
           buildPointDashboard(),
           Container(
+            margin: EdgeInsets.only(top: 10),
+            child: Text("Code : 12289327938923"),
+            alignment: Alignment.center,
+          ),
+          Container(
             alignment: Alignment.center,
             width: double.infinity,
             color: Colors.white,
@@ -42,9 +47,10 @@ class _DashboardPage2State extends State<DashboardPage2> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.all(10),
-                  padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(shape: BoxShape.circle , color: Colors.black),
+                    margin: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.black),
                     width: 50,
                     child: Image.asset("images/assets/point_food.png")),
                 Expanded(
@@ -81,19 +87,20 @@ class _DashboardPage2State extends State<DashboardPage2> {
                 )
               ],
             ),
-            Divider(color: Colors.grey,
-            indent: 20,endIndent: 20,)
-            ,
+            Divider(
+              color: Colors.grey,
+              indent: 20,
+              endIndent: 20,
+            ),
             Row(
               children: <Widget>[
-
-                  Container(
-                  margin: EdgeInsets.all(10),
-                  padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(shape: BoxShape.circle , color: Colors.black),
+                Container(
+                    margin: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.black),
                     width: 50,
-                    child:  Image.asset("images/assets/point_services.png")),
-
+                    child: Image.asset("images/assets/point_services.png")),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

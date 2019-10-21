@@ -40,9 +40,9 @@ class _DashboardPage1State extends State<DashboardPage1> {
     return CustomScrollView(slivers: <Widget>[
       SliverList(
         delegate: SliverChildListDelegate(
-
           [
             buildServiceContent(),
+            
             Stack(
               children: <Widget>[
                 CarouselSlider(
@@ -89,27 +89,15 @@ class _DashboardPage1State extends State<DashboardPage1> {
                     ))
               ],
             ),
-
-           
           ],
         ),
       ),
-       SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return buildFeedContainer();
-              }, childCount: feedData.length),
-            )
+      SliverList(
+        delegate: SliverChildBuilderDelegate((context, index) {
+          return buildFeedContainer();
+        }, childCount: feedData.length),
+      )
     ]);
-
-    //   Expanded(
-    //     child: ListView.builder(
-    //       itemCount: feedData.length,
-    //       itemBuilder: (context, index) {
-    //         return buildFeedContainer();
-    //       },
-    //     ),
-    //   )
-    // ],
   }
 
   Container buildFeedContainer() {
@@ -133,7 +121,10 @@ class _DashboardPage1State extends State<DashboardPage1> {
                   fit: BoxFit.cover,
                 )),
             Expanded(
-              child: Container(color: Colors.white, child: Text("aldskj")),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                color: Colors.white, child: Text("Promo Test Anan Alfred ",maxLines: 1,overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
             )
           ],
         ),
@@ -152,11 +143,11 @@ class _DashboardPage1State extends State<DashboardPage1> {
               Container(
                   padding: EdgeInsets.only(top: 10, left: 15),
                   width: double.infinity,
-                  margin: EdgeInsets.only(bottom: 20),
                   child: Text(
                     "Services",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   )),
+                  Divider(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[

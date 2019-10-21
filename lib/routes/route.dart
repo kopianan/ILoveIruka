@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/dashboard/dashboard_page.dart';
 import 'package:i_love_iruka/screens/login/login_page.dart';
+import 'package:i_love_iruka/screens/profile/profile_page.dart';
 import 'package:i_love_iruka/screens/register/register_page.dart';
 
 import '../main.dart';
@@ -23,6 +24,10 @@ class RouteGenerator {
 
       case '/dashboard':
       return MaterialPageRoute(builder: (_) => DashboardPage()); 
+
+      case '/profile_page': 
+      return MaterialPageRoute(builder: (_) => ProfilePage()); 
+
       // if (args is String) {
       //   return MaterialPageRoute(
       //     builder: (_) => LoginPage(
