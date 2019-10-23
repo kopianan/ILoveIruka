@@ -1,4 +1,4 @@
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/dashboard/dashboard_widgets.dart';
 
@@ -37,58 +37,36 @@ class _DashboardPage1State extends State<DashboardPage1> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(slivers: <Widget>[
+    return CustomScrollView(
+      slivers: <Widget>[
+
+      SliverAppBar(
+        expandedHeight: 200,
+        floating: false,
+         automaticallyImplyLeading: true,
+         pinned: true,
+         centerTitle: true,
+
+        title: Text(
+          "Dashboard"
+        ),
+
+        flexibleSpace: FlexibleSpaceBar(
+          background:
+                Carousel(
+                  images: imageList,
+                  autoplay: true,
+                  
+                ),
+               
+        ),
+      ),
       SliverList(
         delegate: SliverChildListDelegate(
           [
             buildServiceContent(),
             
-            Stack(
-              children: <Widget>[
-                CarouselSlider(
-                  items: imageList,
-                  height: 200,
-                  aspectRatio: 2,
-                  initialPage: 0,
-                  enableInfiniteScroll: true,
-                  reverse: false,
-                  autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 3),
-                  autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  pauseAutoPlayOnTouch: Duration(seconds: 10),
-                  enlargeCenterPage: true,
-                  onPageChanged: (val) {
-                    setState(() {
-                      _current = val;
-                    });
-                  },
-                  scrollDirection: Axis.horizontal,
-                ),
-                Positioned(
-                    top: 0.0,
-                    left: 0.0,
-                    right: 0.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: map<Widget>(
-                        imageList,
-                        (index, url) {
-                          return Container(
-                            width: 8.0,
-                            height: 8.0,
-                            margin: EdgeInsets.symmetric(
-                                vertical: 10.0, horizontal: 2.0),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: _current == index
-                                    ? Color.fromRGBO(0, 0, 0, 0.9)
-                                    : Color.fromRGBO(0, 0, 0, 0.4)),
-                          );
-                        },
-                      ),
-                    ))
-              ],
-            ),
+            
           ],
         ),
       ),
@@ -135,9 +113,7 @@ class _DashboardPage1State extends State<DashboardPage1> {
   Container buildServiceContent() {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: Card(
-          elevation: 5,
-          child: Column(
+      child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Container(
@@ -183,7 +159,7 @@ class _DashboardPage1State extends State<DashboardPage1> {
                 ],
               ),
             ],
-          )),
+          )
     );
   }
 

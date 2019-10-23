@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/dashboard/dashboard_page.dart';
+import 'package:i_love_iruka/screens/groomer/groomer_list.dart';
 import 'package:i_love_iruka/screens/login/login_page.dart';
 import 'package:i_love_iruka/screens/profile/profile_page.dart';
 import 'package:i_love_iruka/screens/register/register_page.dart';
@@ -27,6 +28,8 @@ class RouteGenerator {
 
       case '/profile_page': 
       return MaterialPageRoute(builder: (_) => ProfilePage()); 
+      case '/groomer_list': 
+      return MaterialPageRoute(builder: (_) => GroomerList()); 
 
       // if (args is String) {
       //   return MaterialPageRoute(

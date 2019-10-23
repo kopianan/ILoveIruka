@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.yellow,
         primaryColor: Colors.orange,
-        accentColor: Colors.blue, 
+        accentColor: Colors.white, 
         iconTheme: IconThemeData(color: Colors.orange,),
         errorColor: Colors.red, 
         
