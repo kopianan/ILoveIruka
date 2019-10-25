@@ -9,28 +9,76 @@ class DashboardPage2 extends StatefulWidget {
 class _DashboardPage2State extends State<DashboardPage2> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          buildPointDashboard(),
-          Container(
-            margin: EdgeInsets.only(top: 10),
-            child: Text("Code : 12289327938923"),
-            alignment: Alignment.center,
-          ),
-          Container(
-            alignment: Alignment.center,
-            width: double.infinity,
-            color: Colors.white,
-            child: QrImage(
-              data: "123456789lajdhf lkajdhflk lakjdhf 0",
-              version: QrVersions.auto,
-              size: 300.0,
+    return SafeArea(
+      child: SingleChildScrollView(
+          child: Container(
+        margin: EdgeInsets.all(15),
+        child: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Text(
+                      "Hello\nNama Nama",
+                      style:
+                          TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.date_range),
+                        Text(DateTime.now().toIso8601String())
+                      ],
+                    ),
+                  ],
+                ),
+                Image.asset(
+                  
+                  "images/assets/pet_shop.png",
+                  height: 80,
+                  fit: BoxFit.cover,
+                )
+              ],
             ),
-          )
-        ],
-      ),
+            SizedBox(height: 40,),
+            Container(
+              alignment: Alignment.center,
+              width: double.infinity,
+              color: Colors.white,
+              child: QrImage(
+                foregroundColor: Colors.blue,
+                gapless: false,
+                data: "123456789lajdhf lkajdhflk lakjdhf 0",
+                version: QrVersions.auto,
+                size: 300.0,
+              ),
+            ),
+          ],
+        ),
+      )
+          // Column(
+          //   crossAxisAlignment: CrossAxisAlignment.stretch,
+          //   children: <Widget>[
+          //     buildPointDashboard(),
+          //     Container(
+          //       margin: EdgeInsets.only(top: 10),
+          //       child: Text("Code : 12289327938923"),
+          //       alignment: Alignment.center,
+          //     ),
+          //     Container(
+          //       alignment: Alignment.center,
+          //       width: double.infinity,
+          //       color: Colors.white,
+          //       child: QrImage(
+          //         data: "123456789lajdhf lkajdhflk lakjdhf 0",
+          //         version: QrVersions.auto,
+          //         size: 300.0,
+          //       ),
+          //     )
+          //   ],
+          // ),
+          ),
     );
   }
 

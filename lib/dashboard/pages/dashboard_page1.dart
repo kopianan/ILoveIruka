@@ -37,36 +37,27 @@ class _DashboardPage1State extends State<DashboardPage1> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: <Widget>[
-
+    return CustomScrollView(slivers: <Widget>[
       SliverAppBar(
-        expandedHeight: 200,
+        expandedHeight: 250,
         floating: false,
-         automaticallyImplyLeading: true,
-         pinned: true,
-         centerTitle: true,
+        automaticallyImplyLeading: true,
+        centerTitle: true,
 
-        title: Text(
-          "Dashboard"
-        ),
-
+        pinned: true,
+        title: Text("Dashboard"),
         flexibleSpace: FlexibleSpaceBar(
-          background:
-                Carousel(
-                  images: imageList,
-                  autoplay: true,
-                  
-                ),
-               
+          background: Carousel(
+            images: imageList,
+            autoplay: true,
+            boxFit: BoxFit.cover,
+          ),
         ),
       ),
       SliverList(
         delegate: SliverChildListDelegate(
           [
             buildServiceContent(),
-            
-            
           ],
         ),
       ),
@@ -80,8 +71,6 @@ class _DashboardPage1State extends State<DashboardPage1> {
 
   Container buildFeedContainer() {
     return Container(
-      decoration: BoxDecoration(
-          boxShadow: [BoxShadow(color: Colors.black, blurRadius: 5)]),
       margin: EdgeInsets.all(10),
       width: double.infinity,
       height: 250,
@@ -92,7 +81,6 @@ class _DashboardPage1State extends State<DashboardPage1> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
-                color: Colors.green,
                 child: Image.asset(
                   "images/assets/pet_grooming.png",
                   height: 200,
@@ -100,9 +88,15 @@ class _DashboardPage1State extends State<DashboardPage1> {
                 )),
             Expanded(
               child: Container(
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                color: Colors.white, child: Text("Promo Test Anan Alfred ",maxLines: 1,overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  color: Colors.white,
+                  child: Text(
+                    "Promo Test Anan Alfred ",
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  )),
             )
           ],
         ),
@@ -112,55 +106,54 @@ class _DashboardPage1State extends State<DashboardPage1> {
 
   Container buildServiceContent() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Container(
-                  padding: EdgeInsets.only(top: 10, left: 15),
-                  width: double.infinity,
-                  child: Text(
-                    "Services",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  )),
-                  Divider(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Column(
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Container(
+                padding: EdgeInsets.only(top: 10, left: 15),
+                width: double.infinity,
+                child: Text(
+                  "Services",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                )),
+            Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    buildIconContainer("images/assets/pet_shop.png"),
+                    buildIconTitleServicesDashboard(
+                      "Shop",
+                    )
+                  ],
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: Column(
                     children: <Widget>[
-                      buildIconContainer("images/assets/pet_shop.png"),
-                      buildIconTitleServicesDashboard(
-                        "Shop",
-                      )
+                      buildIconContainer("images/assets/pet_grooming.png"),
+                      buildIconTitleServicesDashboard("Grooming Salon")
                     ],
                   ),
-                  InkWell(
-                    onTap: () {},
-                    child: Column(
-                      children: <Widget>[
-                        buildIconContainer("images/assets/pet_grooming.png"),
-                        buildIconTitleServicesDashboard("Grooming Salon")
-                      ],
-                    ),
-                  ),
-                  Column(
-                    children: <Widget>[
-                      buildIconContainer("images/assets/pet_hotel.png"),
-                      buildIconTitleServicesDashboard("Hotel")
-                    ],
-                  ),
-                  Column(
-                    children: <Widget>[
-                      buildIconContainer("images/assets/pet_school.png"),
-                      buildIconTitleServicesDashboard("Pet Taxi")
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          )
-    );
+                ),
+                Column(
+                  children: <Widget>[
+                    buildIconContainer("images/assets/pet_hotel.png"),
+                    buildIconTitleServicesDashboard("Hotel")
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    buildIconContainer("images/assets/pet_school.png"),
+                    buildIconTitleServicesDashboard("Pet Taxi")
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ));
   }
 
   Container buildIconContainer(String images) {
@@ -188,11 +181,8 @@ class _DashboardPage1State extends State<DashboardPage1> {
   }
 
   BoxDecoration boxDecorationDashboardIcon() {
-    return BoxDecoration(boxShadow: [
-      BoxShadow(
-        color: Colors.black,
-        blurRadius: 2,
-      )
-    ], shape: BoxShape.circle, color: Colors.green);
+    return BoxDecoration( shape: BoxShape.circle, color: Color.fromRGBO(85, 141, 197,100));
   }
+  // 212, 85, 0,
+  // 85, 141, 197
 }

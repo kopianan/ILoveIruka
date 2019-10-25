@@ -4,6 +4,14 @@ import 'package:i_love_iruka/screens/login/login_page.dart';
 
 void main() => runApp(MyApp());
 
+// primary
+// #558dc5
+// #d45500
+
+// secondary color (RGBA) 
+// #df90b277 
+// #3cede2d2
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
