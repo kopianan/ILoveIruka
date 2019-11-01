@@ -69,10 +69,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   SizedBox(height: distanceOfElement,),
                   TextFormField(
-                      decoration: InputDecoration(hintText: " Email Address", labelText: "Email address")),
+                      decoration: InputDecoration(hintText: "Email Address", labelText: "Email address")),
                        SizedBox(height: distanceOfElement,),
                   TextFormField(
-                      decoration: InputDecoration(hintText: "Username")),
+                      decoration: InputDecoration(hintText: "Phone")),
                        SizedBox(height: distanceOfElement,),
                   TextFormField(
                       decoration: InputDecoration(hintText: "Password")),

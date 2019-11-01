@@ -1,6 +1,7 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/dashboard/dashboard_widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DashboardPage1 extends StatefulWidget {
   _DashboardPage1State createState() => _DashboardPage1State();
@@ -35,6 +36,15 @@ class _DashboardPage1State extends State<DashboardPage1> {
     return result;
   }
 
+  _launchURL(String urlAddress) async {
+    String url = "$urlAddress";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(slivers: <Widget>[
@@ -43,7 +53,6 @@ class _DashboardPage1State extends State<DashboardPage1> {
         floating: false,
         automaticallyImplyLeading: true,
         centerTitle: true,
-
         pinned: true,
         title: Text("Dashboard"),
         flexibleSpace: FlexibleSpaceBar(
@@ -82,10 +91,10 @@ class _DashboardPage1State extends State<DashboardPage1> {
           children: <Widget>[
             Container(
                 child: Image.asset(
-                  "images/assets/pet_grooming.png",
-                  height: 200,
-                  fit: BoxFit.cover,
-                )),
+              "images/assets/pet_grooming.png",
+              height: 200,
+              fit: BoxFit.cover,
+            )),
             Expanded(
               child: Container(
                   alignment: Alignment.centerLeft,
@@ -121,16 +130,23 @@ class _DashboardPage1State extends State<DashboardPage1> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    buildIconContainer("images/assets/pet_shop.png"),
-                    buildIconTitleServicesDashboard(
-                      "Shop",
-                    )
-                  ],
+                InkWell(
+                  onTap: () async {
+                    _launchURL("https://sismarket.id/");
+                  },
+                  child: Column(
+                    children: <Widget>[
+                      buildIconContainer("images/assets/pet_shop.png"),
+                      buildIconTitleServicesDashboard(
+                        "Shop",
+                      )
+                    ],
+                  ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () async {
+                    buildShowDialog("Grooming Salon");
+                  },
                   child: Column(
                     children: <Widget>[
                       buildIconContainer("images/assets/pet_grooming.png"),
@@ -138,22 +154,98 @@ class _DashboardPage1State extends State<DashboardPage1> {
                     ],
                   ),
                 ),
-                Column(
-                  children: <Widget>[
-                    buildIconContainer("images/assets/pet_hotel.png"),
-                    buildIconTitleServicesDashboard("Hotel")
-                  ],
+                InkWell(
+                  onTap: () async {
+                    buildShowDialog("Pet Hotel");
+                  },
+                  child: Column(
+                    children: <Widget>[
+                      buildIconContainer("images/assets/pet_hotel.png"),
+                      buildIconTitleServicesDashboard("Pet Hotel")
+                    ],
+                  ),
                 ),
-                Column(
-                  children: <Widget>[
-                    buildIconContainer("images/assets/pet_school.png"),
-                    buildIconTitleServicesDashboard("Pet Taxi")
-                  ],
+                InkWell(
+                  onTap: () async {
+                    buildShowDialogPetTaxi();
+                  },
+                  child: Column(
+                    children: <Widget>[
+                      buildIconContainer("images/assets/pet_school.png"),
+                      buildIconTitleServicesDashboard("Pet Taxi")
+                    ],
+                  ),
                 ),
               ],
             ),
           ],
         ));
+  }
+
+  Future buildShowDialog(String title) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              "$title",
+              textAlign: TextAlign.center,
+            ),
+            content: Text("Choose action "),
+            actions: <Widget>[
+              FlatButton(
+                splashColor: Colors.amber,
+                onPressed: () {
+                  _launchURL("https://iloveiruka.com/");
+                },
+                child: Text(
+                  "Visit Link",
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ),
+              FlatButton(
+                splashColor: Colors.amber,
+                onPressed: () {
+                  launch("tel://081377151395");
+                },
+                child: Text("Call Us", style: TextStyle(color: Colors.blue)),
+              ),
+            ],
+          );
+        });
+  }
+
+  Future buildShowDialogPetTaxi() {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              "Pet Taxi",
+              textAlign: TextAlign.center,
+            ),
+            content: Text("Choose action "),
+            actions: <Widget>[
+              FlatButton(
+                splashColor: Colors.amber,
+                onPressed: () {
+                  _launchURL("https://pettravelindonesia.com/");
+                },
+                child: Text(
+                  "Visit Link",
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ),
+              FlatButton(
+                splashColor: Colors.amber,
+                onPressed: () {
+                  launch("tel://081377151395");
+                },
+                child: Text("Call Us", style: TextStyle(color: Colors.blue)),
+              ),
+            ],
+          );
+        });
   }
 
   Container buildIconContainer(String images) {
@@ -181,7 +273,8 @@ class _DashboardPage1State extends State<DashboardPage1> {
   }
 
   BoxDecoration boxDecorationDashboardIcon() {
-    return BoxDecoration( shape: BoxShape.circle, color: Color.fromRGBO(85, 141, 197,100));
+    return BoxDecoration(
+        shape: BoxShape.circle, color: Color.fromRGBO(85, 141, 197, 100));
   }
   // 212, 85, 0,
   // 85, 141, 197
