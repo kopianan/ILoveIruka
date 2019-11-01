@@ -60,6 +60,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "8.5.0"
+  grouped_listview:
+    dependency: "direct main"
+    description:
+      name: grouped_listview
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2"
   matcher:
     dependency: transitive
     description:
