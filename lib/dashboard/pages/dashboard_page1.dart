@@ -43,7 +43,6 @@ class _DashboardPage1State extends State<DashboardPage1> {
         floating: false,
         automaticallyImplyLeading: true,
         centerTitle: true,
-
         pinned: true,
         title: Text("Dashboard"),
         flexibleSpace: FlexibleSpaceBar(
@@ -61,6 +60,7 @@ class _DashboardPage1State extends State<DashboardPage1> {
           ],
         ),
       ),
+    
       SliverList(
         delegate: SliverChildBuilderDelegate((context, index) {
           return buildFeedContainer();
@@ -69,6 +69,7 @@ class _DashboardPage1State extends State<DashboardPage1> {
     ]);
   }
 
+ 
   Container buildFeedContainer() {
     return Container(
       margin: EdgeInsets.all(10),
@@ -82,10 +83,10 @@ class _DashboardPage1State extends State<DashboardPage1> {
           children: <Widget>[
             Container(
                 child: Image.asset(
-                  "images/assets/pet_grooming.png",
-                  height: 200,
-                  fit: BoxFit.cover,
-                )),
+              "images/assets/pet_grooming.png",
+              height: 200,
+              fit: BoxFit.cover,
+            )),
             Expanded(
               child: Container(
                   alignment: Alignment.centerLeft,
@@ -181,7 +182,8 @@ class _DashboardPage1State extends State<DashboardPage1> {
   }
 
   BoxDecoration boxDecorationDashboardIcon() {
-    return BoxDecoration( shape: BoxShape.circle, color: Color.fromRGBO(85, 141, 197,100));
+    return BoxDecoration(
+        shape: BoxShape.circle, color: Color.fromRGBO(85, 141, 197, 100));
   }
   // 212, 85, 0,
   // 85, 141, 197

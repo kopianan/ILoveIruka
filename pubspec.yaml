@@ -28,6 +28,7 @@ dependencies:
   qr_flutter: ^3.0.1
   font_awesome_flutter: ^8.5.0
   carousel_pro: ^1.0.0
+  grouped_listview: ^0.0.2
 
 dev_dependencies:
   flutter_test:

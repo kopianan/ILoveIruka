@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
       title: 'I Love Iruka',
       theme: ThemeData(
 
-        primarySwatch: Colors.yellow,
-        primaryColor: Colors.orange,
-        accentColor: Colors.white, 
+        // primarySwatch: Colors.yellow,
+        // primaryColor: Color(0xd45500),
+        // accentColor:Color(0x558dc5), 
         iconTheme: IconThemeData(color: Colors.orange,),
         errorColor: Colors.red, 
         

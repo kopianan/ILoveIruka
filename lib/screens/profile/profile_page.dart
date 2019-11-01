@@ -85,7 +85,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Container(
       alignment: Alignment.center,
       height: 200,
-      color: Colors.green,
+      color: Colors.grey,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
