@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:i_love_iruka/dashboard/pages/dashboard_page1.dart';
-import 'package:i_love_iruka/dashboard/pages/dashboard_page2.dart';
+import 'package:i_love_iruka/pages/dashboard_page1.dart';
+import 'package:i_love_iruka/pages/dashboard_page2.dart';
 import 'package:i_love_iruka/widgets/color_palate.dart';
 
 class DashboardPage extends StatefulWidget {
