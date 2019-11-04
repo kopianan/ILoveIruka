@@ -73,7 +73,9 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
                  Divider(),
               ListTile(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).pushNamed('/login'); 
+                },
                 title: Text("Log Out"),
                 trailing: Icon(Icons.exit_to_app),
               ),

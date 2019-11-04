@@ -19,11 +19,12 @@ class _DashboardPage2State extends State<DashboardPage2> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       "Hello\nNama Nama",
                       style:
-                          TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                     Row(
                       children: <Widget>[
@@ -36,24 +37,27 @@ class _DashboardPage2State extends State<DashboardPage2> {
                 Image.asset(
                   
                   "images/assets/pet_shop.png",
-                  height: 80,
+                  height: 60,
                   fit: BoxFit.cover,
                 )
               ],
             ),
-            SizedBox(height: 40,),
+            SizedBox(height: 20,),
             Container(
               alignment: Alignment.center,
               width: double.infinity,
               color: Colors.white,
               child: QrImage(
+
                 foregroundColor: Colors.blue,
                 gapless: false,
                 data: "123456789lajdhf lkajdhflk lakjdhf 0",
                 version: QrVersions.auto,
-                size: 300.0,
+                size: 250.0,
               ),
             ),
+            SizedBox(height: 20,),
+            buildPointDashboard(),
           ],
         ),
       )
@@ -84,12 +88,9 @@ class _DashboardPage2State extends State<DashboardPage2> {
 
   Container buildPointDashboard() {
     return Container(
-      child: Card(
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        elevation: 5,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        child: Column(
+      child:  Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -185,7 +186,7 @@ class _DashboardPage2State extends State<DashboardPage2> {
             ),
           ],
         ),
-      ),
+      
     );
   }
 }
