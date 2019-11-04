@@ -280,6 +280,7 @@ class _RegisterPageState extends State<RegisterPage> {
             height: distanceOfElement,
           ),
           TextFormField(
+            obscureText: _obscureText,
               validator: validateName,
               onSaved: (String val) {
                 _retypePassword = val;
