@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io' as httpDio;
 
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
@@ -32,7 +31,6 @@ class ApiProvider {
   Future<String> registerUser(RegisterRequest registerData) async {
     final Dio dio = Dio();
     String url = _baseUrl + "/RegisterUserMobile";
-    print("Go");
     FormData formData = FormData.fromMap({
       "accessKey": registerData.accessKey,
       "Name": registerData.name,
@@ -42,9 +40,8 @@ class ApiProvider {
       "Address": registerData.address,
       "Description": registerData.description,
       "Role": registerData.role,
-      // "file": await MultipartFile.fromFile("./text.txt", filename: "upload.txt")
+      "file": await MultipartFile.fromFile(registerData.file)
     });
-    print(formData.length);
     Response response = await dio.post(url, data: formData);
     print(response.data);
     print(response.statusMessage);

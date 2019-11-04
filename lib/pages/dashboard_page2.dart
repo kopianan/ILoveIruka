@@ -10,8 +10,7 @@ class _DashboardPage2State extends State<DashboardPage2> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SingleChildScrollView(
-          child: Container(
+      child: Container(
         margin: EdgeInsets.all(15),
         child: Column(
           children: <Widget>[
@@ -82,7 +81,6 @@ class _DashboardPage2State extends State<DashboardPage2> {
           //     )
           //   ],
           // ),
-          ),
     );
   }
 

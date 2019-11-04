@@ -64,6 +64,9 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
                     ListTile(
+                      onTap: (){
+                        Navigator.of(context).pushNamed("/dashboard"); 
+                      },
                       title: Text(
                         "Welcome!",
                         style: TextStyle(
