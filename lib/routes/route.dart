@@ -4,6 +4,7 @@ import 'package:i_love_iruka/screens/groomer/groomer_list.dart';
 import 'package:i_love_iruka/screens/groomer_detail/groomer_detail.dart';
 import 'package:i_love_iruka/screens/login/login_page.dart';
 import 'package:i_love_iruka/screens/profile/profile_page.dart';
+import 'package:i_love_iruka/screens/register/register2_page.dart';
 import 'package:i_love_iruka/screens/register/register_page.dart';
 
 import '../main.dart';
@@ -33,6 +34,8 @@ class RouteGenerator {
       return MaterialPageRoute(builder: (_) => GroomerList()); 
       case '/groomer_detail': 
       return MaterialPageRoute(builder: (_) => GroomerDetail()); 
+      case '/register2_page' : 
+      return MaterialPageRoute(builder: (_) => Register2Page()); 
 
       // if (args is String) {
       //   return MaterialPageRoute(

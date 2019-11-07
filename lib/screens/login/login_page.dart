@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: <Widget>[
                     ListTile(
                       onTap: (){
-                        Navigator.of(context).pushNamed("/dashboard"); 
+                        Navigator.of(context).pushNamed("/register2_page"); 
                       },
                       title: Text(
                         "Welcome!",

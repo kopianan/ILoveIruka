@@ -47,7 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   )
                 ],
                 title: Text("Profile View"),
-                expandedHeight: 250,
+                expandedHeight: 300,
                 flexibleSpace: FlexibleSpaceBar(
 
                   collapseMode: CollapseMode.parallax,
