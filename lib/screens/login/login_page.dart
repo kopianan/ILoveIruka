@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:i_love_iruka/data/repository.dart';
 import 'package:i_love_iruka/models/request/login_request.dart';
 import 'package:i_love_iruka/screens/login/login_bloc/login_bloc_g.dart';
 import 'package:polygon_clipper/polygon_clipper.dart';
@@ -18,6 +19,12 @@ class _LoginPageState extends State<LoginPage> {
   String _password;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _autoValidate = false;
+
+  @override
+  void initState() { 
+    super.initState();
+    Repository().getGroomerList(); 
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

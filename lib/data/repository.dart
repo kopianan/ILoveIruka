@@ -1,5 +1,8 @@
 import 'package:i_love_iruka/data/api_provider.dart';
+import 'package:i_love_iruka/models/model/event_model.dart';
+import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:i_love_iruka/models/model/roles_model.dart';
+import 'package:i_love_iruka/models/model/user_groomers_model.dart';
 import 'package:i_love_iruka/models/request/login_request.dart';
 import 'package:i_love_iruka/models/request/register_request.dart';
 import 'package:i_love_iruka/models/response/login_response.dart';
@@ -13,5 +16,9 @@ class Repository {
   Future<dynamic> registerUserByEmail(RegisterRequest registerData) =>
       _apiProvider.registerUser(registerData);
 
-  Future<RolesModel> getRolesList() => _apiProvider.getRolesUser(); 
+  Future<RolesModel> getRolesList() => _apiProvider.getRolesUser();
+
+  Future<ProductsModel> getProductList() => _apiProvider.getProductListAsync();
+  Future<EventsModel> getEventList() => _apiProvider.getEventListAsync();
+  Future<UserGroomersModel> getGroomerList() => _apiProvider.getGroomerListAsync();
 }

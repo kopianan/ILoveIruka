@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
@@ -14,20 +13,58 @@ class Register2Page extends StatefulWidget {
 }
 
 class _Register2PageState extends State<Register2Page> {
-      Future<RolesModel> _getRolesOff;
-      Repository _repository = Repository();
-       String _dropDownValue;
-@override
-void initState() { 
-     _getRolesOff = _repository.getRolesList();
-  fillDataSlide(); 
-  super.initState();
-}
+  Future<RolesModel> _getRolesOff;
+  Repository _repository = Repository();
+  String _dropDownValue;
+
+  ScrollController c;
+  @override
+  void initState() {
+    _getRolesOff = _repository.getRolesList();
+    fillDataSlide();
+    c = new PageController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Container(
-      child: IntroSlider(slides: slides,)
-    ),);
+    return Scaffold(
+      body: Container(
+          child: PageView(
+        controller: c,
+        physics: NeverScrollableScrollPhysics(),
+        children: <Widget>[
+          Container(
+            color: Colors.red,
+            child: FlatButton(
+              child: Text("NEXT"),
+              onPressed: () {
+                c.animateTo(MediaQuery.of(context).size.width,
+                    duration: new Duration(seconds: 1),
+                    curve: Curves.bounceOut);
+              },
+            ),
+          ),
+          Container(
+              color: Colors.green,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Text("Who Are You ? "),
+                  buildDropdownRole(),
+                  FlatButton(
+                    child: Text("NEXT"),
+                    onPressed: () {
+                      c.animateTo(0,
+                          duration: new Duration(seconds: 1),
+                          curve: Curves.bounceOut);
+                    },
+                  ),
+                ],
+              ))
+        ],
+      )),
+    );
   }
 
   Widget buildDropdownRole() {
@@ -47,7 +84,6 @@ void initState() {
             break;
           case ConnectionState.done:
             return DropdownButton(
-
               isExpanded: true,
               onChanged: (val) {
                 setState(() {
@@ -70,17 +106,23 @@ void initState() {
   }
 
   List<Slide> slides = new List();
-    void fillDataSlide(){
+  void fillDataSlide() {
     slides.add(
       new Slide(
         title: "Who Are You ?",
-        styleTitle:
-            TextStyle(color: Color(0xffD02090), fontSize: 30.0, fontWeight: FontWeight.bold, fontFamily: 'RobotoMono'),
-        description: "Ye indulgence unreserved connection alteration appearance",
+        styleTitle: TextStyle(
+            color: Color(0xffD02090),
+            fontSize: 30.0,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'RobotoMono'),
+        description:
+            "Ye indulgence unreserved connection alteration appearance",
         centerWidget: buildDropdownRole(),
-        styleDescription:
-            TextStyle(color: Color(0xffD02090), fontSize: 20.0, fontStyle: FontStyle.italic, fontFamily: 'Raleway'),
- 
+        styleDescription: TextStyle(
+            color: Color(0xffD02090),
+            fontSize: 20.0,
+            fontStyle: FontStyle.italic,
+            fontFamily: 'Raleway'),
         colorBegin: Color(0xffFFFACD),
         colorEnd: Color(0xffFF6347),
         directionColorBegin: Alignment.topRight,
@@ -90,12 +132,18 @@ void initState() {
     slides.add(
       new Slide(
         title: "COFFEE",
-        styleTitle:
-            TextStyle(color: Color(0xffD02090), fontSize: 30.0, fontWeight: FontWeight.bold, fontFamily: 'RobotoMono'),
+        styleTitle: TextStyle(
+            color: Color(0xffD02090),
+            fontSize: 30.0,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'RobotoMono'),
         description:
             "Much evil soon high in hope do view. Out may few northward believing attempted. Yet timed being songs marry one defer men our. Although finished blessing do of",
-        styleDescription:
-            TextStyle(color: Color(0xffD02090), fontSize: 20.0, fontStyle: FontStyle.italic, fontFamily: 'Raleway'),
+        styleDescription: TextStyle(
+            color: Color(0xffD02090),
+            fontSize: 20.0,
+            fontStyle: FontStyle.italic,
+            fontFamily: 'Raleway'),
         pathImage: "images/photo_coffee_shop.png",
         colorBegin: Color(0xffFFA500),
         colorEnd: Color(0xff7FFFD4),
@@ -104,5 +152,5 @@ void initState() {
         maxLineTextDescription: 3,
       ),
     );
-    }
+  }
 }

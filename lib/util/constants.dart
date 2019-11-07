@@ -10,4 +10,13 @@ class Constants {
   String getBaseUrl() {
     return _webUrl + _apiUrl;
   }
+
+  String getWebUrl(){
+    return _webUrl ; 
+  }
+  String getApiUrl(){
+    return _apiUrl;
+    
+  }
+
 }

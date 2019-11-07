@@ -2,7 +2,10 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
+import 'package:i_love_iruka/models/model/event_model.dart';
+import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:i_love_iruka/models/model/roles_model.dart';
+import 'package:i_love_iruka/models/model/user_groomers_model.dart';
 import 'package:i_love_iruka/models/request/login_request.dart';
 import 'package:i_love_iruka/models/request/register_request.dart';
 import 'package:i_love_iruka/models/response/login_response.dart';
@@ -54,5 +57,47 @@ class ApiProvider {
     response = await http.get(_baseUrl + "/GetRole");
     final data = RolesModel.fromJson(json.decode(response.body));
     return data;
+  }
+
+  Future<ProductsModel> getProductListAsync() async {
+    ProductsModel data;
+    http.Response response;
+    response = await http.get(_baseUrl + "/GetAllProduct");
+    if (response.statusCode == 200) {
+      data = ProductsModel.fromJson(json.decode(response.body));
+    } else
+      data = null;
+
+    return data;
+  }
+
+  Future<EventsModel> getEventListAsync() async {
+    EventsModel data;
+    http.Response response;
+    response = await http.get(_baseUrl + "/GetAllEvent");
+    if (response.statusCode == 200) {
+      data = EventsModel.fromJson(json.decode(response.body));
+      print(data.eventList.length);
+    } else
+      data = null;
+
+    return data;
+  }
+
+  Future<UserGroomersModel> getGroomerListAsync() async {
+    // UserGroomersModel data;
+    // http.Response response;
+    // var uri = Uri.parse(Constants().getWebUrl());
+    // final newUri = uri.replace( path: "${Constants().getApiUrl()}/GetUserByRole", queryParameters: {"role":"Groomer"}); 
+    // response = await http.get(newUri, headers : {'Content-type': 'application/json'});
+    // print(response.body);
+    // print(response.request);
+    // if (response.statusCode == 200) {
+    //   data = UserGroomersModel.fromJson(json.decode(response.body));
+    //   print(data.listUser.length);
+    // } else
+    //   data = null;
+
+    // return data;
   }
 }
