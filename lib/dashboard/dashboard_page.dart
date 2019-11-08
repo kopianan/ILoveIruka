@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_g.dart';
 import 'package:i_love_iruka/pages/dashboard_page1.dart';
 import 'package:i_love_iruka/pages/dashboard_page2.dart';
 import 'package:i_love_iruka/widgets/color_palate.dart';
@@ -12,7 +14,14 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   int bottomSelectedIndex = 0;
+  DashboardBlocBloc dashboardBlocBloc = DashboardBlocBloc();
   List<String> appBarTitleList = ["Feed", "Account", "Groomer List"];
+
+  @override
+  void initState() {
+    super.initState();
+    dashboardBlocBloc.add(GetEventList());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +71,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 trailing: Icon(Icons.person),
               ),
               Divider(),
-                ListTile(
+              ListTile(
                 onTap: () {
                   Navigator.of(context).pushNamed(
                     '/groomer_list',
@@ -71,10 +80,10 @@ class _DashboardPageState extends State<DashboardPage> {
                 title: Text("Groomer Lists"),
                 trailing: Icon(Icons.group),
               ),
-                 Divider(),
+              Divider(),
               ListTile(
                 onTap: () {
-                  Navigator.of(context).pushNamed('/login'); 
+                  Navigator.of(context).pushNamed('/login');
                 },
                 title: Text("Log Out"),
                 trailing: Icon(Icons.exit_to_app),
@@ -96,7 +105,6 @@ class _DashboardPageState extends State<DashboardPage> {
           activeIcon: buildNavigationIcon(true, FontAwesomeIcons.idCard),
           icon: buildNavigationIcon(false, FontAwesomeIcons.idCard),
           title: Text("Account")),
-    
     ];
   }
 
@@ -131,11 +139,18 @@ class _DashboardPageState extends State<DashboardPage> {
 
   Widget buildPageView() {
     return PageView(
-      children: <Widget>[DashboardPage1(), DashboardPage2()],
-      controller: pageController,
-      onPageChanged: (index) {
-        pageChanged(index);
-      },
-    );
+            children: <Widget>[ DashboardPage1(), DashboardPage2()],
+            controller: pageController,
+            onPageChanged: (index) {
+              pageChanged(index);
+            },
+          );
+    // return PageView(
+    //   children: <Widget>[DashboardPage1(), DashboardPage2()],
+    //   controller: pageController,
+    //   onPageChanged: (index) {
+    //     pageChanged(index);
+    //   },
+    // );
   }
 }

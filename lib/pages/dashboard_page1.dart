@@ -1,15 +1,25 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_bloc.dart';
+import 'package:i_love_iruka/dashboard/bloc/dashboard_event.dart';
+import 'package:i_love_iruka/dashboard/bloc/dashboard_state.dart';
 import 'package:i_love_iruka/dashboard/dashboard_widgets.dart';
+import 'package:i_love_iruka/models/model/event_model.dart';
+import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DashboardPage1 extends StatefulWidget {
+  // final EventsModel response;
+  // DashboardPage1({@required this.response});
+
   _DashboardPage1State createState() => _DashboardPage1State();
 }
 
 class _DashboardPage1State extends State<DashboardPage1> {
   double serviceIconFontSize = 40.0;
   int _current = 0;
+  DashboardBlocBloc dashboardBlocBloc = DashboardBlocBloc();
   List<Widget> imageList = [
     DashboardWidgets()
         .buildImageOnSlider("https://picsum.photos/200/300?grayscale"),
@@ -18,6 +28,13 @@ class _DashboardPage1State extends State<DashboardPage1> {
     DashboardWidgets()
         .buildImageOnSlider("https://picsum.photos/200/300/?blur=2"),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    dashboardBlocBloc.add(GetEventList());
+    dashboardBlocBloc.add(GetProductList());
+  }
 
   List<String> feedData = [
     "feed 1",
@@ -55,12 +72,29 @@ class _DashboardPage1State extends State<DashboardPage1> {
         centerTitle: true,
         pinned: true,
         title: Text("Dashboard"),
-        flexibleSpace: FlexibleSpaceBar(
-          background: Carousel(
-            images: imageList,
-            autoplay: true,
-            boxFit: BoxFit.cover,
-          ),
+        flexibleSpace: BlocBuilder<DashboardBlocBloc, DashboardState>(
+          bloc: dashboardBlocBloc,
+          builder: (context, state) {
+            if (state is GetEventListLoading)
+              return Center(
+                  child: CircularProgressIndicator(
+                backgroundColor: Colors.yellow,
+              ));
+            else if (state is GetEventListCompleted) {
+              final dataResp = state.response.eventList;
+              return FlexibleSpaceBar(
+                background: Carousel(
+                  images: dataResp.map((f) {
+                    return DashboardWidgets()
+                        .buildImageOnSlider("${f.picture}");
+                  }).toList(),
+                  autoplay: true,
+                  boxFit: BoxFit.cover,
+                ),
+              );
+            }
+            return Container();
+          },
         ),
       ),
       SliverList(
@@ -70,17 +104,31 @@ class _DashboardPage1State extends State<DashboardPage1> {
           ],
         ),
       ),
-    
-      SliverList(
-        delegate: SliverChildBuilderDelegate((context, index) {
-          return buildFeedContainer();
-        }, childCount: feedData.length),
+      BlocBuilder<DashboardBlocBloc, DashboardState>(
+        bloc: dashboardBlocBloc,
+        builder: (context, state) {
+          if (state is GetProductListCompleted) {
+            final dataFeed = state.response.productList;
+            print("data " + dataFeed.length.toString());
+            return SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return buildFeedContainer(dataFeed[index]);
+              }, childCount: dataFeed.length),
+            );
+          } else if (state is GetProductListLoading) {
+            return SliverList(
+              delegate: SliverChildListDelegate([Container()]),
+            );
+          }
+          return SliverList(
+            delegate: SliverChildListDelegate([Container()]),
+          );
+        },
       )
     ]);
   }
 
- 
-  Container buildFeedContainer() {
+  Container buildFeedContainer(ProductList productList) {
     return Container(
       margin: EdgeInsets.all(10),
       width: double.infinity,
@@ -103,7 +151,7 @@ class _DashboardPage1State extends State<DashboardPage1> {
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   color: Colors.white,
                   child: Text(
-                    "Promo Test Anan Alfred ",
+                    "${productList.productName}",
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),

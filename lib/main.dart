@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_bloc.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/routes/route.dart';
 import 'package:i_love_iruka/screens/login/login_bloc/login_bloc_bloc.dart';
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
           child: MultiBlocProvider(
         providers: [
           BlocProvider<LoginBlocBloc>(builder: (BuildContext context) => LoginBlocBloc()),
-          BlocProvider<RegisterBlocBloc>(builder: (BuildContext context) => RegisterBlocBloc())
+          BlocProvider<RegisterBlocBloc>(builder: (BuildContext context) => RegisterBlocBloc()),
+          BlocProvider<DashboardBlocBloc>(builder: (BuildContext context) => DashboardBlocBloc())
         ],
         child: MaterialApp(
           title: 'I Love Iruka',
