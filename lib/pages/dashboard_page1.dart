@@ -5,7 +5,6 @@ import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_bloc.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_event.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_state.dart';
 import 'package:i_love_iruka/dashboard/dashboard_widgets.dart';
-import 'package:i_love_iruka/models/model/event_model.dart';
 import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 

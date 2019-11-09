@@ -70,6 +70,8 @@ flutter:
    - images/assets/point_food.png
    - images/assets/point_services.png
    - images/assets/profile_placeholder.png
+   - images/assets/iruka_logo.png
+   - images/assets/iruka_petcare_white.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

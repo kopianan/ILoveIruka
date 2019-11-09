@@ -37,12 +37,12 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             // primarySwatch: Colors.yellow,
             // primaryColor: Color(0xd45500),
-            // accentColor:Color(0x558dc5),
             iconTheme: IconThemeData(
               color: Colors.orange,
             ),
             errorColor: Colors.red,
           ),
+          
           home: LoginPage(),
           initialRoute: "/",
           onGenerateRoute: RouteGenerator.generateRoute,

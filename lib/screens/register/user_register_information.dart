@@ -5,13 +5,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'register_additional.dart';
 
 class UserRegisterInformation extends StatefulWidget {
- 
-  // 
+  //
   //
 
   // final bool _obscureText;
   // final BuildContext context;
-  // 
+  //
 
   @override
   _UserRegisterInformationState createState() =>
@@ -27,17 +26,17 @@ class _UserRegisterInformationState extends State<UserRegisterInformation> {
   var _phoneController = TextEditingController();
   var _passwordController = TextEditingController();
   var _repeatPasswordController = TextEditingController();
- GlobalKey<FormState> _formKey;
- bool _obscureText;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _autoValidate = false;
+ 
+  bool _obscureText;
   ScrollController c;
-   bool _autoValidate;
- RegisterAdditional _registerAdditional = RegisterAdditional();
- @override
- void initState() { 
-   super.initState();
-     c = new PageController();
-  
- }
+  RegisterAdditional _registerAdditional = RegisterAdditional();
+  @override
+  void initState() {
+    super.initState();
+    c = new PageController();
+  }
 
   void toggle() {
     setState(() {
