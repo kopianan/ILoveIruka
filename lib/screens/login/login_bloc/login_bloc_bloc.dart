@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:i_love_iruka/data/repository.dart';
+import 'package:i_love_iruka/util/shared_pref.dart';
 import 'login_bloc_g.dart';
 
 class LoginBlocBloc extends Bloc<LoginBlocEvent, LoginBlocState> {
@@ -17,6 +18,7 @@ class LoginBlocBloc extends Bloc<LoginBlocEvent, LoginBlocState> {
       yield LoginLoading();
       final loginResponse = await _repository.loginUserByEmail(event.loginData);
       if (loginResponse.user != null) {
+        SharedPref().saveLoginData(loginResponse); 
         yield LoginComplete(response: loginResponse);
       } else {
         yield LoginError("Error");

@@ -4,7 +4,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:i_love_iruka/data/repository.dart';
 import 'package:i_love_iruka/models/request/login_request.dart';
 import 'package:i_love_iruka/screens/login/login_bloc/login_bloc_g.dart';
-import 'package:polygon_clipper/polygon_clipper.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -23,7 +22,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    Repository().getGroomerList();
   }
 
   @override
@@ -81,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: <Widget>[
                     InkWell(
                       onTap: () {
-                        Navigator.of(context).pushNamed("/register2_page");
+                        Navigator.of(context).pushNamed("/dashboard");
                       },
                       child: Container(
                         alignment: Alignment.center,

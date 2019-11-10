@@ -1,4 +1,4 @@
-import 'package:i_love_iruka/models/response/login_response.dart';
+import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:meta/meta.dart';
 
 @immutable

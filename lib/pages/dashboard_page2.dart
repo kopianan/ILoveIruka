@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:i_love_iruka/models/model/login_response.dart';
+import 'package:i_love_iruka/util/shared_pref.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -7,6 +9,27 @@ class DashboardPage2 extends StatefulWidget {
 }
 
 class _DashboardPage2State extends State<DashboardPage2> {
+ LoginResponse dataLogin  = LoginResponse();
+
+  @override
+  void initState() { 
+    super.initState();
+    loadSharedPrefs();
+  }
+
+  loadSharedPrefs() async {
+    try {
+      LoginResponse user = LoginResponse.fromJson(await SharedPref().getLoginData());
+      setState(() {
+        dataLogin = user; 
+      });
+    
+    } catch (Excepetion) {
+      Scaffold.of(context).showSnackBar(SnackBar(
+          content: new Text("Nothing found!"),
+          duration: const Duration(milliseconds: 500)));
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,8 +43,8 @@ class _DashboardPage2State extends State<DashboardPage2> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      "Hello\nNama Nama",
+                    (dataLogin == null) ? CircularProgressIndicator() : Text(
+                      "Hello\n${dataLogin.user.name}",
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),

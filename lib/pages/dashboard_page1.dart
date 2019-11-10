@@ -108,7 +108,6 @@ class _DashboardPage1State extends State<DashboardPage1> {
         builder: (context, state) {
           if (state is GetProductListCompleted) {
             final dataFeed = state.response.productList;
-            print("data " + dataFeed.length.toString());
             return SliverList(
               delegate: SliverChildBuilderDelegate((context, index) {
                 return buildFeedContainer(dataFeed[index]);

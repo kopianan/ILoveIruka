@@ -3,12 +3,13 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:i_love_iruka/models/model/event_model.dart';
+import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:i_love_iruka/models/model/roles_model.dart';
 import 'package:i_love_iruka/models/model/user_groomers_model.dart';
 import 'package:i_love_iruka/models/request/login_request.dart';
 import 'package:i_love_iruka/models/request/register_request.dart';
-import 'package:i_love_iruka/models/response/login_response.dart';
+import 'package:i_love_iruka/models/request/user_by_role_request.dart';
 import 'package:i_love_iruka/util/constants.dart';
 
 class ApiProvider {
@@ -84,20 +85,20 @@ class ApiProvider {
     return data;
   }
 
-  Future<UserGroomersModel> getGroomerListAsync() async {
-    // UserGroomersModel data;
-    // http.Response response;
-    // var uri = Uri.parse(Constants().getWebUrl());
-    // final newUri = uri.replace( path: "${Constants().getApiUrl()}/GetUserByRole", queryParameters: {"role":"Groomer"}); 
-    // response = await http.get(newUri, headers : {'Content-type': 'application/json'});
-    // print(response.body);
-    // print(response.request);
-    // if (response.statusCode == 200) {
-    //   data = UserGroomersModel.fromJson(json.decode(response.body));
-    //   print(data.listUser.length);
-    // } else
-    //   data = null;
+  Future<UserGroomersModel> getGroomerListAsync(
+      UserByRoleRequest request) async {
+    UserGroomersModel data;
+    http.Response response;
+    print(request.toJson());
+    response = await http.post(_baseUrl + "/GetUserByRole",
+        body: jsonEncode(request.toJson()), headers: requestHeaders);
+    print(response.body);
+    if (response.statusCode == 200) {
+      data = UserGroomersModel.fromJson(json.decode(response.body));
+      print(data.listUser.length);
+    } else
+      data = null;
 
-    // return data;
+    return data;
   }
 }

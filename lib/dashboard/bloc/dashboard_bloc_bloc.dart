@@ -34,5 +34,16 @@ class DashboardBlocBloc extends Bloc<DashboardEvent, DashboardState> {
     }
   }
 
+  if(event is GetUserByRole){
+    yield GetUserByRoleLoading(); 
+    final userResponse = await _repository.getGroomerList(event.roleKey); 
+    // print(userResponse.toJson().toString() + "INI GROOMER"); 
+    if(userResponse != null){
+      yield GetUserByRoleCompleted(userResponse); 
+    }else{
+      yield GetUserByRoleError("error"); 
+    }
+  }
+
 }
 }

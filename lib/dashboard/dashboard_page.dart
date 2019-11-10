@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_g.dart';
 import 'package:i_love_iruka/pages/dashboard_page1.dart';
@@ -21,7 +20,7 @@ class _DashboardPageState extends State<DashboardPage> {
   void initState() {
     super.initState();
     dashboardBlocBloc.add(GetEventList());
-  }
+   }
 
   @override
   Widget build(BuildContext context) {

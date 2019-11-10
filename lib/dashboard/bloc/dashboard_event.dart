@@ -1,3 +1,4 @@
+import 'package:i_love_iruka/models/request/user_by_role_request.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -12,4 +13,9 @@ class GetEventList extends DashboardEvent{
 
 class GetProductList extends DashboardEvent{
   GetProductList() ; 
+}
+
+class GetUserByRole extends DashboardEvent{
+  final UserByRoleRequest roleKey ; 
+  GetUserByRole(this.roleKey); 
 }

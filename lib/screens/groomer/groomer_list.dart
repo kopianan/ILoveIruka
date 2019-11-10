@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:grouped_listview/grouped_listview.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_bloc.dart';
+import 'package:i_love_iruka/dashboard/bloc/dashboard_event.dart';
+import 'package:i_love_iruka/dashboard/bloc/dashboard_state.dart';
+import 'package:i_love_iruka/models/request/user_by_role_request.dart';
 
 class GroomerList extends StatefulWidget {
   GroomerList({Key key}) : super(key: key);
@@ -9,24 +13,14 @@ class GroomerList extends StatefulWidget {
 }
 
 class _GroomerListState extends State<GroomerList> {
-  List<String> listGroomer = [
-    "Anan",
-    "ANdi",
-    "Supermarket",
-    "Indonesia Sejahtera",
-    "Armada",
-    "Kipas Angin",
-    "ANdi",
-    "Supermarket",
-    "Indonesia Sejahtera",
-    "Armada",
-    "Kipas Angin",
-    "ANdi",
-    "Supermarket",
-    "Indonesia Sejahtera",
-    "Armada",
-    "Kipas Angin"
-  ];
+  
+  @override
+  void initState() { 
+    dashboardBloc.add(GetUserByRole(UserByRoleRequest(role: "Groomer")));
+    super.initState();
+    
+  }
+  final dashboardBloc = DashboardBlocBloc();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,42 +74,59 @@ class _GroomerListState extends State<GroomerList> {
                       ],
                     ),
                   ),
-                  ListTile(
-                    title: Text(
-                      "Nama User 1",
-                      style: TextStyle(fontSize: 20),
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 20),
+                    child: Column(
+                      children: <Widget>[
+                        Row(children: <Widget>[
+                          CircleAvatar(child: Text("AA"), radius: 30,), 
+                          SizedBox(width: 20,),
+                          Text("Nama")
+                        ],),
+                      ],
                     ),
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.blue,
-                    ),
-                    subtitle: Text("My Card"),
                   ),
                 ],
               ),
             ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                   
-                    return InkWell(
-                        onTap: () {
-                          Navigator.of(context).pushNamed("/groomer_detail"); 
-                        },
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                                height: 50,
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  listGroomer[index],
-                                  style: TextStyle(fontSize: 20),
-                                )),
-                                Divider(height: 1,color: Colors.grey,),
-                          ],
-                        ));
-                  },
-                  childCount: listGroomer.length,
-               ),
+            BlocBuilder<DashboardBlocBloc, DashboardState>(
+              bloc: dashboardBloc,
+              builder: (context, state) {
+                if (state is GetUserByRoleLoading) {
+                  return SliverToBoxAdapter(child: CircularProgressIndicator()); 
+                } else if (state is GetUserByRoleCompleted) {
+                  final dataSnap = state.response.listUser;
+                  return SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        return InkWell(
+                            onTap: () {
+                              Navigator.of(context)
+                                  .pushNamed("/groomer_detail");
+                            },
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                    height: 50,
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      dataSnap[index].name,
+                                      style: TextStyle(fontSize: 20),
+                                    )),
+                                Divider(
+                                  height: 1,
+                                  color: Colors.grey,
+                                ),
+                              ],
+                            ));
+                      },
+                      childCount: dataSnap.length,
+                    ),
+                  );
+                }
+                return 
+            SliverToBoxAdapter(child: Text("asdf")); 
+              },
             ),
           ],
         ),

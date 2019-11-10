@@ -1,12 +1,12 @@
 import 'package:i_love_iruka/models/model/event_model.dart';
 import 'package:i_love_iruka/models/model/product_model.dart';
+import 'package:i_love_iruka/models/model/user_groomers_model.dart';
 import 'package:meta/meta.dart';
 
 @immutable
 abstract class DashboardState {}
-  
-class InitialDashboardState extends DashboardState {}
 
+class InitialDashboardState extends DashboardState {}
 
 // EVENT
 class GetEventListLoading extends DashboardState {}
@@ -23,7 +23,6 @@ class GetEventListError extends DashboardState {
 
 // PRODUCT
 
-
 class GetProductListLoading extends DashboardState {}
 
 class GetProductListCompleted extends DashboardState {
@@ -34,4 +33,19 @@ class GetProductListCompleted extends DashboardState {
 class GetProductListError extends DashboardState {
   final String errorMessage;
   GetProductListError(this.errorMessage);
+}
+
+//UserByRole
+class GetUserByRoleCompleted extends DashboardState {
+  final UserGroomersModel response;
+  GetUserByRoleCompleted(this.response);
+}
+
+class GetUserByRoleLoading extends DashboardState {
+  GetUserByRoleLoading();
+}
+
+class GetUserByRoleError extends DashboardState {
+  final String error;
+  GetUserByRoleError(this.error);
 }
