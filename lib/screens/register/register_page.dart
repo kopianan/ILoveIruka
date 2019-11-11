@@ -104,7 +104,7 @@ class _RegisterPageState extends State<RegisterPage> {
         Fluttertoast.showToast(msg: "Choose User Type");
       } else {
         final dataRegister = RegisterRequest(
-            accessKey: Constants().getAccessKey(),
+            accessKey: Constants.getAccessKey(),
             address: "Alamat",
             description: "Description",
             email: "anan1@gmail.com",

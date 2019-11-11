@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/dashboard/dashboard_page.dart';
+import 'package:i_love_iruka/models/model/user_groomers_model.dart';
 import 'package:i_love_iruka/screens/groomer/groomer_list.dart';
 import 'package:i_love_iruka/screens/groomer_detail/groomer_detail.dart';
 import 'package:i_love_iruka/screens/login/login_page.dart';
@@ -26,16 +27,24 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => RegisterPage());
 
       case '/dashboard':
-      return MaterialPageRoute(builder: (_) => DashboardPage()); 
+        return MaterialPageRoute(builder: (_) => DashboardPage());
 
-      case '/profile_page': 
-      return MaterialPageRoute(builder: (_) => ProfilePage()); 
-      case '/groomer_list': 
-      return MaterialPageRoute(builder: (_) => GroomerList()); 
-      case '/groomer_detail': 
-      return MaterialPageRoute(builder: (_) => GroomerDetail()); 
-      case '/register2_page' : 
-      return MaterialPageRoute(builder: (_) => Register2Page()); 
+      case '/profile_page':
+        return MaterialPageRoute(builder: (_) => ProfilePage());
+      case '/groomer_list':
+        return MaterialPageRoute(builder: (_) => GroomerList());
+      case '/groomer_detail':
+        {
+             return MaterialPageRoute(builder: (_) => GroomerDetail(data: args,));
+          // if (args == ListUser) {
+         
+          // } else {
+          //   return _errorRoute();
+          // }
+        }
+        break;
+      case '/register2_page':
+        return MaterialPageRoute(builder: (_) => Register2Page());
 
       // if (args is String) {
       //   return MaterialPageRoute(

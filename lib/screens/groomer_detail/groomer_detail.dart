@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:i_love_iruka/models/model/user_groomers_model.dart';
+import 'package:i_love_iruka/util/constants.dart';
 
 class GroomerDetail extends StatefulWidget {
+  final ListUser data;
+  GroomerDetail({this.data});
   @override
   _GroomerDetailState createState() => _GroomerDetailState();
 }
 
 class _GroomerDetailState extends State<GroomerDetail> {
+  @override
+  void initState() { 
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     var subTitleTextStyle = TextStyle(
@@ -27,10 +35,12 @@ class _GroomerDetailState extends State<GroomerDetail> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   CircleAvatar(
+                    child: Image.network("http://iruka.diodeiva.dev/Media/Event/iruka_logo.png"),
+                    maxRadius: 80,
                     minRadius: 80,
                   ),
                   Text(
-                    "Nama Lengkap",
+                    "${widget.data.name}",
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -52,7 +62,7 @@ class _GroomerDetailState extends State<GroomerDetail> {
                     color: Colors.grey,
                   ),
                   Text(
-                      "Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with: ")
+                      "${widget.data.description}")
                 ],
               ),
             ),
@@ -68,25 +78,25 @@ class _GroomerDetailState extends State<GroomerDetail> {
                   Divider(
                     color: Colors.grey,
                   ),
-                  Text("specimen book. It usually begins with: ")
+                  Text("${widget.data.address}")
                 ],
               ),
             ),
             Container(
               margin: EdgeInsets.symmetric(vertical: 30),
               child: Stack(
-                
                 alignment: Alignment.bottomCenter,
                 children: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       FloatingActionButton.extended(
+                        
                         label: Text("Whatsapp"),
                         icon: Icon(FontAwesomeIcons.whatsapp),
                         onPressed: () {},
+                        
                       ),
-                   
                     ],
                   ),
                 ],

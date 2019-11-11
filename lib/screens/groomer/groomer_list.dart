@@ -102,7 +102,7 @@ class _GroomerListState extends State<GroomerList> {
                         return InkWell(
                             onTap: () {
                               Navigator.of(context)
-                                  .pushNamed("/groomer_detail");
+                                  .pushNamed("/groomer_detail", arguments: dataSnap[index]);
                             },
                             child: Column(
                               children: <Widget>[

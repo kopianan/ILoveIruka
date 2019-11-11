@@ -18,7 +18,7 @@ class ApiProvider {
     'accessKey': 'd78c1a5c-ccbe-4c26-ac08-43ed66c8afb9'
   };
 
-  String _baseUrl = Constants().getBaseUrl();
+  String _baseUrl = Constants.getBaseUrl();
   Future<LoginResponse> loginUser(LoginRequest login) async {
     print(login.toJson());
     http.Response response;
@@ -78,10 +78,9 @@ class ApiProvider {
     response = await http.get(_baseUrl + "/GetAllEvent");
     if (response.statusCode == 200) {
       data = EventsModel.fromJson(json.decode(response.body));
-      print(data.eventList.length);
-    } else
+    } else{
       data = null;
-
+    }
     return data;
   }
 

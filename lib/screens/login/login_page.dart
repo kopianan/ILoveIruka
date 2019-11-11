@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: <Widget>[
                     InkWell(
                       onTap: () {
-                        Navigator.of(context).pushNamed("/dashboard");
+                        Navigator.of(context).pushNamed("/register2_page");
                       },
                       child: Container(
                         alignment: Alignment.center,

@@ -6,6 +6,7 @@ import 'package:i_love_iruka/dashboard/bloc/dashboard_event.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_state.dart';
 import 'package:i_love_iruka/dashboard/dashboard_widgets.dart';
 import 'package:i_love_iruka/models/model/product_model.dart';
+import 'package:i_love_iruka/util/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DashboardPage1 extends StatefulWidget {
@@ -19,20 +20,13 @@ class _DashboardPage1State extends State<DashboardPage1> {
   double serviceIconFontSize = 40.0;
   int _current = 0;
   DashboardBlocBloc dashboardBlocBloc = DashboardBlocBloc();
-  List<Widget> imageList = [
-    DashboardWidgets()
-        .buildImageOnSlider("https://picsum.photos/200/300?grayscale"),
-    DashboardWidgets()
-        .buildImageOnSlider("https://picsum.photos/seed/picsum/200/300"),
-    DashboardWidgets()
-        .buildImageOnSlider("https://picsum.photos/200/300/?blur=2"),
-  ];
 
   @override
   void initState() {
     super.initState();
+    
+    // dashboardBlocBloc.add(GetProductList());
     dashboardBlocBloc.add(GetEventList());
-    dashboardBlocBloc.add(GetProductList());
   }
 
   List<String> feedData = [
@@ -71,29 +65,44 @@ class _DashboardPage1State extends State<DashboardPage1> {
         centerTitle: true,
         pinned: true,
         title: Text("Dashboard"),
-        flexibleSpace: BlocBuilder<DashboardBlocBloc, DashboardState>(
+        flexibleSpace: BlocListener<DashboardBlocBloc, DashboardState>(
           bloc: dashboardBlocBloc,
-          builder: (context, state) {
-            if (state is GetEventListLoading)
-              return Center(
-                  child: CircularProgressIndicator(
-                backgroundColor: Colors.yellow,
-              ));
-            else if (state is GetEventListCompleted) {
-              final dataResp = state.response.eventList;
-              return FlexibleSpaceBar(
-                background: Carousel(
-                  images: dataResp.map((f) {
-                    return DashboardWidgets()
-                        .buildImageOnSlider("${f.picture}");
-                  }).toList(),
-                  autoplay: true,
-                  boxFit: BoxFit.cover,
-                ),
-              );
-            }
-            return Container();
+          listener: (context, state){
           },
+                  child: BlocBuilder<DashboardBlocBloc, DashboardState>(
+            bloc: dashboardBlocBloc,
+            builder: (context, state) {
+              if (state is GetEventListLoading){
+
+                return Center(
+                    child: CircularProgressIndicator(
+                  backgroundColor: Colors.yellow,
+                ));
+              }
+              else if (state is GetEventListCompleted) {
+
+                final dataResp = state.response.eventList;
+
+                return FlexibleSpaceBar(
+                  background: Carousel(
+                    images: dataResp.map((f) {
+                      return DashboardWidgets().buildImageOnSlider(
+                          "${Constants.getWebUrl() + "/" + f.picture}");
+                    }).toList(),
+                    autoplay: true,
+                    boxFit: BoxFit.cover,
+                  ),
+                );
+              } else if (state is GetEventListError) {
+
+                return Container(
+                  color: Colors.green,
+                );
+              }
+            },
+            
+          
+          ),
         ),
       ),
       SliverList(
@@ -103,63 +112,11 @@ class _DashboardPage1State extends State<DashboardPage1> {
           ],
         ),
       ),
-      BlocBuilder<DashboardBlocBloc, DashboardState>(
-        bloc: dashboardBlocBloc,
-        builder: (context, state) {
-          if (state is GetProductListCompleted) {
-            final dataFeed = state.response.productList;
-            return SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return buildFeedContainer(dataFeed[index]);
-              }, childCount: dataFeed.length),
-            );
-          } else if (state is GetProductListLoading) {
-            return SliverList(
-              delegate: SliverChildListDelegate([Container()]),
-            );
-          }
-          return SliverList(
-            delegate: SliverChildListDelegate([Container()]),
-          );
-        },
-      )
+      BuildProducts()
     ]);
   }
 
-  Container buildFeedContainer(ProductList productList) {
-    return Container(
-      margin: EdgeInsets.all(10),
-      width: double.infinity,
-      height: 250,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Container(
-                child: Image.asset(
-              "images/assets/pet_grooming.png",
-              height: 200,
-              fit: BoxFit.cover,
-            )),
-            Expanded(
-              child: Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  color: Colors.white,
-                  child: Text(
-                    "${productList.productName}",
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  )),
-            )
-          ],
-        ),
-      ),
-    );
-  }
+  
 
   Container buildServiceContent() {
     return Container(
@@ -326,4 +283,78 @@ class _DashboardPage1State extends State<DashboardPage1> {
   }
   // 212, 85, 0,
   // 85, 141, 197
+}
+
+class BuildProducts extends StatefulWidget {
+  BuildProducts({Key key}) : super(key: key);
+
+  @override
+  _BuildProductsState createState() => _BuildProductsState();
+}
+
+class _BuildProductsState extends State<BuildProducts> {
+
+   DashboardBlocBloc dashboardBlocBloc = DashboardBlocBloc();
+  @override
+  void initState() { 
+    super.initState();
+    dashboardBlocBloc.add(GetProductList());
+  }
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<DashboardBlocBloc, DashboardState>(
+        bloc: dashboardBlocBloc,
+        builder: (context, state) {
+          if (state is GetProductListCompleted) {
+            final dataFeed = state.response.productList;
+            return SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return buildFeedContainer(dataFeed[index]);
+              }, childCount: dataFeed.length),
+            );
+          } else if (state is GetProductListLoading) {
+            return SliverList(
+              delegate: SliverChildListDelegate([Container()]),
+            );
+          }
+          return SliverList(
+            delegate: SliverChildListDelegate([Container()]),
+          );
+        },
+      );
+  }
+  Container buildFeedContainer(ProductList productList) {
+    return Container(
+      margin: EdgeInsets.all(10),
+      width: double.infinity,
+      height: 250,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+                child: Image.network(
+              Constants.getWebUrl() + "/" + productList.picture,
+              height: 200,
+              fit: BoxFit.cover,
+            )),
+            Expanded(
+              child: Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  color: Colors.white,
+                  child: Text(
+                    "${productList.productName}",
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  )),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }
