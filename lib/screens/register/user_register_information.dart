@@ -71,7 +71,7 @@ class _UserRegisterInformationState extends State<UserRegisterInformation> {
                     child: Container(
                       margin: EdgeInsets.only(right: 10),
                       child: TextFormField(
-                          validator: _registerAdditional.validateName,
+                          validator: RegisterAdditional.validateName,
                           onSaved: (String val) {
                             // _firstName = val;
                           },
@@ -83,7 +83,7 @@ class _UserRegisterInformationState extends State<UserRegisterInformation> {
                     child: Container(
                       margin: EdgeInsets.only(left: 10),
                       child: TextFormField(
-                          validator: _registerAdditional.validateName,
+                          validator: RegisterAdditional.validateName,
                           onSaved: (String val) {
                             // _lastName = val;
                           },
@@ -97,7 +97,7 @@ class _UserRegisterInformationState extends State<UserRegisterInformation> {
                 height: distanceOfElement,
               ),
               TextFormField(
-                  validator: _registerAdditional.validateEmail,
+                  validator: RegisterAdditional.validateEmail,
                   controller: _emailController,
                   decoration: InputDecoration(
                       hintText: "Email Address", labelText: "Email address")),
@@ -105,7 +105,7 @@ class _UserRegisterInformationState extends State<UserRegisterInformation> {
                 height: distanceOfElement,
               ),
               TextFormField(
-                  validator: _registerAdditional.validateName,
+                  validator: RegisterAdditional.validateName,
                   onSaved: (String val) {
                     // _phone = val;
                   },
@@ -117,7 +117,7 @@ class _UserRegisterInformationState extends State<UserRegisterInformation> {
               ),
               TextFormField(
                   obscureText: _obscureText,
-                  validator: _registerAdditional.validateName,
+                  validator: RegisterAdditional.validateName,
                   onSaved: (String val) {
                     // _password = val;
                   },
@@ -137,7 +137,7 @@ class _UserRegisterInformationState extends State<UserRegisterInformation> {
               ),
               TextFormField(
                   obscureText: _obscureText,
-                  validator: _registerAdditional.validateName,
+                  validator: RegisterAdditional.validateName,
                   onSaved: (String val) {
                     // _retypePassword = val;
                   },

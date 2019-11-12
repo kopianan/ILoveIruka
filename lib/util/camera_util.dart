@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as commonPath;
+
 // import 'package:path_provider/path_provider.dart' as pathProvider;
 // import 'package:path/path.dart'as path;
 class CameraUtil {
@@ -15,7 +18,11 @@ class CameraUtil {
         maxWidth: 600,
       );
     }
-    return imageFile.path ; 
-    
+    // getting a directory path for saving
+    final path = await getApplicationDocumentsDirectory();
+// copy the file to a new pah
+    final fileName = commonPath.basename(imageFile.path);
+    final File newImage = await imageFile.copy('${path.path}/$fileName');
+    return newImage.path.toString();
   }
 }

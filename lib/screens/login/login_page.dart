@@ -153,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
 
   String validatePassword(String value) {
 // Indian Mobile number are of 10 digit only
-    if (value.length < 5)
+    if (value.length < 3)
       return 'Password must be more then 5 digits';
     else
       return null;

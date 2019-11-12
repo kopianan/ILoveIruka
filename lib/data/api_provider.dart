@@ -46,7 +46,8 @@ class ApiProvider {
       "Role": registerData.role,
       "file": await MultipartFile.fromFile(registerData.file)
     });
-    Response response = await dio.post(url, data: formData);
+print("${registerData.accessKey} ${registerData.name} ${registerData.email} ${registerData.password} ${registerData.phonenumber} ${registerData.address}  ${registerData.description} ${registerData.role} ${registerData.file}");
+    Response response = await dio.post(url, data: formData,);
     print(response.data);
     print(response.statusMessage);
 

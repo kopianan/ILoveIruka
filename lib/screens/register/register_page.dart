@@ -146,13 +146,13 @@ class _RegisterPageState extends State<RegisterPage> {
             color: Colors.black,
             child: GestureDetector(
               onTap: () {
-                final image = CameraUtil().takePicture(fromCamera: true);
+                // final image = CameraUtil().takePicture(fromCamera: true);
 
-                image.then((onValue) {
-                  setState(() {
-                    dataBridge.setFileName(onValue);
-                  });
-                });
+                // image.then((onValue) {
+                //   setState(() {
+                //     dataBridge.setFileName(onValue);
+                //   });
+                // });
               },
               child: (dataBridge.getFileName() == null)
                   ? Icon(

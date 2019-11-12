@@ -1,9 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:i_love_iruka/models/request/register_request.dart';
 import 'package:i_love_iruka/screens/register/register_additional.dart';
-import 'package:i_love_iruka/screens/register/user_register_information.dart';
+import 'package:i_love_iruka/screens/register/register_bloc/register_bloc_g.dart';
 import 'package:i_love_iruka/screens/register/user_register_photo.dart';
+import 'package:i_love_iruka/util/camera_util.dart';
+import 'package:i_love_iruka/util/constants.dart';
 import 'package:keyboard_avoider/keyboard_avoider.dart';
 
 import '../../data/repository.dart';
@@ -32,16 +37,17 @@ class _Register2PageState extends State<Register2Page> {
   String _password;
   String _retypePassword;
   String _userType;
-  // var _firstNameController = TextEditingController();
-  // var _lastNameController = TextEditingController();
-  // var _emailController = TextEditingController();
-  // var _phoneController = TextEditingController();
-  // var _passwordController = TextEditingController();
-  // var _repeatPasswordController = TextEditingController();
+  var _firstNameController = TextEditingController();
+  var _lastNameController = TextEditingController();
+  var _emailController = TextEditingController();
+  var _phoneController = TextEditingController();
+  var _passwordController = TextEditingController();
+  var _repeatPasswordController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  bool _obscureText = false;
+  bool _obscureText = true;
   bool _autoValidate = false;
+  final registerBloc = RegisterBlocBloc(); 
   void toggle() {
     setState(() {
       _obscureText = !_obscureText;
@@ -54,24 +60,6 @@ class _Register2PageState extends State<Register2Page> {
 
     c = new PageController();
     super.initState();
-  }
-
-  String validateName(String value) {
-// Indian Mobile number are of 10 digit only
-    if (value.length == 0)
-      return 'Must Be filled';
-    else
-      return null;
-  }
-
-  String validateEmail(String value) {
-    Pattern pattern =
-        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-    RegExp regex = new RegExp(pattern);
-    if (!regex.hasMatch(value))
-      return 'Enter Valid Email';
-    else
-      return null;
   }
 
   validateRegisterUser() {
@@ -104,168 +92,312 @@ class _Register2PageState extends State<Register2Page> {
     }
   }
 
+  File photo;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: true,
       body: SafeArea(
         child: Container(
+            margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             child: PageView(
-          controller: c,
-          children: <Widget>[
-            Container(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              physics: NeverScrollableScrollPhysics(),
+              controller: c,
               children: <Widget>[
                 Container(
-                    child: Text(
-                  "Who Are You ? ",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                )),
-                buildDropdownRole(),
-                Container(
-                  margin: EdgeInsets.only(bottom: 20),
-                  alignment: Alignment.bottomRight,
-                  child: FloatingActionButton(
-                    child: Icon(FontAwesomeIcons.arrowRight),
-                    onPressed: () {
-                      ///validate before go to next page
-                      print(_dropDownValue.toString() + "DropDown");
-                      if (_dropDownValue == null) {
-                        Fluttertoast.showToast(
-                          msg: "Please Choose Type First",
-                        );
-                      } else {
-                        _registerAdditional.nextAnimated(context, c, 1);
-                      }
-                    },
-                  ),
-                ),
-              ],
-            )),
-            KeyboardAvoider(
-              autoScroll: true,
-                          child: Container(
-                  child: Form(
-                autovalidate: _autoValidate,
-                key: _formKey,
-                child: Column(
+                    child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Container(
                         child: Text(
-                      "Fill Your Information ",
-                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                      "Who Are You ? ",
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     )),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      mainAxisSize: MainAxisSize.max,
+                    buildDropdownRole(),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      alignment: Alignment.bottomRight,
+                      child: FloatingActionButton(
+                        child: Icon(FontAwesomeIcons.arrowRight),
+                        onPressed: () {
+                          ///validate before go to next page
+                          if (_dropDownValue == null) {
+                            Fluttertoast.showToast(
+                              msg: "Please Choose Type First",
+                            );
+                          } else {
+                            _registerAdditional.nextAnimated(context, c, 1);
+                          }
+                        },
+                      ),
+                    ),
+                  ],
+                )),
+                KeyboardAvoider(
+                  autoScroll: true,
+                  child: Container(
+                      child: Form(
+                    autovalidate: _autoValidate,
+                    key: _formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Row(
+                        Container(
+                            child: Text(
+                          "Fill Your Information ",
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.bold),
+                        )),
+                        Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          mainAxisSize: MainAxisSize.min,
+                          mainAxisSize: MainAxisSize.max,
                           children: <Widget>[
-                            Expanded(
-                              child: Container(
-                                margin: EdgeInsets.only(right: 10),
-                                child: TextFormField(
-                                    validator: validateName,
-                                    onSaved: (String val) {
-                                      setState(() {
-                                        _firstName = val; 
-                                      });
-                                     
-                                    },
-                                    decoration: InputDecoration(
-                                        hintText: "First Name",
-                                        labelText: "First Name")),
-                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.only(right: 10),
+                                    child: TextFormField(
+                                        controller: _firstNameController,
+                                        validator:
+                                            RegisterAdditional.validateName,
+                                        onSaved: (String val) {
+                                          setState(() {
+                                            _firstName = val;
+                                            _firstNameController.text = val;
+                                          });
+                                        },
+                                        decoration: InputDecoration(
+                                            hintText: "First Name",
+                                            labelText: "First Name")),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: 10),
+                                    child: TextFormField(
+                                        validator:
+                                            RegisterAdditional.validateName,
+                                        controller: _lastNameController,
+                                        onSaved: (String val) {
+                                          _lastName = val;
+                                          _lastNameController.text = val;
+                                        },
+                                        decoration: InputDecoration(
+                                            hintText: "Last Name",
+                                            labelText: "Last Name")),
+                                  ),
+                                ),
+                              ],
                             ),
-                            Expanded(
-                              child: Container(
-                                margin: EdgeInsets.only(left: 10),
-                                child: TextFormField(
-                                    validator: validateName,
-                                    onSaved: (String val) {
-                                      _lastName = val;
-                                    },
-                                    decoration: InputDecoration(
-                                        hintText: "Last Name",
-                                        labelText: "Last Name")),
+                            SizedBox(
+                              height: distanceOfElement,
+                            ),
+                            TextFormField(
+                                validator: RegisterAdditional.validateEmail,
+                                controller: _emailController,
+                                onSaved: (String val) {
+                                  _emailController.text = val;
+                                  _email = val;
+                                },
+                                decoration: InputDecoration(
+                                    hintText: "Email Address",
+                                    labelText: "Email address")),
+                            SizedBox(
+                              height: distanceOfElement,
+                            ),
+                            TextFormField(
+                                validator: RegisterAdditional.validateName,
+                                controller: _phoneController,
+                                onSaved: (String val) {
+                                  _phone = val;
+                                  _phoneController.text = val;
+                                },
+                                keyboardType: TextInputType.phone,
+                                decoration: InputDecoration(
+                                    hintText: "Phone", labelText: "Phone")),
+                            SizedBox(
+                              height: distanceOfElement,
+                            ),
+                            TextFormField(
+                                obscureText: _obscureText,
+                                validator: RegisterAdditional.validateName,
+                                controller: _passwordController,
+                                onSaved: (String val) {
+                                  _password = val;
+                                  _passwordController.text = val;
+                                },
+                                decoration: InputDecoration(
+                                    hintText: "Password",
+                                    labelText: "Password",
+                                    suffixIcon: IconButton(
+                                      icon: (!_obscureText)
+                                          ? Icon(FontAwesomeIcons.eye)
+                                          : Icon(FontAwesomeIcons.eyeSlash),
+                                      onPressed: () {
+                                        toggle();
+                                      },
+                                    ))),
+                            SizedBox(
+                              height: distanceOfElement,
+                            ),
+                            TextFormField(
+                                obscureText: _obscureText,
+                                validator: RegisterAdditional.validateName,
+                                controller: _repeatPasswordController,
+                                onSaved: (String val) {
+                                  _retypePassword = val;
+                                  _repeatPasswordController.text = val;
+                                },
+                                decoration: InputDecoration(
+                                    suffixIcon: IconButton(
+                                      icon: (!_obscureText)
+                                          ? Icon(FontAwesomeIcons.eye)
+                                          : Icon(FontAwesomeIcons.eyeSlash),
+                                      onPressed: () {
+                                        toggle();
+                                      },
+                                    ),
+                                    hintText: "Repeat Password",
+                                    labelText: "Repeat Password")),
+                            SizedBox(
+                              height: distanceOfElement,
+                            ),
+                          ],
+                        ),
+                        Container(
+                          alignment: Alignment.bottomCenter,
+                          margin: EdgeInsets.only(bottom: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              FlatButton(
+                                child: Text("Back"),
+                                onPressed: () {
+                                  _registerAdditional.backAnimated(
+                                      context, c, 0);
+                                },
                               ),
+                              FloatingActionButton(
+                                child: Icon(FontAwesomeIcons.arrowRight),
+                                onPressed: () {
+                                  validateRegisterUser();
+                                },
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  )),
+                ),
+                Container(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            "Hi, ${_firstName}\nPlease Add Your Photo",
+                            style: TextStyle(
+                                fontSize: 30, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Column(
+                      children: <Widget>[
+                        Column(
+                          children: <Widget>[
+                            Container(
+                              width: double.infinity,
+                              height: 200,
+                              color: Colors.grey[300],
+                              child: (photo == null)
+                                  ? Icon(
+                                      Icons.image,
+                                      size: 80,
+                                    )
+                                  : Image.file(
+                                      photo,
+                                      fit: BoxFit.cover,
+                                    ),
                             ),
                           ],
                         ),
                         SizedBox(
-                          height: distanceOfElement,
+                          height: 20,
                         ),
-                        TextFormField(
-                            validator: validateEmail,
-                            onSaved: (String val) {
-                              _email = val;
+                        Container(
+                          width: double.infinity,
+                          child: RaisedButton(
+                            color: Color(0xffd45500),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Text(
+                              "Take Photo",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            onPressed: () {
+                              bool takePhotoSource = false;
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text("Choose Action Photo"),
+                                      content: Text(
+                                          "Please choose action to take pictrue"),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          onPressed: () {
+                                            takePhotoSource = true;
+                                            CameraUtil()
+                                                .takePicture(
+                                                    fromCamera: takePhotoSource)
+                                                .then((onValue) {
+                                              setState(() {
+                                                photo =
+                                                    File(onValue.toString());
+                                              });
+                                            });
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text("Camera"),
+                                        ),
+                                        FlatButton(
+                                          onPressed: () {
+                                            takePhotoSource = false;
+                                            CameraUtil()
+                                                .takePicture(
+                                                    fromCamera: takePhotoSource)
+                                                .then((onValue) {
+                                              setState(() {
+                                                photo =
+                                                    File(onValue.toString());
+                                              });
+                                            });
+
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text("Gallery"),
+                                        )
+                                      ],
+                                    );
+                                  });
                             },
-                            decoration: InputDecoration(
-                                hintText: "Email Address",
-                                labelText: "Email address")),
-                        SizedBox(
-                          height: distanceOfElement,
-                        ),
-                        TextFormField(
-                            validator: validateName,
-                            onSaved: (String val) {
-                              _phone = val;
-                            },
-                            keyboardType: TextInputType.phone,
-                            decoration: InputDecoration(
-                                hintText: "Phone", labelText: "Phone")),
-                        SizedBox(
-                          height: distanceOfElement,
-                        ),
-                        TextFormField(
-                            obscureText: _obscureText,
-                            validator: validateName,
-                            onSaved: (String val) {
-                              _password = val;
-                            },
-                            decoration: InputDecoration(
-                                hintText: "Password",
-                                labelText: "Password",
-                                suffixIcon: IconButton(
-                                  icon: (!_obscureText)
-                                      ? Icon(FontAwesomeIcons.eye)
-                                      : Icon(FontAwesomeIcons.eyeSlash),
-                                  onPressed: () {
-                                    toggle();
-                                  },
-                                ))),
-                        SizedBox(
-                          height: distanceOfElement,
-                        ),
-                        TextFormField(
-                            obscureText: _obscureText,
-                            validator: validateName,
-                            onSaved: (String val) {
-                              _retypePassword = val;
-                            },
-                            decoration: InputDecoration(
-                                suffixIcon: IconButton(
-                                  icon: (!_obscureText)
-                                      ? Icon(FontAwesomeIcons.eye)
-                                      : Icon(FontAwesomeIcons.eyeSlash),
-                                  onPressed: () {
-                                    toggle();
-                                  },
-                                ),
-                                hintText: "Repeat Password",
-                                labelText: "Repeat Password")),
-                        SizedBox(
-                          height: distanceOfElement,
-                        ),
+                          ),
+                        )
                       ],
                     ),
                     Container(
-                      alignment: Alignment.bottomCenter,
                       margin: EdgeInsets.only(bottom: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -273,93 +405,43 @@ class _Register2PageState extends State<Register2Page> {
                           FlatButton(
                             child: Text("Back"),
                             onPressed: () {
-                              _registerAdditional.backAnimated(context, c, 0);
+                              _registerAdditional.backAnimated(context, c, 1);
                             },
                           ),
-                          FloatingActionButton(
-                            child: Icon(FontAwesomeIcons.arrowRight),
-                            onPressed: () {
-                              validateRegisterUser();
-                            },
+                          Container(
+                            width: 150,
+                            child: FloatingActionButton.extended(
+                              onPressed: () {
+                                print("register");
+                                registerUser();
+
+                              },
+                              label: Text("Register"),
+                            ),
                           ),
                         ],
                       ),
-                    )
+                    ),
                   ],
-                ),
-              )),
-            ),
-            Container(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                "Hi, $_firstName\nPlease Upload Your Photo",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-        ),
-        Column(
-          children: <Widget>[
-            Container(
-              width: double.infinity,
-              height: 200,
-              color: Colors.grey[300],
-              child: Icon(
-                Icons.image,
-                size: 80,
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              width: double.infinity,
-              child: RaisedButton(
-                color: Colors.grey,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-                child: Text("Take Photo"),
-                onPressed: () {},
-              ),
-            )
-          ],
-        ),
-        Container(
-          margin: EdgeInsets.only(bottom: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              FlatButton(
-                child: Text("Back"),
-                onPressed: () {
-                  _registerAdditional.backAnimated(context, c, 1);
-                },
-              ),
-              Container(
-                width: 150,
-                child: FloatingActionButton.extended(
-                  onPressed: () {
-                    print(_firstName );
-                  },
-                  label: Text("Register"),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    ))
-          ],
-        )),
+                ))
+              ],
+            )),
       ),
     );
+  }
+
+  void registerUser(){
+      final dataRegister = RegisterRequest(
+            accessKey: Constants.getAccessKey(),
+            address: "Address",
+            description: "Description",
+            email:_emailController.text,
+            file: photo.path,
+            name: _firstNameController.text + _lastNameController.text,
+            password: _password,
+            phonenumber: _phoneController.text.toString(),
+            role: _dropDownValue);
+        registerBloc.add(RegisterUser(registerData: dataRegister));
   }
 
   Widget buildDropdownRole() {

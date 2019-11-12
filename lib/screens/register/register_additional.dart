@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-class RegisterAdditional{
-
-
-   String validateName(String value) {
+class RegisterAdditional {
+  static String validateName(String value) {
 // Indian Mobile number are of 10 digit only
     if (value.length == 0)
       return 'Must Be filled';
@@ -11,7 +9,7 @@ class RegisterAdditional{
       return null;
   }
 
-  String validateEmail(String value) {
+  static String validateEmail(String value) {
     Pattern pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regex = new RegExp(pattern);
@@ -21,7 +19,7 @@ class RegisterAdditional{
       return null;
   }
 
-    void backAnimated(BuildContext context, ScrollController c, int offset) {
+  void backAnimated(BuildContext context, ScrollController c, int offset) {
     c.animateTo(MediaQuery.of(context).size.width * offset,
         duration: new Duration(seconds: 1), curve: Curves.bounceOut);
   }
@@ -31,11 +29,10 @@ class RegisterAdditional{
         duration: new Duration(seconds: 1), curve: Curves.easeInCubic);
   }
 
-  bool validateUserType (int index){
-    if(index == 0 ){
-      return false; 
-    }else 
-    return true ; 
+  bool validateUserType(int index) {
+    if (index == 0) {
+      return false;
+    } else
+      return true;
   }
-
 }
