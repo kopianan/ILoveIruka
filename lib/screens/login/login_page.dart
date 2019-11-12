@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
               if (state is LoginComplete) {
                 //go to another page
                 Fluttertoast.showToast(msg: state.response.user.name);
-                Navigator.of(context).pushNamed("/dashboard");
+                Navigator.of(context).pushReplacementNamed("/dashboard");
               }
               if (state is LoginError) {
                 Fluttertoast.showToast(msg: "No User Found");

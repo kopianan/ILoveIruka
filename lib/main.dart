@@ -32,11 +32,12 @@ class MyApp extends StatelessWidget {
           BlocProvider<RegisterBlocBloc>(builder: (BuildContext context) => RegisterBlocBloc()),
           BlocProvider<DashboardBlocBloc>(builder: (BuildContext context) => DashboardBlocBloc())
         ],
+
+        // #558dc5 - #0b4987
         child: MaterialApp(
           title: 'I Love Iruka',
           theme: ThemeData(
-            // primarySwatch: Colors.yellow,
-            // primaryColor: Color(0xd45500),
+            primaryColor: Color(0xff558dc5),
             iconTheme: IconThemeData(
               color: Colors.orange,
             ),

@@ -99,7 +99,7 @@ class _GroomerListState extends State<GroomerList> {
               bloc: dashboardBloc,
               builder: (context, state) {
                 if (state is GetUserByRoleLoading) {
-                  return SliverToBoxAdapter(child: CircularProgressIndicator());
+                  return SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()));
                 } else if (state is GetUserByRoleCompleted) {
                   final dataSnap = state.response.listUser;
                   return SliverList(

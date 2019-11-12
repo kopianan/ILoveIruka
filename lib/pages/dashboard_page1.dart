@@ -24,19 +24,11 @@ class _DashboardPage1State extends State<DashboardPage1> {
   @override
   void initState() {
     super.initState();
-    
+
     // dashboardBlocBloc.add(GetProductList());
     dashboardBlocBloc.add(GetEventList());
   }
 
-  List<String> feedData = [
-    "feed 1",
-    "feed 1",
-    "feed 1",
-    "feed 1",
-    "feed 1",
-    "feed 1",
-  ];
   List<T> map<T>(List list, Function handler) {
     List<T> result = [];
     for (var i = 0; i < list.length; i++) {
@@ -59,6 +51,14 @@ class _DashboardPage1State extends State<DashboardPage1> {
   Widget build(BuildContext context) {
     return CustomScrollView(slivers: <Widget>[
       SliverAppBar(
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed("/profile_page");
+            },
+            icon: Icon(Icons.person),
+          )
+        ],
         expandedHeight: 250,
         floating: false,
         automaticallyImplyLeading: true,
@@ -67,20 +67,16 @@ class _DashboardPage1State extends State<DashboardPage1> {
         title: Text("Dashboard"),
         flexibleSpace: BlocListener<DashboardBlocBloc, DashboardState>(
           bloc: dashboardBlocBloc,
-          listener: (context, state){
-          },
-                  child: BlocBuilder<DashboardBlocBloc, DashboardState>(
+          listener: (context, state) {},
+          child: BlocBuilder<DashboardBlocBloc, DashboardState>(
             bloc: dashboardBlocBloc,
             builder: (context, state) {
-              if (state is GetEventListLoading){
-
+              if (state is GetEventListLoading) {
                 return Center(
                     child: CircularProgressIndicator(
                   backgroundColor: Colors.yellow,
                 ));
-              }
-              else if (state is GetEventListCompleted) {
-
+              } else if (state is GetEventListCompleted) {
                 final dataResp = state.response.eventList;
 
                 return FlexibleSpaceBar(
@@ -94,14 +90,11 @@ class _DashboardPage1State extends State<DashboardPage1> {
                   ),
                 );
               } else if (state is GetEventListError) {
-
                 return Container(
                   color: Colors.green,
                 );
               }
             },
-            
-          
           ),
         ),
       ),
@@ -112,15 +105,16 @@ class _DashboardPage1State extends State<DashboardPage1> {
           ],
         ),
       ),
+      
       BuildProducts()
     ]);
   }
 
-  
-
   Container buildServiceContent() {
     return Container(
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        margin: EdgeInsets.symmetric(
+          horizontal: 10,
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -293,36 +287,37 @@ class BuildProducts extends StatefulWidget {
 }
 
 class _BuildProductsState extends State<BuildProducts> {
-
-   DashboardBlocBloc dashboardBlocBloc = DashboardBlocBloc();
+  DashboardBlocBloc dashboardBlocBloc = DashboardBlocBloc();
   @override
-  void initState() { 
+  void initState() {
     super.initState();
     dashboardBlocBloc.add(GetProductList());
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DashboardBlocBloc, DashboardState>(
-        bloc: dashboardBlocBloc,
-        builder: (context, state) {
-          if (state is GetProductListCompleted) {
-            final dataFeed = state.response.productList;
-            return SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return buildFeedContainer(dataFeed[index]);
-              }, childCount: dataFeed.length),
-            );
-          } else if (state is GetProductListLoading) {
-            return SliverList(
-              delegate: SliverChildListDelegate([Container()]),
-            );
-          }
+      bloc: dashboardBlocBloc,
+      builder: (context, state) {
+        if (state is GetProductListCompleted) {
+          final dataFeed = state.response.productList;
+          return SliverList(
+            delegate: SliverChildBuilderDelegate((context, index) {
+              return buildFeedContainer(dataFeed[index]);
+            }, childCount: dataFeed.length),
+          );
+        } else if (state is GetProductListLoading) {
           return SliverList(
             delegate: SliverChildListDelegate([Container()]),
           );
-        },
-      );
+        }
+        return SliverList(
+          delegate: SliverChildListDelegate([Container()]),
+        );
+      },
+    );
   }
+
   Container buildFeedContainer(ProductList productList) {
     return Container(
       margin: EdgeInsets.all(10),

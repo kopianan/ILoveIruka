@@ -41,15 +41,6 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomPadding: false,
-        // appBar: AppBar(
-        //   title: Text("Profile View"),
-        //   actions: <Widget>[
-        //     Container(
-        //         margin: EdgeInsets.only(right: 10),
-        //         alignment: Alignment.center,
-        //         child: Text("Save"))
-        //   ],
-        // ),
         body:  CustomScrollView(
             slivers: <Widget>[
               SliverAppBar(
@@ -71,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   )
                 ],
                 title: Text("Profile View"),
-                expandedHeight: 300,
+                expandedHeight: 250,
                 flexibleSpace: FlexibleSpaceBar(
                   collapseMode: CollapseMode.parallax,
                   background:
@@ -125,27 +116,32 @@ class _ProfilePageState extends State<ProfilePage> {
                               ? ""
                               : "${dataLogin.user.address.toString()}",
                         ),
+                        Container(
+                            margin: EdgeInsets.only(bottom: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  "Account",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Icon(FontAwesomeIcons.edit)
+                              ],
+                            )),
+                        Divider(
+                          height: 1,
+                          color: Colors.grey,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                       ],
                     ),
                   ))
             ],
           ),
-        // body: Column(
-        //   children: <Widget>[
-        //     buildContainerHeaderProfile(),
-        //     Container(
-        //       margin: EdgeInsets.all(20),
-        //       child: Column(
-        //         children: <Widget>[
-        //           buildTextFieldProfile("Fullname"),
-        //           buildTextFieldProfile("Username"),
-        //           buildTextFieldProfile("Email"),
-        //           buildTextFieldProfile("Phone Number"),
-        //         ],
-        //       ),
-        //     )
-        //   ],
-        // ),
         );
   }
 
@@ -187,7 +183,7 @@ class _ProfilePageState extends State<ProfilePage> {
             alignment: Alignment.center,
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Container(
                     width: 150.0,
@@ -228,39 +224,16 @@ class _ProfilePageState extends State<ProfilePage> {
                         ))
                   ],
                 )
+           ,  SizedBox(
+                  height: 20,
+                ),
               ],
             ),
           ),
         ),
       ),
     ]);
-    // return BackdropFilter(
-    //   filter: prefix0.ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-    //   child: Container(
-    //          alignment: Alignment.center,
-    //     height: 200,
-    //     child: Column(
-    //       mainAxisSize: MainAxisSize.min,
-    //       children: <Widget>[
-    //         CircleAvatar(
-    //           child: Text(
-    //             "A",
-    //           ),
-    //           backgroundColor: Colors.black,
-    //           maxRadius: 50,
-    //         ),
-    //         SizedBox(
-    //           height: 10,
-    //         ),
-    //         Text(
-    //           "Nama Customer",
-    //           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-    //         )
-    //       ],
-    //     ),
-
-    //   ),
-    // );
+   
   }
 
   TextFormField buildTextFieldProfile(String label) {

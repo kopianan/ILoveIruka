@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_g.dart';
 import 'package:i_love_iruka/pages/dashboard_page1.dart';
 import 'package:i_love_iruka/pages/dashboard_page2.dart';
+import 'package:i_love_iruka/screens/groomer/groomer_list.dart';
 import 'package:i_love_iruka/widgets/color_palate.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -25,10 +26,7 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //     backgroundColor: Colors.white,
-      //     title: Text(appBarTitleList[bottomSelectedIndex])),
-      drawer: buildDrawer(context),
+      // drawer: buildDrawer(context),
       body: buildPageView(),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: ColorPalate().bottomNavigationTitleColor,
@@ -41,58 +39,58 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  Drawer buildDrawer(BuildContext context) {
-    return Drawer(
-      child: Column(
-        children: <Widget>[
-          UserAccountsDrawerHeader(
-            accountName: Text("This Is Drawer"),
-            accountEmail: Text("bobasoft@boba.com"),
-            currentAccountPicture: CircleAvatar(
-              backgroundColor: Theme.of(context).platform == TargetPlatform.iOS
-                  ? Colors.blue
-                  : Colors.white,
-              child: Text(
-                "A",
-                style: TextStyle(fontSize: 40.0),
-              ),
-            ),
-          ),
-          Column(
-            children: <Widget>[
-              ListTile(
-                onTap: () {
-                  Navigator.of(context).pushNamed(
-                    '/profile_page',
-                  );
-                },
-                title: Text("Profile"),
-                trailing: Icon(Icons.person),
-              ),
-              Divider(),
-              ListTile(
-                onTap: () {
-                  Navigator.of(context).pushNamed(
-                    '/groomer_list',
-                  );
-                },
-                title: Text("Groomer Lists"),
-                trailing: Icon(Icons.group),
-              ),
-              Divider(),
-              ListTile(
-                onTap: () {
-                  Navigator.of(context).pushNamed('/login');
-                },
-                title: Text("Log Out"),
-                trailing: Icon(Icons.exit_to_app),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
+  // Drawer buildDrawer(BuildContext context) {
+  //   return Drawer(
+  //     child: Column(
+  //       children: <Widget>[
+  //         UserAccountsDrawerHeader(
+  //           accountName: Text("This Is Drawer"),
+  //           accountEmail: Text("bobasoft@boba.com"),
+  //           currentAccountPicture: CircleAvatar(
+  //             backgroundColor: Theme.of(context).platform == TargetPlatform.iOS
+  //                 ? Colors.blue
+  //                 : Colors.white,
+  //             child: Text(
+  //               "A",
+  //               style: TextStyle(fontSize: 40.0),
+  //             ),
+  //           ),
+  //         ),
+  //         Column(
+  //           children: <Widget>[
+  //             ListTile(
+  //               onTap: () {
+  //                 Navigator.of(context).pushNamed(
+  //                   '/profile_page',
+  //                 );
+  //               },
+  //               title: Text("Profile"),
+  //               trailing: Icon(Icons.person),
+  //             ),
+  //             Divider(),
+  //             ListTile(
+  //               onTap: () {
+  //                 Navigator.of(context).pushNamed(
+  //                   '/groomer_list',
+  //                 );
+  //               },
+  //               title: Text("Groomer Lists"),
+  //               trailing: Icon(Icons.group),
+  //             ),
+  //             Divider(),
+  //             ListTile(
+  //               onTap: () {
+  //                 Navigator.of(context).pushNamed('/login');
+  //               },
+  //               title: Text("Log Out"),
+  //               trailing: Icon(Icons.exit_to_app),
+  //             ),
+  //           ],
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   List<BottomNavigationBarItem> buildBottomNavBarItems() {
     return [
@@ -104,6 +102,10 @@ class _DashboardPageState extends State<DashboardPage> {
           activeIcon: buildNavigationIcon(true, FontAwesomeIcons.idCard),
           icon: buildNavigationIcon(false, FontAwesomeIcons.idCard),
           title: Text("Account")),
+           BottomNavigationBarItem(
+          activeIcon: buildNavigationIcon(true, FontAwesomeIcons.objectGroup),
+          icon: buildNavigationIcon(false, FontAwesomeIcons.objectGroup),
+          title: Text("Groomer List")),
     ];
   }
 
@@ -138,18 +140,11 @@ class _DashboardPageState extends State<DashboardPage> {
 
   Widget buildPageView() {
     return PageView(
-            children: <Widget>[ DashboardPage1(), DashboardPage2()],
+            children: <Widget>[ DashboardPage1(), DashboardPage2(), GroomerList()],
             controller: pageController,
             onPageChanged: (index) {
               pageChanged(index);
             },
           );
-    // return PageView(
-    //   children: <Widget>[DashboardPage1(), DashboardPage2()],
-    //   controller: pageController,
-    //   onPageChanged: (index) {
-    //     pageChanged(index);
-    //   },
-    // );
   }
 }
