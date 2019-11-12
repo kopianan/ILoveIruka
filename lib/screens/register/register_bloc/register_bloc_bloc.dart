@@ -14,12 +14,13 @@ class RegisterBlocBloc extends Bloc<RegisterBlocEvent, RegisterBlocState> {
     RegisterBlocEvent event,
   ) async* {
     if (event is RegisterUser) {
-      // yield RegisterLoading();
+      yield RegisterLoading();
       final registerResponse =
           await _repository.registerUserByEmail(event.registerData);
+     print(registerResponse.toString() + "RESPONSE");
       if (registerResponse != null) {
-        
-        yield RegisterComplete(response: registerResponse["Message"]);
+        print("registerreponse");
+        yield RegisterComplete(response :  "complte");
       } else {
         yield RegisterError("Error");
       }

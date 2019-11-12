@@ -26,7 +26,7 @@ class ListUser {
   String email;
   String name;
   String address;
-  Null picture;
+  String picture;
   String phoneNumber;
   String description;
   Null password;
@@ -73,4 +73,3 @@ class ListUser {
     return data;
   }
 }
-

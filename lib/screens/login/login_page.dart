@@ -79,7 +79,6 @@ class _LoginPageState extends State<LoginPage> {
                   children: <Widget>[
                     InkWell(
                       onTap: () {
-                        Navigator.of(context).pushNamed("/register2_page");
                       },
                       child: Container(
                         alignment: Alignment.center,
@@ -103,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                           height: 20,
                         ),
                         Container(
-                          child: Text("Forgot password ? "),
+                          child: Text("Forgot password ? ", style: TextStyle(color: Colors.white), ),
                           alignment: Alignment.centerRight,
                         ),
                       ]),
@@ -120,9 +119,9 @@ class _LoginPageState extends State<LoginPage> {
                         margin: EdgeInsets.only(bottom: 30),
                         child: InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, "/register");
+                            Navigator.pushNamed(context, "/register2_page");
                           },
-                          child: Text("Don't Have Account ? Sign Up"),
+                          child: Text("Don't Have Account ? Sign Up",style: TextStyle(color: Colors.white),),
                         )),
                   ],
                 ),
@@ -188,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
         },
         child: Text(
           "Login",
-          style: TextStyle(fontSize: 20),
+          style: TextStyle(fontSize: 20, color: Colors.white,)
         ),
       ),
     );

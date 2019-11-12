@@ -2,6 +2,9 @@ import 'dart:ui' as prefix0;
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:i_love_iruka/models/model/login_response.dart';
+import 'package:i_love_iruka/util/constants.dart';
+import 'package:i_love_iruka/util/shared_pref.dart';
 
 class ProfilePage extends StatefulWidget {
   _ProfilePageState createState() => _ProfilePageState();
@@ -10,6 +13,28 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   Color hexToColor(String code) {
     return new Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
+  }
+
+  LoginResponse dataLogin = LoginResponse();
+
+  loadSharedPrefs() async {
+    try {
+      LoginResponse user =
+          LoginResponse.fromJson(await SharedPref().getLoginData());
+      setState(() {
+        dataLogin = user;
+      });
+    } catch (Excepetion) {
+      Scaffold.of(context).showSnackBar(SnackBar(
+          content: new Text("Nothing found!"),
+          duration: const Duration(milliseconds: 500)));
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadSharedPrefs();
   }
 
   @override
@@ -25,8 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
         //         child: Text("Save"))
         //   ],
         // ),
-        body: SafeArea(
-          child: CustomScrollView(
+        body:  CustomScrollView(
             slivers: <Widget>[
               SliverAppBar(
                 // pinned: true,
@@ -49,9 +73,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 title: Text("Profile View"),
                 expandedHeight: 300,
                 flexibleSpace: FlexibleSpaceBar(
-
                   collapseMode: CollapseMode.parallax,
-                  background: buildContainerHeaderProfile("images/assets/pet_taxi.png"),
+                  background:
+                      buildContainerHeaderProfile((dataLogin == null)? "":
+                      "${dataLogin.user.picture.toString()}",),
                 ),
               ),
               SliverFillRemaining(
@@ -62,27 +87,49 @@ class _ProfilePageState extends State<ProfilePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Container(
-                          margin: EdgeInsets.only(bottom: 5),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text("General Information", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-                              Icon(FontAwesomeIcons.edit)
-                            ],
-                          )),
-                          Divider(height: 1,color: Colors.grey,),
-                          SizedBox(height: 10,),
+                            margin: EdgeInsets.only(bottom: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  "General Information",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Icon(FontAwesomeIcons.edit)
+                              ],
+                            )),
+                        Divider(
+                          height: 1,
+                          color: Colors.grey,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         buildRowGeneralInformation(
-                            FontAwesomeIcons.phone, "081377151395"),
-                        buildRowGeneralInformation(Icons.mail, "ananalfredcarlos@gmail.com"),
-                        buildRowGeneralInformation(FontAwesomeIcons.mapPin,
-                            "Jl. Terusan Rancagoong No. 10 Bandung"),
+                          FontAwesomeIcons.phone,
+                          (dataLogin == null)
+                              ? ""
+                              : "${dataLogin.user.phoneNumber.toString()}",
+                        ),
+                        buildRowGeneralInformation(
+                          Icons.mail,
+                          (dataLogin == null)
+                              ? ""
+                              : "${dataLogin.user.email.toString()}",
+                        ),
+                        buildRowGeneralInformation(
+                          FontAwesomeIcons.mapPin,
+                          (dataLogin == null)
+                              ? ""
+                              : "${dataLogin.user.address.toString()}",
+                        ),
                       ],
                     ),
                   ))
             ],
           ),
-        )
         // body: Column(
         //   children: <Widget>[
         //     buildContainerHeaderProfile(),
@@ -105,7 +152,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget buildRowGeneralInformation(IconData icon, String text) {
     return Container(
       margin: EdgeInsets.only(bottom: 15),
-          child: Row(
+      child: Row(
         children: <Widget>[
           Expanded(
             flex: 2,
@@ -127,8 +174,8 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget buildContainerHeaderProfile(String image) {
     return Stack(children: <Widget>[
       ConstrainedBox(
-        child: Image.asset(
-          "$image",
+        child: Image.network(
+          "${Constants.getWebUrl() + image}",
           fit: BoxFit.cover,
         ),
         constraints: BoxConstraints.expand(),
@@ -140,17 +187,22 @@ class _ProfilePageState extends State<ProfilePage> {
             alignment: Alignment.center,
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                CircleAvatar(
-                  child: Image.asset(
-                    "$image",
-                    fit: BoxFit.cover,
-                  ),
-                  backgroundColor: Colors.black,
-                  maxRadius: 70,
-                ),
+                Container(
+                    width: 150.0,
+                    height: 150.0,
+                    decoration: new BoxDecoration(
+                      color: Colors.green,
+                        shape: BoxShape.circle,
+
+                        image: new DecorationImage(
+
+                            fit: BoxFit.cover,
+                            image: new NetworkImage("${Constants.getWebUrl() + image}",)
+                        )
+                    )),
+              
                 SizedBox(
                   height: 20,
                 ),
@@ -158,16 +210,22 @@ class _ProfilePageState extends State<ProfilePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "Nama Customer",
+                      (dataLogin == null)
+                          ? ""
+                          : "${dataLogin.user.name.toString()}",
                       style: TextStyle(
+                        color: Colors.white,
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,
                     ),
-                   Container(
-                     width: 30,
-                     child: Icon(Icons.edit, size: 17,))
+                    Container(
+                        width: 30,
+                        child: Icon(
+                          Icons.edit,
+                          size: 17,
+                        ))
                   ],
                 )
               ],

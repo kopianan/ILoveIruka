@@ -92,10 +92,10 @@ print("${registerData.accessKey} ${registerData.name} ${registerData.email} ${re
     print(request.toJson());
     response = await http.post(_baseUrl + "/GetUserByRole",
         body: jsonEncode(request.toJson()), headers: requestHeaders);
-    print(response.body);
+
     if (response.statusCode == 200) {
       data = UserGroomersModel.fromJson(json.decode(response.body));
-      print(data.listUser.length);
+    
     } else
       data = null;
 

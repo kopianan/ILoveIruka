@@ -13,13 +13,12 @@ class GroomerList extends StatefulWidget {
 }
 
 class _GroomerListState extends State<GroomerList> {
-  
   @override
-  void initState() { 
+  void initState() {
     dashboardBloc.add(GetUserByRole(UserByRoleRequest(role: "Groomer")));
     super.initState();
-    
   }
+
   final dashboardBloc = DashboardBlocBloc();
   @override
   Widget build(BuildContext context) {
@@ -78,11 +77,18 @@ class _GroomerListState extends State<GroomerList> {
                     margin: EdgeInsets.symmetric(vertical: 20),
                     child: Column(
                       children: <Widget>[
-                        Row(children: <Widget>[
-                          CircleAvatar(child: Text("AA"), radius: 30,), 
-                          SizedBox(width: 20,),
-                          Text("Nama")
-                        ],),
+                        Row(
+                          children: <Widget>[
+                            CircleAvatar(
+                              child: Text("AA"),
+                              radius: 30,
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Text("Nama")
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -93,7 +99,7 @@ class _GroomerListState extends State<GroomerList> {
               bloc: dashboardBloc,
               builder: (context, state) {
                 if (state is GetUserByRoleLoading) {
-                  return SliverToBoxAdapter(child: CircularProgressIndicator()); 
+                  return SliverToBoxAdapter(child: CircularProgressIndicator());
                 } else if (state is GetUserByRoleCompleted) {
                   final dataSnap = state.response.listUser;
                   return SliverList(
@@ -101,8 +107,8 @@ class _GroomerListState extends State<GroomerList> {
                       (context, index) {
                         return InkWell(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pushNamed("/groomer_detail", arguments: dataSnap[index]);
+                              Navigator.of(context).pushNamed("/groomer_detail",
+                                  arguments: dataSnap[index]);
                             },
                             child: Column(
                               children: <Widget>[
@@ -123,9 +129,13 @@ class _GroomerListState extends State<GroomerList> {
                       childCount: dataSnap.length,
                     ),
                   );
+                } 
+                else if (state is GetUserByRoleError) {
+                  return SliverToBoxAdapter(
+                      child: Center(child: Text("Please refresh page")));
                 }
-                return 
-            SliverToBoxAdapter(child: Text("asdf")); 
+                return SliverToBoxAdapter(
+                    child: Center(child: Text("Please refresh page")));
               },
             ),
           ],

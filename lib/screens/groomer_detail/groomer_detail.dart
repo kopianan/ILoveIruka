@@ -34,11 +34,20 @@ class _GroomerDetailState extends State<GroomerDetail> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  CircleAvatar(
-                    child: Image.network("http://iruka.diodeiva.dev/Media/Event/iruka_logo.png"),
-                    maxRadius: 80,
-                    minRadius: 80,
-                  ),
+
+                  Container(
+                    width: 150.0,
+                    height: 150.0,
+                    decoration: new BoxDecoration(
+                      color: Colors.green,
+                        shape: BoxShape.circle,
+
+                        image: new DecorationImage(
+
+                            fit: BoxFit.cover,
+                            image: new NetworkImage(Constants.getWebUrl() + widget.data.picture,)
+                        )
+                    )),
                   Text(
                     "${widget.data.name}",
                     style: TextStyle(
