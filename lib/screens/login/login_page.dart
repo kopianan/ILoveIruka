@@ -78,8 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
                     InkWell(
-                      onTap: () {
-                      },
+                      onTap: () {},
                       child: Container(
                         alignment: Alignment.center,
                         child: Image.asset(
@@ -102,7 +101,10 @@ class _LoginPageState extends State<LoginPage> {
                           height: 20,
                         ),
                         Container(
-                          child: Text("Forgot password ? ", style: TextStyle(color: Colors.white), ),
+                          child: Text(
+                            "Forgot password ? ",
+                            style: TextStyle(color: Colors.white),
+                          ),
                           alignment: Alignment.centerRight,
                         ),
                       ]),
@@ -121,7 +123,10 @@ class _LoginPageState extends State<LoginPage> {
                           onTap: () {
                             Navigator.pushNamed(context, "/register2_page");
                           },
-                          child: Text("Don't Have Account ? Sign Up",style: TextStyle(color: Colors.white),),
+                          child: Text(
+                            "Don't Have Account ? Sign Up",
+                            style: TextStyle(color: Colors.white),
+                          ),
                         )),
                   ],
                 ),
@@ -133,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
               "images/assets/iruka_petcare_white.png",
               width: 200,
             ),
-            alignment: Alignment.centerLeft,
+            alignment: Alignment.center,
           )
         ],
       ),
@@ -182,17 +187,16 @@ class _LoginPageState extends State<LoginPage> {
       child: RaisedButton(
         color: Color(0xff0b4987),
         onPressed: () {
-            _validateInputs();
-          
+          _validateInputs();
         },
-        child: Text(
-          "Login",
-          style: TextStyle(fontSize: 20, color: Colors.white,)
-        ),
+        child: Text("Login",
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.white,
+            )),
       ),
     );
   }
-
 
   Container buildLoginEnterPassword() {
     return Container(
@@ -257,14 +261,20 @@ class _LoginPageState extends State<LoginPage> {
           ),
           new Expanded(
             child: TextFormField(
+              style: TextStyle(color: Colors.white),
               validator: validateEmail,
               onSaved: (String val) {
                 _email = val;
               },
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white)),
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white)),
+                labelStyle: TextStyle(color: Colors.grey),
                 labelText: 'Enter your email',
-                hintStyle: TextStyle(color: Colors.grey),
+                hintStyle: TextStyle(color: Colors.white),
               ),
             ),
           )
