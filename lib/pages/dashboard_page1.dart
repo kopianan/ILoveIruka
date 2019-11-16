@@ -1,4 +1,5 @@
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_bloc.dart';
@@ -64,6 +65,7 @@ class _DashboardPage1State extends State<DashboardPage1> {
         automaticallyImplyLeading: true,
         centerTitle: true,
         pinned: true,
+        backgroundColor: Colors.yellow,
         title: Text("Dashboard"),
         flexibleSpace: BlocListener<DashboardBlocBloc, DashboardState>(
           bloc: dashboardBlocBloc,
@@ -80,13 +82,17 @@ class _DashboardPage1State extends State<DashboardPage1> {
                 final dataResp = state.response.eventList;
 
                 return FlexibleSpaceBar(
-                  background: Carousel(
-                    images: dataResp.map((f) {
+                  background: CarouselSlider(
+                    items: dataResp.map((f) {
                       return DashboardWidgets().buildImageOnSlider(
                           "${Constants.getWebUrl() + "/" + f.picture}");
                     }).toList(),
-                    autoplay: true,
-                    boxFit: BoxFit.cover,
+                    enlargeCenterPage: true,
+                    height: 200,
+                    aspectRatio: 16/9,
+                    viewportFraction: 0.6,
+                    autoPlay: true,
+
                   ),
                 );
               } else if (state is GetEventListError) {
@@ -319,6 +325,7 @@ class _BuildProductsState extends State<BuildProducts> {
   }
 
   Container buildFeedContainer(ProductList productList) {
+    print("link" + productList.picture) ; 
     return Container(
       margin: EdgeInsets.all(10),
       width: double.infinity,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_bloc.dart';
+import 'package:i_love_iruka/dashboard/dashboard_page.dart';
+
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/routes/route.dart';
 import 'package:i_love_iruka/screens/login/login_bloc/login_bloc_bloc.dart';
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
             errorColor: Colors.red,
           ),
           
-          home: LoginPage(),
+          home: DashboardPage(),
           initialRoute: "/",
           onGenerateRoute: RouteGenerator.generateRoute,
         ),
