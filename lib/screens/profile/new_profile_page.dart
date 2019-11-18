@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/screens/profile/edit_profile.dart';
+import 'package:i_love_iruka/util/constants.dart';
 import 'package:i_love_iruka/util/shared_pref.dart';
 
 class NewProfilePage extends StatefulWidget {
@@ -56,7 +57,7 @@ class _NewProfilePageState extends State<NewProfilePage> {
                     )
                   : Image.network(
 
-                      "${dataLogin.user.picture}",
+                      "${Constants.getWebUrl() +  dataLogin.user.picture}",
                       
                       fit: BoxFit.cover,
                     ),

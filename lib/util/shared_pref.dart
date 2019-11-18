@@ -17,8 +17,6 @@ class SharedPref {
 
   LoginResponse stringToLoginModel(String jsonData) {
     final loginData = LoginResponse.fromJson(json.decode(jsonData));
-
-    print(loginData.user.name);
     return loginData;
   }
 }

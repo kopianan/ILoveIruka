@@ -19,6 +19,14 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _autoValidate = false;
 
+
+  var focusedBorderUnderlineInputBorder =
+        UnderlineInputBorder(borderSide: BorderSide(color: Colors.white));
+    var enabledBorderUnderlineInputBorder =
+        UnderlineInputBorder(borderSide: BorderSide(color: Colors.white));
+          var hintStyleTextStyle = TextStyle(color: Colors.white);
+           var labelStyleTextStyle = TextStyle(color: Colors.grey);
+            var inputTextStyle = TextStyle(color: Colors.white);
   @override
   void initState() {
     super.initState();
@@ -199,42 +207,48 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Container buildLoginEnterPassword() {
-    return Container(
-      child: Row(
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.only(right: 20),
-            child: Icon(
-              Icons.lock_open,
-              color: Colors.grey,
-            ),
-          ),
-          Container(
-            height: 30.0,
-            width: 1.0,
-            margin: EdgeInsets.only(right: 10),
-            color: Colors.grey.withOpacity(0.5),
-          ),
-          new Expanded(
-            child: TextFormField(
-              validator: validatePassword,
-              onSaved: (String val) {
-                _password = val;
-              },
-              obscureText: _obscureText,
-              decoration: InputDecoration(
-                suffixIcon: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _obscureText = !_obscureText;
-                    });
-                  },
-                  child: Icon(
-                      _obscureText ? Icons.visibility : Icons.visibility_off),
+  
+        return Container(
+          child: Row(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(right: 20),
+                child: Icon(
+                  Icons.lock_open,
+                  color: Colors.grey,
                 ),
-                labelText: 'Enter your password',
-                hintStyle: TextStyle(color: Colors.grey),
               ),
+              Container(
+                height: 30.0,
+                width: 1.0,
+                margin: EdgeInsets.only(right: 10),
+                color: Colors.grey.withOpacity(0.5),
+              ),
+              new Expanded(
+                child: TextFormField(
+                  style: inputTextStyle,
+                  validator: validatePassword,
+                  onSaved: (String val) {
+                    _password = val;
+                  },
+                  obscureText: _obscureText,
+                  decoration: InputDecoration(
+                    enabledBorder: enabledBorderUnderlineInputBorder,
+                    focusedBorder: focusedBorderUnderlineInputBorder,
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                      child: Icon(
+                          _obscureText ? Icons.visibility : Icons.visibility_off),
+                    ),
+                    labelText: 'Enter your password',
+                    labelStyle: labelStyleTextStyle,
+                    hintStyle: hintStyleTextStyle,
+              ),
+              
             ),
           )
         ],
@@ -243,38 +257,40 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Container buildLoginEnterEmail() {
-    return Container(
-      child: Row(
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.only(right: 20),
-            child: Icon(
-              Icons.person_outline,
-              color: Colors.grey,
-            ),
-          ),
-          Container(
-            height: 30.0,
-            width: 1.0,
-            margin: EdgeInsets.only(right: 10),
-            color: Colors.grey.withOpacity(0.5),
-          ),
-          new Expanded(
-            child: TextFormField(
-              style: TextStyle(color: Colors.white),
-              validator: validateEmail,
-              onSaved: (String val) {
-                _email = val;
-              },
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white)),
-                focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white)),
-                labelStyle: TextStyle(color: Colors.grey),
+  
+   
+        var inputTextStyle = TextStyle(color: Colors.white);
+                return Container(
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.only(right: 20),
+                        child: Icon(
+                          Icons.person_outline,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      Container(
+                        height: 30.0,
+                        width: 1.0,
+                        margin: EdgeInsets.only(right: 10),
+                        color: Colors.grey.withOpacity(0.5),
+                      ),
+                      new Expanded(
+                        child: TextFormField(
+                          style: inputTextStyle,
+                  validator: validateEmail,
+                  onSaved: (String val) {
+                    _email = val;
+                  },
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    enabledBorder: enabledBorderUnderlineInputBorder,
+                    focusedBorder: focusedBorderUnderlineInputBorder,
+                    labelStyle: labelStyleTextStyle,
                 labelText: 'Enter your email',
-                hintStyle: TextStyle(color: Colors.white),
+                
+                hintStyle:hintStyleTextStyle,
               ),
             ),
           )

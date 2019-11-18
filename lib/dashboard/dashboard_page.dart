@@ -29,7 +29,14 @@ class _DashboardPageState extends State<DashboardPage> {
       // drawer: buildDrawer(context),
       body: buildPageView(),
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: ColorPalate().bottomNavigationTitleColor,
+        type: BottomNavigationBarType.shifting,
+        unselectedItemColor: Colors.grey,
+        selectedIconTheme: IconThemeData(color: Colors.blue),
+        unselectedIconTheme: IconThemeData(color: Colors.grey),
+        selectedLabelStyle: TextStyle(color: Colors.blue),
+        elevation: 2,
+        // selectedItemColor: ColorPalate().bottomNavigationTitleColor,
+        selectedItemColor: Colors.blue,
         onTap: (index) {
           bottomTapped(index);
         },
@@ -39,71 +46,16 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  // Drawer buildDrawer(BuildContext context) {
-  //   return Drawer(
-  //     child: Column(
-  //       children: <Widget>[
-  //         UserAccountsDrawerHeader(
-  //           accountName: Text("This Is Drawer"),
-  //           accountEmail: Text("bobasoft@boba.com"),
-  //           currentAccountPicture: CircleAvatar(
-  //             backgroundColor: Theme.of(context).platform == TargetPlatform.iOS
-  //                 ? Colors.blue
-  //                 : Colors.white,
-  //             child: Text(
-  //               "A",
-  //               style: TextStyle(fontSize: 40.0),
-  //             ),
-  //           ),
-  //         ),
-  //         Column(
-  //           children: <Widget>[
-  //             ListTile(
-  //               onTap: () {
-  //                 Navigator.of(context).pushNamed(
-  //                   '/profile_page',
-  //                 );
-  //               },
-  //               title: Text("Profile"),
-  //               trailing: Icon(Icons.person),
-  //             ),
-  //             Divider(),
-  //             ListTile(
-  //               onTap: () {
-  //                 Navigator.of(context).pushNamed(
-  //                   '/groomer_list',
-  //                 );
-  //               },
-  //               title: Text("Groomer Lists"),
-  //               trailing: Icon(Icons.group),
-  //             ),
-  //             Divider(),
-  //             ListTile(
-  //               onTap: () {
-  //                 Navigator.of(context).pushNamed('/login');
-  //               },
-  //               title: Text("Log Out"),
-  //               trailing: Icon(Icons.exit_to_app),
-  //             ),
-  //           ],
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
-
   List<BottomNavigationBarItem> buildBottomNavBarItems() {
     return [
       BottomNavigationBarItem(
-          activeIcon: buildNavigationIcon(true, FontAwesomeIcons.home),
           icon: buildNavigationIcon(false, FontAwesomeIcons.home),
           title: Text("Feed")),
       BottomNavigationBarItem(
-          activeIcon: buildNavigationIcon(true, FontAwesomeIcons.idCard),
           icon: buildNavigationIcon(false, FontAwesomeIcons.idCard),
           title: Text("Account")),
            BottomNavigationBarItem(
-          activeIcon: buildNavigationIcon(true, FontAwesomeIcons.objectGroup),
+          // activeIcon: buildNavigationIcon(true, FontAwesomeIcons.objectGroup),
           icon: buildNavigationIcon(false, FontAwesomeIcons.objectGroup),
           title: Text("Groomer List")),
     ];
@@ -112,11 +64,9 @@ class _DashboardPageState extends State<DashboardPage> {
   Icon buildNavigationIcon(bool isActive, IconData icon) => (isActive)
       ? Icon(
           icon,
-          color: Colors.orange,
         )
       : Icon(
           icon,
-          color: Colors.black,
         );
 
   PageController pageController = PageController(

@@ -1,14 +1,14 @@
-import 'package:carousel_pro/carousel_pro.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_bloc.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_event.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_state.dart';
-import 'package:i_love_iruka/dashboard/dashboard_widgets.dart';
 import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:i_love_iruka/screens/profile/new_profile_page.dart';
 import 'package:i_love_iruka/util/constants.dart';
+import 'package:i_love_iruka/widgets/cached_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DashboardPage1 extends StatefulWidget {
@@ -66,42 +66,50 @@ class _DashboardPage1State extends State<DashboardPage1> {
         centerTitle: true,
         pinned: true,
         title: Text("Dashboard"),
-        flexibleSpace: BlocListener<DashboardBlocBloc, DashboardState>(
+        flexibleSpace: BlocBuilder<DashboardBlocBloc, DashboardState>(
           bloc: dashboardBlocBloc,
-          listener: (context, state) {},
-          child: BlocBuilder<DashboardBlocBloc, DashboardState>(
-            bloc: dashboardBlocBloc,
-            builder: (context, state) {
-              if (state is GetEventListLoading) {
-                return Center(
-                    child: CircularProgressIndicator(
-                  backgroundColor: Colors.yellow,
-                ));
-              } else if (state is GetEventListCompleted) {
-                final dataResp = state.response.eventList;
-                return FlexibleSpaceBar(
-                  background: Container(
-                    alignment: Alignment.bottomCenter,
-                    padding: EdgeInsets.only(bottom: 30),
-                    child: CarouselSlider(
-                      items: dataResp.map((f) {
-                        return DashboardWidgets().buildImageOnSlider(
-                            "${Constants.getWebUrl() + "/" + f.picture}");
-                      }).toList(),
-                      enlargeCenterPage: true,
-                      height: 150,
-                      viewportFraction: 0.8,
-                      autoPlay: true,
-                    ),
+          builder: (context, state) {
+            if (state is GetEventListLoading) {
+              return Center(
+                  child: CircularProgressIndicator(
+                backgroundColor: Colors.yellow,
+              ));
+            } else if (state is GetEventListCompleted) {
+              final dataResp = state.response.eventList;
+              return FlexibleSpaceBar(
+                background: Container(
+                  alignment: Alignment.bottomCenter,
+                  padding: EdgeInsets.only(bottom: 30),
+                  child: CarouselSlider(
+                    items: dataResp.map((f) {
+                      return Card(
+      elevation: 4.0,
+      child: Container(
+          color: Colors.white,
+          width: double.infinity,
+          child:  CachedNetworkImage(
+            imageUrl: "${Constants.getWebUrl() + "/" + f.picture}",
+            fit: BoxFit.cover,
+
+          )
+          
+        ),
+    );
+                    }).toList(),
+                    enlargeCenterPage: true,
+                    height: 150,
+                    viewportFraction: 0.8,
+                    autoPlay: true,
                   ),
-                );
-              } else if (state is GetEventListError) {
-                return Container(
-                  color: Colors.green,
-                );
-              }
-            },
-          ),
+                ),
+              );
+            } else if (state is GetEventListError) {
+              return Container(
+                color: Colors.green,
+              );
+            }
+            return Container();
+          },
         ),
       ),
       SliverList(
@@ -312,13 +320,18 @@ class _BuildProductsState extends State<BuildProducts> {
             }, childCount: dataFeed.length),
           );
         } else if (state is GetProductListLoading) {
-          return SliverList(
-            delegate: SliverChildListDelegate([Container()]),
+          return SliverToBoxAdapter(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        } else {
+          return SliverToBoxAdapter(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
           );
         }
-        return SliverList(
-          delegate: SliverChildListDelegate([Container()]),
-        );
       },
     );
   }
@@ -334,12 +347,10 @@ class _BuildProductsState extends State<BuildProducts> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-                child: Image.network(
-              Constants.getWebUrl() + "/" + productList.picture,
-              height: 200,
-              fit: BoxFit.cover,
-            )),
+            CachedImage(
+              url: Constants.getWebUrl() + "/" + productList.picture,
+            ),
+
             Expanded(
               child: Container(
                   alignment: Alignment.centerLeft,

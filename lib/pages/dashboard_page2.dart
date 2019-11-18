@@ -35,6 +35,7 @@ class _DashboardPage2State extends State<DashboardPage2> {
 
   @override
   Widget build(BuildContext context) {
+    print(Constants.getWebUrl() + dataLogin.user.picture);
     return SafeArea(
         child: SingleChildScrollView(
       child: Container(
@@ -101,7 +102,9 @@ class _DashboardPage2State extends State<DashboardPage2> {
                         ? QrImage(
                             foregroundColor: Colors.black,
                             gapless: false,
-                            embeddedImage: AssetImage("images/assets/iruka_logo.png",),
+                            embeddedImage: AssetImage(
+                              "images/assets/iruka_logo.png",
+                            ),
                             data: (dataLogin == null)
                                 ? ""
                                 : "${dataLogin.user.id}",
