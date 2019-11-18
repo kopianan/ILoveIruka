@@ -7,6 +7,7 @@ import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/routes/route.dart';
 import 'package:i_love_iruka/screens/login/login_bloc/login_bloc_bloc.dart';
 import 'package:i_love_iruka/screens/login/login_page.dart';
+import 'package:i_love_iruka/screens/profile/new_profile_page.dart';
 import 'package:i_love_iruka/screens/register/register_bloc/register_bloc_bloc.dart';
 import 'package:provider/provider.dart';
 
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
             errorColor: Colors.red,
           ),
           
-          home: DashboardPage(),
+          home: LoginPage(),
           initialRoute: "/",
           onGenerateRoute: RouteGenerator.generateRoute,
         ),

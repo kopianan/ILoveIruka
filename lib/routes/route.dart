@@ -3,6 +3,8 @@ import 'package:i_love_iruka/dashboard/dashboard_page.dart';
 import 'package:i_love_iruka/screens/groomer/groomer_list.dart';
 import 'package:i_love_iruka/screens/groomer_detail/groomer_detail.dart';
 import 'package:i_love_iruka/screens/login/login_page.dart';
+import 'package:i_love_iruka/screens/profile/edit_profile.dart';
+import 'package:i_love_iruka/screens/profile/new_profile_page.dart';
 import 'package:i_love_iruka/screens/profile/profile_page.dart';
 import 'package:i_love_iruka/screens/register/register2_page.dart';
 import 'package:i_love_iruka/screens/register/register_page.dart';
@@ -32,11 +34,18 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => ProfilePage());
       case '/groomer_list':
         return MaterialPageRoute(builder: (_) => GroomerList());
+      case EditProfile.id:
+        return MaterialPageRoute(builder: (_) => EditProfile());
+      case NewProfilePage.id: 
+      return MaterialPageRoute(builder:(_) => NewProfilePage());
       case '/groomer_detail':
         {
-             return MaterialPageRoute(builder: (_) => GroomerDetail(data: args,));
+          return MaterialPageRoute(
+              builder: (_) => GroomerDetail(
+                    data: args,
+                  ));
           // if (args == ListUser) {
-         
+
           // } else {
           //   return _errorRoute();
           // }

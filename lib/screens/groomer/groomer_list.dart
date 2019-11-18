@@ -28,78 +28,92 @@ class _GroomerListState extends State<GroomerList> {
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: CustomScrollView(
           slivers: <Widget>[
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  Text(
-                    "Groomers",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 40),
+            SliverToBoxAdapter(
+              child: Text(
+                "Groomers",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 40),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey.withOpacity(0.5),
+                    width: 1.0,
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey.withOpacity(0.5),
-                        width: 1.0,
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Row(
+                  children: <Widget>[
+                    new Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 15.0),
+                      child: Icon(
+                        Icons.search,
+                        color: Colors.grey,
                       ),
-                      borderRadius: BorderRadius.circular(10.0),
                     ),
-                    child: Row(
-                      children: <Widget>[
-                        new Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 15.0),
-                          child: Icon(
-                            Icons.search,
-                            color: Colors.grey,
-                          ),
+                    new Expanded(
+                      child: TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          hintText: "Search",
+                          border: InputBorder.none,
+                          hintStyle: TextStyle(color: Colors.grey),
                         ),
-                        new Expanded(
-                          child: TextFormField(
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                              hintText: "Search",
-                              border: InputBorder.none,
-                              hintStyle: TextStyle(color: Colors.grey),
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 20),
-                    child: Column(
-                      children: <Widget>[
-                        Row(
+                  ],
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                height: 100.0,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      elevation: 3,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        width: 250,
+                        alignment: Alignment.bottomCenter,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            CircleAvatar(
-                              child: Text("AA"),
-                              radius: 30,
+                            Row(
+                              children: <Widget>[
+                                CircleAvatar(
+                                  child: Text("AA"),
+                                  radius: 30,
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text("Nama")
+                              ],
                             ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Text("Nama")
                           ],
                         ),
-                      ],
-                    ),
-                  ),
-                ],
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
             BlocBuilder<DashboardBlocBloc, DashboardState>(
               bloc: dashboardBloc,
               builder: (context, state) {
                 if (state is GetUserByRoleLoading) {
-                  return SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()));
+                  return SliverToBoxAdapter(
+                      child: Center(child: CircularProgressIndicator()));
                 } else if (state is GetUserByRoleCompleted) {
                   final dataSnap = state.response.listUser;
                   return SliverList(
@@ -129,8 +143,7 @@ class _GroomerListState extends State<GroomerList> {
                       childCount: dataSnap.length,
                     ),
                   );
-                } 
-                else if (state is GetUserByRoleError) {
+                } else if (state is GetUserByRoleError) {
                   return SliverToBoxAdapter(
                       child: Center(child: Text("Please refresh page")));
                 }

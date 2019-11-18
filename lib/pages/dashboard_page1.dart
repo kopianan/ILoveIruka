@@ -7,6 +7,7 @@ import 'package:i_love_iruka/dashboard/bloc/dashboard_event.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_state.dart';
 import 'package:i_love_iruka/dashboard/dashboard_widgets.dart';
 import 'package:i_love_iruka/models/model/product_model.dart';
+import 'package:i_love_iruka/screens/profile/new_profile_page.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -19,7 +20,6 @@ class DashboardPage1 extends StatefulWidget {
 
 class _DashboardPage1State extends State<DashboardPage1> {
   double serviceIconFontSize = 40.0;
-  int _current = 0;
   DashboardBlocBloc dashboardBlocBloc = DashboardBlocBloc();
 
   @override
@@ -55,17 +55,16 @@ class _DashboardPage1State extends State<DashboardPage1> {
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed("/profile_page");
+              Navigator.of(context).pushNamed(NewProfilePage.id);
             },
             icon: Icon(Icons.person),
           )
         ],
-        expandedHeight: 250,
+        expandedHeight: 220,
         floating: false,
         automaticallyImplyLeading: true,
         centerTitle: true,
         pinned: true,
-        backgroundColor: Colors.yellow,
         title: Text("Dashboard"),
         flexibleSpace: BlocListener<DashboardBlocBloc, DashboardState>(
           bloc: dashboardBlocBloc,
@@ -80,19 +79,20 @@ class _DashboardPage1State extends State<DashboardPage1> {
                 ));
               } else if (state is GetEventListCompleted) {
                 final dataResp = state.response.eventList;
-
                 return FlexibleSpaceBar(
-                  background: CarouselSlider(
-                    items: dataResp.map((f) {
-                      return DashboardWidgets().buildImageOnSlider(
-                          "${Constants.getWebUrl() + "/" + f.picture}");
-                    }).toList(),
-                    enlargeCenterPage: true,
-                    height: 200,
-                    aspectRatio: 16/9,
-                    viewportFraction: 0.6,
-                    autoPlay: true,
-
+                  background: Container(
+                    alignment: Alignment.bottomCenter,
+                    padding: EdgeInsets.only(bottom: 30),
+                    child: CarouselSlider(
+                      items: dataResp.map((f) {
+                        return DashboardWidgets().buildImageOnSlider(
+                            "${Constants.getWebUrl() + "/" + f.picture}");
+                      }).toList(),
+                      enlargeCenterPage: true,
+                      height: 150,
+                      viewportFraction: 0.8,
+                      autoPlay: true,
+                    ),
                   ),
                 );
               } else if (state is GetEventListError) {
@@ -111,7 +111,6 @@ class _DashboardPage1State extends State<DashboardPage1> {
           ],
         ),
       ),
-      
       BuildProducts()
     ]);
   }
@@ -325,7 +324,6 @@ class _BuildProductsState extends State<BuildProducts> {
   }
 
   Container buildFeedContainer(ProductList productList) {
-    print("link" + productList.picture) ; 
     return Container(
       margin: EdgeInsets.all(10),
       width: double.infinity,

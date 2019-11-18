@@ -55,7 +55,6 @@ class DashboardBlocBloc extends Bloc<DashboardEvent, DashboardState> {
     try {
       yield GetUserByRoleLoading();
       final userResponse = await _repository.getGroomerList(event.roleKey);
-      print('TEST ' + userResponse.toJson().toString());
       if (userResponse != null) {
         yield GetUserByRoleCompleted(userResponse);
        
