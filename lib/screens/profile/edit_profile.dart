@@ -35,7 +35,7 @@ void dispose() {
           Container(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Edit Profile",
+                "Profile",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               )),
           SizedBox(height: 50),
