@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
-import 'package:i_love_iruka/util/constants.dart';
 import 'package:i_love_iruka/util/shared_pref.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -35,7 +33,6 @@ class _DashboardPage2State extends State<DashboardPage2> {
 
   @override
   Widget build(BuildContext context) {
-    print(Constants.getWebUrl() + dataLogin.user.picture);
     return SafeArea(
         child: SingleChildScrollView(
       child: Container(
@@ -63,22 +60,22 @@ class _DashboardPage2State extends State<DashboardPage2> {
                     ),
                   ],
                 ),
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10),
-                    height: 100,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(
-                              (dataLogin.user.picture == null)
-                                  ? "images/assets/pet_shop.png"
-                                  : Constants.getWebUrl() +
-                                      dataLogin.user.picture,
-                            ))),
-                  ),
-                ),
+                // Expanded(
+                //   child: Container(
+                //     margin: EdgeInsets.symmetric(horizontal: 10),
+                //     height: 100,
+                //     decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(10),
+                //         image: DecorationImage(
+                //             fit: BoxFit.cover,
+                //             image: NetworkImage(
+                //               (dataLogin.user.picture == null)
+                //                   ? "images/assets/pet_shop.png"
+                //                   : Constants.getWebUrl() +
+                //                       dataLogin.user.picture,
+                //             ))),
+                //   ),
+                // ),
               ],
             ),
             SizedBox(
@@ -102,9 +99,9 @@ class _DashboardPage2State extends State<DashboardPage2> {
                         ? QrImage(
                             foregroundColor: Colors.black,
                             gapless: false,
-                            embeddedImage: AssetImage(
-                              "images/assets/iruka_logo.png",
-                            ),
+                            // embeddedImage: AssetImage(
+                            //   "images/assets/iruka_logo.png",
+                            // ),
                             data: (dataLogin == null)
                                 ? ""
                                 : "${dataLogin.user.id}",

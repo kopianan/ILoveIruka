@@ -11,6 +11,8 @@ import 'package:i_love_iruka/util/constants.dart';
 import 'package:i_love_iruka/widgets/cached_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'home_widgets.dart';
+
 class DashboardPage1 extends StatefulWidget {
   // final EventsModel response;
   // DashboardPage1({@required this.response});
@@ -37,15 +39,6 @@ class _DashboardPage1State extends State<DashboardPage1> {
     }
 
     return result;
-  }
-
-  _launchURL(String urlAddress) async {
-    String url = "$urlAddress";
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 
   @override
@@ -79,25 +72,23 @@ class _DashboardPage1State extends State<DashboardPage1> {
               return FlexibleSpaceBar(
                 background: Container(
                   alignment: Alignment.bottomCenter,
-                  padding: EdgeInsets.only(bottom: 30),
+                  padding: EdgeInsets.only(bottom: 0),
                   child: CarouselSlider(
                     items: dataResp.map((f) {
                       return Card(
-      elevation: 4.0,
-      child: Container(
-          color: Colors.white,
-          width: double.infinity,
-          child:  CachedNetworkImage(
-            imageUrl: "${Constants.getWebUrl() + "/" + f.picture}",
-            fit: BoxFit.cover,
-
-          )
-          
-        ),
-    );
+                        elevation: 4.0,
+                        child: Container(
+                            color: Colors.white,
+                            width: double.infinity,
+                            child: CachedNetworkImage(
+                              imageUrl:
+                                  "${Constants.getWebUrl() + "/" + f.picture}",
+                              fit: BoxFit.cover,
+                            )),
+                      );
                     }).toList(),
                     enlargeCenterPage: true,
-                    height: 150,
+                    height: 180,
                     viewportFraction: 0.8,
                     autoPlay: true,
                   ),
@@ -112,260 +103,70 @@ class _DashboardPage1State extends State<DashboardPage1> {
           },
         ),
       ),
-      SliverList(
-        delegate: SliverChildListDelegate(
-          [
-            buildServiceContent(),
-          ],
-        ),
+      SliverPersistentHeader(
+        delegate: CustomSliverDelegate(
+            expandedHeight: 100, hideTitleWhenExpanded: true),
       ),
       BuildProducts()
     ]);
   }
 
-  Container buildServiceContent() {
-    return Container(
-        margin: EdgeInsets.symmetric(
-          horizontal: 10,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Container(
-                padding: EdgeInsets.only(top: 10, left: 15),
-                width: double.infinity,
-                child: Text(
-                  "Services",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                )),
-            Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                InkWell(
-                  onTap: () async {
-                    _launchURL("https://sismarket.id/");
-                  },
-                  child: Column(
-                    children: <Widget>[
-                      buildIconContainer("images/assets/pet_shop.png"),
-                      buildIconTitleServicesDashboard(
-                        "Shop",
-                      )
-                    ],
-                  ),
-                ),
-                InkWell(
-                  onTap: () async {
-                    buildShowDialog("Grooming Salon");
-                  },
-                  child: Column(
-                    children: <Widget>[
-                      buildIconContainer("images/assets/pet_grooming.png"),
-                      buildIconTitleServicesDashboard("Grooming Salon")
-                    ],
-                  ),
-                ),
-                InkWell(
-                  onTap: () async {
-                    buildShowDialog("Pet Hotel");
-                  },
-                  child: Column(
-                    children: <Widget>[
-                      buildIconContainer("images/assets/pet_hotel.png"),
-                      buildIconTitleServicesDashboard("Pet Hotel")
-                    ],
-                  ),
-                ),
-                InkWell(
-                  onTap: () async {
-                    buildShowDialogPetTaxi();
-                  },
-                  child: Column(
-                    children: <Widget>[
-                      buildIconContainer("images/assets/pet_school.png"),
-                      buildIconTitleServicesDashboard("Pet Taxi")
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ));
-  }
-
-  Future buildShowDialog(String title) {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text(
-              "$title",
-              textAlign: TextAlign.center,
-            ),
-            content: Text("Choose action "),
-            actions: <Widget>[
-              FlatButton(
-                splashColor: Colors.amber,
-                onPressed: () {
-                  _launchURL("https://iloveiruka.com/");
-                },
-                child: Text(
-                  "Visit Link",
-                  style: TextStyle(color: Colors.blue),
-                ),
-              ),
-              FlatButton(
-                splashColor: Colors.amber,
-                onPressed: () {
-                  launch("tel://081377151395");
-                },
-                child: Text("Call Us", style: TextStyle(color: Colors.blue)),
-              ),
-            ],
-          );
-        });
-  }
-
-  Future buildShowDialogPetTaxi() {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text(
-              "Pet Taxi",
-              textAlign: TextAlign.center,
-            ),
-            content: Text("Choose action "),
-            actions: <Widget>[
-              FlatButton(
-                splashColor: Colors.amber,
-                onPressed: () {
-                  _launchURL("https://pettravelindonesia.com/");
-                },
-                child: Text(
-                  "Visit Link",
-                  style: TextStyle(color: Colors.blue),
-                ),
-              ),
-              FlatButton(
-                splashColor: Colors.amber,
-                onPressed: () {
-                  launch("tel://081377151395");
-                },
-                child: Text("Call Us", style: TextStyle(color: Colors.blue)),
-              ),
-            ],
-          );
-        });
-  }
-
-  Container buildIconContainer(String images) {
-    return Container(
-        width: 60,
-        height: 60,
-        padding: EdgeInsets.all(10),
-        decoration: boxDecorationDashboardIcon(),
-        child: Image.asset(images));
-  }
-
-  Container buildIconTitleServicesDashboard(
-    String title,
-  ) {
-    return Container(
-        alignment: Alignment.topCenter,
-        width: 70,
-        height: 40,
-        margin: EdgeInsets.symmetric(vertical: 5),
-        child: Text(
-          "${title}",
-          maxLines: 2,
-          textAlign: TextAlign.center,
-        ));
-  }
-
-  BoxDecoration boxDecorationDashboardIcon() {
-    return BoxDecoration(
-        shape: BoxShape.circle, color: Color.fromRGBO(85, 141, 197, 100));
-  }
   // 212, 85, 0,
   // 85, 141, 197
 }
 
-class BuildProducts extends StatefulWidget {
-  BuildProducts({Key key}) : super(key: key);
+class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
+  final double expandedHeight;
+  final bool hideTitleWhenExpanded;
+
+  CustomSliverDelegate({
+    @required this.expandedHeight,
+    this.hideTitleWhenExpanded = true,
+  });
 
   @override
-  _BuildProductsState createState() => _BuildProductsState();
-}
-
-class _BuildProductsState extends State<BuildProducts> {
-  DashboardBlocBloc dashboardBlocBloc = DashboardBlocBloc();
-  @override
-  void initState() {
-    super.initState();
-    dashboardBlocBloc.add(GetProductList());
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<DashboardBlocBloc, DashboardState>(
-      bloc: dashboardBlocBloc,
-      builder: (context, state) {
-        if (state is GetProductListCompleted) {
-          final dataFeed = state.response.productList;
-          return SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-              return buildFeedContainer(dataFeed[index]);
-            }, childCount: dataFeed.length),
-          );
-        } else if (state is GetProductListLoading) {
-          return SliverToBoxAdapter(
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        } else {
-          return SliverToBoxAdapter(
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-      },
-    );
-  }
-
-  Container buildFeedContainer(ProductList productList) {
-    return Container(
-      margin: EdgeInsets.all(10),
-      width: double.infinity,
-      height: 250,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            CachedImage(
-              url: Constants.getWebUrl() + "/" + productList.picture,
-            ),
-
-            Expanded(
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    final appBarSize = expandedHeight - shrinkOffset;
+    final cardTopPosition = expandedHeight / 2 - shrinkOffset;
+    final proportion = 2 - (expandedHeight / appBarSize);
+    final percent = proportion < 0 || proportion > 1 ? 0.0 : proportion;
+    return SizedBox(
+      height: expandedHeight + expandedHeight / 1,
+      child: Stack(
+        fit: StackFit.loose,
+        children: [
+          SizedBox(
+              height: 80,
               child: Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  color: Colors.white,
-                  child: Text(
-                    "${productList.productName}",
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  )),
-            )
-          ],
-        ),
+                color: Color(0xff558dc5),
+              )),
+          Positioned(
+            left: 0.0,
+            right: 0.0,
+            top: cardTopPosition > 0 ? cardTopPosition - 30 : 0,
+            bottom: 0.0,
+            child: Opacity(
+              opacity: percent,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10 * percent),
+                child: Card(elevation: 20.0, child: ServicesContent()),
+              ),
+            ),
+          ),
+        ],
       ),
     );
+  }
+
+  @override
+  double get maxExtent => expandedHeight + expandedHeight / 2;
+
+  @override
+  double get minExtent => kToolbarHeight;
+
+  @override
+  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
+    return true;
   }
 }
