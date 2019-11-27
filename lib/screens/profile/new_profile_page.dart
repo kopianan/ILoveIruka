@@ -82,13 +82,16 @@ class _NewProfilePageState extends State<NewProfilePage> {
                   ),
                   Divider(),
                   ListTile(
-                    onTap: () {},
+                    onTap: () {  Navigator.of(context).pushNamed(EditProfile.id);},
                     leading: Icon(FontAwesomeIcons.personBooth),
                     title: Text("Account"),
                     trailing: Icon(FontAwesomeIcons.arrowRight),
                   ),
                   Divider(),
                   ListTile(
+                    onTap: (){
+                      logoutDialog(context);
+                    },
                     title: Text(
                       "Log Out",
                       style: TextStyle(
@@ -105,5 +108,21 @@ class _NewProfilePageState extends State<NewProfilePage> {
         ],
       ),
     );
+  }
+
+  Future logoutDialog(BuildContext context) {
+    return showDialog(
+                      context: (context),
+                      builder: (context){
+                        return AlertDialog(
+                          title: Text("Logout"),
+                          content: Text("Are you sure want to logout this account ? "),
+                          actions: <Widget>[
+                            FlatButton(onPressed: (){Navigator.pop(context);},child: Text("No"),),
+                            FlatButton(onPressed: (){Navigator.of(context).pushReplacementNamed("/login");},child: Text("Logout",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),),),
+                          ],
+                        );
+                      }
+                    );
   }
 }

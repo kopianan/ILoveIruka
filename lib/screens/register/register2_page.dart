@@ -306,6 +306,7 @@ class _Register2PageState extends State<Register2Page> {
                           FloatingActionButton(
                             child: Icon(FontAwesomeIcons.arrowRight),
                             onPressed: () {
+                              FocusScope.of(context).requestFocus(new FocusNode());
                               validateRegisterUser();
                             },
                           ),
