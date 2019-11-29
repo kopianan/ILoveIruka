@@ -42,40 +42,13 @@ class _DashboardPage2State extends State<DashboardPage2> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    (dataLogin == null)
-                        ? CircularProgressIndicator()
-                        : Text(
-                            "Hello,\n${dataLogin.user.name}",
-                            style: TextStyle(
-                                fontSize: 30, fontWeight: FontWeight.bold),
-                          ),
-                    Row(
-                      children: <Widget>[
-                        Icon(Icons.date_range),
-                        Text(DateTime.now().toIso8601String())
-                      ],
-                    ),
-                  ],
-                ),
-                // Expanded(
-                //   child: Container(
-                //     margin: EdgeInsets.symmetric(horizontal: 10),
-                //     height: 100,
-                //     decoration: BoxDecoration(
-                //         borderRadius: BorderRadius.circular(10),
-                //         image: DecorationImage(
-                //             fit: BoxFit.cover,
-                //             image: NetworkImage(
-                //               (dataLogin.user.picture == null)
-                //                   ? "images/assets/pet_shop.png"
-                //                   : Constants.getWebUrl() +
-                //                       dataLogin.user.picture,
-                //             ))),
-                //   ),
-                // ),
+                (dataLogin.user == null)
+                    ? CircularProgressIndicator()
+                    : Text(
+                        "Hello,\n${dataLogin.user.name}",
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold),
+                      ),
               ],
             ),
             SizedBox(
@@ -83,15 +56,11 @@ class _DashboardPage2State extends State<DashboardPage2> {
             ),
             Card(
               elevation: 4,
-              margin: EdgeInsets.symmetric(horizontal: 20),
               clipBehavior: Clip.hardEdge,
               child: Column(
                 children: <Widget>[
                   Container(
-                    color: Color(0xff0288d1),
-                    height: 60.0,
-                  ),
-                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 20),
                     alignment: Alignment.center,
                     width: double.infinity,
                     color: Colors.white,
@@ -99,14 +68,11 @@ class _DashboardPage2State extends State<DashboardPage2> {
                         ? QrImage(
                             foregroundColor: Colors.black,
                             gapless: false,
-                            // embeddedImage: AssetImage(
-                            //   "images/assets/iruka_logo.png",
-                            // ),
                             data: (dataLogin == null)
                                 ? ""
                                 : "${dataLogin.user.id}",
                             version: QrVersions.auto,
-                            size: 200.0,
+                            size: 250.0,
                           )
                         : Center(
                             child: Text("Something Wrong"),
@@ -138,98 +104,84 @@ class _DashboardPage2State extends State<DashboardPage2> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Container(
-                  margin: EdgeInsets.all(10),
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: Colors.black),
-                  width: 50,
-                  child: Image.asset("images/assets/point_food.png")),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      "Food Point",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          Card(
+              elevation: 4,
+              child: Row(
+                children: <Widget>[
+                   Container(
+                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    child: Image.asset(
+                      "images/assets/medal.png",
+                      width: 70,
                     ),
-                    Container(
-                      width: double.infinity,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Expanded(
-                            child: LinearPercentIndicator(
-                              lineHeight: 14.0,
-                              percent: 0.5,
-                              backgroundColor: Colors.grey,
-                              progressColor: Colors.orange,
-                            ),
-                          ),
-                          Container(
-                              margin: EdgeInsets.symmetric(horizontal: 10),
-                              child: Text("10/12"))
-                        ],
-                      ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          "Total Point",
+                          style: TextStyle(fontSize: 17),
+                        ),
+                        Text(
+                          "23",
+                          style: TextStyle(
+                              fontSize: 40, fontWeight: FontWeight.bold),
+                        )
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  Expanded(child : Container(
+                    alignment: Alignment.centerRight,
+                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text("Transaction History"),)) 
+                 
+                ],
               )
-            ],
-          ),
-          Divider(
-            color: Colors.grey,
-            indent: 20,
-            endIndent: 20,
-          ),
-          Row(
-            children: <Widget>[
-              Container(
-                  margin: EdgeInsets.all(10),
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: Colors.black),
-                  width: 50,
-                  child: Image.asset("images/assets/point_services.png")),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      "Service Point",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Expanded(
-                            child: LinearPercentIndicator(
-                              lineHeight: 14.0,
-                              percent: 0.5,
-                              backgroundColor: Colors.grey,
-                              progressColor: Colors.blue,
-                            ),
-                          ),
-                          Container(
-                              margin: EdgeInsets.symmetric(horizontal: 10),
-                              child: Text("10/12"))
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
+              // Row(
+              //   children: <Widget>[
+              //     Container(
+              //         margin: EdgeInsets.all(10),
+              //         padding: EdgeInsets.all(5),
+              //         decoration: BoxDecoration(
+              //             shape: BoxShape.circle, color: Colors.black),
+              //         width: 50,
+              //         child: Image.asset("images/assets/point_services.png")),
+              //     Expanded(
+              //       child: Column(
+              //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: <Widget>[
+              //           Text(
+              //             "Service Point",
+              //             style: TextStyle(
+              //                 fontSize: 18, fontWeight: FontWeight.bold),
+              //           ),
+              //           Container(
+              //             width: double.infinity,
+              //             child: Row(
+              //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //               children: <Widget>[
+              //                 Expanded(
+              //                   child: LinearPercentIndicator(
+              //                     lineHeight: 14.0,
+              //                     percent: 0.5,
+              //                     backgroundColor: Colors.grey,
+              //                     progressColor: Colors.blue,
+              //                   ),
+              //                 ),
+              //                 Container(
+              //                     margin: EdgeInsets.symmetric(horizontal: 10),
+              //                     child: Text("10/12"))
+              //               ],
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     )
+              //   ],
+              // ),
+              ),
         ],
       ),
     );

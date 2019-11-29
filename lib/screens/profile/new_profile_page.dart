@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
+import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/screens/profile/edit_profile.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:i_love_iruka/util/shared_pref.dart';
+import 'package:provider/provider.dart';
 
 class NewProfilePage extends StatefulWidget {
   NewProfilePage({Key key}) : super(key: key);
@@ -21,7 +23,7 @@ class _NewProfilePageState extends State<NewProfilePage> {
           LoginResponse.fromJson(await SharedPref().getLoginData());
       setState(() {
         dataLogin = user;
-         print(dataLogin.user.picture + "FOTO AINT") ; 
+        Provider.of<DataBridge>(context,listen: false).setUserData(user);
       });
     } catch (Excepetion) {
       Scaffold.of(context).showSnackBar(SnackBar(

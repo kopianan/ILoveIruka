@@ -5,6 +5,7 @@ import 'package:i_love_iruka/util/constants.dart';
 import 'package:i_love_iruka/widgets/color_palate.dart';
 
 class GroomerDetail extends StatefulWidget {
+
   final ListUser data;
   GroomerDetail({this.data});
   @override
@@ -52,8 +53,10 @@ class _GroomerDetailState extends State<GroomerDetail> {
                     shape: BoxShape.circle,
                     image: new DecorationImage(
                         fit: BoxFit.cover,
-                        image: new NetworkImage(
-                          Constants.getWebUrl() + widget.data.picture,
+                        image: new AssetImage(
+                          "images/assets/point_food.png"
+                          // Constants.getWebUrl() + widget.data.picture,
+                        
                         )))),
             Text(
               "${widget.data.name}",
