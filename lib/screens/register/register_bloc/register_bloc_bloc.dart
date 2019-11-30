@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:i_love_iruka/data/repository.dart';
 import 'package:i_love_iruka/screens/register/register_bloc/register_bloc_g.dart';
+import 'package:i_love_iruka/util/shared_pref.dart';
 
 class RegisterBlocBloc extends Bloc<RegisterBlocEvent, RegisterBlocState> {
   Repository _repository = Repository();
@@ -17,10 +18,9 @@ class RegisterBlocBloc extends Bloc<RegisterBlocEvent, RegisterBlocState> {
       yield RegisterLoading();
       final registerResponse =
           await _repository.registerUserByEmail(event.registerData);
-     print(registerResponse.toString() + "RESPONSE");
       if (registerResponse != null) {
-        print("registerreponse");
-        yield RegisterComplete(response :  "complte");
+        await SharedPref().saveLoginData(registerResponse);
+        yield RegisterComplete(response: "complete");
       } else {
         yield RegisterError("Error");
       }

@@ -41,73 +41,75 @@ class _NewProfilePageState extends State<NewProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xffeceff1),
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            expandedHeight: 250,
-            pinned: true,
-            floating: false,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text((dataLogin== null) ?  "noname": dataLogin.user.name),
-              centerTitle: false,
-              collapseMode: CollapseMode.parallax,
-              background: (dataLogin == null)
-                  ? Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : Image.network(
+    return Consumer<DataBridge>(
+          builder:(context,dataBridge,_) => Scaffold(
+        backgroundColor: Color(0xffeceff1),
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              expandedHeight: 250,
+              pinned: true,
+              floating: false,
+              flexibleSpace: FlexibleSpaceBar(
+                title: Text((dataLogin== null) ?  "noname": dataLogin.user.name),
+                centerTitle: false,
+                collapseMode: CollapseMode.parallax,
+                background: (dataLogin == null)
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : Image.network(
 
-                      "${Constants.getWebUrl() +  dataLogin.user.picture}",
-                      
-                      fit: BoxFit.cover,
-                    ),
-            ),
-          ),
-          SliverFillRemaining(
-            fillOverscroll: false,
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), color: Colors.white),
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  ListTile(
-                    onTap: () {
-                      Navigator.of(context).pushNamed(EditProfile.id);
-                    },
-                    leading: Icon(FontAwesomeIcons.mailchimp),
-                    title: Text("Profile"),
-                    trailing: Icon(FontAwesomeIcons.arrowRight),
-                  ),
-                  Divider(),
-                  ListTile(
-                    onTap: () {  Navigator.of(context).pushNamed(EditProfile.id);},
-                    leading: Icon(FontAwesomeIcons.personBooth),
-                    title: Text("Account"),
-                    trailing: Icon(FontAwesomeIcons.arrowRight),
-                  ),
-                  Divider(),
-                  ListTile(
-                    onTap: (){
-                      logoutDialog(context);
-                    },
-                    title: Text(
-                      "Log Out",
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
+                        "${Constants.getWebUrl() +  dataLogin.user.picture}",
+                        
+                        fit: BoxFit.cover,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
               ),
             ),
-          )
-        ],
+            SliverFillRemaining(
+              fillOverscroll: false,
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20), color: Colors.white),
+                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ListTile(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(EditProfile.id);
+                      },
+                      leading: Icon(FontAwesomeIcons.mailchimp),
+                      title: Text("Profile"),
+                      trailing: Icon(FontAwesomeIcons.arrowRight),
+                    ),
+                    Divider(),
+                    ListTile(
+                      onTap: () {  Navigator.of(context).pushNamed(EditProfile.id);},
+                      leading: Icon(FontAwesomeIcons.personBooth),
+                      title: Text("Account"),
+                      trailing: Icon(FontAwesomeIcons.arrowRight),
+                    ),
+                    Divider(),
+                    ListTile(
+                      onTap: (){
+                        logoutDialog(context);
+                      },
+                      title: Text(
+                        "Log Out",
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

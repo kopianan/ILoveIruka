@@ -5,11 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_bloc.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_event.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_state.dart';
-import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:i_love_iruka/screens/profile/new_profile_page.dart';
 import 'package:i_love_iruka/util/constants.dart';
-import 'package:i_love_iruka/widgets/cached_image.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'home_widgets.dart';
 

@@ -51,7 +51,6 @@ class _LoginPageState extends State<LoginPage> {
             listener: (context, state) {
               if (state is LoginComplete) {
                 //go to another page
-                Fluttertoast.showToast(msg: state.response.user.name);
                 Navigator.of(context).pushReplacementNamed("/dashboard");
               }
               if (state is LoginError) {
@@ -60,10 +59,11 @@ class _LoginPageState extends State<LoginPage> {
             },
             child: BlocBuilder<LoginBlocBloc, LoginBlocState>(
                 bloc: loginBlocBloc,
+
                 builder: (context, state) {
                   if (state is LoginLoading) {
                     return Center(child: CircularProgressIndicator());
-                  } else
+                  } else if (state is InitialLoginBlocState)
                     return buildLoginPageInitial(context);
                 }),
           ),

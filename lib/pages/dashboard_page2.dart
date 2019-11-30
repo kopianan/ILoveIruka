@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/util/shared_pref.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class DashboardPage2 extends StatefulWidget {
