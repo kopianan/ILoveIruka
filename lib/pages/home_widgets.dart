@@ -4,7 +4,6 @@ import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_g.dart';
 import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:i_love_iruka/pages/decoration_collection.dart';
 import 'package:i_love_iruka/util/common.dart';
-import 'package:i_love_iruka/util/constants.dart';
 import 'package:i_love_iruka/widgets/cached_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -185,47 +184,52 @@ class _BuildProductsState extends State<BuildProducts> {
   Container buildFeedContainer(ProductList productList) {
     final double widthMediaQuery = MediaQuery.of(context).size.width;
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      width: widthMediaQuery,
-      height: widthMediaQuery,
+      margin: EdgeInsets.only(top: 20),
+      decoration: BoxDecoration(border: Border.all(color: Colors.grey[300])),
       child: Card(
-        elevation: 4,
+        margin: EdgeInsets.zero,
+        elevation: 1,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
+           
             Container(
-              height: widthMediaQuery * 0.1, 
-              color: Colors.white,
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              alignment: Alignment.centerLeft,
-                child: Text(
-                    "${productList.productName}",
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  )),
-            
+                // height: widthMediaQuery * 0.1,
 
+                color: Colors.white,
+                padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "${productList.productName}",
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                )),
             Container(
-              height: widthMediaQuery * 0.7,
+              height: widthMediaQuery,
+              width: widthMediaQuery,
+              // child: Image.asset("images/assets/ratio11.png", fit: BoxFit.scaleDown,),
+              // child: CachedImage(
+              //   url: Constants.getWebUrl() + "/" + productList.picture,
+              // ),
               child: CachedImage(
-                url: Constants.getWebUrl() + "/" + productList.picture,
+                url:"http://3.bp.blogspot.com/_5pqCqLjs8WA/TGmMutN5ISI/AAAAAAAAACw/rMgIXNxHSN8/w1200-h630-p-k-no-nu/Aspect1x1.png",
+                
+
               ),
             ),
-            Expanded(
-              child: Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                  color: Colors.white,
-                  child: Text(
-                    "Lorem \n tesntadfladhjfsad\n a;ldkhflkjadhflakjdhfkljadhadfaadsfadsfdsaf adsfdasfadsf adfadfflkj",
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-
-                    style: TextStyle(fontSize: 12, ),
-                  )),
-            )
+            Container(
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                color: Colors.white,
+                child: Text(
+                  "Lorem \ntesntadfladhjfsad\n;ldkhflkjadhflakjdhfkljadhadfaadsfadsfdsafadsfdasfadsfdfadfflkj",
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 14,
+                  ),
+                ))
           ],
         ),
       ),
