@@ -5,11 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i_love_iruka/models/request/register_request.dart';
+import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/screens/register/register_additional.dart';
 import 'package:i_love_iruka/screens/register/register_bloc/register_bloc_g.dart';
+import 'package:i_love_iruka/screens/register/register_widget.dart';
 import 'package:i_love_iruka/util/camera_util.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:keyboard_avoider/keyboard_avoider.dart';
+import 'package:provider/provider.dart';
 
 import '../../data/repository.dart';
 import '../../models/model/roles_model.dart';
@@ -84,80 +87,99 @@ class _Register2PageState extends State<Register2Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: true,
-      body: SafeArea(
-        child: BlocListener<RegisterBlocBloc, RegisterBlocState>(
-          bloc: registerBloc,
-          listener: (context,state){
-            if(state is RegisterComplete){
-              Navigator.of(context).pushNamed("/dashboard");
-            }
-          },
-                  child: BlocBuilder<RegisterBlocBloc, RegisterBlocState>(
+      body: Consumer<DataBridge>(
+              builder:(context, dataBridge, _)=>  SafeArea(
+          child: BlocListener<RegisterBlocBloc, RegisterBlocState>(
             bloc: registerBloc,
-            builder: (context, state) {
-              if (state is RegisterLoading) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (state is RegisterError) {
-                return Center(
-                  child: Text("Something wrong"),
-                );
+            listener: (context, state) {
+              if (state is RegisterComplete) {
+                Navigator.of(context).pushNamed("/dashboard");
               }
-              return buildRegisterPageForm(context);
             },
+            child: BlocBuilder<RegisterBlocBloc, RegisterBlocState>(
+              bloc: registerBloc,
+              builder: (context, state) {
+                if (state is RegisterLoading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is RegisterError) {
+                  return Center(
+                    child: Text("Something wrong"),
+                  );
+                }
+                return buildRegisterPageForm(context, dataBridge);
+              },
+            ),
           ),
         ),
       ),
     );
   }
 
-  Container buildRegisterPageForm(BuildContext context) {
+  Container buildRegisterPageForm(BuildContext context, DataBridge dataBridge) {
     return Container(
         margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: PageView(
           physics: NeverScrollableScrollPhysics(),
           controller: c,
           children: <Widget>[
-            Container(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Stack(
+              
               children: <Widget>[
+                // Positioned(
+                //   right: 20,
+                //   top: 20,
+                //   child: Image.asset(
+                //   "images/assets/iruka_cloud.png", width: 150,
+                // ),),
                 Container(
-                    child: Text(
-                  "Who Are You ? ",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                )),
-                buildDropdownRole(),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                    child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    FlatButton(onPressed: (){
-                      Navigator.pop(context);
-                    },child: Text("Back"),),
                     Container(
-                      margin: EdgeInsets.only(bottom: 20),
-                      alignment: Alignment.bottomRight,
-                      child: FloatingActionButton(
-                        child: Icon(FontAwesomeIcons.arrowRight),
-                        onPressed: () {
-                          ///validate before go to next page
-                          if (_dropDownValue == null) {
-                            Fluttertoast.showToast(
-                              msg: "Please Choose Type First",
-                            );
-                          } else {
-                            _registerAdditional.nextAnimated(context, c, 1);
-                          }
-                        },
-                      ),
+                        child: Text(
+                      "Who Are You ? ",
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    )),
+                    RoleDropDown(
+                      getRolesOff: _getRolesOff,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        FlatButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text("Back"),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(bottom: 20),
+                          alignment: Alignment.bottomRight,
+                          child: FloatingActionButton(
+                            child: Icon(FontAwesomeIcons.arrowRight),
+                            onPressed: () {
+                              ///validate before go to next page
+                              if (dataBridge.getRoleList() == null) {
+                                Fluttertoast.showToast(
+                                  msg: "Please Choose Type First",
+                                );
+                              } else {
+                                _registerAdditional.nextAnimated(context, c, 1);
+                              }
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ],
-                ),
+                )),
               ],
-            )),
+            ),
             KeyboardAvoider(
               autoScroll: true,
               child: Container(
@@ -306,7 +328,8 @@ class _Register2PageState extends State<Register2Page> {
                           FloatingActionButton(
                             child: Icon(FontAwesomeIcons.arrowRight),
                             onPressed: () {
-                              FocusScope.of(context).requestFocus(new FocusNode());
+                              FocusScope.of(context)
+                                  .requestFocus(new FocusNode());
                               validateRegisterUser();
                             },
                           ),
@@ -457,64 +480,7 @@ class _Register2PageState extends State<Register2Page> {
         password: _password,
         phonenumber: _phoneController.text.toString(),
         role: _userType);
-    registerBloc.add(RegisterUser(registerData: dataRegister));
-  }
-
-  Widget buildDropdownRole() {
-    return FutureBuilder(
-      future: _getRolesOff,
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        RolesModel roles = snapshot.data;
-        switch (snapshot.connectionState) {
-          case ConnectionState.none:
-            // TODO: Handle this case.
-            break;
-          case ConnectionState.waiting:
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-            break;
-          case ConnectionState.active:
-            // TODO: Handle this case.
-            break;
-          case ConnectionState.done:
-            return Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              height: 50,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
-              child: DropdownButton(
-                underline: SizedBox(),
-                isDense: false,
-                elevation: 3,
-                isExpanded: true,
-                onChanged: (val) {
-                  setState(() {
-                    _dropDownValue = val;
-                  
-                   _userType =  roles.roleList.firstWhere((test) => test.name == val ).id;
-                   print(val +_userType );
-                  });
-                },
-                value: _dropDownValue,
-                hint: Text("User Type"),
-                items: roles.roleList.map((f) {
-                  return DropdownMenuItem(
-                    child: Text(
-                      f.name,
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                    ),
-                    value: f.name,
-                  );
-                }).toList(),
-              ),
-            );
-            break;
-        }
-      },
-    );
+        print(dataRegister.toJson());
+    // registerBloc.add(RegisterUser(registerData: dataRegister));
   }
 }

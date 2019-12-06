@@ -7,8 +7,6 @@ import 'package:i_love_iruka/screens/profile/edit_profile.dart';
 import 'package:i_love_iruka/screens/profile/new_profile_page.dart';
 import 'package:i_love_iruka/screens/profile/profile_page.dart';
 import 'package:i_love_iruka/screens/register/register2_page.dart';
-import 'package:i_love_iruka/screens/register/register_page.dart';
-
 import '../main.dart';
 
 class RouteGenerator {
@@ -24,8 +22,6 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => LoginPage(),
         );
-      case '/register':
-        return MaterialPageRoute(builder: (_) => RegisterPage());
 
       case '/dashboard':
         return MaterialPageRoute(builder: (_) => DashboardPage());
