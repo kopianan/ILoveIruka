@@ -40,12 +40,16 @@ class _Register2PageState extends State<Register2Page> {
   String _password;
   String _retypePassword;
   String _userType;
+  String _picPhoneNumber ; 
   var _firstNameController = TextEditingController();
   var _lastNameController = TextEditingController();
   var _emailController = TextEditingController();
   var _phoneController = TextEditingController();
   var _passwordController = TextEditingController();
   var _repeatPasswordController = TextEditingController();
+  var _picPhoneNumberController = TextEditingController();
+  
+
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _obscureText = true;
@@ -248,12 +252,27 @@ class _Register2PageState extends State<Register2Page> {
                               _emailController.text = val;
                               _email = val;
                             },
+                            
                             decoration: InputDecoration(
                                 hintText: "Email Address",
-                                labelText: "Email address")),
+                                labelText: "Email address", 
+                                 suffixIcon: Icon(Icons.email)), 
+                                ),
                         SizedBox(
                           height: distanceOfElement,
                         ),
+
+                       (dataBridge.getRoleList().name.toLowerCase() == "owner") ?TextFormField(
+                            controller: _picPhoneNumberController,
+                            onSaved: (String val) {
+                              _picPhoneNumberController.text = val;
+                              _picPhoneNumber = val;
+                            },
+                            decoration: InputDecoration(
+                                hintText: "PIC Phone Contact",
+                                labelText: "PIC Phone Contact", 
+                                suffixIcon: Icon(Icons.phone))) : Container(), 
+
                         TextFormField(
                             validator: RegisterAdditional.validateName,
                             controller: _phoneController,
@@ -263,7 +282,8 @@ class _Register2PageState extends State<Register2Page> {
                             },
                             keyboardType: TextInputType.phone,
                             decoration: InputDecoration(
-                                hintText: "Phone", labelText: "Phone")),
+                                hintText: "Phone Number", labelText: "Phone Number", suffixIcon: Icon(Icons.phone_android)), 
+                                ),
                         SizedBox(
                           height: distanceOfElement,
                         ),

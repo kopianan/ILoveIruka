@@ -18,6 +18,8 @@ class _EditProfileState extends State<EditProfile> {
   TextEditingController _dateController ;
   TextEditingController _nameController;
   TextEditingController _addressController;
+  TextEditingController _emailController;
+  TextEditingController _phoneController;
 
   SharedPref sharedPref = SharedPref();
   User dataLogin;
@@ -26,6 +28,8 @@ class _EditProfileState extends State<EditProfile> {
     dataLogin = Provider.of<DataBridge>(context, listen: false).getUserData().user;
     _nameController = TextEditingController(text: dataLogin.name.toString()) ; 
     _addressController = TextEditingController(text: dataLogin.address.toString()); 
+    _emailController = TextEditingController(text: dataLogin.email.toString()); 
+    _phoneController = TextEditingController(text: dataLogin.phoneNumber.toString()); 
     super.initState();
   }
 
@@ -47,32 +51,39 @@ class _EditProfileState extends State<EditProfile> {
           ),
           onPressed: () {},
         ),
-        body: Container(
-          alignment: Alignment.center,
-          padding: EdgeInsets.all(30),
-          child: Column(children: <Widget>[
-            Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Profile",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                )),
-            SizedBox(height: 50),
-            new ChangeProfilePicture(picture : dataLogin.picture),
-            SizedBox(height: 30),
-            new InformationItem(name: "Nama", hint: "Input your name",controller: _nameController,),
-            new InformationItem(
-                name: "Alamat", hint: "Input your Address", maxLines: 2, controller: _addressController),
-            new InformationDate(
-              name: "Birth Of Date",
-              hint: "Input your birth of date",
-              dateController: _dateController,
-            ),
-            new InformationItem(
-              name: "Gender",
-              hint: "Choose your gender",
-            ),
-          ]),
+        body: SingleChildScrollView(
+                  child: Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.all(30),
+            child: Column(children: <Widget>[
+              Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Profile",
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  )),
+              SizedBox(height: 50),
+              new ChangeProfilePicture(picture : dataLogin.picture),
+              SizedBox(height: 30),
+              new InformationItem(name: "Name", hint: "Input your name",controller: _nameController,),
+              new InformationItem(
+                  name: "Address", hint: "Input your Address", maxLines: 2, controller: _addressController),
+                     new InformationItem(
+                  name: "Email", hint: "E-mail", maxLines: 1, enable: false, controller: _emailController,),
+
+                     new InformationItem(
+                  name: "Phone Number", hint: "Phone", maxLines: 1, enable: false, controller: _phoneController,),   
+              // new InformationDate(
+              //   name: "Birth Of Date",
+              //   hint: "Input your birth of date",
+              //   dateController: _dateController,
+              // ),
+              // new InformationItem(
+              //   name: "Gender",
+              //   hint: "Choose your gender",
+              // ),
+            ]),
+          ),
         ),
       );}
     );
@@ -143,11 +154,12 @@ class _InformationDateState extends State<InformationDate> {
 
 class InformationItem extends StatelessWidget {
   const InformationItem(
-      {Key key, @required this.name, @required this.hint, this.maxLines = 1,  this.controller})
+      {Key key, @required this.name, @required this.hint, this.maxLines = 1, this.enable = true ,  this.controller})
       : super(key: key);
   final String hint;
   final String name;
   final int maxLines;
+  final bool enable ; 
   final TextEditingController controller;
 
   @override
@@ -162,6 +174,7 @@ class InformationItem extends StatelessWidget {
             Expanded(
                 flex: 7,
                 child: TextField(
+                  enabled: enable,
                   controller: controller,
                   onTap: () {},
                   textAlign: TextAlign.end,

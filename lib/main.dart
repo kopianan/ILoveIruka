@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_bloc.dart';
 import 'package:i_love_iruka/dashboard/dashboard_page.dart';
+import 'package:i_love_iruka/models/model/login_response.dart';
 
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/routes/route.dart';
@@ -9,6 +11,7 @@ import 'package:i_love_iruka/screens/login/login_bloc/login_bloc_bloc.dart';
 import 'package:i_love_iruka/screens/login/login_page.dart';
 import 'package:i_love_iruka/screens/profile/new_profile_page.dart';
 import 'package:i_love_iruka/screens/register/register_bloc/register_bloc_bloc.dart';
+import 'package:i_love_iruka/util/shared_pref.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -21,8 +24,21 @@ void main() => runApp(MyApp());
 // #df90b277
 // #3cede2d2
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Future dataFuture ;
+
+@override
+  void initState() {
+    dataFuture =  SharedPref().getLoginData() ; 
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -47,7 +63,38 @@ class MyApp extends StatelessWidget {
             errorColor: Colors.red,
           ),
           
-          home: LoginPage(),
+          home: Consumer<DataBridge>(
+                      builder: (context, dataBridge , _) =>  FutureBuilder(
+              future: SharedPref().getLoginData(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                switch(snapshot.connectionState){
+
+                  case ConnectionState.none:
+                  return LoginPage() ; 
+                    break;
+                  case ConnectionState.waiting:
+                  return LinearProgressIndicator(); 
+                    break;
+                  case ConnectionState.active:
+                  return LinearProgressIndicator(); 
+                    break;
+                  case ConnectionState.done:
+                  if(snapshot.hasError){
+                    return LoginPage(); 
+                  }else{
+                    if(snapshot.data!=null){
+                      final loginData = LoginResponse.fromJson(snapshot.data); 
+                      dataBridge.setUserData(loginData); 
+                      return DashboardPage(); 
+                    }else{
+                      return LoginPage() ; 
+                    }
+                  }
+                    break;
+                }
+              },
+            ),
+          ),
           initialRoute: "/",
           onGenerateRoute: RouteGenerator.generateRoute,
         ),

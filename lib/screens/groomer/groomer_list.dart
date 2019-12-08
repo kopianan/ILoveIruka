@@ -4,6 +4,8 @@ import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_bloc.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_event.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_state.dart';
 import 'package:i_love_iruka/models/request/user_by_role_request.dart';
+import 'package:i_love_iruka/provider/data_bridge.dart';
+import 'package:provider/provider.dart';
 
 class GroomerList extends StatefulWidget {
   GroomerList({Key key}) : super(key: key);
@@ -121,8 +123,8 @@ class _GroomerListState extends State<GroomerList> {
                       (context, index) {
                         return InkWell(
                             onTap: () {
-                              Navigator.of(context).pushNamed("/groomer_detail",
-                                  arguments: dataSnap[index]);
+                              Provider.of<DataBridge>(context, listen: false).setCurrentSelectedGroomer(dataSnap[index]); 
+                              Navigator.of(context).pushNamed("/groomer_detail");
                             },
                             child: Column(
                               children: <Widget>[

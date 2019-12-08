@@ -11,14 +11,14 @@ import 'package:i_love_iruka/util/constants.dart';
 
 import 'home_widgets.dart';
 
-class DashboardPage1 extends StatefulWidget {
+class FeedDashboard extends StatefulWidget {
   // final EventsModel response;
   // DashboardPage1({@required this.response});
 
-  _DashboardPage1State createState() => _DashboardPage1State();
+  _FeedDashboardState createState() => _FeedDashboardState();
 }
 
-class _DashboardPage1State extends State<DashboardPage1> {
+class _FeedDashboardState extends State<FeedDashboard> {
   double serviceIconFontSize = 40.0;
   DashboardBlocBloc dashboardBlocBloc = DashboardBlocBloc();
 
