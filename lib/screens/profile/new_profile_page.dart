@@ -23,7 +23,7 @@ class _NewProfilePageState extends State<NewProfilePage> {
           LoginResponse.fromJson(await SharedPref().getLoginData());
       setState(() {
         dataLogin = user;
-        Provider.of<DataBridge>(context,listen: false).setUserData(user);
+        Provider.of<DataBridge>(context, listen: false).setUserData(user);
       });
     } catch (Excepetion) {
       Scaffold.of(context).showSnackBar(SnackBar(
@@ -35,14 +35,14 @@ class _NewProfilePageState extends State<NewProfilePage> {
   @override
   void initState() {
     loadSharedPrefs();
-   
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Consumer<DataBridge>(
-          builder:(context,dataBridge,_) => Scaffold(
+      builder: (context, dataBridge, _) => Scaffold(
         backgroundColor: Color(0xffeceff1),
         body: CustomScrollView(
           slivers: <Widget>[
@@ -51,7 +51,8 @@ class _NewProfilePageState extends State<NewProfilePage> {
               pinned: true,
               floating: false,
               flexibleSpace: FlexibleSpaceBar(
-                title: Text((dataLogin== null) ?  "noname": dataLogin.user.name),
+                title:
+                    Text((dataLogin == null) ? "noname" : dataLogin.user.name),
                 centerTitle: false,
                 collapseMode: CollapseMode.parallax,
                 background: (dataLogin == null)
@@ -59,9 +60,7 @@ class _NewProfilePageState extends State<NewProfilePage> {
                         child: CircularProgressIndicator(),
                       )
                     : Image.network(
-
-                        "${Constants.getWebUrl() +  dataLogin.user.picture}",
-                        
+                        "${Constants.getWebUrl() + dataLogin.user.picture.toString()}",
                         fit: BoxFit.cover,
                       ),
               ),
@@ -70,7 +69,8 @@ class _NewProfilePageState extends State<NewProfilePage> {
               fillOverscroll: false,
               child: Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20), color: Colors.white),
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white),
                 margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -85,14 +85,16 @@ class _NewProfilePageState extends State<NewProfilePage> {
                     ),
                     Divider(),
                     ListTile(
-                      onTap: () {  Navigator.of(context).pushNamed(EditProfile.id);},
+                      onTap: () {
+                        Navigator.of(context).pushNamed(EditProfile.id);
+                      },
                       leading: Icon(FontAwesomeIcons.personBooth),
                       title: Text("Account"),
                       trailing: Icon(FontAwesomeIcons.arrowRight),
                     ),
                     Divider(),
                     ListTile(
-                      onTap: (){
+                      onTap: () {
                         logoutDialog(context);
                       },
                       title: Text(
@@ -116,17 +118,31 @@ class _NewProfilePageState extends State<NewProfilePage> {
 
   Future logoutDialog(BuildContext context) {
     return showDialog(
-                      context: (context),
-                      builder: (context){
-                        return AlertDialog(
-                          title: Text("Logout"),
-                          content: Text("Are you sure want to logout this account ? "),
-                          actions: <Widget>[
-                            FlatButton(onPressed: (){Navigator.pop(context);},child: Text("No"),),
-                            FlatButton(onPressed: (){Navigator.of(context).pushReplacementNamed("/login");},child: Text("Logout",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),),),
-                          ],
-                        );
-                      }
-                    );
+        context: (context),
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Logout"),
+            content: Text("Are you sure want to logout this account ? "),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text("No"),
+              ),
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pushReplacementNamed("/login");
+                  SharedPref().clearPreference();
+                },
+                child: Text(
+                  "Logout",
+                  style:
+                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          );
+        });
   }
 }

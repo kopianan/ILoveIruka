@@ -6,6 +6,7 @@ import 'package:i_love_iruka/models/model/event_model.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:i_love_iruka/models/model/roles_model.dart';
+import 'package:i_love_iruka/models/model/transaction_history_detail_model.dart';
 import 'package:i_love_iruka/models/model/user_groomers_model.dart';
 import 'package:i_love_iruka/models/request/login_request.dart';
 import 'package:i_love_iruka/models/request/register_request.dart';
@@ -46,8 +47,12 @@ class ApiProvider {
       "Role": registerData.role,
       "file": await MultipartFile.fromFile(registerData.file)
     });
-print("${registerData.accessKey} ${registerData.name} ${registerData.email} ${registerData.password} ${registerData.phonenumber} ${registerData.address}  ${registerData.description} ${registerData.role} ${registerData.file}");
-    Response response = await dio.post(url, data: formData,);
+    print(
+        "${registerData.accessKey} ${registerData.name} ${registerData.email} ${registerData.password} ${registerData.phonenumber} ${registerData.address}  ${registerData.description} ${registerData.role} ${registerData.file}");
+    Response response = await dio.post(
+      url,
+      data: formData,
+    );
     print(response.data);
     print(response.statusMessage);
 
@@ -79,7 +84,7 @@ print("${registerData.accessKey} ${registerData.name} ${registerData.email} ${re
     response = await http.get(_baseUrl + "/GetAllEvent");
     if (response.statusCode == 200) {
       data = EventsModel.fromJson(json.decode(response.body));
-    } else{
+    } else {
       data = null;
     }
     return data;
@@ -95,10 +100,53 @@ print("${registerData.accessKey} ${registerData.name} ${registerData.email} ${re
 
     if (response.statusCode == 200) {
       data = UserGroomersModel.fromJson(json.decode(response.body));
-    
     } else
       data = null;
 
     return data;
   }
+
+  Future<List<TransactionHistoryDetailModel>> getHistoryTransactionAsync(
+      String userId) async {
+        print(userId); 
+    final Dio dio = Dio();
+    var queryParameters = {
+      'id': '$userId',
+    };
+    Response response = await dio.get(
+        Constants.getWebUrl() +
+            Constants.getApiUrl() +
+            "/GetSpecificCustomerTransactionHistory",
+        queryParameters: queryParameters,
+        options: Options(headers: requestHeaders));
+
+    if (response.statusCode == 200) {
+      final List dataModel = jsonDecode(jsonEncode(response.data));
+      var listTransaction = dataModel
+          .map((f) => TransactionHistoryDetailModel.fromJson(f))
+          .toList();
+          print(listTransaction.length); 
+          print(dataModel.toList()); 
+      return listTransaction;
+    } else
+      return null;
+  }
+
+  // Future<TransactionHistoryDetailModel> getHistoryTransactionAsync(
+  //     String userId) async {
+  //   var queryParameters = {
+  //     'id': '$userId',
+  //   };
+  //   var uri = Uri.https(
+  //      "iruka.diodevia.com"+ Constants.getApiUrl() + "/GetSpecificCustomerTransactionHistory",
+  //       queryParameters);
+  //   http.Response response;
+  //   response = await http.get(uri, headers: requestHeaders);
+  //   if (response.statusCode == 200) {
+  //     print(response.body.toString());
+  //   } else
+  //     print(response.body);
+
+  //   return null;
+  // }
 }

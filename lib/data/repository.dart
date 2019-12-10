@@ -3,6 +3,7 @@ import 'package:i_love_iruka/models/model/event_model.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:i_love_iruka/models/model/roles_model.dart';
+import 'package:i_love_iruka/models/model/transaction_history_detail_model.dart';
 import 'package:i_love_iruka/models/model/user_groomers_model.dart';
 import 'package:i_love_iruka/models/request/login_request.dart';
 import 'package:i_love_iruka/models/request/register_request.dart';
@@ -21,5 +22,8 @@ class Repository {
 
   Future<ProductsModel> getProductList() => _apiProvider.getProductListAsync();
   Future<EventsModel> getEventList() => _apiProvider.getEventListAsync();
-  Future<UserGroomersModel> getGroomerList(UserByRoleRequest request) => _apiProvider.getGroomerListAsync(request);
+  Future<UserGroomersModel> getGroomerList(UserByRoleRequest request) =>
+      _apiProvider.getGroomerListAsync(request);
+  Future<List<TransactionHistoryDetailModel>> getHistoryTransaction(String request) =>
+      _apiProvider.getHistoryTransactionAsync(request);
 }

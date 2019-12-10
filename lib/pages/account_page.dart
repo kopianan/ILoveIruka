@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
+import 'package:i_love_iruka/screens/transaction/history_transaction.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -45,12 +46,17 @@ class _AccountPageState extends State<AccountPage> {
                                   TextStyle(fontSize: 30, color: Colors.white),
                             ),
                             Container(
-                              alignment:Alignment.bottomLeft,
+                              alignment: Alignment.bottomLeft,
                               child: RaisedButton(
-                                
-                        color: Color(0xffd45500),
-                                onPressed: () {},
-                                child: Text("Transaction History", style: TextStyle(color: Colors.white),),
+                                color: Color(0xffd45500),
+                                onPressed: () {
+                                  Navigator.of(context)
+                                      .pushNamed(HistoryTransaction.route);
+                                },
+                                child: Text(
+                                  "Transaction History",
+                                  style: TextStyle(color: Colors.white),
+                                ),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
@@ -93,15 +99,15 @@ class _AccountPageState extends State<AccountPage> {
                         clipBehavior: Clip.hardEdge,
                         child: Column(
                           children: <Widget>[
-                             Container(
-                                 margin: EdgeInsets.symmetric(vertical: 10),
+                            Container(
+                              margin: EdgeInsets.symmetric(vertical: 10),
                               child: Text(
                                 "${user.id}",
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.symmetric(vertical: 20),
+                                margin: EdgeInsets.symmetric(vertical: 20),
                                 alignment: Alignment.center,
                                 width: double.infinity,
                                 color: Colors.white,
@@ -111,9 +117,7 @@ class _AccountPageState extends State<AccountPage> {
                                   data: "${user.id}",
                                   version: QrVersions.auto,
                                   size: 300.0,
-                                  
                                 )),
-                           
                           ],
                         ),
                       ),

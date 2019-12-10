@@ -8,6 +8,7 @@ import 'package:i_love_iruka/screens/profile/edit_profile.dart';
 import 'package:i_love_iruka/screens/profile/new_profile_page.dart';
 import 'package:i_love_iruka/screens/profile/profile_page.dart';
 import 'package:i_love_iruka/screens/register/register2_page.dart';
+import 'package:i_love_iruka/screens/transaction/history_transaction.dart';
 import '../main.dart';
 
 class RouteGenerator {
@@ -64,6 +65,9 @@ class RouteGenerator {
       // }
       // If args is not of the correct type, return an error page.
       // You can also throw an exception while in development.
+
+      case HistoryTransaction.route : 
+      return MaterialPageRoute(builder: (_) => HistoryTransaction()); 
       default:
         return _errorRoute();
     }

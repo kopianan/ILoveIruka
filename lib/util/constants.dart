@@ -2,7 +2,7 @@
 
 class Constants {
   static String _webUrl = "http://iruka.diodeiva.dev";
-  static String _apiUrl = "/api/MobileAPI";
+  static String _apiUrl = "/api/Mobile";
   static String _accessKey = 'd78c1a5c-ccbe-4c26-ac08-43ed66c8afb9';
 
   static String getAccessKey() {

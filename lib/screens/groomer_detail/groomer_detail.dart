@@ -77,6 +77,7 @@ class GroomerHeaderIdentity extends StatelessWidget {
   final DataBridge dataBridge;
   @override
   Widget build(BuildContext context) {
+    
     return Container(
       margin: EdgeInsets.only(top: 14),
       child: Row(

@@ -19,4 +19,9 @@ class SharedPref {
     final loginData = LoginResponse.fromJson(json.decode(jsonData));
     return loginData;
   }
+
+  clearPreference() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.clear();
+  }
 }

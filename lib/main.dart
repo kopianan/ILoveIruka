@@ -84,6 +84,7 @@ class _MyAppState extends State<MyApp> {
                   }else{
                     if(snapshot.data!=null){
                       final loginData = LoginResponse.fromJson(snapshot.data); 
+                      
                       dataBridge.setUserData(loginData); 
                       return DashboardPage(); 
                     }else{
@@ -92,7 +93,9 @@ class _MyAppState extends State<MyApp> {
                   }
                     break;
                 }
+                 return LoginPage() ; 
               },
+             
             ),
           ),
           initialRoute: "/",
