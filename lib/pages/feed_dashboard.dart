@@ -85,7 +85,7 @@ class _FeedDashboardState extends State<FeedDashboard> {
                     }).toList(),
                     enlargeCenterPage: true,
                     height: 180,
-                    viewportFraction: 0.8,
+                    viewportFraction: 0.9,
                     autoPlay: true,
                   ),
                 ),
