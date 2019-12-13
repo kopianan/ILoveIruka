@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:i_love_iruka/data/repository.dart';
 import 'package:i_love_iruka/models/model/transaction_history_detail_model.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
+import 'package:i_love_iruka/util/common.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -27,22 +28,23 @@ class _HistoryTransactionState extends State<HistoryTransaction> {
   var future;
   @override
   void initState() {
-    future = _repository.getHistoryTransaction(
-        Provider.of<DataBridge>(context, listen: false).getUserData().user.id);
+    future = _repository.getHistoryTransaction(Provider.of<DataBridge>(context,listen: false).getUserData().user.id); 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text("Transaction History"),), 
       body: Consumer<DataBridge>(
         builder: (context, dataBridge, _) => SafeArea(
           child: FutureBuilder(
-              future: future,
-              builder: (context,AsyncSnapshot<List<TransactionHistoryDetailModel>> snapshot) {
+              future:future,
+              builder: (context,
+                  AsyncSnapshot<List<TransactionHistoryDetailModel>> snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.none:
-                    // TODO: Handle this case.
+                  return Container(); 
                     break;
                   case ConnectionState.waiting:
                     return Center(
@@ -50,26 +52,45 @@ class _HistoryTransactionState extends State<HistoryTransaction> {
                     );
                     break;
                   case ConnectionState.active:
-                    // TODO: Handle this case.
+                  return Container(); 
                     break;
                   case ConnectionState.done:
                     if (snapshot.hasError) {
                     } else {
                       return Container(
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                alignment: Alignment.center,
+                                width: double.infinity,
+                                height: 200,
+                                color: Colors.blue,
+                                child: Column(children: <Widget>[
+                                  Text("Total Point"), 
+                                  Text("100")
+                                ],),
+                              ), 
+                              Expanded(
+                                                              child: Container(
+
                           margin: EdgeInsets.symmetric(horizontal: 10),
-                          child: ListView.builder(
-                              itemCount: snapshot.data.length,
-                              itemBuilder: (context, index) {
-                                return CardHistoryTransaction(
-                                  historyTransaction: snapshot.data[index],
-                                    dateStyle: dateStyle,
-                                    amountStyle: amountStyle,
-                                    pointPlusStyle: pointPlusStyle);
-                              }));
+                                                                child: ListView.builder(
+                                    itemCount: snapshot.data.length,
+                                    itemBuilder: (context, index) {
+                                      return CardHistoryTransaction(
+                                          historyTransaction: snapshot.data[index],
+                                          dateStyle: dateStyle,
+                                          amountStyle: amountStyle,
+                                          pointPlusStyle: pointPlusStyle);
+                                    }),
+                                                              ),
+                              ),
+                            ],
+                          ));
                     }
                     break;
                 }
-                return Container(); 
+                return Container();
               }),
         ),
       ),
@@ -78,21 +99,21 @@ class _HistoryTransactionState extends State<HistoryTransaction> {
 }
 
 class CardHistoryTransaction extends StatelessWidget {
-  const CardHistoryTransaction({
-    Key key,
-    @required this.dateStyle,
-    @required this.amountStyle,
-    @required this.pointPlusStyle,
-    @required this.historyTransaction
-  }) : super(key: key);
+  const CardHistoryTransaction(
+      {Key key,
+      @required this.dateStyle,
+      @required this.amountStyle,
+      @required this.pointPlusStyle,
+      @required this.historyTransaction})
+      : super(key: key);
 
   final TextStyle dateStyle;
   final TextStyle amountStyle;
   final TextStyle pointPlusStyle;
-  final TransactionHistoryDetailModel historyTransaction ; 
+  final TransactionHistoryDetailModel historyTransaction;
   @override
   Widget build(BuildContext context) {
-    // print(DateFormat("dd","").format(DateTime.parse(DateTi))) ; 
+    // print(DateFormat("dd","").format(DateTime.parse(DateTi))) ;
     return Card(
       color: Colors.grey[300],
       child: Container(
@@ -111,11 +132,11 @@ class CardHistoryTransaction extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Text(
-                      "asdf",
+                      "${historyTransaction.createdDate.split(" ")[0]}",
                       style: dateStyle,
                     ),
                     Text(
-                      "Dec 19",
+                      "${historyTransaction.createdDate.split(" ")[1].substring(0, 3)} ${historyTransaction.createdDate.split(" ")[2].substring(2, 4)}",
                       style: dateStyle,
                     )
                   ],
@@ -127,7 +148,7 @@ class CardHistoryTransaction extends StatelessWidget {
               child: Container(
                 margin: EdgeInsets.only(left: 12),
                 child: Text(
-                  historyTransaction.subTotal.toString(),
+                  "Rp. ${Common.formatNumber(int.parse( double.parse(historyTransaction.subTotal.toString()).toStringAsFixed(0)))}",
                   style: amountStyle,
                 ),
               ),

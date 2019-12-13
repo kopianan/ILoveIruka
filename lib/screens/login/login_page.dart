@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:i_love_iruka/data/repository.dart';
 import 'package:i_love_iruka/models/request/login_request.dart';
+import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/screens/login/login_bloc/login_bloc_g.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -50,6 +52,7 @@ class _LoginPageState extends State<LoginPage> {
             listener: (context, state) {
               if (state is LoginComplete) {
                 //go to another page
+                Provider.of<DataBridge>(context).setUserData(state.response); 
                 Navigator.of(context).pushReplacementNamed("/dashboard");
               }
               if (state is LoginError) {
@@ -61,8 +64,11 @@ class _LoginPageState extends State<LoginPage> {
                 builder: (context, state) {
                   if (state is LoginLoading) {
                     return Center(child: CircularProgressIndicator());
-                  } else if (state is InitialLoginBlocState)
+                  } else if (state is InitialLoginBlocState){
                     return buildLoginPageInitial();
+                  }else {
+                    return buildLoginPageInitial() ; 
+                  }
                 }),
           ),
         ));

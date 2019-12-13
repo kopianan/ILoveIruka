@@ -42,7 +42,7 @@ class DataBridge extends ChangeNotifier {
 
   void setUserData(LoginResponse userData) {
     this._userData = userData;
-    // notifyListeners();
+    notifyListeners();
   }
 
   LoginResponse getUserData() {
