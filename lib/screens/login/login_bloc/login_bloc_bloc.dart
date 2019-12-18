@@ -17,6 +17,7 @@ class LoginBlocBloc extends Bloc<LoginBlocEvent, LoginBlocState> {
     if (event is LoginUser) {
       yield LoginLoading();
       final loginResponse = await _repository.loginUserByEmail(event.loginData);
+      
       if (loginResponse.user != null) {
         print(loginResponse.toJson()); 
          await SharedPref().saveLoginData(loginResponse); 

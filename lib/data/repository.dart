@@ -1,5 +1,6 @@
 import 'package:i_love_iruka/data/api_provider.dart';
 import 'package:i_love_iruka/models/model/event_model.dart';
+import 'package:i_love_iruka/models/model/get_point_and_last_transaction.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:i_love_iruka/models/model/roles_model.dart';
@@ -24,6 +25,10 @@ class Repository {
   Future<EventsModel> getEventList() => _apiProvider.getEventListAsync();
   Future<UserGroomersModel> getGroomerList(UserByRoleRequest request) =>
       _apiProvider.getGroomerListAsync(request);
-  Future<List<TransactionHistoryDetailModel>> getHistoryTransaction(String request) =>
+  Future<List<TransactionHistoryDetailModel>> getHistoryTransaction(
+          String request) =>
       _apiProvider.getHistoryTransactionAsync(request);
+
+  Future<String> getPointAndLastTransactionData(String request) =>
+      _apiProvider.getPointAndLastTransactionDataAsync(request);
 }

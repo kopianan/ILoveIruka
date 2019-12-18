@@ -10,6 +10,15 @@ class DataBridge extends ChangeNotifier {
   RoleList _roleList;
   ProductList _productList ; 
   ListUser _listUser ; 
+  String _totalPoint ; 
+
+  void setTotalPoint(String point){
+    this._totalPoint = point ; 
+     notifyListeners() ; 
+
+  }
+
+  String get getTotalPoint => this._totalPoint ; 
 
   void setCurrentSelectedGroomer(ListUser listUser){
     this._listUser = listUser ; 

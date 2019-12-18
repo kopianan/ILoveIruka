@@ -4,6 +4,7 @@ import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_g.dart';
 import 'package:i_love_iruka/pages/account_page.dart';
 import 'package:i_love_iruka/pages/feed_dashboard.dart';
 import 'package:i_love_iruka/screens/groomer/groomer_list.dart';
+import 'package:i_love_iruka/util/shared_pref.dart';
 
 class DashboardPage extends StatefulWidget {
   DashboardPage({Key key}) : super(key: key);
@@ -15,6 +16,8 @@ class _DashboardPageState extends State<DashboardPage> {
   int bottomSelectedIndex = 0;
   DashboardBlocBloc dashboardBlocBloc = DashboardBlocBloc();
   List<String> appBarTitleList = ["Feed", "Account", "Groomer List"];
+  SharedPref _sharedPref = SharedPref() ; 
+
 
   @override
   void initState() {

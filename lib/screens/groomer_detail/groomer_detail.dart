@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
+import 'package:i_love_iruka/util/common.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class GroomerDetail extends StatefulWidget {
   GroomerDetail({Key key}) : super(key: key);
@@ -44,6 +48,7 @@ class _GroomerDetailState extends State<GroomerDetail> {
                 Divider(), 
                 SizedBox(height: 10,),
                 Container(
+                  alignment: Alignment.centerLeft,
                   margin: EdgeInsets.symmetric(horizontal: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,8 +62,7 @@ class _GroomerDetailState extends State<GroomerDetail> {
                       SizedBox(
                         height: 8,
                       ),
-                      Text(
-                          "t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like \n\nreadable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).")
+                      Text(dataBridge.getCurrentSelectedGroomer.description)
                     ],
                   ),
                 )
@@ -69,7 +73,10 @@ class _GroomerDetailState extends State<GroomerDetail> {
   }
 }
 
-class GroomerHeaderIdentity extends StatelessWidget {
+class 
+
+
+GroomerHeaderIdentity extends StatelessWidget {
   const GroomerHeaderIdentity({
     this.dataBridge,
     Key key,
@@ -81,16 +88,24 @@ class GroomerHeaderIdentity extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 14),
       child: Row(
-        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          Expanded(
-            flex: 3,
-            child: Container(height: 80, child: CircleAvatar(child: Image.network(Constants.getWebUrl()+"/"+dataBridge.getCurrentSelectedGroomer.picture.toString(),))),
+           Container(
+             margin: EdgeInsets.only(left: 20),
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 2),
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: NetworkImage(Constants.getWebUrl()+"/"+dataBridge.getCurrentSelectedGroomer.picture.toString()),
+                  fit: BoxFit.fill,
+                )),
           ),
+          
           Expanded(
             flex: 7,
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 10),
+              margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10  ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisSize: MainAxisSize.max,
@@ -109,7 +124,9 @@ class GroomerHeaderIdentity extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               side: BorderSide(color: Colors.grey),
                               borderRadius: BorderRadius.circular(5)),
-                          onPressed: () {},
+                          onPressed: () {
+                            launch("tel://${dataBridge.getCurrentSelectedGroomer.phoneNumber}"); 
+                          },
                           child: Row(
                             children: <Widget>[
                               Expanded(
@@ -123,8 +140,12 @@ class GroomerHeaderIdentity extends StatelessWidget {
                       Container(
                         width: 50,
                         child: IconButton(
-                          icon: Icon(Icons.content_copy),
-                          onPressed: () {},
+                          icon: Icon(Icons.content_copy,color: Colors.grey),
+                          onPressed: () {
+                            Clipboard.setData(new ClipboardData(text: dataBridge.getCurrentSelectedGroomer.phoneNumber));
+                            Fluttertoast.showToast(msg: "Number Copied");
+               
+                          },
                         ),
                       ),
                     ],

@@ -32,24 +32,30 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Future dataFuture ;
+  Future dataFuture;
 
-@override
+  @override
   void initState() {
-    dataFuture =  SharedPref().getLoginData() ; 
+    dataFuture = SharedPref().getLoginData();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          builder: (context) => DataBridge(),
+        ),
+      ],
+      child: MultiBlocProvider(
         providers: [
-          ChangeNotifierProvider(builder: (context)=> DataBridge(),),
-        ],
-          child: MultiBlocProvider(
-        providers: [
-          BlocProvider<LoginBlocBloc>(builder: (BuildContext context) => LoginBlocBloc()),
-          BlocProvider<RegisterBlocBloc>(builder: (BuildContext context) => RegisterBlocBloc()),
-          BlocProvider<DashboardBlocBloc>(builder: (BuildContext context) => DashboardBlocBloc())
+          BlocProvider<LoginBlocBloc>(
+              builder: (BuildContext context) => LoginBlocBloc()),
+          BlocProvider<RegisterBlocBloc>(
+              builder: (BuildContext context) => RegisterBlocBloc()),
+          BlocProvider<DashboardBlocBloc>(
+              builder: (BuildContext context) => DashboardBlocBloc())
         ],
 
         // #558dc5 - #0b4987
@@ -62,40 +68,40 @@ class _MyAppState extends State<MyApp> {
             ),
             errorColor: Colors.red,
           ),
-          
           home: Consumer<DataBridge>(
-                      builder: (context, dataBridge , _) =>  FutureBuilder(
+            builder: (context, dataBridge, _) => FutureBuilder(
               future: SharedPref().getLoginData(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
-                switch(snapshot.connectionState){
-
+                switch (snapshot.connectionState) {
                   case ConnectionState.none:
-                  return LoginPage() ; 
+                    return LoginPage();
                     break;
                   case ConnectionState.waiting:
-                  return LinearProgressIndicator(); 
+                    return LinearProgressIndicator();
                     break;
                   case ConnectionState.active:
-                  return LinearProgressIndicator(); 
+                    return LinearProgressIndicator();
                     break;
                   case ConnectionState.done:
-                  if(snapshot.hasError){
-                    return LoginPage(); 
-                  }else{
-                    if(snapshot.data!=null){
-                      final loginData = LoginResponse.fromJson(snapshot.data); 
-                      
-                      dataBridge.setUserData(loginData); 
-                      return DashboardPage(); 
-                    }else{
-                      return LoginPage() ; 
+                    if (snapshot.hasError) {
+                      return LoginPage();
+                    } else {
+                      if (snapshot.data != null) {
+                        final loginData = LoginResponse.fromJson(snapshot.data);
+                        if (loginData == null) {
+                          return LoginPage();
+                        } else {
+                          dataBridge.setUserData(loginData);
+                          return DashboardPage();
+                        }
+                      } else {
+                        return LoginPage();
+                      }
                     }
-                  }
                     break;
                 }
-                 return LoginPage() ; 
+                return Container();
               },
-             
             ),
           ),
           initialRoute: "/",

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:i_love_iruka/data/repository.dart';
+import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/screens/transaction/history_transaction.dart';
 import 'package:provider/provider.dart';
@@ -12,10 +14,19 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
+  var futureGetPoint;
+  User dataUser;
+  Repository _repository = Repository();
+
+  @override
+  void initState() {
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<DataBridge>(builder: (context, dataBridge, _) {
-      final user = dataBridge.getUserData().user;
       return SafeArea(
         child: Container(
           decoration: BoxDecoration(
@@ -41,7 +52,7 @@ class _AccountPageState extends State<AccountPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              "${user.name}",
+                              "${dataBridge.getUserData().user.name}",
                               style:
                                   TextStyle(fontSize: 30, color: Colors.white),
                             ),
@@ -64,26 +75,54 @@ class _AccountPageState extends State<AccountPage> {
                             ),
                           ],
                         )),
-                    Expanded(
-                        flex: 3,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              "Total Point",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
-                            ),
-                            Text(
-                              "100",
-                              style: TextStyle(
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        ))
+                    FutureBuilder(
+                        future: _repository.getPointAndLastTransactionData(dataBridge.getUserData().user.id),
+                        builder: (context, snapshot) {
+                          switch (snapshot.connectionState) {
+                            case ConnectionState.none:
+                              // TODO: Handle this case.
+                              break;
+                            case ConnectionState.waiting:
+                              // TODO: Handle this case.
+                              break;
+                            case ConnectionState.active:
+                              // TODO: Handle this case.
+                              break;
+                            case ConnectionState.done:
+                              if (snapshot.hasError) {
+                              } else {
+                                
+                            dataBridge.setTotalPoint(snapshot.data); 
+                                return Expanded(
+                                    flex: 3,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(
+                                          "Total Point",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        ),
+                                        Text(
+                                          "${snapshot.data.toString()}",
+                                          style: TextStyle(
+                                              fontSize: 40,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ));
+                              }
+                              break;
+                          }
+                          return Container() ; 
+                        }
+                        
+                        )
                   ],
                 ),
               ),
@@ -102,7 +141,7 @@ class _AccountPageState extends State<AccountPage> {
                             Container(
                               margin: EdgeInsets.symmetric(vertical: 10),
                               child: Text(
-                                "${user.id}",
+                                "${dataBridge.getUserData().user.id}",
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
@@ -114,7 +153,7 @@ class _AccountPageState extends State<AccountPage> {
                                 child: QrImage(
                                   foregroundColor: Colors.black,
                                   gapless: false,
-                                  data: "${user.id}",
+                                  data: "${dataBridge.getUserData().user.id}",
                                   version: QrVersions.auto,
                                   size: 300.0,
                                 )),

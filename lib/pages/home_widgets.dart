@@ -6,6 +6,7 @@ import 'package:i_love_iruka/pages/decoration_collection.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/screens/feed_detail/feed_detail.dart';
 import 'package:i_love_iruka/util/common.dart';
+import 'package:i_love_iruka/util/constants.dart';
 import 'package:i_love_iruka/widgets/cached_image.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -62,75 +63,80 @@ class _ServicesContentState extends State<ServicesContent> {
         margin: EdgeInsets.only(top: 15),
         alignment: Alignment.center,
         child: ListView(
-
           scrollDirection: Axis.horizontal,
           children: <Widget>[
-
-              SizedBox(width: 10,),
-  InkWell(
-                onTap: () async {
-                  _common.launchURL("https://sismarket.id/");
-                },
-                child: Column(
-                  children: <Widget>[
-                    buildIconContainer("images/assets/pet_shop.png"),
-                    buildIconTitleServicesDashboard(
-                      "Shop",
-                    )
-                  ],
-                ),
+            SizedBox(
+              width: 10,
+            ),
+            InkWell(
+              onTap: () async {
+                _common.launchURL("https://sismarket.id/");
+              },
+              child: Column(
+                children: <Widget>[
+                  buildIconContainer("images/assets/pet_shop.png"),
+                  buildIconTitleServicesDashboard(
+                    "Shop",
+                  )
+                ],
               ),
-              SizedBox(width: 10,),
-              InkWell(
-                onTap: () async {
-                  buildShowDialog(context, "Grooming Salon");
-                },
-                child: Column(
-                  children: <Widget>[
-                    buildIconContainer("images/assets/pet_grooming.png"),
-                    buildIconTitleServicesDashboard("Grooming Salon")
-                  ],
-                ),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            InkWell(
+              onTap: () async {
+                buildShowDialog(context, "Grooming Salon");
+              },
+              child: Column(
+                children: <Widget>[
+                  buildIconContainer("images/assets/pet_grooming.png"),
+                  buildIconTitleServicesDashboard("Grooming Salon")
+                ],
               ),
-
-              SizedBox(width: 10,),
-              InkWell(
-                onTap: () async {
-                  buildShowDialog(context, "Pet Hotel");
-                },
-                child: Column(
-                  children: <Widget>[
-                    buildIconContainer("images/assets/pet_hotel.png"),
-                    buildIconTitleServicesDashboard("Pet Hotel")
-                  ],
-                ),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            InkWell(
+              onTap: () async {
+                buildShowDialog(context, "Pet Hotel");
+              },
+              child: Column(
+                children: <Widget>[
+                  buildIconContainer("images/assets/pet_hotel.png"),
+                  buildIconTitleServicesDashboard("Pet Hotel")
+                ],
               ),
-
-              SizedBox(width: 10,),
-              InkWell(
-                onTap: () async {
-                  buildShowDialog(context, "Pet Taxi");
-                },
-                child: Column(
-                  children: <Widget>[
-                    buildIconContainer("images/assets/pet_school.png"),
-                    buildIconTitleServicesDashboard("Pet Taxi")
-                  ],
-                ),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            InkWell(
+              onTap: () async {
+                buildShowDialog(context, "Pet Taxi");
+              },
+              child: Column(
+                children: <Widget>[
+                  buildIconContainer("images/assets/pet_school.png"),
+                  buildIconTitleServicesDashboard("Pet Taxi")
+                ],
               ),
-
-              SizedBox(width: 10,),
-                InkWell(
-                onTap: () async {
-                  buildShowDialog(context, "Pet Taxi");
-                },
-                child: Column(
-                  children: <Widget>[
-                    buildIconContainer("images/assets/pet_school.png"),
-                    buildIconTitleServicesDashboard("Pet Taxi")
-                  ],
-                ),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            InkWell(
+              onTap: () async {
+                buildShowDialog(context, "Pet Taxi");
+              },
+              child: Column(
+                children: <Widget>[
+                  buildIconContainer("images/assets/pet_school.png"),
+                  buildIconTitleServicesDashboard("Pet Taxi")
+                ],
               ),
+            ),
           ],
           //         child: Row(
           //   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -295,9 +301,12 @@ class _BuildProductsState extends State<BuildProducts> {
                   //   url: Constants.getWebUrl() + "/" + productList.picture,
                   // ),
                   child: CachedImage(
-                    url:
-                        "http://3.bp.blogspot.com/_5pqCqLjs8WA/TGmMutN5ISI/AAAAAAAAACw/rMgIXNxHSN8/w1200-h630-p-k-no-nu/Aspect1x1.png",
+                    url: Constants.getWebUrl() + "/" + productList.picture,
                   ),
+                  // child: CachedImage(
+                  //   url:
+                  //       "http://3.bp.blogspot.com/_5pqCqLjs8WA/TGmMutN5ISI/AAAAAAAAACw/rMgIXNxHSN8/w1200-h630-p-k-no-nu/Aspect1x1.png",
+                  // ),
                 ),
                 Container(
                     alignment: Alignment.centerLeft,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i_love_iruka/data/repository.dart';
 import 'package:i_love_iruka/models/model/transaction_history_detail_model.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
@@ -28,23 +29,26 @@ class _HistoryTransactionState extends State<HistoryTransaction> {
   var future;
   @override
   void initState() {
-    future = _repository.getHistoryTransaction(Provider.of<DataBridge>(context,listen: false).getUserData().user.id); 
+    future = _repository.getHistoryTransaction(
+        Provider.of<DataBridge>(context, listen: false).getUserData().user.id);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Transaction History"),), 
+      appBar: AppBar(
+        title: Text("Transaction History"),
+      ),
       body: Consumer<DataBridge>(
         builder: (context, dataBridge, _) => SafeArea(
           child: FutureBuilder(
-              future:future,
+              future: future,
               builder: (context,
                   AsyncSnapshot<List<TransactionHistoryDetailModel>> snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.none:
-                  return Container(); 
+                    return Container();
                     break;
                   case ConnectionState.waiting:
                     return Center(
@@ -52,41 +56,22 @@ class _HistoryTransactionState extends State<HistoryTransaction> {
                     );
                     break;
                   case ConnectionState.active:
-                  return Container(); 
+                    return Container();
                     break;
                   case ConnectionState.done:
                     if (snapshot.hasError) {
                     } else {
-                      return Container(
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                alignment: Alignment.center,
-                                width: double.infinity,
-                                height: 200,
-                                color: Colors.blue,
-                                child: Column(children: <Widget>[
-                                  Text("Total Point"), 
-                                  Text("100")
-                                ],),
-                              ), 
-                              Expanded(
-                                                              child: Container(
-
-                          margin: EdgeInsets.symmetric(horizontal: 10),
-                                                                child: ListView.builder(
-                                    itemCount: snapshot.data.length,
-                                    itemBuilder: (context, index) {
-                                      return CardHistoryTransaction(
-                                          historyTransaction: snapshot.data[index],
-                                          dateStyle: dateStyle,
-                                          amountStyle: amountStyle,
-                                          pointPlusStyle: pointPlusStyle);
-                                    }),
-                                                              ),
-                              ),
-                            ],
-                          ));
+                      if(snapshot.data.length > 0 ){
+                      return new HistoryTransactionList(dateStyle: dateStyle, amountStyle: amountStyle, pointPlusStyle: pointPlusStyle, snapshot: snapshot.data, dataBridge: dataBridge,);
+                      }else{
+                        return Container(child: Center(child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Icon(Icons.description, size: 100,color: Colors.grey[300],),
+                            Text("No Transaction Yet", style: TextStyle(fontSize: 17),)
+                          ],
+                        ),),);
+                      }
                     }
                     break;
                 }
@@ -95,6 +80,71 @@ class _HistoryTransactionState extends State<HistoryTransaction> {
         ),
       ),
     );
+  }
+}
+
+class HistoryTransactionList extends StatelessWidget {
+  const HistoryTransactionList({
+    Key key,
+    @required this.dataBridge, 
+    @required this.snapshot,
+    @required this.dateStyle,
+    @required this.amountStyle,
+    @required this.pointPlusStyle,
+  }) : super(key: key);
+  final List<TransactionHistoryDetailModel> snapshot;
+  final DataBridge dataBridge; 
+  final TextStyle dateStyle;
+  final TextStyle amountStyle;
+  final TextStyle pointPlusStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: Column(
+      children: <Widget>[
+        Container(
+          alignment: Alignment.center,
+          width: double.infinity,
+          height: 150,
+          color: Colors.blue,
+          child: Container(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text(
+                  "Total Point",
+                  style: TextStyle(
+                      fontSize: 30, color: Colors.white),
+                ),
+                Text(
+                  "${dataBridge.getTotalPoint}",
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                )
+              ],
+            ),
+          ),
+        ),
+        Expanded(
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            child: ListView.builder(
+                itemCount: snapshot.length,
+                itemBuilder: (context, index) {
+                  return CardHistoryTransaction(
+                      historyTransaction:
+                          snapshot[index],
+                      dateStyle: dateStyle,
+                      amountStyle: amountStyle,
+                      pointPlusStyle: pointPlusStyle);
+                }),
+          ),
+        ),
+      ],
+    ));
   }
 }
 
@@ -148,7 +198,7 @@ class CardHistoryTransaction extends StatelessWidget {
               child: Container(
                 margin: EdgeInsets.only(left: 12),
                 child: Text(
-                  "Rp. ${Common.formatNumber(int.parse( double.parse(historyTransaction.subTotal.toString()).toStringAsFixed(0)))}",
+                  "Rp. ${Common.formatNumber(int.parse(double.parse(historyTransaction.subTotal.toString()).toStringAsFixed(0)))}",
                   style: amountStyle,
                 ),
               ),

@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -76,9 +76,8 @@ class _FeedDashboardState extends State<FeedDashboard> {
                       return AspectRatio(
                         
                         aspectRatio: 2/1,
-                          child: CachedNetworkImage(
+                          child: Image.network(
                             
-                            imageUrl:
                                 "http://webstyle.unicomm.fsu.edu/3.2/img/placeholders/ratio-2-1.png",
                             fit: BoxFit.contain,
                           ));

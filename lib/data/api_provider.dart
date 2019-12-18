@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:i_love_iruka/models/model/event_model.dart';
+import 'package:i_love_iruka/models/model/get_point_and_last_transaction.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:i_love_iruka/models/model/roles_model.dart';
@@ -14,6 +15,7 @@ import 'package:i_love_iruka/models/request/user_by_role_request.dart';
 import 'package:i_love_iruka/util/constants.dart';
 
 class ApiProvider {
+  final Dio dio = Dio();
   Map<String, String> requestHeaders = {
     'Content-type': 'application/json',
     'accessKey': 'd78c1a5c-ccbe-4c26-ac08-43ed66c8afb9'
@@ -28,14 +30,15 @@ class ApiProvider {
         body: jsonEncode(login.toJson()),
         // body: login,
         headers: requestHeaders);
-
+  print(response.body); 
     final data = LoginResponse.fromJson(json.decode(response.body));
     return data;
   }
 
   Future<String> registerUser(RegisterRequest registerData) async {
-    final Dio dio = Dio();
     String url = _baseUrl + "/RegisterUserMobile";
+    LoginResponse loginResponse;
+
     FormData formData = FormData.fromMap({
       "accessKey": registerData.accessKey,
       "Name": registerData.name,
@@ -49,14 +52,16 @@ class ApiProvider {
     });
     print(
         "${registerData.accessKey} ${registerData.name} ${registerData.email} ${registerData.password} ${registerData.phonenumber} ${registerData.address}  ${registerData.description} ${registerData.role} ${registerData.file}");
+
     Response response = await dio.post(
       url,
       data: formData,
     );
-    print(response.data);
-    print(response.statusMessage);
-
-    return "Anan";
+    if (response.statusCode == 200) {
+      return "OK";
+    } else {
+      return null;
+    }
   }
 
   Future<RolesModel> getRolesUser() async {
@@ -106,9 +111,23 @@ class ApiProvider {
     return data;
   }
 
+  Future<String> getPointAndLastTransactionDataAsync(String request) async {
+    Response response;
+    response = await dio.get(_baseUrl + "/GetSpecificCustomerLastTransaction",
+        queryParameters: {"id": "$request"},
+        options: Options(headers: requestHeaders));
+
+    final testData =
+        json.decode(json.encode(response.data))["customerPoints"].toString();
+    if (response.statusCode == 200) {
+      return testData;
+    } else
+      return "null";
+  }
+
   Future<List<TransactionHistoryDetailModel>> getHistoryTransactionAsync(
       String userId) async {
-        print(userId); 
+    print(userId);
     final Dio dio = Dio();
     var queryParameters = {
       'id': '$userId',
@@ -125,28 +144,10 @@ class ApiProvider {
       var listTransaction = dataModel
           .map((f) => TransactionHistoryDetailModel.fromJson(f))
           .toList();
-          print(listTransaction.length); 
-          print(dataModel.toList()); 
+      print(listTransaction.length);
+      print(dataModel.toList());
       return listTransaction;
     } else
       return null;
   }
-
-  // Future<TransactionHistoryDetailModel> getHistoryTransactionAsync(
-  //     String userId) async {
-  //   var queryParameters = {
-  //     'id': '$userId',
-  //   };
-  //   var uri = Uri.https(
-  //      "iruka.diodevia.com"+ Constants.getApiUrl() + "/GetSpecificCustomerTransactionHistory",
-  //       queryParameters);
-  //   http.Response response;
-  //   response = await http.get(uri, headers: requestHeaders);
-  //   if (response.statusCode == 200) {
-  //     print(response.body.toString());
-  //   } else
-  //     print(response.body);
-
-  //   return null;
-  // }
 }
