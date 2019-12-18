@@ -21,12 +21,12 @@ class RegisterAdditional {
 
   void backAnimated(BuildContext context, ScrollController c, int offset) {
     c.animateTo(MediaQuery.of(context).size.width * offset,
-        duration: new Duration(seconds: 1), curve: Curves.bounceOut);
+        duration: new Duration(milliseconds: 500), curve: Curves.easeIn);
   }
 
   void nextAnimated(BuildContext context, ScrollController c, int offset) {
     c.animateTo(MediaQuery.of(context).size.width * offset,
-        duration: new Duration(seconds: 1), curve: Curves.easeInCubic);
+        duration: new Duration(milliseconds: 300), curve: Curves.easeIn);
   }
 
   bool validateUserType(int index) {

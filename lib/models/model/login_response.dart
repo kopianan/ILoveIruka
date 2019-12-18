@@ -29,6 +29,8 @@ class User {
   String phoneNumber;
   String userName;
   String role;
+  String pIC;
+  bool show;
 
   User(
       {this.id,
@@ -42,7 +44,9 @@ class User {
       this.email,
       this.phoneNumber,
       this.userName,
-      this.role});
+      this.role,
+      this.pIC,
+      this.show});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['Id'];
@@ -51,12 +55,14 @@ class User {
     description = json['Description'];
     address = json['Address'];
     picture = json['Picture'];
-    isActive = json['isActive'];
+    isActive = json['IsActive'];
     createdDate = json['CreatedDate'];
     email = json['Email'];
     phoneNumber = json['PhoneNumber'];
     userName = json['UserName'];
     role = json['role'];
+    pIC = json['PIC'];
+    show = json['Show'];
   }
 
   Map<String, dynamic> toJson() {
@@ -67,12 +73,14 @@ class User {
     data['Description'] = this.description;
     data['Address'] = this.address;
     data['Picture'] = this.picture;
-    data['isActive'] = this.isActive;
+    data['IsActive'] = this.isActive;
     data['CreatedDate'] = this.createdDate;
     data['Email'] = this.email;
     data['PhoneNumber'] = this.phoneNumber;
     data['UserName'] = this.userName;
     data['role'] = this.role;
+    data['PIC'] = this.pIC;
+    data['Show'] = this.show;
     return data;
   }
 }

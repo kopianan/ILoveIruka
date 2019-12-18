@@ -1,7 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:i_love_iruka/data/repository.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
+import 'package:i_love_iruka/models/request/edit_request.dart';
+import 'package:i_love_iruka/models/request/register_request.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/util/camera_util.dart';
 import 'package:i_love_iruka/util/constants.dart';
@@ -24,11 +28,14 @@ class _EditProfileState extends State<EditProfile> {
   TextEditingController _emailController;
   TextEditingController _phoneController;
   TextEditingController _descriptionController;
+  TextEditingController _picController;
 
   SharedPref sharedPref = SharedPref();
   User dataLogin;
+  Repository _repository = Repository();
   @override
   void initState() {
+    Provider.of<DataBridge>(context, listen: false).setCurrentPhoto(null);
     dataLogin =
         Provider.of<DataBridge>(context, listen: false).getUserData().user;
     _nameController = TextEditingController(text: dataLogin.name.toString());
@@ -37,6 +44,7 @@ class _EditProfileState extends State<EditProfile> {
     _emailController = TextEditingController(text: dataLogin.email.toString());
     _phoneController =
         TextEditingController(text: dataLogin.phoneNumber.toString());
+    _picController = TextEditingController(text: dataLogin.pIC.toString());
     super.initState();
   }
 
@@ -50,13 +58,42 @@ class _EditProfileState extends State<EditProfile> {
   Widget build(BuildContext context) {
     return Consumer<DataBridge>(builder: (context, dataBridge, _) {
       return Scaffold(
-        // floatingActionButton: FloatingActionButton.extended(
-        //   label: Text("Save"),
-        //   icon: Icon(
-        //     Icons.save,
-        //   ),
-        //   onPressed: () {},
-        // ),
+        floatingActionButton: FloatingActionButton.extended(
+          label: Text("Save"),
+          icon: Icon(
+            Icons.save,
+          ),
+          onPressed: () {
+            String filePhoto;
+            if (dataBridge.getCurrentPhoto == null)
+              filePhoto = null;
+            else
+              filePhoto = dataBridge.getCurrentPhoto.toString();
+
+            final reg = EditRequest(
+                accessKey: "d78c1a5c-ccbe-4c26-ac08-43ed66c8afb9",
+                name: (_nameController == null)
+                    ? ""
+                    : _nameController.text.toString(),
+                phonenumber: (_phoneController == null)
+                    ? ""
+                    : _phoneController.text.toString(),
+                address: (_addressController == null)
+                    ? ""
+                    : _addressController.text.toString(),
+                description: dataBridge.getUserData().user.description.toString(),
+                pic: (_picController == null)
+                    ? ""
+                    : _picController.text.toString(),
+                id: dataBridge.getUserData().user.id.toString(),
+                file: filePhoto);
+            _repository.editUser(reg).then((onValue) {
+              SharedPref().saveLoginData(onValue); 
+              dataBridge.setUserData(onValue); 
+              Fluttertoast.showToast(msg:"Profile Edited" ); 
+            });
+          },
+        ),
         body: SingleChildScrollView(
           child: Container(
             alignment: Alignment.center,
@@ -68,7 +105,8 @@ class _EditProfileState extends State<EditProfile> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Profile",
-                        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold),
                       )),
                 ],
               ),
@@ -97,16 +135,27 @@ class _EditProfileState extends State<EditProfile> {
                 name: "Phone Number",
                 hint: "Phone",
                 maxLines: 1,
-                enable: false,
+                enable: true,
                 controller: _phoneController,
               ),
-             
-             (dataLogin.role.toString().toLowerCase().contains("groomer"))? InformationItem(
-                name: "Description",
-                hint: "Fill Your Description",
-                maxLines: 3,
-                controller: _descriptionController,
-              ): Container()
+
+              (dataLogin.role.toString().toLowerCase().contains("owner"))
+                  ? InformationItem(
+                      name: "PIC",
+                      hint: "PIC",
+                      controller: _picController,
+                    )
+                  : Container(),
+
+              // (dataLogin.role.toString().toLowerCase().contains("groomer"))
+              //     ? InformationItem(
+              //         name: "Description",
+              //         hint: "Fill Your Description",
+              //         maxLines: 3,
+              //         controller: _descriptionController,
+              //       )
+              //     : Container(),
+
               // new InformationDate(
               //   name: "Birth Of Date",
               //   hint: "Input your birth of date",
@@ -152,6 +201,12 @@ class _InformationDateState extends State<InformationDate> {
         selectedDate = picked;
         widget.dateController.text = selectedDate.toIso8601String();
       });
+  }
+
+  @override
+  void dispose() {
+    Provider.of<DataBridge>(context, listen: false).setCurrentPhoto(null);
+    super.dispose();
   }
 
   @override
@@ -209,7 +264,11 @@ class InformationItem extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Expanded(flex: 3, child: Text("$name")),
+            Expanded(
+                flex: 3,
+                child: Text(
+                  "$name",
+                )),
             Expanded(
                 flex: 7,
                 child: TextField(
@@ -219,8 +278,11 @@ class InformationItem extends StatelessWidget {
                   textAlign: TextAlign.end,
                   minLines: maxLines,
                   maxLines: maxLines,
-                  decoration:
-                      InputDecoration(border: InputBorder.none, hintText: hint),
+                  style: (enable) ? null : TextStyle(color: Colors.grey),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: hint,
+                  ),
                 )),
           ],
         ),
@@ -240,69 +302,91 @@ class ChangeProfilePicture extends StatelessWidget {
   final String picture;
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        InkWell(
-          onTap: () {
-            // showDialog(
-            //     context: (context),
-            //     builder: (context) {
-            //       return Dialog(
-            //         child: Container(
-            //           padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-            //           child: Column(
-            //             mainAxisSize: MainAxisSize.min,
-            //             children: <Widget>[
-            //               Text(
-            //                 "Change Profile Picture",
-            //                 style: TextStyle(
-            //                     fontSize: 20, fontWeight: FontWeight.bold),
-            //               ),
-            //               ListTile(title: Text("Open Camera"),onTap: (){
-            //                               CameraUtil()
-            //                                   .takePicture(
-            //                                       fromCamera: true)
-            //                                   .then((onValue) {
-            //                                 setState(() {
-            //                                   photo = File(onValue.toString());
-            //                                 });
-            //                               });
-            //                               Navigator.pop(context);
-            //               },),
-            //               ListTile(title: Text("Open Gallery"), onTap: (){}),
-            //             ],
-            //           ),
-            //         ),
-            //       );
-            //     });
-          },
-          child: Container(
-            width: 150,
-            height: 150,
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 2),
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: NetworkImage(Constants.getWebUrl() + "/$picture"),
-                  fit: BoxFit.fill,
-                )),
+    return Consumer<DataBridge>(
+      builder: (context, dataBridge, _) => Stack(
+        children: <Widget>[
+          InkWell(
+            onTap: () {
+              showDialog(
+                  context: (context),
+                  builder: (context) {
+                    return Dialog(
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(
+                              "Change Profile Picture",
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            ListTile(
+                              title: Text("Open Camera"),
+                              onTap: () {
+                                CameraUtil()
+                                    .takePicture(fromCamera: true)
+                                    .then((onValue) {
+                                  final _currentData = dataBridge.getUserData();
+
+                                  dataBridge.setCurrentPhoto(onValue);
+                                  print(onValue);
+                                });
+                                Navigator.pop(context);
+                              },
+                            ),
+                            ListTile(
+                                title: Text("Open Gallery"),
+                                onTap: () {
+                                  CameraUtil()
+                                      .takePicture(fromCamera: false)
+                                      .then((onValue) {
+                                    final _currentData =
+                                        dataBridge.getUserData();
+
+                                    dataBridge.setCurrentPhoto(onValue);
+                                    print(onValue);
+                                  });
+                                  Navigator.pop(context);
+                                }),
+                          ],
+                        ),
+                      ),
+                    );
+                  });
+            },
+            child: Container(
+              width: 150,
+              height: 150,
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black, width: 2),
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: (dataBridge.getCurrentPhoto == null)
+                        ? NetworkImage(Constants.getWebUrl() + "/$picture")
+                        : FileImage(
+                            File(dataBridge.getCurrentPhoto.toString())),
+                    fit: BoxFit.fill,
+                  )),
+            ),
           ),
-        ),
-        // Positioned(
-        //   bottom: 0,
-        //   right: 0,
-        //   child: Container(
-        //     alignment: Alignment.center,
-        //     height: 40,
-        //     width: 40,
-        //     child: Icon(Icons.image, color: Colors.white),
-        //     decoration: BoxDecoration(
-        //         border: Border.all(width: 2, color: Colors.white),
-        //         shape: BoxShape.circle,
-        //         color: Colors.amber),
-        //   ),
-        // )
-      ],
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: Container(
+              alignment: Alignment.center,
+              height: 40,
+              width: 40,
+              child: Icon(Icons.image, color: Colors.white),
+              decoration: BoxDecoration(
+                  border: Border.all(width: 2, color: Colors.white),
+                  shape: BoxShape.circle,
+                  color: Colors.amber),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

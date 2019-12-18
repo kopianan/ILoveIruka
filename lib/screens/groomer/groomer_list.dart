@@ -125,7 +125,7 @@ class _GroomerListState extends State<GroomerList> {
                 builder: (context, state) {
                   if (state is GetUserByRoleLoading) {
                     return SliverToBoxAdapter(
-                        child: Center(child: CircularProgressIndicator()));
+                        child: Container(child: Center(child: CircularProgressIndicator())));
                   } else if (state is GetUserByRoleCompleted) {
                     final dataSnap = state.response.listUser;
                     return SliverList(

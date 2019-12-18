@@ -23,6 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
           LoginResponse.fromJson(await SharedPref().getLoginData());
       setState(() {
         dataLogin = user;
+        print(user.user.role); 
       });
     } catch (Excepetion) {
       Scaffold.of(context).showSnackBar(SnackBar(
@@ -116,24 +117,24 @@ class _ProfilePageState extends State<ProfilePage> {
                               ? ""
                               : "${dataLogin.user.address.toString()}",
                         ),
-                        Container(
+                        (dataLogin.user.role.toString().toLowerCase().contains("groomer")) ? Container(
                             margin: EdgeInsets.only(bottom: 5),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Text(
-                                  "Account",
+                                  "Groomer Info",
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Icon(FontAwesomeIcons.edit)
                               ],
-                            )),
-                        Divider(
+                            )): Container(),
+                        (dataLogin.user.role.toString().toLowerCase().contains("groomer")) ?  Divider(
                           height: 1,
                           color: Colors.grey,
-                        ),
+                        ): Container(), 
                         SizedBox(
                           height: 10,
                         ),

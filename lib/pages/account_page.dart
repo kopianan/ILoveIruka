@@ -27,17 +27,18 @@ class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
     return Consumer<DataBridge>(builder: (context, dataBridge, _) {
-      return SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomRight,
-                  colors: [
-                Color(0xff558dc5),
-                Color(0xff0b4987),
-              ])),
-          child: Column(
+      return Container(
+        padding: EdgeInsets.only(top: 20),
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomRight,
+                colors: [
+              Color(0xff558dc5),
+              Color(0xff0b4987),
+            ])),
+        child: SingleChildScrollView(
+                    child: Column(
             children: <Widget>[
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),

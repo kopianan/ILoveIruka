@@ -585,6 +585,7 @@ class _Register2PageState extends State<Register2Page> {
         file: photo.path,
         name: _firstNameController.text + _lastNameController.text,
         password: _password,
+        pic: (_picPhoneNumberController.text == null) ? "" : _picPhoneNumberController.text.toString(),
         phonenumber: _phoneController.text.toString(),
         role: dataBridge.getRoleList().id
         .toString());

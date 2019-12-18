@@ -26,36 +26,60 @@ class ListUser {
   String email;
   String name;
   String address;
-  String picture;
   String phoneNumber;
   String description;
-  Null password;
-  int roleMenuLists;
+  String password;
+  String confirmPassword;
+  int internalRoleEnum;
+  int endClientEnum;
+  String picture;
+  String base64URL;
   String certificate;
+  String role;
+  String base64URLCertificate;
+  String createdDate;
+  String pIC;
+  bool show;
 
   ListUser(
       {this.id,
       this.email,
       this.name,
       this.address,
-      this.picture,
       this.phoneNumber,
       this.description,
       this.password,
-      this.roleMenuLists,
-      this.certificate});
+      this.confirmPassword,
+      this.internalRoleEnum,
+      this.endClientEnum,
+      this.picture,
+      this.base64URL,
+      this.certificate,
+      this.role,
+      this.base64URLCertificate,
+      this.createdDate,
+      this.pIC,
+      this.show});
 
   ListUser.fromJson(Map<String, dynamic> json) {
     id = json['Id'];
     email = json['Email'];
     name = json['Name'];
     address = json['Address'];
-    picture = json['Picture'];
     phoneNumber = json['PhoneNumber'];
     description = json['Description'];
     password = json['Password'];
-    roleMenuLists = json['RoleMenuLists'];
+    confirmPassword = json['ConfirmPassword'];
+    internalRoleEnum = json['InternalRoleEnum'];
+    endClientEnum = json['EndClientEnum'];
+    picture = json['Picture'];
+    base64URL = json['Base64URL'];
     certificate = json['Certificate'];
+    role = json['Role'];
+    base64URLCertificate = json['Base64URLCertificate'];
+    createdDate = json['CreatedDate'];
+    pIC = json['PIC'];
+    show = json['Show'];
   }
 
   Map<String, dynamic> toJson() {
@@ -64,12 +88,20 @@ class ListUser {
     data['Email'] = this.email;
     data['Name'] = this.name;
     data['Address'] = this.address;
-    data['Picture'] = this.picture;
     data['PhoneNumber'] = this.phoneNumber;
     data['Description'] = this.description;
     data['Password'] = this.password;
-    data['RoleMenuLists'] = this.roleMenuLists;
+    data['ConfirmPassword'] = this.confirmPassword;
+    data['InternalRoleEnum'] = this.internalRoleEnum;
+    data['EndClientEnum'] = this.endClientEnum;
+    data['Picture'] = this.picture;
+    data['Base64URL'] = this.base64URL;
     data['Certificate'] = this.certificate;
+    data['Role'] = this.role;
+    data['Base64URLCertificate'] = this.base64URLCertificate;
+    data['CreatedDate'] = this.createdDate;
+    data['PIC'] = this.pIC;
+    data['Show'] = this.show;
     return data;
   }
 }

@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/screens/profile/edit_profile.dart';
+import 'package:i_love_iruka/screens/profile/groomer_page_profile.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:i_love_iruka/util/shared_pref.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +19,7 @@ class NewProfilePage extends StatefulWidget {
 class _NewProfilePageState extends State<NewProfilePage> {
   LoginResponse dataLogin;
   loadSharedPrefs() async {
+    print("async test"); 
     try {
       LoginResponse user =
           LoginResponse.fromJson(await SharedPref().getLoginData());
@@ -79,20 +81,20 @@ class _NewProfilePageState extends State<NewProfilePage> {
                       onTap: () {
                         Navigator.of(context).pushNamed(EditProfile.id);
                       },
-                      leading: Icon(FontAwesomeIcons.mailchimp),
+                      leading: Icon(Icons.person),
                       title: Text("Profile"),
                       trailing: Icon(FontAwesomeIcons.arrowRight),
                     ),
                     Divider(),
-                    ListTile(
+                   (dataBridge.getUserData().user.role.toString().toLowerCase().contains("groomer"))? ListTile(
                       onTap: () {
-                        Navigator.of(context).pushNamed(EditProfile.id);
+                        Navigator.of(context).pushNamed(GroomerPageProfile.page_name);
                       },
                       leading: Icon(FontAwesomeIcons.personBooth),
-                      title: Text("Account"),
+                      title: Text("Groomer Page Profile"),
                       trailing: Icon(FontAwesomeIcons.arrowRight),
-                    ),
-                    Divider(),
+                    ) : Container() ,
+                       (dataBridge.getUserData().user.role.toString().toLowerCase().contains("groomer"))? Divider(): Container(),
                     ListTile(
                       onTap: () {
                         logoutDialog(context);
@@ -132,7 +134,7 @@ class _NewProfilePageState extends State<NewProfilePage> {
               ),
               FlatButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed("/login");
+                  Navigator.of(context).pushNamedAndRemoveUntil("/login", (Route<dynamic> route) => false);
                   SharedPref().clearPreference();
                 },
                 child: Text(

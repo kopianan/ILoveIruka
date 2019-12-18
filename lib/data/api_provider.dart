@@ -9,6 +9,7 @@ import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:i_love_iruka/models/model/roles_model.dart';
 import 'package:i_love_iruka/models/model/transaction_history_detail_model.dart';
 import 'package:i_love_iruka/models/model/user_groomers_model.dart';
+import 'package:i_love_iruka/models/request/edit_request.dart';
 import 'package:i_love_iruka/models/request/login_request.dart';
 import 'package:i_love_iruka/models/request/register_request.dart';
 import 'package:i_love_iruka/models/request/user_by_role_request.dart';
@@ -30,7 +31,7 @@ class ApiProvider {
         body: jsonEncode(login.toJson()),
         // body: login,
         headers: requestHeaders);
-  print(response.body); 
+    print(response.body);
     final data = LoginResponse.fromJson(json.decode(response.body));
     return data;
   }
@@ -48,6 +49,7 @@ class ApiProvider {
       "Address": registerData.address,
       "Description": registerData.description,
       "Role": registerData.role,
+      "PIC": registerData.pic,
       "file": await MultipartFile.fromFile(registerData.file)
     });
     print(
@@ -59,6 +61,40 @@ class ApiProvider {
     );
     if (response.statusCode == 200) {
       return "OK";
+    } else {
+      return null;
+    }
+  }
+
+  Future<LoginResponse> editUserAsync(EditRequest registerData) async {
+    String url = _baseUrl + "/EditUserMobile";
+    LoginResponse loginResponse;
+
+    FormData formData = FormData.fromMap({
+      "accessKey": registerData.accessKey,
+      "Name": registerData.name,
+      "Phonenumber": registerData.phonenumber,
+      "Address": registerData.address,
+      "Description": registerData.description,
+      "Id": registerData.id,
+      "PIC": registerData.pic,
+      "Id": registerData.id,
+      "file": (registerData.file == null)
+          ? null
+          : await MultipartFile.fromFile(registerData.file)
+    });
+    print("testasync"); 
+    Response response = await dio.post(
+      url,
+      data: formData,
+    );
+    print("testEditUser");
+    
+    if (response.statusCode == 200) {
+
+   loginResponse = LoginResponse.fromJson(json.decode(json.encode(response.data)));
+   loginResponse.user.show = true ; 
+      return loginResponse ;
     } else {
       return null;
     }
@@ -109,6 +145,19 @@ class ApiProvider {
       data = null;
 
     return data;
+  }
+
+  Future<String> changeUserStatusAsync(bool status, String id) async {
+    Response response;
+    response = await dio.put(_baseUrl + "/ChangeGroomerShowStatus",
+        queryParameters: {"userId": "$id", "status": "$status"},
+        options: Options(headers: requestHeaders));
+
+    final testData = response.data.toString();
+    if (response.statusCode == 200) {
+      return testData;
+    } else
+      return "null";
   }
 
   Future<String> getPointAndLastTransactionDataAsync(String request) async {

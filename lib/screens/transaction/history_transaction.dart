@@ -40,43 +40,55 @@ class _HistoryTransactionState extends State<HistoryTransaction> {
       appBar: AppBar(
         title: Text("Transaction History"),
       ),
-      body: Consumer<DataBridge>(
-        builder: (context, dataBridge, _) => SafeArea(
-          child: FutureBuilder(
-              future: future,
-              builder: (context,
-                  AsyncSnapshot<List<TransactionHistoryDetailModel>> snapshot) {
-                switch (snapshot.connectionState) {
-                  case ConnectionState.none:
-                    return Container();
-                    break;
-                  case ConnectionState.waiting:
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                    break;
-                  case ConnectionState.active:
-                    return Container();
-                    break;
-                  case ConnectionState.done:
-                    if (snapshot.hasError) {
-                    } else {
-                      if(snapshot.data.length > 0 ){
-                      return new HistoryTransactionList(dateStyle: dateStyle, amountStyle: amountStyle, pointPlusStyle: pointPlusStyle, snapshot: snapshot.data, dataBridge: dataBridge,);
-                      }else{
-                        return Container(child: Center(child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Icon(Icons.description, size: 100,color: Colors.grey[300],),
-                            Text("No Transaction Yet", style: TextStyle(fontSize: 17),)
-                          ],
-                        ),),);
+      body: Container(
+        decoration : BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.bottomRight, 
+            end : Alignment.topCenter, 
+               colors: [
+                Color(0xff0b4987),
+                Color(0xff558dc5),
+              ])),
+          
+        
+        child: Consumer<DataBridge>(
+          builder: (context, dataBridge, _) => SafeArea(
+            child: FutureBuilder(
+                future: future,
+                builder: (context,
+                    AsyncSnapshot<List<TransactionHistoryDetailModel>> snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.none:
+                      return Container();
+                      break;
+                    case ConnectionState.waiting:
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                      break;
+                    case ConnectionState.active:
+                      return Container();
+                      break;
+                    case ConnectionState.done:
+                      if (snapshot.hasError) {
+                      } else {
+                        if(snapshot.data.length > 0 ){
+                        return new HistoryTransactionList(dateStyle: dateStyle, amountStyle: amountStyle, pointPlusStyle: pointPlusStyle, snapshot: snapshot.data, dataBridge: dataBridge,);
+                        }else{
+                          return Container(child: Center(child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Icon(Icons.description, size: 100,color: Colors.grey[300],),
+                              Text("No Transaction Yet", style: TextStyle(fontSize: 17),)
+                            ],
+                          ),),);
+                        }
                       }
-                    }
-                    break;
-                }
-                return Container();
-              }),
+                      break;
+                  }
+                  return Container();
+                }),
+          ),
         ),
       ),
     );
@@ -107,7 +119,6 @@ class HistoryTransactionList extends StatelessWidget {
           alignment: Alignment.center,
           width: double.infinity,
           height: 150,
-          color: Colors.blue,
           child: Container(
             child: Column(
               mainAxisSize: MainAxisSize.min,

@@ -11,6 +11,23 @@ class DataBridge extends ChangeNotifier {
   ProductList _productList ; 
   ListUser _listUser ; 
   String _totalPoint ; 
+String _currentPathPhoto ; 
+int _pageIndex =0 ; 
+
+void setPageIndex(int index){
+  this._pageIndex = index; 
+  notifyListeners(); 
+}
+
+int get getPageIndex => this._pageIndex; 
+
+void setCurrentPhoto(String path){
+  print("current Photo setted"); 
+  this._currentPathPhoto = path ; 
+  notifyListeners(); 
+
+}
+String get getCurrentPhoto => this._currentPathPhoto ; 
 
   void setTotalPoint(String point){
     this._totalPoint = point ; 

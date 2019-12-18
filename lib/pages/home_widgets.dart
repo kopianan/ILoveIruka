@@ -48,7 +48,7 @@ class _ServicesContentState extends State<ServicesContent> {
               FlatButton(
                 splashColor: Colors.amber,
                 onPressed: () {
-                  launch("tel://081377151395");
+                  launch("tel://081211854630");
                 },
                 child: Text("Call Us", style: TextStyle(color: Colors.blue)),
               ),
@@ -128,12 +128,12 @@ class _ServicesContentState extends State<ServicesContent> {
             ),
             InkWell(
               onTap: () async {
-                buildShowDialog(context, "Pet Taxi");
+                buildShowDialog(context, "Pet Spa");
               },
               child: Column(
                 children: <Widget>[
-                  buildIconContainer("images/assets/pet_school.png"),
-                  buildIconTitleServicesDashboard("Pet Taxi")
+                  buildIconContainer("images/assets/pet-spa.png"),
+                  buildIconTitleServicesDashboard("Pet Spa")
                 ],
               ),
             ),

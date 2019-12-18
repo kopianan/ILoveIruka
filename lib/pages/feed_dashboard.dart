@@ -5,9 +5,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_bloc.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_event.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_state.dart';
+import 'package:i_love_iruka/models/model/event_model.dart';
+import 'package:i_love_iruka/models/model/login_response.dart';
+import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:i_love_iruka/pages/widgets.dart';
+import 'package:i_love_iruka/provider/data_bridge.dart';
+import 'package:i_love_iruka/screens/feed_detail/feed_detail.dart';
 import 'package:i_love_iruka/screens/profile/new_profile_page.dart';
 import 'package:i_love_iruka/util/constants.dart';
+import 'package:i_love_iruka/util/shared_pref.dart';
+import 'package:provider/provider.dart';
 
 import 'home_widgets.dart';
 
@@ -25,7 +32,20 @@ class _FeedDashboardState extends State<FeedDashboard> {
   @override
   void initState() {
     super.initState();
-
+  loadSharedPrefs() async {
+    print("async test"); 
+    try {
+      LoginResponse user =
+          LoginResponse.fromJson(await SharedPref().getLoginData());
+      setState(() {
+        Provider.of<DataBridge>(context, listen: false).setUserData(user);
+      });
+    } catch (Excepetion) {
+      Scaffold.of(context).showSnackBar(SnackBar(
+          content: new Text("Nothing found!"),
+          duration: const Duration(milliseconds: 500)));
+    }
+  }
     // dashboardBlocBloc.add(GetProductList());
     dashboardBlocBloc.add(GetEventList());
   }
@@ -66,26 +86,36 @@ class _FeedDashboardState extends State<FeedDashboard> {
                 backgroundColor: Colors.yellow,
               ));
             } else if (state is GetEventListCompleted) {
-              final dataResp = state.response.eventList;
               return FlexibleSpaceBar(
-                background: Container(
-                  alignment: Alignment.bottomCenter,
-                  padding: EdgeInsets.only(bottom: 0),
-                  child: CarouselSlider(
-                    items: dataResp.map((f) {
-                      return AspectRatio(
-                        
-                        aspectRatio: 2/1,
-                          child: Image.network(
+                background: Consumer<DataBridge>(
+                                  builder: (context, dataBridge, _) =>  Container(
+                    alignment: Alignment.bottomCenter,
+                    padding: EdgeInsets.only(bottom: 0),
+                    child: CarouselSlider(
+                      items: state.response.eventList.map((f) {
+                        return InkWell(
+                          onTap : (){
+  Navigator.of(context).pushNamed(FeedDetail.pageAlias);
+  final productList = ProductList(description: f.description, createdDate: f.createdDate, productName: f.eventName, id: f.id, isActive: f.isActive, link: f.link, picture: f.picture, priority: f.priority, scheduleDate: f.scheduleDate); 
+          dataBridge.setProductList(productList);
+                          }, 
+                                                child: AspectRatio(
                             
-                                "http://webstyle.unicomm.fsu.edu/3.2/img/placeholders/ratio-2-1.png",
-                            fit: BoxFit.contain,
-                          ));
-                    }).toList(),
-                    enlargeCenterPage: true,
-                    height: 180,
-                    viewportFraction: 0.9,
-                    autoPlay: true,
+                            aspectRatio: 2/1,
+                              child: Image.network(
+                                
+                                    Constants.getWebUrl() + "/" +  f.picture,
+                                fit: BoxFit.contain,
+                              )),
+                        );
+                      }).toList(),
+                      
+                      enlargeCenterPage: true,
+                      height: 180,
+                      viewportFraction: 0.9,
+                      autoPlay: true,
+                      autoPlayInterval: Duration(seconds: 5),
+                    ),
                   ),
                 ),
               );

@@ -1,36 +1,30 @@
-class RegisterRequest {
+class EditRequest {
   String accessKey;
   String name;
-  String email;
-  String password;
   String phonenumber;
   String address;
   String description;
-  String role;
+  String id ; 
   String pic; 
   String file;
 
-  RegisterRequest(
+  EditRequest(
       {this.accessKey,
       this.name,
-      this.email,
-      this.password,
       this.phonenumber,
       this.address,
       this.description,
-      this.role,
+      this.id,
       this.pic,
       this.file});
 
-  RegisterRequest.fromJson(Map<String, dynamic> json) {
+  EditRequest.fromJson(Map<String, dynamic> json) {
     accessKey = json['accessKey'];
     name = json['Name'];
-    email = json['Email'];
-    password = json['Password'];
     phonenumber = json['Phonenumber'];
     address = json['Address'];
     description = json['Description'];
-    role = json['Role'];
+    id = json['Id'];
     pic = json['pic']; 
     file = json['File'];
   }
@@ -39,12 +33,10 @@ class RegisterRequest {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['accessKey'] = this.accessKey;
     data['Name'] = this.name;
-    data['Email'] = this.email;
-    data['Password'] = this.password;
     data['Phonenumber'] = this.phonenumber;
     data['Address'] = this.address;
     data['Description'] = this.description;
-    data['Role'] = this.role;
+    data['Id'] = this.id;
     data['PIC'] = this.pic; 
     data['File'] = this.file;
     return data;

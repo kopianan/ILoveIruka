@@ -36,6 +36,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    print("Rebuild Main");
     dataFuture = SharedPref().getLoginData();
     super.initState();
   }
@@ -91,7 +92,9 @@ class _MyAppState extends State<MyApp> {
                         if (loginData == null) {
                           return LoginPage();
                         } else {
-                          dataBridge.setUserData(loginData);
+                          // print('Set data from main'); 
+                          // dataBridge.setUserData(loginData);
+                          // Navigator.of(context).pushReplacementNamed("/dashboard"); 
                           return DashboardPage();
                         }
                       } else {

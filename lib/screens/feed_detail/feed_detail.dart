@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/util/common.dart';
 import 'package:i_love_iruka/util/constants.dart';
@@ -62,22 +63,22 @@ class _FeedDetailState extends State<FeedDetail> {
                         ],
                       ),
                     ),
-                    (dataBridge.getProductList.link == null  ||dataBridge.getProductList.link == "" )? Container() :  Container(
-                      child: RaisedButton(
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        onPressed: ()async {
-                          await _common.launchURL(dataBridge.getProductList.link); 
-                        },
-                        color: Colors.amber,
-                        child: Text(" Go To Link "),
-                      ),
-                    ),
+               
                   ],
                 ),
               ),
             )
           ],
         ),
+     
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Color(0xffd45500),
+        onPressed: () async{
+        if (dataBridge.getProductList.link == null  ||dataBridge.getProductList.link == "" ) {
+          Fluttertoast.showToast(msg: "This Page doesn't have any link") ; 
+        }else
+           await _common.launchURL(dataBridge.getProductList.link); 
+      },label: Text("Go to link"),),
       ),
     );
   }

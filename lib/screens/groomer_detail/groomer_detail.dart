@@ -22,21 +22,21 @@ class _GroomerDetailState extends State<GroomerDetail> {
       builder: (context, dataBridge, _) => Scaffold(
           appBar: AppBar(
             title: Text("Groomer Detail"),
-            actions: <Widget>[
-              Container(
-                margin: EdgeInsets.only(right: 5),
-                child: Row(
-                  children: <Widget>[
-                    SizedBox(width: 5),
-                    Text("Active"),
-                    CircleAvatar(
-                      radius: 6,
-                      backgroundColor: Colors.green,
-                    ),
-                  ],
-                ),
-              )
-            ],
+            // actions: <Widget>[
+            //   Container(
+            //     margin: EdgeInsets.only(right: 5),
+            //     child: Row(
+            //       children: <Widget>[
+            //         SizedBox(width: 5),
+            //         Text("Active"),
+            //         CircleAvatar(
+            //           radius: 6,
+            //           backgroundColor: Colors.green,
+            //         ),
+            //       ],
+            //     ),
+            //   )
+            // ],
           ),
           body: Container(
             child: Column(
@@ -53,12 +53,32 @@ class _GroomerDetailState extends State<GroomerDetail> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Icon(FontAwesomeIcons.mapPin, size: 18,),
+                          SizedBox(width: 10, ) ,
+                          Text("Address",
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
                       SizedBox(
                         height: 15, 
                       ),
-                      Text("Description",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold)),
+                       Text(dataBridge.getCurrentSelectedGroomer.address),
+                        SizedBox(
+                        height: 20, 
+                      ),
+                       
+                      Row(
+                        children: <Widget>[
+                           Icon(FontAwesomeIcons.envelopeOpenText, size: 18,),
+                          SizedBox(width: 10, ) ,
+                          Text("Description",
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
                       SizedBox(
                         height: 8,
                       ),

@@ -6,6 +6,7 @@ import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:i_love_iruka/models/model/roles_model.dart';
 import 'package:i_love_iruka/models/model/transaction_history_detail_model.dart';
 import 'package:i_love_iruka/models/model/user_groomers_model.dart';
+import 'package:i_love_iruka/models/request/edit_request.dart';
 import 'package:i_love_iruka/models/request/login_request.dart';
 import 'package:i_love_iruka/models/request/register_request.dart';
 import 'package:i_love_iruka/models/request/user_by_role_request.dart';
@@ -31,4 +32,10 @@ class Repository {
 
   Future<String> getPointAndLastTransactionData(String request) =>
       _apiProvider.getPointAndLastTransactionDataAsync(request);
+
+  Future<String> changeUserStatus(String id, bool status) =>
+      _apiProvider.changeUserStatusAsync(status  , id );
+
+  Future<LoginResponse> editUser(EditRequest reg) =>
+      _apiProvider.editUserAsync(reg);
 }
