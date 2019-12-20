@@ -53,9 +53,7 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
                       .then((onValue) {
                     print(onValue);
                     _currUserData.user.show = val;
-
                     dataBridge.setUserData(_currUserData);
-
                     SharedPref().saveLoginData(_currUserData);
                   });
                 },
@@ -110,7 +108,7 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
                                         onPressed: () {
                                           final currentUserData =
                                               dataBridge.getUserData();
-                                       
+
                                           final reg = EditRequest(
                                               accessKey:
                                                   "d78c1a5c-ccbe-4c26-ac08-43ed66c8afb9",
@@ -135,12 +133,12 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
                                           changeUserStatus
                                               .editUser(reg)
                                               .then((onValue) {
-
-                                          Navigator.of(context).pop();
-                                            SharedPref().saveLoginData(onValue);
                                             dataBridge.setUserData(onValue);
                                             Fluttertoast.showToast(
                                                 msg: "Profile Edited");
+                                                
+                                            Navigator.of(context).pop();
+                                            SharedPref().saveLoginData(onValue);
                                           });
                                         },
                                         child: Text("Submit",

@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:i_love_iruka/models/model/event_model.dart';
 import 'package:i_love_iruka/models/model/get_point_and_last_transaction.dart';
+import 'package:i_love_iruka/models/model/get_province_model.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:i_love_iruka/models/model/roles_model.dart';
@@ -22,6 +23,9 @@ class ApiProvider {
     'accessKey': 'd78c1a5c-ccbe-4c26-ac08-43ed66c8afb9'
   };
 
+  Map<String, String> rajaOngkirHeader = {
+    'key': "${Constants.getRajaOngkirApi}"
+  };
   String _baseUrl = Constants.getBaseUrl();
   Future<LoginResponse> loginUser(LoginRequest login) async {
     print(login.toJson());
@@ -83,18 +87,18 @@ class ApiProvider {
           ? null
           : await MultipartFile.fromFile(registerData.file)
     });
-    print("testasync"); 
+    print("testasync");
     Response response = await dio.post(
       url,
       data: formData,
     );
     print("testEditUser");
-    
-    if (response.statusCode == 200) {
 
-   loginResponse = LoginResponse.fromJson(json.decode(json.encode(response.data)));
-   loginResponse.user.show = true ; 
-      return loginResponse ;
+    if (response.statusCode == 200) {
+      loginResponse =
+          LoginResponse.fromJson(json.decode(json.encode(response.data)));
+      loginResponse.user.show = true;
+      return loginResponse;
     } else {
       return null;
     }
@@ -198,5 +202,25 @@ class ApiProvider {
       return listTransaction;
     } else
       return null;
+  }
+
+  Future<GetProvinceModel> getProvincesAsync() async {
+    Response response;
+    try {
+      response = await dio.get(Constants.getRajaOngkirUrl + "/starter/province",
+          options: Options(headers: rajaOngkirHeader));
+
+      if (response.statusCode == 200) {
+        print(" test");
+        final provinceModel =
+            GetProvinceModel.fromJson(response.data);
+        print(' Test');
+        print(provinceModel.rajaongkir.results.first.toJson());
+        return provinceModel;
+      } else
+        return null;
+    } on DioError catch (e) {
+      return null;
+    }
   }
 }
