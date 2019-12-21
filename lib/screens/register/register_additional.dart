@@ -21,7 +21,7 @@ class RegisterAdditional {
 
   void backAnimated(BuildContext context, ScrollController c, int offset) {
     c.animateTo(MediaQuery.of(context).size.width * offset,
-        duration: new Duration(milliseconds: 500), curve: Curves.easeIn);
+        duration: new Duration(milliseconds: 100), curve: Curves.easeIn);
   }
 
   void nextAnimated(BuildContext context, ScrollController c, int offset) {

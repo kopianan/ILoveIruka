@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/data/repository.dart';
-import 'package:i_love_iruka/models/model/get_province_model.dart';
+import 'package:i_love_iruka/models/model/get_province_model.dart' as province;
 import 'package:i_love_iruka/models/model/roles_model.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:provider/provider.dart';
@@ -23,62 +23,97 @@ class _ProvinceDropdownState extends State<ProvinceDropdown> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<GetProvinceModel>(
-        future: future,
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.none:
-              return Container();
-              break;
-            case ConnectionState.waiting:
-              return Center(child: CircularProgressIndicator());
-              break;
-            case ConnectionState.active:
-              return Container();
-              break;
-            case ConnectionState.done:
-            print(snapshot.data); 
-              if (snapshot.hasError) {
+    return Consumer<DataBridge>(
+          builder:(_, dataBridge, __) =>  FutureBuilder<province.GetProvinceModel>(
+          future: future,
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
                 return Container();
-              } else {
-                return DropdownButton(
-                  underline: SizedBox(),
-                  isDense: false,
-                  elevation: 3,
-                  isExpanded: true,
-                  hint: Text("User Type"),
-                  items: snapshot.data.rajaongkir.results.map((f) {
-                    return DropdownMenuItem(
-                        child: Text(
-                          f.province,
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w500),
-                        ),
-                        value: f.province);
-                  }).toList(),
-                  onChanged: (val) {},
-                  value: null,
-                );
-              }
-              break;
-          }
-          
-        return Container() ; 
-        });
+                break;
+              case ConnectionState.waiting:
+                return Center(child: CircularProgressIndicator());
+                break;
+              case ConnectionState.active:
+                return Container();
+                break;
+              case ConnectionState.done:
+                print(snapshot.data);
+                if (snapshot.hasError) {
+                  return Container();
+                } else {
+                  return BuildDropdownProvince(dataBridge: dataBridge,provinceModel: snapshot.data.rajaongkir,);
+                }
+                break;
+            }
+
+            return Container();
+          }),
+    );
   }
 }
 
-class RoleDropDown extends StatelessWidget {
-  RoleDropDown({
+class BuildDropdownProvince extends StatefulWidget {
+  const BuildDropdownProvince({
     Key key,
-    @required Future<RolesModel> getRolesOff,
-  })  : _getRolesOff = getRolesOff,
-        super(key: key);
+    this.provinceModel, 
+    this.dataBridge
+  }) : super(key: key);
+  final DataBridge dataBridge; 
+  final province.Rajaongkir provinceModel ; 
 
-  final Future<RolesModel> _getRolesOff;
+  @override
+  _BuildDropdownProvinceState createState() => _BuildDropdownProvinceState();
+}
+
+class _BuildDropdownProvinceState extends State<BuildDropdownProvince> {
+  @override
+  void initState() {
+  
+  // Provider.of<DataBridge>(context,listen: false).setProvinceData(widget.provinceModel); 
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    return DropdownButton(
+      underline: SizedBox(),
+      isDense: false,
+      elevation: 3,
+      isExpanded: true,
+      hint: Text("User Type"),
+      items:widget.dataBridge.getProvinceData.results.map((f) {
+        return DropdownMenuItem(
+            child: Text(
+              f.province,
+              style: TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.w500),
+            ),
+            value: f.province);
+      }).toList(),
+      onChanged: (val) {},
+      value: null,
+    );
+  }
+}
+
+class RoleDropDown extends StatefulWidget {
+  @override
+  _RoleDropDownState createState() => _RoleDropDownState();
+}
+
+class _RoleDropDownState extends State<RoleDropDown> {
+  var _getRolesOff;
+  Repository _repository = Repository();
+
+  @override
+  void initState() {
+    _getRolesOff = _repository.getRolesList();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<RolesModel>(
       future: _getRolesOff,
       builder: (BuildContext context, AsyncSnapshot<RolesModel> snapshot) {
         RolesModel roles = snapshot.data;
@@ -128,6 +163,7 @@ class RoleDropDown extends StatelessWidget {
             );
             break;
         }
+        return Container();
       },
     );
   }

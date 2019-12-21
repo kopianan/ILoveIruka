@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:i_love_iruka/models/model/get_city_model.dart'as city;
+import 'package:i_love_iruka/models/model/get_province_model.dart' as province;
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:i_love_iruka/models/model/roles_model.dart';
@@ -8,51 +10,67 @@ class DataBridge extends ChangeNotifier {
   String _filePath;
   LoginResponse _userData;
   RoleList _roleList;
-  ProductList _productList ; 
-  ListUser _listUser ; 
-  String _totalPoint ; 
-String _currentPathPhoto ; 
-int _pageIndex =0 ; 
+  ProductList _productList;
+  ListUser _listUser;
+  String _totalPoint;
+  String _currentPathPhoto;
+  int _pageIndex = 0;
+  city.Rajaongkir _cityData ; 
+  province.Rajaongkir _provinceData ; 
 
-void setPageIndex(int index){
-  this._pageIndex = index; 
-  notifyListeners(); 
-}
-
-int get getPageIndex => this._pageIndex; 
-
-void setCurrentPhoto(String path){
-  print("current Photo setted"); 
-  this._currentPathPhoto = path ; 
-  notifyListeners(); 
-
-}
-String get getCurrentPhoto => this._currentPathPhoto ; 
-
-  void setTotalPoint(String point){
-    this._totalPoint = point ; 
-     notifyListeners() ; 
-
+  void setProvinceData(province.Rajaongkir province){
+    this._provinceData = province;
+    print(" provider");  
+    print(province.toJson()); 
+    // notifyListeners() ; 
   }
 
-  String get getTotalPoint => this._totalPoint ; 
+ province.Rajaongkir get getProvinceData => this._provinceData; 
 
-  void setCurrentSelectedGroomer(ListUser listUser){
-    this._listUser = listUser ; 
-
-
-  }
-  
-  ListUser get getCurrentSelectedGroomer => this._listUser ; 
-
-
-  void setProductList(ProductList productList){
-    this._productList = productList ; 
+ 
+  void setCityData(city.Rajaongkir city){
+    this._cityData = city; 
+    notifyListeners() ; 
   }
 
-  ProductList get getProductList  => this._productList ; 
+ city.Rajaongkir get getCityData => this._cityData; 
 
 
+
+
+  void setPageIndex(int index) {
+    this._pageIndex = index;
+    notifyListeners();
+  }
+
+  int get getPageIndex => this._pageIndex;
+
+  void setCurrentPhoto(String path) {
+    print("current Photo setted");
+    this._currentPathPhoto = path;
+    notifyListeners();
+  }
+
+  String get getCurrentPhoto => this._currentPathPhoto;
+
+  void setTotalPoint(String point) {
+    this._totalPoint = point;
+    notifyListeners();
+  }
+
+  String get getTotalPoint => this._totalPoint;
+
+  void setCurrentSelectedGroomer(ListUser listUser) {
+    this._listUser = listUser;
+  }
+
+  ListUser get getCurrentSelectedGroomer => this._listUser;
+
+  void setProductList(ProductList productList) {
+    this._productList = productList;
+  }
+
+  ProductList get getProductList => this._productList;
 
   void setRoleList(RoleList roleList) {
     this._roleList = roleList;
