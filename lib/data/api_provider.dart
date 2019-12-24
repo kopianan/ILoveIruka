@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:i_love_iruka/models/model/event_model.dart';
+import 'package:i_love_iruka/models/model/get_city_model.dart';
 import 'package:i_love_iruka/models/model/get_point_and_last_transaction.dart';
 import 'package:i_love_iruka/models/model/get_province_model.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
@@ -217,6 +218,28 @@ class ApiProvider {
         print(' Test');
         print(provinceModel.rajaongkir.results.first.toJson());
         return provinceModel;
+      } else
+        return null;
+    } on DioError catch (e) {
+      return null;
+    }
+  }
+
+  Future<GetCityModel> getCitiesAsync(int provinceId ) async {
+    Response response;
+     var queryParameters = {
+      'province': '$provinceId',
+    };
+    try {
+      response = await dio.get(Constants.getRajaOngkirUrl + "/starter/city",
+          options: Options(headers: rajaOngkirHeader), 
+          queryParameters: queryParameters);
+
+      if (response.statusCode == 200) {
+        final cityModel =
+            GetCityModel.fromJson(response.data);
+        print(cityModel.rajaongkir.results.first.toJson());
+        return cityModel;
       } else
         return null;
     } on DioError catch (e) {

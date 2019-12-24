@@ -15,8 +15,20 @@ class DataBridge extends ChangeNotifier {
   String _totalPoint;
   String _currentPathPhoto;
   int _pageIndex = 0;
+
+  city.Results _cityResult = null; 
   city.Rajaongkir _cityData ; 
+
   province.Rajaongkir _provinceData ; 
+
+
+  void setCityResults(city.Results city){
+    this._cityResult = city ; 
+    notifyListeners(); 
+  }
+
+  city.Results get getCityResults => (this._cityResult == null)? null :  this._cityResult; 
+
 
   void setProvinceData(province.Rajaongkir province){
     this._provinceData = province;

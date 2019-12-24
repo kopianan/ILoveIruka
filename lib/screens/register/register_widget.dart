@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/data/repository.dart';
 import 'package:i_love_iruka/models/model/get_province_model.dart' as province;
+import 'package:i_love_iruka/models/model/get_city_model.dart' as city;
 import 'package:i_love_iruka/models/model/roles_model.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +25,7 @@ class _ProvinceDropdownState extends State<ProvinceDropdown> {
   @override
   Widget build(BuildContext context) {
     return Consumer<DataBridge>(
-          builder:(_, dataBridge, __) =>  FutureBuilder<province.GetProvinceModel>(
+      builder: (_, dataBridge, __) => FutureBuilder<province.GetProvinceModel>(
           future: future,
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
@@ -42,7 +43,10 @@ class _ProvinceDropdownState extends State<ProvinceDropdown> {
                 if (snapshot.hasError) {
                   return Container();
                 } else {
-                  return BuildDropdownProvince(dataBridge: dataBridge,provinceModel: snapshot.data.rajaongkir,);
+                  return BuildDropdownProvince(
+                    dataBridge: dataBridge,
+                    provinceModel: snapshot.data.rajaongkir,
+                  );
                 }
                 break;
             }
@@ -54,45 +58,92 @@ class _ProvinceDropdownState extends State<ProvinceDropdown> {
 }
 
 class BuildDropdownProvince extends StatefulWidget {
-  const BuildDropdownProvince({
-    Key key,
-    this.provinceModel, 
-    this.dataBridge
-  }) : super(key: key);
-  final DataBridge dataBridge; 
-  final province.Rajaongkir provinceModel ; 
+  const BuildDropdownProvince({Key key, this.provinceModel, this.dataBridge})
+      : super(key: key);
+  final DataBridge dataBridge;
+  final province.Rajaongkir provinceModel;
 
   @override
   _BuildDropdownProvinceState createState() => _BuildDropdownProvinceState();
 }
 
 class _BuildDropdownProvinceState extends State<BuildDropdownProvince> {
+  Repository _repository = Repository();
   @override
   void initState() {
-  
-  // Provider.of<DataBridge>(context,listen: false).setProvinceData(widget.provinceModel); 
+    Provider.of<DataBridge>(context, listen: false)
+        .setProvinceData(widget.provinceModel);
     super.initState();
   }
+
+  province.Results tempProv;
   @override
   Widget build(BuildContext context) {
-    return DropdownButton(
-      underline: SizedBox(),
-      isDense: false,
-      elevation: 3,
-      isExpanded: true,
-      hint: Text("User Type"),
-      items:widget.dataBridge.getProvinceData.results.map((f) {
-        return DropdownMenuItem(
-            child: Text(
-              f.province,
-              style: TextStyle(
-                  fontSize: 18, fontWeight: FontWeight.w500),
-            ),
-            value: f.province);
-      }).toList(),
-      onChanged: (val) {},
-      value: null,
+    return Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(horizontal: 8),
+      height: 60,
+      decoration: BoxDecoration(border : Border.all(width: 1, color: Colors.grey) , borderRadius: BorderRadius.circular(5)), 
+      child: DropdownButton(
+        underline: SizedBox(),
+        isDense: false,
+        elevation: 3,
+        isExpanded: true,
+      
+        hint: Text("Choose your province"),
+        items: widget.dataBridge.getProvinceData.results.map((f) {
+          return DropdownMenuItem(
+              child: Text(
+                f.province,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              ),
+              value: f);
+        }).toList(),
+        onChanged: (province.Results val) {
+          tempProv = val;
+
+          widget.dataBridge.setCityResults(null);
+          _repository.getCities(int.parse(val.provinceId)).then((onValue) {
+            widget.dataBridge.setCityData(onValue.rajaongkir);
+          });
+        },
+        value: tempProv,
+      ),
     );
+  }
+}
+
+class BuildCityDropdown extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return
+    Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(horizontal: 8),
+      height: 60,
+      decoration: BoxDecoration(border : Border.all(width: 1, color: Colors.grey) , borderRadius: BorderRadius.circular(5)), 
+      child :  Consumer<DataBridge>(
+      builder: (_, dataBridge, __) => DropdownButton(
+        underline: SizedBox(),
+        isDense: false,
+        elevation: 3,
+        isExpanded: true,
+        hint: Text("Choose your city"),
+        items: dataBridge.getCityData.results.map((f) {
+          return DropdownMenuItem(
+              child: Text(
+                (f.type == "Kota") ? f.cityName: 
+                f.type + " "+ f.cityName,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              ),
+              value: f);
+        }).toList(),
+        onChanged: (city.Results val) {
+          dataBridge.setCityResults(val);
+        },
+        value: dataBridge.getCityResults, 
+      ),
+    ));
   }
 }
 

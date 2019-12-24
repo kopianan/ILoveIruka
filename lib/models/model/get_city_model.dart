@@ -21,7 +21,7 @@ class GetCityModel {
 class Rajaongkir {
   Query query;
   Status status;
-  Results results;
+  List<Results> results;
 
   Rajaongkir({this.query, this.status, this.results});
 
@@ -29,8 +29,12 @@ class Rajaongkir {
     query = json['query'] != null ? new Query.fromJson(json['query']) : null;
     status =
         json['status'] != null ? new Status.fromJson(json['status']) : null;
-    results =
-        json['results'] != null ? new Results.fromJson(json['results']) : null;
+    if (json['results'] != null) {
+      results = new List<Results>();
+      json['results'].forEach((v) {
+        results.add(new Results.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -42,24 +46,24 @@ class Rajaongkir {
       data['status'] = this.status.toJson();
     }
     if (this.results != null) {
-      data['results'] = this.results.toJson();
+      data['results'] = this.results.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Query {
-  String id;
+  String provinceId;
 
-  Query({this.id});
+  Query({this.provinceId});
 
   Query.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    provinceId = json['province_id'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
+    data['province_id'] = this.provinceId;
     return data;
   }
 }
