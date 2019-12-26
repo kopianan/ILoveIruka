@@ -6,8 +6,6 @@ import 'package:i_love_iruka/util/constants.dart';
 import 'package:i_love_iruka/widgets/cached_image.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher.dart' as prefix0;
 
 class FeedDetail extends StatefulWidget {
   static const pageAlias = "/feed_detail_page";
@@ -77,7 +75,7 @@ class _FeedDetailState extends State<FeedDetail> {
         if (dataBridge.getProductList.link == null  ||dataBridge.getProductList.link == "" ) {
           Fluttertoast.showToast(msg: "This Page doesn't have any link") ; 
         }else
-           await _common.launchURL(dataBridge.getProductList.link); 
+           await Common.launchURL(dataBridge.getProductList.link); 
       },label: Text("Go to link"),),
       ),
     );

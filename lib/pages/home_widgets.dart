@@ -38,7 +38,7 @@ class _ServicesContentState extends State<ServicesContent> {
               FlatButton(
                 splashColor: Colors.amber,
                 onPressed: () {
-                  _common.launchURL("https://iloveiruka.com/");
+                  // ClaunchURL("https://iloveiruka.com/");
                 },
                 child: Text(
                   "Visit Link",
@@ -70,7 +70,7 @@ class _ServicesContentState extends State<ServicesContent> {
             ),
             InkWell(
               onTap: () async {
-                _common.launchURL("https://sismarket.id/");
+                // _common.launchURL("https://sismarket.id/");
               },
               child: Column(
                 children: <Widget>[
@@ -271,7 +271,6 @@ class _BuildProductsState extends State<BuildProducts> {
           dataBridge.setProductList(productList);
         },
         child: Container(
-          margin: EdgeInsets.only(top: 20),
           decoration:
               BoxDecoration(border: Border.all(color: Colors.grey[300])),
           child: Card(

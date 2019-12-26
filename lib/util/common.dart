@@ -2,7 +2,7 @@ import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Common {
-  launchURL(String urlAddress) async {
+  static launchURL(String urlAddress) async {
     String url = "$urlAddress";
     if (await canLaunch(url)) {
       await launch(url);
