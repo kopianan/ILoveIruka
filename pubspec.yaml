@@ -81,6 +81,11 @@ flutter:
    - images/assets/ratio11.png
    - images/assets/iruka_cloud.png
    - images/assets/pet-spa.png
+   - images/assets/youtube.png
+   - images/assets/whatsapp.png
+   - images/assets/instagram.png
+   - images/assets/global.png
+   - images/assets/telephone.png
    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
