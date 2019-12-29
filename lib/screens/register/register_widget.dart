@@ -58,8 +58,7 @@ class _ProvinceDropdownState extends State<ProvinceDropdown> {
 }
 
 class BuildDropdownProvince extends StatefulWidget {
-  const BuildDropdownProvince({Key key, this.provinceModel, this.dataBridge})
-      : super(key: key);
+  const BuildDropdownProvince({Key key, this.provinceModel, this.dataBridge}) : super(key: key);
   final DataBridge dataBridge;
   final province.Rajaongkir provinceModel;
 
@@ -71,8 +70,7 @@ class _BuildDropdownProvinceState extends State<BuildDropdownProvince> {
   Repository _repository = Repository();
   @override
   void initState() {
-    Provider.of<DataBridge>(context, listen: false)
-        .setProvinceData(widget.provinceModel);
+    Provider.of<DataBridge>(context, listen: false).setProvinceData(widget.provinceModel);
     super.initState();
   }
 
@@ -83,13 +81,12 @@ class _BuildDropdownProvinceState extends State<BuildDropdownProvince> {
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(horizontal: 8),
       height: 60,
-      decoration: BoxDecoration(border : Border.all(width: 1, color: Colors.grey) , borderRadius: BorderRadius.circular(5)), 
+      decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.grey), borderRadius: BorderRadius.circular(5)),
       child: DropdownButton(
         underline: SizedBox(),
         isDense: false,
         elevation: 3,
         isExpanded: true,
-      
         hint: Text("Choose your province"),
         items: widget.dataBridge.getProvinceData.results.map((f) {
           return DropdownMenuItem(
@@ -116,34 +113,32 @@ class _BuildDropdownProvinceState extends State<BuildDropdownProvince> {
 class BuildCityDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return
-    Container(
-      alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(horizontal: 8),
-      height: 60,
-      decoration: BoxDecoration(border : Border.all(width: 1, color: Colors.grey) , borderRadius: BorderRadius.circular(5)), 
-      child :  Consumer<DataBridge>(
-      builder: (_, dataBridge, __) => DropdownButton(
-        underline: SizedBox(),
-        isDense: false,
-        elevation: 3,
-        isExpanded: true,
-        hint: Text("Choose your city"),
-        items: dataBridge.getCityData.results.map((f) {
-          return DropdownMenuItem(
-              child: Text(
-                (f.type == "Kota") ? f.cityName: 
-                f.type + " "+ f.cityName,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-              ),
-              value: f);
-        }).toList(),
-        onChanged: (city.Results val) {
-          dataBridge.setCityResults(val);
-        },
-        value: dataBridge.getCityResults, 
-      ),
-    ));
+    return Container(
+        alignment: Alignment.center,
+        padding: EdgeInsets.symmetric(horizontal: 8),
+        height: 60,
+        decoration: BoxDecoration(border: Border.all(width: 1, color: Colors.grey), borderRadius: BorderRadius.circular(5)),
+        child: Consumer<DataBridge>(
+          builder: (_, dataBridge, __) => DropdownButton(
+            underline: SizedBox(),
+            isDense: false,
+            elevation: 3,
+            isExpanded: true,
+            hint: Text("Choose your city"),
+            items:(dataBridge.getCityData == null) ? null :  dataBridge.getCityData.results.map((f) {
+              return DropdownMenuItem(
+                  child: Text(
+                    (f.type == "Kota") ? f.cityName : f.type + " " + f.cityName,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  ),
+                  value: f);
+            }).toList(),
+            onChanged: (city.Results val) {
+              dataBridge.setCityResults(val);
+            },
+            value: (dataBridge.getCityResults == null) ? null : dataBridge.getCityResults ,
+          ),
+        ));
   }
 }
 
@@ -184,17 +179,14 @@ class _RoleDropDownState extends State<RoleDropDown> {
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 height: 50,
                 alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                decoration: BoxDecoration(border: Border.all(color: Colors.grey), borderRadius: BorderRadius.all(Radius.circular(10))),
                 child: DropdownButton(
                   underline: SizedBox(),
                   isDense: false,
                   elevation: 3,
                   isExpanded: true,
                   onChanged: (val) {
-                    final newVal =
-                        roles.roleList.firstWhere((test) => test.name == val);
+                    final newVal = roles.roleList.firstWhere((test) => test.name == val);
                     dataBridge.setRoleList(newVal);
                   },
                   value: dataBridge.getRoleList().name,
@@ -203,8 +195,7 @@ class _RoleDropDownState extends State<RoleDropDown> {
                     return DropdownMenuItem(
                       child: Text(
                         f.name,
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w500),
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                       ),
                       value: f.name,
                     );

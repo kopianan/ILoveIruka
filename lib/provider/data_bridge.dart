@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:i_love_iruka/models/model/get_city_model.dart'as city;
+import 'package:i_love_iruka/models/model/get_city_model.dart' as city;
 import 'package:i_love_iruka/models/model/get_province_model.dart' as province;
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/models/model/product_model.dart';
@@ -15,40 +15,41 @@ class DataBridge extends ChangeNotifier {
   String _totalPoint;
   String _currentPathPhoto;
   int _pageIndex = 0;
+  province.Results _choosenProvinceData = null;
+  city.Results _cityResult = null;
+  city.Rajaongkir _cityData;
 
-  city.Results _cityResult = null; 
-  city.Rajaongkir _cityData ; 
+  province.Rajaongkir _provinceData;
 
-  province.Rajaongkir _provinceData ; 
-
-
-  void setCityResults(city.Results city){
-    this._cityResult = city ; 
-    notifyListeners(); 
+  void setCityResults(city.Results city) {
+    this._cityResult = city;
+    notifyListeners();
   }
 
-  city.Results get getCityResults => (this._cityResult == null)? null :  this._cityResult; 
+  city.Results get getCityResults => (this._cityResult == null) ? null : this._cityResult;
 
+  void setChoosenProvinceData(province.Results res) {
+    this._choosenProvinceData = res;
+    notifyListeners();
+  }
 
-  void setProvinceData(province.Rajaongkir province){
+  province.Results get getChoosenProvinceData => this._choosenProvinceData;
+
+  void setProvinceData(province.Rajaongkir province) {
     this._provinceData = province;
-    print(" provider");  
-    print(province.toJson()); 
-    // notifyListeners() ; 
+    print(" provider");
+    print(province.toJson());
+    notifyListeners() ;
   }
 
- province.Rajaongkir get getProvinceData => this._provinceData; 
+  province.Rajaongkir get getProvinceData => this._provinceData;
 
- 
-  void setCityData(city.Rajaongkir city){
-    this._cityData = city; 
-    notifyListeners() ; 
+  void setCityData(city.Rajaongkir city) {
+    this._cityData = city;
+    notifyListeners();
   }
 
- city.Rajaongkir get getCityData => this._cityData; 
-
-
-
+  city.Rajaongkir get getCityData => this._cityData;
 
   void setPageIndex(int index) {
     this._pageIndex = index;

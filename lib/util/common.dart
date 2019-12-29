@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:i_love_iruka/screens/register/widgets/show_alert_dialog.dart';
+import 'package:i_love_iruka/widgets/show_alert_dialog.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 

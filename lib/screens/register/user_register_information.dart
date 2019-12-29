@@ -1,3 +1,4 @@
+import 'package:division/division.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -68,17 +69,27 @@ class _UserRegisterInformationState extends State<UserRegisterInformation> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(right: 10),
-                      child: TextFormField(
-                          validator: RegisterAdditional.validateName,
-                          onSaved: (String val) {
-                            // _firstName = val;
-                          },
-                          decoration: InputDecoration(
-                              hintText: "First Name", labelText: "First Name")),
+                    child: Parent(
+                      child: Txt(
+                        "", 
+                        style: TxtStyle()..editable()..border(),
+                        ),
                     ),
                   ),
+                  // Expanded(
+                  //   child: Container(
+                  //     margin: EdgeInsets.only(right: 10),
+                  //     child: TextFormField(
+                  //         validator: RegisterAdditional.validateName,
+                  //         onSaved: (String val) {
+                  //           // _firstName = val;
+                  //         },
+                  //         decoration: 
+                          
+                  //         InputDecoration(
+                  //             hintText: "First Name", labelText: "First Name")),
+                  //   ),
+                  // ),
                   Expanded(
                     child: Container(
                       margin: EdgeInsets.only(left: 10),

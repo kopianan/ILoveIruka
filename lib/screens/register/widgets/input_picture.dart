@@ -1,9 +1,10 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/util/camera_util.dart';
+import 'package:i_love_iruka/widgets/color_palate.dart';
+import 'package:i_love_iruka/widgets/register_button_next_and_back.dart';
 import 'package:keyboard_avoider/keyboard_avoider.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +15,8 @@ class InputPicture extends StatefulWidget {
     Key key,
     @required RegisterAdditional registerAdditional,
     @required this.c,
-  }) : _registerAdditional = registerAdditional, super(key: key);
+  })  : _registerAdditional = registerAdditional,
+        super(key: key);
 
   final RegisterAdditional _registerAdditional;
   final ScrollController c;
@@ -24,12 +26,12 @@ class InputPicture extends StatefulWidget {
 }
 
 class _InputPictureState extends State<InputPicture> {
-  File photo ; 
+  File photo;
   @override
   Widget build(BuildContext context) {
     return KeyboardAvoider(
       child: Consumer<DataBridge>(
-              builder:(_, dataBridge, __) => Container(
+        builder: (_, dataBridge, __) => Container(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,8 +42,7 @@ class _InputPictureState extends State<InputPicture> {
                 children: <Widget>[
                   Text(
                     "Hi, \nPlease Add Your Photo",
-                    style: TextStyle(
-                        fontSize: 30, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -60,7 +61,7 @@ class _InputPictureState extends State<InputPicture> {
                               size: 80,
                             )
                           : Image.file(
-                             photo,
+                              photo,
                               fit: BoxFit.cover,
                             ),
                     ),
@@ -73,8 +74,7 @@ class _InputPictureState extends State<InputPicture> {
                   width: double.infinity,
                   child: RaisedButton(
                     color: Color(0xffd45500),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                     child: Text(
                       "Take Photo",
                       style: TextStyle(color: Colors.white),
@@ -86,18 +86,14 @@ class _InputPictureState extends State<InputPicture> {
                           builder: (context) {
                             return AlertDialog(
                               title: Text("Choose Action Photo"),
-                              content: Text(
-                                  "Please choose action to take pictrue"),
+                              content: Text("Please choose action to take pictrue"),
                               actions: <Widget>[
                                 FlatButton(
                                   onPressed: () {
                                     takePhotoSource = true;
-                                    CameraUtil()
-                                        .takePicture(
-                                            fromCamera: takePhotoSource)
-                                        .then((onValue) {
+                                    CameraUtil().takePicture(fromCamera: takePhotoSource).then((onValue) {
                                       setState(() {
-                                        photo= File(onValue.toString());
+                                        photo = File(onValue.toString());
                                       });
                                     });
                                     Navigator.pop(context);
@@ -107,10 +103,7 @@ class _InputPictureState extends State<InputPicture> {
                                 FlatButton(
                                   onPressed: () {
                                     takePhotoSource = false;
-                                    CameraUtil()
-                                        .takePicture(
-                                            fromCamera: takePhotoSource)
-                                        .then((onValue) {
+                                    CameraUtil().takePicture(fromCamera: takePhotoSource).then((onValue) {
                                       setState(() {
                                         photo = File(onValue.toString());
                                       });
@@ -129,29 +122,18 @@ class _InputPictureState extends State<InputPicture> {
               ],
             ),
             Container(
-              margin: EdgeInsets.only(bottom: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  FlatButton(
-                    child: Text("Back"),
-                    onPressed: () {
-                      int page ; 
-
-                        (dataBridge.getRoleList().name.toString().toLowerCase().contains("groomer")) ? page = 2: page = 1 ; 
-
-                      widget._registerAdditional.backAnimated(context, widget.c, page);
-                    },
+                  RegisterButtonNextAndBack(
+                    buttonColor: ColorPalate.blueGradient1,
+                    buttonText: "Back",
+                    onButtonPressed: () => _onButtonBackPressed(dataBridge),
                   ),
-                  Container(
-                    width: 150,
-                    child: FloatingActionButton.extended(
-                      onPressed: () {
-                        print("register");
-                        registerUser(dataBridge);
-                      },
-                      label: Text("Register"),
-                    ),
+                  RegisterButtonNextAndBack(
+                    buttonColor: ColorPalate.darkOrange,
+                    buttonText: "Register",
+                    onButtonPressed: () => registerUser(dataBridge),
                   ),
                 ],
               ),
@@ -162,7 +144,14 @@ class _InputPictureState extends State<InputPicture> {
     );
   }
 
-  
+  void _onButtonBackPressed(DataBridge dataBridge) {
+    int page;
+
+    (dataBridge.getRoleList().name.toString().toLowerCase().contains("groomer")) ? page = 2 : page = 1;
+
+    widget._registerAdditional.backAnimated(context, widget.c, page);
+  }
+
   void registerUser(DataBridge dataBridge) {
     // final dataRegister = RegisterRequest(
     //     accessKey: Constants.getAccessKey(),
@@ -181,4 +170,3 @@ class _InputPictureState extends State<InputPicture> {
     // registerBloc.add(RegisterUser(registerData: dataRegister));
   }
 }
-

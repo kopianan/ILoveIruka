@@ -1,8 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
+import 'package:i_love_iruka/widgets/color_palate.dart';
+import 'package:i_love_iruka/widgets/register_button_next_and_back.dart';
 import 'package:provider/provider.dart';
 
 import '../register_additional.dart';
@@ -51,28 +52,11 @@ class ChooseAccountType extends StatelessWidget {
                       onPressed: () {},
                       tooltip: (dataBridge.getRoleList() == null)
                           ? "Choose your role list for registration"
-                          : (dataBridge
-                                  .getRoleList()
-                                  .name
-                                  .toString()
-                                  .toLowerCase()
-                                  .contains("groomer"))
+                          : (dataBridge.getRoleList().name.toString().toLowerCase().contains("groomer"))
                               ? "Register as Groomer to promote yourself"
-                              : (dataBridge
-                                      .getRoleList()
-                                      .name
-                                      .toString()
-                                      .toLowerCase()
-                                      .contains("owner"))
+                              : (dataBridge.getRoleList().name.toString().toLowerCase().contains("owner"))
                                   ? "You can find groomer to hire them"
-                                  : (dataBridge
-                                          .getRoleList()
-                                          .name
-                                          .toString()
-                                          .toLowerCase()
-                                          .contains("customer"))
-                                      ? "Make your pet happy and find more exciting stuff"
-                                      : "No Descritpion",
+                                  : (dataBridge.getRoleList().name.toString().toLowerCase().contains("customer")) ? "Make your pet happy and find more exciting stuff" : "No Descritpion",
                       icon: Icon(
                         Icons.info,
                         color: Colors.grey,
@@ -83,33 +67,34 @@ class ChooseAccountType extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              FlatButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text("Back"),
+              RegisterButtonNextAndBack(
+                buttonText: "Back",
+                buttonColor: ColorPalate.blueGradient1,
+                onButtonPressed: () => Navigator.pop(context),
               ),
-              Container(
-                alignment: Alignment.bottomRight,
-                child: FloatingActionButton(
-                  child: Icon(FontAwesomeIcons.arrowRight),
-                  onPressed: () {
-                    ///validate before go to next page
-                    print(dataBridge.getRoleList());
-                    if (dataBridge.getRoleList().name == null) {
-                      Fluttertoast.showToast(
-                        msg: "Please Choose Type First",
-                      );
-                    } else {
-                      _registerAdditional.nextAnimated(context, c, 1);
-                    }
-                  },
-                ),
+              RegisterButtonNextAndBack(
+                buttonText: "Next",
+                buttonColor: ColorPalate.darkOrange,
+                onButtonPressed: () => _onButtonnextPressed(dataBridge, context),
               ),
             ],
           ),
         ],
       ),
     ));
+  }
+
+  void _onButtonnextPressed(
+    DataBridge dataBridge,
+    BuildContext context,
+  ) {
+    ///validate before go to next page
+    if (dataBridge.getRoleList().name == null) {
+      Fluttertoast.showToast(
+        msg: "Please Choose Type First",
+      );
+    } else {
+      _registerAdditional.nextAnimated(context, c, 1);
+    }
   }
 }

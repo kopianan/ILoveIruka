@@ -6,6 +6,7 @@ import 'package:i_love_iruka/dashboard/dashboard_page.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 
 import 'package:i_love_iruka/provider/data_bridge.dart';
+import 'package:i_love_iruka/provider/register_provider.dart';
 import 'package:i_love_iruka/routes/route.dart';
 import 'package:i_love_iruka/screens/login/login_bloc/login_bloc_bloc.dart';
 import 'package:i_love_iruka/screens/login/login_page.dart';
@@ -47,6 +48,9 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(
           builder: (context) => DataBridge(),
+        ),
+        ChangeNotifierProvider(
+          builder: (context) => RegisterProvider(),
         ),
       ],
       child: MultiBlocProvider(
