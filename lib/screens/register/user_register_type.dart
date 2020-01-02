@@ -112,11 +112,11 @@ scroll = widget.c ;
                 items: roles.roleList.map((f) {
                   return DropdownMenuItem(
                     child: Text(
-                      f.name,
+                      f,
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                     ),
-                    value: f.name,
+                    value: f,
                   );
                 }).toList(),
               ),

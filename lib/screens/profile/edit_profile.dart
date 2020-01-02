@@ -36,14 +36,11 @@ class _EditProfileState extends State<EditProfile> {
   @override
   void initState() {
     Provider.of<DataBridge>(context, listen: false).setCurrentPhoto(null);
-    dataLogin =
-        Provider.of<DataBridge>(context, listen: false).getUserData().user;
+    dataLogin = Provider.of<DataBridge>(context, listen: false).getUserData().user;
     _nameController = TextEditingController(text: dataLogin.name.toString());
-    _addressController =
-        TextEditingController(text: dataLogin.address.toString());
+    _addressController = TextEditingController(text: dataLogin.address.toString());
     _emailController = TextEditingController(text: dataLogin.email.toString());
-    _phoneController =
-        TextEditingController(text: dataLogin.phoneNumber.toString());
+    _phoneController = TextEditingController(text: dataLogin.phoneNumber.toString());
     _picController = TextEditingController(text: dataLogin.pIC.toString());
     super.initState();
   }
@@ -51,6 +48,42 @@ class _EditProfileState extends State<EditProfile> {
   @override
   void dispose() {
     super.dispose();
+  }
+
+  void fillEditRequestData(DataBridge dataBridge) {
+    String filePhoto;
+    if (dataBridge.getCurrentPhoto == null)
+      filePhoto = null;
+    else
+      filePhoto = dataBridge.getCurrentPhoto.toString();
+
+    final userDta = dataBridge.getUserData().user;
+    EditRequest reg = EditRequest(
+      accessKey: "d78c1a5c-ccbe-4c26-ac08-43ed66c8afb9",
+      name: (_nameController == null) ? "" : _nameController.text.toString(),
+      phonenumber: (_phoneController == null) ? "" : _phoneController.text.toString(),
+      address: (_addressController == null) ? "" : _addressController.text.toString(),
+      description: dataBridge.getUserData().user.description.toString(),
+      pic: (_picController == null) ? "" : _picController.text.toString(),
+      iD: dataBridge.getUserData().user.id.toString(),
+      file: filePhoto,
+      availability: userDta.availability,
+      cliping: userDta.clipping,
+      coverageArea: userDta.coverageArea,
+      keyFeatures: userDta.keyFeatures,
+      styling: userDta.styling,
+      trainingCourses: userDta.trainingCourses,
+      trainingStartDate: userDta.trainingStartDate,
+      trainingYears: userDta.trainingYears,
+      yearsOfExperience: userDta.yearsOfExperience,
+    );
+  print(reg.toString()); 
+    
+    _repository.editUser(reg).then((onValue) {
+      SharedPref().saveLoginData(onValue);
+      dataBridge.setUserData(onValue);
+      Fluttertoast.showToast(msg: "Profile Edited");
+    });
   }
 
   String name;
@@ -64,34 +97,7 @@ class _EditProfileState extends State<EditProfile> {
             Icons.save,
           ),
           onPressed: () {
-            String filePhoto;
-            if (dataBridge.getCurrentPhoto == null)
-              filePhoto = null;
-            else
-              filePhoto = dataBridge.getCurrentPhoto.toString();
-
-            final reg = EditRequest(
-                accessKey: "d78c1a5c-ccbe-4c26-ac08-43ed66c8afb9",
-                name: (_nameController == null)
-                    ? ""
-                    : _nameController.text.toString(),
-                phonenumber: (_phoneController == null)
-                    ? ""
-                    : _phoneController.text.toString(),
-                address: (_addressController == null)
-                    ? ""
-                    : _addressController.text.toString(),
-                description: dataBridge.getUserData().user.description.toString(),
-                pic: (_picController == null)
-                    ? ""
-                    : _picController.text.toString(),
-                id: dataBridge.getUserData().user.id.toString(),
-                file: filePhoto);
-            _repository.editUser(reg).then((onValue) {
-              SharedPref().saveLoginData(onValue); 
-              dataBridge.setUserData(onValue); 
-              Fluttertoast.showToast(msg:"Profile Edited" ); 
-            });
+            fillEditRequestData(dataBridge);
           },
         ),
         body: SingleChildScrollView(
@@ -105,8 +111,7 @@ class _EditProfileState extends State<EditProfile> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Profile",
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                       )),
                 ],
               ),
@@ -118,11 +123,7 @@ class _EditProfileState extends State<EditProfile> {
                 hint: "Input your name",
                 controller: _nameController,
               ),
-              new InformationItem(
-                  name: "Address",
-                  hint: "Input your Address",
-                  maxLines: 2,
-                  controller: _addressController),
+              new InformationItem(name: "Address", hint: "Input your Address", maxLines: 2, controller: _addressController),
               new InformationItem(
                 name: "Email",
                 hint: "E-mail",
@@ -174,12 +175,7 @@ class _EditProfileState extends State<EditProfile> {
 }
 
 class InformationDate extends StatefulWidget {
-  const InformationDate(
-      {Key key,
-      @required this.name,
-      @required this.hint,
-      @required this.dateController})
-      : super(key: key);
+  const InformationDate({Key key, @required this.name, @required this.hint, @required this.dateController}) : super(key: key);
   final String hint;
   final String name;
   final TextEditingController dateController;
@@ -191,11 +187,7 @@ class InformationDate extends StatefulWidget {
 class _InformationDateState extends State<InformationDate> {
   DateTime selectedDate;
   Future<Null> _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: DateTime(2015, 8),
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
+    final DateTime picked = await showDatePicker(context: context, initialDate: DateTime(2015, 8), firstDate: DateTime(2015, 8), lastDate: DateTime(2101));
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
@@ -242,14 +234,7 @@ class _InformationDateState extends State<InformationDate> {
 }
 
 class InformationItem extends StatelessWidget {
-  const InformationItem(
-      {Key key,
-      @required this.name,
-      @required this.hint,
-      this.maxLines = 1,
-      this.enable = true,
-      this.controller})
-      : super(key: key);
+  const InformationItem({Key key, @required this.name, @required this.hint, this.maxLines = 1, this.enable = true, this.controller}) : super(key: key);
   final String hint;
   final String name;
   final int maxLines;
@@ -312,22 +297,18 @@ class ChangeProfilePicture extends StatelessWidget {
                   builder: (context) {
                     return Dialog(
                       child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             Text(
                               "Change Profile Picture",
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                             ListTile(
                               title: Text("Open Camera"),
                               onTap: () {
-                                CameraUtil()
-                                    .takePicture(fromCamera: true)
-                                    .then((onValue) {
+                                CameraUtil().takePicture(fromCamera: true).then((onValue) {
                                   final _currentData = dataBridge.getUserData();
 
                                   dataBridge.setCurrentPhoto(onValue);
@@ -339,11 +320,8 @@ class ChangeProfilePicture extends StatelessWidget {
                             ListTile(
                                 title: Text("Open Gallery"),
                                 onTap: () {
-                                  CameraUtil()
-                                      .takePicture(fromCamera: false)
-                                      .then((onValue) {
-                                    final _currentData =
-                                        dataBridge.getUserData();
+                                  CameraUtil().takePicture(fromCamera: false).then((onValue) {
+                                    final _currentData = dataBridge.getUserData();
 
                                     dataBridge.setCurrentPhoto(onValue);
                                     print(onValue);
@@ -363,10 +341,7 @@ class ChangeProfilePicture extends StatelessWidget {
                   border: Border.all(color: Colors.black, width: 2),
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                    image: (dataBridge.getCurrentPhoto == null)
-                        ? NetworkImage(Constants.getWebUrl() + "/$picture")
-                        : FileImage(
-                            File(dataBridge.getCurrentPhoto.toString())),
+                    image: (dataBridge.getCurrentPhoto == null) ? NetworkImage(Constants.getWebUrl() + "/$picture") : FileImage(File(dataBridge.getCurrentPhoto.toString())),
                     fit: BoxFit.fill,
                   )),
             ),
@@ -379,10 +354,7 @@ class ChangeProfilePicture extends StatelessWidget {
               height: 40,
               width: 40,
               child: Icon(Icons.image, color: Colors.white),
-              decoration: BoxDecoration(
-                  border: Border.all(width: 2, color: Colors.white),
-                  shape: BoxShape.circle,
-                  color: Colors.amber),
+              decoration: BoxDecoration(border: Border.all(width: 2, color: Colors.white), shape: BoxShape.circle, color: Colors.amber),
             ),
           )
         ],

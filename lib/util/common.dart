@@ -15,17 +15,17 @@ class Common {
 
   static final formatter = new NumberFormat("#,###");
 
- static  formatNumber(int number) {
+  static formatNumber(int number) {
     return formatter.format(number);
   }
 
-  
-  static Future showServicesDialog(BuildContext context,
-      {String content,
-      String title,
-      String phone,
-      String link,
-      String image}) async {
+  static String convertDate(String dateTime) {
+    var date = DateTime.parse(dateTime); 
+    var formatedDate = DateFormat("dd-MM-yyyy").format(date);
+    return formatedDate  ;
+  }
+
+  static Future showServicesDialog(BuildContext context, {String content, String title, String phone, String link, String image}) async {
     return showDialog(
         context: (context),
         builder: (context) => ShowAlertDialog(

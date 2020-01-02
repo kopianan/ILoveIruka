@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/provider/register_provider.dart';
+import 'package:i_love_iruka/widgets/color_palate.dart';
 
 class BuildStylingSlider extends StatefulWidget {
   BuildStylingSlider({@required this.regProv});
@@ -19,7 +20,7 @@ class _BuildStylingSliderState extends State<BuildStylingSlider> {
   Widget build(BuildContext context) {
     return Slider.adaptive(
       divisions: 3,
-      activeColor: Colors.red,
+      activeColor: ColorPalate.darkOrange,
       label: changed,
       max: 4,
       min: 1,

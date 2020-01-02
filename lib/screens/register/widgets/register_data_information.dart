@@ -71,7 +71,7 @@ class _RegisterDataInformationState extends State<RegisterDataInformation> {
       if (_passwordController.text.trim() != _repeatPasswordController.text.trim()) {
         Fluttertoast.showToast(msg: "Password doesn't match");
       } else {
-        (dataBridge.getRoleList().name.toString().toLowerCase().contains("groomer")) ? page = 2 : page = 3;
+        (dataBridge.getRoleList().toString().toLowerCase().contains("groomer")) ? page = 2 : page = 3;
 
         widget._registerAdditional.backAnimated(context, widget.c, page);
       }
@@ -129,15 +129,6 @@ class _RegisterDataInformationState extends State<RegisterDataInformation> {
                       SizedBox(
                         height: widget.distanceOfElement,
                       ),
-                      (widget.dataBridge.getRoleList().name.toString().toLowerCase() == "owner")
-                          ? CommonEditText(
-                              hintText: "PIC Information",
-                              labelText: "PIC",
-                              prefixIcon: Icons.phone_android,
-                              textEditingController: _picPhoneNumberController,
-                              onSave: registerProvider.setPic,
-                            )
-                          : Container(),
                       CommonEditText(
                         hintText: "Input phone number",
                         labelText: "Phone Number",
@@ -183,7 +174,19 @@ class _RegisterDataInformationState extends State<RegisterDataInformation> {
                       SizedBox(
                         height: widget.distanceOfElement,
                       ),
-                      (widget.dataBridge.getRoleList().name.toString().toLowerCase() == "groomer")
+                      (widget.dataBridge.getRoleList().toString().toLowerCase().contains("shop"))
+                          ? CommonEditText(
+                              hintText: "PIC Information",
+                              labelText: "PIC",
+                              prefixIcon: Icons.phone_android,
+                              textEditingController: _picPhoneNumberController,
+                              onSave: registerProvider.setPic,
+                            )
+                          : Container(),
+                      SizedBox(
+                        height: widget.distanceOfElement,
+                      ),
+                      (widget.dataBridge.getRoleList().toString().toLowerCase() == "groomer")
                           ? CommonEditText(
                               hintText: "Input description",
                               labelText: "Description",

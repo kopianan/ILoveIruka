@@ -4,41 +4,42 @@ class EditRequest {
   String phonenumber;
   String address;
   String description;
-  String id ; 
-  String pic; 
+  String iD;
+  String pic;
   String file;
+  String keyFeatures;
+  String coverageArea;
+  int yearsOfExperience;
+  bool availability;
+  int styling;
+  int cliping;
+  String trainingStartDate;
+  int trainingYears;
+  String trainingCourses;
+  bool show;
 
   EditRequest(
-      {this.accessKey,
+      {this.address,
+      this.availability,
+      this.cliping,
+      this.coverageArea,
+      this.keyFeatures,
       this.name,
-      this.phonenumber,
-      this.address,
+      this.styling,
+      this.trainingCourses,
+      this.trainingStartDate,
+      this.trainingYears,
+      this.yearsOfExperience,
+      this.accessKey,
       this.description,
-      this.id,
+      this.file,
+      this.iD,
+      this.phonenumber,
       this.pic,
-      this.file});
+      this.show});
 
-  EditRequest.fromJson(Map<String, dynamic> json) {
-    accessKey = json['accessKey'];
-    name = json['Name'];
-    phonenumber = json['Phonenumber'];
-    address = json['Address'];
-    description = json['Description'];
-    id = json['Id'];
-    pic = json['pic']; 
-    file = json['File'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['accessKey'] = this.accessKey;
-    data['Name'] = this.name;
-    data['Phonenumber'] = this.phonenumber;
-    data['Address'] = this.address;
-    data['Description'] = this.description;
-    data['Id'] = this.id;
-    data['PIC'] = this.pic; 
-    data['File'] = this.file;
-    return data;
+  @override
+  String toString() {
+    return 'EditRequest accessKey: $accessKey, name: $name, phonenumber: $phonenumber, address: $address, description: $description, iD: $iD, pic: $pic, file: $file, keyFeatures: $keyFeatures, coverageArea: $coverageArea, yearsOfExperience: $yearsOfExperience, availability: $availability, styling: $styling, cliping: $cliping, trainingStartDate: $trainingStartDate, trainingYears: $trainingYears, trainingCourses: $trainingCourses, show: $show';
   }
 }

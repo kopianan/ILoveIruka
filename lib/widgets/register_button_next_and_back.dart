@@ -15,7 +15,7 @@ class RegisterButtonNextAndBack extends StatelessWidget {
         color: buttonColor,
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         onPressed: () {
-          onButtonPressed();
+          onButtonPressed( );
         },
         child: Text(
           buttonText,

@@ -18,69 +18,101 @@ class LoginResponse {
 
 class User {
   String id;
+  String email;
   String name;
-  String certificate;
   String description;
   String address;
-  String picture;
-  bool isActive;
-  String createdDate;
-  String email;
   String phoneNumber;
-  String userName;
-  String role;
+  String picture;
+  String createdDate;
   String pIC;
+  String keyFeatures;
+  String coverageArea;
+  int yearsOfExperience;
+  bool availability;
+  int styling;
+  int clipping;
+  String trainingStartDate;
+  int trainingYears;
+  String trainingCourses;
   bool show;
+  String certificate;
+  String role;
+  bool isActive;
 
   User(
       {this.id,
+      this.email,
       this.name,
-      this.certificate,
       this.description,
       this.address,
-      this.picture,
-      this.isActive,
-      this.createdDate,
-      this.email,
       this.phoneNumber,
-      this.userName,
-      this.role,
+      this.picture,
+      this.createdDate,
       this.pIC,
-      this.show});
+      this.keyFeatures,
+      this.coverageArea,
+      this.yearsOfExperience,
+      this.availability,
+      this.styling,
+      this.clipping,
+      this.trainingStartDate,
+      this.trainingYears,
+      this.trainingCourses,
+      this.show,
+      this.certificate,
+      this.role,
+      this.isActive});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['Id'];
+    email = json['Email'];
     name = json['Name'];
-    certificate = json['Certificate'];
     description = json['Description'];
     address = json['Address'];
-    picture = json['Picture'];
-    isActive = json['IsActive'];
-    createdDate = json['CreatedDate'];
-    email = json['Email'];
     phoneNumber = json['PhoneNumber'];
-    userName = json['UserName'];
-    role = json['role'];
+    picture = json['Picture'];
+    createdDate = json['CreatedDate'];
     pIC = json['PIC'];
+    keyFeatures = json['KeyFeatures'];
+    coverageArea = json['CoverageArea'];
+    yearsOfExperience = json['YearsOfExperience'];
+    availability = json['Availability'];
+    styling = json['Styling'];
+    clipping = json['Clipping'];
+    trainingStartDate = json['TrainingStartDate'];
+    trainingYears = json['TrainingYears'];
+    trainingCourses = json['TrainingCourses'];
     show = json['Show'];
+    certificate = json['Certificate'];
+    role = json['Role'];
+    isActive = json['IsActive'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['Id'] = this.id;
+    data['Email'] = this.email;
     data['Name'] = this.name;
-    data['Certificate'] = this.certificate;
     data['Description'] = this.description;
     data['Address'] = this.address;
-    data['Picture'] = this.picture;
-    data['IsActive'] = this.isActive;
-    data['CreatedDate'] = this.createdDate;
-    data['Email'] = this.email;
     data['PhoneNumber'] = this.phoneNumber;
-    data['UserName'] = this.userName;
-    data['role'] = this.role;
+    data['Picture'] = this.picture;
+    data['CreatedDate'] = this.createdDate;
     data['PIC'] = this.pIC;
+    data['KeyFeatures'] = this.keyFeatures;
+    data['CoverageArea'] = this.coverageArea;
+    data['YearsOfExperience'] = this.yearsOfExperience;
+    data['Availability'] = this.availability;
+    data['Styling'] = this.styling;
+    data['Clipping'] = this.clipping;
+    data['TrainingStartDate'] = this.trainingStartDate;
+    data['TrainingYears'] = this.trainingYears;
+    data['TrainingCourses'] = this.trainingCourses;
     data['Show'] = this.show;
+    data['Certificate'] = this.certificate;
+    data['Role'] = this.role;
+    data['IsActive'] = this.isActive;
     return data;
   }
 }

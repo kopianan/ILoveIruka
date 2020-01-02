@@ -1,5 +1,7 @@
+import 'package:division/division.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_bloc.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_event.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_state.dart';
@@ -19,53 +21,60 @@ class GroomerList extends StatefulWidget {
 class _GroomerListState extends State<GroomerList> {
   @override
   void initState() {
+    _focusNode = FocusNode();
+
     dashboardBloc.add(GetUserByRole(UserByRoleRequest(role: "Groomer")));
     super.initState();
   }
 
-  var itemsUser = List<ListUser>();
-  var duplicateItems = List<ListUser>() ; 
+  FocusNode _focusNode;
+  // var itemsUser = List<ListUser>();
 
+  final dashboardBloc = DashboardBlocBloc();
 
+  List<ListUser> duplicateItems = List<ListUser>();
+  List<ListUser> sideItems = List<ListUser>();
+  var items = List<ListUser>();
   void filterSearchResults(String query) {
     List<ListUser> dummySearchList = List<ListUser>();
-    dummySearchList.addAll(itemsUser);
+
+    dummySearchList.addAll(duplicateItems);
+
+    print("duplicateItme " + duplicateItems.length.toString());
     if (query.isNotEmpty) {
       List<ListUser> dummyListData = List<ListUser>();
       dummySearchList.forEach((item) {
-        if (item.name.contains(query)) {
+        if (item.name.toString().toLowerCase().contains(query.toLowerCase()) || item.coverageArea.toString().toLowerCase().contains(query.toLowerCase())) {
           dummyListData.add(item);
         }
       });
+
       setState(() {
-        itemsUser.clear();
-        itemsUser.addAll(dummyListData);
+        items.clear();
+        items.addAll(dummyListData);
       });
       return;
     } else {
       setState(() {
-        itemsUser.clear();
-        itemsUser.addAll(duplicateItems);
+        items.clear();
+
+        items.addAll(duplicateItems);
       });
     }
   }
 
-  final dashboardBloc = DashboardBlocBloc();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: CustomScrollView(
           slivers: <Widget>[
             SliverToBoxAdapter(
               child: Text(
                 "Groomers",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 40),
+                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 40),
               ),
             ),
             SliverToBoxAdapter(
@@ -81,8 +90,7 @@ class _GroomerListState extends State<GroomerList> {
                 child: Row(
                   children: <Widget>[
                     new Padding(
-                      padding: EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 15.0),
+                      padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                       child: Icon(
                         Icons.search,
                         color: Colors.grey,
@@ -90,12 +98,24 @@ class _GroomerListState extends State<GroomerList> {
                     ),
                     new Expanded(
                       child: TextFormField(
-                        onChanged: (value){
-                          filterSearchResults(value); 
+                        onChanged: (value) {
+                          print("Onchanged" + value);
+                          filterSearchResults(value);
                         },
+                        focusNode: _focusNode,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
-                          
+                          suffixIcon: IconButton(
+                            icon: Txt(
+                              "X",
+                              style: TxtStyle()
+                                ..fontSize(20)
+                                ..bold(),
+                            ),
+                            onPressed: () {
+                              FocusScope.of(context).requestFocus(FocusNode());
+                            },
+                          ),
                           hintText: "Search",
                           border: InputBorder.none,
                           hintStyle: TextStyle(color: Colors.grey),
@@ -113,10 +133,9 @@ class _GroomerListState extends State<GroomerList> {
               bloc: dashboardBloc,
               listener: (context, state) {
                 if (state is GetUserByRoleCompleted) {
-                
+                  duplicateItems = state.response.listUser;
                   setState(() {
-                      itemsUser = state.response.listUser;
-                  duplicateItems = itemsUser ; 
+                    items.addAll(duplicateItems);
                   });
                 }
               },
@@ -124,54 +143,18 @@ class _GroomerListState extends State<GroomerList> {
                 bloc: dashboardBloc,
                 builder: (context, state) {
                   if (state is GetUserByRoleLoading) {
-                    return SliverToBoxAdapter(
-                        child: Container(child: Center(child: CircularProgressIndicator())));
+                    return SliverToBoxAdapter(child: Container(child: Center(child: CircularProgressIndicator())));
                   } else if (state is GetUserByRoleCompleted) {
                     final dataSnap = state.response.listUser;
                     return SliverList(
                       delegate: SliverChildListDelegate(
-                        [
-                          GroomerHeaderList(dataSnap: dataSnap),
-                          ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount:itemsUser.length,
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                  onTap: () {
-                                    Provider.of<DataBridge>(context,
-                                            listen: false)
-                                        .setCurrentSelectedGroomer(
-                                            itemsUser[index]);
-                                    Navigator.of(context)
-                                        .pushNamed("/groomer_detail");
-                                  },
-                                  child: Column(
-                                    children: <Widget>[
-                                      Container(
-                                          height: 50,
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            itemsUser[index].name,
-                                            style: TextStyle(fontSize: 20),
-                                          )),
-                                      Divider(
-                                        height: 1,
-                                        color: Colors.grey,
-                                      ),
-                                    ],
-                                  ));
-                            },
-                          )
-                        ],
+                        [GroomerHeaderList(dataSnap: dataSnap), buildListGroomer()],
                       ),
                     );
                   } else if (state is GetUserByRoleError) {
-                    return SliverToBoxAdapter(
-                        child: Center(child: Text("Please refresh page")));
+                    return SliverToBoxAdapter(child: Center(child: Text("Please refresh page")));
                   }
-                  return SliverToBoxAdapter(
-                      child: Center(child: Text("Please refresh page")));
+                  return SliverToBoxAdapter(child: Center(child: Text("Please refresh page")));
                 },
               ),
             ),
@@ -179,6 +162,36 @@ class _GroomerListState extends State<GroomerList> {
         ),
       ),
     ));
+  }
+
+  ListView buildListGroomer() {
+    return ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        return InkWell(
+            onTap: () {
+              Provider.of<DataBridge>(context, listen: false).setCurrentSelectedGroomer(items[index]);
+              Navigator.of(context).pushNamed("/groomer_detail");
+            },
+            child: Column(
+              children: <Widget>[
+                Container(
+                    height: 50,
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      items[index].name,
+                      style: TextStyle(fontSize: 20),
+                    )),
+                Divider(
+                  height: 1,
+                  color: Colors.grey,
+                ),
+              ],
+            ));
+      },
+    );
   }
 }
 
@@ -196,8 +209,7 @@ class GroomerHeaderList extends StatelessWidget {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              Provider.of<DataBridge>(context, listen: false)
-                  .setCurrentSelectedGroomer(dataSnap[index]);
+              Provider.of<DataBridge>(context, listen: false).setCurrentSelectedGroomer(dataSnap[index]);
               Navigator.of(context).pushNamed("/groomer_detail");
             },
             child: Card(
@@ -212,25 +224,23 @@ class GroomerHeaderList extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 2),
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: NetworkImage(Constants.getWebUrl()+"/"+dataSnap[index].picture.toString()),
-                  fit: BoxFit.fill,
-                )),
-          ),
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black, width: 2),
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: NetworkImage(Constants.getWebUrl() + "/" + dataSnap[index].picture.toString()),
+                                fit: BoxFit.fill,
+                              )),
+                        ),
                         SizedBox(
                           width: 20,
                         ),
                         Flexible(
-                                                  child: Text(
-                            
+                          child: Text(
                             dataSnap[index].name,
                             style: TextStyle(
-                              
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),

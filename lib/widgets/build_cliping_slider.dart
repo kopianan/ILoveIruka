@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/provider/register_provider.dart';
+import 'package:i_love_iruka/widgets/color_palate.dart';
 
 class BuildClipingSlider extends StatefulWidget {
   BuildClipingSlider({@required this.regProv});
@@ -15,7 +16,7 @@ class _BuildClipingSliderState extends State<BuildClipingSlider> {
   Widget build(BuildContext context) {
   return Slider.adaptive(
       divisions: 3,
-      activeColor: Colors.red,
+      activeColor: ColorPalate.darkOrange,
       label:changed,
       max: 4,
       min: 1,

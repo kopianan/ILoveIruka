@@ -21,13 +21,13 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _autoValidate = false;
 
-  var focusedBorderUnderlineInputBorder =
-      UnderlineInputBorder(borderSide: BorderSide(color: Colors.white));
-  var enabledBorderUnderlineInputBorder =
-      UnderlineInputBorder(borderSide: BorderSide(color: Colors.white));
+  var focusedBorderUnderlineInputBorder = UnderlineInputBorder(borderSide: BorderSide(color: Colors.white));
+  var enabledBorderUnderlineInputBorder = UnderlineInputBorder(borderSide: BorderSide(color: Colors.white));
   var hintStyleTextStyle = TextStyle(color: Colors.white);
   var labelStyleTextStyle = TextStyle(color: Colors.grey);
   var inputTextStyle = TextStyle(color: Colors.white);
+  var usernmaeController = TextEditingController();
+  var passwordController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -40,19 +40,16 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Color(0xffF6F5F8),
         body: Container(
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                Color(0xff0b4987),
-                Color(0xff558dc5),
-              ])),
+              gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [
+            Color(0xff0b4987),
+            Color(0xff558dc5),
+          ])),
           child: BlocListener(
             bloc: loginBlocBloc,
             listener: (context, state) {
               if (state is LoginComplete) {
                 //go to another page
-                Provider.of<DataBridge>(context).setUserData(state.response); 
+                Provider.of<DataBridge>(context).setUserData(state.response);
                 Navigator.of(context).pushReplacementNamed("/dashboard");
               }
               if (state is LoginError) {
@@ -64,11 +61,11 @@ class _LoginPageState extends State<LoginPage> {
                 builder: (context, state) {
                   if (state is LoginLoading) {
                     return Center(child: CircularProgressIndicator());
-                  } else if (state is InitialLoginBlocState){
+                  } else if (state is InitialLoginBlocState) {
                     return buildLoginPageInitial();
-                  }else {
-                    return buildLoginPageInitial() ; 
                   }
+
+                  return buildLoginPageInitial();
                 }),
           ),
         ));
@@ -77,21 +74,26 @@ class _LoginPageState extends State<LoginPage> {
   Widget buildLoginPageInitial() {
     return Stack(children: <Widget>[
       Positioned(
-        bottom: -80,
-        right: -30,
-        child: Image.asset("images/assets/iruka_cloud.png",width: 200,)
-      ),
-
-       Positioned(
-        bottom: 50,
-        right: 170,
-        child: Image.asset("images/assets/iruka_cloud.png",width: 120,)
-      ),
-       Positioned(
-        bottom: 150,
-        right: 30,
-        child: Image.asset("images/assets/iruka_cloud.png",width: 80,)
-      ),
+          bottom: -80,
+          right: -30,
+          child: Image.asset(
+            "images/assets/iruka_cloud.png",
+            width: 200,
+          )),
+      Positioned(
+          bottom: 50,
+          right: 170,
+          child: Image.asset(
+            "images/assets/iruka_cloud.png",
+            width: 120,
+          )),
+      Positioned(
+          bottom: 150,
+          right: 30,
+          child: Image.asset(
+            "images/assets/iruka_cloud.png",
+            width: 80,
+          )),
       Container(
         margin: EdgeInsets.only(top: 70, right: 20, left: 20),
         child: Column(
@@ -176,8 +178,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   String validateEmail(String value) {
-    Pattern pattern =
-        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    Pattern pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regex = new RegExp(pattern);
     if (!regex.hasMatch(value))
       return 'Enter Valid Email';
@@ -198,8 +199,7 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState.validate()) {
 //    If all data are correct then save data to out variables
       _formKey.currentState.save();
-      final dataLogin =
-          LoginRequest(username: "$_email", password: "$_password");
+      final dataLogin = LoginRequest(username: "$_email", password: "$_password");
 
       loginBloc.add(LoginUser(loginData: dataLogin));
     } else {
@@ -248,6 +248,7 @@ class _LoginPageState extends State<LoginPage> {
           new Expanded(
             child: TextFormField(
               style: inputTextStyle,
+              controller: passwordController,
               validator: validatePassword,
               onSaved: (String val) {
                 _password = val;
@@ -262,8 +263,7 @@ class _LoginPageState extends State<LoginPage> {
                       _obscureText = !_obscureText;
                     });
                   },
-                  child: Icon(
-                      _obscureText ? Icons.visibility : Icons.visibility_off),
+                  child: Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
                 ),
                 labelText: 'Enter your password',
                 labelStyle: labelStyleTextStyle,
@@ -297,6 +297,7 @@ class _LoginPageState extends State<LoginPage> {
           new Expanded(
             child: TextFormField(
               style: inputTextStyle,
+              controller: usernmaeController,
               validator: validateEmail,
               onSaved: (String val) {
                 _email = val;

@@ -9,7 +9,7 @@ import 'package:i_love_iruka/models/model/user_groomers_model.dart';
 class DataBridge extends ChangeNotifier {
   String _filePath;
   LoginResponse _userData;
-  RoleList _roleList;
+  String _roleList;
   ProductList _productList;
   ListUser _listUser;
   String _totalPoint;
@@ -39,7 +39,7 @@ class DataBridge extends ChangeNotifier {
     this._provinceData = province;
     print(" provider");
     print(province.toJson());
-    notifyListeners() ;
+    notifyListeners();
   }
 
   province.Rajaongkir get getProvinceData => this._provinceData;
@@ -85,14 +85,14 @@ class DataBridge extends ChangeNotifier {
 
   ProductList get getProductList => this._productList;
 
-  void setRoleList(RoleList roleList) {
+  void setRoleList(String roleList) {
     this._roleList = roleList;
     notifyListeners();
   }
 
-  RoleList getRoleList() {
+  String getRoleList() {
     if (this._roleList == null)
-      return RoleList(name: null);
+      return null;
     else
       return this._roleList;
   }
@@ -103,6 +103,10 @@ class DataBridge extends ChangeNotifier {
   }
 
   LoginResponse getUserData() {
+    if (this._userData == null) {
+      _userData.user = User();
+      return _userData;
+    }
     return this._userData;
   }
 

@@ -38,6 +38,9 @@ class Repository {
   Future<String> changeUserStatus(String id, bool status) =>
       _apiProvider.changeUserStatusAsync(status  , id );
 
+  Future<String> changeUserAvailability(String id, bool status) =>
+      _apiProvider.changeUserAvailabilityAsync(status  , id );
+
   Future<LoginResponse> editUser(EditRequest reg) =>
       _apiProvider.editUserAsync(reg);
 

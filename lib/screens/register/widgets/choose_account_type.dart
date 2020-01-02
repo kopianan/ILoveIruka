@@ -45,22 +45,22 @@ class ChooseAccountType extends StatelessWidget {
               Expanded(
                 child: RoleDropDown(),
               ),
-              Container(
-                  margin: EdgeInsets.only(left: 10),
-                  alignment: Alignment.center,
-                  child: IconButton(
-                      onPressed: () {},
-                      tooltip: (dataBridge.getRoleList() == null)
-                          ? "Choose your role list for registration"
-                          : (dataBridge.getRoleList().name.toString().toLowerCase().contains("groomer"))
-                              ? "Register as Groomer to promote yourself"
-                              : (dataBridge.getRoleList().name.toString().toLowerCase().contains("owner"))
-                                  ? "You can find groomer to hire them"
-                                  : (dataBridge.getRoleList().name.toString().toLowerCase().contains("customer")) ? "Make your pet happy and find more exciting stuff" : "No Descritpion",
-                      icon: Icon(
-                        Icons.info,
-                        color: Colors.grey,
-                      )))
+              // Container(
+              //     margin: EdgeInsets.only(left: 10),
+              //     alignment: Alignment.center,
+              //     child: IconButton(
+              //         // onPressed: () {},
+              //         // tooltip: (dataBridge.getRoleList() == null)
+              //         //     ? "Choose your role list for registration"
+              //         //     : (dataBridge.getRoleList().name.toString().toLowerCase().contains("groomer"))
+              //         //         ? "Register as Groomer to promote yourself"
+              //         //         : (dataBridge.getRoleList().name.toString().toLowerCase().contains("owner"))
+              //         //             ? "You can find groomer to hire them"
+              //         //             : (dataBridge.getRoleList().name.toString().toLowerCase().contains("customer")) ? "Make your pet happy and find more exciting stuff" : "No Descritpion",
+              //         icon: Icon(
+              //           Icons.info,
+              //           color: Colors.grey,
+              //         )))
             ],
           ),
           Row(
@@ -89,7 +89,7 @@ class ChooseAccountType extends StatelessWidget {
     BuildContext context,
   ) {
     ///validate before go to next page
-    if (dataBridge.getRoleList().name == null) {
+    if (dataBridge.getRoleList() == null) {
       Fluttertoast.showToast(
         msg: "Please Choose Type First",
       );

@@ -4,6 +4,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/provider/register_provider.dart';
 import 'package:i_love_iruka/screens/register/register_additional.dart';
+import 'package:i_love_iruka/util/dimens.dart';
 import 'package:i_love_iruka/widgets/build_cliping_slider.dart';
 import 'package:i_love_iruka/widgets/build_styling_slider.dart';
 import 'package:i_love_iruka/widgets/color_palate.dart';
@@ -34,13 +35,34 @@ class GroomerForm extends StatefulWidget {
 }
 
 class _GroomerFormState extends State<GroomerForm> {
-  final double distanceOfWidget = 10;
+  RegisterProvider regProvider;
+  bool _autoValidate = false;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   var _experienceLongController = TextEditingController();
   var _keyFeaturesController = TextEditingController();
   var _trainDateController = TextEditingController();
   var _trainLongController = TextEditingController();
   var _trainNotesController = TextEditingController();
-  RegisterProvider regProvider;
+
+  // validateRegisterUser() {
+  //   int page;
+  //   if (_formKey.currentState.validate()) {
+  //     _formKey.currentState.save();
+
+  //     if (_passwordController.text.trim() != _repeatPasswordController.text.trim()) {
+  //       Fluttertoast.showToast(msg: "Password doesn't match");
+  //     } else {
+  //       (dataBridge.getRoleList().name.toString().toLowerCase().contains("groomer")) ? page = 2 : page = 3;
+
+  //       widget._registerAdditional.backAnimated(context, widget.c, page);
+  //     }
+  //   } else {
+  //     setState(() {
+  //       _autoValidate = true;
+  //     });
+  //   }
+  // }
+
   @override
   void initState() {
     regProvider = widget._registerProvider;
@@ -75,112 +97,116 @@ class _GroomerFormState extends State<GroomerForm> {
                 SizedBox(
                   height: 30,
                 ),
-                Container(
-                  padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                  child: Column(
-                    children: <Widget>[
-                      HomeGroomingAvailability(
-                        regProv: regProvider,
-                      ),
-                      SizedBox(
-                        height: distanceOfWidget + 10,
-                      ),
-                      Column(
-                        children: <Widget>[
-                          Txt("Your styling skill :", style: sliderLabel),
-                          BuildStylingSlider(
-                            regProv: regProvider,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: distanceOfWidget + 10,
-                      ),
-                      Column(
-                        children: <Widget>[
-                          Txt("Your clipping skill :", style: sliderLabel),
-                          BuildClipingSlider(
-                            regProv: regProvider,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: distanceOfWidget,
-                      ),
-                      ProvinceDropdown(),
-                      SizedBox(
-                        height: distanceOfWidget,
-                      ),
-                      BuildCityDropdown(),
-                      SizedBox(
-                        height: distanceOfWidget,
-                      ),
-                      CommonEditText(
-                        hintText: "10",
-                        labelText: "Experience long",
-                        textEditingController: _experienceLongController,
-                        suffixText: "Years",
-                        textInputType: TextInputType.number,
-                      ),
-                      SizedBox(
-                        height: distanceOfWidget,
-                      ),
-                      CommonEditText(
-                        hintText: "What is your key features",
-                        labelText: "Features",
-                        textEditingController: _keyFeaturesController,
-                        textInputType: TextInputType.number,
-                      ),
-                      BuildTrainingSwitch(
-                        regProv: regProvider,
-                      ),
-                      (regProvider.getJoinTraining == false)
-                          ? Container()
-                          : Column(
-                              children: <Widget>[
-                                TextFormField(
-                                  enableInteractiveSelection: false,
-                                  onTap: () {
-                                    DatePicker.showDatePicker(context, maxTime: DateTime.now(), minTime: DateTime(1990), onConfirm: (selectedDate) {
-                                      var date = selectedDate.year.toString() + "-" + selectedDate.month.toString() + "-" + selectedDate.day.toString();
-
-                                      regProvider.setTrainDate(date);
-                                      _trainDateController.text = date;
-                                    });
-                                  },
-                                  controller: _trainDateController,
-                                  decoration: InputDecoration(
-                                      suffixIcon: Icon(Icons.date_range),
-                                      hintText: "Training date at Vivianna's Grooming School",
-                                      labelText: "Training Date",
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(5),
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: distanceOfWidget,
-                                ),
-                                CommonEditText(
-                                  hintText: "10",
-                                  labelText: "Total year",
-                                  textEditingController: _trainLongController,
-                                  suffixText: "Year(s)",
-                                  textInputType: TextInputType.number,
-                                ),
-                                SizedBox(
-                                  height: distanceOfWidget,
-                                ),
-                                DescriptionEditText(
-                                  hintText: "What Courses",
-                                  labelText: "Courses",
-                                  minLines: 3,
-                                  maxLines: 5,
-                                  textEditingController: _trainNotesController,
-                                  textInputType: TextInputType.text,
-                                ),
-                              ],
+                Form(
+                  autovalidate: _autoValidate,
+                  key: _formKey,
+                  child: Container(
+                    padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                    child: Column(
+                      children: <Widget>[
+                        HomeGroomingAvailability(
+                          regProv: regProvider,
+                        ),
+                        SizedBox(
+                          height: Dimens.distanceOfWidget + 10,
+                        ),
+                        Column(
+                          children: <Widget>[
+                            Txt("Your styling skill :", style: sliderLabel),
+                            BuildStylingSlider(
+                              regProv: regProvider,
                             ),
-                    ],
+                          ],
+                        ),
+                        SizedBox(
+                          height: Dimens.distanceOfWidget + 10,
+                        ),
+                        Column(
+                          children: <Widget>[
+                            Txt("Your clipping skill :", style: sliderLabel),
+                            BuildClipingSlider(
+                              regProv: regProvider,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: Dimens.distanceOfWidget,
+                        ),
+                        ProvinceDropdown(),
+                        SizedBox(
+                          height: Dimens.distanceOfWidget,
+                        ),
+                        BuildCityDropdown(),
+                        SizedBox(
+                          height: Dimens.distanceOfWidget,
+                        ),
+                        CommonEditText(
+                          hintText: "10",
+                          labelText: "Experience long",
+                          textEditingController: _experienceLongController,
+                          suffixText: "Years",
+                          textInputType: TextInputType.number,
+                        ),
+                        SizedBox(
+                          height: Dimens.distanceOfWidget,
+                        ),
+                        CommonEditText(
+                          hintText: "What is your key features",
+                          labelText: "Features",
+                          textEditingController: _keyFeaturesController,
+                          textInputType: TextInputType.number,
+                        ),
+                        BuildTrainingSwitch(
+                          regProv: regProvider,
+                        ),
+                        (regProvider.getJoinTraining == false)
+                            ? Container()
+                            : Column(
+                                children: <Widget>[
+                                  TextFormField(
+                                    enableInteractiveSelection: false,
+                                    onTap: () {
+                                      DatePicker.showDatePicker(context, maxTime: DateTime.now(), minTime: DateTime(1990), onConfirm: (selectedDate) {
+                                        var date = selectedDate.day.toString() + "-" + selectedDate.month.toString() + "-" + selectedDate.year.toString();
+
+                                        regProvider.setTrainDate(date);
+                                        _trainDateController.text = date;
+                                      });
+                                    },
+                                    controller: _trainDateController,
+                                    decoration: InputDecoration(
+                                        suffixIcon: Icon(Icons.date_range),
+                                        hintText: "Training date at Vivianna's Grooming School",
+                                        labelText: "Training Date",
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(5),
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    height: Dimens.distanceOfWidget,
+                                  ),
+                                  CommonEditText(
+                                    hintText: "10",
+                                    labelText: "Total year",
+                                    textEditingController: _trainLongController,
+                                    suffixText: "Year(s)",
+                                    textInputType: TextInputType.number,
+                                  ),
+                                  SizedBox(
+                                    height: Dimens.distanceOfWidget,
+                                  ),
+                                  DescriptionEditText(
+                                    hintText: "What Courses",
+                                    labelText: "Courses",
+                                    minLines: 3,
+                                    maxLines: 5,
+                                    textEditingController: _trainNotesController,
+                                    textInputType: TextInputType.text,
+                                  ),
+                                ],
+                              ),
+                      ],
+                    ),
                   ),
                 )
               ],
@@ -246,6 +272,7 @@ class BuildTrainingSwitch extends StatelessWidget {
       onChanged: (val) {
         regProv.setJoinTraining(val);
       },
+      activeColor: ColorPalate.darkOrange,
       title: Text("Have you ever been trained?"),
       subtitle: Text("Training at Vivianna’s Grooming School"),
       value: regProv.getJoinTraining,
@@ -265,6 +292,7 @@ class HomeGroomingAvailability extends StatelessWidget {
       child: SwitchListTile(
         title: Text("Home Grooming Availability"),
         subtitle: Text("Is groomer available with home grooming ?"),
+        activeColor: ColorPalate.darkOrange,
         value: regProv.getIsAvailable,
         onChanged: (newVal) {
           regProv.setIsAvailable(newVal);

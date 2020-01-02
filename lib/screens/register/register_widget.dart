@@ -186,18 +186,17 @@ class _RoleDropDownState extends State<RoleDropDown> {
                   elevation: 3,
                   isExpanded: true,
                   onChanged: (val) {
-                    final newVal = roles.roleList.firstWhere((test) => test.name == val);
-                    dataBridge.setRoleList(newVal);
+                    dataBridge.setRoleList(val);
                   },
-                  value: dataBridge.getRoleList().name,
+                  value: dataBridge.getRoleList(),
                   hint: Text("User Type"),
                   items: roles.roleList.map((f) {
                     return DropdownMenuItem(
                       child: Text(
-                        f.name,
+                        f.toString(),
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                       ),
-                      value: f.name,
+                      value: f.toString(),
                     );
                   }).toList(),
                 ),

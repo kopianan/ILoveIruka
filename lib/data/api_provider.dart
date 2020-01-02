@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:i_love_iruka/models/model/event_model.dart';
 import 'package:i_love_iruka/models/model/get_city_model.dart';
-import 'package:i_love_iruka/models/model/get_point_and_last_transaction.dart';
 import 'package:i_love_iruka/models/model/get_province_model.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/models/model/product_model.dart';
@@ -19,14 +18,9 @@ import 'package:i_love_iruka/util/constants.dart';
 
 class ApiProvider {
   final Dio dio = Dio();
-  Map<String, String> requestHeaders = {
-    'Content-type': 'application/json',
-    'accessKey': 'd78c1a5c-ccbe-4c26-ac08-43ed66c8afb9'
-  };
+  Map<String, String> requestHeaders = {'Content-type': 'application/json', 'accessKey': 'd78c1a5c-ccbe-4c26-ac08-43ed66c8afb9'};
 
-  Map<String, String> rajaOngkirHeader = {
-    'key': "${Constants.getRajaOngkirApi}"
-  };
+  Map<String, String> rajaOngkirHeader = {'key': "${Constants.getRajaOngkirApi}"};
   String _baseUrl = Constants.getBaseUrl();
   Future<LoginResponse> loginUser(LoginRequest login) async {
     print(login.toJson());
@@ -34,40 +28,86 @@ class ApiProvider {
 
     response = await http.post(_baseUrl + "/Login",
         body: jsonEncode(login.toJson()),
-        // body: login,
         headers: requestHeaders);
-    print(response.body);
-    final data = LoginResponse.fromJson(json.decode(response.body));
+    final dataJson = await json.decode(response.body); 
+    final data = LoginResponse.fromJson(dataJson);
     return data;
   }
 
-  Future<String> registerUser(RegisterRequest registerData) async {
+  Future<LoginResponse> registerUser(RegisterRequest registerData) async {
     String url = _baseUrl + "/RegisterUserMobile";
     LoginResponse loginResponse;
+    FormData formData;
 
-    FormData formData = FormData.fromMap({
-      "accessKey": registerData.accessKey,
-      "Name": registerData.name,
-      "Email": registerData.email,
-      "Password": registerData.password,
-      "Phonenumber": registerData.phonenumber,
-      "Address": registerData.address,
-      "Description": registerData.description,
-      "Role": registerData.role,
-      "PIC": registerData.pic,
-      "file": await MultipartFile.fromFile(registerData.file)
-    });
-    print(
-        "${registerData.accessKey} ${registerData.name} ${registerData.email} ${registerData.password} ${registerData.phonenumber} ${registerData.address}  ${registerData.description} ${registerData.role} ${registerData.file}");
-
-    Response response = await dio.post(
-      url,
-      data: formData,
-    );
-    if (response.statusCode == 200) {
-      return "OK";
+    if (registerData.role.toString() == "807b85a8-bcc3-4dfe-87cd-e8b4fb20b949") {
+      //if the user is customer
+      formData = FormData.fromMap({
+        "accessKey": registerData.accessKey,
+        "Name": registerData.name,
+        "Email": registerData.email,
+        "Password": registerData.password.trim(),
+        "Phonenumber": registerData.phonenumber,
+        "Address": registerData.address,
+        "Description": registerData.description,
+        "Role": registerData.role,
+        "file": MultipartFile.fromFileSync(registerData.file)
+      });
+    } else if (registerData.role.toString() == "bc12c9cd-008c-4d38-a499-a9aefe9a22c0") {
+      //User is groomer
+      formData = FormData.fromMap({
+        "accessKey": registerData.accessKey,
+        "Name": registerData.name,
+        "Email": registerData.email,
+        "Password": registerData.password.trim(),
+        "Phonenumber": registerData.phonenumber,
+        "Address": registerData.address,
+        "Description": registerData.description,
+        "Role": registerData.role,
+        "file": MultipartFile.fromFileSync(registerData.file),
+        "KeyFeatures": registerData.keyFeatures,
+        "CoverageArea": registerData.coverageArea,
+        "YearsOfExperience": registerData.yearsOfExperience,
+        "Availability": registerData.availability,
+        "Styling": registerData.styling,
+        "Cliping": registerData.cliping,
+        "TrainingYears": registerData.trainingYears,
+        "TrainingCourses": registerData.trainingCourses,
+        "TrainingStartDate": registerData.trainingStartDate
+      });
     } else {
-      return null;
+      formData = FormData.fromMap({
+        "accessKey": registerData.accessKey,
+        "Name": registerData.name,
+        "Email": registerData.email,
+        "Password": registerData.password.trim(),
+        "Phonenumber": registerData.phonenumber,
+        "Address": registerData.address.trim(),
+        "Description": registerData.description,
+        "Role": registerData.role,
+        "PIC": registerData.pIC,
+        "file": MultipartFile.fromFileSync(registerData.file)
+      });
+    }
+
+    try {
+      Response response = await dio.post(
+        url,
+        data: formData,
+      );
+
+      if (response.statusCode == 200) {
+        var jsonData = LoginResponse.fromJson(response.data);
+
+        return jsonData;
+      } else {
+        return null;
+      }
+    } on DioError catch (e) {
+      print(e.message);
+      print(e.request);
+      print(e.response); 
+      print(" error");
+      print(e.error);
     }
   }
 
@@ -81,12 +121,18 @@ class ApiProvider {
       "Phonenumber": registerData.phonenumber,
       "Address": registerData.address,
       "Description": registerData.description,
-      "Id": registerData.id,
+      "Id": registerData.iD,
       "PIC": registerData.pic,
-      "Id": registerData.id,
-      "file": (registerData.file == null)
-          ? null
-          : await MultipartFile.fromFile(registerData.file)
+      "file": (registerData.file == null) ? null : await MultipartFile.fromFile(registerData.file),
+      "KeyFeatures" : registerData.keyFeatures,
+      "CoverageArea" : registerData.coverageArea,
+      "YearsOfExperience" : registerData.yearsOfExperience,
+      "Availability" : registerData.availability,
+      "Styling" : registerData.styling,
+      "Clipping" : registerData.cliping,
+      "TrainingStartDate" : registerData.trainingStartDate,
+      "TrainingYears" : registerData.trainingYears,
+      "TrainingCourses" : registerData.trainingCourses,
     });
     print("testasync");
     Response response = await dio.post(
@@ -96,8 +142,7 @@ class ApiProvider {
     print("testEditUser");
 
     if (response.statusCode == 200) {
-      loginResponse =
-          LoginResponse.fromJson(json.decode(json.encode(response.data)));
+      loginResponse = LoginResponse.fromJson(json.decode(json.encode(response.data)));
       loginResponse.user.show = true;
       return loginResponse;
     } else {
@@ -108,6 +153,9 @@ class ApiProvider {
   Future<RolesModel> getRolesUser() async {
     http.Response response;
     response = await http.get(_baseUrl + "/GetRole");
+    print("Jancok");
+    print(response.body);
+    
     final data = RolesModel.fromJson(json.decode(response.body));
     return data;
   }
@@ -136,13 +184,11 @@ class ApiProvider {
     return data;
   }
 
-  Future<UserGroomersModel> getGroomerListAsync(
-      UserByRoleRequest request) async {
+  Future<UserGroomersModel> getGroomerListAsync(UserByRoleRequest request) async {
     UserGroomersModel data;
     http.Response response;
     print(request.toJson());
-    response = await http.post(_baseUrl + "/GetUserByRole",
-        body: jsonEncode(request.toJson()), headers: requestHeaders);
+    response = await http.post(_baseUrl + "/GetUserByRole", body: jsonEncode(request.toJson()), headers: requestHeaders);
 
     if (response.statusCode == 200) {
       data = UserGroomersModel.fromJson(json.decode(response.body));
@@ -154,9 +200,19 @@ class ApiProvider {
 
   Future<String> changeUserStatusAsync(bool status, String id) async {
     Response response;
-    response = await dio.put(_baseUrl + "/ChangeGroomerShowStatus",
-        queryParameters: {"userId": "$id", "status": "$status"},
-        options: Options(headers: requestHeaders));
+    response = await dio.put(_baseUrl + "/ChangeGroomerShowStatus", queryParameters: {"userId": "$id", "status": "$status"}, options: Options(headers: requestHeaders));
+
+    final testData = response.data.toString();
+    if (response.statusCode == 200) {
+      return testData;
+    } else
+      return "null";
+  }
+
+  
+  Future<String> changeUserAvailabilityAsync(bool status, String id) async {
+    Response response;
+    response = await dio.put(_baseUrl + "/ChangeGroomerAvailabilityStatus", queryParameters: {"userId": "$id", "status": "$status"}, options: Options(headers: requestHeaders));
 
     final testData = response.data.toString();
     if (response.statusCode == 200) {
@@ -167,37 +223,27 @@ class ApiProvider {
 
   Future<String> getPointAndLastTransactionDataAsync(String request) async {
     Response response;
-    response = await dio.get(_baseUrl + "/GetSpecificCustomerLastTransaction",
-        queryParameters: {"id": "$request"},
-        options: Options(headers: requestHeaders));
+    response = await dio.get(_baseUrl + "/GetSpecificCustomerLastTransaction", queryParameters: {"id": "$request"}, options: Options(headers: requestHeaders));
 
-    final testData =
-        json.decode(json.encode(response.data))["customerPoints"].toString();
+    final testData = json.decode(json.encode(response.data))["customerPoints"].toString();
     if (response.statusCode == 200) {
       return testData;
     } else
       return "null";
   }
 
-  Future<List<TransactionHistoryDetailModel>> getHistoryTransactionAsync(
-      String userId) async {
+  Future<List<TransactionHistoryDetailModel>> getHistoryTransactionAsync(String userId) async {
     print(userId);
     final Dio dio = Dio();
     var queryParameters = {
       'id': '$userId',
     };
-    Response response = await dio.get(
-        Constants.getWebUrl() +
-            Constants.getApiUrl() +
-            "/GetSpecificCustomerTransactionHistory",
-        queryParameters: queryParameters,
-        options: Options(headers: requestHeaders));
+    Response response =
+        await dio.get(Constants.getWebUrl() + Constants.getApiUrl() + "/GetSpecificCustomerTransactionHistory", queryParameters: queryParameters, options: Options(headers: requestHeaders));
 
     if (response.statusCode == 200) {
       final List dataModel = jsonDecode(jsonEncode(response.data));
-      var listTransaction = dataModel
-          .map((f) => TransactionHistoryDetailModel.fromJson(f))
-          .toList();
+      var listTransaction = dataModel.map((f) => TransactionHistoryDetailModel.fromJson(f)).toList();
       print(listTransaction.length);
       print(dataModel.toList());
       return listTransaction;
@@ -208,13 +254,11 @@ class ApiProvider {
   Future<GetProvinceModel> getProvincesAsync() async {
     Response response;
     try {
-      response = await dio.get(Constants.getRajaOngkirUrl + "/starter/province",
-          options: Options(headers: rajaOngkirHeader));
+      response = await dio.get(Constants.getRajaOngkirUrl + "/starter/province", options: Options(headers: rajaOngkirHeader));
 
       if (response.statusCode == 200) {
         print(" test");
-        final provinceModel =
-            GetProvinceModel.fromJson(response.data);
+        final provinceModel = GetProvinceModel.fromJson(response.data);
         print(' Test');
         print(provinceModel.rajaongkir.results.first.toJson());
         return provinceModel;
@@ -225,19 +269,16 @@ class ApiProvider {
     }
   }
 
-  Future<GetCityModel> getCitiesAsync(int provinceId ) async {
+  Future<GetCityModel> getCitiesAsync(int provinceId) async {
     Response response;
-     var queryParameters = {
+    var queryParameters = {
       'province': '$provinceId',
     };
     try {
-      response = await dio.get(Constants.getRajaOngkirUrl + "/starter/city",
-          options: Options(headers: rajaOngkirHeader), 
-          queryParameters: queryParameters);
+      response = await dio.get(Constants.getRajaOngkirUrl + "/starter/city", options: Options(headers: rajaOngkirHeader), queryParameters: queryParameters);
 
       if (response.statusCode == 200) {
-        final cityModel =
-            GetCityModel.fromJson(response.data);
+        final cityModel = GetCityModel.fromJson(response.data);
         print(cityModel.rajaongkir.results.first.toJson());
         return cityModel;
       } else

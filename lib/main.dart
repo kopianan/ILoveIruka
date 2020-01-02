@@ -88,16 +88,20 @@ class _MyAppState extends State<MyApp> {
                     return LinearProgressIndicator();
                     break;
                   case ConnectionState.done:
+                  print(snapshot.data); 
+                  // return LoginPage(); 
                     if (snapshot.hasError) {
                       return LoginPage();
                     } else {
                       if (snapshot.data != null) {
                         final loginData = LoginResponse.fromJson(snapshot.data);
+                        print(" tidak sama dengan null "); 
+                        print(loginData.user.toJson()); 
                         if (loginData == null) {
                           return LoginPage();
                         } else {
                           // print('Set data from main');
-                          dataBridge.setUserData(loginData);
+                          // dataBridge.setUserData(loginData);
                           // Navigator.of(context).pushReplacementNamed("/dashboard");
                           return DashboardPage();
                         }
