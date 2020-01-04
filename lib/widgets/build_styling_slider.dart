@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/provider/register_provider.dart';
+import 'package:i_love_iruka/util/common.dart';
 import 'package:i_love_iruka/widgets/color_palate.dart';
 
 class BuildStylingSlider extends StatefulWidget {
@@ -22,20 +22,13 @@ class _BuildStylingSliderState extends State<BuildStylingSlider> {
       divisions: 3,
       activeColor: ColorPalate.darkOrange,
       label: changed,
-      max: 4,
-      min: 1,
+      max: 3,
+      min: 0,
       onChanged: (newVal) {
         setState(() {
-          if (newVal == 1)
-            changed = "Beginning";
-          else if (newVal == 2)
-            changed = "Middle";
-          else if (newVal == 3)
-            changed = "Good";
-          else
-            changed = "Excellent";
+          changed = Common.skillMapper(newVal);
           dataSlide = newVal;
-          widget.regProv.setStyling(newVal); 
+          widget.regProv.setStyling(newVal);
         });
       },
       value: widget.regProv.getStyling,

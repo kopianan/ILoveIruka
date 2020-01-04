@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_g.dart';
+import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/pages/account_page.dart';
 import 'package:i_love_iruka/pages/feed_dashboard.dart';
+import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/screens/groomer/groomer_list.dart';
 import 'package:i_love_iruka/util/shared_pref.dart';
+import 'package:provider/provider.dart';
 
 class DashboardPage extends StatefulWidget {
   DashboardPage({Key key}) : super(key: key);
@@ -16,14 +19,26 @@ class _DashboardPageState extends State<DashboardPage> {
   int bottomSelectedIndex = 0;
   DashboardBlocBloc dashboardBlocBloc = DashboardBlocBloc();
   List<String> appBarTitleList = ["Feed", "Account", "Groomer List"];
-  SharedPref _sharedPref = SharedPref() ; 
-
+  SharedPref _sharedPref = SharedPref();
+  LoginResponse dataLogin;
+  loadSharedPrefs() async {
+    print("async test");
+    try {
+      LoginResponse user = LoginResponse.fromJson(await _sharedPref.getLoginData());
+      setState(() {
+        Provider.of<DataBridge>(context, listen: false).setUserData(user);
+      });
+    } catch (Excepetion) {
+      Scaffold.of(context).showSnackBar(SnackBar(content: new Text("Nothing found!"), duration: const Duration(milliseconds: 500)));
+    }
+  }
 
   @override
   void initState() {
     super.initState();
+    // loadSharedPrefs();
     dashboardBlocBloc.add(GetEventList());
-   }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +65,9 @@ class _DashboardPageState extends State<DashboardPage> {
 
   List<BottomNavigationBarItem> buildBottomNavBarItems() {
     return [
+      BottomNavigationBarItem(icon: buildNavigationIcon(false, FontAwesomeIcons.home), title: Text("Feed")),
+      BottomNavigationBarItem(icon: buildNavigationIcon(false, FontAwesomeIcons.idCard), title: Text("Account")),
       BottomNavigationBarItem(
-          icon: buildNavigationIcon(false, FontAwesomeIcons.home),
-          title: Text("Feed")),
-      BottomNavigationBarItem(
-          icon: buildNavigationIcon(false, FontAwesomeIcons.idCard),
-          title: Text("Account")),
-           BottomNavigationBarItem(
           // activeIcon: buildNavigationIcon(true, FontAwesomeIcons.objectGroup),
           icon: buildNavigationIcon(false, FontAwesomeIcons.objectGroup),
           title: Text("Groomer List")),
@@ -85,18 +96,17 @@ class _DashboardPageState extends State<DashboardPage> {
   void bottomTapped(int index) {
     setState(() {
       bottomSelectedIndex = index;
-      pageController.animateToPage(index,
-          duration: Duration(milliseconds: 500), curve: Curves.ease);
+      pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.ease);
     });
   }
 
   Widget buildPageView() {
     return PageView(
-            children: <Widget>[ FeedDashboard(), AccountPage(), GroomerList()],
-            controller: pageController,
-            onPageChanged: (index) {
-              pageChanged(index);
-            },
-          );
+      children: <Widget>[FeedDashboard(), AccountPage(), GroomerList()],
+      controller: pageController,
+      onPageChanged: (index) {
+        pageChanged(index);
+      },
+    );
   }
 }

@@ -18,10 +18,9 @@ class RegisterBlocBloc extends Bloc<RegisterBlocEvent, RegisterBlocState> {
       yield RegisterLoading();
       final registerResponse =
           await _repository.registerUserByEmail(event.registerData);
-          print(registerResponse) ; 
       if (registerResponse != null ) {
-        await SharedPref().saveLoginData(registerResponse);
-        yield RegisterComplete(response: "complete");
+        // await SharedPref().saveLoginData(registerResponse);
+        yield RegisterComplete(response: registerResponse);
       } else {
         yield RegisterError("Error");
       }

@@ -39,7 +39,6 @@ class _ProvinceDropdownState extends State<ProvinceDropdown> {
                 return Container();
                 break;
               case ConnectionState.done:
-                print(snapshot.data);
                 if (snapshot.hasError) {
                   return Container();
                 } else {

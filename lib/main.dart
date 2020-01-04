@@ -55,12 +55,9 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider<LoginBlocBloc>(
-              builder: (BuildContext context) => LoginBlocBloc()),
-          BlocProvider<RegisterBlocBloc>(
-              builder: (BuildContext context) => RegisterBlocBloc()),
-          BlocProvider<DashboardBlocBloc>(
-              builder: (BuildContext context) => DashboardBlocBloc())
+          BlocProvider<LoginBlocBloc>(builder: (BuildContext context) => LoginBlocBloc()),
+          BlocProvider<RegisterBlocBloc>(builder: (BuildContext context) => RegisterBlocBloc()),
+          BlocProvider<DashboardBlocBloc>(builder: (BuildContext context) => DashboardBlocBloc())
         ],
 
         // #558dc5 - #0b4987
@@ -88,20 +85,21 @@ class _MyAppState extends State<MyApp> {
                     return LinearProgressIndicator();
                     break;
                   case ConnectionState.done:
-                  print(snapshot.data); 
-                  // return LoginPage(); 
+                    print(snapshot.data);
+                    // return LoginPage();
                     if (snapshot.hasError) {
                       return LoginPage();
                     } else {
                       if (snapshot.data != null) {
                         final loginData = LoginResponse.fromJson(snapshot.data);
-                        print(" tidak sama dengan null "); 
-                        print(loginData.user.toJson()); 
+                        SharedPref().saveLoginData(snapshot.data);
+                        print(" tidak sama dengan null ");
+                        print(loginData.user.toJson());
                         if (loginData == null) {
                           return LoginPage();
                         } else {
-                          // print('Set data from main');
-                          // dataBridge.setUserData(loginData);
+                          print('Set data from main');
+                          dataBridge.setUserData(loginData);
                           // Navigator.of(context).pushReplacementNamed("/dashboard");
                           return DashboardPage();
                         }

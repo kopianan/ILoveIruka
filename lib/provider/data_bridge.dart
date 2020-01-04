@@ -3,7 +3,6 @@ import 'package:i_love_iruka/models/model/get_city_model.dart' as city;
 import 'package:i_love_iruka/models/model/get_province_model.dart' as province;
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/models/model/product_model.dart';
-import 'package:i_love_iruka/models/model/roles_model.dart';
 import 'package:i_love_iruka/models/model/user_groomers_model.dart';
 
 class DataBridge extends ChangeNotifier {
@@ -21,6 +20,16 @@ class DataBridge extends ChangeNotifier {
 
   province.Rajaongkir _provinceData;
 
+void clearAllData(){
+  this._filePath = null ; 
+  this._userData = null ;
+  this._roleList = null ;
+  this._productList = null ; 
+  this._listUser = null ; 
+  this._totalPoint = null ; 
+  this._currentPathPhoto = null ; 
+  this._cityData = null ; 
+}
   void setCityResults(city.Results city) {
     this._cityResult = city;
     notifyListeners();
@@ -37,9 +46,7 @@ class DataBridge extends ChangeNotifier {
 
   void setProvinceData(province.Rajaongkir province) {
     this._provinceData = province;
-    print(" provider");
-    print(province.toJson());
-    notifyListeners();
+    // notifyListeners();
   }
 
   province.Rajaongkir get getProvinceData => this._provinceData;

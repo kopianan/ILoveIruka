@@ -20,9 +20,9 @@ class Common {
   }
 
   static String convertDate(String dateTime) {
-    var date = DateTime.parse(dateTime); 
+    var date = DateTime.parse(dateTime);
     var formatedDate = DateFormat("dd-MM-yyyy").format(date);
-    return formatedDate  ;
+    return formatedDate;
   }
 
   static Future showServicesDialog(BuildContext context, {String content, String title, String phone, String link, String image}) async {
@@ -34,5 +34,16 @@ class Common {
               link: link,
               phone: phone,
             ));
+  }
+
+  static String skillMapper(double level) {
+    if (level == 0.0)
+      return "Beginning";
+    else if (level == 1)
+      return "Middle";
+    else if (level == 2)
+      return "Good";
+    else
+      return "Excellent";
   }
 }

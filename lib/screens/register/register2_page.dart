@@ -9,6 +9,7 @@ import 'package:i_love_iruka/screens/register/register_additional.dart';
 import 'package:i_love_iruka/screens/register/register_bloc/register_bloc_g.dart';
 import 'package:i_love_iruka/screens/register/widgets/choose_account_type.dart';
 import 'package:i_love_iruka/screens/register/widgets/input_picture.dart';
+import 'package:i_love_iruka/util/shared_pref.dart';
 import 'package:provider/provider.dart';
 import 'widgets/groomer_form.dart';
 import 'widgets/register_data_information.dart';
@@ -46,7 +47,8 @@ class _Register2PageState extends State<Register2Page> {
             listener: (context, state) {
               if (state is RegisterComplete) {
                 Fluttertoast.showToast(msg: "Register Successful, Please Login", toastLength: Toast.LENGTH_LONG, fontSize: 16, gravity: ToastGravity.CENTER);
-                Navigator.pushReplacementNamed(context, "/dashboard"); 
+                SharedPref().saveLoginData(state.response);
+                Navigator.pushReplacementNamed(context, "/dashboard");
               }
             },
             child: BlocBuilder<RegisterBlocBloc, RegisterBlocState>(

@@ -7,9 +7,10 @@ class SharedPref {
   saveLoginData(loginData) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString("login_data", json.encode(loginData));
+    print("saved to local"); 
   }
 
-  getLoginData() async {
+   getLoginData() async {
     final prefs = await SharedPreferences.getInstance();
     final stringLogin = prefs.getString("login_data");
     return json.decode(stringLogin);
