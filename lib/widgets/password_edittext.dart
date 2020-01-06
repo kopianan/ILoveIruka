@@ -30,7 +30,7 @@ class _PasswordEditTextState extends State<PasswordEditText> {
 
   @override
   void initState() {
-    _obscureText = false;
+    _obscureText = true;
     super.initState();
   }
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:i_love_iruka/dashboard/dashboard_page.dart';
+import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/provider/register_provider.dart';
 import 'package:i_love_iruka/screens/register/register_additional.dart';
@@ -46,9 +47,12 @@ class _Register2PageState extends State<Register2Page> {
             bloc: registerBloc,
             listener: (context, state) {
               if (state is RegisterComplete) {
-                Fluttertoast.showToast(msg: "Register Successful, Please Login", toastLength: Toast.LENGTH_LONG, fontSize: 16, gravity: ToastGravity.CENTER);
+                Fluttertoast.showToast(msg: "Register Successful", toastLength: Toast.LENGTH_LONG, fontSize: 16, gravity: ToastGravity.CENTER);
                 SharedPref().saveLoginData(state.response);
                 Navigator.pushReplacementNamed(context, "/dashboard");
+                Navigator.pop(context); 
+                
+                dataBridge.setUserData(LoginResponse.fromJson(state.response));
               }
             },
             child: BlocBuilder<RegisterBlocBloc, RegisterBlocState>(

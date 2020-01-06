@@ -40,28 +40,32 @@ class ChooseAccountType extends StatelessWidget {
               width: 200,
             ),
           ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: RoleDropDown(),
-              ),
-              // Container(
-              //     margin: EdgeInsets.only(left: 10),
-              //     alignment: Alignment.center,
-              //     child: IconButton(
-              //         // onPressed: () {},
-              //         // tooltip: (dataBridge.getRoleList() == null)
-              //         //     ? "Choose your role list for registration"
-              //         //     : (dataBridge.getRoleList().name.toString().toLowerCase().contains("groomer"))
-              //         //         ? "Register as Groomer to promote yourself"
-              //         //         : (dataBridge.getRoleList().name.toString().toLowerCase().contains("owner"))
-              //         //             ? "You can find groomer to hire them"
-              //         //             : (dataBridge.getRoleList().name.toString().toLowerCase().contains("customer")) ? "Make your pet happy and find more exciting stuff" : "No Descritpion",
-              //         icon: Icon(
-              //           Icons.info,
-              //           color: Colors.grey,
-              //         )))
-            ],
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              
+              children: <Widget>[
+                Expanded(
+                  child: RoleDropDown(),
+                ),
+                Container(
+                    margin: EdgeInsets.only(left: 10),
+                    alignment: Alignment.center,
+                    child: IconButton(
+                        onPressed: () {},
+                        tooltip: (dataBridge.getRoleList() == null)
+                            ? "Choose your role list for registration"
+                            : (dataBridge.getRoleList().toString().toLowerCase().contains("groomer"))
+                                ? "Register as Groomer to promote yourself"
+                                : (dataBridge.getRoleList().toString().toLowerCase().contains("shop"))
+                                    ? "You can find groomer to hire them"
+                                    : (dataBridge.getRoleList().toString().toLowerCase().contains("customer")) ? "Make your pet happy and find more exciting stuff" : "No Descritpion",
+                        icon: Icon(
+                          Icons.info,
+                          color: Colors.grey,
+                        )))
+              ],
+            ),
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,

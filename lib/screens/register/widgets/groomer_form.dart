@@ -11,6 +11,7 @@ import 'package:i_love_iruka/widgets/color_palate.dart';
 import 'package:i_love_iruka/widgets/common_edittext.dart';
 import 'package:i_love_iruka/widgets/description_edittext.dart';
 import 'package:i_love_iruka/widgets/register_button_next_and_back.dart';
+import 'package:keyboard_avoider/keyboard_avoider.dart';
 import 'package:provider/provider.dart';
 
 import '../register_widget.dart';
@@ -80,7 +81,8 @@ class _GroomerFormState extends State<GroomerForm> {
     ..alignment.centerLeft();
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return KeyboardAvoider(
+      autoScroll: true,
       child: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -154,7 +156,7 @@ class _GroomerFormState extends State<GroomerForm> {
                           hintText: "What is your key features",
                           labelText: "Features",
                           textEditingController: _keyFeaturesController,
-                          textInputType: TextInputType.number,
+                          textInputType: TextInputType.text,
                         ),
                         BuildTrainingSwitch(
                           regProv: regProvider,
