@@ -60,8 +60,9 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
 
     _repository.editUser(reg).then((onValue) {
       SharedPref().saveLoginData(onValue);
-      dataBridge.setUserData(onValue);
+      dataBridge.setUserData(onValue, update: true);
       Fluttertoast.showToast(msg: "Profile Edited");
+      Navigator.of(context).pop();
     });
   }
 
@@ -98,7 +99,7 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
 
                     changeUserStatus.changeUserStatus(dataBridge.getUserData().user.id, val).then((onValue) {
                       _currUserData.user.show = val;
-                      dataBridge.setUserData(_currUserData);
+                      dataBridge.setUserData(_currUserData, update:  true);
                       SharedPref().saveLoginData(_currUserData);
                     });
                   },
@@ -115,7 +116,7 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
                     changeUserStatus.changeUserAvailability(dataBridge.getUserData().user.id, val).then((onValue) {
                       if (onValue != null) {
                         _currUserData.user.availability = val;
-                        dataBridge.setUserData(_currUserData);
+                        dataBridge.setUserData(_currUserData, update : true );
                         SharedPref().saveLoginData(_currUserData);
                       }
                     });
@@ -135,7 +136,7 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
                     onTap: () {
                       controller.text = dataBridge.getUserData().user.description;
                       showModalBottomSheet(
-                        isScrollControlled: true,
+                          isScrollControlled: true,
                           context: (context),
                           builder: (context) {
                             return Padding(
@@ -218,7 +219,7 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
                         ),
                         onTap: () {
                           showModalBottomSheet(
-                            isScrollControlled: true,
+                              isScrollControlled: true,
                               context: (context),
                               builder: (context) => ModalBottomTraining(
                                     dataBridge: dataBridge,
@@ -369,7 +370,7 @@ class _ModalBottomSkillState extends State<ModalBottomSkill> {
 
     _repository.editUser(reg).then((onValue) {
       SharedPref().saveLoginData(onValue);
-      dataBridge.setUserData(onValue);
+      dataBridge.setUserData(onValue, update:  true) ; 
       Fluttertoast.showToast(msg: "Coverage Area Edited");
       Navigator.of(context).pop();
     });
@@ -446,7 +447,7 @@ class ModalBottomArea extends StatelessWidget {
 
       _repository.editUser(reg).then((onValue) {
         SharedPref().saveLoginData(onValue);
-        dataBridge.setUserData(onValue);
+        dataBridge.setUserData(onValue,update: true);
         Fluttertoast.showToast(msg: "Coverage Area Edited");
         Navigator.of(context).pop();
       });
@@ -580,7 +581,7 @@ class _ModalBottomTrainingState extends State<ModalBottomTraining> {
 
     _repository.editUser(reg).then((onValue) {
       SharedPref().saveLoginData(onValue);
-      dataBridge.setUserData(onValue);
+      dataBridge.setUserData(onValue, update : true);
       Fluttertoast.showToast(msg: "Profile Edited");
       Navigator.of(context).pop();
     });

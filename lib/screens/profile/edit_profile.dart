@@ -5,7 +5,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:i_love_iruka/data/repository.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/models/request/edit_request.dart';
-import 'package:i_love_iruka/models/request/register_request.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/util/camera_util.dart';
 import 'package:i_love_iruka/util/constants.dart';
@@ -15,7 +14,9 @@ import 'package:provider/provider.dart';
 class EditProfile extends StatefulWidget {
   static const String id = "/edit_profile";
 
-  EditProfile({Key key}) : super(key: key);
+  EditProfile({Key key, this.loginData}) : super(key: key);
+
+  final LoginResponse loginData ; 
 
   @override
   _EditProfileState createState() => _EditProfileState();
@@ -31,17 +32,15 @@ class _EditProfileState extends State<EditProfile> {
   TextEditingController _picController;
 
   SharedPref sharedPref = SharedPref();
-  User dataLogin;
   Repository _repository = Repository();
   @override
   void initState() {
     Provider.of<DataBridge>(context, listen: false).setCurrentPhoto(null);
-    dataLogin = Provider.of<DataBridge>(context, listen: false).getUserData().user;
-    _nameController = TextEditingController(text: dataLogin.name.toString());
-    _addressController = TextEditingController(text: dataLogin.address.toString());
-    _emailController = TextEditingController(text: dataLogin.email.toString());
-    _phoneController = TextEditingController(text: dataLogin.phoneNumber.toString());
-    _picController = TextEditingController(text: dataLogin.pIC.toString());
+    _nameController = TextEditingController(text: widget.loginData.user.name.toString());
+    _addressController = TextEditingController(text: widget.loginData.user.address.toString());
+    _emailController = TextEditingController(text: widget.loginData.user.email.toString());
+    _phoneController = TextEditingController(text: widget.loginData.user.phoneNumber.toString());
+    _picController = TextEditingController(text: widget.loginData.user.pIC.toString());
     super.initState();
   }
 
@@ -116,7 +115,7 @@ class _EditProfileState extends State<EditProfile> {
                 ],
               ),
               SizedBox(height: 50),
-              new ChangeProfilePicture(picture: dataLogin.picture),
+              new ChangeProfilePicture(picture: widget.loginData.user.picture),
               SizedBox(height: 30),
               new InformationItem(
                 name: "Name",
@@ -140,7 +139,7 @@ class _EditProfileState extends State<EditProfile> {
                 controller: _phoneController,
               ),
 
-              (dataLogin.role.toString().toLowerCase().contains("owner"))
+              (widget.loginData.user.role.toString().toLowerCase().contains("owner"))
                   ? InformationItem(
                       name: "PIC",
                       hint: "PIC",

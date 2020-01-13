@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,9 +51,8 @@ class _Register2PageState extends State<Register2Page> {
                 Fluttertoast.showToast(msg: "Register Successful", toastLength: Toast.LENGTH_LONG, fontSize: 16, gravity: ToastGravity.CENTER);
                 SharedPref().saveLoginData(state.response);
                 Navigator.pushReplacementNamed(context, "/dashboard");
-                Navigator.pop(context); 
-                
-                dataBridge.setUserData(LoginResponse.fromJson(state.response));
+                // Navigator.pop(context); 
+                dataBridge.setUserData(state.response);
               }
             },
             child: BlocBuilder<RegisterBlocBloc, RegisterBlocState>(

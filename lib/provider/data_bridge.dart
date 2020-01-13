@@ -20,16 +20,17 @@ class DataBridge extends ChangeNotifier {
 
   province.Rajaongkir _provinceData;
 
-void clearAllData(){
-  this._filePath = null ; 
-  this._userData = null ;
-  this._roleList = null ;
-  this._productList = null ; 
-  this._listUser = null ; 
-  this._totalPoint = null ; 
-  this._currentPathPhoto = null ; 
-  this._cityData = null ; 
-}
+  void clearAllData() {
+    this._filePath = null;
+    this._userData = null;
+    this._roleList = null;
+    this._productList = null;
+    this._listUser = null;
+    this._totalPoint = null;
+    this._currentPathPhoto = null;
+    this._cityData = null;
+  }
+
   void setCityResults(city.Results city) {
     this._cityResult = city;
     notifyListeners();
@@ -75,7 +76,6 @@ void clearAllData(){
 
   void setTotalPoint(String point) {
     this._totalPoint = point;
-    notifyListeners();
   }
 
   String get getTotalPoint => this._totalPoint;
@@ -104,14 +104,17 @@ void clearAllData(){
       return this._roleList;
   }
 
-  void setUserData(LoginResponse userData) {
-    this._userData = userData;
-    notifyListeners();
+  void setUserData(LoginResponse userData,{ bool update}) {
+    if (userData == null) {
+      this._userData = null;
+    } else
+      this._userData = userData;
+    if (update == true) notifyListeners();
   }
 
   LoginResponse getUserData() {
     if (this._userData == null) {
-      _userData.user = User();
+      _userData = null;
       return _userData;
     }
     return this._userData;

@@ -10,9 +10,10 @@ class SharedPref {
     print("saved to local"); 
   }
 
-   getLoginData() async {
+  Future<dynamic> getLoginData() async {
     final prefs = await SharedPreferences.getInstance();
     final stringLogin = prefs.getString("login_data");
+    if(stringLogin == null) return null; else 
     return json.decode(stringLogin);
   }
 

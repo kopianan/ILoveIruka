@@ -10,8 +10,9 @@ import 'package:i_love_iruka/util/shared_pref.dart';
 import 'package:provider/provider.dart';
 
 class DashboardPage extends StatefulWidget {
-  DashboardPage({Key key}) : super(key: key);
-
+  DashboardPage({
+    Key key,
+  }) : super(key: key);
   _DashboardPageState createState() => _DashboardPageState();
 }
 
@@ -25,9 +26,8 @@ class _DashboardPageState extends State<DashboardPage> {
     print("async test");
     try {
       LoginResponse user = LoginResponse.fromJson(await _sharedPref.getLoginData());
-      setState(() {
-        Provider.of<DataBridge>(context, listen: false).setUserData(user);
-      });
+
+      Provider.of<DataBridge>(context, listen: false).setUserData(user);
     } catch (Excepetion) {
       Scaffold.of(context).showSnackBar(SnackBar(content: new Text("Nothing found!"), duration: const Duration(milliseconds: 500)));
     }
@@ -36,7 +36,6 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   void initState() {
     super.initState();
-    // loadSharedPrefs();
     dashboardBlocBloc.add(GetEventList());
   }
 

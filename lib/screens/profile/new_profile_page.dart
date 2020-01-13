@@ -18,25 +18,28 @@ class NewProfilePage extends StatefulWidget {
 }
 
 class _NewProfilePageState extends State<NewProfilePage> {
-  // LoginResponse dataLogin;
-  // loadSharedPrefs() async {
-  //   print("async test");
-  //   try {
-  //     LoginResponse user = LoginResponse.fromJson(await SharedPref().getLoginData());
-  //     setState(() {
-  //       dataLogin = user;
-  //       Provider.of<DataBridge>(context, listen: false).setUserData(user);
-  //     });
-  //   } catch (Excepetion) {
-  //     Scaffold.of(context).showSnackBar(SnackBar(content: new Text("Nothing found!"), duration: const Duration(milliseconds: 500)));
-  //   }
-  // }
+  LoginResponse dataLogin;
+  loadSharedPrefs() {
+    try {
+      SharedPref().getLoginData().then((onValue) {
+        dataLogin = LoginResponse.fromJson(onValue);
+        Provider.of<DataBridge>(context, listen: false).setUserData(dataLogin);
+        print("berhaisl ");
+      });
+    } catch (Excepetion) {
+      Scaffold.of(context).showSnackBar(SnackBar(content: new Text("Nothing found!"), duration: const Duration(milliseconds: 500)));
+    }
+  }
 
   @override
   void initState() {
     // loadSharedPrefs();
-
     super.initState();
+  }
+  @override
+  void didChangeDependencies() {
+    loadSharedPrefs();
+    super.didChangeDependencies();
   }
 
   @override
@@ -75,7 +78,7 @@ class _NewProfilePageState extends State<NewProfilePage> {
                     children: <Widget>[
                       ListTile(
                         onTap: () {
-                          Navigator.of(context).pushNamed(EditProfile.id);
+                          Navigator.of(context).pushNamed(EditProfile.id, arguments: dataLogin);
                         },
                         leading: Icon(Icons.person),
                         title: Text("Profile"),

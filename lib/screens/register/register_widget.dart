@@ -161,7 +161,6 @@ class _RoleDropDownState extends State<RoleDropDown> {
     return FutureBuilder<RolesModel>(
       future: _getRolesOff,
       builder: (BuildContext context, AsyncSnapshot<RolesModel> snapshot) {
-        RolesModel roles = snapshot.data;
         switch (snapshot.connectionState) {
           case ConnectionState.none:
             break;
@@ -189,7 +188,7 @@ class _RoleDropDownState extends State<RoleDropDown> {
                   },
                   value: dataBridge.getRoleList(),
                   hint: Text("User Type"),
-                  items: roles.roleList.map((f) {
+                  items: snapshot.data.roleList.map((f) {
                     return DropdownMenuItem(
                       child: Text(
                         f.toString(),

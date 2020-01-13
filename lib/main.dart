@@ -37,7 +37,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    print("Rebuild Main");
     dataFuture = SharedPref().getLoginData();
     super.initState();
   }
@@ -85,31 +84,22 @@ class _MyAppState extends State<MyApp> {
                     return LinearProgressIndicator();
                     break;
                   case ConnectionState.done:
-                    print(snapshot.data);
-                    // return LoginPage();
                     if (snapshot.hasError) {
                       return LoginPage();
                     } else {
-                      if (snapshot.data != null) {
-                        final loginData = LoginResponse.fromJson(snapshot.data);
-                        SharedPref().saveLoginData(snapshot.data);
-                        print(" tidak sama dengan null ");
-                        print(loginData.user.toJson());
-                        if (loginData == null) {
-                          return LoginPage();
-                        } else {
-                          print('Set data from main');
-                          dataBridge.setUserData(loginData);
-                          // Navigator.of(context).pushReplacementNamed("/dashboard");
-                          return DashboardPage();
-                        }
+                      if (snapshot.hasData) {
+                        // SharedPref().saveLoginData(snapshot.data);
+                        var loginRes = LoginResponse.fromJson(snapshot.data);
+                        Provider.of<DataBridge>(context).setUserData(loginRes);
+                        return DashboardPage(
+                        );
                       } else {
                         return LoginPage();
                       }
                     }
                     break;
                 }
-                return Container();
+                return LoginPage();
               },
             ),
           ),
