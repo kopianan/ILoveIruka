@@ -105,17 +105,17 @@ class _GroomerListState extends State<GroomerList> {
                         focusNode: _focusNode,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
-                          suffixIcon: IconButton(
-                            icon: Txt(
-                              "X",
-                              style: TxtStyle()
-                                ..fontSize(20)
-                                ..bold(),
-                            ),
-                            onPressed: () {
-                              FocusScope.of(context).requestFocus(FocusNode());
-                            },
-                          ),
+                          // suffixIcon: IconButton(
+                          //   icon: Txt(
+                          //     "X",
+                          //     style: TxtStyle()
+                          //       ..fontSize(20)
+                          //       ..bold(),
+                          //   ),
+                          //   onPressed: () {
+                          //     FocusScope.of(context).requestFocus(FocusNode());
+                          //   },
+                          // ),
                           hintText: "Search",
                           border: InputBorder.none,
                           hintStyle: TextStyle(color: Colors.grey),

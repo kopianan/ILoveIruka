@@ -19,7 +19,6 @@ import 'package:i_love_iruka/util/common.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:i_love_iruka/util/shared_pref.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'home_widgets.dart';
 
@@ -174,7 +173,7 @@ class MediaSocialList extends StatelessWidget {
               context,
               content: "Choose Action...",
               title: "Instagram",
-              link: "https://instagram.com/",
+              link: "https://www.instagram.com/iloveiruka/",
             );
           },
           title: "Instagram",
@@ -186,7 +185,7 @@ class MediaSocialList extends StatelessWidget {
               context,
               content: "Choose Action...",
               title: "Whatsapp",
-              link: "https://wa.me/6287800042548/",
+              link: "https://wa.me/6281211854630/",
             );
           },
           title: "Whatsapp",
@@ -198,7 +197,7 @@ class MediaSocialList extends StatelessWidget {
               context,
               content: "Choose Action...",
               title: "Youtube",
-              link: "https://sismarket.id/",
+              link: "https://www.youtube.com/channel/UCohGUOh8j_gI5RTNBydOpFA",
             );
           },
           title: "Youtube",
@@ -210,7 +209,7 @@ class MediaSocialList extends StatelessWidget {
               context,
               content: "Choose Action...",
               title: "Website",
-              link: "https://sismarket.id/",
+              link: "https://iloveiruka.com/",
             );
           },
           title: "Website",
@@ -222,7 +221,7 @@ class MediaSocialList extends StatelessWidget {
               context,
               content: "Choose Action...",
               title: "Call Us",
-              phone: "+ 6287800042548",
+              phone: "02184302531",
             );
           },
           title: "Call Us",
