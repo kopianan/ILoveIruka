@@ -212,12 +212,12 @@ class _InputPictureState extends State<InputPicture> {
         trainingCourses: (regProv.getJoinTraining == false) ? "" : trainingCourses,
         trainingYears: (regProv.getJoinTraining == false) ? "" : trainingYears,
         trainingStartDate: (regProv.getJoinTraining == false) ? "" : trainingStartDate,
-        yearsOfExperience: (regProv.getJoinTraining == false) ? "" : yearsOfExperience,
+        yearsOfExperience: yearsOfExperience,
         coverageArea:area,
         
         );
 
-    // print(dataRegister.toJson());
+    print(dataRegister.toJson());
     registerBlocBloc.add(RegisterUser(registerData: dataRegister));
   }
 }

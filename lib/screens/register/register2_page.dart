@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:i_love_iruka/dashboard/dashboard_page.dart';
-import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/provider/register_provider.dart';
 import 'package:i_love_iruka/screens/register/register_additional.dart';

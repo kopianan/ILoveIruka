@@ -39,7 +39,7 @@ class ApiProvider {
     LoginResponse loginResponse;
     FormData formData;
 
-    if (registerData.role.toString() == "807b85a8-bcc3-4dfe-87cd-e8b4fb20b949") {
+    if (registerData.role.toString() == "Customer") {
       //if the user is customer
       formData = FormData.fromMap({
         "accessKey": registerData.accessKey,
@@ -52,7 +52,7 @@ class ApiProvider {
         "Role": registerData.role,
         "file": MultipartFile.fromFileSync(registerData.file)
       });
-    } else if (registerData.role.toString() == "bc12c9cd-008c-4d38-a499-a9aefe9a22c0") {
+    } else if (registerData.role.toString() == "Groomer") {
       //User is groomer
       formData = FormData.fromMap({
         "accessKey": registerData.accessKey,
@@ -66,12 +66,12 @@ class ApiProvider {
         "file": MultipartFile.fromFileSync(registerData.file),
         "KeyFeatures": registerData.keyFeatures,
         "CoverageArea": registerData.coverageArea,
-        "YearsOfExperience": registerData.yearsOfExperience,
+        "YearsOfExperience":int.parse(registerData.yearsOfExperience),
         "Availability": registerData.availability,
-        "Styling": registerData.styling,
-        "Cliping": registerData.cliping,
-        "TrainingYears": registerData.trainingYears,
-        "TrainingCourses": registerData.trainingCourses,
+        "Styling":int.parse(registerData.styling),
+        "Cliping": int.parse(registerData.cliping),
+        "TrainingYears": ( registerData.trainingYears =="")  ? 0:registerData.trainingYears  ,
+        "TrainingCourses": registerData.trainingCourses ,
         "TrainingStartDate": registerData.trainingStartDate
       });
     } else {
