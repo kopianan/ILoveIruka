@@ -241,6 +241,7 @@ class ServiceList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverGrid.count(
       crossAxisSpacing: 5,
+      childAspectRatio: 1/1.2,
       mainAxisSpacing: 5,
       crossAxisCount: 5,
       children: <Widget>[

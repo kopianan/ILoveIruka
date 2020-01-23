@@ -16,23 +16,25 @@ class BuildServicesIcon extends StatelessWidget {
       onTap: () {
         onIconPressed();
       },
-      child: Column(
-        children: <Widget>[
-          Container(
-            width: 40,
-            decoration: DecorationCollection().boxDecorationDashboardIcon(),
-            height: 40,
-            child: Image.asset(imageAsset),
-          ),
-          Container(
-              alignment: Alignment.topCenter,
-              width: 70,
-              child: Text(
-                "${title}",
-                maxLines: 2,
-                textAlign: TextAlign.center,
-              ))
-        ],
+      child: Container(
+        child: Column(
+          children: <Widget>[
+            Container(
+              width: 40,
+              decoration: DecorationCollection().boxDecorationDashboardIcon(),
+              // height: 40,
+              child: Image.asset(imageAsset),
+            ),
+            Container(
+                alignment: Alignment.topCenter,
+                // width: 70,
+                child: Text(
+                  "${title}",
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                ))
+          ],
+        ),
       ),
     );
   }
