@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_bloc.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_event.dart';
-import 'package:i_love_iruka/dashboard/bloc/dashboard_state.dart';
 import 'package:i_love_iruka/data/repository.dart';
 import 'package:i_love_iruka/models/model/event_model.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
