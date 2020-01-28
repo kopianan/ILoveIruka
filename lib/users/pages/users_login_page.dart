@@ -203,9 +203,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
 
       final dataLogin = LoginRequest(username: "$email", password: "$password");
       reactiveModel.setState(
-        (fn) {
-          return fn.getLoginRsponseFromResponse(dataLogin);
-        },
+        (fn) => fn.getLoginRsponseFromResponse(dataLogin),
         onData: (context, content) {
           if (content.getFailure != null) {
             Fluttertoast.showToast(msg: content.getFailure.message);
