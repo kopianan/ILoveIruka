@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:auto_route/router_utils.dart';
 import 'package:i_love_iruka/main.dart';
-import 'package:i_love_iruka/screens/login/login_page.dart';
+import 'package:i_love_iruka/features/pages/groomer_list/groomer_list_page.dart';
+import 'package:i_love_iruka/users/pages/login/users_login_page.dart';
 import 'package:i_love_iruka/dashboard/dashboard_page.dart';
 import 'package:i_love_iruka/screens/groomer/groomer_list.dart';
 import 'package:i_love_iruka/screens/profile/edit_profile.dart';
@@ -21,7 +22,8 @@ import 'package:i_love_iruka/screens/transaction/history_transaction.dart';
 
 class Routes {
   static const myApp = '/';
-  static const loginPage = '/login-page';
+  static const groomerLlistPage = '/groomer-llist-page';
+  static const userLoginPage = '/user-login-page';
   static const dashboardPage = '/dashboard-page';
   static const groomerList = '/groomer-list';
   static const editProfile = '/edit-profile';
@@ -42,13 +44,22 @@ class Routes {
           builder: (_) => MyApp(),
           settings: settings,
         );
-      case Routes.loginPage:
+      case Routes.groomerLlistPage:
         if (hasInvalidArgs<Key>(args)) {
           return misTypedArgsRoute<Key>(args);
         }
         final typedArgs = args as Key;
         return MaterialPageRoute(
-          builder: (_) => LoginPage(key: typedArgs),
+          builder: (_) => GroomerLlistPage(key: typedArgs),
+          settings: settings,
+        );
+      case Routes.userLoginPage:
+        if (hasInvalidArgs<Key>(args)) {
+          return misTypedArgsRoute<Key>(args);
+        }
+        final typedArgs = args as Key;
+        return MaterialPageRoute(
+          builder: (_) => UserLoginPage(key: typedArgs),
           settings: settings,
         );
       case Routes.dashboardPage:

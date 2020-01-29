@@ -7,4 +7,6 @@ class ApiInterface {
 
   Future<LoginResponse> loginUserByEmail(LoginRequest loginData) =>
       _apiProvider.loginUser(loginData);
+
+  Future<LoginResponse> checkAuthanitication(String prefKey) => _apiProvider.getAuthenticated(prefKey); 
 }

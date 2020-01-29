@@ -18,4 +18,13 @@ class UserStore {
       _failure = f;
     }
   }
+
+  void getLoginAuth(String key)async{
+    try {
+      _loginResponse = await _apiInterface.checkAuthanitication(key);
+    } on Failure catch (f) {
+      print(f.message);
+      _failure = f;
+    }
+  }
 }

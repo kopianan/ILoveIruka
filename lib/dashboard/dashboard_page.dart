@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_g.dart';
+import 'package:i_love_iruka/features/pages/feed_list/feed_dashboard.dart';
+import 'package:i_love_iruka/features/pages/groomer_list/groomer_list_page.dart';
+import 'package:i_love_iruka/features/pages/user_account/user_account_page.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
-import 'package:i_love_iruka/pages/account_page.dart';
-import 'package:i_love_iruka/pages/feed_dashboard.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
-import 'package:i_love_iruka/screens/groomer/groomer_list.dart';
 import 'package:i_love_iruka/util/shared_pref.dart';
 import 'package:provider/provider.dart';
 
@@ -45,12 +45,13 @@ class _DashboardPageState extends State<DashboardPage> {
       // drawer: buildDrawer(context),
       body: buildPageView(),
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
+        type: BottomNavigationBarType.fixed,
+      backgroundColor: Colors.white,
         unselectedItemColor: Colors.grey,
         selectedIconTheme: IconThemeData(color: Colors.blue),
         unselectedIconTheme: IconThemeData(color: Colors.grey),
         selectedLabelStyle: TextStyle(color: Colors.blue),
-        elevation: 2,
+        elevation: 4,
         // selectedItemColor: ColorPalate().bottomNavigationTitleColor,
         selectedItemColor: Colors.blue,
         onTap: (index) {
@@ -95,13 +96,14 @@ class _DashboardPageState extends State<DashboardPage> {
   void bottomTapped(int index) {
     setState(() {
       bottomSelectedIndex = index;
-      pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.ease);
+      // pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.ease);
+      pageController.jumpToPage(index); 
     });
   }
 
   Widget buildPageView() {
     return PageView(
-      children: <Widget>[FeedDashboard(), AccountPage(), GroomerList()],
+      children: <Widget>[FeedDashboard(), UserAccountPage(), GroomerLlistPage()],
       controller: pageController,
       onPageChanged: (index) {
         pageChanged(index);

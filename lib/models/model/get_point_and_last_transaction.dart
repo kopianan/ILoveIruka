@@ -27,7 +27,7 @@ class LastTransaction {
   String couponValue;
   int subTotal;
   int total;
-  Null notes;
+  String notes;
   int earnedPoint;
   String createdBy;
   String createdDate;

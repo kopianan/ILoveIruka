@@ -4,7 +4,6 @@ import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/screens/feed_detail/feed_detail.dart';
 import 'package:i_love_iruka/screens/groomer/groomer_list.dart';
 import 'package:i_love_iruka/screens/groomer_detail/groomer_detail.dart';
-import 'package:i_love_iruka/screens/login/login_page.dart';
 import 'package:i_love_iruka/screens/profile/edit_profile.dart';
 import 'package:i_love_iruka/screens/profile/groomer_page_profile.dart';
 import 'package:i_love_iruka/screens/profile/new_profile_page.dart';
@@ -20,11 +19,7 @@ class RouteGenerator {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(builder: (_) => MyApp());
-      case '/login':
-        // Validation of correct data type
-        return MaterialPageRoute(
-          builder: (_) => LoginPage(),
-        );
+ 
 
       case '/dashboard':
         return MaterialPageRoute(builder: (_) => DashboardPage());
