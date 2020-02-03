@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route_annotations.dart';
 import 'package:i_love_iruka/dashboard/dashboard_page.dart';
 import 'package:i_love_iruka/features/pages/groomer_list/groomer_list_page.dart';
+import 'package:i_love_iruka/features/pages/profile/profile_page.dart';
 import 'package:i_love_iruka/screens/feed_detail/feed_detail.dart';
 import 'package:i_love_iruka/screens/groomer/groomer_list.dart';
 import 'package:i_love_iruka/screens/groomer_detail/groomer_detail.dart';
@@ -28,4 +29,5 @@ class $Routes {
   Register2Page register2page;
   FeedDetail feedDetail;
   HistoryTransaction historyTransaction;
+  ProfilePage profilePage ; 
 }

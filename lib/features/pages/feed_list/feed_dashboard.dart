@@ -45,14 +45,12 @@ class _FeedDashboardState extends State<FeedDashboard> {
     return SafeArea(
       child: CustomScrollView(slivers: <Widget>[
         SliverToBoxAdapter(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                "Welcome",
-                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 40),
-              ),
-            ],
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text(
+              "Welcome",
+              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 40),
+            ),
           ),
         ),
         SliverToBoxAdapter(

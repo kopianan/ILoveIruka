@@ -7,7 +7,10 @@ import 'package:i_love_iruka/models/model/user_groomers_model.dart';
 
 class DataBridge extends ChangeNotifier {
   String _filePath;
+  
   LoginResponse _userData;
+  LoginResponse userDataCopy ; 
+
   String _roleList;
   ProductList _productList;
   ListUser _listUser;
@@ -30,6 +33,14 @@ class DataBridge extends ChangeNotifier {
     this._currentPathPhoto = null;
     this._cityData = null;
   }
+
+void setUserDataCopy (LoginResponse loginresp, {bool notify = false}){
+  this.userDataCopy =loginresp ;
+  if(notify)
+  notifyListeners(); 
+}
+
+LoginResponse get getUserDataCopy => this.userDataCopy ; 
 
   void setCityResults(city.Results city) {
     this._cityResult = city;

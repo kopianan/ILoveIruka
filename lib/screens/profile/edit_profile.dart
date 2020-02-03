@@ -16,31 +16,31 @@ class EditProfile extends StatefulWidget {
 
   EditProfile({Key key, this.loginData}) : super(key: key);
 
-  final LoginResponse loginData ; 
+  final LoginResponse loginData;
 
   @override
   _EditProfileState createState() => _EditProfileState();
 }
 
 class _EditProfileState extends State<EditProfile> {
-  TextEditingController _dateController;
-  TextEditingController _nameController;
-  TextEditingController _addressController;
-  TextEditingController _emailController;
-  TextEditingController _phoneController;
-  TextEditingController _descriptionController;
-  TextEditingController _picController;
+  TextEditingController _dateController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _addressController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _phoneController = TextEditingController();
+  TextEditingController _descriptionController = TextEditingController();
+  TextEditingController _picController = TextEditingController();
 
   SharedPref sharedPref = SharedPref();
   Repository _repository = Repository();
+
   @override
   void initState() {
-    Provider.of<DataBridge>(context, listen: false).setCurrentPhoto(null);
-    _nameController = TextEditingController(text: widget.loginData.user.name.toString());
-    _addressController = TextEditingController(text: widget.loginData.user.address.toString());
-    _emailController = TextEditingController(text: widget.loginData.user.email.toString());
-    _phoneController = TextEditingController(text: widget.loginData.user.phoneNumber.toString());
-    _picController = TextEditingController(text: widget.loginData.user.pIC.toString());
+    Provider.of<DataBridge>(context, listen: false)
+        .setUserDataCopy(widget.loginData);
+
+    // _nameController.text = _loginResponse.user.name ;
+    // _addressController.text = _loginResponse.user.address ;
     super.initState();
   }
 
@@ -49,132 +49,265 @@ class _EditProfileState extends State<EditProfile> {
     super.dispose();
   }
 
-  void fillEditRequestData(DataBridge dataBridge) {
-    String filePhoto;
-    if (dataBridge.getCurrentPhoto == null)
-      filePhoto = null;
-    else
-      filePhoto = dataBridge.getCurrentPhoto.toString();
+  // void fillEditRequestData(DataBridge dataBridge) {
+  //   String filePhoto;
+  //   if (dataBridge.getCurrentPhoto == null)
+  //     filePhoto = null;
+  //   else
+  //     filePhoto = dataBridge.getCurrentPhoto.toString();
 
-    final userDta = dataBridge.getUserData().user;
-    EditRequest reg = EditRequest(
-      accessKey: "d78c1a5c-ccbe-4c26-ac08-43ed66c8afb9",
-      name: (_nameController == null) ? "" : _nameController.text.toString(),
-      phonenumber: (_phoneController == null) ? "" : _phoneController.text.toString(),
-      address: (_addressController == null) ? "" : _addressController.text.toString(),
-      description: dataBridge.getUserData().user.description.toString(),
-      pic: (_picController == null) ? "" : _picController.text.toString(),
-      iD: dataBridge.getUserData().user.id.toString(),
-      file: filePhoto,
-      availability: userDta.availability,
-      cliping: userDta.clipping,
-      coverageArea: userDta.coverageArea,
-      keyFeatures: userDta.keyFeatures,
-      styling: userDta.styling,
-      trainingCourses: userDta.trainingCourses,
-      trainingStartDate: userDta.trainingStartDate,
-      trainingYears: userDta.trainingYears,
-      yearsOfExperience: userDta.yearsOfExperience,
-    );
-  print(reg.toString()); 
-    
-    _repository.editUser(reg).then((onValue) {
-      SharedPref().saveLoginData(onValue);
-      dataBridge.setUserData(onValue);
-      Fluttertoast.showToast(msg: "Profile Edited");
-    });
-  }
+  //   final userDta = dataBridge.getUserData().user;
+  //   EditRequest reg = EditRequest(
+  //     accessKey: "d78c1a5c-ccbe-4c26-ac08-43ed66c8afb9",
+  //     name: (_nameController == null) ? "" : _nameController.text.toString(),
+  //     phonenumber:
+  //         (_phoneController == null) ? "" : _phoneController.text.toString(),
+  //     address: (_addressController == null)
+  //         ? ""
+  //         : _addressController.text.toString(),
+  //     description: dataBridge.getUserData().user.description.toString(),
+  //     pic: (_picController == null) ? "" : _picController.text.toString(),
+  //     iD: dataBridge.getUserData().user.id.toString(),
+  //     file: filePhoto,
+  //     availability: userDta.availability,
+  //     cliping: userDta.clipping,
+  //     coverageArea: userDta.coverageArea,
+  //     keyFeatures: userDta.keyFeatures,
+  //     styling: userDta.styling,
+  //     trainingCourses: userDta.trainingCourses,
+  //     trainingStartDate: userDta.trainingStartDate,
+  //     trainingYears: userDta.trainingYears,
+  //     yearsOfExperience: userDta.yearsOfExperience,
+  //   );
+  //   print(reg.toString());
+  //   _repository.editUser(reg).then((onValue) {
+  //     SharedPref().saveLoginData(onValue);
+  //     dataBridge.setUserData(onValue);
+  //     Fluttertoast.showToast(msg: "Profile Edited");
+  //   });
+  // }
 
   String name;
   @override
   Widget build(BuildContext context) {
-    return Consumer<DataBridge>(builder: (context, dataBridge, _) {
-      return Scaffold(
-        floatingActionButton: FloatingActionButton.extended(
-          label: Text("Save"),
-          icon: Icon(
-            Icons.save,
-          ),
-          onPressed: () {
-            fillEditRequestData(dataBridge);
-          },
-        ),
-        body: SingleChildScrollView(
-          child: Container(
+    return Scaffold(
+        body: SafeArea(
+      child: SingleChildScrollView(
+        child: Consumer<DataBridge>(
+          builder: (_, dataBridge, __) => Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.all(30),
             child: Column(children: <Widget>[
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(Icons.arrow_back, color: Colors.black, size: 30),
+                  ),
+                  SizedBox(width: 20),
                   Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Profile",
-                        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold),
                       )),
                 ],
               ),
-              SizedBox(height: 50),
-              new ChangeProfilePicture(picture: widget.loginData.user.picture),
               SizedBox(height: 30),
-              new InformationItem(
-                name: "Name",
-                hint: "Input your name",
-                controller: _nameController,
+              new ChangeProfilePicture(
+                  picture: dataBridge.getUserDataCopy.user.picture),
+              SizedBox(height: 30),
+              Column(
+                children: <Widget>[
+                  Text("General Information"),
+                  Divider(),
+                ],
               ),
-              new InformationItem(name: "Address", hint: "Input your Address", maxLines: 2, controller: _addressController),
-              new InformationItem(
-                name: "Email",
-                hint: "E-mail",
-                maxLines: 1,
-                enable: false,
-                controller: _emailController,
+              Column(
+                children: <Widget>[
+                  ListTile(
+                    title: Text("${dataBridge.getUserDataCopy.user.name}"),
+                    trailing: Text("Edit"),
+                    subtitle: Text("Name"),
+                    onTap: () {
+                      _nameController.text =
+                          dataBridge.getUserDataCopy.user.name;
+                      showModalBottomSheet(
+                          isScrollControlled: true,
+                          context: (context),
+                          builder: (context) {
+                            return BottomSheetEditOneField(
+                              nameController: _nameController,
+                              name: "Edit Name",
+                              onPressed: () {
+                                widget.loginData.user.name =
+                                    _nameController.text;
+                                dataBridge.setUserDataCopy(widget.loginData,
+                                    notify: true);
+                                Navigator.of(context).pop();
+                              },
+                            );
+                          });
+                    },
+                  ),
+                  ListTile(
+                    title: Text("${dataBridge.getUserDataCopy.user.address}"),
+                    trailing: Text("Edit"),
+                    subtitle: Text("Address"),
+                    onTap: () {
+                      _addressController.text =
+                          dataBridge.getUserDataCopy.user.address;
+                      showModalBottomSheet(
+                          isScrollControlled: true,
+                          context: (context),
+                          builder: (context) {
+                            return BottomSheetEditOneField(
+                              nameController: _addressController,
+                              name: "Edit Address",
+                              onPressed: () {
+                                widget.loginData.user.address =
+                                    _addressController.text;
+                                dataBridge.setUserDataCopy(widget.loginData,
+                                    notify: true);
+                                Navigator.of(context).pop();
+                              },
+                            );
+                          });
+                    },
+                  ),
+                  ListTile(
+                    title:
+                        Text("${dataBridge.getUserDataCopy.user.phoneNumber}"),
+                    trailing: Text("Edit"),
+                    subtitle: Text("Phone Number"),
+                    onTap: () {
+                      _phoneController.text =
+                          dataBridge.getUserDataCopy.user.phoneNumber;
+                      showModalBottomSheet(
+                          isScrollControlled: true,
+                          context: (context),
+                          builder: (context) {
+                            return BottomSheetEditOneField(
+                              nameController: _phoneController,
+                              name: "Edit Phone Number",
+                              onPressed: () {
+                                widget.loginData.user.phoneNumber =
+                                    _phoneController.text;
+                                dataBridge.setUserDataCopy(widget.loginData,
+                                    notify: true);
+                                Navigator.of(context).pop();
+                              },
+                            );
+                          });
+                    },
+                  ),
+                  (widget.loginData.user.role
+                          .toString()
+                          .toLowerCase()
+                          .contains("owner"))
+                      ? ListTile(
+                          title: Text("${dataBridge.getUserDataCopy.user.pIC}"),
+                          trailing: Text("Edit"),
+                          subtitle: Text("PIC"),
+                          onTap: () {
+                            _picController.text =
+                                dataBridge.getUserDataCopy.user.pIC;
+                            showModalBottomSheet(
+                                isScrollControlled: true,
+                                context: (context),
+                                builder: (context) {
+                                  return BottomSheetEditOneField(
+                                    nameController: _picController,
+                                    name: "Edit PIC",
+                                    onPressed: () {
+                                      widget.loginData.user.pIC =
+                                          _picController.text;
+                                      dataBridge.setUserDataCopy(
+                                          widget.loginData,
+                                          notify: true);
+                                      Navigator.of(context).pop();
+                                    },
+                                  );
+                                });
+                          },
+                        )
+                      : Container()
+                ],
               ),
-
-              new InformationItem(
-                name: "Phone Number",
-                hint: "Phone",
-                maxLines: 1,
-                enable: true,
-                controller: _phoneController,
-              ),
-
-              (widget.loginData.user.role.toString().toLowerCase().contains("owner"))
-                  ? InformationItem(
-                      name: "PIC",
-                      hint: "PIC",
-                      controller: _picController,
-                    )
-                  : Container(),
-
-              // (dataLogin.role.toString().toLowerCase().contains("groomer"))
-              //     ? InformationItem(
-              //         name: "Description",
-              //         hint: "Fill Your Description",
-              //         maxLines: 3,
-              //         controller: _descriptionController,
-              //       )
-              //     : Container(),
-
-              // new InformationDate(
-              //   name: "Birth Of Date",
-              //   hint: "Input your birth of date",
-              //   dateController: _dateController,
-              // ),
-              // new InformationItem(
-              //   name: "Gender",
-              //   hint: "Choose your gender",
-              // ),
             ]),
           ),
         ),
-      );
-    });
+      ),
+    ));
+  }
+}
+
+class BottomSheetEditOneField extends StatelessWidget {
+  const BottomSheetEditOneField({
+    Key key,
+    String name,
+    Function onPressed,
+    @required TextEditingController nameController,
+  })  : _nameController = nameController,
+        _title = name,
+        _onPressed = onPressed,
+        super(key: key);
+  final String _title;
+  final TextEditingController _nameController;
+  final Function _onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                child: Text(_title,
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              ),
+              Divider(
+                height: 20,
+              ),
+              Container(
+                child: TextFormField(
+                  controller: _nameController,
+                  maxLines: 8,
+                  minLines: 4,
+                ),
+              ),
+              SizedBox(height: 30),
+              Container(
+                width: double.infinity,
+                child: RaisedButton(
+                  color: Color(0xffd45500),
+                  onPressed: () {
+                    _onPressed();
+                  },
+                  child: Text("Submit", style: TextStyle(color: Colors.white)),
+                ),
+              )
+            ],
+          ),
+        ));
   }
 }
 
 class InformationDate extends StatefulWidget {
-  const InformationDate({Key key, @required this.name, @required this.hint, @required this.dateController}) : super(key: key);
+  const InformationDate(
+      {Key key,
+      @required this.name,
+      @required this.hint,
+      @required this.dateController})
+      : super(key: key);
   final String hint;
   final String name;
   final TextEditingController dateController;
@@ -186,7 +319,11 @@ class InformationDate extends StatefulWidget {
 class _InformationDateState extends State<InformationDate> {
   DateTime selectedDate;
   Future<Null> _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(context: context, initialDate: DateTime(2015, 8), firstDate: DateTime(2015, 8), lastDate: DateTime(2101));
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: DateTime(2015, 8),
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
@@ -233,7 +370,14 @@ class _InformationDateState extends State<InformationDate> {
 }
 
 class InformationItem extends StatelessWidget {
-  const InformationItem({Key key, @required this.name, @required this.hint, this.maxLines = 1, this.enable = true, this.controller}) : super(key: key);
+  const InformationItem(
+      {Key key,
+      @required this.name,
+      @required this.hint,
+      this.maxLines = 1,
+      this.enable = true,
+      this.controller})
+      : super(key: key);
   final String hint;
   final String name;
   final int maxLines;
@@ -296,18 +440,22 @@ class ChangeProfilePicture extends StatelessWidget {
                   builder: (context) {
                     return Dialog(
                       child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                        padding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             Text(
                               "Change Profile Picture",
-                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                             ListTile(
                               title: Text("Open Camera"),
                               onTap: () {
-                                CameraUtil().takePicture(fromCamera: true).then((onValue) {
+                                CameraUtil()
+                                    .takePicture(fromCamera: true)
+                                    .then((onValue) {
                                   final _currentData = dataBridge.getUserData();
 
                                   dataBridge.setCurrentPhoto(onValue);
@@ -319,8 +467,11 @@ class ChangeProfilePicture extends StatelessWidget {
                             ListTile(
                                 title: Text("Open Gallery"),
                                 onTap: () {
-                                  CameraUtil().takePicture(fromCamera: false).then((onValue) {
-                                    final _currentData = dataBridge.getUserData();
+                                  CameraUtil()
+                                      .takePicture(fromCamera: false)
+                                      .then((onValue) {
+                                    final _currentData =
+                                        dataBridge.getUserData();
 
                                     dataBridge.setCurrentPhoto(onValue);
                                     print(onValue);
@@ -340,7 +491,10 @@ class ChangeProfilePicture extends StatelessWidget {
                   border: Border.all(color: Colors.black, width: 2),
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                    image: (dataBridge.getCurrentPhoto == null) ? NetworkImage(Constants.getWebUrl() + "/$picture") : FileImage(File(dataBridge.getCurrentPhoto.toString())),
+                    image: (dataBridge.getCurrentPhoto == null)
+                        ? NetworkImage(Constants.getWebUrl() + "/$picture")
+                        : FileImage(
+                            File(dataBridge.getCurrentPhoto.toString())),
                     fit: BoxFit.fill,
                   )),
             ),
@@ -353,7 +507,10 @@ class ChangeProfilePicture extends StatelessWidget {
               height: 40,
               width: 40,
               child: Icon(Icons.image, color: Colors.white),
-              decoration: BoxDecoration(border: Border.all(width: 2, color: Colors.white), shape: BoxShape.circle, color: Colors.amber),
+              decoration: BoxDecoration(
+                  border: Border.all(width: 2, color: Colors.white),
+                  shape: BoxShape.circle,
+                  color: Colors.amber),
             ),
           )
         ],

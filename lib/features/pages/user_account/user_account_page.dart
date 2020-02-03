@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/features/data/dashboard_store.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
-import 'package:i_love_iruka/screens/transaction/history_transaction.dart';
+import 'package:i_love_iruka/routes/routes.gr.dart';
+import 'package:i_love_iruka/util/constants.dart';
+import 'package:i_love_iruka/util/shared_pref.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
@@ -20,7 +22,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
         body: SafeArea(
       child: Consumer<DataBridge>(
         builder: (context, dataBridge, _) => Container(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: CustomScrollView(
             slivers: <Widget>[
               SliverToBoxAdapter(
@@ -35,12 +37,21 @@ class _UserAccountPageState extends State<UserAccountPage> {
                       icon: Icon(
                         Icons.person,
                         color: Colors.black,
+                      
                       ),
+                      onPressed: (){
+                        
+                        SharedPref().loadUserFromLocal( prefKey : Constants.userSharedPref).then((onValue){
+                          dataBridge.setUserData(onValue); 
+
+                        Routes.navigator.pushNamed(Routes.editProfile, arguments: EditProfileArguments(loginData: dataBridge.getUserData())); 
+                        }) ; 
+                      },
                     )
                   ],
                 ),
               ),
-
+              SliverToBoxAdapter(child: SizedBox(height: 20,),),
               SliverToBoxAdapter(
                 child: StateBuilder<DashboardStore>(
                   models: [Injector.getAsReactive<DashboardStore>()],
@@ -69,7 +80,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
                                 child: RaisedButton(
                                   color: Color(0xffd45500),
                                   onPressed: () {
-                                    Navigator.of(context).pushNamed(HistoryTransaction.route);
+                                    Routes.navigator.pushNamed(Routes.historyTransaction);
                                   },
                                   child: Text(
                                     "Transaction History",
