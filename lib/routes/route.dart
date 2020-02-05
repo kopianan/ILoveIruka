@@ -3,7 +3,6 @@ import 'package:i_love_iruka/dashboard/dashboard_page.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/screens/feed_detail/feed_detail.dart';
 import 'package:i_love_iruka/screens/groomer/groomer_list.dart';
-import 'package:i_love_iruka/screens/groomer_detail/groomer_detail.dart';
 import 'package:i_love_iruka/screens/profile/edit_profile.dart';
 import 'package:i_love_iruka/screens/profile/groomer_page_profile.dart';
 import 'package:i_love_iruka/screens/profile/new_profile_page.dart';
