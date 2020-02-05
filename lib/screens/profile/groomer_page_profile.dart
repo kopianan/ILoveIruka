@@ -4,7 +4,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:i_love_iruka/data/repository.dart';
 import 'package:i_love_iruka/models/model/get_province_model.dart';
 import 'package:i_love_iruka/models/model/get_city_model.dart' as city;
+import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/models/request/edit_request.dart';
+import 'package:i_love_iruka/models/request/login_request.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/provider/register_provider.dart';
 import 'package:i_love_iruka/screens/register/register_widget.dart';
@@ -69,7 +71,8 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
   @override
   Widget build(BuildContext context) {
     return Consumer<RegisterProvider>(
-      builder: (_, regProv, __) => Consumer<DataBridge>(builder: (context, dataBridge, _) {
+      builder: (_, regProv, __) =>
+          Consumer<DataBridge>(builder: (context, dataBridge, _) {
         return Scaffold(
           body: SingleChildScrollView(
             child: Container(
@@ -81,7 +84,8 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Groomer Page ",
-                          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.bold),
                         )),
                   ],
                 ),
@@ -97,9 +101,11 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
                   onChanged: (val) {
                     final _currUserData = dataBridge.getUserData();
 
-                    changeUserStatus.changeUserStatus(dataBridge.getUserData().user.id, val).then((onValue) {
+                    changeUserStatus
+                        .changeUserStatus(dataBridge.getUserData().user.id, val)
+                        .then((onValue) {
                       _currUserData.user.show = val;
-                      dataBridge.setUserData(_currUserData, update:  true);
+                      dataBridge.setUserData(_currUserData, update: true);
                       SharedPref().saveLoginData(_currUserData);
                     });
                   },
@@ -113,10 +119,13 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
                   onChanged: (val) {
                     final _currUserData = dataBridge.getUserData();
 
-                    changeUserStatus.changeUserAvailability(dataBridge.getUserData().user.id, val).then((onValue) {
+                    changeUserStatus
+                        .changeUserAvailability(
+                            dataBridge.getUserData().user.id, val)
+                        .then((onValue) {
                       if (onValue != null) {
                         _currUserData.user.availability = val;
-                        dataBridge.setUserData(_currUserData, update : true );
+                        dataBridge.setUserData(_currUserData, update: true);
                         SharedPref().saveLoginData(_currUserData);
                       }
                     });
@@ -134,20 +143,28 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
                       style: TextStyle(color: Colors.grey),
                     ),
                     onTap: () {
-                      controller.text = dataBridge.getUserData().user.description;
+                      controller.text =
+                          dataBridge.getUserData().user.description;
                       showModalBottomSheet(
                           isScrollControlled: true,
                           context: (context),
                           builder: (context) {
                             return Padding(
-                                padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                                padding: EdgeInsets.only(
+                                    bottom: MediaQuery.of(context)
+                                        .viewInsets
+                                        .bottom),
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 20, horizontal: 20),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
                                       Container(
-                                        child: Text("Edit Description", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                                        child: Text("Edit Description",
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold)),
                                       ),
                                       Divider(
                                         height: 20,
@@ -167,7 +184,9 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
                                           onPressed: () {
                                             fillEditRequestData(dataBridge);
                                           },
-                                          child: Text("Submit", style: TextStyle(color: Colors.white)),
+                                          child: Text("Submit",
+                                              style: TextStyle(
+                                                  color: Colors.white)),
                                         ),
                                       )
                                     ],
@@ -180,7 +199,8 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
                 Container(
                     child: ListTile(
                   title: Text("Change Coverage Area"),
-                  subtitle: Text("Current : ${dataBridge.getUserData().user.coverageArea.toString()}"),
+                  subtitle: Text(
+                      "Current : ${dataBridge.getUserData().user.coverageArea.toString()}"),
                   trailing: Text(
                     "Edit",
                     style: TextStyle(color: Colors.grey),
@@ -204,10 +224,20 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
                   ),
                   onTap: () {
                     dataBridge.setCityResults(null);
-                    showModalBottomSheet(isScrollControlled: true, context: (context), builder: (context) => ModalBottomSkill(dataBridge: dataBridge, regProv: regProv));
+                    showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: (context),
+                        builder: (context) => ModalBottomSkill(
+                            dataBridge: dataBridge, regProv: regProv));
                   },
                 )),
-                (dataBridge.getUserData().user.trainingStartDate == null || dataBridge.getUserData().user.trainingStartDate.toString() == "")
+                (dataBridge.getUserData().user.trainingStartDate == null ||
+                        dataBridge
+                                .getUserData()
+                                .user
+                                .trainingStartDate
+                                .toString() ==
+                            "")
                     ? Container()
                     : Container(
                         child: ListTile(
@@ -218,12 +248,12 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
                           style: TextStyle(color: Colors.grey),
                         ),
                         onTap: () {
-                          showModalBottomSheet(
-                              isScrollControlled: true,
-                              context: (context),
-                              builder: (context) => ModalBottomTraining(
-                                    dataBridge: dataBridge,
-                                  ));
+                          // showModalBottomSheet(
+                          //     isScrollControlled: true,
+                          //     context: (context),
+                          //     builder: (context) => ModalBottomTraining(
+                          //           : dataBridge,
+                          //         ));
                         },
                       )),
               ]),
@@ -236,32 +266,42 @@ class _GroomerPageProfileState extends State<GroomerPageProfile> {
 }
 
 class ModalBottomSkill extends StatefulWidget {
-  ModalBottomSkill({Key key, this.regProv, this.dataBridge}) : super(key: key);
+  ModalBottomSkill(
+      {Key key, this.regProv, this.dataBridge, this.onSubmitPressed})
+      : super(key: key);
   final DataBridge dataBridge;
   final RegisterProvider regProv;
-
+  final Function onSubmitPressed;
   @override
   _ModalBottomSkillState createState() => _ModalBottomSkillState();
 }
 
 class _ModalBottomSkillState extends State<ModalBottomSkill> {
-  TextEditingController _experienceLongController;
-
-  TextEditingController _keyFeaturesController;
+  TextEditingController _experienceLongController = TextEditingController();
+  TextEditingController _keyFeaturesController = TextEditingController();
 
   @override
   void initState() {
-    _experienceLongController = TextEditingController(text: widget.dataBridge.getUserData().user.yearsOfExperience.toString());
-    _keyFeaturesController = TextEditingController(text: widget.dataBridge.getUserData().user.keyFeatures.toString());
-    widget.regProv.setStyling(double.parse(widget.dataBridge.getUserData().user.styling.toString()));
-    widget.regProv.setCliping(double.parse(widget.dataBridge.getUserData().user.clipping.toString()));
+    _experienceLongController.text =
+        widget.dataBridge.getUserDataCopy.user.yearsOfExperience.toString();
+    _keyFeaturesController.text =
+        widget.dataBridge.getUserDataCopy.user.keyFeatures.toString();
+    widget.regProv.setStyling(
+        double.parse(
+          widget.dataBridge.getUserDataCopy.user.styling.toString(),
+        ),
+        notify: true);
+    widget.regProv.setCliping(
+        double.parse(widget.dataBridge.getUserDataCopy.user.clipping.toString()),
+        notify: true);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 20),
@@ -271,18 +311,20 @@ class _ModalBottomSkillState extends State<ModalBottomSkill> {
             children: <Widget>[
               Container(
                 alignment: Alignment.center,
-                child: Text("Change Grooming Skill", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                child: Text("Change Grooming Skill",
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               ),
               SizedBox(
                 height: 20,
               ),
-              Text("Styling : ${Common.skillMapper(double.parse(widget.dataBridge.getUserData().user.styling.toString()))}"),
-              Text("Clipping : ${Common.skillMapper(double.parse(widget.dataBridge.getUserData().user.clipping.toString()))}"),
-              Text("Experience Long : ${widget.dataBridge.getUserData().user.yearsOfExperience.toString()}"),
-              Text("Key Features : ${widget.dataBridge.getUserData().user.keyFeatures.toString()}"),
-              SizedBox(
-                height: 20,
-              ),
+              // Text("Styling : ${Common.skillMapper(double.parse(widget.dataBridge.getUserData().user.styling.toString()))}"),
+              // Text("Clipping : ${Common.skillMapper(double.parse(widget.dataBridge.getUserData().user.clipping.toString()))}"),
+              // Text("Experience Long : ${widget.dataBridge.getUserData().user.yearsOfExperience.toString()}"),
+              // Text("Key Features : ${widget.dataBridge.getUserData().user.keyFeatures.toString()}"),
+              // SizedBox(
+              //   height: 20,
+              // ),
               Container(
                   child: Column(
                 children: <Widget>[
@@ -335,7 +377,11 @@ class _ModalBottomSkillState extends State<ModalBottomSkill> {
                   color: ColorPalate.darkOrange,
                   child: Text("Submit", style: TextStyle(color: Colors.white)),
                   onPressed: () {
-                    _fillEditRequestData(widget.dataBridge, context, widget.regProv);
+                    widget.regProv.setKeyFeatures(_keyFeaturesController.text);
+                    widget.regProv
+                        .setYearExperience(_experienceLongController.text);
+
+                    widget.onSubmitPressed();
                   },
                 ),
               )
@@ -346,7 +392,8 @@ class _ModalBottomSkillState extends State<ModalBottomSkill> {
     );
   }
 
-  void _fillEditRequestData(DataBridge dataBridge, BuildContext context, RegisterProvider regProv) {
+  void _fillEditRequestData(
+      DataBridge dataBridge, BuildContext context, RegisterProvider regProv) {
     final _repository = Repository();
 
     final userDta = dataBridge.getUserData().user;
@@ -370,7 +417,7 @@ class _ModalBottomSkillState extends State<ModalBottomSkill> {
 
     _repository.editUser(reg).then((onValue) {
       SharedPref().saveLoginData(onValue);
-      dataBridge.setUserData(onValue, update:  true) ; 
+      dataBridge.setUserData(onValue, update: true);
       Fluttertoast.showToast(msg: "Coverage Area Edited");
       Navigator.of(context).pop();
     });
@@ -378,18 +425,22 @@ class _ModalBottomSkillState extends State<ModalBottomSkill> {
 }
 
 class ModalBottomArea extends StatelessWidget {
-  const ModalBottomArea({Key key, this.dataBridge}) : super(key: key);
+  const ModalBottomArea({Key key, this.dataBridge, this.onSubmitPressed})
+      : super(key: key);
   final DataBridge dataBridge;
+  final Function onSubmitPressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: <Widget>[
             Container(
-              child: Text("Change Coverage Area", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              child: Text("Change Coverage Area",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             ),
             SizedBox(
               height: 20,
@@ -408,7 +459,11 @@ class ModalBottomArea extends StatelessWidget {
                 color: ColorPalate.darkOrange,
                 child: Text("Submit", style: TextStyle(color: Colors.white)),
                 onPressed: () {
-                  _fillEditRequestData(dataBridge, context);
+                  final cityData = dataBridge.getCityResults;
+                  var coverageArea =
+                      "${cityData.type} ${cityData.cityName},${cityData.province}";
+
+                  onSubmitPressed(coverageArea);
                 },
               ),
             )
@@ -424,7 +479,8 @@ class ModalBottomArea extends StatelessWidget {
     if (cityData == null) {
       Fluttertoast.showToast(msg: "Please choose city and province");
     } else {
-      var coverageArea = "${cityData.type} ${cityData.cityName},${cityData.province}";
+      var coverageArea =
+          "${cityData.type} ${cityData.cityName},${cityData.province}";
 
       final userDta = dataBridge.getUserData().user;
       EditRequest reg = EditRequest(
@@ -447,7 +503,7 @@ class ModalBottomArea extends StatelessWidget {
 
       _repository.editUser(reg).then((onValue) {
         SharedPref().saveLoginData(onValue);
-        dataBridge.setUserData(onValue,update: true);
+        dataBridge.setUserData(onValue, update: true);
         Fluttertoast.showToast(msg: "Coverage Area Edited");
         Navigator.of(context).pop();
       });
@@ -456,23 +512,28 @@ class ModalBottomArea extends StatelessWidget {
 }
 
 class ModalBottomTraining extends StatefulWidget {
-  const ModalBottomTraining({Key key, this.dataBridge}) : super(key: key);
+  const ModalBottomTraining(
+      {Key key, this.onSubmit, this.dataBridge})
+      : super(key: key);
+  final Function onSubmit;
   final DataBridge dataBridge;
+
   @override
   _ModalBottomTrainingState createState() => _ModalBottomTrainingState();
 }
 
 class _ModalBottomTrainingState extends State<ModalBottomTraining> {
-  var _trainDateController;
+  var _trainDateController = TextEditingController();
+  var _trainLongController = TextEditingController();
+  var _trainNotesController = TextEditingController();
 
-  var _trainLongController;
   Repository _repository = Repository();
-  var _trainNotesController;
   @override
   void initState() {
-    _trainDateController = TextEditingController(text: Common.convertDate(widget.dataBridge.getUserData().user.trainingStartDate));
-    _trainLongController = TextEditingController(text: widget.dataBridge.getUserData().user.trainingYears.toString());
-    _trainNotesController = TextEditingController(text: widget.dataBridge.getUserData().user.trainingCourses);
+    _trainDateController.text =widget.dataBridge.getUserDataCopy.user.trainingStartDate;
+    _trainLongController.text =
+        widget.dataBridge.getUserDataCopy.user.trainingYears.toString();
+    _trainNotesController.text = widget.dataBridge.getUserDataCopy.user.trainingCourses;
 
     super.initState();
   }
@@ -480,14 +541,16 @@ class _ModalBottomTrainingState extends State<ModalBottomTraining> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Container(
-              child: Text("Edit Data", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              child: Text("Edit Data",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             ),
             SizedBox(
               height: 20,
@@ -497,9 +560,10 @@ class _ModalBottomTrainingState extends State<ModalBottomTraining> {
                 TextFormField(
                   enableInteractiveSelection: false,
                   onTap: () {
-                    DatePicker.showDatePicker(context, maxTime: DateTime.now(), minTime: DateTime(1990), onConfirm: (selectedDate) {
+                    DatePicker.showDatePicker(context,
+                        maxTime: DateTime.now(),
+                        minTime: DateTime(1990), onConfirm: (selectedDate) {
                       var date = Common.convertDate(selectedDate.toString());
-                      // var date = selectedDate.day.toString() + "-" + selectedDate.month.toString() + "-" + selectedDate.year.toString();
 
                       _trainDateController.text = date;
                     });
@@ -539,9 +603,20 @@ class _ModalBottomTrainingState extends State<ModalBottomTraining> {
                   width: double.infinity,
                   child: FlatButton(
                     color: ColorPalate.darkOrange,
-                    child: Text("Submit", style: TextStyle(color: Colors.white)),
+                    child:
+                        Text("Submit", style: TextStyle(color: Colors.white)),
                     onPressed: () {
-                      _fillEditRequestData(widget.dataBridge);
+                      LoginResponse currData =
+                          widget.dataBridge.getUserDataCopy;
+                      currData.user.trainingCourses =
+                          _trainNotesController.text;
+                      currData.user.trainingStartDate =
+                          _trainDateController.text;
+                      currData.user.trainingYears =
+                          int.parse(_trainLongController.text);
+                      widget.dataBridge.setUserDataCopy(currData);
+                      widget.onSubmit(); 
+
                     },
                   ),
                 )
@@ -581,7 +656,7 @@ class _ModalBottomTrainingState extends State<ModalBottomTraining> {
 
     _repository.editUser(reg).then((onValue) {
       SharedPref().saveLoginData(onValue);
-      dataBridge.setUserData(onValue, update : true);
+      dataBridge.setUserData(onValue, update: true);
       Fluttertoast.showToast(msg: "Profile Edited");
       Navigator.of(context).pop();
     });

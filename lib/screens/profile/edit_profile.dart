@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -6,12 +7,17 @@ import 'package:i_love_iruka/data/repository.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/models/request/edit_request.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
+import 'package:i_love_iruka/provider/register_provider.dart';
 import 'package:i_love_iruka/routes/routes.gr.dart';
+import 'package:i_love_iruka/users/data/user_store.dart';
 import 'package:i_love_iruka/util/camera_util.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:i_love_iruka/util/shared_pref.dart';
 import 'package:i_love_iruka/widgets/color_palate.dart';
 import 'package:provider/provider.dart';
+import 'package:states_rebuilder/states_rebuilder.dart';
+
+import 'groomer_page_profile.dart';
 
 class EditProfile extends StatefulWidget {
   static const String id = "/edit_profile";
@@ -48,261 +54,355 @@ class _EditProfileState extends State<EditProfile> {
     super.dispose();
   }
 
-  // void fillEditRequestData(DataBridge dataBridge) {
-  //   String filePhoto;
-  //   if (dataBridge.getCurrentPhoto == null)
-  //     filePhoto = null;
-  //   else
-  //     filePhoto = dataBridge.getCurrentPhoto.toString();
+  EditRequest fillEditRequestData(DataBridge dataBridge) {
+    User _userData = dataBridge.getUserDataCopy.user;
+    String filePhoto;
+    if (dataBridge.getCurrentPhoto == null)
+      filePhoto = null;
+    else
+      filePhoto = dataBridge.getCurrentPhoto.toString();
 
-  //   final userDta = dataBridge.getUserData().user;
-  //   EditRequest reg = EditRequest(
-  //     accessKey: "d78c1a5c-ccbe-4c26-ac08-43ed66c8afb9",
-  //     name: (_nameController == null) ? "" : _nameController.text.toString(),
-  //     phonenumber:
-  //         (_phoneController == null) ? "" : _phoneController.text.toString(),
-  //     address: (_addressController == null)
-  //         ? ""
-  //         : _addressController.text.toString(),
-  //     description: dataBridge.getUserData().user.description.toString(),
-  //     pic: (_picController == null) ? "" : _picController.text.toString(),
-  //     iD: dataBridge.getUserData().user.id.toString(),
-  //     file: filePhoto,
-  //     availability: userDta.availability,
-  //     cliping: userDta.clipping,
-  //     coverageArea: userDta.coverageArea,
-  //     keyFeatures: userDta.keyFeatures,
-  //     styling: userDta.styling,
-  //     trainingCourses: userDta.trainingCourses,
-  //     trainingStartDate: userDta.trainingStartDate,
-  //     trainingYears: userDta.trainingYears,
-  //     yearsOfExperience: userDta.yearsOfExperience,
-  //   );
-  //   print(reg.toString());
-  //   _repository.editUser(reg).then((onValue) {
-  //     SharedPref().saveLoginData(onValue);
-  //     dataBridge.setUserData(onValue);
-  //     Fluttertoast.showToast(msg: "Profile Edited");
-  //   });
-  // }
+    EditRequest reg = EditRequest(
+      accessKey: "d78c1a5c-ccbe-4c26-ac08-43ed66c8afb9",
+      name: _userData.name.toString(),
+      phonenumber: _userData.phoneNumber.toString(),
+      address: _userData.address.toString(),
+      description: _userData.description.toString(),
+      pic: _userData.pIC.toString(),
+      iD: _userData.id.toString(),
+      file: filePhoto,
+      availability: _userData.availability,
+      cliping: _userData.clipping,
+      coverageArea: _userData.coverageArea.toString(),
+      keyFeatures: _userData.keyFeatures.toString(),
+      styling: _userData.styling,
+      trainingCourses: _userData.trainingCourses.toString(),
+      trainingStartDate: _userData.trainingStartDate.toString(),
+      trainingYears: _userData.trainingYears,
+      yearsOfExperience: _userData.yearsOfExperience,
+    );
+    return reg;
+  }
 
-  String name;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
       child: SingleChildScrollView(
-        child: Consumer<DataBridge>(
-          builder: (_, dataBridge, __) => Container(
-            alignment: Alignment.center,
-            child: Column(children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(Icons.arrow_back, color: Colors.black, size: 30),
-                  ),
-                  SizedBox(width: 20),
-                  Container(
-                      alignment: Alignment.centerLeft,
-                      child: InkWell(
-                        onTap: () {
-                          Routes.navigator.pushNamed(Routes.groomerPageProfile);
-                        },
-                        child: Text(
-                          "Profile",
-                          style: TextStyle(
-                              fontSize: 30, fontWeight: FontWeight.bold),
-                        ),
-                      )),
-                ],
-              ),
-              SizedBox(height: 30),
-              new ChangeProfilePicture(
-                  picture: dataBridge.getUserDataCopy.user.picture),
-              SizedBox(height: 30),
-              Column(
-                children: <Widget>[
-                  Text("General Information"),
-                  Divider(),
-                ],
-              ),
-              Column(
-                children: <Widget>[
-                  ListTile(
-                    title: Text("${dataBridge.getUserDataCopy.user.name}"),
-                    trailing: Text("Edit"),
-                    subtitle: Text("Name"),
-                    onTap: () {
-                      _nameController.text =
-                          dataBridge.getUserDataCopy.user.name;
-                      showModalBottomSheet(
-                          isScrollControlled: true,
-                          context: (context),
-                          builder: (context) {
-                            return BottomSheetEditOneField(
-                              nameController: _nameController,
-                              name: "Edit Name",
-                              onPressed: () {
-                                widget.loginData.user.name =
-                                    _nameController.text;
-                                dataBridge.setUserDataCopy(widget.loginData,
-                                    notify: true);
-                                Navigator.of(context).pop();
-                              },
-                            );
-                          });
-                    },
-                  ),
-                  ListTile(
-                    title: Text("${dataBridge.getUserDataCopy.user.address}"),
-                    trailing: Text("Edit"),
-                    subtitle: Text("Address"),
-                    onTap: () {
-                      _addressController.text =
-                          dataBridge.getUserDataCopy.user.address;
-                      showModalBottomSheet(
-                          isScrollControlled: true,
-                          context: (context),
-                          builder: (context) {
-                            return BottomSheetEditOneField(
-                              nameController: _addressController,
-                              name: "Edit Address",
-                              onPressed: () {
-                                widget.loginData.user.address =
-                                    _addressController.text;
-                                dataBridge.setUserDataCopy(widget.loginData,
-                                    notify: true);
-                                Navigator.of(context).pop();
-                              },
-                            );
-                          });
-                    },
-                  ),
-                  ListTile(
-                    title:
-                        Text("${dataBridge.getUserDataCopy.user.phoneNumber}"),
-                    trailing: Text("Edit"),
-                    subtitle: Text("Phone Number"),
-                    onTap: () {
-                      _phoneController.text =
-                          dataBridge.getUserDataCopy.user.phoneNumber;
-                      showModalBottomSheet(
-                          isScrollControlled: true,
-                          context: (context),
-                          builder: (context) {
-                            return BottomSheetEditOneField(
-                              nameController: _phoneController,
-                              name: "Edit Phone Number",
-                              onPressed: () {
-                                widget.loginData.user.phoneNumber =
-                                    _phoneController.text;
-                                dataBridge.setUserDataCopy(widget.loginData,
-                                    notify: true);
-                                Navigator.of(context).pop();
-                              },
-                            );
-                          });
-                    },
-                  ),
-                  (widget.loginData.user.role
-                          .toString()
-                          .toLowerCase()
-                          .contains("owner"))
-                      ? ListTile(
-                          title: Text("${dataBridge.getUserDataCopy.user.pIC}"),
-                          trailing: Text("Edit"),
-                          subtitle: Text("PIC"),
+        child: Consumer<RegisterProvider>(
+          builder: (_, regProv, __) => Consumer<DataBridge>(
+            builder: (_, dataBridge, __) => Container(
+              alignment: Alignment.center,
+              child: Column(children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon:
+                          Icon(Icons.arrow_back, color: Colors.black, size: 30),
+                    ),
+                    SizedBox(width: 20),
+                    Container(
+                        alignment: Alignment.centerLeft,
+                        child: InkWell(
                           onTap: () {
-                            _picController.text =
-                                dataBridge.getUserDataCopy.user.pIC;
-                            showModalBottomSheet(
-                                isScrollControlled: true,
-                                context: (context),
-                                builder: (context) {
-                                  return BottomSheetEditOneField(
-                                    nameController: _picController,
-                                    name: "Edit PIC",
-                                    onPressed: () {
-                                      widget.loginData.user.pIC =
-                                          _picController.text;
-                                      dataBridge.setUserDataCopy(
-                                          widget.loginData,
-                                          notify: true);
-                                      Navigator.of(context).pop();
-                                    },
-                                  );
-                                });
+                            Routes.navigator
+                                .pushNamed(Routes.groomerPageProfile);
                           },
-                        )
-                      : Container()
-                ],
-              ),
-              Column(
-                children: <Widget>[
-                  Container(
-                      child: SwitchListTile(
-                    activeColor: ColorPalate.darkOrange,
-                    subtitle: Text("Show or hide On Groomer List"),
-                    title: Text("Status"),
-                    value: dataBridge.getUserDataCopy.user.show,
-                    onChanged: (val) {
-                      widget.loginData.user.show = val;
-                      dataBridge.setUserDataCopy(widget.loginData,
-                          notify: true);
-                    },
-                  )),
-                  Container(
-                      child: SwitchListTile(
-                    activeColor: ColorPalate.darkOrange,
-                    subtitle: Text("Available home grooming ? "),
-                    title: Text("Home Grooming"),
-                    value: dataBridge.getUserData().user.availability,
-                    onChanged: (val) {},
-                  )),
-                  ListTile(
-                    title: Text("${dataBridge.getUserDataCopy.user.description}"),
-                    trailing: Text("Edit"),
-                    subtitle: Text("Description"),
-                    onTap: () {
-                      showModalBottomSheet(
-                          isScrollControlled: true,
-                          context: (context),
-                          builder: (context) {
-                            return BottomSheetEditOneField(
-                              nameController: _picController,
-                              name: "Edit Description",
-                              onPressed: () {
-                               
-                              },
-                            );
-                          });
-                    },
-                  ),
-
-                  Container(
-                    child: ListTile(
-                  title: Text("Change Coverage Area"),
-                  subtitle: Text("Current : ${dataBridge.getUserData().user.coverageArea.toString()}"),
+                          child: Text(
+                            "Profile",
+                            style: TextStyle(
+                                fontSize: 30, fontWeight: FontWeight.bold),
+                          ),
+                        )),
+                    Expanded(
+                      child: Container(
+                          padding: EdgeInsets.only(right: 20),
+                          alignment: Alignment.centerRight,
+                          child: IconButton(
+                            color: Colors.red,
+                            icon: Icon(Icons.exit_to_app),
+                            onPressed: () {
+                              SharedPref().clearPreference();
+                              Routes.navigator
+                                  .pushReplacementNamed(Routes.userLoginPage);
+                            },
+                          )),
+                    )
+                  ],
+                ),
+                SizedBox(height: 30),
+                new ChangeProfilePicture(
+                    picture: dataBridge.getUserDataCopy.user.picture),
+                SizedBox(height: 30),
+                Column(
+                  children: <Widget>[
+                    Text("General Information"),
+                    Divider(),
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    ListTile(
+                      title: Text("${dataBridge.getUserDataCopy.user.name}"),
+                      trailing: Text("Edit"),
+                      subtitle: Text("Name"),
+                      onTap: () {
+                        _nameController.text =
+                            dataBridge.getUserDataCopy.user.name;
+                        showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: (context),
+                            builder: (context) {
+                              return BottomSheetEditOneField(
+                                nameController: _nameController,
+                                name: "Edit Name",
+                                onPressed: () {
+                                  widget.loginData.user.name =
+                                      _nameController.text;
+                                  dataBridge.setUserDataCopy(widget.loginData,
+                                      notify: true);
+                                  Navigator.of(context).pop();
+                                },
+                              );
+                            });
+                      },
+                    ),
+                    ListTile(
+                      title: Text("${dataBridge.getUserDataCopy.user.address}"),
+                      trailing: Text("Edit"),
+                      subtitle: Text("Address"),
+                      onTap: () {
+                        _addressController.text =
+                            dataBridge.getUserDataCopy.user.address;
+                        showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: (context),
+                            builder: (context) {
+                              return BottomSheetEditOneField(
+                                nameController: _addressController,
+                                name: "Edit Address",
+                                onPressed: () {
+                                  widget.loginData.user.address =
+                                      _addressController.text;
+                                  dataBridge.setUserDataCopy(widget.loginData,
+                                      notify: true);
+                                  Navigator.of(context).pop();
+                                },
+                              );
+                            });
+                      },
+                    ),
+                    ListTile(
+                      title: Text(
+                          "${dataBridge.getUserDataCopy.user.phoneNumber}"),
+                      trailing: Text("Edit"),
+                      subtitle: Text("Phone Number"),
+                      onTap: () {
+                        _phoneController.text =
+                            dataBridge.getUserDataCopy.user.phoneNumber;
+                        showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: (context),
+                            builder: (context) {
+                              return BottomSheetEditOneField(
+                                nameController: _phoneController,
+                                name: "Edit Phone Number",
+                                onPressed: () {
+                                  widget.loginData.user.phoneNumber =
+                                      _phoneController.text;
+                                  dataBridge.setUserDataCopy(widget.loginData,
+                                      notify: true);
+                                  Navigator.of(context).pop();
+                                },
+                              );
+                            });
+                      },
+                    ),
+                  ],
+                ),
+                (widget.loginData.user.role.toLowerCase() == "owner")
+                    ? ListTile(
+                        title: Text("${dataBridge.getUserDataCopy.user.pIC}"),
+                        trailing: Text("Edit"),
+                        subtitle: Text("PIC"),
+                        onTap: () {
+                          _picController.text =
+                              dataBridge.getUserDataCopy.user.pIC;
+                          showModalBottomSheet(
+                              isScrollControlled: true,
+                              context: (context),
+                              builder: (context) {
+                                return BottomSheetEditOneField(
+                                  nameController: _picController,
+                                  name: "Edit PIC",
+                                  onPressed: () {
+                                    widget.loginData.user.pIC =
+                                        _picController.text;
+                                    dataBridge.setUserDataCopy(widget.loginData,
+                                        notify: true);
+                                    Navigator.of(context).pop();
+                                  },
+                                );
+                              });
+                        },
+                      )
+                    : Container(
+                        height: 0.0,
+                      ),
+                //  (widget.loginData.user.role.toLowerCase() == "groomer")  ?
+                Column(
+                  children: <Widget>[
+                    SwitchListTile(
+                      activeColor: ColorPalate.darkOrange,
+                      subtitle: Text("Show or hide On Groomer List"),
+                      title: Text("Status"),
+                      value: dataBridge.getUserDataCopy.user.show,
+                      onChanged: (val) {
+                        widget.loginData.user.show = val;
+                        dataBridge.setUserDataCopy(widget.loginData,
+                            notify: true);
+                      },
+                    ),
+                    SwitchListTile(
+                      activeColor: ColorPalate.darkOrange,
+                      subtitle: Text("Available home grooming ? "),
+                      title: Text("Home Grooming"),
+                      value: dataBridge.getUserDataCopy.user.availability,
+                      onChanged: (val) {
+                        widget.loginData.user.availability = val;
+                        dataBridge.setUserDataCopy(widget.loginData,
+                            notify: true);
+                      },
+                    ),
+                    ListTile(
+                      title: Text(
+                          "${dataBridge.getUserDataCopy.user.description}"),
+                      trailing: Text("Edit"),
+                      subtitle: Text("Description"),
+                      onTap: () {
+                        showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: (context),
+                            builder: (context) {
+                              return BottomSheetEditOneField(
+                                nameController: _descriptionController,
+                                name: "Edit Description",
+                                onPressed: () {
+                                  widget.loginData.user.description =
+                                      _descriptionController.text;
+                                  dataBridge.setUserDataCopy(widget.loginData,
+                                      notify: true);
+                                  Navigator.of(context).pop();
+                                },
+                              );
+                            });
+                      },
+                    ),
+                    ListTile(
+                      subtitle: Text("Coverage Area"),
+                      title: Text(
+                          "${dataBridge.getUserDataCopy.user.coverageArea.toString()}"),
+                      trailing: Text(
+                        "Edit",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      onTap: () {
+                        dataBridge.setCityResults(null);
+                        showModalBottomSheet(
+                            context: (context),
+                            builder: (context) => ModalBottomArea(
+                                  dataBridge: dataBridge,
+                                  onSubmitPressed: (String data) {
+                                    widget.loginData.user.coverageArea = data;
+                                    dataBridge.setUserDataCopy(widget.loginData,
+                                        notify: true);
+                                    Navigator.pop(context);
+                                  },
+                                ));
+                      },
+                    ),
+                    ListTile(
+                      title: Text("Home Grooming Skill"),
+                      subtitle: Text("Edit and view data"),
+                      trailing: Text(
+                        "Edit",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      onTap: () {
+                        dataBridge.setCityResults(null);
+                        showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: (context),
+                            builder: (context) => ModalBottomSkill(
+                                  dataBridge: dataBridge,
+                                  regProv: regProv,
+                                  onSubmitPressed: () {
+                                    widget.loginData.user.styling = int.parse(
+                                        regProv.getStyling.toStringAsFixed(0));
+                                    widget.loginData.user.clipping = int.parse(
+                                        regProv.getCliping.toStringAsFixed(0));
+                                    widget.loginData.user.yearsOfExperience =
+                                        int.parse(regProv.getYearExperience);
+                                    widget.loginData.user.keyFeatures =
+                                        regProv.getKeyFeatures;
+                                    Navigator.pop(context);
+                                  },
+                                ));
+                      },
+                    ),
+                  ],
+                )
+                // :    Container(height: 0.0,),
+                ,
+                ListTile(
+                  subtitle: Text("Trainig Information"),
+                  title: Text("Training Information"),
                   trailing: Text(
-                    "Edit",
+                    "View/Edit",
                     style: TextStyle(color: Colors.grey),
                   ),
                   onTap: () {
-                    dataBridge.setCityResults(null);
                     showModalBottomSheet(
+                        isScrollControlled: true,
                         context: (context),
-                        builder: (context) => ModalBottomArea(
+                        builder: (context) => ModalBottomTraining(
                               dataBridge: dataBridge,
+                              onSubmit: () {
+                                Navigator.pop(context);
+                              },
                             ));
                   },
-                )),
-                ],
-              )
-            ]),
+                ),
+                RaisedButton(
+                  child: Text("Simpan"),
+                  onPressed: () {
+                    final reactiveModel = Injector.getAsReactive<UserStore>();
+                    reactiveModel.setState(
+                        (store) => store.editUser(
+                              fillEditRequestData(dataBridge),
+                            ), onData: (context, data) {
+                      Fluttertoast.showToast(msg: "Berhasil");
+
+                      SharedPref _sharedPref = SharedPref();
+
+                      _sharedPref.savingUserToLocal(
+                          loginData:
+                              json.encode(data.getEditUserResponse.toJson()),
+                          prefKey: Constants.userSharedPref);
+
+                      dataBridge.setUserDataCopy(data.getEditUserResponse);
+                      Navigator.pop(context);
+                    }, onError: (context, err) {
+                      Fluttertoast.showToast(msg: err.toString());
+                    });
+                  },
+                )
+              ]),
+            ),
           ),
         ),
       ),
@@ -366,126 +466,126 @@ class BottomSheetEditOneField extends StatelessWidget {
   }
 }
 
-class InformationDate extends StatefulWidget {
-  const InformationDate(
-      {Key key,
-      @required this.name,
-      @required this.hint,
-      @required this.dateController})
-      : super(key: key);
-  final String hint;
-  final String name;
-  final TextEditingController dateController;
+// class InformationDate extends StatefulWidget {
+//   const InformationDate(
+//       {Key key,
+//       @required this.name,
+//       @required this.hint,
+//       @required this.dateController})
+//       : super(key: key);
+//   final String hint;
+//   final String name;
+//   final TextEditingController dateController;
 
-  @override
-  _InformationDateState createState() => _InformationDateState();
-}
+//   @override
+//   _InformationDateState createState() => _InformationDateState();
+// }
 
-class _InformationDateState extends State<InformationDate> {
-  DateTime selectedDate;
-  Future<Null> _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: DateTime(2015, 8),
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
-    if (picked != null && picked != selectedDate)
-      setState(() {
-        selectedDate = picked;
-        widget.dateController.text = selectedDate.toIso8601String();
-      });
-  }
+// class _InformationDateState extends State<InformationDate> {
+//   DateTime selectedDate;
+//   Future<Null> _selectDate(BuildContext context) async {
+//     final DateTime picked = await showDatePicker(
+//         context: context,
+//         initialDate: DateTime(2015, 8),
+//         firstDate: DateTime(2015, 8),
+//         lastDate: DateTime(2101));
+//     if (picked != null && picked != selectedDate)
+//       setState(() {
+//         selectedDate = picked;
+//         widget.dateController.text = selectedDate.toIso8601String();
+//       });
+//   }
 
-  @override
-  void dispose() {
-    Provider.of<DataBridge>(context, listen: false).setCurrentPhoto(null);
-    super.dispose();
-  }
+//   @override
+//   void dispose() {
+//     Provider.of<DataBridge>(context, listen: false).setCurrentPhoto(null);
+//     super.dispose();
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Expanded(flex: 3, child: Text("${widget.name}")),
-            Expanded(
-                flex: 7,
-                child: TextField(
-                  onTap: () {
-                    _selectDate(context);
-                  },
-                  controller: widget.dateController,
-                  textAlign: TextAlign.end,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: widget.hint,
-                  ),
-                )),
-          ],
-        ),
-        Divider(
-          height: 0,
-        )
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: <Widget>[
+//         Row(
+//           mainAxisSize: MainAxisSize.min,
+//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//           children: <Widget>[
+//             Expanded(flex: 3, child: Text("${widget.name}")),
+//             Expanded(
+//                 flex: 7,
+//                 child: TextField(
+//                   onTap: () {
+//                     _selectDate(context);
+//                   },
+//                   controller: widget.dateController,
+//                   textAlign: TextAlign.end,
+//                   decoration: InputDecoration(
+//                     border: InputBorder.none,
+//                     hintText: widget.hint,
+//                   ),
+//                 )),
+//           ],
+//         ),
+//         Divider(
+//           height: 0,
+//         )
+//       ],
+//     );
+//   }
+// }
 
-class InformationItem extends StatelessWidget {
-  const InformationItem(
-      {Key key,
-      @required this.name,
-      @required this.hint,
-      this.maxLines = 1,
-      this.enable = true,
-      this.controller})
-      : super(key: key);
-  final String hint;
-  final String name;
-  final int maxLines;
-  final bool enable;
-  final TextEditingController controller;
+// class InformationItem extends StatelessWidget {
+//   const InformationItem(
+//       {Key key,
+//       @required this.name,
+//       @required this.hint,
+//       this.maxLines = 1,
+//       this.enable = true,
+//       this.controller})
+//       : super(key: key);
+//   final String hint;
+//   final String name;
+//   final int maxLines;
+//   final bool enable;
+//   final TextEditingController controller;
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Expanded(
-                flex: 3,
-                child: Text(
-                  "$name",
-                )),
-            Expanded(
-                flex: 7,
-                child: TextField(
-                  enabled: enable,
-                  controller: controller,
-                  onTap: () {},
-                  textAlign: TextAlign.end,
-                  minLines: maxLines,
-                  maxLines: maxLines,
-                  style: (enable) ? null : TextStyle(color: Colors.grey),
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: hint,
-                  ),
-                )),
-          ],
-        ),
-        Divider(
-          height: 0,
-        )
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: <Widget>[
+//         Row(
+//           mainAxisSize: MainAxisSize.min,
+//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//           children: <Widget>[
+//             Expanded(
+//                 flex: 3,
+//                 child: Text(
+//                   "$name",
+//                 )),
+//             Expanded(
+//                 flex: 7,
+//                 child: TextField(
+//                   enabled: enable,
+//                   controller: controller,
+//                   onTap: () {},
+//                   textAlign: TextAlign.end,
+//                   minLines: maxLines,
+//                   maxLines: maxLines,
+//                   style: (enable) ? null : TextStyle(color: Colors.grey),
+//                   decoration: InputDecoration(
+//                     border: InputBorder.none,
+//                     hintText: hint,
+//                   ),
+//                 )),
+//           ],
+//         ),
+//         Divider(
+//           height: 0,
+//         )
+//       ],
+//     );
+//   }
+// }
 
 class ChangeProfilePicture extends StatelessWidget {
   const ChangeProfilePicture({
@@ -521,10 +621,7 @@ class ChangeProfilePicture extends StatelessWidget {
                                 CameraUtil()
                                     .takePicture(fromCamera: true)
                                     .then((onValue) {
-                                  final _currentData = dataBridge.getUserData();
-
                                   dataBridge.setCurrentPhoto(onValue);
-                                  print(onValue);
                                 });
                                 Navigator.pop(context);
                               },
@@ -535,11 +632,7 @@ class ChangeProfilePicture extends StatelessWidget {
                                   CameraUtil()
                                       .takePicture(fromCamera: false)
                                       .then((onValue) {
-                                    final _currentData =
-                                        dataBridge.getUserData();
-
                                     dataBridge.setCurrentPhoto(onValue);
-                                    print(onValue);
                                   });
                                   Navigator.pop(context);
                                 }),

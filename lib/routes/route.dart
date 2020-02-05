@@ -40,17 +40,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => NewProfilePage());
       case GroomerPageProfile.page_name:
         return MaterialPageRoute(builder: (_) => GroomerPageProfile());
-      case '/groomer_detail':
-        {
-          return MaterialPageRoute(builder: (_) => GroomerDetail());
-          // if (args == ListUser) {
-
-          // } else {
-          //   return _errorRoute();
-          // }
-        }
-
-        break;
+    
 
       case '/register2_page':
         return MaterialPageRoute(builder: (_) => Register2Page());

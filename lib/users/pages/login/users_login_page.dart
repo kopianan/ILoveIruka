@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:i_love_iruka/models/request/login_request.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
+import 'package:i_love_iruka/routes/routes.gr.dart';
 import 'package:i_love_iruka/users/data/user_store.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:i_love_iruka/util/shared_pref.dart';
@@ -153,7 +154,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
                           margin: EdgeInsets.only(bottom: 30),
                           child: InkWell(
                             onTap: () {
-                              Navigator.pushNamed(context, "/register2_page");
+                              Routes.navigator.pushNamed(Routes.register2page);
                             },
                             child: Text(
                               "Don't Have Account ? Sign Up",

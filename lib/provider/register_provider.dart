@@ -75,14 +75,16 @@ class RegisterProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  setStyling(double text) {
+  setStyling(double text,{bool notify}) {
     print(text);
     this._styling = text;
+    if(notify == false || notify == null)
     notifyListeners();
   }
-
-  setCliping(double text) {
+  
+  setCliping(double text,{bool notify}) {
     this._cliping = text;
+    if(notify == false || notify == null)
     notifyListeners();
   }
 

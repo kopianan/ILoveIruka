@@ -1,13 +1,12 @@
-import 'package:division/division.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_bloc.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_event.dart';
 import 'package:i_love_iruka/dashboard/bloc/dashboard_state.dart';
 import 'package:i_love_iruka/models/model/user_groomers_model.dart';
 import 'package:i_love_iruka/models/request/user_by_role_request.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
+import 'package:i_love_iruka/routes/routes.gr.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:provider/provider.dart';
 
@@ -44,7 +43,11 @@ class _GroomerListState extends State<GroomerList> {
     if (query.isNotEmpty) {
       List<ListUser> dummyListData = List<ListUser>();
       dummySearchList.forEach((item) {
-        if (item.name.toString().toLowerCase().contains(query.toLowerCase()) || item.coverageArea.toString().toLowerCase().contains(query.toLowerCase())) {
+        if (item.name.toString().toLowerCase().contains(query.toLowerCase()) ||
+            item.coverageArea
+                .toString()
+                .toLowerCase()
+                .contains(query.toLowerCase())) {
           dummyListData.add(item);
         }
       });
@@ -74,7 +77,10 @@ class _GroomerListState extends State<GroomerList> {
             SliverToBoxAdapter(
               child: Text(
                 "Groomers",
-                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 40),
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 40),
               ),
             ),
             SliverToBoxAdapter(
@@ -90,7 +96,8 @@ class _GroomerListState extends State<GroomerList> {
                 child: Row(
                   children: <Widget>[
                     new Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 15.0),
                       child: Icon(
                         Icons.search,
                         color: Colors.grey,
@@ -132,18 +139,25 @@ class _GroomerListState extends State<GroomerList> {
                 bloc: dashboardBloc,
                 builder: (context, state) {
                   if (state is GetUserByRoleLoading) {
-                    return SliverToBoxAdapter(child: Container(child: Center(child: CircularProgressIndicator())));
+                    return SliverToBoxAdapter(
+                        child: Container(
+                            child: Center(child: CircularProgressIndicator())));
                   } else if (state is GetUserByRoleCompleted) {
                     final dataSnap = state.response.listUser;
                     return SliverList(
                       delegate: SliverChildListDelegate(
-                        [GroomerHeaderList(dataSnap: dataSnap), buildListGroomer()],
+                        [
+                          GroomerHeaderList(dataSnap: dataSnap),
+                          buildListGroomer()
+                        ],
                       ),
                     );
                   } else if (state is GetUserByRoleError) {
-                    return SliverToBoxAdapter(child: Center(child: Text("Please refresh page")));
+                    return SliverToBoxAdapter(
+                        child: Center(child: Text("Please refresh page")));
                   }
-                  return SliverToBoxAdapter(child: Center(child: Text("Please refresh page")));
+                  return SliverToBoxAdapter(
+                      child: Center(child: Text("Please refresh page")));
                 },
               ),
             ),
@@ -161,8 +175,9 @@ class _GroomerListState extends State<GroomerList> {
       itemBuilder: (context, index) {
         return InkWell(
             onTap: () {
-              Provider.of<DataBridge>(context, listen: false).setCurrentSelectedGroomer(items[index]);
-              Navigator.of(context).pushNamed("/groomer_detail");
+              Provider.of<DataBridge>(context, listen: false)
+                  .setCurrentSelectedGroomer(items[index]);
+              Routes.navigator.pushNamed(Routes.groomerDetail);
             },
             child: Column(
               children: <Widget>[
@@ -198,8 +213,9 @@ class GroomerHeaderList extends StatelessWidget {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              Provider.of<DataBridge>(context, listen: false).setCurrentSelectedGroomer(dataSnap[index]);
-              Navigator.of(context).pushNamed("/groomer_detail");
+              Provider.of<DataBridge>(context, listen: false)
+                  .setCurrentSelectedGroomer(dataSnap[index]);
+              Routes.navigator.pushNamed(Routes.groomerDetail);
             },
             child: Card(
               elevation: 3,
@@ -219,7 +235,9 @@ class GroomerHeaderList extends StatelessWidget {
                               border: Border.all(color: Colors.black, width: 2),
                               shape: BoxShape.circle,
                               image: DecorationImage(
-                                image: NetworkImage(Constants.getWebUrl() + "/" + dataSnap[index].picture.toString()),
+                                image: NetworkImage(Constants.getWebUrl() +
+                                    "/" +
+                                    dataSnap[index].picture.toString()),
                                 fit: BoxFit.fill,
                               )),
                         ),

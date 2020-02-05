@@ -20,6 +20,9 @@ class Common {
   }
 
   static String convertDate(String dateTime) {
+    if(dateTime == null){
+      return ""; 
+    }
     var date = DateTime.parse(dateTime);
     var formatedDate = DateFormat("dd-MM-yyyy").format(date);
     return formatedDate;
