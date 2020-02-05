@@ -6,6 +6,7 @@ import 'package:i_love_iruka/screens/feed_detail/feed_detail.dart';
 import 'package:i_love_iruka/screens/groomer/groomer_list.dart';
 import 'package:i_love_iruka/screens/groomer_detail/groomer_detail.dart';
 import 'package:i_love_iruka/screens/profile/edit_profile.dart';
+import 'package:i_love_iruka/screens/profile/groomer_page_profile.dart';
 import 'package:i_love_iruka/screens/profile/new_profile_page.dart';
 import 'package:i_love_iruka/screens/register/register2_page.dart';
 import 'package:i_love_iruka/screens/transaction/history_transaction.dart';
@@ -30,4 +31,5 @@ class $Routes {
   FeedDetail feedDetail;
   HistoryTransaction historyTransaction;
   ProfilePage profilePage ; 
+  GroomerPageProfile groomerPageProfile ; 
 }

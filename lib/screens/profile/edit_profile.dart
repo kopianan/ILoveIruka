@@ -6,9 +6,11 @@ import 'package:i_love_iruka/data/repository.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/models/request/edit_request.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
+import 'package:i_love_iruka/routes/routes.gr.dart';
 import 'package:i_love_iruka/util/camera_util.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:i_love_iruka/util/shared_pref.dart';
+import 'package:i_love_iruka/widgets/color_palate.dart';
 import 'package:provider/provider.dart';
 
 class EditProfile extends StatefulWidget {
@@ -38,9 +40,6 @@ class _EditProfileState extends State<EditProfile> {
   void initState() {
     Provider.of<DataBridge>(context, listen: false)
         .setUserDataCopy(widget.loginData);
-
-    // _nameController.text = _loginResponse.user.name ;
-    // _addressController.text = _loginResponse.user.address ;
     super.initState();
   }
 
@@ -109,10 +108,15 @@ class _EditProfileState extends State<EditProfile> {
                   SizedBox(width: 20),
                   Container(
                       alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Profile",
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
+                      child: InkWell(
+                        onTap: () {
+                          Routes.navigator.pushNamed(Routes.groomerPageProfile);
+                        },
+                        child: Text(
+                          "Profile",
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.bold),
+                        ),
                       )),
                 ],
               ),
@@ -237,6 +241,67 @@ class _EditProfileState extends State<EditProfile> {
                       : Container()
                 ],
               ),
+              Column(
+                children: <Widget>[
+                  Container(
+                      child: SwitchListTile(
+                    activeColor: ColorPalate.darkOrange,
+                    subtitle: Text("Show or hide On Groomer List"),
+                    title: Text("Status"),
+                    value: dataBridge.getUserDataCopy.user.show,
+                    onChanged: (val) {
+                      widget.loginData.user.show = val;
+                      dataBridge.setUserDataCopy(widget.loginData,
+                          notify: true);
+                    },
+                  )),
+                  Container(
+                      child: SwitchListTile(
+                    activeColor: ColorPalate.darkOrange,
+                    subtitle: Text("Available home grooming ? "),
+                    title: Text("Home Grooming"),
+                    value: dataBridge.getUserData().user.availability,
+                    onChanged: (val) {},
+                  )),
+                  ListTile(
+                    title: Text("${dataBridge.getUserDataCopy.user.description}"),
+                    trailing: Text("Edit"),
+                    subtitle: Text("Description"),
+                    onTap: () {
+                      showModalBottomSheet(
+                          isScrollControlled: true,
+                          context: (context),
+                          builder: (context) {
+                            return BottomSheetEditOneField(
+                              nameController: _picController,
+                              name: "Edit Description",
+                              onPressed: () {
+                               
+                              },
+                            );
+                          });
+                    },
+                  ),
+
+                  Container(
+                    child: ListTile(
+                  title: Text("Change Coverage Area"),
+                  subtitle: Text("Current : ${dataBridge.getUserData().user.coverageArea.toString()}"),
+                  trailing: Text(
+                    "Edit",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  onTap: () {
+                    dataBridge.setCityResults(null);
+                    showModalBottomSheet(
+                        context: (context),
+                        builder: (context) => ModalBottomArea(
+                              dataBridge: dataBridge,
+                            ));
+                  },
+                )),
+                ],
+              )
             ]),
           ),
         ),

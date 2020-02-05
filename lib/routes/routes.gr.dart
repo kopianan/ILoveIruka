@@ -20,6 +20,7 @@ import 'package:i_love_iruka/screens/register/register2_page.dart';
 import 'package:i_love_iruka/screens/feed_detail/feed_detail.dart';
 import 'package:i_love_iruka/screens/transaction/history_transaction.dart';
 import 'package:i_love_iruka/features/pages/profile/profile_page.dart';
+import 'package:i_love_iruka/screens/profile/groomer_page_profile.dart';
 
 class Routes {
   static const myApp = '/';
@@ -34,6 +35,7 @@ class Routes {
   static const feedDetail = '/feed-detail';
   static const historyTransaction = '/history-transaction';
   static const profilePage = '/profile-page';
+  static const groomerPageProfile = '/groomer-page-profile';
   static GlobalKey<NavigatorState> get navigatorKey =>
       getNavigatorKey<Routes>();
   static NavigatorState get navigator => navigatorKey.currentState;
@@ -141,6 +143,15 @@ class Routes {
         final typedArgs = args as Key;
         return MaterialPageRoute(
           builder: (_) => ProfilePage(key: typedArgs),
+          settings: settings,
+        );
+      case Routes.groomerPageProfile:
+        if (hasInvalidArgs<Key>(args)) {
+          return misTypedArgsRoute<Key>(args);
+        }
+        final typedArgs = args as Key;
+        return MaterialPageRoute(
+          builder: (_) => GroomerPageProfile(key: typedArgs),
           settings: settings,
         );
       default:
