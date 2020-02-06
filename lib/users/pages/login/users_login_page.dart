@@ -107,6 +107,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
                             height: 40,
                           ),
                           LoginTextField(
+                            iconData: Icons.person_outline,
                             keyboardType: TextInputType.emailAddress,
                             label: "Email Address",
                             textEditingController: usernmaeController,
@@ -117,6 +118,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
                             height: 20,
                           ),
                           LoginTextField(
+                            iconData: Icons.lock_outline,
                             keyboardType: TextInputType.text,
                             label: "Password",
                             textEditingController: passwordController,
@@ -218,13 +220,14 @@ class _UserLoginPageState extends State<UserLoginPage> {
 }
 
 class LoginTextField extends StatefulWidget {
-  const LoginTextField({Key key, this.textEditingController, this.validator, this.keyboardType, this.label, this.isPassword}) : super(key: key);
+  const LoginTextField({Key key, this.textEditingController, this.validator, this.iconData, this.keyboardType, this.label, this.isPassword}) : super(key: key);
 
   final TextEditingController textEditingController;
   final Function validator;
   final TextInputType keyboardType;
   final String label;
   final bool isPassword;
+  final IconData iconData; 
 
   @override
   _LoginTextFieldState createState() => _LoginTextFieldState();
@@ -239,8 +242,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
       children: <Widget>[
         Container(
           margin: EdgeInsets.only(right: 20),
-          child: Icon(
-            Icons.person_outline,
+          child: Icon(widget.iconData,
             color: Colors.grey,
           ),
         ),
@@ -252,7 +254,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
         ),
         new Expanded(
           child: TextFormField(
-            obscureText: obsecureText,
+            obscureText:(widget.isPassword)? !obsecureText:false,
             style: TextStyle(color: Colors.white),
             controller: widget.textEditingController,
             validator: widget.validator,

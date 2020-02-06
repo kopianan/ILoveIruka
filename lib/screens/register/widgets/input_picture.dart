@@ -22,9 +22,10 @@ class InputPicture extends StatefulWidget {
     @required RegisterAdditional registerAdditional,
     @required this.registerBlocBloc,
     @required this.c,
+    @required this.onRegisterPressed 
   })  : _registerAdditional = registerAdditional,
         super(key: key);
-
+final Function onRegisterPressed ; 
   final RegisterAdditional _registerAdditional;
   final ScrollController c;
   final RegisterBlocBloc registerBlocBloc ; 
@@ -141,7 +142,10 @@ class _InputPictureState extends State<InputPicture> {
                     RegisterButtonNextAndBack(
                       buttonColor: ColorPalate.darkOrange,
                       buttonText: "Register",
-                      onButtonPressed: () => registerUser(dataBridge, regProv, widget.registerBlocBloc),
+                      onButtonPressed: () {
+                        widget.onRegisterPressed(dataBridge, regProv, photo);
+                        // registerUser(dataBridge, regProv,);
+                      },
                     ),
                   ],
                 ),

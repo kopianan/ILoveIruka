@@ -4,6 +4,7 @@ import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/models/request/edit_request.dart';
 import 'package:i_love_iruka/models/request/login_request.dart';
 import 'package:dio/dio.dart';
+import 'package:i_love_iruka/models/request/register_request.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -88,7 +89,7 @@ class ApiProvider {
       "TrainingStartDate": registerData.trainingStartDate,
       "TrainingYears": registerData.trainingYears,
       "TrainingCourses": registerData.trainingCourses,
-      "Show" : registerData.show
+      "Show": registerData.show
     });
 
     try {
@@ -97,9 +98,8 @@ class ApiProvider {
         data: formData,
       );
 
-      loginResponse =
-          LoginResponse.fromJson(response.data);
-          return loginResponse ; 
+      loginResponse = LoginResponse.fromJson(response.data);
+      return loginResponse;
     } on DioError catch (e) {
       switch (e.type) {
         case DioErrorType.CONNECT_TIMEOUT:
@@ -112,6 +112,69 @@ class ApiProvider {
           throw Failure("Time Out");
           break;
         case DioErrorType.RESPONSE:
+          throw Failure("Not Found");
+          break;
+        case DioErrorType.CANCEL:
+          throw Failure("Cancel");
+          break;
+        case DioErrorType.DEFAULT:
+          throw Failure("No Internet");
+          break;
+      }
+    }
+  }
+
+  Future<LoginResponse> registerUser(RegisterRequest registerData) async {
+    String url = _baseUrl + "/RegisterUserMobile";
+    LoginResponse loginResponse;
+    FormData formData;
+
+      formData = FormData.fromMap({
+        "accessKey": registerData.accessKey,
+        "Name": registerData.name,
+        "Email": registerData.email,
+        "Password": registerData.password.trim(),
+        "Phonenumber": registerData.phonenumber,
+        "Address": registerData.address,
+        "Description": registerData.description,
+        "Role": registerData.role,
+        "file": MultipartFile.fromFileSync(registerData.file),
+        "KeyFeatures": registerData.keyFeatures,
+        "CoverageArea": registerData.coverageArea,
+        "YearsOfExperience":(registerData.yearsOfExperience == "null") ? 0 :  int.parse(registerData.yearsOfExperience),
+        "Availability": registerData.availability,
+        "Styling": (registerData.styling == "null") ? 0 :   int.parse(double.parse( registerData.styling).toStringAsFixed(0)),
+        "Cliping": (registerData.cliping == "null") ? 0 :   int.parse(double.parse( registerData.cliping).toStringAsFixed(0)),
+        "TrainingYears":
+            (registerData.trainingYears == "") ? 0 : registerData.trainingYears,
+        "TrainingCourses": registerData.trainingCourses,
+        "TrainingStartDate": registerData.trainingStartDate
+      });
+  
+    try {
+      Response response = await _dio.post(
+        url,
+        data: formData,
+      );
+
+      LoginResponse jsonData = LoginResponse.fromJson(response.data);
+
+      return jsonData;
+    } on DioError catch (e) {
+      switch (e.type) {
+        case DioErrorType.CONNECT_TIMEOUT:
+          throw Failure("Time Out");
+          break;
+        case DioErrorType.SEND_TIMEOUT:
+          throw Failure("Time Out");
+          break;
+        case DioErrorType.RECEIVE_TIMEOUT:
+          throw Failure("Time Out");
+          break;
+        case DioErrorType.RESPONSE:
+        if(e.response.statusCode == 400){
+          throw Failure("Bad Request"); 
+        }
           throw Failure("Not Found");
           break;
         case DioErrorType.CANCEL:

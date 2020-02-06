@@ -204,35 +204,43 @@ class ServiceList extends StatelessWidget {
       children: <Widget>[
         BuildServicesIcon(
           onIconPressed: () {
-            Common.showServicesDialog(context, content: "Choose Action...", title: "Shop", link: "https://sismarket.id/", phone: "+6287800042548");
+            // Common.showServicesDialog(context, content: "Choose Action...", title: "Shop", link: "https://sismarket.id/", phone: "+6287800042548");
+        Common.launchURL( "https://sismarket.id/");
           },
           title: "Shop",
           imageAsset: "images/assets/pet_shop.png",
         ),
         BuildServicesIcon(
           onIconPressed: () {
-            Common.showServicesDialog(context, content: "Choose Action...", title: "Therapeutic Grooming", link: "https://sismarket.id/", phone: "+6287800042548");
+            // Common.showServicesDialog(context, content: "Choose Action...", title: "Therapeutic Grooming", link: "https://sismarket.id/", phone: "+6287800042548");
+          launch("tel://+6287800042548");
+      
           },
           title: "Grooming Salon",
           imageAsset: "images/assets/pet_grooming.png",
         ),
         BuildServicesIcon(
           onIconPressed: () {
-            Common.showServicesDialog(context, content: "Choose Action...", title: "Pet Hotel", link: "https://sismarket.id/", phone: "+6287800042548");
+            // Common.showServicesDialog(context, content: "Choose Action...", title: "Pet Hotel", link: "https://sismarket.id/", phone: "+6287800042548");
+          launch("tel://+6287800042548");
           },
           title: "Pet Hotel",
           imageAsset: "images/assets/pet_hotel.png",
         ),
         BuildServicesIcon(
           onIconPressed: () {
-            Common.showServicesDialog(context, content: "Choose Action...", title: "Pet Taxi", link: "https://sismarket.id/", phone: "+6287800042548");
+            // Common.showServicesDialog(context, content: "Choose Action...", title: "Pet Taxi", link: "https://sismarket.id/", phone: "+6287800042548");
+        
+             Common.launchURL( "https://iloveiruka.com/");
           },
           title: "Pet Taxi",
           imageAsset: "images/assets/pet_taxi.png",
         ),
         BuildServicesIcon(
           onIconPressed: () {
-            Common.showServicesDialog(context, content: "Choose Action...", title: "Iskhan Pet Food", link: "https://iskhan.id/", phone: "+6287800042548");
+            // Common.showServicesDialog(context, content: "Choose Action...", title: "Iskhan Pet Food", link: "https://iskhan.id/", phone: "+6287800042548");
+              Common.launchURL( "https://sismarket.id/");
+         
           },
           title: "Iskhan Pet Food",
           imageAsset: "images/assets/pet-spa.png",
