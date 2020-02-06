@@ -56,6 +56,6 @@ class DashboardStore {
       _productsModel = await _apiInterface.getProductListData();
     } on DashboardFailure catch (f) {
       throw f ; 
-    }
+    } 
   }
 }

@@ -200,20 +200,15 @@ class _UserLoginPageState extends State<UserLoginPage> {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       final reactiveModel = Injector.getAsReactive<UserStore>();
-
       final dataLogin = LoginRequest(username: "$email", password: "$password");
-      reactiveModel.setState(
-        (fn) => fn.getLoginRsponseFromResponse(dataLogin),
-        onData: (context, content) {
-          if (content.getFailure != null) {
-            Fluttertoast.showToast(msg: content.getFailure.message);
-          } else {
-            SharedPref _sharedPref = SharedPref();
-            _sharedPref.savingUserToLocal(loginData: json.encode(content.getLoginResponse.toJson()), prefKey: Constants.userSharedPref);
-            Provider.of<DataBridge>(context, listen: false).setUserData(content.getLoginResponse);
-          }
-        },
-      );
+      reactiveModel.setState((fn) => fn.getLoginRsponseFromResponse(dataLogin), onData: (context, content) {
+        SharedPref _sharedPref = SharedPref();
+        _sharedPref.savingUserToLocal(loginData: json.encode(content.getLoginResponse.toJson()), prefKey: Constants.userSharedPref);
+        Provider.of<DataBridge>(context, listen: false).setUserData(content.getLoginResponse);
+        Routes.navigator.pushReplacementNamed(Routes.dashboardPage) ; 
+      }, onError: (context, error) {
+        Fluttertoast.showToast(msg: error.toString()); 
+      });
     } else {
       setState(() {
         _autoValidate = true;
