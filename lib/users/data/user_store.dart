@@ -7,11 +7,11 @@ import 'package:i_love_iruka/users/network/user_failure.dart';
 class UserStore {
   ApiInterface _apiInterface = ApiInterface();
   LoginResponse _loginResponse;
-  LoginResponse _editUserResponse;
+  // LoginResponse _editUserResponse;
   Failure _failure;
   Failure get getFailure => this._failure;
   LoginResponse get getLoginResponse => _loginResponse;
-  LoginResponse get getEditUserResponse => _editUserResponse;
+  // LoginResponse get getEditUserResponse => _editUserResponse;
 
   void getLoginRsponseFromResponse(LoginRequest loginRequest) async {
     try {
@@ -31,7 +31,7 @@ class UserStore {
 
   void editUser(EditRequest edit) async {
     try {
-      _editUserResponse = await _apiInterface.editUserAsync(edit);
+      _loginResponse = await _apiInterface.editUserAsync(edit);
     } on Failure catch (f) {
       throw f;
     }

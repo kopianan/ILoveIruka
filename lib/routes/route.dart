@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/dashboard/dashboard_page.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
-import 'package:i_love_iruka/screens/feed_detail/feed_detail.dart';
-import 'package:i_love_iruka/screens/groomer/groomer_list.dart';
 import 'package:i_love_iruka/screens/profile/edit_profile.dart';
 import 'package:i_love_iruka/screens/profile/groomer_page_profile.dart';
 import 'package:i_love_iruka/screens/profile/new_profile_page.dart';
 import 'package:i_love_iruka/screens/register/register2_page.dart';
-import 'package:i_love_iruka/screens/transaction/history_transaction.dart';
 import '../main.dart';
 
 class RouteGenerator {
@@ -23,8 +20,6 @@ class RouteGenerator {
       case '/dashboard':
         return MaterialPageRoute(builder: (_) => DashboardPage());
         break;
-      case '/groomer_list':
-        return MaterialPageRoute(builder: (_) => GroomerList());
       case EditProfile.id:
         if (args == LoginResponse) {
           return _errorRoute();
@@ -43,21 +38,6 @@ class RouteGenerator {
 
       case '/register2_page':
         return MaterialPageRoute(builder: (_) => Register2Page());
-
-      case FeedDetail.pageAlias:
-        return MaterialPageRoute(builder: (_) => FeedDetail());
-        break;
-      // if (args is String) {
-      //   return MaterialPageRoute(
-      //     builder: (_) => LoginPage(
-      //         ),
-      //   );
-      // }
-      // If args is not of the correct type, return an error page.
-      // You can also throw an exception while in development.
-
-      case HistoryTransaction.route:
-        return MaterialPageRoute(builder: (_) => HistoryTransaction());
       default:
         return _errorRoute();
     }

@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_bloc.dart';
 import 'package:i_love_iruka/dashboard/dashboard_page.dart';
 import 'package:i_love_iruka/features/data/dashboard_store.dart';
 
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/provider/register_provider.dart';
 import 'package:i_love_iruka/routes/routes.gr.dart';
-import 'package:i_love_iruka/screens/register/register_bloc/register_bloc_bloc.dart';
 import 'package:i_love_iruka/users/data/user_store.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:i_love_iruka/util/shared_pref.dart';
@@ -57,11 +54,7 @@ class _MyAppState extends State<MyApp> {
           builder: (context) => RegisterProvider(),
         ),
       ],
-      child: MultiBlocProvider(
-        providers: [BlocProvider<RegisterBlocBloc>(builder: (BuildContext context) => RegisterBlocBloc()), BlocProvider<DashboardBlocBloc>(builder: (BuildContext context) => DashboardBlocBloc())],
-
-        // #558dc5 - #0b4987
-        child: MaterialApp(
+      child: MaterialApp(
             title: 'I Love Iruka',
             theme: ThemeData(
               primaryColor: Color(0xff558dc5),
@@ -90,7 +83,7 @@ class _MyAppState extends State<MyApp> {
                 child: UserLoginPage()),
             onGenerateRoute: Routes.onGenerateRoute,
             navigatorKey: Routes.navigatorKey),
-      ),
-    );
+      );
+    
   }
 }

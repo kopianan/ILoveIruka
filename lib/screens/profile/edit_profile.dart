@@ -44,8 +44,7 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   void initState() {
-    Provider.of<DataBridge>(context, listen: false)
-        .setUserDataCopy(widget.loginData);
+    Provider.of<DataBridge>(context, listen: false).setUserDataCopy(widget.loginData);
     super.initState();
   }
 
@@ -80,12 +79,15 @@ class _EditProfileState extends State<EditProfile> {
       trainingStartDate: _userData.trainingStartDate.toString(),
       trainingYears: _userData.trainingYears,
       yearsOfExperience: _userData.yearsOfExperience,
+      show: _userData.show,
     );
+    print(reg);
     return reg;
   }
 
   @override
   Widget build(BuildContext context) {
+    final reactiveModel = Injector.getAsReactive<UserStore>(context: context);
     return Scaffold(
         body: SafeArea(
       child: SingleChildScrollView(
@@ -101,21 +103,18 @@ class _EditProfileState extends State<EditProfile> {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon:
-                          Icon(Icons.arrow_back, color: Colors.black, size: 30),
+                      icon: Icon(Icons.arrow_back, color: Colors.black, size: 30),
                     ),
                     SizedBox(width: 20),
                     Container(
                         alignment: Alignment.centerLeft,
                         child: InkWell(
                           onTap: () {
-                            Routes.navigator
-                                .pushNamed(Routes.groomerPageProfile);
+                            Routes.navigator.pushNamed(Routes.groomerPageProfile);
                           },
                           child: Text(
                             "Profile",
-                            style: TextStyle(
-                                fontSize: 30, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                           ),
                         )),
                     Expanded(
@@ -127,16 +126,14 @@ class _EditProfileState extends State<EditProfile> {
                             icon: Icon(Icons.exit_to_app),
                             onPressed: () {
                               SharedPref().clearPreference();
-                              Routes.navigator
-                                  .pushReplacementNamed(Routes.userLoginPage);
+                              Routes.navigator.pushReplacementNamed(Routes.userLoginPage);
                             },
                           )),
                     )
                   ],
                 ),
                 SizedBox(height: 30),
-                new ChangeProfilePicture(
-                    picture: dataBridge.getUserDataCopy.user.picture),
+                new ChangeProfilePicture(picture: dataBridge.getUserDataCopy.user.picture),
                 SizedBox(height: 30),
                 Column(
                   children: <Widget>[
@@ -151,8 +148,7 @@ class _EditProfileState extends State<EditProfile> {
                       trailing: Text("Edit"),
                       subtitle: Text("Name"),
                       onTap: () {
-                        _nameController.text =
-                            dataBridge.getUserDataCopy.user.name;
+                        _nameController.text = dataBridge.getUserDataCopy.user.name;
                         showModalBottomSheet(
                             isScrollControlled: true,
                             context: (context),
@@ -161,10 +157,8 @@ class _EditProfileState extends State<EditProfile> {
                                 nameController: _nameController,
                                 name: "Edit Name",
                                 onPressed: () {
-                                  widget.loginData.user.name =
-                                      _nameController.text;
-                                  dataBridge.setUserDataCopy(widget.loginData,
-                                      notify: true);
+                                  widget.loginData.user.name = _nameController.text;
+                                  dataBridge.setUserDataCopy(widget.loginData, notify: true);
                                   Navigator.of(context).pop();
                                 },
                               );
@@ -176,8 +170,7 @@ class _EditProfileState extends State<EditProfile> {
                       trailing: Text("Edit"),
                       subtitle: Text("Address"),
                       onTap: () {
-                        _addressController.text =
-                            dataBridge.getUserDataCopy.user.address;
+                        _addressController.text = dataBridge.getUserDataCopy.user.address;
                         showModalBottomSheet(
                             isScrollControlled: true,
                             context: (context),
@@ -186,10 +179,8 @@ class _EditProfileState extends State<EditProfile> {
                                 nameController: _addressController,
                                 name: "Edit Address",
                                 onPressed: () {
-                                  widget.loginData.user.address =
-                                      _addressController.text;
-                                  dataBridge.setUserDataCopy(widget.loginData,
-                                      notify: true);
+                                  widget.loginData.user.address = _addressController.text;
+                                  dataBridge.setUserDataCopy(widget.loginData, notify: true);
                                   Navigator.of(context).pop();
                                 },
                               );
@@ -197,13 +188,11 @@ class _EditProfileState extends State<EditProfile> {
                       },
                     ),
                     ListTile(
-                      title: Text(
-                          "${dataBridge.getUserDataCopy.user.phoneNumber}"),
+                      title: Text("${dataBridge.getUserDataCopy.user.phoneNumber}"),
                       trailing: Text("Edit"),
                       subtitle: Text("Phone Number"),
                       onTap: () {
-                        _phoneController.text =
-                            dataBridge.getUserDataCopy.user.phoneNumber;
+                        _phoneController.text = dataBridge.getUserDataCopy.user.phoneNumber;
                         showModalBottomSheet(
                             isScrollControlled: true,
                             context: (context),
@@ -212,10 +201,8 @@ class _EditProfileState extends State<EditProfile> {
                                 nameController: _phoneController,
                                 name: "Edit Phone Number",
                                 onPressed: () {
-                                  widget.loginData.user.phoneNumber =
-                                      _phoneController.text;
-                                  dataBridge.setUserDataCopy(widget.loginData,
-                                      notify: true);
+                                  widget.loginData.user.phoneNumber = _phoneController.text;
+                                  dataBridge.setUserDataCopy(widget.loginData, notify: true);
                                   Navigator.of(context).pop();
                                 },
                               );
@@ -230,8 +217,7 @@ class _EditProfileState extends State<EditProfile> {
                         trailing: Text("Edit"),
                         subtitle: Text("PIC"),
                         onTap: () {
-                          _picController.text =
-                              dataBridge.getUserDataCopy.user.pIC;
+                          _picController.text = dataBridge.getUserDataCopy.user.pIC;
                           showModalBottomSheet(
                               isScrollControlled: true,
                               context: (context),
@@ -240,10 +226,8 @@ class _EditProfileState extends State<EditProfile> {
                                   nameController: _picController,
                                   name: "Edit PIC",
                                   onPressed: () {
-                                    widget.loginData.user.pIC =
-                                        _picController.text;
-                                    dataBridge.setUserDataCopy(widget.loginData,
-                                        notify: true);
+                                    widget.loginData.user.pIC = _picController.text;
+                                    dataBridge.setUserDataCopy(widget.loginData, notify: true);
                                     Navigator.of(context).pop();
                                   },
                                 );
@@ -263,8 +247,7 @@ class _EditProfileState extends State<EditProfile> {
                       value: dataBridge.getUserDataCopy.user.show,
                       onChanged: (val) {
                         widget.loginData.user.show = val;
-                        dataBridge.setUserDataCopy(widget.loginData,
-                            notify: true);
+                        dataBridge.setUserDataCopy(widget.loginData, notify: true);
                       },
                     ),
                     SwitchListTile(
@@ -274,13 +257,11 @@ class _EditProfileState extends State<EditProfile> {
                       value: dataBridge.getUserDataCopy.user.availability,
                       onChanged: (val) {
                         widget.loginData.user.availability = val;
-                        dataBridge.setUserDataCopy(widget.loginData,
-                            notify: true);
+                        dataBridge.setUserDataCopy(widget.loginData, notify: true);
                       },
                     ),
                     ListTile(
-                      title: Text(
-                          "${dataBridge.getUserDataCopy.user.description}"),
+                      title: Text("${dataBridge.getUserDataCopy.user.description}"),
                       trailing: Text("Edit"),
                       subtitle: Text("Description"),
                       onTap: () {
@@ -292,10 +273,8 @@ class _EditProfileState extends State<EditProfile> {
                                 nameController: _descriptionController,
                                 name: "Edit Description",
                                 onPressed: () {
-                                  widget.loginData.user.description =
-                                      _descriptionController.text;
-                                  dataBridge.setUserDataCopy(widget.loginData,
-                                      notify: true);
+                                  widget.loginData.user.description = _descriptionController.text;
+                                  dataBridge.setUserDataCopy(widget.loginData, notify: true);
                                   Navigator.of(context).pop();
                                 },
                               );
@@ -304,8 +283,7 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                     ListTile(
                       subtitle: Text("Coverage Area"),
-                      title: Text(
-                          "${dataBridge.getUserDataCopy.user.coverageArea.toString()}"),
+                      title: Text("${dataBridge.getUserDataCopy.user.coverageArea.toString()}"),
                       trailing: Text(
                         "Edit",
                         style: TextStyle(color: Colors.grey),
@@ -318,8 +296,7 @@ class _EditProfileState extends State<EditProfile> {
                                   dataBridge: dataBridge,
                                   onSubmitPressed: (String data) {
                                     widget.loginData.user.coverageArea = data;
-                                    dataBridge.setUserDataCopy(widget.loginData,
-                                        notify: true);
+                                    dataBridge.setUserDataCopy(widget.loginData, notify: true);
                                     Navigator.pop(context);
                                   },
                                 ));
@@ -341,14 +318,10 @@ class _EditProfileState extends State<EditProfile> {
                                   dataBridge: dataBridge,
                                   regProv: regProv,
                                   onSubmitPressed: () {
-                                    widget.loginData.user.styling = int.parse(
-                                        regProv.getStyling.toStringAsFixed(0));
-                                    widget.loginData.user.clipping = int.parse(
-                                        regProv.getCliping.toStringAsFixed(0));
-                                    widget.loginData.user.yearsOfExperience =
-                                        int.parse(regProv.getYearExperience);
-                                    widget.loginData.user.keyFeatures =
-                                        regProv.getKeyFeatures;
+                                    widget.loginData.user.styling = int.parse(regProv.getStyling.toStringAsFixed(0));
+                                    widget.loginData.user.clipping = int.parse(regProv.getCliping.toStringAsFixed(0));
+                                    widget.loginData.user.yearsOfExperience = int.parse(regProv.getYearExperience);
+                                    widget.loginData.user.keyFeatures = regProv.getKeyFeatures;
                                     Navigator.pop(context);
                                   },
                                 ));
@@ -380,7 +353,6 @@ class _EditProfileState extends State<EditProfile> {
                 RaisedButton(
                   child: Text("Simpan"),
                   onPressed: () {
-                    final reactiveModel = Injector.getAsReactive<UserStore>();
                     reactiveModel.setState(
                         (store) => store.editUser(
                               fillEditRequestData(dataBridge),
@@ -388,13 +360,9 @@ class _EditProfileState extends State<EditProfile> {
                       Fluttertoast.showToast(msg: "Berhasil");
 
                       SharedPref _sharedPref = SharedPref();
+                      _sharedPref.savingUserToLocal(loginData: json.encode(data.getLoginResponse.toJson()), prefKey: Constants.userSharedPref);
 
-                      _sharedPref.savingUserToLocal(
-                          loginData:
-                              json.encode(data.getEditUserResponse.toJson()),
-                          prefKey: Constants.userSharedPref);
-
-                      dataBridge.setUserDataCopy(data.getEditUserResponse);
+                      dataBridge.setUserDataCopy(data.getLoginResponse);
                       Navigator.pop(context);
                     }, onError: (context, err) {
                       Fluttertoast.showToast(msg: err.toString());
@@ -427,17 +395,14 @@ class BottomSheetEditOneField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding:
-            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Container(
-                child: Text(_title,
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                child: Text(_title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               ),
               Divider(
                 height: 20,
@@ -605,22 +570,18 @@ class ChangeProfilePicture extends StatelessWidget {
                   builder: (context) {
                     return Dialog(
                       child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             Text(
                               "Change Profile Picture",
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                             ListTile(
                               title: Text("Open Camera"),
                               onTap: () {
-                                CameraUtil()
-                                    .takePicture(fromCamera: true)
-                                    .then((onValue) {
+                                CameraUtil().takePicture(fromCamera: true).then((onValue) {
                                   dataBridge.setCurrentPhoto(onValue);
                                 });
                                 Navigator.pop(context);
@@ -629,9 +590,7 @@ class ChangeProfilePicture extends StatelessWidget {
                             ListTile(
                                 title: Text("Open Gallery"),
                                 onTap: () {
-                                  CameraUtil()
-                                      .takePicture(fromCamera: false)
-                                      .then((onValue) {
+                                  CameraUtil().takePicture(fromCamera: false).then((onValue) {
                                     dataBridge.setCurrentPhoto(onValue);
                                   });
                                   Navigator.pop(context);
@@ -649,10 +608,7 @@ class ChangeProfilePicture extends StatelessWidget {
                   border: Border.all(color: Colors.black, width: 2),
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                    image: (dataBridge.getCurrentPhoto == null)
-                        ? NetworkImage(Constants.getWebUrl() + "/$picture")
-                        : FileImage(
-                            File(dataBridge.getCurrentPhoto.toString())),
+                    image: (dataBridge.getCurrentPhoto == null) ? NetworkImage(Constants.getWebUrl() + "/$picture") : FileImage(File(dataBridge.getCurrentPhoto.toString())),
                     fit: BoxFit.fill,
                   )),
             ),
@@ -665,10 +621,7 @@ class ChangeProfilePicture extends StatelessWidget {
               height: 40,
               width: 40,
               child: Icon(Icons.image, color: Colors.white),
-              decoration: BoxDecoration(
-                  border: Border.all(width: 2, color: Colors.white),
-                  shape: BoxShape.circle,
-                  color: Colors.amber),
+              decoration: BoxDecoration(border: Border.all(width: 2, color: Colors.white), shape: BoxShape.circle, color: Colors.amber),
             ),
           )
         ],

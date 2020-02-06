@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:i_love_iruka/dashboard/bloc/dashboard_bloc_g.dart';
-import 'package:i_love_iruka/features/pages/feed_list/feed_dashboard.dart';
-import 'package:i_love_iruka/features/pages/groomer_list/groomer_list_page.dart';
-import 'package:i_love_iruka/features/pages/user_account/user_account_page.dart';
+import 'package:i_love_iruka/features/pages/feeds/feed_list/feed_dashboard.dart';
+import 'package:i_love_iruka/features/pages/groomer/groomer_list/groomer_list_page.dart';
+import 'package:i_love_iruka/features/pages/user_account/user_account_menu/user_account_page.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/util/shared_pref.dart';
@@ -18,7 +17,6 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   int bottomSelectedIndex = 0;
-  DashboardBlocBloc dashboardBlocBloc = DashboardBlocBloc();
   List<String> appBarTitleList = ["Feed", "Account", "Groomer List"];
   SharedPref _sharedPref = SharedPref();
   LoginResponse dataLogin;
@@ -36,7 +34,6 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   void initState() {
     super.initState();
-    dashboardBlocBloc.add(GetEventList());
   }
 
   @override
@@ -46,7 +43,7 @@ class _DashboardPageState extends State<DashboardPage> {
       body: buildPageView(),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.white,
+        backgroundColor: Colors.white,
         unselectedItemColor: Colors.grey,
         selectedIconTheme: IconThemeData(color: Colors.blue),
         unselectedIconTheme: IconThemeData(color: Colors.grey),
@@ -88,7 +85,7 @@ class _DashboardPageState extends State<DashboardPage> {
   );
 
   void pageChanged(int index) {
-    setState(() {
+    setState(() { 
       bottomSelectedIndex = index;
     });
   }
@@ -97,7 +94,7 @@ class _DashboardPageState extends State<DashboardPage> {
     setState(() {
       bottomSelectedIndex = index;
       // pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.ease);
-      pageController.jumpToPage(index); 
+      pageController.jumpToPage(index);
     });
   }
 

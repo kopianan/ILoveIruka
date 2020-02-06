@@ -88,6 +88,7 @@ class ApiProvider {
       "TrainingStartDate": registerData.trainingStartDate,
       "TrainingYears": registerData.trainingYears,
       "TrainingCourses": registerData.trainingCourses,
+      "Show" : registerData.show
     });
 
     try {
@@ -97,7 +98,8 @@ class ApiProvider {
       );
 
       loginResponse =
-          LoginResponse.fromJson(json.decode(json.encode(response.data)));
+          LoginResponse.fromJson(response.data);
+          return loginResponse ; 
     } on DioError catch (e) {
       switch (e.type) {
         case DioErrorType.CONNECT_TIMEOUT:

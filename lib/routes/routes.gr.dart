@@ -8,17 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:auto_route/router_utils.dart';
 import 'package:i_love_iruka/main.dart';
-import 'package:i_love_iruka/features/pages/groomer_list/groomer_list_page.dart';
+import 'package:i_love_iruka/features/pages/groomer/groomer_list/groomer_list_page.dart';
 import 'package:i_love_iruka/users/pages/login/users_login_page.dart';
 import 'package:i_love_iruka/dashboard/dashboard_page.dart';
-import 'package:i_love_iruka/screens/groomer/groomer_list.dart';
 import 'package:i_love_iruka/screens/profile/edit_profile.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/screens/profile/new_profile_page.dart';
-import 'package:i_love_iruka/screens/groomer_detail/groomer_detail.dart';
+import 'package:i_love_iruka/features/pages/groomer/groomer_detail/groomer_detail.dart';
 import 'package:i_love_iruka/screens/register/register2_page.dart';
-import 'package:i_love_iruka/screens/feed_detail/feed_detail.dart';
-import 'package:i_love_iruka/screens/transaction/history_transaction.dart';
+import 'package:i_love_iruka/features/pages/feeds/feed_detail/feed_detail.dart';
+import 'package:i_love_iruka/features/pages/user_account/transaction/history_transaction.dart';
 import 'package:i_love_iruka/features/pages/profile/profile_page.dart';
 import 'package:i_love_iruka/screens/profile/groomer_page_profile.dart';
 
@@ -27,7 +26,6 @@ class Routes {
   static const groomerLlistPage = '/groomer-llist-page';
   static const userLoginPage = '/user-login-page';
   static const dashboardPage = '/dashboard-page';
-  static const groomerList = '/groomer-list';
   static const editProfile = '/edit-profile';
   static const newProfilePage = '/new-profile-page';
   static const groomerDetail = '/groomer-detail';
@@ -73,15 +71,6 @@ class Routes {
         final typedArgs = args as Key;
         return MaterialPageRoute(
           builder: (_) => DashboardPage(key: typedArgs),
-          settings: settings,
-        );
-      case Routes.groomerList:
-        if (hasInvalidArgs<Key>(args)) {
-          return misTypedArgsRoute<Key>(args);
-        }
-        final typedArgs = args as Key;
-        return MaterialPageRoute(
-          builder: (_) => GroomerList(key: typedArgs),
           settings: settings,
         );
       case Routes.editProfile:
