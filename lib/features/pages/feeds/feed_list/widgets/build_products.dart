@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:i_love_iruka/features/data/dashboard_store.dart';
-import 'package:i_love_iruka/features/pages/feeds/feed_detail/feed_detail.dart';
 import 'package:i_love_iruka/models/model/product_model.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/routes/routes.gr.dart';
@@ -29,13 +28,14 @@ class _BuildProductsState extends State<BuildProducts> {
       models: [Injector.getAsReactive<DashboardStore>()],
       initState: (context, initReact) => initReact.setState((fn) => fn.callProductList()),
       builder: (context, react) {
-        return react.whenConnectionState(onData: (DashboardStore state) {
+        return react.whenConnectionState(onData: ( state) {
+          
           return SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return buildFeedContainer(react.state.getProductsList.productList[index]);
+                return buildFeedContainer(state.getProductsList.productList[index]);
               },
-              childCount: react.state.getProductsList.productList.length,
+              childCount: state.getProductsList.productList.length,
             ),
           );
         }, onError: (error) {

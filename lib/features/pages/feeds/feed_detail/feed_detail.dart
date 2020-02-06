@@ -14,70 +14,81 @@ class FeedDetail extends StatefulWidget {
 }
 
 class _FeedDetailState extends State<FeedDetail> {
-  Common _common = Common() ; 
   @override
   Widget build(BuildContext context) {
-    return Consumer<DataBridge>(
-      builder: (context, dataBridge, _) => Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text("Feed Detail"),
         ),
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>
-                  [
-                    
-            CachedImage(
-                url: Constants.getWebUrl() +
-                    "/" +
-                    dataBridge.getProductList.picture),
-                    Container(
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                      alignment: Alignment.centerLeft,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(dataBridge.getProductList.productName,
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              )),
-                              
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(DateFormat.yMMMEd().format( DateTime.parse(dataBridge.getProductList.createdDate))),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                              "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampdeular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32."),
-                        ],
+        body: Consumer<DataBridge>(
+          builder: (context, dataBridge, _) => Column(
+            children: <Widget>[
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      CachedImage(
+                          url: Constants.getWebUrl() +
+                              "/" +
+                              dataBridge.getProductList.picture),
+                      Container(
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                        alignment: Alignment.centerLeft,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(dataBridge.getProductList.productName,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text(DateFormat.yMMMEd().format(DateTime.parse(
+                                dataBridge.getProductList.createdDate))),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text(dataBridge.getProductList.description
+                                .toString()),
+                          ],
+                        ),
                       ),
-                    ),
-               
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
-     
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Color(0xffd45500),
-        onPressed: () async{
-        if (dataBridge.getProductList.link == null  ||dataBridge.getProductList.link == "" ) {
-          Fluttertoast.showToast(msg: "This Page doesn't have any link") ; 
-        }else
-           await Common.launchURL(dataBridge.getProductList.link); 
-      },label: Text("Go to link"),),
-      ),
-    );
+        floatingActionButton: Consumer<DataBridge>(
+          builder: (context, dataBridge, _) => FloatingActionButton.extended(
+            backgroundColor: Color(0xffd45500),
+            onPressed: () async {
+              if (dataBridge.getProductList.link == null ||
+                  dataBridge.getProductList.link == "") {
+
+                  showSnackbar(context,"This Page doesn't have any link");
+              } else {
+                try {
+                  await Common.launchURL(dataBridge.getProductList.link);
+                } catch (e) {
+                  showSnackbar(context,"Invalid Link Address");
+                }
+              }
+            },
+            label: Text("Go to link"),
+          ),
+        ));
+  }
+
+  showSnackbar(BuildContext context, String text) {
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text(text),
+    ));
   }
 }

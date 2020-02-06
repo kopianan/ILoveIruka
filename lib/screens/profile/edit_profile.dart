@@ -365,14 +365,8 @@ class _EditProfileState extends State<EditProfile> {
                     : Container(
                         height: 0.0,
                       ),
-                ((dataBridge.getUserDataCopy.user.trainingStartDate == null ||
-                            dataBridge.getUserDataCopy.user.trainingStartDate
-                                    .toString() ==
-                                "null" ||
-                            dataBridge.getUserDataCopy.user.trainingStartDate ==
-                                "") &&
-                        dataBridge.getUserDataCopy.user.role.toLowerCase() ==
-                            "groomer")
+                (
+                  dataBridge.getUserDataCopy.user.trainingStartDate != null)
                     ? Column(
                         children: <Widget>[
                           dividerSection("Groomer Advance"),
@@ -401,10 +395,9 @@ class _EditProfileState extends State<EditProfile> {
                         height: 0.0,
                       ),
                 Container(
-                  margin: EdgeInsets.only(top: 20, right: 20, left: 20),
+                  margin: EdgeInsets.only(top: 20, right: 10, left: 10),
                   width: double.infinity,
                   child: RaisedButton(
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     color: Color(0xffd45500),
                     child: Text(
                       "Save",
