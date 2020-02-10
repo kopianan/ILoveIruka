@@ -35,11 +35,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Future dataFuture;
+  // Future dataFuture;
 
   @override
   void initState() {
-    dataFuture = SharedPref().getLoginData();
+    // dataFuture = SharedPref().getLoginData();
     super.initState();
   }
 
@@ -55,35 +55,34 @@ class _MyAppState extends State<MyApp> {
         ),
       ],
       child: MaterialApp(
-            title: 'I Love Iruka',
-            theme: ThemeData(
-              primaryColor: Color(0xff558dc5),
-              iconTheme: IconThemeData(
-                color: Colors.orange,
-              ),
-              errorColor: Colors.red,
+          title: 'I Love Iruka',
+          theme: ThemeData(
+            primaryColor: Color(0xff558dc5),
+            iconTheme: IconThemeData(
+              color: Colors.orange,
             ),
-            home: StateBuilder<UserStore>(
-                models: [Injector.getAsReactive<UserStore>()],
-                initState: (context, initReact) {
-                  initReact.setState((fn) => fn.getLoginAuth(Constants.userSharedPref));
-                },
-                builder: (context, stateReact) {
-                  if (stateReact.hasData) {
-                    if (stateReact.state.getLoginResponse == null) {
-                      return UserLoginPage();
-                    } else {
-                      Provider.of<DataBridge>(context, listen: false).setUserData(stateReact.state.getLoginResponse);
-                      return DashboardPage();
-                    }
-                  } else {
-                    return UserLoginPage();
-                  }
-                },
-                child: UserLoginPage()),
-            onGenerateRoute: Routes.onGenerateRoute,
-            navigatorKey: Routes.navigatorKey),
-      );
-    
+            errorColor: Colors.red,
+          ),
+          home: StateBuilder<UserStore>(
+              models: [Injector.getAsReactive<UserStore>()],
+              initState: (context, initReact) {
+                initReact.setState(
+                  (fn) => fn.getLoginAuth(Constants.userSharedPref),
+                
+                );
+              },
+              builder: (context, stateReact) {
+                if (stateReact.hasData) {
+                  Provider.of<DataBridge>(context, listen: false).setUserData(stateReact.state.getLoginResponse);
+                  return DashboardPage();
+                } else if (stateReact.hasError) {
+                  return UserLoginPage();
+                } else {
+                  return UserLoginPage();
+                }
+              }),
+          onGenerateRoute: Routes.onGenerateRoute,
+          navigatorKey: Routes.navigatorKey),
+    );
   }
 }

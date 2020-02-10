@@ -25,7 +25,7 @@ class ApiProvider {
       _loginResponse = LoginResponse.fromJson(_jsonData);
       return _loginResponse;
     } on Exception catch (e) {
-      throw Exception("Tidak Ada User");
+      throw Failure(e.toString());
     }
   }
 
@@ -33,9 +33,7 @@ class ApiProvider {
     Response response;
 
     try {
-      response = await _dio.post(_baseUrl + "/Login",
-          data: login.toJson(),
-          options: Options(headers: Constants.getRequestHeader));
+      response = await _dio.post(_baseUrl + "/Login", data: login.toJson(), options: Options(headers: Constants.getRequestHeader));
 
       final dataResp = response.data;
       LoginResponse _loginResponse = LoginResponse.fromJson(dataResp);
@@ -77,9 +75,7 @@ class ApiProvider {
       "Description": registerData.description,
       "Id": registerData.iD,
       "PIC": registerData.pic,
-      "file": (registerData.file == null)
-          ? null
-          : await MultipartFile.fromFile(registerData.file),
+      "file": (registerData.file == null) ? null : await MultipartFile.fromFile(registerData.file),
       "KeyFeatures": registerData.keyFeatures,
       "CoverageArea": registerData.coverageArea,
       "YearsOfExperience": registerData.yearsOfExperience,
@@ -129,28 +125,27 @@ class ApiProvider {
     LoginResponse loginResponse;
     FormData formData;
 
-      formData = FormData.fromMap({
-        "accessKey": registerData.accessKey,
-        "Name": registerData.name,
-        "Email": registerData.email,
-        "Password": registerData.password.trim(),
-        "Phonenumber": registerData.phonenumber,
-        "Address": registerData.address,
-        "Description": registerData.description,
-        "Role": registerData.role,
-        "file": MultipartFile.fromFileSync(registerData.file),
-        "KeyFeatures": registerData.keyFeatures,
-        "CoverageArea": registerData.coverageArea,
-        "YearsOfExperience":(registerData.yearsOfExperience == "null") ? 0 :  int.parse(registerData.yearsOfExperience),
-        "Availability": registerData.availability,
-        "Styling": (registerData.styling == "null") ? 0 :   int.parse(double.parse( registerData.styling).toStringAsFixed(0)),
-        "Cliping": (registerData.cliping == "null") ? 0 :   int.parse(double.parse( registerData.cliping).toStringAsFixed(0)),
-        "TrainingYears":
-            (registerData.trainingYears == "") ? 0 : registerData.trainingYears,
-        "TrainingCourses": registerData.trainingCourses,
-        "TrainingStartDate": registerData.trainingStartDate
-      });
-  
+    formData = FormData.fromMap({
+      "accessKey": registerData.accessKey,
+      "Name": registerData.name,
+      "Email": registerData.email,
+      "Password": registerData.password.trim(),
+      "Phonenumber": registerData.phonenumber,
+      "Address": registerData.address,
+      "Description": registerData.description,
+      "Role": registerData.role,
+      "file": MultipartFile.fromFileSync(registerData.file),
+      "KeyFeatures": registerData.keyFeatures,
+      "CoverageArea": registerData.coverageArea,
+      "YearsOfExperience": (registerData.yearsOfExperience == "null") ? 0 : int.parse(registerData.yearsOfExperience),
+      "Availability": registerData.availability,
+      "Styling": (registerData.styling == "null") ? 0 : int.parse(double.parse(registerData.styling).toStringAsFixed(0)),
+      "Cliping": (registerData.cliping == "null") ? 0 : int.parse(double.parse(registerData.cliping).toStringAsFixed(0)),
+      "TrainingYears": (registerData.trainingYears == "") ? 0 : registerData.trainingYears,
+      "TrainingCourses": registerData.trainingCourses,
+      "TrainingStartDate": registerData.trainingStartDate
+    });
+
     try {
       Response response = await _dio.post(
         url,
@@ -172,9 +167,9 @@ class ApiProvider {
           throw Failure("Time Out");
           break;
         case DioErrorType.RESPONSE:
-        if(e.response.statusCode == 400){
-          throw Failure("Bad Request"); 
-        }
+          if (e.response.statusCode == 400) {
+            throw Failure("Bad Request");
+          }
           throw Failure("Not Found");
           break;
         case DioErrorType.CANCEL:

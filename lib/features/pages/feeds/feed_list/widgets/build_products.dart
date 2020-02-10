@@ -113,7 +113,7 @@ class _BuildProductsState extends State<BuildProducts> {
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
                     color: Colors.white,
                     child: Text(
-                      "Lorem \ntesntadfladhjfsad\n;ldkhflkjadhflakjdhfkljadhadfaadsfadsfdsafadsfdasfadsfdfadfflkj",
+                      productList.description,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
