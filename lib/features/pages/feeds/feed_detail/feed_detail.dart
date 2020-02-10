@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/util/common.dart';
 import 'package:i_love_iruka/util/constants.dart';
@@ -18,7 +17,7 @@ class _FeedDetailState extends State<FeedDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Feed Detail"),
+          title: Text("Feed Detail"), 
         ),
         body: Consumer<DataBridge>(
           builder: (context, dataBridge, _) => Column(
@@ -71,13 +70,12 @@ class _FeedDetailState extends State<FeedDetail> {
             onPressed: () async {
               if (dataBridge.getProductList.link == null ||
                   dataBridge.getProductList.link == "") {
-
-                  showSnackbar(context,"This Page doesn't have any link");
+                showSnackbar(context, "This Page doesn't have any link");
               } else {
                 try {
                   await Common.launchURL(dataBridge.getProductList.link);
                 } catch (e) {
-                  showSnackbar(context,"Invalid Link Address");
+                  showSnackbar(context, "Invalid Link Address");
                 }
               }
             },

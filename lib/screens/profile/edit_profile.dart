@@ -129,9 +129,38 @@ class _EditProfileState extends State<EditProfile> {
                             color: Colors.red,
                             icon: Icon(Icons.exit_to_app),
                             onPressed: () {
-                              SharedPref().clearPreference();
-                              Routes.navigator
-                                  .pushReplacementNamed(Routes.userLoginPage);
+                              showDialog(
+                                  context: (context),
+                                  builder: (context) => AlertDialog(
+                                        content: Text(
+                                            "Do yout want to sign out the account ? "),
+                                        actions: <Widget>[
+                                          FlatButton(
+                                            child: Text(
+                                              "Sign Out",
+                                              style:
+                                                  TextStyle(color: Colors.red),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                              SharedPref().clearPreference();
+                                              Routes.navigator
+                                                  .pushReplacementNamed(
+                                                      Routes.userLoginPage);
+                                            },
+                                          ),
+                                          FlatButton(
+                                            child: Text(
+                                              "Cancel",
+                                              style:
+                                                  TextStyle(color: Colors.grey),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ],
+                                      ));
                             },
                           )),
                     )
@@ -365,8 +394,7 @@ class _EditProfileState extends State<EditProfile> {
                     : Container(
                         height: 0.0,
                       ),
-                (
-                  dataBridge.getUserDataCopy.user.trainingStartDate != null)
+                (dataBridge.getUserDataCopy.user.trainingStartDate != null)
                     ? Column(
                         children: <Widget>[
                           dividerSection("Groomer Advance"),
