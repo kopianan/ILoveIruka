@@ -56,6 +56,7 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
           title: 'I Love Iruka',
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primaryColor: Color(0xff558dc5),
             iconTheme: IconThemeData(
