@@ -135,10 +135,13 @@ class _EditProfileState extends State<EditProfile> {
                                               "Sign Out",
                                               style: TextStyle(color: Colors.red),
                                             ),
-                                            onPressed: ()  {
-                                              SharedPref().clearPreference();
-                                              dataBridge.clearAllData();
-                                              Routes.navigator.pushNamedAndRemoveUntil(Routes.myApp , (route) => false);
+                                            onPressed: () {
+                                              SharedPref().clearPreference().then((onValue) {
+                                                if (onValue) {
+                                                  dataBridge.clearAllData();
+                                                  Routes.navigator.pushNamedAndRemoveUntil(Routes.myApp, (route) => false);
+                                                }
+                                              });
                                             },
                                           ),
                                           FlatButton(

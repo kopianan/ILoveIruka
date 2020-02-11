@@ -29,6 +29,7 @@ class _FeedDashboardState extends State<FeedDashboard> {
   var futureFeed;
   @override
   void initState() {
+    print("re initstate");
     super.initState();
   }
 
@@ -61,33 +62,30 @@ class _FeedDashboardState extends State<FeedDashboard> {
                     (fn) => fn.callEventList(),
                   ),
               builder: (context, react) {
-                return react.whenConnectionState(
-                  onData: (store) {
-                    if (store.getEventsModel == null) {
-                      return RefreshIconWidget(
-                        onPressed: () => react.setState((fn) => fn.callEventList()),
-                      );
-                    } else
-                      return DashboardCarousel(
-                        list: store.getEventsModel.eventList,
-                      );
-                  },
-                  onWaiting: () => Container(
-                    height: 180,
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  ),
-                  onError: (err) => Container(
+                if (react.hasData) {
+                  if (react.state.getEventsModel == null) {
+                    return RefreshIconWidget(
+                      onPressed: () => react.setState((fn) => fn.callEventList()),
+                    );
+                  } else
+                    return DashboardCarousel(
+                      list: react.state.getEventsModel.eventList,
+                    );
+                } else if (react.hasError) {
+                  return Container(
                     height: 180,
                     child: Center(
                       child: Icon(
                         Icons.refresh,
                       ),
                     ),
-                  ),
-                  onIdle: () => Container(height: 0.0, width: 0.0),
-                );
+                  );
+                } else {
+                  return Container(
+                    height: 0.0,
+                    width: 0.0,
+                  );
+                }
               }),
         ),
         SliverToBoxAdapter(
@@ -205,7 +203,7 @@ class ServiceList extends StatelessWidget {
         BuildServicesIcon(
           onIconPressed: () {
             // Common.showServicesDialog(context, content: "Choose Action...", title: "Shop", link: "https://sismarket.id/", phone: "+6287800042548");
-        Common.launchURL( "https://sismarket.id/");
+            Common.launchURL("https://sismarket.id/");
           },
           title: "Shop",
           imageAsset: "images/assets/pet_shop.png",
@@ -213,8 +211,7 @@ class ServiceList extends StatelessWidget {
         BuildServicesIcon(
           onIconPressed: () {
             // Common.showServicesDialog(context, content: "Choose Action...", title: "Therapeutic Grooming", link: "https://sismarket.id/", phone: "+6287800042548");
-          launch("tel://+6287800042548");
-      
+            launch("tel://+6287800042548");
           },
           title: "Grooming Salon",
           imageAsset: "images/assets/pet_grooming.png",
@@ -222,7 +219,7 @@ class ServiceList extends StatelessWidget {
         BuildServicesIcon(
           onIconPressed: () {
             // Common.showServicesDialog(context, content: "Choose Action...", title: "Pet Hotel", link: "https://sismarket.id/", phone: "+6287800042548");
-          launch("tel://+6287800042548");
+            launch("tel://+6287800042548");
           },
           title: "Pet Hotel",
           imageAsset: "images/assets/pet_hotel.png",
@@ -230,8 +227,8 @@ class ServiceList extends StatelessWidget {
         BuildServicesIcon(
           onIconPressed: () {
             // Common.showServicesDialog(context, content: "Choose Action...", title: "Pet Taxi", link: "https://sismarket.id/", phone: "+6287800042548");
-        
-             Common.launchURL( "https://iloveiruka.com/");
+
+            Common.launchURL("https://iloveiruka.com/");
           },
           title: "Pet Taxi",
           imageAsset: "images/assets/pet_taxi.png",
@@ -239,8 +236,7 @@ class ServiceList extends StatelessWidget {
         BuildServicesIcon(
           onIconPressed: () {
             // Common.showServicesDialog(context, content: "Choose Action...", title: "Iskhan Pet Food", link: "https://iskhan.id/", phone: "+6287800042548");
-              Common.launchURL( "https://sismarket.id/");
-         
+            Common.launchURL("https://sismarket.id/");
           },
           title: "Iskhan Pet Food",
           imageAsset: "images/assets/pet-spa.png",

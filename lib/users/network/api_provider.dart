@@ -50,7 +50,13 @@ class ApiProvider {
           throw Failure("Time Out");
           break;
         case DioErrorType.RESPONSE:
-          throw Failure("Not Found");
+          if (e.response.statusCode == 400) {
+            throw Failure("Wrong email or password");
+          } else if (e.response.statusCode == 404) {
+            throw Failure("User not found");
+          } else {
+            throw Failure("Please contact the admin");
+          }
           break;
         case DioErrorType.CANCEL:
           throw Failure("Cancel");

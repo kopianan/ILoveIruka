@@ -37,9 +37,7 @@ class DashboardStore {
     try {
       _userGroomersModel = await _apiInterface.getGroomerList(request);
     } on Failure catch (f) {
-      
-      print(f.message);
-      _failure = f;
+      throw(f); 
     }
   }
 

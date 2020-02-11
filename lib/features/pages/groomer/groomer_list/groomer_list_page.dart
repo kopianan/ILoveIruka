@@ -64,7 +64,10 @@ class _GroomerLlistPageState extends State<GroomerLlistPage> {
                 style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 40),
               ),
             ),
-            SliverToBoxAdapter(child: SizedBox(height: 20,)),
+            SliverToBoxAdapter(
+                child: SizedBox(
+              height: 20,
+            )),
             SliverToBoxAdapter(
               child: Container(
                 height: 50,
@@ -106,15 +109,14 @@ class _GroomerLlistPageState extends State<GroomerLlistPage> {
             StateBuilder<DashboardStore>(
               models: [Injector.getAsReactive<DashboardStore>()],
               initState: (context, initReact) {
-                initReact.setState(
-                  (fn) => fn.callUserGroomerModel(UserByRoleRequest(role: "Groomer")),
-                  onData: (context, store){
-                    if(store.getFailure == null){
-                      duplicateItems = store.getUserGroomerModel.listUser ; 
-                      items.addAll(duplicateItems); 
-                    }
-                  }
-                );
+                initReact.setState((fn) => fn.callUserGroomerModel(UserByRoleRequest(role: "Groomer")), onData: (context, store) {
+                  duplicateItems = store.getUserGroomerModel.listUser;
+                  items.addAll(duplicateItems);
+                }, onError: (context, err) {
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                    content: Text("Something Wrong Here"),
+                  ));
+                });
               },
               builder: (context, reactive) {
                 return reactive.whenConnectionState(
@@ -154,7 +156,7 @@ class _GroomerLlistPageState extends State<GroomerLlistPage> {
       itemBuilder: (context, index) {
         return InkWell(
             onTap: () {
-              Routes.navigator.pushNamed(Routes.groomerDetail); 
+              Routes.navigator.pushNamed(Routes.groomerDetail);
               Provider.of<DataBridge>(context, listen: false).setCurrentSelectedGroomer(items[index]);
             },
             child: Column(
@@ -192,8 +194,8 @@ class GroomerHeaderList extends StatelessWidget {
           return InkWell(
             onTap: () {
               Provider.of<DataBridge>(context, listen: false).setCurrentSelectedGroomer(dataSnap[index]);
-              
-              Routes.navigator.pushNamed(Routes.groomerDetail); 
+
+              Routes.navigator.pushNamed(Routes.groomerDetail);
             },
             child: Card(
               elevation: 3,

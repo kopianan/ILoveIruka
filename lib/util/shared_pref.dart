@@ -42,8 +42,9 @@ class SharedPref {
     return loginData;
   }
 
- clearPreference() async {
+ Future<bool> clearPreference() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.clear() ; 
+   return  preferences.clear() ; 
+   
   }
 }

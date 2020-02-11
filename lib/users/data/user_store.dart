@@ -18,7 +18,7 @@ class UserStore {
     try {
       _loginResponse = await _apiInterface.loginUserByEmail(loginRequest);
     } on Failure catch (f) {
-      _failure = f;
+      throw f ; 
     }
   }
 
@@ -26,7 +26,7 @@ class UserStore {
     try {
       _loginResponse = await _apiInterface.checkAuthanitication(key);
     } on Failure catch (f) {
-      _failure = f;
+      throw f ; 
     }
   }
 
