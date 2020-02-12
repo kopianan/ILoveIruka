@@ -29,7 +29,7 @@ class Repository {
   Future<UserGroomersModel> getGroomerList(UserByRoleRequest request) =>
       _apiProvider.getGroomerListAsync(request);
   Future<List<TransactionHistoryDetailModel>> getHistoryTransaction(
-          String request) =>
+          String request) =>  
       _apiProvider.getHistoryTransactionAsync(request);
 
   Future<String> getPointAndLastTransactionData(String request) =>

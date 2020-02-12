@@ -50,6 +50,7 @@ dependencies:
   auto_route: ^0.2.2
   states_rebuilder: ^1.11.2
   share: ^0.6.3+5
+  image_downloader: ^0.19.1
 
 dev_dependencies:
   flutter_test:
