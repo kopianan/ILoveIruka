@@ -7,6 +7,7 @@ import 'package:i_love_iruka/routes/routes.gr.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:i_love_iruka/widgets/cached_image.dart';
 import 'package:provider/provider.dart';
+import 'package:share/share.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
 class BuildProducts extends StatefulWidget {
@@ -26,15 +27,17 @@ class _BuildProductsState extends State<BuildProducts> {
   Widget build(BuildContext context) {
     return StateBuilder<DashboardStore>(
       models: [Injector.getAsReactive<DashboardStore>()],
-      initState: (context, initReact) => initReact.setState((fn) => fn.callProductList()),
+      initState: (context, initReact) =>
+          initReact.setState((fn) => fn.callProductList()),
       builder: (context, react) {
-        return react.whenConnectionState(onData: ( state) {
-          
+        return react.whenConnectionState(onData: (state) {
           return SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return buildFeedContainer(state.getProductsList.productList[index]);
+                return buildFeedContainer(
+                    state.getProductsList.productList[index]);
               },
+              
               childCount: state.getProductsList.productList.length,
             ),
           );
@@ -44,8 +47,12 @@ class _BuildProductsState extends State<BuildProducts> {
             child: Center(
               child: IconButton(
                 onPressed: () {
-                  react.setState((fn) => fn.callProductList(), onError: (context, err) => Fluttertoast.showToast(msg: err.toString()));
-                  react.setState((fn) => fn.callEventList(), onError: (context, err) => Fluttertoast.showToast(msg: err.toString()));
+                  react.setState((fn) => fn.callProductList(),
+                      onError: (context, err) =>
+                          Fluttertoast.showToast(msg: err.toString()));
+                  react.setState((fn) => fn.callEventList(),
+                      onError: (context, err) =>
+                          Fluttertoast.showToast(msg: err.toString()));
                 },
                 icon: Icon(
                   Icons.refresh,
@@ -84,7 +91,8 @@ class _BuildProductsState extends State<BuildProducts> {
           Routes.navigator.pushNamed(Routes.feedDetail);
         },
         child: Container(
-          decoration: BoxDecoration(border: Border.all(color: Colors.grey[300])),
+          decoration:
+              BoxDecoration(border: Border.all(color: Colors.grey[300])),
           child: Card(
             margin: EdgeInsets.zero,
             elevation: 1,
@@ -99,7 +107,8 @@ class _BuildProductsState extends State<BuildProducts> {
                       "${productList.productName}",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     )),
                 Container(
                   height: widthMediaQuery,
@@ -112,13 +121,24 @@ class _BuildProductsState extends State<BuildProducts> {
                     alignment: Alignment.centerLeft,
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
                     color: Colors.white,
-                    child: Text(
-                      productList.description,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 14,
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          productList.description,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.share, color: Colors.black) , 
+                          onPressed: () {
+                            Share.share("Check this out " + productList.link.toString());
+                          },
+                        )
+                      ],
                     ))
               ],
             ),
