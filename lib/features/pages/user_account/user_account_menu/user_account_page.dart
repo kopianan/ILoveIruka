@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
@@ -25,12 +26,44 @@ class _UserAccountPageState extends State<UserAccountPage> {
     return NumberFormat("#,###").format(number);
   }
 
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+
+  Future<dynamic> myBackgroundMessageHandler(Map<String, dynamic> message) {
+    if (message.containsKey('data')) {
+      // Handle data message
+      final dynamic data = message['data'];
+    }
+
+    if (message.containsKey('notification')) {
+      // Handle notification message
+      final dynamic notification = message['notification'];
+    }
+
+    // Or do other work.
+  }
+
+  void initalFirebase() {
+    _firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) async {
+        print("onMessage: $message");
+      },
+      onBackgroundMessage: myBackgroundMessageHandler,
+      onLaunch: (Map<String, dynamic> message) async {
+        print("onLaunch: $message");
+      },
+      onResume: (Map<String, dynamic> message) async {
+        print("onResume: $message");
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: SafeArea(
       child: Consumer<DataBridge>(
         builder: (context, dataBridge, _) {
-          var distanceTextStyle = TextStyle(fontSize: 17, fontWeight: FontWeight.bold);
+          var distanceTextStyle =
+              TextStyle(fontSize: 17, fontWeight: FontWeight.bold);
           return Container(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: CustomScrollView(
@@ -41,7 +74,10 @@ class _UserAccountPageState extends State<UserAccountPage> {
                     children: <Widget>[
                       Text(
                         "Account",
-                        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 40),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 40),
                       ),
                       IconButton(
                         icon: Icon(
@@ -49,10 +85,15 @@ class _UserAccountPageState extends State<UserAccountPage> {
                           color: Colors.black,
                         ),
                         onPressed: () {
-                          SharedPref().loadUserFromLocal(prefKey: Constants.userSharedPref).then((onValue) {
+                          SharedPref()
+                              .loadUserFromLocal(
+                                  prefKey: Constants.userSharedPref)
+                              .then((onValue) {
                             dataBridge.setUserData(onValue);
 
-                            Routes.navigator.pushNamed(Routes.editProfile, arguments: EditProfileArguments(loginData: dataBridge.getUserData()));
+                            Routes.navigator.pushNamed(Routes.editProfile,
+                                arguments: EditProfileArguments(
+                                    loginData: dataBridge.getUserData()));
                           });
                         },
                       )
@@ -68,7 +109,8 @@ class _UserAccountPageState extends State<UserAccountPage> {
                   child: StateBuilder<DashboardStore>(
                     models: [Injector.getAsReactive<DashboardStore>()],
                     initState: (context, initReact) => initReact.setState(
-                      (fn) => fn.callGetPointAndLastTransaction(dataBridge.getUserData().user.id),
+                      (fn) => fn.callGetPointAndLastTransaction(
+                          dataBridge.getUserData().user.id),
                     ),
                     builder: (context, react) {
                       if (react.isWaiting) {
@@ -85,7 +127,8 @@ class _UserAccountPageState extends State<UserAccountPage> {
                         return Card(
                           elevation: 4,
                           child: Container(
-                            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
@@ -94,8 +137,11 @@ class _UserAccountPageState extends State<UserAccountPage> {
                                   child: RaisedButton(
                                     color: Color(0xffd45500),
                                     onPressed: () {
-                                      dataBridge.setTotalPoint(react.state.getPointAndLastTransaction.toString());
-                                      Routes.navigator.pushNamed(Routes.historyTransaction);
+                                      dataBridge.setTotalPoint(react
+                                          .state.getPointAndLastTransaction
+                                          .toString());
+                                      Routes.navigator
+                                          .pushNamed(Routes.historyTransaction);
                                     },
                                     child: Text(
                                       "Transaction History",
@@ -113,11 +159,15 @@ class _UserAccountPageState extends State<UserAccountPage> {
                                   children: <Widget>[
                                     Text(
                                       "Current Point",
-                                      style: TextStyle(color: Colors.black, fontSize: 18),
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 18),
                                     ),
                                     Text(
                                       "${react.state.getPointAndLastTransaction.toString()}",
-                                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black),
+                                      style: TextStyle(
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
                                     ),
                                   ],
                                 ),
@@ -150,7 +200,8 @@ class _UserAccountPageState extends State<UserAccountPage> {
                 SliverToBoxAdapter(
                   child: InkWell(
                     onTap: () async {
-                      String googleUrl = 'https://www.google.com/maps/search/?api=1&query=-6.3788894,106.9197654';
+                      String googleUrl =
+                          'https://www.google.com/maps/search/?api=1&query=-6.3788894,106.9197654';
                       if (await canLaunch(googleUrl)) {
                         await launch(googleUrl);
                       } else {
@@ -160,7 +211,8 @@ class _UserAccountPageState extends State<UserAccountPage> {
                     child: Card(
                       elevation: 4,
                       child: Container(
-                        margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                        margin:
+                            EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                         width: double.infinity,
                         child: Row(
                           children: <Widget>[
@@ -174,9 +226,18 @@ class _UserAccountPageState extends State<UserAccountPage> {
                                       color: Colors.grey,
                                     ),
                                     onPressed: () async {
-                                      Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-                                      double disctance = await Geolocator().distanceBetween(position.latitude, position.longitude, -6.3788894, 106.9197654);
-                                      Fluttertoast.showToast(msg: "Data Updated");
+                                      Position position = await Geolocator()
+                                          .getCurrentPosition(
+                                              desiredAccuracy:
+                                                  LocationAccuracy.high);
+                                      double disctance = await Geolocator()
+                                          .distanceBetween(
+                                              position.latitude,
+                                              position.longitude,
+                                              -6.3788894,
+                                              106.9197654);
+                                      Fluttertoast.showToast(
+                                          msg: "Data Updated");
                                       setState(() {
                                         alamat = disctance;
                                       });

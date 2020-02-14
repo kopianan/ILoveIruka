@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/dashboard/dashboard_page.dart';
 import 'package:i_love_iruka/features/data/dashboard_store.dart';
@@ -15,7 +16,10 @@ import 'users/pages/login/users_login_page.dart';
 
 void main() {
   runApp(
-    Injector(inject: [Inject<UserStore>(() => UserStore()), Inject<DashboardStore>(() => DashboardStore())], builder: (context) => MyApp()),
+    Injector(inject: [
+      Inject<UserStore>(() => UserStore()),
+      Inject<DashboardStore>(() => DashboardStore())
+    ], builder: (context) => MyApp()),
   );
 }
 
@@ -36,10 +40,25 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // Future dataFuture;
-
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   @override
   void initState() {
-    // dataFuture = SharedPref().getLoginData();
+    _firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) {
+        print('on message $message');
+      },
+      onResume: (Map<String, dynamic> message) {
+        print('on resume $message');
+      },
+      onLaunch: (Map<String, dynamic> message) {
+        print('on launch $message');
+      },
+    );
+    _firebaseMessaging.requestNotificationPermissions(
+        const IosNotificationSettings(sound: true, badge: true, alert: true));
+    _firebaseMessaging.getToken().then((token) {
+      print(token);
+    });
     super.initState();
   }
 
@@ -69,12 +88,12 @@ class _MyAppState extends State<MyApp> {
               initState: (context, initReact) {
                 initReact.setState(
                   (fn) => fn.getLoginAuth(Constants.userSharedPref),
-                
                 );
               },
               builder: (context, stateReact) {
                 if (stateReact.hasData) {
-                  Provider.of<DataBridge>(context, listen: false).setUserData(stateReact.state.getLoginResponse);
+                  Provider.of<DataBridge>(context, listen: false)
+                      .setUserData(stateReact.state.getLoginResponse);
                   return DashboardPage();
                 } else if (stateReact.hasError) {
                   return UserLoginPage();
