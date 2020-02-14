@@ -12,6 +12,7 @@ import 'package:i_love_iruka/features/pages/groomer/groomer_list/groomer_list_pa
 import 'package:i_love_iruka/users/pages/login/users_login_page.dart';
 import 'package:i_love_iruka/dashboard/dashboard_page.dart';
 import 'package:i_love_iruka/screens/profile/edit_profile.dart';
+import 'package:auto_route/transitions_builders.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/screens/profile/new_profile_page.dart';
 import 'package:i_love_iruka/features/pages/groomer/groomer_detail/groomer_detail.dart';
@@ -79,28 +80,36 @@ class Routes {
         }
         final typedArgs =
             args as EditProfileArguments ?? EditProfileArguments();
-        return MaterialPageRoute(
-          builder: (_) =>
+        return PageRouteBuilder(
+          pageBuilder: (ctx, animation, secondaryAnimation) =>
               EditProfile(key: typedArgs.key, loginData: typedArgs.loginData),
           settings: settings,
+          transitionsBuilder: TransitionsBuilders.zoomIn,
+          transitionDuration: Duration(milliseconds: 200),
         );
       case Routes.newProfilePage:
         if (hasInvalidArgs<Key>(args)) {
           return misTypedArgsRoute<Key>(args);
         }
         final typedArgs = args as Key;
-        return MaterialPageRoute(
-          builder: (_) => NewProfilePage(key: typedArgs),
+        return PageRouteBuilder(
+          pageBuilder: (ctx, animation, secondaryAnimation) =>
+              NewProfilePage(key: typedArgs),
           settings: settings,
+          transitionsBuilder: TransitionsBuilders.zoomIn,
+          transitionDuration: Duration(milliseconds: 200),
         );
       case Routes.groomerDetail:
         if (hasInvalidArgs<Key>(args)) {
           return misTypedArgsRoute<Key>(args);
         }
         final typedArgs = args as Key;
-        return MaterialPageRoute(
-          builder: (_) => GroomerDetail(key: typedArgs),
+        return PageRouteBuilder(
+          pageBuilder: (ctx, animation, secondaryAnimation) =>
+              GroomerDetail(key: typedArgs),
           settings: settings,
+          transitionsBuilder: TransitionsBuilders.zoomIn,
+          transitionDuration: Duration(milliseconds: 200),
         );
       case Routes.register2page:
         if (hasInvalidArgs<Key>(args)) {
@@ -112,25 +121,30 @@ class Routes {
           settings: settings,
         );
       case Routes.feedDetail:
-        return MaterialPageRoute(
-          builder: (_) => FeedDetail(),
+        return PageRouteBuilder(
+          pageBuilder: (ctx, animation, secondaryAnimation) => FeedDetail(),
           settings: settings,
+          transitionsBuilder: TransitionsBuilders.zoomIn,
+          transitionDuration: Duration(milliseconds: 200),
         );
       case Routes.historyTransaction:
         if (hasInvalidArgs<Key>(args)) {
           return misTypedArgsRoute<Key>(args);
         }
         final typedArgs = args as Key;
-        return MaterialPageRoute(
-          builder: (_) => HistoryTransaction(key: typedArgs),
+        return PageRouteBuilder(
+          pageBuilder: (ctx, animation, secondaryAnimation) =>
+              HistoryTransaction(key: typedArgs),
           settings: settings,
+          transitionsBuilder: TransitionsBuilders.zoomIn,
+          transitionDuration: Duration(milliseconds: 200),
         );
       case Routes.profilePage:
         if (hasInvalidArgs<Key>(args)) {
           return misTypedArgsRoute<Key>(args);
         }
         final typedArgs = args as Key;
-        return MaterialPageRoute(
+        return CupertinoPageRoute(
           builder: (_) => ProfilePage(key: typedArgs),
           settings: settings,
         );
