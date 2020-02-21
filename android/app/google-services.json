@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "97714226417",
+    "firebase_url": "https://iloveiruka-bf223.firebaseio.com",
+    "project_id": "iloveiruka-bf223",
+    "storage_bucket": "iloveiruka-bf223.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97714226417:android:abb0777b096091bab55550",
+        "android_client_info": {
+          "package_name": "com.sistarindonesia.i_love_iruka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97714226417-t4ts3sfu90g7qprmj78ti9o6csigl5dm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sistarindonesia.i_love_iruka",
+            "certificate_hash": "413c948a425d60397cc5ea0cebe5a46ad3c07f73"
+          }
+        },
+        {
+          "client_id": "97714226417-g8oq0gpvg3kres6fplbu7cjeraas6ksv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLUHgIY4jVDIz4miYF08zVBDnYjqc1GTc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "97714226417-g8oq0gpvg3kres6fplbu7cjeraas6ksv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "97714226417-fht7ps0va66ic6vtn4kjbr2e4c8jpr58.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sistarindonesia.iloveirukaapp",
+                "app_store_id": "1495951073"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
