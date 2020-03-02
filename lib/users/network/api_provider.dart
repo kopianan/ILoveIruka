@@ -136,7 +136,7 @@ class ApiProvider {
       "Name": registerData.name,
       "Email": registerData.email,
       "Password": registerData.password.trim(),
-      "Phonenumber": registerData.phonenumber,
+      "PhoneNumber": registerData.phonenumber,
       "Address": registerData.address,
       "Description": registerData.description,
       "Role": registerData.role,

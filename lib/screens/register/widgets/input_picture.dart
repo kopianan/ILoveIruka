@@ -1,14 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:i_love_iruka/models/request/register_request.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/provider/register_provider.dart';
-import 'package:i_love_iruka/screens/register/register_bloc/register_bloc_bloc.dart';
-import 'package:i_love_iruka/screens/register/register_bloc/register_bloc_g.dart';
 import 'package:i_love_iruka/util/camera_util.dart';
-import 'package:i_love_iruka/util/constants.dart';
 import 'package:i_love_iruka/widgets/color_palate.dart';
 import 'package:i_love_iruka/widgets/register_button_next_and_back.dart';
 import 'package:keyboard_avoider/keyboard_avoider.dart';
@@ -17,18 +12,12 @@ import 'package:provider/provider.dart';
 import '../register_additional.dart';
 
 class InputPicture extends StatefulWidget {
-  const InputPicture({
-    Key key,
-    @required RegisterAdditional registerAdditional,
-    @required this.registerBlocBloc,
-    @required this.c,
-    @required this.onRegisterPressed 
-  })  : _registerAdditional = registerAdditional,
+  const InputPicture({Key key, @required RegisterAdditional registerAdditional, @required this.c, @required this.onRegisterPressed})
+      : _registerAdditional = registerAdditional,
         super(key: key);
-final Function onRegisterPressed ; 
+  final Function onRegisterPressed;
   final RegisterAdditional _registerAdditional;
   final ScrollController c;
-  final RegisterBlocBloc registerBlocBloc ; 
   @override
   _InputPictureState createState() => _InputPictureState();
 }
@@ -144,7 +133,6 @@ class _InputPictureState extends State<InputPicture> {
                       buttonText: "Register",
                       onButtonPressed: () {
                         widget.onRegisterPressed(dataBridge, regProv, photo);
-                        // registerUser(dataBridge, regProv,);
                       },
                     ),
                   ],
@@ -163,65 +151,5 @@ class _InputPictureState extends State<InputPicture> {
     (dataBridge.getRoleList().toString().toLowerCase().contains("groomer")) ? page = 2 : page = 1;
 
     widget._registerAdditional.backAnimated(context, widget.c, page);
-  }
-
-  void registerUser(DataBridge dataBridge, RegisterProvider regProv, RegisterBlocBloc registerBlocBloc) {
-    
-    var availability;
-    var cliping;
-    var styling;
-    var keyFeatures;
-    var trainingCourses;
-    var trainingYears;
-    var trainingStartDate;
-    var yearsOfExperience;
-    var area;
-    if (dataBridge.getRoleList().toLowerCase() == "groomer") {
-      //user is groomer
-      availability = regProv.getIsAvailable.toString();
-      cliping = int.parse(regProv.getCliping.toStringAsFixed(0)).toString();
-      styling = int.parse(regProv.getStyling.toStringAsFixed(0)).toString();
-      keyFeatures = regProv.getKeyFeatures.toString();
-      trainingCourses = regProv.getTrainLNotes.toString();
-      trainingYears = regProv.getTrainLong.toString();
-      trainingStartDate = regProv.getTrainDate.toString();
-      yearsOfExperience = regProv.getYearExperience.toString();
-      area = "${dataBridge.getCityResults.type} ${dataBridge.getCityResults.cityName},${dataBridge.getCityResults.province}";
-    } else {
-      availability = "0";
-      cliping = "0";
-      styling = "0";
-      keyFeatures = "0";
-      trainingCourses = "0";
-      trainingYears = "0";
-      trainingStartDate = "0";
-      yearsOfExperience = "0";
-      area = "0"; 
-    }
-    final dataRegister = RegisterRequest(
-        accessKey: Constants.getAccessKey(),
-        address: regProv.getAddress,
-        description: regProv.getDescription,
-        email: regProv.getEmail,
-        file: photo.path,
-        name: regProv.getFullName,
-        password: regProv.getPassword,
-        pIC: regProv.getPic.toString(),
-        phonenumber: regProv.getPhone.toString(),
-        role: dataBridge.getRoleList().toString(),
-        availability: availability,
-        cliping: cliping,
-        styling: styling,
-        keyFeatures: keyFeatures,
-        trainingCourses: (regProv.getJoinTraining == false) ? "" : trainingCourses,
-        trainingYears: (regProv.getJoinTraining == false) ? "" : trainingYears,
-        trainingStartDate: (regProv.getJoinTraining == false) ? "" : trainingStartDate,
-        yearsOfExperience: yearsOfExperience,
-        coverageArea:area,
-        
-        );
-
-    print(dataRegister.toJson());
-    registerBlocBloc.add(RegisterUser(registerData: dataRegister));
   }
 }

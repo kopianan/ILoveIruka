@@ -1,14 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:i_love_iruka/models/request/register_request.dart';
 import 'package:i_love_iruka/provider/data_bridge.dart';
 import 'package:i_love_iruka/provider/register_provider.dart';
 import 'package:i_love_iruka/routes/routes.gr.dart';
 import 'package:i_love_iruka/screens/register/register_additional.dart';
-import 'package:i_love_iruka/screens/register/register_bloc/register_bloc_g.dart';
 import 'package:i_love_iruka/screens/register/widgets/choose_account_type.dart';
 import 'package:i_love_iruka/screens/register/widgets/input_picture.dart';
 import 'package:i_love_iruka/users/data/user_store.dart';
@@ -32,7 +30,6 @@ class _Register2PageState extends State<Register2Page> {
 
   static const double distanceOfElement = 15.0;
 
-  final registerBloc = RegisterBlocBloc();
   ReactiveModel<UserStore> reactiveModel;
   @override
   void initState() {
@@ -54,7 +51,6 @@ class _Register2PageState extends State<Register2Page> {
               return buildRegisterPageForm(
                 context,
                 dataBridge,
-                registerBloc,
               );
             } else if (userReact.isWaiting) {
               return Center(
@@ -64,7 +60,6 @@ class _Register2PageState extends State<Register2Page> {
               return buildRegisterPageForm(
                 context,
                 dataBridge,
-                registerBloc,
               );
             }
           },
@@ -76,7 +71,6 @@ class _Register2PageState extends State<Register2Page> {
   Widget buildRegisterPageForm(
     BuildContext context,
     DataBridge dataBridge,
-    RegisterBlocBloc registerBlocBloc,
   ) {
     return Consumer<RegisterProvider>(
       builder: (_, registerProvider, __) => Container(
@@ -105,7 +99,6 @@ class _Register2PageState extends State<Register2Page> {
             ),
             registerAdditional: _registerAdditional,
             c: c,
-            registerBlocBloc: registerBlocBloc,
           )
         ],
       )),
