@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:i_love_iruka/application/home/dasboard_form.dart';
 import 'package:i_love_iruka/dashboard/dashboard_page.dart';
 import 'package:i_love_iruka/features/data/dashboard_store.dart';
 
@@ -83,24 +84,25 @@ class _MyAppState extends State<MyApp> {
             ),
             errorColor: Colors.red,
           ),
-          home: StateBuilder<UserStore>(
-              models: [Injector.getAsReactive<UserStore>()],
-              initState: (context, initReact) {
-                initReact.setState(
-                  (fn) => fn.getLoginAuth(Constants.userSharedPref),
-                );
-              },
-              builder: (context, stateReact) {
-                if (stateReact.hasData) {
-                  Provider.of<DataBridge>(context, listen: false)
-                      .setUserData(stateReact.state.getLoginResponse);
-                  return DashboardPage();
-                } else if (stateReact.hasError) {
-                  return UserLoginPage();
-                } else {
-                  return UserLoginPage();
-                }
-              }),
+          home: DashboardForm(),
+          // home: StateBuilder<UserStore>(
+          //     models: [Injector.getAsReactive<UserStore>()],
+          //     initState: (context, initReact) {
+          //       initReact.setState(
+          //         (fn) => fn.getLoginAuth(Constants.userSharedPref),
+          //       );
+          //     },
+          //     builder: (context, stateReact) {
+          //       if (stateReact.hasData) {
+          //         Provider.of<DataBridge>(context, listen: false)
+          //             .setUserData(stateReact.state.getLoginResponse);
+          //         return DashboardPage();
+          //       } else if (stateReact.hasError) {
+          //         return UserLoginPage();
+          //       } else {
+          //         return UserLoginPage();
+          //       }
+          //     }),
           onGenerateRoute: Routes.onGenerateRoute,
           navigatorKey: Routes.navigatorKey),
     );
