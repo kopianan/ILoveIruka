@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:i_love_iruka/application/auth/sign_in_form/sign_in_form.dart';
 import 'package:i_love_iruka/application/home/dasboard_form.dart';
 import 'package:i_love_iruka/dashboard/dashboard_page.dart';
 import 'package:i_love_iruka/features/data/dashboard_store.dart';
@@ -13,6 +14,7 @@ import 'package:i_love_iruka/util/shared_pref.dart';
 import 'package:provider/provider.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
+import 'application/welcome/welcome_screen.dart';
 import 'users/pages/login/users_login_page.dart';
 
 void main() {
@@ -84,7 +86,7 @@ class _MyAppState extends State<MyApp> {
             ),
             errorColor: Colors.red,
           ),
-          home: DashboardForm(),
+          home: SignInForm(),
           // home: StateBuilder<UserStore>(
           //     models: [Injector.getAsReactive<UserStore>()],
           //     initState: (context, initReact) {

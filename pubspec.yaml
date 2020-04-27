@@ -56,6 +56,7 @@ dependencies:
   firebase_auth: ^0.15.4
   firebase_messaging: ^6.0.9
   bottom_navy_bar: ^5.4.0
+  material_design_icons_flutter: ^4.0.5145
 
 dev_dependencies:
   flutter_test:
@@ -108,6 +109,10 @@ flutter:
    - images/assets/iruka_logo2.jpg
    - images/assets/iruka_launcher_2.jpg
    - images/assets/mobile_app_logo_2.jpg
+
+   - images/dev_images/petting.png
+   - images/dev_images/background_petting.png
+   - images/dev_images/signin_decoration.png
    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

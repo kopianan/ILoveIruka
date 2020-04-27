@@ -49,6 +49,7 @@ class _DashboardFormState extends State<DashboardForm> {
         ),
       ),
       bottomNavigationBar: BottomNavyBar(
+        
         selectedIndex: _selectedIndex,
         showElevation: false, // use this to remove appBar's elevation
         onItemSelected: (index) => setState(() {
