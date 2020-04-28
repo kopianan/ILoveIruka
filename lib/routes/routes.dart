@@ -1,6 +1,12 @@
 import 'package:auto_route/auto_route_annotations.dart';
 import 'package:auto_route/transitions_builders.dart';
-import 'package:i_love_iruka/dashboard/dashboard_page.dart';
+import 'package:i_love_iruka/application/auth/forgot_password_form/forgot_password_form.dart';
+import 'package:i_love_iruka/application/auth/forgot_password_form/forgot_password_success_notif.dart';
+import 'package:i_love_iruka/application/auth/register_form/register_form.dart';
+import 'package:i_love_iruka/application/auth/sign_in_form/sign_in_form.dart';
+import 'package:i_love_iruka/application/home/dashboard_page.dart';
+import 'package:i_love_iruka/application/welcome/welcome_screen.dart';
+// import 'package:i_love_iruka/dashboard/dashboard_page.dart';
 import 'package:i_love_iruka/features/pages/feeds/feed_detail/feed_detail.dart';
 import 'package:i_love_iruka/features/pages/groomer/groomer_detail/groomer_detail.dart';
 import 'package:i_love_iruka/features/pages/groomer/groomer_list/groomer_list_page.dart';
@@ -50,4 +56,11 @@ class $Routes {
       durationInMilliseconds: 200)
   ProfilePage profilePage;
   GroomerPageProfile groomerPageProfile;
+
+//auth folder
+  RegisterForm registerForm;
+  ForgotPasswordForm forgotPasswordForm;
+  SignInForm signInForm;
+  ForgotPaswordSuccessNotif forgotPaswordSuccessNotif;
+  WelcomeScreen welcomeScreen;
 }

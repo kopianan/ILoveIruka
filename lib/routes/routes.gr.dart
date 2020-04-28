@@ -10,7 +10,7 @@ import 'package:auto_route/router_utils.dart';
 import 'package:i_love_iruka/main.dart';
 import 'package:i_love_iruka/features/pages/groomer/groomer_list/groomer_list_page.dart';
 import 'package:i_love_iruka/users/pages/login/users_login_page.dart';
-import 'package:i_love_iruka/dashboard/dashboard_page.dart';
+import 'package:i_love_iruka/application/home/dashboard_page.dart';
 import 'package:i_love_iruka/screens/profile/edit_profile.dart';
 import 'package:auto_route/transitions_builders.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
@@ -21,6 +21,11 @@ import 'package:i_love_iruka/features/pages/feeds/feed_detail/feed_detail.dart';
 import 'package:i_love_iruka/features/pages/user_account/transaction/history_transaction.dart';
 import 'package:i_love_iruka/features/pages/profile/profile_page.dart';
 import 'package:i_love_iruka/screens/profile/groomer_page_profile.dart';
+import 'package:i_love_iruka/application/auth/register_form/register_form.dart';
+import 'package:i_love_iruka/application/auth/forgot_password_form/forgot_password_form.dart';
+import 'package:i_love_iruka/application/auth/sign_in_form/sign_in_form.dart';
+import 'package:i_love_iruka/application/auth/forgot_password_form/forgot_password_success_notif.dart';
+import 'package:i_love_iruka/application/welcome/welcome_screen.dart';
 
 class Routes {
   static const myApp = '/';
@@ -35,6 +40,11 @@ class Routes {
   static const historyTransaction = '/history-transaction';
   static const profilePage = '/profile-page';
   static const groomerPageProfile = '/groomer-page-profile';
+  static const registerForm = '/register-form';
+  static const forgotPasswordForm = '/forgot-password-form';
+  static const signInForm = '/sign-in-form';
+  static const forgotPaswordSuccessNotif = '/forgot-pasword-success-notif';
+  static const welcomeScreen = '/welcome-screen';
   static GlobalKey<NavigatorState> get navigatorKey =>
       getNavigatorKey<Routes>();
   static NavigatorState get navigator => navigatorKey.currentState;
@@ -66,12 +76,8 @@ class Routes {
           settings: settings,
         );
       case Routes.dashboardPage:
-        if (hasInvalidArgs<Key>(args)) {
-          return misTypedArgsRoute<Key>(args);
-        }
-        final typedArgs = args as Key;
         return MaterialPageRoute(
-          builder: (_) => DashboardPage(key: typedArgs),
+          builder: (_) => DashboardPage(),
           settings: settings,
         );
       case Routes.editProfile:
@@ -155,6 +161,31 @@ class Routes {
         final typedArgs = args as Key;
         return MaterialPageRoute(
           builder: (_) => GroomerPageProfile(key: typedArgs),
+          settings: settings,
+        );
+      case Routes.registerForm:
+        return MaterialPageRoute(
+          builder: (_) => RegisterForm(),
+          settings: settings,
+        );
+      case Routes.forgotPasswordForm:
+        return MaterialPageRoute(
+          builder: (_) => ForgotPasswordForm(),
+          settings: settings,
+        );
+      case Routes.signInForm:
+        return MaterialPageRoute(
+          builder: (_) => SignInForm(),
+          settings: settings,
+        );
+      case Routes.forgotPaswordSuccessNotif:
+        return MaterialPageRoute(
+          builder: (_) => ForgotPaswordSuccessNotif(),
+          settings: settings,
+        );
+      case Routes.welcomeScreen:
+        return MaterialPageRoute(
+          builder: (_) => WelcomeScreen(),
           settings: settings,
         );
       default:

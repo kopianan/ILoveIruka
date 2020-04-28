@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:i_love_iruka/application/auth/register_form/widgets/txt_regular_password.dart';
+import 'package:i_love_iruka/application/auth/widgets/password.dart';
+import 'package:i_love_iruka/application/widgets/appbar_transparent_back.dart';
+import 'package:i_love_iruka/application/widgets/btn_primary_blue.dart';
+import 'package:i_love_iruka/application/widgets/txt_regular_text_field.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class RegisterForm extends StatefulWidget {
@@ -45,75 +50,30 @@ class _RegisterFormState extends State<RegisterForm> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        TextFormField(
-                          style: TextStyle(letterSpacing: 1),
-                          decoration: InputDecoration(
-                              labelText: "Full Name",
-                              contentPadding: EdgeInsets.only(bottom: 5),
-                              isDense: true,
-                              hintText: "Input your name here",
-                              labelStyle:
-                                  TextStyle(fontWeight: FontWeight.bold),
-                              errorMaxLines: 1,
-                              focusedBorder: UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.blue, width: 2)),
-                              border: UnderlineInputBorder()),
+                        TxtRegularTextField(
+                          label: "Full Name",
+                          hint: "Input your name here",
                         ),
                         SizedBox(
                           height: 20,
                         ),
-                        TextFormField(
-                          style: TextStyle(letterSpacing: 1),
-                          decoration: InputDecoration(
-                              labelText: "Email",
-                              contentPadding: EdgeInsets.only(bottom: 5),
-                              isDense: true,
-                              hintText: "Input your email",
-                              labelStyle:
-                                  TextStyle(fontWeight: FontWeight.bold),
-                              errorMaxLines: 1,
-                              focusedBorder: UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.blue, width: 2)),
-                              border: UnderlineInputBorder()),
+                        TxtRegularTextField(
+                          label: "Email",
+                          hint: "Input your email",
                         ),
                         SizedBox(
                           height: 20,
                         ),
-                        TextFormField(
-                          style: TextStyle(letterSpacing: 1),
-                          decoration: InputDecoration(
-                              labelText: "Password",
-                              contentPadding: EdgeInsets.only(bottom: 5),
-                              isDense: true,
-                              hintText: "Input your password min. 6 chars",
-                              labelStyle:
-                                  TextStyle(fontWeight: FontWeight.bold),
-                              errorMaxLines: 1,
-                              focusedBorder: UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.blue, width: 2)),
-                              border: UnderlineInputBorder()),
+                        TxtRegularPassword(
+                          hint: "Input your password min. 6 chars",
+                          label: "Password",
                         ),
                         SizedBox(
                           height: 20,
                         ),
-                        TextFormField(
-                          style: TextStyle(letterSpacing: 1),
-                          decoration: InputDecoration(
-                              labelText: "Confirmation Password",
-                              contentPadding: EdgeInsets.only(bottom: 5),
-                              isDense: true,
-                              hintText:
-                                  "Fill confirmation with the same password",
-                              labelStyle:
-                                  TextStyle(fontWeight: FontWeight.bold),
-                              errorMaxLines: 1,
-                              focusedBorder: UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.blue, width: 2)),
-                              border: UnderlineInputBorder()),
+                        TxtRegularPassword(
+                          hint: "Fill confirmation with the same password",
+                          label: "Confirmation Password",
                         ),
                         SizedBox(
                           height: 20,
@@ -142,35 +102,15 @@ class _RegisterFormState extends State<RegisterForm> {
                         SizedBox(
                           height: 30,
                         ),
-                        MaterialButton(
-                          textColor: Colors.white,
-                          // padding: EdgeInsets.symmetric(horizontal: 10),
-                          onPressed: () {},
-                          splashColor: Colors.white,
-                          color: Color(0xff2A7FD5),
-                          minWidth: double.infinity,
-                          height: 50,
-
-                          elevation: 8,
-                          highlightElevation: 2,
-                          child: Text("Log in"),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
+                        BtnPrimaryBlue(text: "Log in"),
                       ],
                     ),
                   ),
                 ],
               ),
-              AppBar(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0.0,
-                  leading: Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.white,
-                    size: 30,
-                  )),
+              AppBarTransparentBack(function: () {
+                Navigator.pop(context, true);
+              }),
             ],
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:i_love_iruka/application/auth/sign_in_form/sign_in_form.dart';
+import 'package:i_love_iruka/application/widgets/btn_primary_blue.dart';
+import 'package:i_love_iruka/routes/routes.gr.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -33,7 +34,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ],
             ),
             SizedBox(
-              height: 60,
+              height: 20,
             ),
             Expanded(
               child: Container(
@@ -42,7 +43,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "Lorem Ipsum Ldkfj DFKJ iidkj df",
+                      "Welcome to I Love Iruka",
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       maxLines: 2,
@@ -51,7 +52,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       height: 30,
                     ),
                     Text(
-                      "I've two spoiled dogs and my fiance is crazy about them. He can't stand an idea of leaving these two little cratures behind. We're",
+                      "Here we will help you to manage your pets like medical checkup, saloon, pet care, and another services",
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,
                       ),
@@ -60,36 +62,27 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     SizedBox(
                       height: 20,
                     ),
-                    MaterialButton(
-                      textColor: Colors.white,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                    BtnPrimaryBlue(
+                      text: "Sign in",
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SignInForm()));
+                        Navigator.pushNamed(context, Routes.signInForm);
                       },
-                      splashColor: Colors.white,
-                      color: Colors.red,
-                      minWidth: double.infinity,
-                      elevation: 8,
-                      highlightElevation: 2,
-                      child: Text("Sign In"),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
-                    Text(
-                      "Create an account",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red),
-                      maxLines: 2,
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, Routes.registerForm);
+                      },
+                      child: Text(
+                        "Create an account",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xffEE2424)),
+                        maxLines: 2,
+                      ),
                     ),
                   ],
                 ),

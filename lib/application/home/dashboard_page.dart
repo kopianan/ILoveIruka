@@ -1,12 +1,13 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:i_love_iruka/application/home/feeds_home/feed_home.dart';
 
-class DashboardForm extends StatefulWidget {
+class DashboardPage extends StatefulWidget {
   @override
-  _DashboardFormState createState() => _DashboardFormState();
+  _DashboardPageState createState() => _DashboardPageState();
 }
 
-class _DashboardFormState extends State<DashboardForm> {
+class _DashboardPageState extends State<DashboardPage> {
   int _selectedIndex = 0;
   PageController _pageController;
 
@@ -28,28 +29,24 @@ class _DashboardFormState extends State<DashboardForm> {
     return Scaffold(
       body: SizedBox.expand(
         child: PageView(
+          physics: NeverScrollableScrollPhysics(),
           controller: _pageController,
           onPageChanged: (index) {
             setState(() => _selectedIndex = index);
           },
           children: <Widget>[
-            Container(
-              color: Colors.blueGrey,
-            ),
+            FeedHome(),
             Container(
               color: Colors.red,
             ),
             Container(
               color: Colors.green,
             ),
-            Container(
-              color: Colors.blue,
-            ),
+          
           ],
         ),
       ),
       bottomNavigationBar: BottomNavyBar(
-        
         selectedIndex: _selectedIndex,
         showElevation: false, // use this to remove appBar's elevation
         onItemSelected: (index) => setState(() {
@@ -71,10 +68,6 @@ class _DashboardFormState extends State<DashboardForm> {
               icon: Icon(Icons.message),
               title: Text('Messages'),
               activeColor: Colors.pink),
-          BottomNavyBarItem(
-              icon: Icon(Icons.settings),
-              title: Text('Settings'),
-              activeColor: Colors.blue),
         ],
       ),
     );

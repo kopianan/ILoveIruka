@@ -51,7 +51,10 @@ class _FeedDashboardState extends State<FeedDashboard> {
             margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
               "Welcome",
-              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 40),
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 40),
             ),
           ),
         ),
@@ -65,7 +68,8 @@ class _FeedDashboardState extends State<FeedDashboard> {
                 if (react.hasData) {
                   if (react.state.getEventsModel == null) {
                     return RefreshIconWidget(
-                      onPressed: () => react.setState((fn) => fn.callEventList()),
+                      onPressed: () =>
+                          react.setState((fn) => fn.callEventList()),
                     );
                   } else
                     return DashboardCarousel(
@@ -158,7 +162,8 @@ class _MediaSocialListState extends State<MediaSocialList> {
         BuildSocialMediaIcon(
           onIconPressed: () {
             try {
-              _launchURL("https://www.youtube.com/channel/UCohGUOh8j_gI5RTNBydOpFA");
+              _launchURL(
+                  "https://www.youtube.com/channel/UCohGUOh8j_gI5RTNBydOpFA");
             } catch (e) {}
           },
           title: "Youtube",
@@ -254,6 +259,13 @@ class DashboardCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<DataBridge>(
       builder: (context, dataBridge, _) => CarouselSlider(
+        options: CarouselOptions(
+          enlargeCenterPage: false,
+          viewportFraction: 0.9,
+          aspectRatio: 2,
+          autoPlay: true,
+          autoPlayInterval: Duration(seconds: 8),
+        ),
         items: list.map((f) {
           return InkWell(
             onTap: () {
@@ -290,11 +302,6 @@ class DashboardCarousel extends StatelessWidget {
             ),
           );
         }).toList(),
-        enlargeCenterPage: false,
-        viewportFraction: 0.9,
-        aspectRatio: 2,
-        autoPlay: true,
-        autoPlayInterval: Duration(seconds: 8),
       ),
     );
   }
