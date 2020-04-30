@@ -107,31 +107,128 @@ class _FeedHomeState extends State<FeedHome> {
                 ),
               ),
               Container(
-                  height: 200,
-                  width: double.infinity,
+                  width: MediaQuery.of(context).size.width,
                   margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Card(
-                    elevation: 4,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            Icon(Icons.notifications_none),
-                            Icon(Icons.notifications_none),
-                            Icon(Icons.notifications_none),
-                            Icon(Icons.notifications_none),
-                          ],
-                        )
-                      ],
+                    elevation: 2,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              servicesMenu(),
+                              servicesMenu(),
+                              servicesMenu(),
+                              servicesMenu(),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              servicesMenu(),
+                              servicesMenu(),
+                              servicesMenu(),
+                              servicesMenu(),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   )),
-                  
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(1.0, 2.0), //(x,y)
+                        blurRadius: 6.0,
+                      ),
+                    ]),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    child: Container(
+                        color: Colors.white,
+                        constraints: BoxConstraints(
+                          maxWidth: MediaQuery.of(context).size.width,
+                        ),
+                        child: Column(
+                          children: <Widget>[
+                            AspectRatio(
+                              aspectRatio: 16 / 9,
+                              child: Image.network(
+                                  "https://upload.wikimedia.org/wikipedia/commons/7/7c/Aspect_ratio_16_9_example.jpg",
+                                  fit: BoxFit.cover,
+                                  width: 1000.0),
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              alignment: Alignment.topLeft,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    "Dog Food",
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dapibus ultrices in iaculis nunc sed augue lacus. Quam nulla porttitor massa id neque aliquam. Ultrices mi tempus imperdiet nulla malesuada. Eros in cursus turpis massa tincidunt dui ut ornare lectus.",
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 3,
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(top: 10),
+                                    alignment: Alignment.topRight,
+                                    child: Icon(
+                                      Icons.more_vert,
+                                      color: Colors.black,
+                                      size: 25,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ))),
+              )
             ],
           ),
         ],
       ),
+    );
+  }
+
+  Column servicesMenu() {
+    return Column(
+      children: <Widget>[
+        Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.green,
+          ),
+        ),
+        Container(
+            constraints: BoxConstraints(maxWidth: 70),
+            child: Text("Gocarsdfsd sdf"))
+      ],
     );
   }
 }

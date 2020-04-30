@@ -118,6 +118,9 @@ flutter:
    - images/dev_images/forgot_password_decoration.png
    - images/dev_images/forgot_password_bg_show.png
    - images/dev_images/forgot_password_image.png
+   - images/dev_images/clippath1.png
+   - images/dev_images/clippath2.png
+   - images/dev_images/clippath3.png
 
    
   # An image asset can refer to one or more resolution-specific "variants", see

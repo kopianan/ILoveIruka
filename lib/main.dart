@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:i_love_iruka/application/auth/register_form/register_form.dart';
 import 'package:i_love_iruka/application/auth/sign_in_form/sign_in_form.dart';
+import 'package:i_love_iruka/application/home/account_home/account_page_home.dart';
 import 'package:i_love_iruka/application/home/dashboard_page.dart';
 // import 'package:i_love_iruka/application/home/dasboard_form.dart';
 // import 'package:i_love_iruka/dashboard/dashboard_page.dart';

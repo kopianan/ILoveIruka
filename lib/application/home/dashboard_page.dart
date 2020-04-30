@@ -1,5 +1,6 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:i_love_iruka/application/home/account_home/account_page_home.dart';
 import 'package:i_love_iruka/application/home/feeds_home/feed_home.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -36,13 +37,10 @@ class _DashboardPageState extends State<DashboardPage> {
           },
           children: <Widget>[
             FeedHome(),
-            Container(
-              color: Colors.red,
-            ),
+            AccountPagehome(),
             Container(
               color: Colors.green,
             ),
-          
           ],
         ),
       ),

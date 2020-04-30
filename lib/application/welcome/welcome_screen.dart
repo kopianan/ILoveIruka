@@ -62,11 +62,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     SizedBox(
                       height: 20,
                     ),
-                    BtnPrimaryBlue(
-                      text: "Sign in",
-                      onPressed: () {
-                        Navigator.pushNamed(context, Routes.signInForm);
-                      },
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 30),
+                      child: BtnPrimaryBlue(
+                        text: "Sign in",
+                        onPressed: () {
+                          Navigator.pushNamed(context, Routes.signInForm);
+                        },
+                      ),
                     ),
                     SizedBox(
                       height: 20,
