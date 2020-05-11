@@ -1,6 +1,8 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:i_love_iruka/application/appointment/appointment_form.dart';
+import 'package:i_love_iruka/application/auth/sign_in_form/sign_in_form.dart';
 import 'package:i_love_iruka/application/home/dashboard_page.dart';
 import 'package:i_love_iruka/features/data/dashboard_store.dart';
 
@@ -10,6 +12,8 @@ import 'package:i_love_iruka/routes/routes.gr.dart';
 import 'package:i_love_iruka/users/data/user_store.dart';
 import 'package:provider/provider.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
+
+import 'application/membership/membership_card_list.dart';
 
 void main() {
   runApp(
@@ -65,7 +69,6 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          
           create: (context) => DataBridge(),
         ),
         ChangeNotifierProvider(
@@ -83,7 +86,7 @@ class _MyAppState extends State<MyApp> {
             ),
             errorColor: Colors.red,
           ),
-          home: DashboardPage(),
+          home: MemberShipCardList(),
           // home: StateBuilder<UserStore>(
           //     models: [Injector.getAsReactive<UserStore>()],
           //     initState: (context, initReact) {

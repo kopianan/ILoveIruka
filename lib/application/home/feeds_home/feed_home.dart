@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:i_love_iruka/application/widgets/appbar_header_background.dart';
 
 class FeedHome extends StatefulWidget {
   @override
@@ -33,16 +34,7 @@ class _FeedHomeState extends State<FeedHome> {
       child: Stack(
         overflow: Overflow.visible,
         children: <Widget>[
-          Container(
-            height: 130,
-            width: double.infinity,
-            decoration: BoxDecoration(
-                color: Color(0xff54A3F1),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(40),
-                  bottomRight: Radius.circular(40),
-                )),
-          ),
+          AppBarHeaderBackground(),
           SafeArea(
             child: Container(
               margin: EdgeInsets.only(top: 10, left: 10, right: 10),
@@ -53,7 +45,7 @@ class _FeedHomeState extends State<FeedHome> {
                   Text(
                     "Welcome",
                     style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 25,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
@@ -72,7 +64,7 @@ class _FeedHomeState extends State<FeedHome> {
           Column(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(top: 80),
+                margin: EdgeInsets.only(top: 70),
                 child: Column(
                   children: <Widget>[
                     CarouselSlider(

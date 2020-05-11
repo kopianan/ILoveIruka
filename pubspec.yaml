@@ -44,16 +44,20 @@ dependencies:
   carousel_slider: ^2.0.0
   # cached_network_image: ^1.1.3
   intl: ^0.16.0
+  firebase_auth_simplify: ^0.6.1
+
   division: ^0.8.7+2
-  flutter_datetime_picker: ^1.3.1
+  
+  flutter_datetime_picker: ^1.3.8
+  
   flutter_launcher_icons: ^0.7.4
   auto_route: ^0.2.2
   states_rebuilder: ^1.11.2
   share: ^0.6.3+5
   image_downloader: ^0.19.1
   geolocator: ^5.2.1
-  firebase_core: ^0.4.4
-  firebase_auth: ^0.15.4
+  firebase_core: ^0.4.4+3
+  firebase_auth: ^0.16.0
   firebase_messaging: ^6.0.9
   material_design_icons_flutter: ^4.0.5145
   google_fonts: ^1.0.0
@@ -116,9 +120,19 @@ flutter:
    - images/dev_images/forgot_password_decoration.png
    - images/dev_images/forgot_password_bg_show.png
    - images/dev_images/forgot_password_image.png
-   - images/dev_images/clippath1.png
-   - images/dev_images/clippath2.png
-   - images/dev_images/clippath3.png
+   
+   - images/dev_images/yellow_clippath1.png
+   - images/dev_images/yellow_clippath2.png
+   - images/dev_images/yellow_clippath3.png
+
+   - images/dev_images/blue_clippath1.png
+   - images/dev_images/blue_clippath2.png
+   - images/dev_images/blue_clippath3.png
+
+   - images/dev_images/bronze_clippath1.png
+   - images/dev_images/bronze_clippath2.png
+   - images/dev_images/bronze_clippath3.png
+   - images/assets/iruka_petcare_color.png
 
    
   # An image asset can refer to one or more resolution-specific "variants", see

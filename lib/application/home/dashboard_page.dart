@@ -80,7 +80,8 @@ class _DashboardPageState extends State<DashboardPage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)),
                     child: Container(
-                        padding: EdgeInsets.only(top: 20, right: 20, left: 20, bottom: 10) ,
+                        padding: EdgeInsets.only(
+                            top: 20, right: 20, left: 20, bottom: 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
@@ -99,15 +100,18 @@ class _DashboardPageState extends State<DashboardPage> {
                               child: QrImage(size: 250, data: "ananaflred"),
                             ),
                             Container(
-                              margin: EdgeInsets.only(top: 10),
-                              alignment: Alignment.center,
+                                margin: EdgeInsets.only(top: 10),
+                                alignment: Alignment.center,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text("Swipe down to close"),
-                                Icon(Icons.keyboard_arrow_down, color: Colors.black,)
-                              ],
-                            ))
+                                  children: <Widget>[
+                                    Text("Swipe down to close"),
+                                    Icon(
+                                      Icons.keyboard_arrow_down,
+                                      color: Colors.black,
+                                    )
+                                  ],
+                                ))
                           ],
                         )),
                   )));
