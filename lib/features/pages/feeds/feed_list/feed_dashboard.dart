@@ -51,7 +51,10 @@ class _FeedDashboardState extends State<FeedDashboard> {
             margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
               "Welcome",
-              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 40),
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 40),
             ),
           ),
         ),
@@ -65,7 +68,8 @@ class _FeedDashboardState extends State<FeedDashboard> {
                 if (react.hasData) {
                   if (react.state.getEventsModel == null) {
                     return RefreshIconWidget(
-                      onPressed: () => react.setState((fn) => fn.callEventList()),
+                      onPressed: () =>
+                          react.setState((fn) => fn.callEventList()),
                     );
                   } else
                     return DashboardCarousel(
@@ -97,7 +101,7 @@ class _FeedDashboardState extends State<FeedDashboard> {
             child: SizedBox(
           height: 20,
         )),
-        MediaSocialList(),
+        // MediaSocialList(),
         BuildProducts()
       ]),
     );
@@ -158,7 +162,8 @@ class _MediaSocialListState extends State<MediaSocialList> {
         BuildSocialMediaIcon(
           onIconPressed: () {
             try {
-              _launchURL("https://www.youtube.com/channel/UCohGUOh8j_gI5RTNBydOpFA");
+              _launchURL(
+                  "https://www.youtube.com/channel/UCohGUOh8j_gI5RTNBydOpFA");
             } catch (e) {}
           },
           title: "Youtube",
@@ -203,7 +208,7 @@ class ServiceList extends StatelessWidget {
         BuildServicesIcon(
           onIconPressed: () {
             // Common.showServicesDialog(context, content: "Choose Action...", title: "Shop", link: "https://sismarket.id/", phone: "+6287800042548");
-            Common.launchURL("https://sismarket.id/");
+            Common.launchURL("https://www.tokopedia.com/irukapet");
           },
           title: "Shop",
           imageAsset: "images/assets/pet_shop.png",
@@ -211,36 +216,67 @@ class ServiceList extends StatelessWidget {
         BuildServicesIcon(
           onIconPressed: () {
             // Common.showServicesDialog(context, content: "Choose Action...", title: "Therapeutic Grooming", link: "https://sismarket.id/", phone: "+6287800042548");
-            launch("tel://+6287800042548");
+            Common.launchURL("https://wa.me/6281211854630");
           },
           title: "Grooming Salon",
           imageAsset: "images/assets/pet_grooming.png",
         ),
-        BuildServicesIcon(
-          onIconPressed: () {
-            // Common.showServicesDialog(context, content: "Choose Action...", title: "Pet Hotel", link: "https://sismarket.id/", phone: "+6287800042548");
-            launch("tel://+6287800042548");
-          },
-          title: "Pet Hotel",
-          imageAsset: "images/assets/pet_hotel.png",
-        ),
-        BuildServicesIcon(
-          onIconPressed: () {
-            // Common.showServicesDialog(context, content: "Choose Action...", title: "Pet Taxi", link: "https://sismarket.id/", phone: "+6287800042548");
 
-            Common.launchURL("https://iloveiruka.com/");
-          },
-          title: "Pet Taxi",
-          imageAsset: "images/assets/pet_taxi.png",
-        ),
-        BuildServicesIcon(
+        BuildSocialMediaIcon(
           onIconPressed: () {
-            // Common.showServicesDialog(context, content: "Choose Action...", title: "Iskhan Pet Food", link: "https://iskhan.id/", phone: "+6287800042548");
-            Common.launchURL("https://sismarket.id/");
+            try {
+              Common.launchURL("https://www.instagram.com/iloveiruka/");
+            } catch (e) {
+              Fluttertoast.showToast(msg: "Can not open link");
+            }
           },
-          title: "Iskhan Pet Food",
-          imageAsset: "images/assets/pet-spa.png",
+          title: "Instagram",
+          imageAsset: "images/assets/instagram.png",
         ),
+        BuildSocialMediaIcon(
+          onIconPressed: () {
+            try {
+              Common.launchURL(
+                  "https://www.youtube.com/channel/UCohGUOh8j_gI5RTNBydOpFA");
+            } catch (e) {}
+          },
+          title: "Youtube",
+          imageAsset: "images/assets/youtube.png",
+        ),
+        BuildSocialMediaIcon(
+          onIconPressed: () {
+            try {
+              Common.launchURL("https://iloveiruka.com/");
+            } catch (e) {}
+          },
+          title: "Website",
+          imageAsset: "images/assets/global.png",
+        ),
+        // BuildServicesIcon(
+        //   onIconPressed: () {
+        //     // Common.showServicesDialog(context, content: "Choose Action...", title: "Pet Hotel", link: "https://sismarket.id/", phone: "+6287800042548");
+        //     launch("tel://+6287800042548");
+        //   },
+        //   title: "Pet Hotel",
+        //   imageAsset: "images/assets/pet_hotel.png",
+        // ),
+        // BuildServicesIcon(
+        //   onIconPressed: () {
+        //     // Common.showServicesDialog(context, content: "Choose Action...", title: "Pet Taxi", link: "https://sismarket.id/", phone: "+6287800042548");
+
+        //     Common.launchURL("https://iloveiruka.com/");
+        //   },
+        //   title: "Pet Taxi",
+        //   imageAsset: "images/assets/pet_taxi.png",
+        // ),
+        // BuildServicesIcon(
+        //   onIconPressed: () {
+        //     // Common.showServicesDialog(context, content: "Choose Action...", title: "Iskhan Pet Food", link: "https://iskhan.id/", phone: "+6287800042548");
+        //     Common.launchURL("https://sismarket.id/");
+        //   },
+        //   title: "Iskhan Pet Food",
+        //   imageAsset: "images/assets/pet-spa.png",
+        // ),
       ],
     );
   }

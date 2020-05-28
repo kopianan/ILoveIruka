@@ -83,24 +83,25 @@ class _MyAppState extends State<MyApp> {
             ),
             errorColor: Colors.red,
           ),
-          home: StateBuilder<UserStore>(
-              models: [Injector.getAsReactive<UserStore>()],
-              initState: (context, initReact) {
-                initReact.setState(
-                  (fn) => fn.getLoginAuth(Constants.userSharedPref),
-                );
-              },
-              builder: (context, stateReact) {
-                if (stateReact.hasData) {
-                  Provider.of<DataBridge>(context, listen: false)
-                      .setUserData(stateReact.state.getLoginResponse);
-                  return DashboardPage();
-                } else if (stateReact.hasError) {
-                  return UserLoginPage();
-                } else {
-                  return UserLoginPage();
-                }
-              }),
+          home : DashboardPage(), 
+          // home: StateBuilder<UserStore>(
+          //     models: [Injector.getAsReactive<UserStore>()],
+          //     initState: (context, initReact) {
+          //       initReact.setState(
+          //         (fn) => fn.getLoginAuth(Constants.userSharedPref),
+          //       );
+          //     },
+          //     builder: (context, stateReact) {
+          //       if (stateReact.hasData) {
+          //         Provider.of<DataBridge>(context, listen: false)
+          //             .setUserData(stateReact.state.getLoginResponse);
+          //         return DashboardPage();
+          //       } else if (stateReact.hasError) {
+          //         return UserLoginPage();
+          //       } else {
+          //         return UserLoginPage();
+          //       }
+          //     }),
           onGenerateRoute: Routes.onGenerateRoute,
           navigatorKey: Routes.navigatorKey),
     );
