@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:i_love_iruka/application/home/dashboard_page.dart';
+import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
 // import 'package:i_love_iruka/dashboard/dashboard_page.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
 import 'package:i_love_iruka/screens/profile/edit_profile.dart';

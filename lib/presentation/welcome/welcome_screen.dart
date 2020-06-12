@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:i_love_iruka/application/widgets/btn_primary_blue.dart';
+import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
 import 'package:i_love_iruka/routes/routes.gr.dart';
 
 class WelcomeScreen extends StatefulWidget {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:i_love_iruka/application/auth/register_form/widgets/txt_regular_password.dart';
-import 'package:i_love_iruka/application/auth/widgets/password.dart';
-import 'package:i_love_iruka/application/widgets/appbar_transparent_back.dart';
-import 'package:i_love_iruka/application/widgets/btn_primary_blue.dart';
-import 'package:i_love_iruka/application/widgets/txt_regular_text_field.dart';
+import 'package:i_love_iruka/presentation/auth/register_form/widgets/txt_regular_password.dart';
+import 'package:i_love_iruka/presentation/auth/widgets/password.dart';
+import 'package:i_love_iruka/presentation/widgets/appbar_transparent_back.dart';
+import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
+import 'package:i_love_iruka/presentation/widgets/txt_regular_text_field.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class RegisterForm extends StatefulWidget {

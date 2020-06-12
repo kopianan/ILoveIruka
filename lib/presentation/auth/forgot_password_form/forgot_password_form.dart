@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:i_love_iruka/application/auth/widgets/email_address.dart';
+import 'package:i_love_iruka/presentation/auth/widgets/email_address.dart';
 import 'package:i_love_iruka/routes/routes.gr.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 

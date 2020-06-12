@@ -10,7 +10,7 @@ import 'package:auto_route/router_utils.dart';
 import 'package:i_love_iruka/main.dart';
 import 'package:i_love_iruka/features/pages/groomer/groomer_list/groomer_list_page.dart';
 import 'package:i_love_iruka/users/pages/login/users_login_page.dart';
-import 'package:i_love_iruka/application/home/dashboard_page.dart';
+import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
 import 'package:i_love_iruka/screens/profile/edit_profile.dart';
 import 'package:auto_route/transitions_builders.dart';
 import 'package:i_love_iruka/models/model/login_response.dart';
@@ -21,11 +21,11 @@ import 'package:i_love_iruka/features/pages/feeds/feed_detail/feed_detail.dart';
 import 'package:i_love_iruka/features/pages/user_account/transaction/history_transaction.dart';
 import 'package:i_love_iruka/features/pages/profile/profile_page.dart';
 import 'package:i_love_iruka/screens/profile/groomer_page_profile.dart';
-import 'package:i_love_iruka/application/auth/register_form/register_form.dart';
-import 'package:i_love_iruka/application/auth/forgot_password_form/forgot_password_form.dart';
-import 'package:i_love_iruka/application/auth/sign_in_form/sign_in_form.dart';
-import 'package:i_love_iruka/application/auth/forgot_password_form/forgot_password_success_notif.dart';
-import 'package:i_love_iruka/application/welcome/welcome_screen.dart';
+import 'package:i_love_iruka/presentation/auth/register_form/register_form.dart';
+import 'package:i_love_iruka/presentation/auth/forgot_password_form/forgot_password_form.dart';
+import 'package:i_love_iruka/presentation/auth/sign_in_form/sign_in_form.dart';
+import 'package:i_love_iruka/presentation/auth/forgot_password_form/forgot_password_success_notif.dart';
+import 'package:i_love_iruka/presentation/welcome/welcome_screen.dart';
 
 class Routes {
   static const myApp = '/';

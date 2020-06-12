@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:i_love_iruka/application/widgets/member_card.dart';
+import 'package:i_love_iruka/presentation/widgets/member_card.dart';
 import 'package:i_love_iruka/util/color_col.dart';
 
 class MemberShipCardList extends StatefulWidget {

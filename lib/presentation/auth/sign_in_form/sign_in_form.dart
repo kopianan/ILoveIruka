@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:i_love_iruka/application/auth/register_form/register_form.dart';
-import 'package:i_love_iruka/application/auth/widgets/email_address.dart';
-import 'package:i_love_iruka/application/auth/widgets/password.dart';
-import 'package:i_love_iruka/application/widgets/appbar_transparent_back.dart';
-import 'package:i_love_iruka/application/widgets/btn_primary_blue.dart';
-import 'package:i_love_iruka/application/widgets/btn_primary_outline.dart';
+import 'package:i_love_iruka/presentation/auth/register_form/register_form.dart';
+import 'package:i_love_iruka/presentation/auth/widgets/email_address.dart';
+import 'package:i_love_iruka/presentation/auth/widgets/password.dart';
+import 'package:i_love_iruka/presentation/widgets/appbar_transparent_back.dart';
+import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
+import 'package:i_love_iruka/presentation/widgets/btn_primary_outline.dart';
 import 'package:i_love_iruka/routes/routes.gr.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 

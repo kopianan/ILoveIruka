@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:i_love_iruka/application/widgets/member_card.dart';
+import 'package:i_love_iruka/presentation/widgets/member_card.dart';
+import 'package:i_love_iruka/util/color_col.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class AccountPagehome extends StatefulWidget {
@@ -24,7 +25,16 @@ class _AccountPagehomeState extends State<AccountPagehome> {
                       end: Alignment.bottomCenter)),
               child: Container(
                 margin: EdgeInsets.only(top: 80, right: 20, left: 20),
-                child: MemberCard(),
+                child:  MemberCard(
+                  cardBottomGradient: ColorCol.yellowCardBottomGradient,
+                  cardTextColor: ColorCol.yellowCardText,
+                  cardTopGradient: ColorCol.yellowCardTopGradient,
+                  imagesList: [
+                    'yellow_clippath1.png',
+                    'yellow_clippath2.png',
+                    'yellow_clippath3.png'
+                  ],
+                ),
               ),
             ),
             SafeArea(

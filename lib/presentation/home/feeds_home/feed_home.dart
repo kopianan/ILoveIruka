@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:i_love_iruka/application/widgets/appbar_header_background.dart';
+import 'package:i_love_iruka/presentation/widgets/appbar_header_background.dart';
 
 class FeedHome extends StatefulWidget {
   @override

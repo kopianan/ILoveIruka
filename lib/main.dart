@@ -1,9 +1,11 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:i_love_iruka/application/appointment/appointment_form.dart';
-import 'package:i_love_iruka/application/auth/sign_in_form/sign_in_form.dart';
-import 'package:i_love_iruka/application/home/dashboard_page.dart';
+import 'package:i_love_iruka/presentation/appointment/appointment_form.dart';
+import 'package:i_love_iruka/presentation/auth/sign_in_form/sign_in_form.dart';
+import 'package:i_love_iruka/presentation/home/account_home/account_page_home.dart';
+import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
+import 'package:i_love_iruka/presentation/widgets/member_card.dart';
 import 'package:i_love_iruka/features/data/dashboard_store.dart';
 
 import 'package:i_love_iruka/provider/data_bridge.dart';
@@ -13,7 +15,7 @@ import 'package:i_love_iruka/users/data/user_store.dart';
 import 'package:provider/provider.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
-import 'application/membership/membership_card_list.dart';
+import 'presentation/membership/membership_card_list.dart';
 
 void main() {
   runApp(
@@ -86,7 +88,7 @@ class _MyAppState extends State<MyApp> {
             ),
             errorColor: Colors.red,
           ),
-          home: MemberShipCardList(),
+          home: DashboardPage(),
           // home: StateBuilder<UserStore>(
           //     models: [Injector.getAsReactive<UserStore>()],
           //     initState: (context, initReact) {
