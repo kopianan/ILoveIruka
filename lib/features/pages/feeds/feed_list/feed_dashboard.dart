@@ -289,8 +289,21 @@ class DashboardCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<DataBridge>(
-      builder: (context, dataBridge, _) => CarouselSlider(
-        items: list.map((f) {
+      builder: (context, dataBridge, _) =>
+      
+      (list.isEmpty) ?  Container(
+        height: 150,
+        width: double.infinity,
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children:[
+          Icon(Icons.hourglass_empty, color: Colors.grey,size: 40,),
+           Text("No Feed Found")
+           
+           ])): 
+       CarouselSlider(
+        items:  list.map((f) {
           return InkWell(
             onTap: () {
               Routes.navigator.pushNamed(Routes.feedDetail);
