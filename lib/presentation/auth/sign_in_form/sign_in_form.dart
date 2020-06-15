@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/presentation/auth/register_form/register_form.dart';
 import 'package:i_love_iruka/presentation/auth/widgets/email_address.dart';
@@ -5,7 +6,7 @@ import 'package:i_love_iruka/presentation/auth/widgets/password.dart';
 import 'package:i_love_iruka/presentation/widgets/appbar_transparent_back.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_outline.dart';
-import 'package:i_love_iruka/routes/routes.gr.dart';
+import 'package:i_love_iruka/routes/router.gr.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class SignInForm extends StatefulWidget {
@@ -81,7 +82,8 @@ class _SignInFormState extends State<SignInForm> {
               alignment: Alignment.centerRight,
               child: InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, Routes.forgotPasswordForm);
+
+                    ExtendedNavigator.of(context).pushNamed(Routes.forgotPasswordForm);
                 },
                 child: Text(
                   "Forgot Password",
@@ -98,7 +100,8 @@ class _SignInFormState extends State<SignInForm> {
             BtnPrimaryBlue(
               text: "Log in",
               onPressed: () {
-                Navigator.pushReplacementNamed(context, Routes.dashboardPage);
+
+                    ExtendedNavigator.of(context).pushNamed(Routes.dashboardPage); 
               },
             ),
             SizedBox(

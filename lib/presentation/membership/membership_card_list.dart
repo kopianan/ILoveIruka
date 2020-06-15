@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/presentation/widgets/member_card.dart';
+import 'package:i_love_iruka/presentation/widgets/page_header.dart';
 import 'package:i_love_iruka/util/color_col.dart';
 
 class MemberShipCardList extends StatefulWidget {
@@ -28,27 +29,13 @@ class _MemberShipCardListState extends State<MemberShipCardList> {
                       // color: Colors.green,
                       ),
                 ),
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                      width: double.infinity,
-                      height: height * 0.18, //250,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(60),
-                            bottomRight: Radius.circular(60)),
-                        color: Colors.lightBlue[700], //Colors.indigo[400],
-                      )),
-                ),
+               PageHeader(title: "Member List Card",),
                 Positioned(
                   bottom: 0,
                   left: width * 0.07, // 30,
                   right: width * 0.07, // 30,
                   child: Container(
                       height: height * 0.07, //150,
-
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10),

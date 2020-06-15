@@ -65,6 +65,7 @@ class _RegisterFormState extends State<RegisterForm> {
                           height: 20,
                         ),
                         TxtRegularPassword(
+                          // controller: co,
                           hint: "Input your password min. 6 chars",
                           label: "Password",
                         ),

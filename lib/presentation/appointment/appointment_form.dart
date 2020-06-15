@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
+import 'package:i_love_iruka/presentation/widgets/page_header.dart';
 
 class AppointmentForm extends StatefulWidget {
+  AppointmentForm({Key key}) : super(key: key);
   @override
   _AppointmentFormState createState() => _AppointmentFormState();
 }
@@ -11,116 +14,251 @@ class _AppointmentFormState extends State<AppointmentForm> {
   var width;
   @override
   Widget build(BuildContext context) {
-    height = MediaQuery.of(context).size.height;
-    width = MediaQuery.of(context).size.width;
     return Scaffold(
-        body: SingleChildScrollView(
-      child: new Stack(
-        children: <Widget>[
-          new Column(
-            children: <Widget>[
-              new Container(
-                height: MediaQuery.of(context).size.height * .20,
-                color: Colors.blue,
-              ),
-            ],
-          ),
-          new Container(
-            height: 300,
-            alignment: Alignment.topCenter,
-            padding: new EdgeInsets.only(
-                top: MediaQuery.of(context).size.height * .10,
-                right: 20.0,
-                left: 20.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
+        body: CustomScrollView(
+      slivers: <Widget>[
+        SliverToBoxAdapter(
+          child: Container(
+            height: MediaQuery.of(context).size.height * .40,
+            child: Stack(
               children: <Widget>[
+                PageHeader(
+                  title: "Appointment",
+
+                ),
                 new Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: new Card(
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text("selected pet : 1"),
-                              Text("see all >")
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: 150,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            shrinkWrap: true,
-                            itemCount: petList.length,
-                            itemBuilder: (context, index) => Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Container(
-                                    margin: EdgeInsets.only(right: 20),
-                                    child: PetItemWidget())
-                              ],
+                  alignment: Alignment.topCenter,
+                  padding: new EdgeInsets.only(
+                      top: 60, left: 5, right: 5, bottom: 0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      Expanded(
+                        child: new Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: new Card(
+                            elevation: 6,
+                            child: Container(
+                              margin: EdgeInsets.symmetric(horizontal: 5),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Container(
+                                    margin: EdgeInsets.only(
+                                        top: 8,
+                                        left: 10,
+                                        right: 10,
+                                        bottom: 10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Text(
+                                          "selected pet : 1",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            _showModal(context);
+                                          },
+                                          child: Text(
+                                            "see all >",
+                                            style: TextStyle(
+                                                color: Colors.blue,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      child: ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        shrinkWrap: true,
+                                        itemCount: petList.length,
+                                        itemBuilder: (context, index) =>
+                                            Container(
+                                                margin:
+                                                    EdgeInsets.only(right: 5),
+                                                child: PetItemWidget()),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
           ),
-        ],
-      ),
+        ),
+        SliverToBoxAdapter(
+            child: SizedBox(
+          height: 10,
+        )),
+        SliverToBoxAdapter(
+            child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 5),
+          child: Card(
+            elevation: 6,
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              child: Column(
+                children: <Widget>[
+                  TextFormField(
+                    decoration:
+                        InputDecoration(labelText: "anan", hintText: "Android"),
+                  ),
+                  TextFormField(
+                    decoration:
+                        InputDecoration(labelText: "anan", hintText: "Anan"),
+                  ),
+                  TextFormField(
+                    decoration:
+                        InputDecoration(labelText: "anan", hintText: "Anan"),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  BtnPrimaryBlue(
+                    text: "Book",
+                    onPressed: () {},
+                  )
+                ],
+              ),
+            ),
+          ),
+        )),
+      ],
     ));
+  }
+
+  _showModal(BuildContext context) {
+    return showModalBottomSheet(
+        elevation: 0,
+        isScrollControlled: true,
+        isDismissible: true,
+        backgroundColor: Colors.transparent,
+        enableDrag: true,
+        context: (context),
+        builder: (context) {
+          return Container(
+              margin: EdgeInsets.only(top: 100),
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).padding.top,
+              ),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20))),
+              child: Container(
+                margin: EdgeInsets.only(top: 10),
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                        child: Icon(
+                      Icons.arrow_drop_down,
+                      size: 50,
+                      color: Colors.black,
+                    )),
+                    ListTile(
+                      title: Text("All Pets"),
+                      subtitle: Text(
+                        "Selected Pet(s)",
+                        textAlign: TextAlign.left,
+                      ),
+                      trailing: MaterialButton(
+                        onPressed: () {},
+                        child: Text("Save"),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(3),
+                            ),
+                            side: BorderSide(color: Colors.green, width: 2)),
+                      ),
+                    ),
+                    Expanded(
+                      child: GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  childAspectRatio: 1 / 1.6,
+                                  crossAxisSpacing: 5,
+                                  mainAxisSpacing: 5),
+                          shrinkWrap: true,
+                          itemCount: 10,
+                          itemBuilder: (context, index) {
+                            return PetItemWidget();
+                          }),
+                    ),
+                  ],
+                ),
+              ));
+        });
   }
 }
 
-class PetItemWidget extends StatelessWidget {
+
+class PetItemWidget extends StatefulWidget {
   const PetItemWidget({
     Key key,
   }) : super(key: key);
 
   @override
+  _PetItemWidgetState createState() => _PetItemWidgetState();
+}
+
+class _PetItemWidgetState extends State<PetItemWidget> {
+  bool selected = false;
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
-      height: 140,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.lightBlueAccent, width: 4)),
-      child: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(6)),
-          child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    height: 110,
-                    child: Image.network(
-                      "https://upload.wikimedia.org/wikipedia/commons/7/7c/Aspect_ratio_16_9_example.jpg",
-                      fit: BoxFit.cover,
-                      width: 1000,
-                    ),
+      width: 110,
+      height: double.infinity,
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: Card(
+              shape: selected
+                  ? new RoundedRectangleBorder(
+                      side: new BorderSide(color: Colors.blue, width: 3.0),
+                      borderRadius: BorderRadius.circular(8.0))
+                  : new RoundedRectangleBorder(
+                      side: new BorderSide(color: Colors.blue, width: 3.0),
+                      borderRadius: BorderRadius.circular(8.0)),
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(6)),
+                child: Container(
+                  child: Image.asset(
+                    "images/assets/iruka_logo2.jpg",
+                    fit: BoxFit.cover,
                   ),
-                  Container(
-                    // alignment: Alignment.center,
-                    margin: EdgeInsets.symmetric(horizontal: 5),
-                    child: Text(
-                      "Dog Food",
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
-                    ),
-                  )
-                ],
-              ))),
+                ),
+              ),
+            ),
+          ),
+          Text(
+            "Dog Namea adsf",
+            maxLines: 2,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 14),
+          ),
+          SizedBox(
+            height: 5,
+          )
+        ],
+      ),
     );
   }
 }

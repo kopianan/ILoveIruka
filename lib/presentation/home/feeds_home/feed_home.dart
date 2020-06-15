@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/presentation/widgets/appbar_header_background.dart';
+import 'package:i_love_iruka/routes/router.gr.dart';
 
 class FeedHome extends StatefulWidget {
   @override
@@ -145,59 +147,65 @@ class _FeedHomeState extends State<FeedHome> {
                         blurRadius: 6.0,
                       ),
                     ]),
-                child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    child: Container(
-                        color: Colors.white,
-                        constraints: BoxConstraints(
-                          maxWidth: MediaQuery.of(context).size.width,
-                        ),
-                        child: Column(
-                          children: <Widget>[
-                            AspectRatio(
-                              aspectRatio: 16 / 9,
-                              child: Image.network(
-                                  "https://upload.wikimedia.org/wikipedia/commons/7/7c/Aspect_ratio_16_9_example.jpg",
-                                  fit: BoxFit.cover,
-                                  width: 1000.0),
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              alignment: Alignment.topLeft,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    "Dog Food",
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dapibus ultrices in iaculis nunc sed augue lacus. Quam nulla porttitor massa id neque aliquam. Ultrices mi tempus imperdiet nulla malesuada. Eros in cursus turpis massa tincidunt dui ut ornare lectus.",
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 3,
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(top: 10),
-                                    alignment: Alignment.topRight,
-                                    child: Icon(
-                                      Icons.more_vert,
-                                      color: Colors.black,
-                                      size: 25,
-                                    ),
-                                  )
-                                ],
+                child: InkWell(
+                  onTap: () {
+                    ExtendedNavigator.of(context)
+                        .pushNamed(Routes.feedDetailPage);
+                  },
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      child: Container(
+                          color: Colors.white,
+                          constraints: BoxConstraints(
+                            maxWidth: MediaQuery.of(context).size.width,
+                          ),
+                          child: Column(
+                            children: <Widget>[
+                              AspectRatio(
+                                aspectRatio: 16 / 9,
+                                child: Image.network(
+                                    "https://upload.wikimedia.org/wikipedia/commons/7/7c/Aspect_ratio_16_9_example.jpg",
+                                    fit: BoxFit.cover,
+                                    width: 1000.0),
                               ),
-                            )
-                          ],
-                        ))),
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
+                                alignment: Alignment.topLeft,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      "Dog Food",
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dapibus ultrices in iaculis nunc sed augue lacus. Quam nulla porttitor massa id neque aliquam. Ultrices mi tempus imperdiet nulla malesuada. Eros in cursus turpis massa tincidunt dui ut ornare lectus.",
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 3,
+                                      ),
+                                    ),
+                                    // Container(
+                                    //   margin: EdgeInsets.only(top: 10),
+                                    //   alignment: Alignment.topRight,
+                                    //   child: Icon(
+                                    //     Icons.more_vert,
+                                    //     color: Colors.black,
+                                    //     size: 25,
+                                    //   ),
+                                    // )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ))),
+                ),
               )
             ],
           ),

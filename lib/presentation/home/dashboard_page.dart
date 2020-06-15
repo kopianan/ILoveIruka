@@ -1,11 +1,10 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/presentation/home/account_home/account_page_home.dart';
 import 'package:i_love_iruka/presentation/home/feeds_home/feed_home.dart';
-import 'package:i_love_iruka/widgets/show_alert_dialog.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class DashboardPage extends StatefulWidget {
+  DashboardPage({Key key}) : super(key: key);
   @override
   _DashboardPageState createState() => _DashboardPageState();
 }

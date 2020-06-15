@@ -1,8 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/presentation/widgets/member_card.dart';
 import 'package:i_love_iruka/util/color_col.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
+import 'package:i_love_iruka/routes/router.gr.dart';
 class AccountPagehome extends StatefulWidget {
   @override
   _AccountPagehomeState createState() => _AccountPagehomeState();
@@ -83,7 +84,9 @@ class _AccountPagehomeState extends State<AccountPagehome> {
                               child: Container(
                             height: double.infinity,
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                ExtendedNavigator.of(context).pushNamed(Routes.accountPage) ; 
+                              },
                               splashColor: Colors.yellow,
                               child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,

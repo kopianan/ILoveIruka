@@ -1,6 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
-import 'package:i_love_iruka/routes/routes.gr.dart';
+import 'package:i_love_iruka/routes/router.gr.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -67,7 +68,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       child: BtnPrimaryBlue(
                         text: "Sign in",
                         onPressed: () {
-                          Navigator.pushNamed(context, Routes.signInForm);
+                          ExtendedNavigator.of(context)
+                              .pushNamed(Routes.signInForm);
                         },
                       ),
                     ),
