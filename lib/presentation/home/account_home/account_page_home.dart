@@ -1,17 +1,75 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:i_love_iruka/application/auth/auth_provider.dart';
+import 'package:i_love_iruka/application/transaction/transaction_bloc.dart';
+import 'package:i_love_iruka/domain/transaction/transaction_r.dart';
+import 'package:i_love_iruka/injection.dart';
 import 'package:i_love_iruka/presentation/widgets/member_card.dart';
 import 'package:i_love_iruka/util/color_col.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:i_love_iruka/routes/router.gr.dart';
+import 'package:provider/provider.dart';
+
 class AccountPagehome extends StatefulWidget {
   @override
   _AccountPagehomeState createState() => _AccountPagehomeState();
 }
 
-class _AccountPagehomeState extends State<AccountPagehome> {
+class _AccountPagehomeState extends State<AccountPagehome>
+    with AutomaticKeepAliveClientMixin<AccountPagehome> {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   Widget build(BuildContext context) {
+    return Consumer<AuthProvider>(
+      builder: (context, authProvider, _) => BlocProvider(
+        create: (context) => getIt<TransactionBloc>()
+          ..add(TransactionEvent.getPointAndLastTrans(
+              userId: GetPointAndLastTransRequest(
+                  id: authProvider.getUserData.id))),
+        child: BlocListener<TransactionBloc, TransactionState>(
+          listener: (context, state) {
+            print(authProvider.getUserData.id);
+            state.maybeWhen(
+              orElse: () {},
+              onProgress: () => print("Loading"),
+              onGetPointOption: (e) => e.fold(
+                  () => print("Loading"),
+                  (a) => a.fold(
+                          (l) => l.map(
+                                badRequest: (e) => print("badRequest"),
+                                serverError: (e) => print("serverError"),
+                                notFound: (e) => print("notFound"),
+                                noTransaction: (e) => print("noTransaction"),
+                              ), (r) {
+                        print(r.toJson());
+                      })),
+            );
+          },
+          child: BlocBuilder<TransactionBloc, TransactionState>(
+              builder: (context, state) {
+            return state.maybeWhen(
+                orElse: () => FullLoadingPage(),
+                onProgress: () => FullLoadingPage(),
+                onGetPointOption: (e) => e.fold(
+                    () => null,
+                    (a) => a.fold(
+                          (l) => null,
+                          (r) {
+                            return _builAccountContent(
+                                authProvider, context, r);
+                          },
+                        )));
+          }),
+        ),
+      ),
+    );
+  }
+
+  SingleChildScrollView _builAccountContent(AuthProvider authProvider,
+      BuildContext context, GetPointAndLastTransResponse data) {
     return SingleChildScrollView(
       child: Container(
         color: Color(0xffF6F6F6),
@@ -26,7 +84,9 @@ class _AccountPagehomeState extends State<AccountPagehome> {
                       end: Alignment.bottomCenter)),
               child: Container(
                 margin: EdgeInsets.only(top: 80, right: 20, left: 20),
-                child:  MemberCard(
+                child: MemberCard(
+                  name: authProvider.getUserData.name,
+                  point: data.customerPoints.toString(),
                   cardBottomGradient: ColorCol.yellowCardBottomGradient,
                   cardTextColor: ColorCol.yellowCardText,
                   cardTopGradient: ColorCol.yellowCardTopGradient,
@@ -85,7 +145,8 @@ class _AccountPagehomeState extends State<AccountPagehome> {
                             height: double.infinity,
                             child: InkWell(
                               onTap: () {
-                                ExtendedNavigator.of(context).pushNamed(Routes.accountPage) ; 
+                                ExtendedNavigator.of(context)
+                                    .pushNamed(Routes.accountPage);
                               },
                               splashColor: Colors.yellow,
                               child: Row(
@@ -158,14 +219,27 @@ class _AccountPagehomeState extends State<AccountPagehome> {
                           child: Container(
                               padding: EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 5),
-                              child: Column(
-                                children: <Widget>[
-                                  ActivitiesComponent(),
-                                  ActivitiesComponent(),
-                                  ActivitiesComponent(),
-                                  ActivitiesComponent(),
-                                ],
-                              )),
+                              child: (data.lastTransaction.customerId == null)
+                                  ? Container(
+                                      width: double.infinity,
+                                      height: 60,
+                                      alignment: Alignment.center,
+                                      child: Text("No Transaction"),
+                                    )
+                                  : Column(
+                                      children: <Widget>[
+                                        ActivitiesComponent(
+                                          earnedPoint:
+                                              data.lastTransaction.earnedPoint,
+                                          total: data.lastTransaction.total
+                                              .toString(),
+                                          transDate:
+                                              data.lastTransaction.createdDate,
+                                          transType: data
+                                              .lastTransaction.transactionType,
+                                        ),
+                                      ],
+                                    )),
                         )
                       ],
                     ),
@@ -180,10 +254,31 @@ class _AccountPagehomeState extends State<AccountPagehome> {
   }
 }
 
+class FullLoadingPage extends StatelessWidget {
+  const FullLoadingPage({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(child: CircularProgressIndicator()),
+    );
+  }
+}
+
 class ActivitiesComponent extends StatelessWidget {
   const ActivitiesComponent({
     Key key,
+    @required this.transDate,
+    @required this.transType,
+    @required this.total,
+    @required this.earnedPoint,
   }) : super(key: key);
+  final String transType;
+  final String transDate;
+  final String total;
+  final int earnedPoint;
 
   @override
   Widget build(BuildContext context) {
@@ -201,14 +296,14 @@ class ActivitiesComponent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                "Pet Checkup",
+                transType,
                 style: TextStyle(color: Color(0xff6A6A6A), fontSize: 16),
               ),
               SizedBox(
                 height: 3,
               ),
               Text(
-                "30-April-2020",
+                transDate,
                 style: TextStyle(color: Colors.blue),
               )
             ],
@@ -217,14 +312,14 @@ class ActivitiesComponent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               Text(
-                "Rp. 250.000",
+                "Rp. $total",
                 style: TextStyle(color: Color(0xff6A6A6A), fontSize: 16),
               ),
               SizedBox(
                 height: 3,
               ),
               Text(
-                "+ 100 point",
+                "+ $earnedPoint",
                 style: TextStyle(color: Colors.red),
               )
             ],

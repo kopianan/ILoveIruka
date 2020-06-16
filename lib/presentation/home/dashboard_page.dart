@@ -10,31 +10,40 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  int _selectedIndex = 0;
-  PageController _pageController;
+  // int _selectedIndex = 0;
+  // PageController _pageController;
 
-  @override
-  void initState() {
-    super.initState();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  int bottomSelectedIndex = 0;
+  PageController pageController = PageController(
+    initialPage: 0,
+    keepPage: true,
+  );
 
-    _pageController = PageController();
+  void pageChanged(int index) {
+    setState(() {
+      bottomSelectedIndex = index;
+    });
   }
 
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
+  void bottomTapped(int index) {
+    setState(() {
+      bottomSelectedIndex = index;
+      pageController.animateToPage(index,
+          duration: Duration(milliseconds: 500), curve: Curves.ease);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: SizedBox.expand(
         child: PageView(
           physics: NeverScrollableScrollPhysics(),
-          controller: _pageController,
+          controller: pageController,
           onPageChanged: (index) {
-            setState(() => _selectedIndex = index);
+            pageChanged(index);
           },
           children: <Widget>[
             FeedHome(),
@@ -43,15 +52,10 @@ class _DashboardPageState extends State<DashboardPage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _selectedIndex,
+          currentIndex: bottomSelectedIndex,
           type: BottomNavigationBarType.fixed,
           onTap: (index) {
-            setState(() {
-              _selectedIndex = index;
-              _pageController.jumpToPage(
-                index,
-              );
-            });
+            bottomTapped(index);
           },
           items: [
             BottomNavigationBarItem(

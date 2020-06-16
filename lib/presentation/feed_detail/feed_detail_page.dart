@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:i_love_iruka/presentation/widgets/appbar_header_background.dart';
+import 'package:i_love_iruka/domain/feed_home/feed.dart';
 import 'package:i_love_iruka/presentation/widgets/page_header.dart';
+import 'package:i_love_iruka/util/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FeedDetailPage extends StatefulWidget {
-  FeedDetailPage({Key key}) : super(key: key);
+  FeedDetailPage({Key key, @required this.feed}) : super(key: key);
 
+  final Feed feed;
   @override
   _FeedDetailPageState createState() => _FeedDetailPageState();
 }
 
 class _FeedDetailPageState extends State<FeedDetailPage> {
   List<String> _popUpMenuItemString = ["Download", "Share"];
-  String textLorem =
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -21,7 +22,7 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
         child: Stack(children: <Widget>[
           PageHeader(title: "Feed Detail"),
           Container(
-              margin: EdgeInsets.only(top: height * 0.1),
+              margin: EdgeInsets.only(top: height * 0.11, bottom: 20),
               child: Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -31,7 +32,7 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
                   child: Column(
                     children: <Widget>[
                       ListTile(
-                        title: Text("asdf"),
+                        title: Text(widget.feed.createdDate),
                         subtitle: Text("10-10-2020"),
                         trailing: PopupMenuButton(
                             icon: Icon(Icons.more_vert),
@@ -49,21 +50,23 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
                             EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                         child: AspectRatio(
                             aspectRatio: 1,
-                            child: Image.asset(
-                              "images/assets/instagram.png",
+                            child: Image.network(
+                              Constants.getWebUrl() + widget.feed.picture,
                               fit: BoxFit.contain,
                             )),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      // SizedBox(
+                      //   height: 10,
+                      // ),
                       Container(
-                        margin: EdgeInsets.symmetric(horizontal: 20),
+                        alignment: Alignment.topLeft,
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              "Title Title Title",
+                              widget.feed.productName,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
@@ -73,28 +76,40 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
                             SizedBox(
                               height: 10,
                             ),
-                            Text(textLorem)
-                          ],
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.symmetric(vertical: 15),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text("Visit",
-                                style: TextStyle(
-                                    color: Colors.blue, fontSize: 20)),
-                            Icon(
-                              Icons.open_in_new,
-                              color: Colors.blue,
-                              size: 20,
+                            Text(
+                              widget.feed.description,
+                              style: TextStyle(fontSize: 17),
                             )
                           ],
                         ),
-                      )
+                      ),
+                      (widget.feed.link.isEmpty)
+                          ? Container(
+                              height: 0,
+                            )
+                          : InkWell(
+                              onTap: () {
+                                launch(widget.feed.link);
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                margin: EdgeInsets.symmetric(vertical: 15),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text("Visit",
+                                        style: TextStyle(
+                                            color: Colors.blue, fontSize: 20)),
+                                    Icon(
+                                      Icons.open_in_new,
+                                      color: Colors.blue,
+                                      size: 20,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            )
                     ],
                   ),
                 ),

@@ -16,6 +16,7 @@ import 'package:i_love_iruka/presentation/welcome/welcome_screen.dart';
 import 'package:i_love_iruka/presentation/account/account_page.dart';
 import 'package:i_love_iruka/presentation/appointment/appointment_form.dart';
 import 'package:i_love_iruka/presentation/feed_detail/feed_detail_page.dart';
+import 'package:i_love_iruka/domain/feed_home/feed.dart';
 
 abstract class Routes {
   static const dashboardPage = '/dashboard-page';
@@ -108,13 +109,13 @@ class Router extends RouterBase {
           settings: settings,
         );
       case Routes.feedDetailPage:
-        if (hasInvalidArgs<FeedDetailPageArguments>(args)) {
+        if (hasInvalidArgs<FeedDetailPageArguments>(args, isRequired: true)) {
           return misTypedArgsRoute<FeedDetailPageArguments>(args);
         }
-        final typedArgs =
-            args as FeedDetailPageArguments ?? FeedDetailPageArguments();
+        final typedArgs = args as FeedDetailPageArguments;
         return MaterialPageRoute<dynamic>(
-          builder: (context) => FeedDetailPage(key: typedArgs.key),
+          builder: (context) =>
+              FeedDetailPage(key: typedArgs.key, feed: typedArgs.feed),
           settings: settings,
         );
       default:
@@ -148,5 +149,6 @@ class AppointmentFormArguments {
 //FeedDetailPage arguments holder class
 class FeedDetailPageArguments {
   final Key key;
-  FeedDetailPageArguments({this.key});
+  final Feed feed;
+  FeedDetailPageArguments({this.key, @required this.feed});
 }

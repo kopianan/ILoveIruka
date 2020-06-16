@@ -8,7 +8,10 @@ class MemberCard extends StatelessWidget {
       @required this.cardBottomGradient,
       @required this.cardTextColor,
       @required this.cardTopGradient, 
-      @required this.imagesList
+      @required this.imagesList,
+      @required this.name,
+      @required this.point
+
       })
       : super(key: key);
 
@@ -17,7 +20,8 @@ class MemberCard extends StatelessWidget {
   final Color cardTextColor;
   ///Berurutan muali dari 1,2,3
   final List<String> imagesList ; 
-
+  final String name ; 
+  final String point ; 
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -79,7 +83,7 @@ class MemberCard extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Text(
-                          "Jhon Doe",
+                         name,
                           style: TextStyle(
                               color: cardTextColor,
                               fontSize: 16,
@@ -116,7 +120,7 @@ class MemberCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "750",
+                     point,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Color(0xffF9BA32),
@@ -142,7 +146,7 @@ class MemberCard extends StatelessWidget {
                     children: <Widget>[
                       Container(
                         child: Text(
-                          "EXP : 02 - July - 2030",
+                          "EXP : -",
                           style: TextStyle(
                               fontSize: 10,
                               color: cardTextColor,

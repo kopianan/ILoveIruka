@@ -22,7 +22,7 @@ class PageHeader extends StatelessWidget {
         ),
         child: SafeArea(
           child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+              margin: EdgeInsets.symmetric(horizontal: 8, vertical: 15),
               alignment: Alignment.topCenter,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

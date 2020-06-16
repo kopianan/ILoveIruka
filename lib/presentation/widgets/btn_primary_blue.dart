@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class BtnPrimaryBlue extends StatelessWidget {
-  BtnPrimaryBlue({@required this.text, this.onPressed}); 
+  BtnPrimaryBlue({@required this.text, this.onPressed, this.context}); 
   final String text;
   final Function onPressed;
+  final BuildContext context; 
   @override
   Widget build(BuildContext context) {
     return Container(
