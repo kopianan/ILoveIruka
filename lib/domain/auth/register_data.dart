@@ -15,7 +15,7 @@ abstract class RegisterData with _$RegisterData {
     @JsonKey(name: "Cliping") String cliping,
     @JsonKey(name: "TrainingYears") String trainingYears,
   }) = RegisterRequestData;
-  // factory RegisterData.registerResponseData() = RegisterResponseData;
+
   factory RegisterData.fromJson(Map<String, dynamic> json) =>
       _$RegisterDataFromJson(json);
 }

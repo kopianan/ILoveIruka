@@ -24,17 +24,56 @@ class SignInForm extends StatefulWidget {
 }
 
 class _SignInFormState extends State<SignInForm> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _autoValidate = false;
+
   TextEditingController emailController;
   TextEditingController passwordController;
+  final FocusNode _emailFN = FocusNode();
+  final FocusNode _passwordFN = FocusNode();
   Flushbar flushbar;
+
+  fieldFocusChange({
+    BuildContext context,
+    FocusNode currentFocus,
+    FocusNode nextFocus,
+  }) {
+    currentFocus.unfocus();
+    FocusScope.of(context).requestFocus(nextFocus);
+  }
+
+  String validateEmail(String value) {
+    Pattern pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regex = new RegExp(pattern);
+    if (!regex.hasMatch(value))
+      return 'Enter Valid Email';
+    else
+      return null;
+  }
+
+  String validatePassword(String value) {
+    if (value.length < 6)
+      return 'Password must be more than 6 characters';
+    else
+      return null;
+  }
+
+  @override
+  void initState() {
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<AuthProvider>(
       builder: (context, authProvider, _) => BlocProvider(
         create: (context) => getIt<AuthBloc>(),
         child: BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
-          state.map(
-            initial: (e) {},
+          state.maybeMap(
+            orElse: (){},
             onProgress: (e) {
               flushbar = showFlushbarLoading(
                 loading: "Signing User, Wait a moment.....",
@@ -59,7 +98,7 @@ class _SignInFormState extends State<SignInForm> {
                     r.map(
                         loginRequestData: (e) {},
                         loginResponseData: (e) {
-                        authProvider.setUserData(e.user);
+                          authProvider.setUserData(e.user);
                           saveUserData(e.user).then((value) {
                             ExtendedNavigator.of(context)
                                 .pushNamed(Routes.dashboardPage);
@@ -87,130 +126,166 @@ class _SignInFormState extends State<SignInForm> {
 
   Scaffold signInPageContent(BuildContext context) => Scaffold(
         body: SingleChildScrollView(
-          child: Stack(
-            children: <Widget>[
-              Column(children: <Widget>[
-                Stack(
-                  children: <Widget>[
-                    Container(
-                      height: 300,
-                      child: Image.asset(
-                        'images/dev_images/signin_decoration.png',
-                        alignment: Alignment.bottomRight,
-                        fit: BoxFit.fitWidth,
-                        width: double.infinity,
+          child: GestureDetector(
+            onTap: () {
+              FocusScopeNode currentFocus = FocusScope.of(context);
+              if (!currentFocus.hasPrimaryFocus) {
+                currentFocus.unfocus();
+              }
+            },
+            child: Stack(
+              children: <Widget>[
+                Column(children: <Widget>[
+                  Stack(
+                    children: <Widget>[
+                      Container(
+                        height: 300,
+                        child: Image.asset(
+                          'images/dev_images/signin_decoration.png',
+                          alignment: Alignment.bottomRight,
+                          fit: BoxFit.fitWidth,
+                          width: double.infinity,
+                        ),
                       ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(left: 30, top: 80),
-                      child: Text(
-                        "Welcome\nBack",
-                        style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                      Container(
+                        padding: EdgeInsets.only(left: 30, top: 80),
+                        child: Text(
+                          "Welcome\nBack",
+                          style: TextStyle(
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                bottomContent(context)
-              ]),
-              AppBarTransparentBack(function: () {
-                Navigator.pop(context, true);
-              }),
-            ],
+                    ],
+                  ),
+                  bottomContent(context)
+                ]),
+                AppBarTransparentBack(function: () {
+                  Navigator.pop(context, true);
+                }),
+              ],
+            ),
           ),
         ),
       );
 
   Widget bottomContent(
     BuildContext context,
-  ) {
-    return Align(
-      alignment: FractionalOffset.bottomCenter,
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-        child: Column(
-          children: <Widget>[
-            EmailAddress(
-              controller: emailController,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Password(
-              controller: passwordController,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              alignment: Alignment.centerRight,
-              child: InkWell(
-                onTap: () {
-                  ExtendedNavigator.of(context)
-                      .pushNamed(Routes.forgotPasswordForm);
-                },
-                child: Text(
-                  "Forgot Password",
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xffEE2424)),
+  ) =>
+      Align(
+        alignment: FractionalOffset.bottomCenter,
+        child: Form(
+          key: _formKey,
+          autovalidate: _autoValidate,
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+            child: Column(
+              children: <Widget>[
+                CustomInputText(
+                  controller: emailController,
+                  focusNode: _emailFN,
+                  textInputAction: TextInputAction.next,
+                  onFieldSubmited: (val) {
+                    fieldFocusChange(
+                        context: context,
+                        currentFocus: _emailFN,
+                        nextFocus: _passwordFN);
+                  },
+                  validator: validateEmail,
                 ),
-              ),
+                SizedBox(
+                  height: 20,
+                ),
+                Password(
+                  controller: passwordController,
+                  focusNode: _passwordFN,
+                  textInputAction: TextInputAction.done,
+                  onFieldSubmited: (val) {
+                    _passwordFN.unfocus();
+                  },
+                  validator: validatePassword,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: InkWell(
+                    onTap: () {
+                      ExtendedNavigator.of(context)
+                          .pushNamed(Routes.forgotPasswordForm);
+                    },
+                    child: Text(
+                      "Forgot Password",
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xffEE2424)),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                BtnPrimaryBlue(
+                  text: "Log in",
+                  onPressed: () {
+                    _onLoginPressed(context);
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                          child: Divider(
+                        height: 2,
+                        color: Colors.grey,
+                        thickness: 1,
+                      )),
+                      Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: Text("OR")),
+                      Expanded(
+                          child: Divider(
+                        color: Colors.grey,
+                        thickness: 1,
+                      )),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                BtnPrimaryOutline(
+                  text: "Sign up",
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(
+                        context, Routes.registerForm);
+                  },
+                )
+              ],
             ),
-            SizedBox(
-              height: 20,
-            ),
-            BtnPrimaryBlue(
-              text: "Log in",
-              onPressed: () {
-                context
-                    .bloc<AuthBloc>()
-                    .add((AuthEvent.loginWithEmail(LoginRequestData(
-                      username: "anancarlos@gmail.com",
-                      password: "123456",
-                    ))));
-                // ExtendedNavigator.of(context).pushNamed(Routes.dashboardPage);
-              },
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                      child: Divider(
-                    height: 2,
-                    color: Colors.grey,
-                    thickness: 1,
-                  )),
-                  Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Text("OR")),
-                  Expanded(
-                      child: Divider(
-                    color: Colors.grey,
-                    thickness: 1,
-                  )),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            BtnPrimaryOutline(
-              text: "Sign up",
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, Routes.registerForm);
-              },
-            )
-          ],
+          ),
         ),
-      ),
-    );
+      );
+  void _onLoginPressed(
+    BuildContext context,
+  ) {
+    if (_formKey.currentState.validate()) {
+      context.bloc<AuthBloc>().add((AuthEvent.loginWithEmail(LoginRequestData(
+            username: emailController.text,
+            password: passwordController.text,
+          ))));
+      _formKey.currentState.save();
+    } else {
+      setState(() {
+        _autoValidate = true;
+      });
+    }
   }
 }
 

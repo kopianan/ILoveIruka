@@ -23,6 +23,10 @@ class _$AuthFailureTearOff {
   _NotFound notFound() {
     return const _NotFound();
   }
+
+  _DefaultError defaultError() {
+    return const _DefaultError();
+  }
 }
 
 // ignore: unused_element
@@ -34,12 +38,14 @@ mixin _$AuthFailure {
     @required Result badRequest(),
     @required Result serverError(),
     @required Result notFound(),
+    @required Result defaultError(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result badRequest(),
     Result serverError(),
     Result notFound(),
+    Result defaultError(),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -47,12 +53,14 @@ mixin _$AuthFailure {
     @required Result badRequest(_BadRequest value),
     @required Result serverError(_ServerError value),
     @required Result notFound(_NotFound value),
+    @required Result defaultError(_DefaultError value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result badRequest(_BadRequest value),
     Result serverError(_ServerError value),
     Result notFound(_NotFound value),
+    Result defaultError(_DefaultError value),
     @required Result orElse(),
   });
 }
@@ -109,10 +117,12 @@ class _$_BadRequest implements _BadRequest {
     @required Result badRequest(),
     @required Result serverError(),
     @required Result notFound(),
+    @required Result defaultError(),
   }) {
     assert(badRequest != null);
     assert(serverError != null);
     assert(notFound != null);
+    assert(defaultError != null);
     return badRequest();
   }
 
@@ -122,6 +132,7 @@ class _$_BadRequest implements _BadRequest {
     Result badRequest(),
     Result serverError(),
     Result notFound(),
+    Result defaultError(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -137,10 +148,12 @@ class _$_BadRequest implements _BadRequest {
     @required Result badRequest(_BadRequest value),
     @required Result serverError(_ServerError value),
     @required Result notFound(_NotFound value),
+    @required Result defaultError(_DefaultError value),
   }) {
     assert(badRequest != null);
     assert(serverError != null);
     assert(notFound != null);
+    assert(defaultError != null);
     return badRequest(this);
   }
 
@@ -150,6 +163,7 @@ class _$_BadRequest implements _BadRequest {
     Result badRequest(_BadRequest value),
     Result serverError(_ServerError value),
     Result notFound(_NotFound value),
+    Result defaultError(_DefaultError value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -202,10 +216,12 @@ class _$_ServerError implements _ServerError {
     @required Result badRequest(),
     @required Result serverError(),
     @required Result notFound(),
+    @required Result defaultError(),
   }) {
     assert(badRequest != null);
     assert(serverError != null);
     assert(notFound != null);
+    assert(defaultError != null);
     return serverError();
   }
 
@@ -215,6 +231,7 @@ class _$_ServerError implements _ServerError {
     Result badRequest(),
     Result serverError(),
     Result notFound(),
+    Result defaultError(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -230,10 +247,12 @@ class _$_ServerError implements _ServerError {
     @required Result badRequest(_BadRequest value),
     @required Result serverError(_ServerError value),
     @required Result notFound(_NotFound value),
+    @required Result defaultError(_DefaultError value),
   }) {
     assert(badRequest != null);
     assert(serverError != null);
     assert(notFound != null);
+    assert(defaultError != null);
     return serverError(this);
   }
 
@@ -243,6 +262,7 @@ class _$_ServerError implements _ServerError {
     Result badRequest(_BadRequest value),
     Result serverError(_ServerError value),
     Result notFound(_NotFound value),
+    Result defaultError(_DefaultError value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -293,10 +313,12 @@ class _$_NotFound implements _NotFound {
     @required Result badRequest(),
     @required Result serverError(),
     @required Result notFound(),
+    @required Result defaultError(),
   }) {
     assert(badRequest != null);
     assert(serverError != null);
     assert(notFound != null);
+    assert(defaultError != null);
     return notFound();
   }
 
@@ -306,6 +328,7 @@ class _$_NotFound implements _NotFound {
     Result badRequest(),
     Result serverError(),
     Result notFound(),
+    Result defaultError(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -321,10 +344,12 @@ class _$_NotFound implements _NotFound {
     @required Result badRequest(_BadRequest value),
     @required Result serverError(_ServerError value),
     @required Result notFound(_NotFound value),
+    @required Result defaultError(_DefaultError value),
   }) {
     assert(badRequest != null);
     assert(serverError != null);
     assert(notFound != null);
+    assert(defaultError != null);
     return notFound(this);
   }
 
@@ -334,6 +359,7 @@ class _$_NotFound implements _NotFound {
     Result badRequest(_BadRequest value),
     Result serverError(_ServerError value),
     Result notFound(_NotFound value),
+    Result defaultError(_DefaultError value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -346,4 +372,103 @@ class _$_NotFound implements _NotFound {
 
 abstract class _NotFound implements AuthFailure {
   const factory _NotFound() = _$_NotFound;
+}
+
+abstract class _$DefaultErrorCopyWith<$Res> {
+  factory _$DefaultErrorCopyWith(
+          _DefaultError value, $Res Function(_DefaultError) then) =
+      __$DefaultErrorCopyWithImpl<$Res>;
+}
+
+class __$DefaultErrorCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements _$DefaultErrorCopyWith<$Res> {
+  __$DefaultErrorCopyWithImpl(
+      _DefaultError _value, $Res Function(_DefaultError) _then)
+      : super(_value, (v) => _then(v as _DefaultError));
+
+  @override
+  _DefaultError get _value => super._value as _DefaultError;
+}
+
+class _$_DefaultError implements _DefaultError {
+  const _$_DefaultError();
+
+  @override
+  String toString() {
+    return 'AuthFailure.defaultError()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _DefaultError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result badRequest(),
+    @required Result serverError(),
+    @required Result notFound(),
+    @required Result defaultError(),
+  }) {
+    assert(badRequest != null);
+    assert(serverError != null);
+    assert(notFound != null);
+    assert(defaultError != null);
+    return defaultError();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result badRequest(),
+    Result serverError(),
+    Result notFound(),
+    Result defaultError(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (defaultError != null) {
+      return defaultError();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result badRequest(_BadRequest value),
+    @required Result serverError(_ServerError value),
+    @required Result notFound(_NotFound value),
+    @required Result defaultError(_DefaultError value),
+  }) {
+    assert(badRequest != null);
+    assert(serverError != null);
+    assert(notFound != null);
+    assert(defaultError != null);
+    return defaultError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result badRequest(_BadRequest value),
+    Result serverError(_ServerError value),
+    Result notFound(_NotFound value),
+    Result defaultError(_DefaultError value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (defaultError != null) {
+      return defaultError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DefaultError implements AuthFailure {
+  const factory _DefaultError() = _$_DefaultError;
 }

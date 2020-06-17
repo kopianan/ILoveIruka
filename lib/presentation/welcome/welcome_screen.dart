@@ -12,89 +12,88 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            Stack(
-              overflow: Overflow.visible,
-              children: <Widget>[
-                ClipPath(
-                    clipper: CurvedClipper(),
-                    child: Image.asset(
-                      'images/dev_images/background_petting.png',
-                    )),
-                Positioned(
-                  // top: 30,
-                  // bottom: 10,
-                  width: MediaQuery.of(context).size.width,
-                  child: Container(
-                      child: Image.asset(
-                    'images/dev_images/petting.png',
+      body: Column(
+        // padding: EdgeInsets.zero,
+        // mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Stack(
+            overflow: Overflow.visible,
+            children: <Widget>[
+              ClipPath(
+                  clipper: CurvedClipper(),
+                  child: Image.asset(
+                    'images/dev_images/background_petting.png',
                   )),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 40),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "Welcome to I Love Iruka",
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                      maxLines: 2,
+              Positioned(
+                // top: 30,
+                // bottom: 10,
+                width: MediaQuery.of(context).size.width,
+                child: Container(
+                    child: Image.asset(
+                  'images/dev_images/petting.png',
+                )),
+              )
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    "Welcome to I Love Iruka",
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    maxLines: 2,
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Text(
+                    "Here we will help you to manage your pets like medical checkup, saloon, pet care, and another services",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16,
                     ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Text(
-                      "Here we will help you to manage your pets like medical checkup, saloon, pet care, and another services",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                      maxLines: 2,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 30),
-                      child: BtnPrimaryBlue(
-                        text: "Sign in",
-                        onPressed: () {
-                          ExtendedNavigator.of(context)
-                              .pushNamed(Routes.signInForm);
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, Routes.registerForm);
+                    maxLines: 2,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 30),
+                    child: BtnPrimaryBlue(
+                      text: "Sign in",
+                      onPressed: () {
+                        ExtendedNavigator.of(context)
+                            .pushNamed(Routes.signInForm);
                       },
-                      child: Text(
-                        "Create an account",
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xffEE2424)),
-                        maxLines: 2,
-                      ),
                     ),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.registerForm);
+                    },
+                    child: Text(
+                      "Create an account",
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xffEE2424)),
+                      maxLines: 2,
+                    ),
+                  ),
+                ],
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

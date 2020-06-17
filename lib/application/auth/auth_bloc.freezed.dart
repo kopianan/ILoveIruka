@@ -23,6 +23,16 @@ class _$AuthEventTearOff {
       registerData,
     );
   }
+
+  _GetUserRoleList getUserRoleList() {
+    return _GetUserRoleList();
+  }
+
+  _UpdateCustomer updateCustomer({UpdateCustomerData data}) {
+    return _UpdateCustomer(
+      data: data,
+    );
+  }
 }
 
 // ignore: unused_element
@@ -33,22 +43,30 @@ mixin _$AuthEvent {
   Result when<Result extends Object>({
     @required Result loginWithEmail(LoginRequestData loginRequestData),
     @required Result registerWithEmail(RegisterData registerData),
+    @required Result getUserRoleList(),
+    @required Result updateCustomer(UpdateCustomerData data),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result loginWithEmail(LoginRequestData loginRequestData),
     Result registerWithEmail(RegisterData registerData),
+    Result getUserRoleList(),
+    Result updateCustomer(UpdateCustomerData data),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result loginWithEmail(_LoginWithEmail value),
     @required Result registerWithEmail(_RegisterWithEmail value),
+    @required Result getUserRoleList(_GetUserRoleList value),
+    @required Result updateCustomer(_UpdateCustomer value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result loginWithEmail(_LoginWithEmail value),
     Result registerWithEmail(_RegisterWithEmail value),
+    Result getUserRoleList(_GetUserRoleList value),
+    Result updateCustomer(_UpdateCustomer value),
     @required Result orElse(),
   });
 }
@@ -128,9 +146,13 @@ class _$_LoginWithEmail implements _LoginWithEmail {
   Result when<Result extends Object>({
     @required Result loginWithEmail(LoginRequestData loginRequestData),
     @required Result registerWithEmail(RegisterData registerData),
+    @required Result getUserRoleList(),
+    @required Result updateCustomer(UpdateCustomerData data),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
+    assert(getUserRoleList != null);
+    assert(updateCustomer != null);
     return loginWithEmail(loginRequestData);
   }
 
@@ -139,6 +161,8 @@ class _$_LoginWithEmail implements _LoginWithEmail {
   Result maybeWhen<Result extends Object>({
     Result loginWithEmail(LoginRequestData loginRequestData),
     Result registerWithEmail(RegisterData registerData),
+    Result getUserRoleList(),
+    Result updateCustomer(UpdateCustomerData data),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -153,9 +177,13 @@ class _$_LoginWithEmail implements _LoginWithEmail {
   Result map<Result extends Object>({
     @required Result loginWithEmail(_LoginWithEmail value),
     @required Result registerWithEmail(_RegisterWithEmail value),
+    @required Result getUserRoleList(_GetUserRoleList value),
+    @required Result updateCustomer(_UpdateCustomer value),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
+    assert(getUserRoleList != null);
+    assert(updateCustomer != null);
     return loginWithEmail(this);
   }
 
@@ -164,6 +192,8 @@ class _$_LoginWithEmail implements _LoginWithEmail {
   Result maybeMap<Result extends Object>({
     Result loginWithEmail(_LoginWithEmail value),
     Result registerWithEmail(_RegisterWithEmail value),
+    Result getUserRoleList(_GetUserRoleList value),
+    Result updateCustomer(_UpdateCustomer value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -256,9 +286,13 @@ class _$_RegisterWithEmail implements _RegisterWithEmail {
   Result when<Result extends Object>({
     @required Result loginWithEmail(LoginRequestData loginRequestData),
     @required Result registerWithEmail(RegisterData registerData),
+    @required Result getUserRoleList(),
+    @required Result updateCustomer(UpdateCustomerData data),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
+    assert(getUserRoleList != null);
+    assert(updateCustomer != null);
     return registerWithEmail(registerData);
   }
 
@@ -267,6 +301,8 @@ class _$_RegisterWithEmail implements _RegisterWithEmail {
   Result maybeWhen<Result extends Object>({
     Result loginWithEmail(LoginRequestData loginRequestData),
     Result registerWithEmail(RegisterData registerData),
+    Result getUserRoleList(),
+    Result updateCustomer(UpdateCustomerData data),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -281,9 +317,13 @@ class _$_RegisterWithEmail implements _RegisterWithEmail {
   Result map<Result extends Object>({
     @required Result loginWithEmail(_LoginWithEmail value),
     @required Result registerWithEmail(_RegisterWithEmail value),
+    @required Result getUserRoleList(_GetUserRoleList value),
+    @required Result updateCustomer(_UpdateCustomer value),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
+    assert(getUserRoleList != null);
+    assert(updateCustomer != null);
     return registerWithEmail(this);
   }
 
@@ -292,6 +332,8 @@ class _$_RegisterWithEmail implements _RegisterWithEmail {
   Result maybeMap<Result extends Object>({
     Result loginWithEmail(_LoginWithEmail value),
     Result registerWithEmail(_RegisterWithEmail value),
+    Result getUserRoleList(_GetUserRoleList value),
+    Result updateCustomer(_UpdateCustomer value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -309,6 +351,228 @@ abstract class _RegisterWithEmail implements AuthEvent {
   _$RegisterWithEmailCopyWith<_RegisterWithEmail> get copyWith;
 }
 
+abstract class _$GetUserRoleListCopyWith<$Res> {
+  factory _$GetUserRoleListCopyWith(
+          _GetUserRoleList value, $Res Function(_GetUserRoleList) then) =
+      __$GetUserRoleListCopyWithImpl<$Res>;
+}
+
+class __$GetUserRoleListCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
+    implements _$GetUserRoleListCopyWith<$Res> {
+  __$GetUserRoleListCopyWithImpl(
+      _GetUserRoleList _value, $Res Function(_GetUserRoleList) _then)
+      : super(_value, (v) => _then(v as _GetUserRoleList));
+
+  @override
+  _GetUserRoleList get _value => super._value as _GetUserRoleList;
+}
+
+class _$_GetUserRoleList implements _GetUserRoleList {
+  _$_GetUserRoleList();
+
+  @override
+  String toString() {
+    return 'AuthEvent.getUserRoleList()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _GetUserRoleList);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result loginWithEmail(LoginRequestData loginRequestData),
+    @required Result registerWithEmail(RegisterData registerData),
+    @required Result getUserRoleList(),
+    @required Result updateCustomer(UpdateCustomerData data),
+  }) {
+    assert(loginWithEmail != null);
+    assert(registerWithEmail != null);
+    assert(getUserRoleList != null);
+    assert(updateCustomer != null);
+    return getUserRoleList();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result loginWithEmail(LoginRequestData loginRequestData),
+    Result registerWithEmail(RegisterData registerData),
+    Result getUserRoleList(),
+    Result updateCustomer(UpdateCustomerData data),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (getUserRoleList != null) {
+      return getUserRoleList();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result loginWithEmail(_LoginWithEmail value),
+    @required Result registerWithEmail(_RegisterWithEmail value),
+    @required Result getUserRoleList(_GetUserRoleList value),
+    @required Result updateCustomer(_UpdateCustomer value),
+  }) {
+    assert(loginWithEmail != null);
+    assert(registerWithEmail != null);
+    assert(getUserRoleList != null);
+    assert(updateCustomer != null);
+    return getUserRoleList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result loginWithEmail(_LoginWithEmail value),
+    Result registerWithEmail(_RegisterWithEmail value),
+    Result getUserRoleList(_GetUserRoleList value),
+    Result updateCustomer(_UpdateCustomer value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (getUserRoleList != null) {
+      return getUserRoleList(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetUserRoleList implements AuthEvent {
+  factory _GetUserRoleList() = _$_GetUserRoleList;
+}
+
+abstract class _$UpdateCustomerCopyWith<$Res> {
+  factory _$UpdateCustomerCopyWith(
+          _UpdateCustomer value, $Res Function(_UpdateCustomer) then) =
+      __$UpdateCustomerCopyWithImpl<$Res>;
+  $Res call({UpdateCustomerData data});
+}
+
+class __$UpdateCustomerCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
+    implements _$UpdateCustomerCopyWith<$Res> {
+  __$UpdateCustomerCopyWithImpl(
+      _UpdateCustomer _value, $Res Function(_UpdateCustomer) _then)
+      : super(_value, (v) => _then(v as _UpdateCustomer));
+
+  @override
+  _UpdateCustomer get _value => super._value as _UpdateCustomer;
+
+  @override
+  $Res call({
+    Object data = freezed,
+  }) {
+    return _then(_UpdateCustomer(
+      data: data == freezed ? _value.data : data as UpdateCustomerData,
+    ));
+  }
+}
+
+class _$_UpdateCustomer implements _UpdateCustomer {
+  _$_UpdateCustomer({this.data});
+
+  @override
+  final UpdateCustomerData data;
+
+  @override
+  String toString() {
+    return 'AuthEvent.updateCustomer(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _UpdateCustomer &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+
+  @override
+  _$UpdateCustomerCopyWith<_UpdateCustomer> get copyWith =>
+      __$UpdateCustomerCopyWithImpl<_UpdateCustomer>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result loginWithEmail(LoginRequestData loginRequestData),
+    @required Result registerWithEmail(RegisterData registerData),
+    @required Result getUserRoleList(),
+    @required Result updateCustomer(UpdateCustomerData data),
+  }) {
+    assert(loginWithEmail != null);
+    assert(registerWithEmail != null);
+    assert(getUserRoleList != null);
+    assert(updateCustomer != null);
+    return updateCustomer(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result loginWithEmail(LoginRequestData loginRequestData),
+    Result registerWithEmail(RegisterData registerData),
+    Result getUserRoleList(),
+    Result updateCustomer(UpdateCustomerData data),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateCustomer != null) {
+      return updateCustomer(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result loginWithEmail(_LoginWithEmail value),
+    @required Result registerWithEmail(_RegisterWithEmail value),
+    @required Result getUserRoleList(_GetUserRoleList value),
+    @required Result updateCustomer(_UpdateCustomer value),
+  }) {
+    assert(loginWithEmail != null);
+    assert(registerWithEmail != null);
+    assert(getUserRoleList != null);
+    assert(updateCustomer != null);
+    return updateCustomer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result loginWithEmail(_LoginWithEmail value),
+    Result registerWithEmail(_RegisterWithEmail value),
+    Result getUserRoleList(_GetUserRoleList value),
+    Result updateCustomer(_UpdateCustomer value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateCustomer != null) {
+      return updateCustomer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateCustomer implements AuthEvent {
+  factory _UpdateCustomer({UpdateCustomerData data}) = _$_UpdateCustomer;
+
+  UpdateCustomerData get data;
+  _$UpdateCustomerCopyWith<_UpdateCustomer> get copyWith;
+}
+
 class _$AuthStateTearOff {
   const _$AuthStateTearOff();
 
@@ -320,10 +584,25 @@ class _$AuthStateTearOff {
     return _OnProgreess();
   }
 
+  _FailOrSuccessGetRole failOrSuccessGetRole(
+      {Option<Either<AuthFailure, List<String>>> options, bool isLoading}) {
+    return _FailOrSuccessGetRole(
+      options: options,
+      isLoading: isLoading,
+    );
+  }
+
   _FailOrSuccessOption failOrSuccessLoginOption(
       {@required Option<Either<AuthFailure, LoginData>> failOrSuccessOption}) {
     return _FailOrSuccessOption(
       failOrSuccessOption: failOrSuccessOption,
+    );
+  }
+
+  _FailOrSuccessUpdateCustomerOption failOrSuccessUpdateCustomerOption(
+      {@required Option<Either<AuthFailure, LoginData>> updateCustomerOption}) {
+    return _FailOrSuccessUpdateCustomerOption(
+      updateCustomerOption: updateCustomerOption,
     );
   }
 }
@@ -337,28 +616,45 @@ mixin _$AuthState {
     @required Result initial(),
     @required Result onProgress(),
     @required
+        Result failOrSuccessGetRole(
+            Option<Either<AuthFailure, List<String>>> options, bool isLoading),
+    @required
         Result failOrSuccessLoginOption(
             Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+    @required
+        Result failOrSuccessUpdateCustomerOption(
+            Option<Either<AuthFailure, LoginData>> updateCustomerOption),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result onProgress(),
+    Result failOrSuccessGetRole(
+        Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     Result failOrSuccessLoginOption(
         Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+    Result failOrSuccessUpdateCustomerOption(
+        Option<Either<AuthFailure, LoginData>> updateCustomerOption),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
     @required Result onProgress(_OnProgreess value),
+    @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
+    @required
+        Result failOrSuccessUpdateCustomerOption(
+            _FailOrSuccessUpdateCustomerOption value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
     Result onProgress(_OnProgreess value),
+    Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     Result failOrSuccessLoginOption(_FailOrSuccessOption value),
+    Result failOrSuccessUpdateCustomerOption(
+        _FailOrSuccessUpdateCustomerOption value),
     @required Result orElse(),
   });
 }
@@ -412,12 +708,20 @@ class _$_Initial implements _Initial {
     @required Result initial(),
     @required Result onProgress(),
     @required
+        Result failOrSuccessGetRole(
+            Option<Either<AuthFailure, List<String>>> options, bool isLoading),
+    @required
         Result failOrSuccessLoginOption(
             Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+    @required
+        Result failOrSuccessUpdateCustomerOption(
+            Option<Either<AuthFailure, LoginData>> updateCustomerOption),
   }) {
     assert(initial != null);
     assert(onProgress != null);
+    assert(failOrSuccessGetRole != null);
     assert(failOrSuccessLoginOption != null);
+    assert(failOrSuccessUpdateCustomerOption != null);
     return initial();
   }
 
@@ -426,8 +730,12 @@ class _$_Initial implements _Initial {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result onProgress(),
+    Result failOrSuccessGetRole(
+        Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     Result failOrSuccessLoginOption(
         Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+    Result failOrSuccessUpdateCustomerOption(
+        Option<Either<AuthFailure, LoginData>> updateCustomerOption),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -442,11 +750,17 @@ class _$_Initial implements _Initial {
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
     @required Result onProgress(_OnProgreess value),
+    @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
+    @required
+        Result failOrSuccessUpdateCustomerOption(
+            _FailOrSuccessUpdateCustomerOption value),
   }) {
     assert(initial != null);
     assert(onProgress != null);
+    assert(failOrSuccessGetRole != null);
     assert(failOrSuccessLoginOption != null);
+    assert(failOrSuccessUpdateCustomerOption != null);
     return initial(this);
   }
 
@@ -455,7 +769,10 @@ class _$_Initial implements _Initial {
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
     Result onProgress(_OnProgreess value),
+    Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     Result failOrSuccessLoginOption(_FailOrSuccessOption value),
+    Result failOrSuccessUpdateCustomerOption(
+        _FailOrSuccessUpdateCustomerOption value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -508,12 +825,20 @@ class _$_OnProgreess implements _OnProgreess {
     @required Result initial(),
     @required Result onProgress(),
     @required
+        Result failOrSuccessGetRole(
+            Option<Either<AuthFailure, List<String>>> options, bool isLoading),
+    @required
         Result failOrSuccessLoginOption(
             Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+    @required
+        Result failOrSuccessUpdateCustomerOption(
+            Option<Either<AuthFailure, LoginData>> updateCustomerOption),
   }) {
     assert(initial != null);
     assert(onProgress != null);
+    assert(failOrSuccessGetRole != null);
     assert(failOrSuccessLoginOption != null);
+    assert(failOrSuccessUpdateCustomerOption != null);
     return onProgress();
   }
 
@@ -522,8 +847,12 @@ class _$_OnProgreess implements _OnProgreess {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result onProgress(),
+    Result failOrSuccessGetRole(
+        Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     Result failOrSuccessLoginOption(
         Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+    Result failOrSuccessUpdateCustomerOption(
+        Option<Either<AuthFailure, LoginData>> updateCustomerOption),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -538,11 +867,17 @@ class _$_OnProgreess implements _OnProgreess {
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
     @required Result onProgress(_OnProgreess value),
+    @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
+    @required
+        Result failOrSuccessUpdateCustomerOption(
+            _FailOrSuccessUpdateCustomerOption value),
   }) {
     assert(initial != null);
     assert(onProgress != null);
+    assert(failOrSuccessGetRole != null);
     assert(failOrSuccessLoginOption != null);
+    assert(failOrSuccessUpdateCustomerOption != null);
     return onProgress(this);
   }
 
@@ -551,7 +886,10 @@ class _$_OnProgreess implements _OnProgreess {
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
     Result onProgress(_OnProgreess value),
+    Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     Result failOrSuccessLoginOption(_FailOrSuccessOption value),
+    Result failOrSuccessUpdateCustomerOption(
+        _FailOrSuccessUpdateCustomerOption value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -564,6 +902,165 @@ class _$_OnProgreess implements _OnProgreess {
 
 abstract class _OnProgreess implements AuthState {
   factory _OnProgreess() = _$_OnProgreess;
+}
+
+abstract class _$FailOrSuccessGetRoleCopyWith<$Res> {
+  factory _$FailOrSuccessGetRoleCopyWith(_FailOrSuccessGetRole value,
+          $Res Function(_FailOrSuccessGetRole) then) =
+      __$FailOrSuccessGetRoleCopyWithImpl<$Res>;
+  $Res call(
+      {Option<Either<AuthFailure, List<String>>> options, bool isLoading});
+}
+
+class __$FailOrSuccessGetRoleCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res>
+    implements _$FailOrSuccessGetRoleCopyWith<$Res> {
+  __$FailOrSuccessGetRoleCopyWithImpl(
+      _FailOrSuccessGetRole _value, $Res Function(_FailOrSuccessGetRole) _then)
+      : super(_value, (v) => _then(v as _FailOrSuccessGetRole));
+
+  @override
+  _FailOrSuccessGetRole get _value => super._value as _FailOrSuccessGetRole;
+
+  @override
+  $Res call({
+    Object options = freezed,
+    Object isLoading = freezed,
+  }) {
+    return _then(_FailOrSuccessGetRole(
+      options: options == freezed
+          ? _value.options
+          : options as Option<Either<AuthFailure, List<String>>>,
+      isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
+    ));
+  }
+}
+
+class _$_FailOrSuccessGetRole implements _FailOrSuccessGetRole {
+  _$_FailOrSuccessGetRole({this.options, this.isLoading});
+
+  @override
+  final Option<Either<AuthFailure, List<String>>> options;
+  @override
+  final bool isLoading;
+
+  @override
+  String toString() {
+    return 'AuthState.failOrSuccessGetRole(options: $options, isLoading: $isLoading)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _FailOrSuccessGetRole &&
+            (identical(other.options, options) ||
+                const DeepCollectionEquality()
+                    .equals(other.options, options)) &&
+            (identical(other.isLoading, isLoading) ||
+                const DeepCollectionEquality()
+                    .equals(other.isLoading, isLoading)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(options) ^
+      const DeepCollectionEquality().hash(isLoading);
+
+  @override
+  _$FailOrSuccessGetRoleCopyWith<_FailOrSuccessGetRole> get copyWith =>
+      __$FailOrSuccessGetRoleCopyWithImpl<_FailOrSuccessGetRole>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result initial(),
+    @required Result onProgress(),
+    @required
+        Result failOrSuccessGetRole(
+            Option<Either<AuthFailure, List<String>>> options, bool isLoading),
+    @required
+        Result failOrSuccessLoginOption(
+            Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+    @required
+        Result failOrSuccessUpdateCustomerOption(
+            Option<Either<AuthFailure, LoginData>> updateCustomerOption),
+  }) {
+    assert(initial != null);
+    assert(onProgress != null);
+    assert(failOrSuccessGetRole != null);
+    assert(failOrSuccessLoginOption != null);
+    assert(failOrSuccessUpdateCustomerOption != null);
+    return failOrSuccessGetRole(options, isLoading);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result initial(),
+    Result onProgress(),
+    Result failOrSuccessGetRole(
+        Option<Either<AuthFailure, List<String>>> options, bool isLoading),
+    Result failOrSuccessLoginOption(
+        Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+    Result failOrSuccessUpdateCustomerOption(
+        Option<Either<AuthFailure, LoginData>> updateCustomerOption),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (failOrSuccessGetRole != null) {
+      return failOrSuccessGetRole(options, isLoading);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result initial(_Initial value),
+    @required Result onProgress(_OnProgreess value),
+    @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
+    @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
+    @required
+        Result failOrSuccessUpdateCustomerOption(
+            _FailOrSuccessUpdateCustomerOption value),
+  }) {
+    assert(initial != null);
+    assert(onProgress != null);
+    assert(failOrSuccessGetRole != null);
+    assert(failOrSuccessLoginOption != null);
+    assert(failOrSuccessUpdateCustomerOption != null);
+    return failOrSuccessGetRole(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result initial(_Initial value),
+    Result onProgress(_OnProgreess value),
+    Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
+    Result failOrSuccessLoginOption(_FailOrSuccessOption value),
+    Result failOrSuccessUpdateCustomerOption(
+        _FailOrSuccessUpdateCustomerOption value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (failOrSuccessGetRole != null) {
+      return failOrSuccessGetRole(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FailOrSuccessGetRole implements AuthState {
+  factory _FailOrSuccessGetRole(
+      {Option<Either<AuthFailure, List<String>>> options,
+      bool isLoading}) = _$_FailOrSuccessGetRole;
+
+  Option<Either<AuthFailure, List<String>>> get options;
+  bool get isLoading;
+  _$FailOrSuccessGetRoleCopyWith<_FailOrSuccessGetRole> get copyWith;
 }
 
 abstract class _$FailOrSuccessOptionCopyWith<$Res> {
@@ -632,12 +1129,20 @@ class _$_FailOrSuccessOption implements _FailOrSuccessOption {
     @required Result initial(),
     @required Result onProgress(),
     @required
+        Result failOrSuccessGetRole(
+            Option<Either<AuthFailure, List<String>>> options, bool isLoading),
+    @required
         Result failOrSuccessLoginOption(
             Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+    @required
+        Result failOrSuccessUpdateCustomerOption(
+            Option<Either<AuthFailure, LoginData>> updateCustomerOption),
   }) {
     assert(initial != null);
     assert(onProgress != null);
+    assert(failOrSuccessGetRole != null);
     assert(failOrSuccessLoginOption != null);
+    assert(failOrSuccessUpdateCustomerOption != null);
     return failOrSuccessLoginOption(failOrSuccessOption);
   }
 
@@ -646,8 +1151,12 @@ class _$_FailOrSuccessOption implements _FailOrSuccessOption {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result onProgress(),
+    Result failOrSuccessGetRole(
+        Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     Result failOrSuccessLoginOption(
         Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+    Result failOrSuccessUpdateCustomerOption(
+        Option<Either<AuthFailure, LoginData>> updateCustomerOption),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -662,11 +1171,17 @@ class _$_FailOrSuccessOption implements _FailOrSuccessOption {
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
     @required Result onProgress(_OnProgreess value),
+    @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
+    @required
+        Result failOrSuccessUpdateCustomerOption(
+            _FailOrSuccessUpdateCustomerOption value),
   }) {
     assert(initial != null);
     assert(onProgress != null);
+    assert(failOrSuccessGetRole != null);
     assert(failOrSuccessLoginOption != null);
+    assert(failOrSuccessUpdateCustomerOption != null);
     return failOrSuccessLoginOption(this);
   }
 
@@ -675,7 +1190,10 @@ class _$_FailOrSuccessOption implements _FailOrSuccessOption {
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
     Result onProgress(_OnProgreess value),
+    Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     Result failOrSuccessLoginOption(_FailOrSuccessOption value),
+    Result failOrSuccessUpdateCustomerOption(
+        _FailOrSuccessUpdateCustomerOption value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -694,4 +1212,161 @@ abstract class _FailOrSuccessOption implements AuthState {
 
   Option<Either<AuthFailure, LoginData>> get failOrSuccessOption;
   _$FailOrSuccessOptionCopyWith<_FailOrSuccessOption> get copyWith;
+}
+
+abstract class _$FailOrSuccessUpdateCustomerOptionCopyWith<$Res> {
+  factory _$FailOrSuccessUpdateCustomerOptionCopyWith(
+          _FailOrSuccessUpdateCustomerOption value,
+          $Res Function(_FailOrSuccessUpdateCustomerOption) then) =
+      __$FailOrSuccessUpdateCustomerOptionCopyWithImpl<$Res>;
+  $Res call({Option<Either<AuthFailure, LoginData>> updateCustomerOption});
+}
+
+class __$FailOrSuccessUpdateCustomerOptionCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res>
+    implements _$FailOrSuccessUpdateCustomerOptionCopyWith<$Res> {
+  __$FailOrSuccessUpdateCustomerOptionCopyWithImpl(
+      _FailOrSuccessUpdateCustomerOption _value,
+      $Res Function(_FailOrSuccessUpdateCustomerOption) _then)
+      : super(_value, (v) => _then(v as _FailOrSuccessUpdateCustomerOption));
+
+  @override
+  _FailOrSuccessUpdateCustomerOption get _value =>
+      super._value as _FailOrSuccessUpdateCustomerOption;
+
+  @override
+  $Res call({
+    Object updateCustomerOption = freezed,
+  }) {
+    return _then(_FailOrSuccessUpdateCustomerOption(
+      updateCustomerOption: updateCustomerOption == freezed
+          ? _value.updateCustomerOption
+          : updateCustomerOption as Option<Either<AuthFailure, LoginData>>,
+    ));
+  }
+}
+
+class _$_FailOrSuccessUpdateCustomerOption
+    implements _FailOrSuccessUpdateCustomerOption {
+  _$_FailOrSuccessUpdateCustomerOption({@required this.updateCustomerOption})
+      : assert(updateCustomerOption != null);
+
+  @override
+  final Option<Either<AuthFailure, LoginData>> updateCustomerOption;
+
+  @override
+  String toString() {
+    return 'AuthState.failOrSuccessUpdateCustomerOption(updateCustomerOption: $updateCustomerOption)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _FailOrSuccessUpdateCustomerOption &&
+            (identical(other.updateCustomerOption, updateCustomerOption) ||
+                const DeepCollectionEquality()
+                    .equals(other.updateCustomerOption, updateCustomerOption)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(updateCustomerOption);
+
+  @override
+  _$FailOrSuccessUpdateCustomerOptionCopyWith<
+          _FailOrSuccessUpdateCustomerOption>
+      get copyWith => __$FailOrSuccessUpdateCustomerOptionCopyWithImpl<
+          _FailOrSuccessUpdateCustomerOption>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result initial(),
+    @required Result onProgress(),
+    @required
+        Result failOrSuccessGetRole(
+            Option<Either<AuthFailure, List<String>>> options, bool isLoading),
+    @required
+        Result failOrSuccessLoginOption(
+            Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+    @required
+        Result failOrSuccessUpdateCustomerOption(
+            Option<Either<AuthFailure, LoginData>> updateCustomerOption),
+  }) {
+    assert(initial != null);
+    assert(onProgress != null);
+    assert(failOrSuccessGetRole != null);
+    assert(failOrSuccessLoginOption != null);
+    assert(failOrSuccessUpdateCustomerOption != null);
+    return failOrSuccessUpdateCustomerOption(updateCustomerOption);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result initial(),
+    Result onProgress(),
+    Result failOrSuccessGetRole(
+        Option<Either<AuthFailure, List<String>>> options, bool isLoading),
+    Result failOrSuccessLoginOption(
+        Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+    Result failOrSuccessUpdateCustomerOption(
+        Option<Either<AuthFailure, LoginData>> updateCustomerOption),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (failOrSuccessUpdateCustomerOption != null) {
+      return failOrSuccessUpdateCustomerOption(updateCustomerOption);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result initial(_Initial value),
+    @required Result onProgress(_OnProgreess value),
+    @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
+    @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
+    @required
+        Result failOrSuccessUpdateCustomerOption(
+            _FailOrSuccessUpdateCustomerOption value),
+  }) {
+    assert(initial != null);
+    assert(onProgress != null);
+    assert(failOrSuccessGetRole != null);
+    assert(failOrSuccessLoginOption != null);
+    assert(failOrSuccessUpdateCustomerOption != null);
+    return failOrSuccessUpdateCustomerOption(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result initial(_Initial value),
+    Result onProgress(_OnProgreess value),
+    Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
+    Result failOrSuccessLoginOption(_FailOrSuccessOption value),
+    Result failOrSuccessUpdateCustomerOption(
+        _FailOrSuccessUpdateCustomerOption value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (failOrSuccessUpdateCustomerOption != null) {
+      return failOrSuccessUpdateCustomerOption(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FailOrSuccessUpdateCustomerOption implements AuthState {
+  factory _FailOrSuccessUpdateCustomerOption(
+          {@required
+              Option<Either<AuthFailure, LoginData>> updateCustomerOption}) =
+      _$_FailOrSuccessUpdateCustomerOption;
+
+  Option<Either<AuthFailure, LoginData>> get updateCustomerOption;
+  _$FailOrSuccessUpdateCustomerOptionCopyWith<
+      _FailOrSuccessUpdateCustomerOption> get copyWith;
 }

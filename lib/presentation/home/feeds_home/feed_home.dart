@@ -9,37 +9,18 @@ import 'package:i_love_iruka/injection.dart';
 import 'package:i_love_iruka/presentation/widgets/appbar_header_background.dart';
 import 'package:i_love_iruka/routes/router.gr.dart';
 import 'package:i_love_iruka/util/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FeedHome extends StatefulWidget {
   @override
   _FeedHomeState createState() => _FeedHomeState();
 }
 
-final List<String> imgList = [
-  'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-  'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-  'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
-];
-
 class _FeedHomeState extends State<FeedHome>
     with AutomaticKeepAliveClientMixin<FeedHome> {
   @override
   bool get wantKeepAlive => true;
-  
-  final List<Widget> imageSliders = imgList
-      .map((item) => Container(
-            child: Container(
-              margin: EdgeInsets.all(10.0),
-              child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                  child: Image.network(item, fit: BoxFit.cover, width: 1000.0)),
-            ),
-          ))
-      .toList();
-  int _current = 0;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -102,14 +83,14 @@ class _FeedHomeState extends State<FeedHome>
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
-                      InkWell(
-                        onTap: () {},
-                        child: Icon(
-                          Icons.notifications_none,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                      )
+                      // InkWell(
+                      //   onTap: () {},
+                      //   child: Icon(
+                      //     Icons.notifications_none,
+                      //     color: Colors.white,
+                      //     size: 30,
+                      //   ),
+                      // )
                     ],
                   ),
                 ),
@@ -148,36 +129,19 @@ class _FeedHomeState extends State<FeedHome>
                           EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                       child: Card(
                         elevation: 2,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 20),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  servicesMenu(),
-                                  servicesMenu(),
-                                  servicesMenu(),
-                                  servicesMenu(),
-                                ],
-                              ),
-                              // SizedBox(
-                              //   height: 20,
-                              // ),
-                              // Row(
-                              //   mainAxisAlignment:
-                              //       MainAxisAlignment.spaceEvenly,
-                              //   children: <Widget>[
-                              //     servicesMenu(),
-                              //     servicesMenu(),
-                              //     servicesMenu(),
-                              //     servicesMenu(),
-                              //   ],
-                              // ),
-                            ],
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: GridView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 4,
+                                    childAspectRatio: 1,
+                                    mainAxisSpacing: 10),
+                            itemCount: listServiceMenu.length,
+                            itemBuilder: (context, index) =>
+                                listServiceMenu[index],
                           ),
                         ),
                       )),
@@ -229,69 +193,79 @@ class _FeedHomeState extends State<FeedHome>
     );
   }
 
-  Column _buildTopFeedDataContent() {
-    return Column(
-      children: <Widget>[
-        Container(
-          margin: EdgeInsets.only(top: 70),
-          child: CarouselSlider(
-            options: CarouselOptions(
-              autoPlay: true,
-              aspectRatio: 2.0,
-              autoPlayInterval: Duration(seconds: 10),
-              enlargeCenterPage: true,
-            ),
-            items: imgList
-                .map((item) => Container(
-                      child: Container(
-                        margin: EdgeInsets.all(5.0),
-                        child: ClipRRect(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.0)),
-                            child: Image.network(item,
-                                fit: BoxFit.cover, width: 1000.0)),
-                      ),
-                    ))
-                .toList(),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: imgList.map((url) {
-              int index = imgList.indexOf(url);
-              return Container(
-                width: 8.0,
-                height: 8.0,
-                margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 3.0),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: _current == index
-                        ? Color(0xffFFA4A4)
-                        : Color(0xffE5E5E5)),
-              );
-            }).toList(),
-          ),
-        ),
-      ],
-    );
-  }
+  List<ServiceMenuItem> listServiceMenu = [
+    ServiceMenuItem(
+      assetPath: "images/assets/pet_shop.png",
+      name: "Shop",
+      onClick: () {
+        launch("https://tokopedia.com/irukapet");
+      },
+    ),
+    ServiceMenuItem(
+      assetPath: "images/assets/pet_grooming.png",
+      name: "Grooming Salon",
+      onClick: () {
+        launch("https://wa.me/6281211854630");
+      },
+    ),
+    ServiceMenuItem(
+        assetPath: "images/assets/instagram.png",
+        name: "Instagram",
+        onClick: () {
+          launch("https://instagram.com/iloveiruka");
+        }),
+    ServiceMenuItem(
+      assetPath: "images/assets/youtube.png",
+      name: "Youtube",
+      onClick: () {
+        launch("https://www.youtube.com/channel/UCohGUOh8j_gI5RTNBydOpFA/");
+      },
+    ),
+    ServiceMenuItem(
+      assetPath: "images/assets/global.png",
+      name: "Our Website",
+      onClick: () {
+        launch("https://iloveiruka.com/");
+      },
+    ),
+  ];
+}
 
-  Column servicesMenu() {
+class ServiceMenuItem extends StatelessWidget {
+  const ServiceMenuItem(
+      {Key key,
+      @required this.assetPath,
+      @required this.name,
+      @required this.onClick})
+      : super(key: key);
+
+  final String assetPath;
+  final String name;
+  final Function onClick;
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.green,
+        InkWell(
+          onTap: () {
+            onClick();
+          },
+          child: Container(
+            width: 50,
+            height: 50,
+            child: Image.asset(assetPath),
           ),
         ),
         Container(
-            constraints: BoxConstraints(maxWidth: 70),
-            child: Text("Gocarsdfsd sdf"))
+            width: double.infinity,
+            constraints: BoxConstraints(maxWidth: 73),
+            alignment: Alignment.center,
+            child: Text(
+              name,
+              textAlign: TextAlign.center,
+              maxLines: 2,
+            ))
       ],
     );
   }

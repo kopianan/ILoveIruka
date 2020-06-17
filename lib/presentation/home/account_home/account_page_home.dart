@@ -1,15 +1,19 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:i_love_iruka/application/auth/auth_provider.dart';
+import 'package:i_love_iruka/application/auth/authentication/authentication_bloc.dart';
 import 'package:i_love_iruka/application/transaction/transaction_bloc.dart';
 import 'package:i_love_iruka/domain/transaction/transaction_r.dart';
 import 'package:i_love_iruka/injection.dart';
 import 'package:i_love_iruka/presentation/widgets/member_card.dart';
 import 'package:i_love_iruka/util/color_col.dart';
+import 'package:i_love_iruka/util/flushbar_function.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:i_love_iruka/routes/router.gr.dart';
 import 'package:provider/provider.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class AccountPagehome extends StatefulWidget {
   @override
@@ -54,9 +58,9 @@ class _AccountPagehomeState extends State<AccountPagehome>
                 orElse: () => FullLoadingPage(),
                 onProgress: () => FullLoadingPage(),
                 onGetPointOption: (e) => e.fold(
-                    () => null,
+                    () => FullLoadingPage(),
                     (a) => a.fold(
-                          (l) => null,
+                          (l) => FullLoadingPage(),
                           (r) {
                             return _builAccountContent(
                                 authProvider, context, r);
@@ -98,29 +102,49 @@ class _AccountPagehomeState extends State<AccountPagehome>
                 ),
               ),
             ),
-            SafeArea(
-              child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      "Welcome",
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Icon(
-                        Icons.notifications_none,
-                        color: Colors.white,
-                        size: 30,
+            BlocListener<AuthenticationBloc, AuthenticationState>(
+              listener: (context, state) {
+                state.maybeMap(
+                  orElse: () {},
+                  signOutState: (e) {
+                    if (e.isSignOut) {
+                      ExtendedNavigator.of(context)
+                          .pushReplacementNamed(Routes.welcomeScreen);
+                    } else {
+                      showFlushbarError(errMessage: "Can not log out")
+                        ..show(context);
+                    }
+                  },
+                );
+              },
+              child: SafeArea(
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Welcome",
+                        style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
-                    )
-                  ],
+                      InkWell(
+                        onTap: () {
+                          context
+                              .bloc<AuthenticationBloc>()
+                              .add(AuthenticationEvent.signOut());
+                        },
+                        child: Icon(
+                          MdiIcons.logout,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -145,6 +169,44 @@ class _AccountPagehomeState extends State<AccountPagehome>
                             height: double.infinity,
                             child: InkWell(
                               onTap: () {
+                                Alert(
+                                  context: context,
+                                  type: AlertType.info,
+                                  title: "COMING SOON",
+                                  desc:
+                                      "Membership program is not available for now.",
+                                  buttons: [
+                                    DialogButton(
+                                      child: Text(
+                                        "OK",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 20),
+                                      ),
+                                      onPressed: () => Navigator.pop(context),
+                                      width: 120,
+                                    )
+                                  ],
+                                ).show();
+                              },
+                              splashColor: Colors.yellow,
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: <Widget>[
+                                    Icon(MdiIcons.walletMembership,
+                                        color: Colors.pink),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text("Membership"),
+                                  ]),
+                            ),
+                          )),
+                          Expanded(
+                              child: Container(
+                            height: double.infinity,
+                            child: InkWell(
+                              onTap: () {
                                 ExtendedNavigator.of(context)
                                     .pushNamed(Routes.accountPage);
                               },
@@ -153,29 +215,14 @@ class _AccountPagehomeState extends State<AccountPagehome>
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
-                                    Icon(MdiIcons.account),
+                                    Icon(
+                                      MdiIcons.account,
+                                      color: Colors.blue,
+                                    ),
                                     SizedBox(
                                       width: 10,
                                     ),
-                                    Text("See Profile"),
-                                  ]),
-                            ),
-                          )),
-                          Expanded(
-                              child: Container(
-                            height: double.infinity,
-                            child: InkWell(
-                              onTap: () {},
-                              splashColor: Colors.yellow,
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: <Widget>[
-                                    Icon(MdiIcons.account),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text("See Profile"),
+                                    Text("My Profile"),
                                   ]),
                             ),
                           )),

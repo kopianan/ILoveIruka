@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
+import 'package:i_love_iruka/domain/auth/auth_failure.dart';
 import 'package:i_love_iruka/domain/core/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,5 +20,16 @@ Future<Either<String, User>> getUserData() async {
     return right(User.fromJson(json.decode(userString)));
   } catch (e) {
     return left(e.toString());
+  }
+}
+
+Future<Either<AuthFailure, bool>> deleteAllData() async {
+  final shared = await SharedPreferences.getInstance();
+
+  try {
+    final user = await shared.clear();
+    return right(user);
+  } catch (e) {
+    return left(AuthFailure.serverError());
   }
 }

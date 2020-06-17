@@ -6,4 +6,5 @@ abstract class AuthFailure with _$AuthFailure {
   const factory AuthFailure.badRequest() = _BadRequest;
   const factory AuthFailure.serverError() = _ServerError;
   const factory AuthFailure.notFound() = _NotFound;
+  const factory AuthFailure.defaultError() = _DefaultError;
 }

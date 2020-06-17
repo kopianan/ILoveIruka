@@ -7,6 +7,7 @@ import 'package:i_love_iruka/domain/auth/auth_failure.dart';
 import 'package:i_love_iruka/domain/auth/i_auth_facade.dart';
 import 'package:i_love_iruka/domain/auth/login_data.dart';
 import 'package:i_love_iruka/domain/auth/register_data.dart';
+import 'package:i_love_iruka/infrastructure/auth/update_data.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
@@ -27,6 +28,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthEvent event,
   ) async* {
     yield* event.map(
+      updateCustomer: (e) async* {
+        yield AuthState.onProgress();
+        final _result = await _iAuthFacade.updateCustomer(e.data);
+        yield AuthState.failOrSuccessUpdateCustomerOption(
+            updateCustomerOption: some(_result));
+      },
+      getUserRoleList: (e) async* {
+        yield AuthState.failOrSuccessGetRole(
+          options: none(),
+          isLoading: true,
+        );
+        final _result = await _iAuthFacade.getUserRole();
+        yield AuthState.failOrSuccessGetRole(
+          options: some(_result),
+          isLoading: false,
+        );
+      },
       loginWithEmail: (e) async* {
         yield AuthState.onProgress();
         final _result = await _iAuthFacade.singInUser(e.loginRequestData);

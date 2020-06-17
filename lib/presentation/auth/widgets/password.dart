@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class Password extends StatefulWidget {
-  Password({@required this.controller, this.validator});
+  Password(
+      {@required this.controller,
+      @required this.validator,
+      @required this.focusNode,
+      @required this.textInputAction,
+      @required this.onFieldSubmited});
   final TextEditingController controller;
-  final Function validator;
-
+  final FormFieldValidator<String> validator;
+  final FocusNode focusNode;
+  final TextInputAction textInputAction;
+  final ValueChanged onFieldSubmited;
   @override
   _PasswordState createState() => _PasswordState();
 }
@@ -19,6 +26,11 @@ class _PasswordState extends State<Password> {
       child: TextFormField(
         obscureText: _obsecureText,
         controller: widget.controller,
+        focusNode: widget.focusNode,
+        textInputAction: widget.textInputAction,
+        onFieldSubmitted: (string) {
+          widget.onFieldSubmited(string);
+        },
         validator: widget.validator,
         keyboardType: TextInputType.text,
         style: TextStyle(letterSpacing: 1, fontSize: 18),

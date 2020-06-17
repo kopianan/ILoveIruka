@@ -8,6 +8,7 @@ import 'package:i_love_iruka/presentation/auth/register_form/register_form.dart'
 import 'package:i_love_iruka/presentation/auth/sign_in_form/sign_in_form.dart';
 import 'package:i_love_iruka/presentation/feed_detail/feed_detail_page.dart';
 import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
+import 'package:i_love_iruka/presentation/splah_screen/splash_screen.dart';
 import 'package:i_love_iruka/presentation/welcome/welcome_screen.dart';
 
 @MaterialAutoRouter()
@@ -19,10 +20,11 @@ class $Router {
   ForgotPasswordForm forgotPasswordForm;
   SignInForm signInForm;
   ForgotPaswordSuccessNotif forgotPaswordSuccessNotif;
-  @initial
+
   WelcomeScreen welcomeScreen;
   AccountPage accountPage;
-  AppointmentForm appointmentForm ; 
-  FeedDetailPage feedDetailPage ; 
-  
+  AppointmentForm appointmentForm;
+  FeedDetailPage feedDetailPage;
+  @initial
+  SplashScreen splashScreen;
 }

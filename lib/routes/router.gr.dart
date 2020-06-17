@@ -17,6 +17,7 @@ import 'package:i_love_iruka/presentation/account/account_page.dart';
 import 'package:i_love_iruka/presentation/appointment/appointment_form.dart';
 import 'package:i_love_iruka/presentation/feed_detail/feed_detail_page.dart';
 import 'package:i_love_iruka/domain/feed_home/feed.dart';
+import 'package:i_love_iruka/presentation/splah_screen/splash_screen.dart';
 
 abstract class Routes {
   static const dashboardPage = '/dashboard-page';
@@ -24,10 +25,11 @@ abstract class Routes {
   static const forgotPasswordForm = '/forgot-password-form';
   static const signInForm = '/sign-in-form';
   static const forgotPaswordSuccessNotif = '/forgot-pasword-success-notif';
-  static const welcomeScreen = '/';
+  static const welcomeScreen = '/welcome-screen';
   static const accountPage = '/account-page';
   static const appointmentForm = '/appointment-form';
   static const feedDetailPage = '/feed-detail-page';
+  static const splashScreen = '/';
   static const all = {
     dashboardPage,
     registerForm,
@@ -38,6 +40,7 @@ abstract class Routes {
     accountPage,
     appointmentForm,
     feedDetailPage,
+    splashScreen,
   };
 }
 
@@ -118,6 +121,16 @@ class Router extends RouterBase {
               FeedDetailPage(key: typedArgs.key, feed: typedArgs.feed),
           settings: settings,
         );
+      case Routes.splashScreen:
+        if (hasInvalidArgs<SplashScreenArguments>(args)) {
+          return misTypedArgsRoute<SplashScreenArguments>(args);
+        }
+        final typedArgs =
+            args as SplashScreenArguments ?? SplashScreenArguments();
+        return MaterialPageRoute<dynamic>(
+          builder: (context) => SplashScreen(key: typedArgs.key),
+          settings: settings,
+        );
       default:
         return unknownRoutePage(settings.name);
     }
@@ -151,4 +164,10 @@ class FeedDetailPageArguments {
   final Key key;
   final Feed feed;
   FeedDetailPageArguments({this.key, @required this.feed});
+}
+
+//SplashScreen arguments holder class
+class SplashScreenArguments {
+  final Key key;
+  SplashScreenArguments({this.key});
 }

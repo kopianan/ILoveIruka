@@ -4,8 +4,15 @@ part of 'auth_bloc.dart';
 abstract class AuthState with _$AuthState {
   factory AuthState.initial() = _Initial;
   factory AuthState.onProgress() = _OnProgreess;
+  factory AuthState.failOrSuccessGetRole(
+      {Option<Either<AuthFailure, List<String>>> options,
+      bool isLoading}) = _FailOrSuccessGetRole;
   factory AuthState.failOrSuccessLoginOption(
           {@required
               Option<Either<AuthFailure, LoginData>> failOrSuccessOption}) =
       _FailOrSuccessOption;
+  factory AuthState.failOrSuccessUpdateCustomerOption(
+          {@required
+              Option<Either<AuthFailure, LoginData>> updateCustomerOption}) =
+      _FailOrSuccessUpdateCustomerOption;
 }

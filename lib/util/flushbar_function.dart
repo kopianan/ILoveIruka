@@ -6,6 +6,10 @@ Flushbar showFlushbarError({@required String errMessage}) {
   return FlushbarHelper.createError(message: errMessage);
 }
 
+Flushbar showFlushbarSuccess({@required String succMessage}) {
+  return FlushbarHelper.createSuccess(message: succMessage);
+}
+
 Flushbar showFlushbarLoading({@required String loading}) {
   return Flushbar(
     message: loading,
@@ -16,6 +20,6 @@ Flushbar showFlushbarLoading({@required String loading}) {
 
 dismissFlushbar(Flushbar flushbar) {
   if (flushbar != null) {
-  flushbar.dismiss();
+    flushbar.dismiss();
   }
 }

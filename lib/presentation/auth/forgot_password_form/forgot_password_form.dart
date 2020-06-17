@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:i_love_iruka/presentation/auth/widgets/email_address.dart';
 import 'package:i_love_iruka/routes/router.gr.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class ForgotPasswordForm extends StatefulWidget {
   @override
@@ -57,9 +55,9 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
             child: Column(
               children: <Widget>[
-                EmailAddress(
-                  controller: emailController,
-                ),
+                // EmailAddress(
+                //   controller: emailController,
+                // ),
                 SizedBox(
                   height: 30,
                 ),
@@ -75,7 +73,8 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
                   textColor: Colors.white,
                   // padding: EdgeInsets.symmetric(horizontal: 10),
                   onPressed: () {
-                    ExtendedNavigator.of(context).pushNamed(Routes.forgotPaswordSuccessNotif); 
+                    ExtendedNavigator.of(context)
+                        .pushNamed(Routes.forgotPaswordSuccessNotif);
                   },
                   splashColor: Colors.white,
                   color: Color(0xff2A7FD5),

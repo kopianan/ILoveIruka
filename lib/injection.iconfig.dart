@@ -14,6 +14,7 @@ import 'package:i_love_iruka/infrastructure/transaction/transaction_repository.d
 import 'package:i_love_iruka/domain/transaction/i_transaction_facade.dart';
 import 'package:i_love_iruka/application/transaction/transaction_bloc.dart';
 import 'package:i_love_iruka/application/auth/auth_bloc.dart';
+import 'package:i_love_iruka/application/auth/authentication/authentication_bloc.dart';
 import 'package:i_love_iruka/application/feed_home.dart/feed_home_bloc.dart';
 import 'package:get_it/get_it.dart';
 
@@ -27,6 +28,8 @@ void $initGetIt(GetIt g, {String environment}) {
   g.registerFactory<TransactionBloc>(
       () => TransactionBloc(g<ITransactionFacade>()));
   g.registerFactory<AuthBloc>(() => AuthBloc(g<IAuthFacade>()));
+  g.registerFactory<AuthenticationBloc>(
+      () => AuthenticationBloc(g<IAuthFacade>()));
   g.registerFactory<FeedHomeBloc>(() => FeedHomeBloc(g<IFeedHomeFacade>()));
 }
 
