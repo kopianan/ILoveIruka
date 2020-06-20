@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:i_love_iruka/domain/auth/auth_failure.dart';
 import 'package:i_love_iruka/domain/auth/login_data.dart';
@@ -9,11 +11,14 @@ abstract class IAuthFacade {
   Future<Either<AuthFailure, LoginResponseData>> singInUser(
       LoginRequestData loginRequestData);
   Future<Either<AuthFailure, LoginResponseData>> updateCustomer(
-      UpdateCustomerData requestUpdatedData);
+      UpdateCustomerData requestUpdatedData, File image);
+  Future<Either<AuthFailure, LoginResponseData>> updateGroomer(User user);
   Future<Either<AuthFailure, LoginResponseData>> registerNewUser(
       {RegisterData registerData});
   Future<Either<AuthFailure, List<String>>> getUserRole();
   Future<Either<AuthFailure, User>> checkAuthentcation();
+  Future<Either<AuthFailure, Unit>> changeAvailability(
+      {bool status, String id});
   Future<Either<AuthFailure, User>> saveAuthenticationToLocal({User user});
   Future<Either<AuthFailure, Unit>> signOut();
 }

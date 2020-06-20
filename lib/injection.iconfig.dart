@@ -10,8 +10,11 @@ import 'package:i_love_iruka/infrastructure/auth/auth_repository.dart';
 import 'package:i_love_iruka/domain/auth/i_auth_facade.dart';
 import 'package:i_love_iruka/infrastructure/feed_home/feed_home_repository.dart';
 import 'package:i_love_iruka/domain/feed_home/i_feed_home_facade.dart';
+import 'package:i_love_iruka/infrastructure/other/other_repository.dart';
+import 'package:i_love_iruka/domain/other/i_other_facade.dart';
 import 'package:i_love_iruka/infrastructure/transaction/transaction_repository.dart';
 import 'package:i_love_iruka/domain/transaction/i_transaction_facade.dart';
+import 'package:i_love_iruka/application/other/other_bloc.dart';
 import 'package:i_love_iruka/application/transaction/transaction_bloc.dart';
 import 'package:i_love_iruka/application/auth/auth_bloc.dart';
 import 'package:i_love_iruka/application/auth/authentication/authentication_bloc.dart';
@@ -23,8 +26,10 @@ void $initGetIt(GetIt g, {String environment}) {
   g.registerLazySingleton<Dio>(() => dioInjectionModule.dio);
   g.registerLazySingleton<IAuthFacade>(() => AuthRepository(g<Dio>()));
   g.registerLazySingleton<IFeedHomeFacade>(() => FeedHomeRepository(g<Dio>()));
+  g.registerLazySingleton<IOtherFacade>(() => OtherRepository(g<Dio>()));
   g.registerLazySingleton<ITransactionFacade>(
       () => TransactionRepository(g<Dio>()));
+  g.registerFactory<OtherBloc>(() => OtherBloc(g<IOtherFacade>()));
   g.registerFactory<TransactionBloc>(
       () => TransactionBloc(g<ITransactionFacade>()));
   g.registerFactory<AuthBloc>(() => AuthBloc(g<IAuthFacade>()));

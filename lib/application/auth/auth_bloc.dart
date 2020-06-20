@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
@@ -7,6 +8,7 @@ import 'package:i_love_iruka/domain/auth/auth_failure.dart';
 import 'package:i_love_iruka/domain/auth/i_auth_facade.dart';
 import 'package:i_love_iruka/domain/auth/login_data.dart';
 import 'package:i_love_iruka/domain/auth/register_data.dart';
+import 'package:i_love_iruka/domain/core/user.dart';
 import 'package:i_love_iruka/infrastructure/auth/update_data.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
@@ -28,9 +30,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthEvent event,
   ) async* {
     yield* event.map(
+      updateGroomer: (e) async* {
+        yield AuthState.onProgress();
+        final _result = await _iAuthFacade.updateGroomer(e.user);
+        yield AuthState.failOrSuccessUpdateCustomerOption(
+            updateCustomerOption: some(_result));
+      },
+      changeGroomerAvailability: (e) async* {
+        yield AuthState.onProgress();
+        final _result = await _iAuthFacade.changeAvailability(
+            id: e.id, status: e.isAvailable);
+        yield AuthState.changeAvailability(some(_result));
+      },
       updateCustomer: (e) async* {
         yield AuthState.onProgress();
-        final _result = await _iAuthFacade.updateCustomer(e.data);
+        final _result = await _iAuthFacade.updateCustomer(e.data, e.image);
         yield AuthState.failOrSuccessUpdateCustomerOption(
             updateCustomerOption: some(_result));
       },

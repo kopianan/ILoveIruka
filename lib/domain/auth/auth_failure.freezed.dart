@@ -12,8 +12,10 @@ T _$identity<T>(T value) => value;
 class _$AuthFailureTearOff {
   const _$AuthFailureTearOff();
 
-  _BadRequest badRequest() {
-    return const _BadRequest();
+  _BadRequest badRequest({String errorMessage}) {
+    return _BadRequest(
+      errorMessage: errorMessage,
+    );
   }
 
   _ServerError serverError() {
@@ -35,14 +37,14 @@ const $AuthFailure = _$AuthFailureTearOff();
 mixin _$AuthFailure {
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result badRequest(),
+    @required Result badRequest(String errorMessage),
     @required Result serverError(),
     @required Result notFound(),
     @required Result defaultError(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result badRequest(),
+    Result badRequest(String errorMessage),
     Result serverError(),
     Result notFound(),
     Result defaultError(),
@@ -83,6 +85,7 @@ abstract class _$BadRequestCopyWith<$Res> {
   factory _$BadRequestCopyWith(
           _BadRequest value, $Res Function(_BadRequest) then) =
       __$BadRequestCopyWithImpl<$Res>;
+  $Res call({String errorMessage});
 }
 
 class __$BadRequestCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
@@ -93,28 +96,51 @@ class __$BadRequestCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
 
   @override
   _BadRequest get _value => super._value as _BadRequest;
+
+  @override
+  $Res call({
+    Object errorMessage = freezed,
+  }) {
+    return _then(_BadRequest(
+      errorMessage: errorMessage == freezed
+          ? _value.errorMessage
+          : errorMessage as String,
+    ));
+  }
 }
 
 class _$_BadRequest implements _BadRequest {
-  const _$_BadRequest();
+  const _$_BadRequest({this.errorMessage});
+
+  @override
+  final String errorMessage;
 
   @override
   String toString() {
-    return 'AuthFailure.badRequest()';
+    return 'AuthFailure.badRequest(errorMessage: $errorMessage)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _BadRequest);
+    return identical(this, other) ||
+        (other is _BadRequest &&
+            (identical(other.errorMessage, errorMessage) ||
+                const DeepCollectionEquality()
+                    .equals(other.errorMessage, errorMessage)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
+
+  @override
+  _$BadRequestCopyWith<_BadRequest> get copyWith =>
+      __$BadRequestCopyWithImpl<_BadRequest>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result badRequest(),
+    @required Result badRequest(String errorMessage),
     @required Result serverError(),
     @required Result notFound(),
     @required Result defaultError(),
@@ -123,13 +149,13 @@ class _$_BadRequest implements _BadRequest {
     assert(serverError != null);
     assert(notFound != null);
     assert(defaultError != null);
-    return badRequest();
+    return badRequest(errorMessage);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result badRequest(),
+    Result badRequest(String errorMessage),
     Result serverError(),
     Result notFound(),
     Result defaultError(),
@@ -137,7 +163,7 @@ class _$_BadRequest implements _BadRequest {
   }) {
     assert(orElse != null);
     if (badRequest != null) {
-      return badRequest();
+      return badRequest(errorMessage);
     }
     return orElse();
   }
@@ -175,7 +201,10 @@ class _$_BadRequest implements _BadRequest {
 }
 
 abstract class _BadRequest implements AuthFailure {
-  const factory _BadRequest() = _$_BadRequest;
+  const factory _BadRequest({String errorMessage}) = _$_BadRequest;
+
+  String get errorMessage;
+  _$BadRequestCopyWith<_BadRequest> get copyWith;
 }
 
 abstract class _$ServerErrorCopyWith<$Res> {
@@ -213,7 +242,7 @@ class _$_ServerError implements _ServerError {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result badRequest(),
+    @required Result badRequest(String errorMessage),
     @required Result serverError(),
     @required Result notFound(),
     @required Result defaultError(),
@@ -228,7 +257,7 @@ class _$_ServerError implements _ServerError {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result badRequest(),
+    Result badRequest(String errorMessage),
     Result serverError(),
     Result notFound(),
     Result defaultError(),
@@ -310,7 +339,7 @@ class _$_NotFound implements _NotFound {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result badRequest(),
+    @required Result badRequest(String errorMessage),
     @required Result serverError(),
     @required Result notFound(),
     @required Result defaultError(),
@@ -325,7 +354,7 @@ class _$_NotFound implements _NotFound {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result badRequest(),
+    Result badRequest(String errorMessage),
     Result serverError(),
     Result notFound(),
     Result defaultError(),
@@ -409,7 +438,7 @@ class _$_DefaultError implements _DefaultError {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result badRequest(),
+    @required Result badRequest(String errorMessage),
     @required Result serverError(),
     @required Result notFound(),
     @required Result defaultError(),
@@ -424,7 +453,7 @@ class _$_DefaultError implements _DefaultError {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result badRequest(),
+    Result badRequest(String errorMessage),
     Result serverError(),
     Result notFound(),
     Result defaultError(),

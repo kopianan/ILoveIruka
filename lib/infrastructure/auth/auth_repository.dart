@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -63,11 +64,13 @@ class AuthRepository implements IAuthFacade {
         if (e.response.statusCode == 404) {
           return left(AuthFailure.notFound());
         } else if (e.response.statusCode == 400) {
-          return left(AuthFailure.badRequest());
+          return left(
+              AuthFailure.badRequest(errorMessage: e.response.data.toString()));
         }
       } else {
         return left(AuthFailure.serverError());
       }
+      return left(AuthFailure.defaultError());
     }
   }
 
@@ -124,7 +127,7 @@ class AuthRepository implements IAuthFacade {
 
   @override
   Future<Either<AuthFailure, LoginResponseData>> updateCustomer(
-      UpdateCustomerData updated) async {
+      UpdateCustomerData updated, File image) async {
     Response response;
 
     final formData = FormData.fromMap({
@@ -133,7 +136,8 @@ class AuthRepository implements IAuthFacade {
       "Email": updated.email,
       "PhoneNumber": updated.phoneNumber,
       "Address": updated.address,
-      "Id": updated.id
+      "Id": updated.id,
+      "Picture": (image == null) ? "" : MultipartFile.fromFileSync(image.path)
     });
 
     try {
@@ -167,6 +171,60 @@ class AuthRepository implements IAuthFacade {
         return left(AuthFailure.serverError());
     } catch (e) {
       return left(AuthFailure.serverError());
+    }
+  }
+
+  @override
+  Future<Either<AuthFailure, Unit>> changeAvailability(
+      {bool status, String id}) async {
+    Response response;
+
+    final _params = {"userId": "$id", "status": "$status"};
+    try {
+      response = await _dio.put(
+        Constants.getBaseUrl() + "/ChangeGroomerAvailabilityStatus",
+        queryParameters: _params,
+      );
+      print(response.data);
+      return right(unit);
+    } on DioError catch (e) {
+      print(e.error.toString());
+      if (e.type == DioErrorType.RESPONSE) {
+        if (e.response.statusCode == 404) {
+          return left(AuthFailure.notFound());
+        } else if (e.response.statusCode == 400) {
+          return left(AuthFailure.badRequest());
+        }
+      } else {
+        return left(AuthFailure.serverError());
+      }
+    }
+    return left(AuthFailure.serverError());
+  }
+
+  @override
+  Future<Either<AuthFailure, LoginResponseData>> updateGroomer(
+      User user) async {
+    Response response;
+
+    final formData = FormData.fromMap(user.toJson());
+    try {
+      response = await _dio.post(Constants.getBaseUrl() + "/EditUserMobile",
+          data: formData);
+      print(response.data);
+      final _result = LoginResponseData.fromJson(response.data);
+      return right(_result);
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.RESPONSE) {
+        if (e.response.statusCode == 404) {
+          return left(AuthFailure.notFound());
+        } else if (e.response.statusCode == 400) {
+          return left(AuthFailure.badRequest());
+        }
+      } else {
+        return left(AuthFailure.serverError());
+      }
+      return left(AuthFailure.defaultError());
     }
   }
 }

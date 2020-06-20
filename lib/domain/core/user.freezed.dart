@@ -17,6 +17,7 @@ class _$UserTearOff {
 
   _User call(
       {@JsonKey(name: 'Id') String id,
+      @JsonKey(name: 'accessKey') String accessKey,
       @JsonKey(name: 'Email') String email,
       @JsonKey(name: 'Name') String name,
       @JsonKey(name: 'Description') String description,
@@ -40,6 +41,7 @@ class _$UserTearOff {
       @JsonKey(name: 'IsActive') bool isActive}) {
     return _User(
       id: id,
+      accessKey: accessKey,
       email: email,
       name: name,
       description: description,
@@ -71,6 +73,8 @@ const $User = _$UserTearOff();
 mixin _$User {
   @JsonKey(name: 'Id')
   String get id;
+  @JsonKey(name: 'accessKey')
+  String get accessKey;
   @JsonKey(name: 'Email')
   String get email;
   @JsonKey(name: 'Name')
@@ -123,6 +127,7 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'Id') String id,
+      @JsonKey(name: 'accessKey') String accessKey,
       @JsonKey(name: 'Email') String email,
       @JsonKey(name: 'Name') String name,
       @JsonKey(name: 'Description') String description,
@@ -156,6 +161,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
   @override
   $Res call({
     Object id = freezed,
+    Object accessKey = freezed,
     Object email = freezed,
     Object name = freezed,
     Object description = freezed,
@@ -180,6 +186,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
+      accessKey: accessKey == freezed ? _value.accessKey : accessKey as String,
       email: email == freezed ? _value.email : email as String,
       name: name == freezed ? _value.name : name as String,
       description:
@@ -227,6 +234,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   $Res call(
       {@JsonKey(name: 'Id') String id,
+      @JsonKey(name: 'accessKey') String accessKey,
       @JsonKey(name: 'Email') String email,
       @JsonKey(name: 'Name') String name,
       @JsonKey(name: 'Description') String description,
@@ -261,6 +269,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
   @override
   $Res call({
     Object id = freezed,
+    Object accessKey = freezed,
     Object email = freezed,
     Object name = freezed,
     Object description = freezed,
@@ -285,6 +294,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
   }) {
     return _then(_User(
       id: id == freezed ? _value.id : id as String,
+      accessKey: accessKey == freezed ? _value.accessKey : accessKey as String,
       email: email == freezed ? _value.email : email as String,
       name: name == freezed ? _value.name : name as String,
       description:
@@ -330,6 +340,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 class _$_User implements _User {
   _$_User(
       {@JsonKey(name: 'Id') this.id,
+      @JsonKey(name: 'accessKey') this.accessKey,
       @JsonKey(name: 'Email') this.email,
       @JsonKey(name: 'Name') this.name,
       @JsonKey(name: 'Description') this.description,
@@ -358,6 +369,9 @@ class _$_User implements _User {
   @override
   @JsonKey(name: 'Id')
   final String id;
+  @override
+  @JsonKey(name: 'accessKey')
+  final String accessKey;
   @override
   @JsonKey(name: 'Email')
   final String email;
@@ -424,7 +438,7 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(id: $id, email: $email, name: $name, description: $description, address: $address, phoneNumber: $phoneNumber, picture: $picture, createdDate: $createdDate, pIC: $pIC, keyFeatures: $keyFeatures, coverageArea: $coverageArea, yearsOfExperience: $yearsOfExperience, availability: $availability, styling: $styling, clipping: $clipping, trainingStartDate: $trainingStartDate, trainingYears: $trainingYears, trainingCourses: $trainingCourses, show: $show, certificate: $certificate, role: $role, isActive: $isActive)';
+    return 'User(id: $id, accessKey: $accessKey, email: $email, name: $name, description: $description, address: $address, phoneNumber: $phoneNumber, picture: $picture, createdDate: $createdDate, pIC: $pIC, keyFeatures: $keyFeatures, coverageArea: $coverageArea, yearsOfExperience: $yearsOfExperience, availability: $availability, styling: $styling, clipping: $clipping, trainingStartDate: $trainingStartDate, trainingYears: $trainingYears, trainingCourses: $trainingCourses, show: $show, certificate: $certificate, role: $role, isActive: $isActive)';
   }
 
   @override
@@ -433,6 +447,9 @@ class _$_User implements _User {
         (other is _User &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.accessKey, accessKey) ||
+                const DeepCollectionEquality()
+                    .equals(other.accessKey, accessKey)) &&
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.name, name) ||
@@ -497,6 +514,7 @@ class _$_User implements _User {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(accessKey) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(description) ^
@@ -532,6 +550,7 @@ class _$_User implements _User {
 abstract class _User implements User {
   factory _User(
       {@JsonKey(name: 'Id') String id,
+      @JsonKey(name: 'accessKey') String accessKey,
       @JsonKey(name: 'Email') String email,
       @JsonKey(name: 'Name') String name,
       @JsonKey(name: 'Description') String description,
@@ -559,6 +578,9 @@ abstract class _User implements User {
   @override
   @JsonKey(name: 'Id')
   String get id;
+  @override
+  @JsonKey(name: 'accessKey')
+  String get accessKey;
   @override
   @JsonKey(name: 'Email')
   String get email;

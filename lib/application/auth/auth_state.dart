@@ -4,6 +4,9 @@ part of 'auth_bloc.dart';
 abstract class AuthState with _$AuthState {
   factory AuthState.initial() = _Initial;
   factory AuthState.onProgress() = _OnProgreess;
+  factory AuthState.changeAvailability(
+          Option<Either<AuthFailure, Unit>> availabilityOption) =
+      _ChangeAvailability;
   factory AuthState.failOrSuccessGetRole(
       {Option<Either<AuthFailure, List<String>>> options,
       bool isLoading}) = _FailOrSuccessGetRole;

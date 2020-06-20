@@ -83,21 +83,21 @@ class _AccountPagehomeState extends State<AccountPagehome>
             Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(
-                      colors: [Color(0xffF9C137), Colors.white],
+                      colors: [Color(0xff1988E7), Colors.white],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter)),
               child: Container(
-                margin: EdgeInsets.only(top: 80, right: 20, left: 20),
+                margin: EdgeInsets.only(top: 100, right: 20, left: 20),
                 child: MemberCard(
                   name: authProvider.getUserData.name,
                   point: data.customerPoints.toString(),
-                  cardBottomGradient: ColorCol.yellowCardBottomGradient,
-                  cardTextColor: ColorCol.yellowCardText,
-                  cardTopGradient: ColorCol.yellowCardTopGradient,
+                  cardBottomGradient: ColorCol.blueCardBottomGradient,
+                  cardTextColor: ColorCol.blueCardText,
+                  cardTopGradient: ColorCol.blueCardTopGradient,
                   imagesList: [
-                    'yellow_clippath1.png',
-                    'yellow_clippath2.png',
-                    'yellow_clippath3.png'
+                    'blue_clippath1.png',
+                    'blue_clippath2.png',
+                    'blue_clippath3.png'
                   ],
                 ),
               ),
@@ -119,7 +119,7 @@ class _AccountPagehomeState extends State<AccountPagehome>
               },
               child: SafeArea(
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  margin: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,6 +133,7 @@ class _AccountPagehomeState extends State<AccountPagehome>
                       ),
                       InkWell(
                         onTap: () {
+                          print("logout"); 
                           context
                               .bloc<AuthenticationBloc>()
                               .add(AuthenticationEvent.signOut());
@@ -151,7 +152,7 @@ class _AccountPagehomeState extends State<AccountPagehome>
             Container(
               width: double.infinity,
               margin: EdgeInsets.only(
-                top: 300,
+                top: 320,
               ),
               child: Column(
                 children: <Widget>[

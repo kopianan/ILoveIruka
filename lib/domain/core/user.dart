@@ -6,6 +6,7 @@ abstract class User with _$User {
   factory User(
       {
       @JsonKey(name: "Id") String id,
+      @JsonKey(name: "accessKey") String accessKey,
       @JsonKey(name: "Email") String email,
       @JsonKey(name: "Name") String name,
       @JsonKey(name: "Description") String description,

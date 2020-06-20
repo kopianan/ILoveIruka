@@ -309,7 +309,8 @@ class _$TransactionStateTearOff {
   }
 
   _OnGetPointOption onGetPointOption(
-      Option<Either<TransactionFailure, dynamic>> failOrSuccessOption) {
+      Option<Either<TransactionFailure, GetPointAndLastTransResponse>>
+          failOrSuccessOption) {
     return _OnGetPointOption(
       failOrSuccessOption,
     );
@@ -326,14 +327,16 @@ mixin _$TransactionState {
     @required Result initial(),
     @required
         Result onGetPointOption(
-            Option<Either<TransactionFailure, dynamic>> failOrSuccessOption),
+            Option<Either<TransactionFailure, GetPointAndLastTransResponse>>
+                failOrSuccessOption),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result onProgress(),
     Result initial(),
     Result onGetPointOption(
-        Option<Either<TransactionFailure, dynamic>> failOrSuccessOption),
+        Option<Either<TransactionFailure, GetPointAndLastTransResponse>>
+            failOrSuccessOption),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -406,7 +409,8 @@ class _$_OnProgress implements _OnProgress {
     @required Result initial(),
     @required
         Result onGetPointOption(
-            Option<Either<TransactionFailure, dynamic>> failOrSuccessOption),
+            Option<Either<TransactionFailure, GetPointAndLastTransResponse>>
+                failOrSuccessOption),
   }) {
     assert(onProgress != null);
     assert(initial != null);
@@ -420,7 +424,8 @@ class _$_OnProgress implements _OnProgress {
     Result onProgress(),
     Result initial(),
     Result onGetPointOption(
-        Option<Either<TransactionFailure, dynamic>> failOrSuccessOption),
+        Option<Either<TransactionFailure, GetPointAndLastTransResponse>>
+            failOrSuccessOption),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -500,7 +505,8 @@ class _$_Initial implements _Initial {
     @required Result initial(),
     @required
         Result onGetPointOption(
-            Option<Either<TransactionFailure, dynamic>> failOrSuccessOption),
+            Option<Either<TransactionFailure, GetPointAndLastTransResponse>>
+                failOrSuccessOption),
   }) {
     assert(onProgress != null);
     assert(initial != null);
@@ -514,7 +520,8 @@ class _$_Initial implements _Initial {
     Result onProgress(),
     Result initial(),
     Result onGetPointOption(
-        Option<Either<TransactionFailure, dynamic>> failOrSuccessOption),
+        Option<Either<TransactionFailure, GetPointAndLastTransResponse>>
+            failOrSuccessOption),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -561,7 +568,9 @@ abstract class _$OnGetPointOptionCopyWith<$Res> {
   factory _$OnGetPointOptionCopyWith(
           _OnGetPointOption value, $Res Function(_OnGetPointOption) then) =
       __$OnGetPointOptionCopyWithImpl<$Res>;
-  $Res call({Option<Either<TransactionFailure, dynamic>> failOrSuccessOption});
+  $Res call(
+      {Option<Either<TransactionFailure, GetPointAndLastTransResponse>>
+          failOrSuccessOption});
 }
 
 class __$OnGetPointOptionCopyWithImpl<$Res>
@@ -581,7 +590,8 @@ class __$OnGetPointOptionCopyWithImpl<$Res>
     return _then(_OnGetPointOption(
       failOrSuccessOption == freezed
           ? _value.failOrSuccessOption
-          : failOrSuccessOption as Option<Either<TransactionFailure, dynamic>>,
+          : failOrSuccessOption as Option<
+              Either<TransactionFailure, GetPointAndLastTransResponse>>,
     ));
   }
 }
@@ -591,7 +601,8 @@ class _$_OnGetPointOption implements _OnGetPointOption {
       : assert(failOrSuccessOption != null);
 
   @override
-  final Option<Either<TransactionFailure, dynamic>> failOrSuccessOption;
+  final Option<Either<TransactionFailure, GetPointAndLastTransResponse>>
+      failOrSuccessOption;
 
   @override
   String toString() {
@@ -623,7 +634,8 @@ class _$_OnGetPointOption implements _OnGetPointOption {
     @required Result initial(),
     @required
         Result onGetPointOption(
-            Option<Either<TransactionFailure, dynamic>> failOrSuccessOption),
+            Option<Either<TransactionFailure, GetPointAndLastTransResponse>>
+                failOrSuccessOption),
   }) {
     assert(onProgress != null);
     assert(initial != null);
@@ -637,7 +649,8 @@ class _$_OnGetPointOption implements _OnGetPointOption {
     Result onProgress(),
     Result initial(),
     Result onGetPointOption(
-        Option<Either<TransactionFailure, dynamic>> failOrSuccessOption),
+        Option<Either<TransactionFailure, GetPointAndLastTransResponse>>
+            failOrSuccessOption),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -678,9 +691,10 @@ class _$_OnGetPointOption implements _OnGetPointOption {
 
 abstract class _OnGetPointOption implements TransactionState {
   factory _OnGetPointOption(
-          Option<Either<TransactionFailure, dynamic>> failOrSuccessOption) =
-      _$_OnGetPointOption;
+      Option<Either<TransactionFailure, GetPointAndLastTransResponse>>
+          failOrSuccessOption) = _$_OnGetPointOption;
 
-  Option<Either<TransactionFailure, dynamic>> get failOrSuccessOption;
+  Option<Either<TransactionFailure, GetPointAndLastTransResponse>>
+      get failOrSuccessOption;
   _$OnGetPointOptionCopyWith<_OnGetPointOption> get copyWith;
 }

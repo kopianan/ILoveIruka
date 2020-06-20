@@ -73,7 +73,7 @@ class _SignInFormState extends State<SignInForm> {
         create: (context) => getIt<AuthBloc>(),
         child: BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
           state.maybeMap(
-            orElse: (){},
+            orElse: () {},
             onProgress: (e) {
               flushbar = showFlushbarLoading(
                 loading: "Signing User, Wait a moment.....",
@@ -88,7 +88,8 @@ class _SignInFormState extends State<SignInForm> {
                     String errM;
 
                     l.map(
-                      badRequest: (e) => errM = "Check your input",
+                      defaultError: (e) => errM = "Something wrong",
+                      badRequest: (e) => errM = e.errorMessage,
                       serverError: (e) => errM = "Server Error",
                       notFound: (e) => errM = "Something wrong",
                     );
@@ -102,7 +103,6 @@ class _SignInFormState extends State<SignInForm> {
                           saveUserData(e.user).then((value) {
                             ExtendedNavigator.of(context)
                                 .pushNamed(Routes.dashboardPage);
-
                             Fluttertoast.showToast(msg: "Success Login");
                           }).catchError((onError) {
                             return Fluttertoast.showToast(

@@ -70,7 +70,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 orElse: () {},
                 failOrSuccessGetRole: (e) {
                   e.options.fold(
-                      () => null,
+                      () => (){},
                       (a) => a.fold(
                           (l) => () {}, (r) => authProvider.setUserList(r)));
                 },
@@ -83,7 +83,8 @@ class _RegisterFormState extends State<RegisterForm> {
                       () => null,
                       (a) => a.fold(
                             (l) {
-                              l.map(
+                              l.maybeMap(
+                                orElse: () {},
                                 badRequest: (e) => errMsg = "Bad Request",
                                 serverError: (e) => errMsg = "Server Error",
                                 notFound: (e) => errMsg = "Not Found",
@@ -285,7 +286,7 @@ class _RegisterFormState extends State<RegisterForm> {
         CustomPassword(
           controller: confirmationPasswordCon,
           validator: validateConfPassword,
-          focusNode: passwordFN,
+          focusNode: confPassFN,
           textInputAction: TextInputAction.next,
           onFieldSubmited: (val) {
             confPassFN.unfocus();

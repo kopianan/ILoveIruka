@@ -28,9 +28,24 @@ class _$AuthEventTearOff {
     return _GetUserRoleList();
   }
 
-  _UpdateCustomer updateCustomer({UpdateCustomerData data}) {
+  _UpdateCustomer updateCustomer({UpdateCustomerData data, File image}) {
     return _UpdateCustomer(
       data: data,
+      image: image,
+    );
+  }
+
+  _UpdateGroomer updateGroomer({User user}) {
+    return _UpdateGroomer(
+      user: user,
+    );
+  }
+
+  _ChangeGroomerAvailability changeGroomerAvailability(
+      {bool isAvailable, String id}) {
+    return _ChangeGroomerAvailability(
+      isAvailable: isAvailable,
+      id: id,
     );
   }
 }
@@ -44,14 +59,18 @@ mixin _$AuthEvent {
     @required Result loginWithEmail(LoginRequestData loginRequestData),
     @required Result registerWithEmail(RegisterData registerData),
     @required Result getUserRoleList(),
-    @required Result updateCustomer(UpdateCustomerData data),
+    @required Result updateCustomer(UpdateCustomerData data, File image),
+    @required Result updateGroomer(User user),
+    @required Result changeGroomerAvailability(bool isAvailable, String id),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result loginWithEmail(LoginRequestData loginRequestData),
     Result registerWithEmail(RegisterData registerData),
     Result getUserRoleList(),
-    Result updateCustomer(UpdateCustomerData data),
+    Result updateCustomer(UpdateCustomerData data, File image),
+    Result updateGroomer(User user),
+    Result changeGroomerAvailability(bool isAvailable, String id),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -60,6 +79,9 @@ mixin _$AuthEvent {
     @required Result registerWithEmail(_RegisterWithEmail value),
     @required Result getUserRoleList(_GetUserRoleList value),
     @required Result updateCustomer(_UpdateCustomer value),
+    @required Result updateGroomer(_UpdateGroomer value),
+    @required
+        Result changeGroomerAvailability(_ChangeGroomerAvailability value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
@@ -67,6 +89,8 @@ mixin _$AuthEvent {
     Result registerWithEmail(_RegisterWithEmail value),
     Result getUserRoleList(_GetUserRoleList value),
     Result updateCustomer(_UpdateCustomer value),
+    Result updateGroomer(_UpdateGroomer value),
+    Result changeGroomerAvailability(_ChangeGroomerAvailability value),
     @required Result orElse(),
   });
 }
@@ -147,12 +171,16 @@ class _$_LoginWithEmail implements _LoginWithEmail {
     @required Result loginWithEmail(LoginRequestData loginRequestData),
     @required Result registerWithEmail(RegisterData registerData),
     @required Result getUserRoleList(),
-    @required Result updateCustomer(UpdateCustomerData data),
+    @required Result updateCustomer(UpdateCustomerData data, File image),
+    @required Result updateGroomer(User user),
+    @required Result changeGroomerAvailability(bool isAvailable, String id),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
+    assert(updateGroomer != null);
+    assert(changeGroomerAvailability != null);
     return loginWithEmail(loginRequestData);
   }
 
@@ -162,7 +190,9 @@ class _$_LoginWithEmail implements _LoginWithEmail {
     Result loginWithEmail(LoginRequestData loginRequestData),
     Result registerWithEmail(RegisterData registerData),
     Result getUserRoleList(),
-    Result updateCustomer(UpdateCustomerData data),
+    Result updateCustomer(UpdateCustomerData data, File image),
+    Result updateGroomer(User user),
+    Result changeGroomerAvailability(bool isAvailable, String id),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -179,11 +209,16 @@ class _$_LoginWithEmail implements _LoginWithEmail {
     @required Result registerWithEmail(_RegisterWithEmail value),
     @required Result getUserRoleList(_GetUserRoleList value),
     @required Result updateCustomer(_UpdateCustomer value),
+    @required Result updateGroomer(_UpdateGroomer value),
+    @required
+        Result changeGroomerAvailability(_ChangeGroomerAvailability value),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
+    assert(updateGroomer != null);
+    assert(changeGroomerAvailability != null);
     return loginWithEmail(this);
   }
 
@@ -194,6 +229,8 @@ class _$_LoginWithEmail implements _LoginWithEmail {
     Result registerWithEmail(_RegisterWithEmail value),
     Result getUserRoleList(_GetUserRoleList value),
     Result updateCustomer(_UpdateCustomer value),
+    Result updateGroomer(_UpdateGroomer value),
+    Result changeGroomerAvailability(_ChangeGroomerAvailability value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -287,12 +324,16 @@ class _$_RegisterWithEmail implements _RegisterWithEmail {
     @required Result loginWithEmail(LoginRequestData loginRequestData),
     @required Result registerWithEmail(RegisterData registerData),
     @required Result getUserRoleList(),
-    @required Result updateCustomer(UpdateCustomerData data),
+    @required Result updateCustomer(UpdateCustomerData data, File image),
+    @required Result updateGroomer(User user),
+    @required Result changeGroomerAvailability(bool isAvailable, String id),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
+    assert(updateGroomer != null);
+    assert(changeGroomerAvailability != null);
     return registerWithEmail(registerData);
   }
 
@@ -302,7 +343,9 @@ class _$_RegisterWithEmail implements _RegisterWithEmail {
     Result loginWithEmail(LoginRequestData loginRequestData),
     Result registerWithEmail(RegisterData registerData),
     Result getUserRoleList(),
-    Result updateCustomer(UpdateCustomerData data),
+    Result updateCustomer(UpdateCustomerData data, File image),
+    Result updateGroomer(User user),
+    Result changeGroomerAvailability(bool isAvailable, String id),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -319,11 +362,16 @@ class _$_RegisterWithEmail implements _RegisterWithEmail {
     @required Result registerWithEmail(_RegisterWithEmail value),
     @required Result getUserRoleList(_GetUserRoleList value),
     @required Result updateCustomer(_UpdateCustomer value),
+    @required Result updateGroomer(_UpdateGroomer value),
+    @required
+        Result changeGroomerAvailability(_ChangeGroomerAvailability value),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
+    assert(updateGroomer != null);
+    assert(changeGroomerAvailability != null);
     return registerWithEmail(this);
   }
 
@@ -334,6 +382,8 @@ class _$_RegisterWithEmail implements _RegisterWithEmail {
     Result registerWithEmail(_RegisterWithEmail value),
     Result getUserRoleList(_GetUserRoleList value),
     Result updateCustomer(_UpdateCustomer value),
+    Result updateGroomer(_UpdateGroomer value),
+    Result changeGroomerAvailability(_ChangeGroomerAvailability value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -389,12 +439,16 @@ class _$_GetUserRoleList implements _GetUserRoleList {
     @required Result loginWithEmail(LoginRequestData loginRequestData),
     @required Result registerWithEmail(RegisterData registerData),
     @required Result getUserRoleList(),
-    @required Result updateCustomer(UpdateCustomerData data),
+    @required Result updateCustomer(UpdateCustomerData data, File image),
+    @required Result updateGroomer(User user),
+    @required Result changeGroomerAvailability(bool isAvailable, String id),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
+    assert(updateGroomer != null);
+    assert(changeGroomerAvailability != null);
     return getUserRoleList();
   }
 
@@ -404,7 +458,9 @@ class _$_GetUserRoleList implements _GetUserRoleList {
     Result loginWithEmail(LoginRequestData loginRequestData),
     Result registerWithEmail(RegisterData registerData),
     Result getUserRoleList(),
-    Result updateCustomer(UpdateCustomerData data),
+    Result updateCustomer(UpdateCustomerData data, File image),
+    Result updateGroomer(User user),
+    Result changeGroomerAvailability(bool isAvailable, String id),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -421,11 +477,16 @@ class _$_GetUserRoleList implements _GetUserRoleList {
     @required Result registerWithEmail(_RegisterWithEmail value),
     @required Result getUserRoleList(_GetUserRoleList value),
     @required Result updateCustomer(_UpdateCustomer value),
+    @required Result updateGroomer(_UpdateGroomer value),
+    @required
+        Result changeGroomerAvailability(_ChangeGroomerAvailability value),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
+    assert(updateGroomer != null);
+    assert(changeGroomerAvailability != null);
     return getUserRoleList(this);
   }
 
@@ -436,6 +497,8 @@ class _$_GetUserRoleList implements _GetUserRoleList {
     Result registerWithEmail(_RegisterWithEmail value),
     Result getUserRoleList(_GetUserRoleList value),
     Result updateCustomer(_UpdateCustomer value),
+    Result updateGroomer(_UpdateGroomer value),
+    Result changeGroomerAvailability(_ChangeGroomerAvailability value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -454,7 +517,7 @@ abstract class _$UpdateCustomerCopyWith<$Res> {
   factory _$UpdateCustomerCopyWith(
           _UpdateCustomer value, $Res Function(_UpdateCustomer) then) =
       __$UpdateCustomerCopyWithImpl<$Res>;
-  $Res call({UpdateCustomerData data});
+  $Res call({UpdateCustomerData data, File image});
 }
 
 class __$UpdateCustomerCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
@@ -469,22 +532,26 @@ class __$UpdateCustomerCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object data = freezed,
+    Object image = freezed,
   }) {
     return _then(_UpdateCustomer(
       data: data == freezed ? _value.data : data as UpdateCustomerData,
+      image: image == freezed ? _value.image : image as File,
     ));
   }
 }
 
 class _$_UpdateCustomer implements _UpdateCustomer {
-  _$_UpdateCustomer({this.data});
+  _$_UpdateCustomer({this.data, this.image});
 
   @override
   final UpdateCustomerData data;
+  @override
+  final File image;
 
   @override
   String toString() {
-    return 'AuthEvent.updateCustomer(data: $data)';
+    return 'AuthEvent.updateCustomer(data: $data, image: $image)';
   }
 
   @override
@@ -492,12 +559,16 @@ class _$_UpdateCustomer implements _UpdateCustomer {
     return identical(this, other) ||
         (other is _UpdateCustomer &&
             (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+                const DeepCollectionEquality().equals(other.data, data)) &&
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(data) ^
+      const DeepCollectionEquality().hash(image);
 
   @override
   _$UpdateCustomerCopyWith<_UpdateCustomer> get copyWith =>
@@ -509,13 +580,17 @@ class _$_UpdateCustomer implements _UpdateCustomer {
     @required Result loginWithEmail(LoginRequestData loginRequestData),
     @required Result registerWithEmail(RegisterData registerData),
     @required Result getUserRoleList(),
-    @required Result updateCustomer(UpdateCustomerData data),
+    @required Result updateCustomer(UpdateCustomerData data, File image),
+    @required Result updateGroomer(User user),
+    @required Result changeGroomerAvailability(bool isAvailable, String id),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
-    return updateCustomer(data);
+    assert(updateGroomer != null);
+    assert(changeGroomerAvailability != null);
+    return updateCustomer(data, image);
   }
 
   @override
@@ -524,12 +599,14 @@ class _$_UpdateCustomer implements _UpdateCustomer {
     Result loginWithEmail(LoginRequestData loginRequestData),
     Result registerWithEmail(RegisterData registerData),
     Result getUserRoleList(),
-    Result updateCustomer(UpdateCustomerData data),
+    Result updateCustomer(UpdateCustomerData data, File image),
+    Result updateGroomer(User user),
+    Result changeGroomerAvailability(bool isAvailable, String id),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (updateCustomer != null) {
-      return updateCustomer(data);
+      return updateCustomer(data, image);
     }
     return orElse();
   }
@@ -541,11 +618,16 @@ class _$_UpdateCustomer implements _UpdateCustomer {
     @required Result registerWithEmail(_RegisterWithEmail value),
     @required Result getUserRoleList(_GetUserRoleList value),
     @required Result updateCustomer(_UpdateCustomer value),
+    @required Result updateGroomer(_UpdateGroomer value),
+    @required
+        Result changeGroomerAvailability(_ChangeGroomerAvailability value),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
+    assert(updateGroomer != null);
+    assert(changeGroomerAvailability != null);
     return updateCustomer(this);
   }
 
@@ -556,6 +638,8 @@ class _$_UpdateCustomer implements _UpdateCustomer {
     Result registerWithEmail(_RegisterWithEmail value),
     Result getUserRoleList(_GetUserRoleList value),
     Result updateCustomer(_UpdateCustomer value),
+    Result updateGroomer(_UpdateGroomer value),
+    Result changeGroomerAvailability(_ChangeGroomerAvailability value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -567,10 +651,312 @@ class _$_UpdateCustomer implements _UpdateCustomer {
 }
 
 abstract class _UpdateCustomer implements AuthEvent {
-  factory _UpdateCustomer({UpdateCustomerData data}) = _$_UpdateCustomer;
+  factory _UpdateCustomer({UpdateCustomerData data, File image}) =
+      _$_UpdateCustomer;
 
   UpdateCustomerData get data;
+  File get image;
   _$UpdateCustomerCopyWith<_UpdateCustomer> get copyWith;
+}
+
+abstract class _$UpdateGroomerCopyWith<$Res> {
+  factory _$UpdateGroomerCopyWith(
+          _UpdateGroomer value, $Res Function(_UpdateGroomer) then) =
+      __$UpdateGroomerCopyWithImpl<$Res>;
+  $Res call({User user});
+
+  $UserCopyWith<$Res> get user;
+}
+
+class __$UpdateGroomerCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
+    implements _$UpdateGroomerCopyWith<$Res> {
+  __$UpdateGroomerCopyWithImpl(
+      _UpdateGroomer _value, $Res Function(_UpdateGroomer) _then)
+      : super(_value, (v) => _then(v as _UpdateGroomer));
+
+  @override
+  _UpdateGroomer get _value => super._value as _UpdateGroomer;
+
+  @override
+  $Res call({
+    Object user = freezed,
+  }) {
+    return _then(_UpdateGroomer(
+      user: user == freezed ? _value.user : user as User,
+    ));
+  }
+
+  @override
+  $UserCopyWith<$Res> get user {
+    if (_value.user == null) {
+      return null;
+    }
+    return $UserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
+}
+
+class _$_UpdateGroomer implements _UpdateGroomer {
+  _$_UpdateGroomer({this.user});
+
+  @override
+  final User user;
+
+  @override
+  String toString() {
+    return 'AuthEvent.updateGroomer(user: $user)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _UpdateGroomer &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+
+  @override
+  _$UpdateGroomerCopyWith<_UpdateGroomer> get copyWith =>
+      __$UpdateGroomerCopyWithImpl<_UpdateGroomer>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result loginWithEmail(LoginRequestData loginRequestData),
+    @required Result registerWithEmail(RegisterData registerData),
+    @required Result getUserRoleList(),
+    @required Result updateCustomer(UpdateCustomerData data, File image),
+    @required Result updateGroomer(User user),
+    @required Result changeGroomerAvailability(bool isAvailable, String id),
+  }) {
+    assert(loginWithEmail != null);
+    assert(registerWithEmail != null);
+    assert(getUserRoleList != null);
+    assert(updateCustomer != null);
+    assert(updateGroomer != null);
+    assert(changeGroomerAvailability != null);
+    return updateGroomer(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result loginWithEmail(LoginRequestData loginRequestData),
+    Result registerWithEmail(RegisterData registerData),
+    Result getUserRoleList(),
+    Result updateCustomer(UpdateCustomerData data, File image),
+    Result updateGroomer(User user),
+    Result changeGroomerAvailability(bool isAvailable, String id),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateGroomer != null) {
+      return updateGroomer(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result loginWithEmail(_LoginWithEmail value),
+    @required Result registerWithEmail(_RegisterWithEmail value),
+    @required Result getUserRoleList(_GetUserRoleList value),
+    @required Result updateCustomer(_UpdateCustomer value),
+    @required Result updateGroomer(_UpdateGroomer value),
+    @required
+        Result changeGroomerAvailability(_ChangeGroomerAvailability value),
+  }) {
+    assert(loginWithEmail != null);
+    assert(registerWithEmail != null);
+    assert(getUserRoleList != null);
+    assert(updateCustomer != null);
+    assert(updateGroomer != null);
+    assert(changeGroomerAvailability != null);
+    return updateGroomer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result loginWithEmail(_LoginWithEmail value),
+    Result registerWithEmail(_RegisterWithEmail value),
+    Result getUserRoleList(_GetUserRoleList value),
+    Result updateCustomer(_UpdateCustomer value),
+    Result updateGroomer(_UpdateGroomer value),
+    Result changeGroomerAvailability(_ChangeGroomerAvailability value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateGroomer != null) {
+      return updateGroomer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateGroomer implements AuthEvent {
+  factory _UpdateGroomer({User user}) = _$_UpdateGroomer;
+
+  User get user;
+  _$UpdateGroomerCopyWith<_UpdateGroomer> get copyWith;
+}
+
+abstract class _$ChangeGroomerAvailabilityCopyWith<$Res> {
+  factory _$ChangeGroomerAvailabilityCopyWith(_ChangeGroomerAvailability value,
+          $Res Function(_ChangeGroomerAvailability) then) =
+      __$ChangeGroomerAvailabilityCopyWithImpl<$Res>;
+  $Res call({bool isAvailable, String id});
+}
+
+class __$ChangeGroomerAvailabilityCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res>
+    implements _$ChangeGroomerAvailabilityCopyWith<$Res> {
+  __$ChangeGroomerAvailabilityCopyWithImpl(_ChangeGroomerAvailability _value,
+      $Res Function(_ChangeGroomerAvailability) _then)
+      : super(_value, (v) => _then(v as _ChangeGroomerAvailability));
+
+  @override
+  _ChangeGroomerAvailability get _value =>
+      super._value as _ChangeGroomerAvailability;
+
+  @override
+  $Res call({
+    Object isAvailable = freezed,
+    Object id = freezed,
+  }) {
+    return _then(_ChangeGroomerAvailability(
+      isAvailable:
+          isAvailable == freezed ? _value.isAvailable : isAvailable as bool,
+      id: id == freezed ? _value.id : id as String,
+    ));
+  }
+}
+
+class _$_ChangeGroomerAvailability implements _ChangeGroomerAvailability {
+  _$_ChangeGroomerAvailability({this.isAvailable, this.id});
+
+  @override
+  final bool isAvailable;
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'AuthEvent.changeGroomerAvailability(isAvailable: $isAvailable, id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ChangeGroomerAvailability &&
+            (identical(other.isAvailable, isAvailable) ||
+                const DeepCollectionEquality()
+                    .equals(other.isAvailable, isAvailable)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(isAvailable) ^
+      const DeepCollectionEquality().hash(id);
+
+  @override
+  _$ChangeGroomerAvailabilityCopyWith<_ChangeGroomerAvailability>
+      get copyWith =>
+          __$ChangeGroomerAvailabilityCopyWithImpl<_ChangeGroomerAvailability>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result loginWithEmail(LoginRequestData loginRequestData),
+    @required Result registerWithEmail(RegisterData registerData),
+    @required Result getUserRoleList(),
+    @required Result updateCustomer(UpdateCustomerData data, File image),
+    @required Result updateGroomer(User user),
+    @required Result changeGroomerAvailability(bool isAvailable, String id),
+  }) {
+    assert(loginWithEmail != null);
+    assert(registerWithEmail != null);
+    assert(getUserRoleList != null);
+    assert(updateCustomer != null);
+    assert(updateGroomer != null);
+    assert(changeGroomerAvailability != null);
+    return changeGroomerAvailability(isAvailable, id);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result loginWithEmail(LoginRequestData loginRequestData),
+    Result registerWithEmail(RegisterData registerData),
+    Result getUserRoleList(),
+    Result updateCustomer(UpdateCustomerData data, File image),
+    Result updateGroomer(User user),
+    Result changeGroomerAvailability(bool isAvailable, String id),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (changeGroomerAvailability != null) {
+      return changeGroomerAvailability(isAvailable, id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result loginWithEmail(_LoginWithEmail value),
+    @required Result registerWithEmail(_RegisterWithEmail value),
+    @required Result getUserRoleList(_GetUserRoleList value),
+    @required Result updateCustomer(_UpdateCustomer value),
+    @required Result updateGroomer(_UpdateGroomer value),
+    @required
+        Result changeGroomerAvailability(_ChangeGroomerAvailability value),
+  }) {
+    assert(loginWithEmail != null);
+    assert(registerWithEmail != null);
+    assert(getUserRoleList != null);
+    assert(updateCustomer != null);
+    assert(updateGroomer != null);
+    assert(changeGroomerAvailability != null);
+    return changeGroomerAvailability(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result loginWithEmail(_LoginWithEmail value),
+    Result registerWithEmail(_RegisterWithEmail value),
+    Result getUserRoleList(_GetUserRoleList value),
+    Result updateCustomer(_UpdateCustomer value),
+    Result updateGroomer(_UpdateGroomer value),
+    Result changeGroomerAvailability(_ChangeGroomerAvailability value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (changeGroomerAvailability != null) {
+      return changeGroomerAvailability(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeGroomerAvailability implements AuthEvent {
+  factory _ChangeGroomerAvailability({bool isAvailable, String id}) =
+      _$_ChangeGroomerAvailability;
+
+  bool get isAvailable;
+  String get id;
+  _$ChangeGroomerAvailabilityCopyWith<_ChangeGroomerAvailability> get copyWith;
 }
 
 class _$AuthStateTearOff {
@@ -582,6 +968,13 @@ class _$AuthStateTearOff {
 
   _OnProgreess onProgress() {
     return _OnProgreess();
+  }
+
+  _ChangeAvailability changeAvailability(
+      Option<Either<AuthFailure, Unit>> availabilityOption) {
+    return _ChangeAvailability(
+      availabilityOption,
+    );
   }
 
   _FailOrSuccessGetRole failOrSuccessGetRole(
@@ -616,6 +1009,9 @@ mixin _$AuthState {
     @required Result initial(),
     @required Result onProgress(),
     @required
+        Result changeAvailability(
+            Option<Either<AuthFailure, Unit>> availabilityOption),
+    @required
         Result failOrSuccessGetRole(
             Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     @required
@@ -629,6 +1025,8 @@ mixin _$AuthState {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result onProgress(),
+    Result changeAvailability(
+        Option<Either<AuthFailure, Unit>> availabilityOption),
     Result failOrSuccessGetRole(
         Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     Result failOrSuccessLoginOption(
@@ -641,6 +1039,7 @@ mixin _$AuthState {
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
     @required Result onProgress(_OnProgreess value),
+    @required Result changeAvailability(_ChangeAvailability value),
     @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
     @required
@@ -651,6 +1050,7 @@ mixin _$AuthState {
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
     Result onProgress(_OnProgreess value),
+    Result changeAvailability(_ChangeAvailability value),
     Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     Result failOrSuccessLoginOption(_FailOrSuccessOption value),
     Result failOrSuccessUpdateCustomerOption(
@@ -708,6 +1108,9 @@ class _$_Initial implements _Initial {
     @required Result initial(),
     @required Result onProgress(),
     @required
+        Result changeAvailability(
+            Option<Either<AuthFailure, Unit>> availabilityOption),
+    @required
         Result failOrSuccessGetRole(
             Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     @required
@@ -719,6 +1122,7 @@ class _$_Initial implements _Initial {
   }) {
     assert(initial != null);
     assert(onProgress != null);
+    assert(changeAvailability != null);
     assert(failOrSuccessGetRole != null);
     assert(failOrSuccessLoginOption != null);
     assert(failOrSuccessUpdateCustomerOption != null);
@@ -730,6 +1134,8 @@ class _$_Initial implements _Initial {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result onProgress(),
+    Result changeAvailability(
+        Option<Either<AuthFailure, Unit>> availabilityOption),
     Result failOrSuccessGetRole(
         Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     Result failOrSuccessLoginOption(
@@ -750,6 +1156,7 @@ class _$_Initial implements _Initial {
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
     @required Result onProgress(_OnProgreess value),
+    @required Result changeAvailability(_ChangeAvailability value),
     @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
     @required
@@ -758,6 +1165,7 @@ class _$_Initial implements _Initial {
   }) {
     assert(initial != null);
     assert(onProgress != null);
+    assert(changeAvailability != null);
     assert(failOrSuccessGetRole != null);
     assert(failOrSuccessLoginOption != null);
     assert(failOrSuccessUpdateCustomerOption != null);
@@ -769,6 +1177,7 @@ class _$_Initial implements _Initial {
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
     Result onProgress(_OnProgreess value),
+    Result changeAvailability(_ChangeAvailability value),
     Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     Result failOrSuccessLoginOption(_FailOrSuccessOption value),
     Result failOrSuccessUpdateCustomerOption(
@@ -825,6 +1234,9 @@ class _$_OnProgreess implements _OnProgreess {
     @required Result initial(),
     @required Result onProgress(),
     @required
+        Result changeAvailability(
+            Option<Either<AuthFailure, Unit>> availabilityOption),
+    @required
         Result failOrSuccessGetRole(
             Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     @required
@@ -836,6 +1248,7 @@ class _$_OnProgreess implements _OnProgreess {
   }) {
     assert(initial != null);
     assert(onProgress != null);
+    assert(changeAvailability != null);
     assert(failOrSuccessGetRole != null);
     assert(failOrSuccessLoginOption != null);
     assert(failOrSuccessUpdateCustomerOption != null);
@@ -847,6 +1260,8 @@ class _$_OnProgreess implements _OnProgreess {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result onProgress(),
+    Result changeAvailability(
+        Option<Either<AuthFailure, Unit>> availabilityOption),
     Result failOrSuccessGetRole(
         Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     Result failOrSuccessLoginOption(
@@ -867,6 +1282,7 @@ class _$_OnProgreess implements _OnProgreess {
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
     @required Result onProgress(_OnProgreess value),
+    @required Result changeAvailability(_ChangeAvailability value),
     @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
     @required
@@ -875,6 +1291,7 @@ class _$_OnProgreess implements _OnProgreess {
   }) {
     assert(initial != null);
     assert(onProgress != null);
+    assert(changeAvailability != null);
     assert(failOrSuccessGetRole != null);
     assert(failOrSuccessLoginOption != null);
     assert(failOrSuccessUpdateCustomerOption != null);
@@ -886,6 +1303,7 @@ class _$_OnProgreess implements _OnProgreess {
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
     Result onProgress(_OnProgreess value),
+    Result changeAvailability(_ChangeAvailability value),
     Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     Result failOrSuccessLoginOption(_FailOrSuccessOption value),
     Result failOrSuccessUpdateCustomerOption(
@@ -902,6 +1320,164 @@ class _$_OnProgreess implements _OnProgreess {
 
 abstract class _OnProgreess implements AuthState {
   factory _OnProgreess() = _$_OnProgreess;
+}
+
+abstract class _$ChangeAvailabilityCopyWith<$Res> {
+  factory _$ChangeAvailabilityCopyWith(
+          _ChangeAvailability value, $Res Function(_ChangeAvailability) then) =
+      __$ChangeAvailabilityCopyWithImpl<$Res>;
+  $Res call({Option<Either<AuthFailure, Unit>> availabilityOption});
+}
+
+class __$ChangeAvailabilityCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res>
+    implements _$ChangeAvailabilityCopyWith<$Res> {
+  __$ChangeAvailabilityCopyWithImpl(
+      _ChangeAvailability _value, $Res Function(_ChangeAvailability) _then)
+      : super(_value, (v) => _then(v as _ChangeAvailability));
+
+  @override
+  _ChangeAvailability get _value => super._value as _ChangeAvailability;
+
+  @override
+  $Res call({
+    Object availabilityOption = freezed,
+  }) {
+    return _then(_ChangeAvailability(
+      availabilityOption == freezed
+          ? _value.availabilityOption
+          : availabilityOption as Option<Either<AuthFailure, Unit>>,
+    ));
+  }
+}
+
+class _$_ChangeAvailability implements _ChangeAvailability {
+  _$_ChangeAvailability(this.availabilityOption)
+      : assert(availabilityOption != null);
+
+  @override
+  final Option<Either<AuthFailure, Unit>> availabilityOption;
+
+  @override
+  String toString() {
+    return 'AuthState.changeAvailability(availabilityOption: $availabilityOption)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ChangeAvailability &&
+            (identical(other.availabilityOption, availabilityOption) ||
+                const DeepCollectionEquality()
+                    .equals(other.availabilityOption, availabilityOption)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(availabilityOption);
+
+  @override
+  _$ChangeAvailabilityCopyWith<_ChangeAvailability> get copyWith =>
+      __$ChangeAvailabilityCopyWithImpl<_ChangeAvailability>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result initial(),
+    @required Result onProgress(),
+    @required
+        Result changeAvailability(
+            Option<Either<AuthFailure, Unit>> availabilityOption),
+    @required
+        Result failOrSuccessGetRole(
+            Option<Either<AuthFailure, List<String>>> options, bool isLoading),
+    @required
+        Result failOrSuccessLoginOption(
+            Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+    @required
+        Result failOrSuccessUpdateCustomerOption(
+            Option<Either<AuthFailure, LoginData>> updateCustomerOption),
+  }) {
+    assert(initial != null);
+    assert(onProgress != null);
+    assert(changeAvailability != null);
+    assert(failOrSuccessGetRole != null);
+    assert(failOrSuccessLoginOption != null);
+    assert(failOrSuccessUpdateCustomerOption != null);
+    return changeAvailability(availabilityOption);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result initial(),
+    Result onProgress(),
+    Result changeAvailability(
+        Option<Either<AuthFailure, Unit>> availabilityOption),
+    Result failOrSuccessGetRole(
+        Option<Either<AuthFailure, List<String>>> options, bool isLoading),
+    Result failOrSuccessLoginOption(
+        Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+    Result failOrSuccessUpdateCustomerOption(
+        Option<Either<AuthFailure, LoginData>> updateCustomerOption),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (changeAvailability != null) {
+      return changeAvailability(availabilityOption);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result initial(_Initial value),
+    @required Result onProgress(_OnProgreess value),
+    @required Result changeAvailability(_ChangeAvailability value),
+    @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
+    @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
+    @required
+        Result failOrSuccessUpdateCustomerOption(
+            _FailOrSuccessUpdateCustomerOption value),
+  }) {
+    assert(initial != null);
+    assert(onProgress != null);
+    assert(changeAvailability != null);
+    assert(failOrSuccessGetRole != null);
+    assert(failOrSuccessLoginOption != null);
+    assert(failOrSuccessUpdateCustomerOption != null);
+    return changeAvailability(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result initial(_Initial value),
+    Result onProgress(_OnProgreess value),
+    Result changeAvailability(_ChangeAvailability value),
+    Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
+    Result failOrSuccessLoginOption(_FailOrSuccessOption value),
+    Result failOrSuccessUpdateCustomerOption(
+        _FailOrSuccessUpdateCustomerOption value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (changeAvailability != null) {
+      return changeAvailability(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeAvailability implements AuthState {
+  factory _ChangeAvailability(
+          Option<Either<AuthFailure, Unit>> availabilityOption) =
+      _$_ChangeAvailability;
+
+  Option<Either<AuthFailure, Unit>> get availabilityOption;
+  _$ChangeAvailabilityCopyWith<_ChangeAvailability> get copyWith;
 }
 
 abstract class _$FailOrSuccessGetRoleCopyWith<$Res> {
@@ -978,6 +1554,9 @@ class _$_FailOrSuccessGetRole implements _FailOrSuccessGetRole {
     @required Result initial(),
     @required Result onProgress(),
     @required
+        Result changeAvailability(
+            Option<Either<AuthFailure, Unit>> availabilityOption),
+    @required
         Result failOrSuccessGetRole(
             Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     @required
@@ -989,6 +1568,7 @@ class _$_FailOrSuccessGetRole implements _FailOrSuccessGetRole {
   }) {
     assert(initial != null);
     assert(onProgress != null);
+    assert(changeAvailability != null);
     assert(failOrSuccessGetRole != null);
     assert(failOrSuccessLoginOption != null);
     assert(failOrSuccessUpdateCustomerOption != null);
@@ -1000,6 +1580,8 @@ class _$_FailOrSuccessGetRole implements _FailOrSuccessGetRole {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result onProgress(),
+    Result changeAvailability(
+        Option<Either<AuthFailure, Unit>> availabilityOption),
     Result failOrSuccessGetRole(
         Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     Result failOrSuccessLoginOption(
@@ -1020,6 +1602,7 @@ class _$_FailOrSuccessGetRole implements _FailOrSuccessGetRole {
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
     @required Result onProgress(_OnProgreess value),
+    @required Result changeAvailability(_ChangeAvailability value),
     @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
     @required
@@ -1028,6 +1611,7 @@ class _$_FailOrSuccessGetRole implements _FailOrSuccessGetRole {
   }) {
     assert(initial != null);
     assert(onProgress != null);
+    assert(changeAvailability != null);
     assert(failOrSuccessGetRole != null);
     assert(failOrSuccessLoginOption != null);
     assert(failOrSuccessUpdateCustomerOption != null);
@@ -1039,6 +1623,7 @@ class _$_FailOrSuccessGetRole implements _FailOrSuccessGetRole {
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
     Result onProgress(_OnProgreess value),
+    Result changeAvailability(_ChangeAvailability value),
     Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     Result failOrSuccessLoginOption(_FailOrSuccessOption value),
     Result failOrSuccessUpdateCustomerOption(
@@ -1129,6 +1714,9 @@ class _$_FailOrSuccessOption implements _FailOrSuccessOption {
     @required Result initial(),
     @required Result onProgress(),
     @required
+        Result changeAvailability(
+            Option<Either<AuthFailure, Unit>> availabilityOption),
+    @required
         Result failOrSuccessGetRole(
             Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     @required
@@ -1140,6 +1728,7 @@ class _$_FailOrSuccessOption implements _FailOrSuccessOption {
   }) {
     assert(initial != null);
     assert(onProgress != null);
+    assert(changeAvailability != null);
     assert(failOrSuccessGetRole != null);
     assert(failOrSuccessLoginOption != null);
     assert(failOrSuccessUpdateCustomerOption != null);
@@ -1151,6 +1740,8 @@ class _$_FailOrSuccessOption implements _FailOrSuccessOption {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result onProgress(),
+    Result changeAvailability(
+        Option<Either<AuthFailure, Unit>> availabilityOption),
     Result failOrSuccessGetRole(
         Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     Result failOrSuccessLoginOption(
@@ -1171,6 +1762,7 @@ class _$_FailOrSuccessOption implements _FailOrSuccessOption {
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
     @required Result onProgress(_OnProgreess value),
+    @required Result changeAvailability(_ChangeAvailability value),
     @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
     @required
@@ -1179,6 +1771,7 @@ class _$_FailOrSuccessOption implements _FailOrSuccessOption {
   }) {
     assert(initial != null);
     assert(onProgress != null);
+    assert(changeAvailability != null);
     assert(failOrSuccessGetRole != null);
     assert(failOrSuccessLoginOption != null);
     assert(failOrSuccessUpdateCustomerOption != null);
@@ -1190,6 +1783,7 @@ class _$_FailOrSuccessOption implements _FailOrSuccessOption {
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
     Result onProgress(_OnProgreess value),
+    Result changeAvailability(_ChangeAvailability value),
     Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     Result failOrSuccessLoginOption(_FailOrSuccessOption value),
     Result failOrSuccessUpdateCustomerOption(
@@ -1285,6 +1879,9 @@ class _$_FailOrSuccessUpdateCustomerOption
     @required Result initial(),
     @required Result onProgress(),
     @required
+        Result changeAvailability(
+            Option<Either<AuthFailure, Unit>> availabilityOption),
+    @required
         Result failOrSuccessGetRole(
             Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     @required
@@ -1296,6 +1893,7 @@ class _$_FailOrSuccessUpdateCustomerOption
   }) {
     assert(initial != null);
     assert(onProgress != null);
+    assert(changeAvailability != null);
     assert(failOrSuccessGetRole != null);
     assert(failOrSuccessLoginOption != null);
     assert(failOrSuccessUpdateCustomerOption != null);
@@ -1307,6 +1905,8 @@ class _$_FailOrSuccessUpdateCustomerOption
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result onProgress(),
+    Result changeAvailability(
+        Option<Either<AuthFailure, Unit>> availabilityOption),
     Result failOrSuccessGetRole(
         Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     Result failOrSuccessLoginOption(
@@ -1327,6 +1927,7 @@ class _$_FailOrSuccessUpdateCustomerOption
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
     @required Result onProgress(_OnProgreess value),
+    @required Result changeAvailability(_ChangeAvailability value),
     @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
     @required
@@ -1335,6 +1936,7 @@ class _$_FailOrSuccessUpdateCustomerOption
   }) {
     assert(initial != null);
     assert(onProgress != null);
+    assert(changeAvailability != null);
     assert(failOrSuccessGetRole != null);
     assert(failOrSuccessLoginOption != null);
     assert(failOrSuccessUpdateCustomerOption != null);
@@ -1346,6 +1948,7 @@ class _$_FailOrSuccessUpdateCustomerOption
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
     Result onProgress(_OnProgreess value),
+    Result changeAvailability(_ChangeAvailability value),
     Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
     Result failOrSuccessLoginOption(_FailOrSuccessOption value),
     Result failOrSuccessUpdateCustomerOption(

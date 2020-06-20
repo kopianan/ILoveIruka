@@ -21,6 +21,7 @@ class _FeedHomeState extends State<FeedHome>
   @override
   bool get wantKeepAlive => true;
 
+int _current = 0 ; 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -114,7 +115,7 @@ class _FeedHomeState extends State<FeedHome>
                                 () => CarouselLoading(),
                                 (a) => a.fold(
                                   (l) => CarouselError(feedFailure: l),
-                                  (r) => CarouselLoading(),
+                                  (r) => _buildTopFeedDataContent(r)
                                 ),
                               );
                           },
@@ -190,6 +191,54 @@ class _FeedHomeState extends State<FeedHome>
           ),
         ),
       ),
+    );
+  }
+  Column _buildTopFeedDataContent(List<Feed> imgList) {
+    return Column(
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.only(top: 70),
+          child: CarouselSlider(
+            options: CarouselOptions(
+              autoPlay: true,
+              aspectRatio: 2.0,
+              autoPlayInterval: Duration(seconds: 10),
+              enlargeCenterPage: true,
+            ),
+            items: imgList
+                .map((item) => Container(
+                      child: Container(
+                        margin: EdgeInsets.all(5.0),
+                        child: ClipRRect(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                            child: Image.network(Constants.getWebUrl() + item.picture,
+                                fit: BoxFit.cover, width: 1000.0)),
+                      ),
+                    ))
+                .toList(),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: imgList.map((url) {
+              int index = imgList.indexOf(url);
+              return Container(
+                width: 8.0,
+                height: 8.0,
+                margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 3.0),
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: _current == index
+                        ? Color(0xffFFA4A4)
+                        : Color(0xffE5E5E5)),
+              );
+            }).toList(),
+          ),
+        ),
+      ],
     );
   }
 

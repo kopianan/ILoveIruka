@@ -10,6 +10,7 @@ class CustomPassword extends StatefulWidget {
     @required this.onFieldSubmited,
     @required this.hint,
     @required this.label,
+    
   });
   final TextEditingController controller;
   final FormFieldValidator<String> validator;
@@ -75,6 +76,9 @@ class CustomTextField extends StatelessWidget {
     @required this.hint,
     @required this.label,
     @required this.isEnable,
+    this.textInputType, 
+    this.suffixText, 
+    this.minLength
   }) : super(
           key: key,
         );
@@ -83,9 +87,12 @@ class CustomTextField extends StatelessWidget {
   final FocusNode focusNode;
   final TextInputAction textInputAction;
   final ValueChanged onFieldSubmited;
+  final TextInputType textInputType;
   final String hint;
   final String label;
   final bool isEnable;
+  final String suffixText;
+  final int minLength ; 
 
   @override
   Widget build(BuildContext context) {
@@ -93,10 +100,11 @@ class CustomTextField extends StatelessWidget {
       style: TextStyle(letterSpacing: 1),
       controller: controller,
       focusNode: focusNode,
+      keyboardType: (textInputType == null) ? TextInputType.text:textInputType,
       enabled: isEnable,
       textInputAction: textInputAction,
-      minLines: 1,
-      maxLines: 2,
+      minLines: (minLength == null) ? 1 : minLength,
+      maxLines: (minLength == null) ? 2 : minLength, 
       onFieldSubmitted: (term) {
         onFieldSubmited(term);
       },
@@ -108,10 +116,12 @@ class CustomTextField extends StatelessWidget {
   InputDecoration _inputeTextDecoration(String label, String hint) {
     return InputDecoration(
         labelText: label,
+        alignLabelWithHint: true,
         contentPadding: EdgeInsets.only(bottom: 1),
         isDense: true,
         suffixIcon: Icon(MdiIcons.pencil),
         hintText: hint,
+        suffixText: (suffixText == null) ? null : suffixText,
         labelStyle: TextStyle(fontWeight: FontWeight.bold),
         errorMaxLines: 1,
         focusedBorder: UnderlineInputBorder(

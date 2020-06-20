@@ -123,7 +123,7 @@ class MemberCard extends StatelessWidget {
                      point,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Color(0xffF9BA32),
+                          color: cardTextColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 30),
                     ),
@@ -131,7 +131,7 @@ class MemberCard extends StatelessWidget {
                       "POINTS",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Color(0xffBB890E),
+                          color: cardTextColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 12),
                     ),
