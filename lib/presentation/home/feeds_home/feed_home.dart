@@ -21,7 +21,7 @@ class _FeedHomeState extends State<FeedHome>
   @override
   bool get wantKeepAlive => true;
 
-int _current = 0 ; 
+  int _current = 0;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -114,9 +114,8 @@ int _current = 0 ;
                               return e.responseOptions.fold(
                                 () => CarouselLoading(),
                                 (a) => a.fold(
-                                  (l) => CarouselError(feedFailure: l),
-                                  (r) => _buildTopFeedDataContent(r)
-                                ),
+                                    (l) => CarouselError(feedFailure: l),
+                                    (r) => _buildTopFeedDataContent(r)),
                               );
                           },
                         );
@@ -131,14 +130,16 @@ int _current = 0 ;
                       child: Card(
                         elevation: 2,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          padding: const EdgeInsets.symmetric(vertical: 20),
                           child: GridView.builder(
+
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 4,
-                                    childAspectRatio: 1,
+                                    childAspectRatio: 01,
+
                                     mainAxisSpacing: 10),
                             itemCount: listServiceMenu.length,
                             itemBuilder: (context, index) =>
@@ -193,6 +194,7 @@ int _current = 0 ;
       ),
     );
   }
+
   Column _buildTopFeedDataContent(List<Feed> imgList) {
     return Column(
       children: <Widget>[
@@ -212,8 +214,10 @@ int _current = 0 ;
                         child: ClipRRect(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(5.0)),
-                            child: Image.network(Constants.getWebUrl() + item.picture,
-                                fit: BoxFit.cover, width: 1000.0)),
+                            child: Image.network(
+                                Constants.getWebUrl() + item.picture,
+                                fit: BoxFit.cover,
+                                width: 1000.0)),
                       ),
                     ))
                 .toList(),
@@ -301,19 +305,21 @@ class ServiceMenuItem extends StatelessWidget {
             onClick();
           },
           child: Container(
-            width: 50,
-            height: 50,
+            width: 40,
+            height: 40,
             child: Image.asset(assetPath),
           ),
         ),
+        SizedBox(height: 5,),
         Container(
             width: double.infinity,
-            constraints: BoxConstraints(maxWidth: 73),
-            alignment: Alignment.center,
+            // constraints: BoxConstraints(maxWidth: 80,),
+            alignment: Alignment.topCenter,
             child: Text(
               name,
               textAlign: TextAlign.center,
               maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ))
       ],
     );

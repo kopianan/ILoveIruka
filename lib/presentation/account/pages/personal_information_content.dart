@@ -18,6 +18,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'package:provider/provider.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class PersonalInformationContent extends StatefulWidget {
   const PersonalInformationContent({Key key, this.authProv}) : super(key: key);
@@ -122,7 +123,25 @@ class _PersonalInformationContentState
                     height: 5,
                   ),
                   OutlineButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Alert(
+                        context: context,
+                        type: AlertType.info,
+                        title: "COMING SOON",
+                        desc: "Pets Not Available Yet",
+                        buttons: [
+                          DialogButton(
+                            child: Text(
+                              "OK",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
+                            onPressed: () => Navigator.pop(context),
+                            width: 120,
+                          )
+                        ],
+                      ).show();
+                    },
                     borderSide: BorderSide(color: Colors.pink[200], width: 3),
                     textColor: Colors.pink[200],
                     child: Row(

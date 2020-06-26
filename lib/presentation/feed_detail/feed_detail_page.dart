@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:i_love_iruka/domain/feed_home/feed.dart';
 import 'package:i_love_iruka/presentation/widgets/page_header.dart';
 import 'package:i_love_iruka/util/constants.dart';
+import 'package:i_love_iruka/util/flushbar_function.dart';
+import 'package:image_downloader/image_downloader.dart';
+import 'package:intl/intl.dart';
+import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FeedDetailPage extends StatefulWidget {
@@ -13,6 +17,19 @@ class FeedDetailPage extends StatefulWidget {
 }
 
 class _FeedDetailPageState extends State<FeedDetailPage> {
+  String formatDate(String date) {
+    final _fDate = DateTime.parse(date);
+    final _newDate = DateFormat("dd-MMMM-yyyy").format(_fDate);
+
+    return _newDate;
+  }
+
+  String getDay(String date) {
+    final _fDate = DateTime.parse(date);
+    final _day = DateFormat("EEEE").format(_fDate);
+    return _day;
+  }
+
   List<String> _popUpMenuItemString = ["Download", "Share"];
   @override
   Widget build(BuildContext context) {
@@ -32,9 +49,10 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
                   child: Column(
                     children: <Widget>[
                       ListTile(
-                        title: Text(widget.feed.createdDate),
-                        subtitle: Text("10-10-2020"),
+                        title: Text(formatDate(widget.feed.createdDate)),
+                        subtitle: Text(getDay(widget.feed.createdDate)),
                         trailing: PopupMenuButton(
+                            onSelected: _choiceAction,
                             icon: Icon(Icons.more_vert),
                             itemBuilder: (context) {
                               return _popUpMenuItemString
@@ -117,5 +135,19 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
         ]),
       ),
     );
+  }
+
+  void _choiceAction(String ke) async {
+    if (ke == "Download") {
+      var imageId = await ImageDownloader.downloadImage(
+          Constants.getWebUrl() + widget.feed.picture);
+      String fileName = await ImageDownloader.findName(imageId);
+
+      showFlushbarSuccess(succMessage: fileName + " Saved")..show(context);
+    } else {
+      Share.share('check out my website ' +
+          Constants.getWebUrl() +
+          widget.feed.picture);
+    }
   }
 }

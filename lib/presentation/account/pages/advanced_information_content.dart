@@ -81,8 +81,10 @@ class _AdvancedInformationContentState
     _expYearsController =
         TextEditingController(text: _currentUser.yearsOfExperience.toString());
     _dateController = TextEditingController(
-        text: DateFormat("dd-MM-yyy")
-            .format(DateTime.parse(_currentUser.trainingStartDate)));
+        text: (_currentUser.trainingStartDate == null)
+            ? ""
+            : DateFormat("dd-MM-yyy")
+                .format(DateTime.parse(_currentUser.trainingStartDate)));
     _courseController =
         TextEditingController(text: _currentUser.trainingCourses);
     _yearsController =
