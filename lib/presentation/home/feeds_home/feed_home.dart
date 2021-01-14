@@ -80,7 +80,7 @@ class _FeedHomeState extends State<FeedHome>
                   margin:
                       EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Card(
-                    elevation: 2,
+                    // elevation: 2,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20),
                       child: GridView.builder(

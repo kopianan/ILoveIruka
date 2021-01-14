@@ -52,8 +52,8 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
               child: Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                margin: EdgeInsets.symmetric(horizontal: 15),
-                elevation: 5,
+                margin: EdgeInsets.symmetric(horizontal: 5),
+                elevation: 3,
                 child: Container(
                   child: Column(
                     children: <Widget>[
@@ -74,7 +74,7 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
                       ),
                       Container(
                         margin:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                            EdgeInsets.symmetric( vertical: 10),
                         child: AspectRatio(
                             aspectRatio: 1,
                             child: Image.network(
@@ -88,7 +88,7 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
                       Container(
                         alignment: Alignment.topLeft,
                         margin:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
