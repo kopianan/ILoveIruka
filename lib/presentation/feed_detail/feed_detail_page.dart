@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:i_love_iruka/domain/feed_home/feed.dart';
 import 'package:i_love_iruka/presentation/widgets/page_header.dart';
 import 'package:i_love_iruka/util/constants.dart';
@@ -9,9 +10,10 @@ import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FeedDetailPage extends StatefulWidget {
-  FeedDetailPage({Key key, @required this.feed}) : super(key: key);
+  static final String TAG = '/feed_detail_page';
+  FeedDetailPage({Key key}) : super(key: key);
 
-  final Feed feed;
+  // final Feed feed;
   @override
   _FeedDetailPageState createState() => _FeedDetailPageState();
 }
@@ -31,6 +33,13 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
   }
 
   List<String> _popUpMenuItemString = ["Download", "Share"];
+  Feed feed;
+  @override
+  void initState() {
+    feed = Get.arguments as Feed;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -49,8 +58,8 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
                   child: Column(
                     children: <Widget>[
                       ListTile(
-                        title: Text(formatDate(widget.feed.createdDate)),
-                        subtitle: Text(getDay(widget.feed.createdDate)),
+                        title: Text(formatDate(feed.createdDate)),
+                        subtitle: Text(getDay(feed.createdDate)),
                         trailing: PopupMenuButton(
                             onSelected: _choiceAction,
                             icon: Icon(Icons.more_vert),
@@ -69,7 +78,7 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
                         child: AspectRatio(
                             aspectRatio: 1,
                             child: Image.network(
-                              Constants.getWebUrl() + widget.feed.picture,
+                              Constants.getWebUrl() + feed.picture,
                               fit: BoxFit.contain,
                             )),
                       ),
@@ -84,7 +93,7 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              widget.feed.productName,
+                              feed.productName,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
@@ -95,19 +104,19 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
                               height: 10,
                             ),
                             Text(
-                              widget.feed.description,
+                              feed.description,
                               style: TextStyle(fontSize: 17),
                             )
                           ],
                         ),
                       ),
-                      (widget.feed.link.isEmpty)
+                      (feed.link.isEmpty)
                           ? Container(
                               height: 0,
                             )
                           : InkWell(
                               onTap: () {
-                                launch(widget.feed.link);
+                                launch(feed.link);
                               },
                               child: Container(
                                 alignment: Alignment.center,
@@ -140,14 +149,14 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
   void _choiceAction(String ke) async {
     if (ke == "Download") {
       var imageId = await ImageDownloader.downloadImage(
-          Constants.getWebUrl() + widget.feed.picture);
+          Constants.getWebUrl() + feed.picture);
       String fileName = await ImageDownloader.findName(imageId);
 
       showFlushbarSuccess(succMessage: fileName + " Saved")..show(context);
     } else {
       Share.share('check out my website ' +
           Constants.getWebUrl() +
-          widget.feed.picture);
+          feed.picture);
     }
   }
 }

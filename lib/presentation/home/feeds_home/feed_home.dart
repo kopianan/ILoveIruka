@@ -1,13 +1,13 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:i_love_iruka/application/feed_home.dart/feed_home_bloc.dart';
 import 'package:i_love_iruka/domain/feed_home/feed.dart';
 import 'package:i_love_iruka/domain/feed_home/feed_failure.dart';
 import 'package:i_love_iruka/injection.dart';
+import 'package:i_love_iruka/presentation/feed_detail/feed_detail_page.dart';
 import 'package:i_love_iruka/presentation/widgets/appbar_header_background.dart';
-import 'package:i_love_iruka/routes/router.gr.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -24,173 +24,121 @@ class _FeedHomeState extends State<FeedHome>
   int _current = 0;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          getIt<FeedHomeBloc>()..add(FeedHomeEvent.getBottomFeedData()),
-      child: BlocListener<FeedHomeBloc, FeedHomeState>(
-        listener: (context, state) {
-          state.map(
-            initial: (e) {},
-            failOrSuccessGetDataBottom: (e) {
-              if (e.isLoading) {
-                print("BOTTOM Is Loading Data");
-              }
-              e.responseOptions.fold(
-                  () => null,
-                  (a) => a.fold(
-                        (l) => l.map(
-                          badRequest: (e) => print("BOTTOM Bad Request"),
-                          serverError: (e) => print("BOTTOM Server Error"),
-                          notFound: (e) => print("BOTTOM NotFound"),
-                          dataIsEmpty: (e) => print("BOTTOM Data is empty"),
-                        ),
-                        (r) => print("BOTTOM Datanya ada"),
-                      ));
-            },
-            failOrSuccessGetData: (e) {
-              if (e.isLoading) {
-                print("Is Loading Data");
-              }
-              e.responseOptions.fold(
-                  () => null,
-                  (a) => a.fold(
-                        (l) => l.map(
-                          badRequest: (e) => print("Bad Request"),
-                          serverError: (e) => print("Server Error"),
-                          notFound: (e) => print("NotFound"),
-                          dataIsEmpty: (e) => print("Data is empty"),
-                        ),
-                        (r) => print("Datanya ada"),
-                      ));
-            },
-          );
-        },
-        child: SingleChildScrollView(
-          child: Stack(
-            overflow: Overflow.visible,
-            children: <Widget>[
-              AppBarHeaderBackground(),
-              SafeArea(
-                child: Container(
-                  margin: EdgeInsets.only(top: 10, left: 10, right: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "Welcome",
-                        style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                      // InkWell(
-                      //   onTap: () {},
-                      //   child: Icon(
-                      //     Icons.notifications_none,
-                      //     color: Colors.white,
-                      //     size: 30,
-                      //   ),
-                      // )
-                    ],
-                  ),
-                ),
-              ),
-              ListView(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
+    return SingleChildScrollView(
+      child: Stack(
+        overflow: Overflow.visible,
+        children: <Widget>[
+          AppBarHeaderBackground(),
+          SafeArea(
+            child: Container(
+              margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  BlocProvider(
-                    create: (context) => getIt<FeedHomeBloc>()
-                      ..add(FeedHomeEvent.getTopFeedData()),
-                    child: BlocBuilder<FeedHomeBloc, FeedHomeState>(
-                      builder: (context, state) {
-                        return state.maybeMap(
-                          orElse: () => CarouselLoading(),
-                          failOrSuccessGetData: (e) {
-                            if (e.isLoading)
-                              return CarouselLoading();
-                            else
-                              return e.responseOptions.fold(
-                                () => CarouselLoading(),
-                                (a) => a.fold(
-                                    (l) => CarouselError(feedFailure: l),
-                                    (r) => _buildTopFeedDataContent(r)),
-                              );
-                          },
-                        );
-                        // return _buildTopFeedDataContent();
-                      },
-                    ),
+                  Text(
+                    "Welcome",
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
-                  Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      child: Card(
-                        elevation: 2,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          child: GridView.builder(
-
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 4,
-                                    childAspectRatio: 01,
-
-                                    mainAxisSpacing: 10),
-                            itemCount: listServiceMenu.length,
-                            itemBuilder: (context, index) =>
-                                listServiceMenu[index],
-                          ),
-                        ),
-                      )),
-                  BlocProvider(
-                      create: (context) => getIt<FeedHomeBloc>()
-                        ..add(FeedHomeEvent.getBottomFeedData()),
-                      child: BlocBuilder<FeedHomeBloc, FeedHomeState>(
-                        builder: (context, state) {
-                          return state.maybeMap(
-                            failOrSuccessGetDataBottom: (e) {
-                              if (e.isLoading) {
-                                return Container(
-                                  alignment: Alignment.center,
-                                  child: CircularProgressIndicator(),
-                                );
-                              } else {
-                                return e.responseOptions.fold(
-                                    () => Container(child: Text("Option")),
-                                    (a) => a.fold(
-                                        (l) =>
-                                            Container(child: Text("Tidak ada")),
-                                        (r) => Container(
-                                              child: ListView.builder(
-                                                  itemCount: r.length,
-                                                  shrinkWrap: true,
-                                                  physics:
-                                                      NeverScrollableScrollPhysics(),
-                                                  itemBuilder:
-                                                      (context, index) {
-                                                    return FeedBottomContent(
-                                                      feed: r[index],
-                                                    );
-                                                  }),
-                                            )));
-                              }
-                            },
-                            orElse: () => Container(child: Text("Or Else")),
-                          );
-
-                          // FeedBottomContent();
-                        },
-                      ))
+               
                 ],
               ),
+            ),
+          ),
+          ListView(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            children: <Widget>[
+              BlocProvider(
+                create: (context) => getIt<FeedHomeBloc>()
+                  ..add(FeedHomeEvent.getTopFeedData()),
+                child: BlocBuilder<FeedHomeBloc, FeedHomeState>(
+                  builder: (context, state) {
+                    return state.maybeMap(
+                      orElse: () => CarouselLoading(),
+                      failOrSuccessGetData: (e) {
+                        if (e.isLoading)
+                          return CarouselLoading();
+                        else
+                          return e.responseOptions.fold(
+                            () => CarouselLoading(),
+                            (a) => a.fold(
+                                (l) => CarouselError(feedFailure: l),
+                                (r) => _buildTopFeedDataContent(r)),
+                          );
+                      },
+                    );
+                    // return _buildTopFeedDataContent();
+                  },
+                ),
+              ),
+              Container(
+                  width: MediaQuery.of(context).size.width,
+                  margin:
+                      EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Card(
+                    elevation: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: GridView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        gridDelegate:
+                            SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 4,
+                                childAspectRatio: 01,
+                                mainAxisSpacing: 10),
+                        itemCount: listServiceMenu.length,
+                        itemBuilder: (context, index) =>
+                            listServiceMenu[index],
+                      ),
+                    ),
+                  )),
+              BlocProvider(
+                  create: (context) => getIt<FeedHomeBloc>()
+                    ..add(FeedHomeEvent.getBottomFeedData()),
+                  child: BlocBuilder<FeedHomeBloc, FeedHomeState>(
+                    builder: (context, state) {
+                      return state.maybeMap(
+                        failOrSuccessGetDataBottom: (e) {
+                          if (e.isLoading) {
+                            return Container(
+                              alignment: Alignment.center,
+                              child: CircularProgressIndicator(),
+                            );
+                          } else {
+                            return e.responseOptions.fold(
+                                () => Container(child: Text("Option")),
+                                (a) => a.fold(
+                                    (l) =>
+                                        Container(child: Text("Tidak ada")),
+                                    (r) => Container(
+                                          child: ListView.builder(
+                                              itemCount: r.length,
+                                              shrinkWrap: true,
+                                              physics:
+                                                  NeverScrollableScrollPhysics(),
+                                              itemBuilder:
+                                                  (context, index) {
+                                                return FeedBottomContent(
+                                                  feed: r[index],
+                                                );
+                                              }),
+                                        )));
+                          }
+                        },
+                        orElse: () => Container(child: Text("Or Else")),
+                      );
+
+                      // FeedBottomContent();
+                    },
+                  ))
             ],
           ),
-        ),
+        ],
       ),
     );
   }
@@ -310,7 +258,9 @@ class ServiceMenuItem extends StatelessWidget {
             child: Image.asset(assetPath),
           ),
         ),
-        SizedBox(height: 5,),
+        SizedBox(
+          height: 5,
+        ),
         Container(
             width: double.infinity,
             // constraints: BoxConstraints(maxWidth: 80,),
@@ -344,8 +294,7 @@ class FeedBottomContent extends StatelessWidget {
       ]),
       child: InkWell(
         onTap: () {
-          ExtendedNavigator.of(context).pushNamed(Routes.feedDetailPage,
-              arguments: FeedDetailPageArguments(feed: feed));
+          Get.toNamed(FeedDetailPage.TAG, arguments: feed);
         },
         child: ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(10.0)),

@@ -21,9 +21,7 @@ part 'auth_bloc.freezed.dart';
 @injectable
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final IAuthFacade _iAuthFacade;
-  AuthBloc(this._iAuthFacade);
-  @override
-  AuthState get initialState => AuthState.initial();
+  AuthBloc(this._iAuthFacade) : super(AuthState.initial());
 
   @override
   Stream<AuthState> mapEventToState(

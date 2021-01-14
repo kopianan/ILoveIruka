@@ -1,9 +1,12 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:i_love_iruka/presentation/auth/register_form/register_form.dart';
+import 'package:i_love_iruka/presentation/auth/sign_in_form/sign_in_form.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
-import 'package:i_love_iruka/routes/router.gr.dart';
 
 class WelcomeScreen extends StatefulWidget {
+  static final String TAG = '/welcome_screen_page';
+
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
@@ -68,8 +71,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     child: BtnPrimaryBlue(
                       text: "Sign in",
                       onPressed: () {
-                        ExtendedNavigator.of(context)
-                            .pushNamed(Routes.signInForm);
+                        Get.toNamed(SignInForm.TAG);
                       },
                     ),
                   ),
@@ -78,7 +80,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, Routes.registerForm);
+                      Get.toNamed(RegisterForm.TAG);
                     },
                     child: Text(
                       "Create an account",

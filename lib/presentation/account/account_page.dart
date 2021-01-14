@@ -14,6 +14,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class AccountPage extends StatefulWidget {
+  static final String TAG = '/account_page'; 
+
   AccountPage({Key key}) : super(key: key);
 
   @override

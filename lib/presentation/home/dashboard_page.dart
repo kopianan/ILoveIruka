@@ -7,15 +7,13 @@ import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class DashboardPage extends StatefulWidget {
+  static final String TAG = '/dashboard_page';
   DashboardPage({Key key}) : super(key: key);
   @override
   _DashboardPageState createState() => _DashboardPageState();
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  // int _selectedIndex = 0;
-  // PageController _pageController;
-
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int bottomSelectedIndex = 0;
   PageController pageController = PageController(
@@ -40,7 +38,7 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Consumer<AuthProvider>(
-      builder:(context, authProvider, _)=>  Scaffold(
+      builder: (context, authProvider, _) => Scaffold(
         key: _scaffoldKey,
         body: SizedBox.expand(
           child: PageView(
@@ -62,14 +60,9 @@ class _DashboardPageState extends State<DashboardPage> {
               bottomTapped(index);
             },
             items: [
+              BottomNavigationBarItem(icon: Icon(Icons.apps), label: 'Home'),
               BottomNavigationBarItem(
-                icon: Icon(Icons.apps),
-                title: Text('Home'),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(MdiIcons.account),
-                title: Text('Users'),
-              )
+                  icon: Icon(MdiIcons.account), label: 'Users')
             ]),
         floatingActionButton: FloatingActionButton(
           child: Icon(MdiIcons.qrcode),
@@ -104,7 +97,9 @@ class _DashboardPageState extends State<DashboardPage> {
                               ),
                               Container(
                                 alignment: Alignment.center,
-                                child: QrImage(size: 250, data: authProvider.getUserData.id),
+                                child: QrImage(
+                                    size: 250,
+                                    data: authProvider.getUserData.id),
                               ),
                               Container(
                                   margin: EdgeInsets.only(top: 10),

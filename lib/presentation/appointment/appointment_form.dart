@@ -3,6 +3,8 @@ import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
 import 'package:i_love_iruka/presentation/widgets/page_header.dart';
 
 class AppointmentForm extends StatefulWidget {
+  static final String TAG = '/appointment_form_page'; 
+
   AppointmentForm({Key key}) : super(key: key);
   @override
   _AppointmentFormState createState() => _AppointmentFormState();

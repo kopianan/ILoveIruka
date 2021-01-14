@@ -1,24 +1,27 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/auth_bloc.dart';
 import 'package:i_love_iruka/application/auth/auth_provider.dart';
 import 'package:i_love_iruka/domain/auth/login_data.dart';
 import 'package:i_love_iruka/infrastructure/core/shared_pref.dart';
+import 'package:i_love_iruka/presentation/auth/forgot_password_form/forgot_password_form.dart';
+import 'package:i_love_iruka/presentation/auth/register_form/register_form.dart';
 import 'package:i_love_iruka/presentation/auth/widgets/email_address.dart';
 import 'package:i_love_iruka/presentation/auth/widgets/password.dart';
+import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
 import 'package:i_love_iruka/presentation/widgets/appbar_transparent_back.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_outline.dart';
-import 'package:i_love_iruka/routes/router.gr.dart';
 import 'package:i_love_iruka/util/flushbar_function.dart';
 import 'package:provider/provider.dart';
 
 import '../../../injection.dart';
 
 class SignInForm extends StatefulWidget {
+  static final String TAG = '/sign_in_form_page';
   @override
   _SignInFormState createState() => _SignInFormState();
 }
@@ -101,8 +104,7 @@ class _SignInFormState extends State<SignInForm> {
                         loginResponseData: (e) {
                           authProvider.setUserData(e.user);
                           saveUserData(e.user).then((value) {
-                            ExtendedNavigator.of(context)
-                                .pushNamed(Routes.dashboardPage);
+                            Get.offAllNamed(DashboardPage.TAG);
                             Fluttertoast.showToast(msg: "Success Login");
                           }).catchError((onError) {
                             return Fluttertoast.showToast(
@@ -213,8 +215,7 @@ class _SignInFormState extends State<SignInForm> {
                   alignment: Alignment.centerRight,
                   child: InkWell(
                     onTap: () {
-                      ExtendedNavigator.of(context)
-                          .pushNamed(Routes.forgotPasswordForm);
+                      Get.toNamed(ForgotPasswordForm.TAG);
                     },
                     child: Text(
                       "Forgot Password",
@@ -263,8 +264,7 @@ class _SignInFormState extends State<SignInForm> {
                 BtnPrimaryOutline(
                   text: "Sign up",
                   onPressed: () {
-                    Navigator.pushReplacementNamed(
-                        context, Routes.registerForm);
+                    Get.offNamed(RegisterForm.TAG);
                   },
                 )
               ],
@@ -276,7 +276,7 @@ class _SignInFormState extends State<SignInForm> {
     BuildContext context,
   ) {
     if (_formKey.currentState.validate()) {
-      context.bloc<AuthBloc>().add((AuthEvent.loginWithEmail(LoginRequestData(
+      context.read<AuthBloc>().add((AuthEvent.loginWithEmail(LoginRequestData(
             username: emailController.text,
             password: passwordController.text,
           ))));

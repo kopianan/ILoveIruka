@@ -1,14 +1,13 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:i_love_iruka/application/auth/auth_provider.dart';
 import 'package:i_love_iruka/application/auth/authentication/authentication_bloc.dart';
 import 'package:i_love_iruka/injection.dart';
 import 'package:i_love_iruka/presentation/splah_screen/splash_screen.dart';
-import 'package:i_love_iruka/presentation/welcome/welcome_screen.dart';
-import 'package:i_love_iruka/routes/router.gr.dart';
+import 'package:i_love_iruka/routes/router.dart';
 import 'package:provider/provider.dart';
 
 class AppWidget extends StatefulWidget {
@@ -53,8 +52,9 @@ class _AppWidgetState extends State<AppWidget> {
       child: BlocProvider(
         create: (context) => getIt<AuthenticationBloc>()
           ..add(AuthenticationEvent.checkAuthentication()),
-        child: MaterialApp(
+        child: GetMaterialApp(
           title: 'I Love Iruka',
+          getPages: navigatorPages,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             inputDecorationTheme:
@@ -66,8 +66,7 @@ class _AppWidgetState extends State<AppWidget> {
             ),
             errorColor: Colors.red,
           ),
-          home: SplashScreen(),
-          builder: ExtendedNavigator<Router>(router: Router()),
+          initialRoute: SplashScreen.TAG,
         ),
       ),
     );

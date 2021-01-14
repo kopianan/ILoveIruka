@@ -16,9 +16,7 @@ part 'transaction_bloc.freezed.dart';
 @injectable
 class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   final ITransactionFacade _iTransactionFacade;
-  TransactionBloc(this._iTransactionFacade);
-  @override
-  TransactionState get initialState => TransactionState.initial();
+  TransactionBloc(this._iTransactionFacade) : super(TransactionState.initial());
 
   @override
   Stream<TransactionState> mapEventToState(

@@ -1,21 +1,22 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/auth_bloc.dart';
 import 'package:i_love_iruka/application/auth/auth_provider.dart';
 import 'package:i_love_iruka/domain/auth/register_data.dart';
 import 'package:i_love_iruka/infrastructure/core/shared_pref.dart';
 import 'package:i_love_iruka/injection.dart';
+import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
 import 'package:i_love_iruka/presentation/widgets/appbar_transparent_back.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primarary_blue_loading.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
 import 'package:i_love_iruka/presentation/widgets/custom_text_field_collection.dart';
-import 'package:i_love_iruka/routes/router.gr.dart';
 import 'package:i_love_iruka/util/flushbar_function.dart';
 import 'package:provider/provider.dart';
 
 class RegisterForm extends StatefulWidget {
+  static final String TAG = '/register_form_page';
   @override
   _RegisterFormState createState() => _RegisterFormState();
 }
@@ -70,7 +71,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 orElse: () {},
                 failOrSuccessGetRole: (e) {
                   e.options.fold(
-                      () => (){},
+                      () => () {},
                       (a) => a.fold(
                           (l) => () {}, (r) => authProvider.setUserList(r)));
                 },
@@ -102,8 +103,7 @@ class _RegisterFormState extends State<RegisterForm> {
                                       _flushbar = showFlushbarSuccess(
                                           succMessage: "Success Created User")
                                         ..show(context);
-                                      ExtendedNavigator.of(context)
-                                          .pushNamed(Routes.dashboardPage);
+                                      Get.toNamed(DashboardPage.TAG);
                                     }).catchError((onError) {
                                       _flushbar = showFlushbarError(
                                           errMessage:
@@ -117,8 +117,9 @@ class _RegisterFormState extends State<RegisterForm> {
               );
             }, builder: (context, state) {
               return state.maybeMap(
-                orElse: () =>
-                    buildSingleChildScrollView(context, state, authProvider),
+                orElse: () => Container(
+                  child: Text("GAGAL"),
+                ),
                 failOrSuccessGetRole: (e) {
                   if (e.isLoading) {
                     return Center(

@@ -18,9 +18,7 @@ part 'feed_home_bloc.freezed.dart';
 @injectable
 class FeedHomeBloc extends Bloc<FeedHomeEvent, FeedHomeState> {
   IFeedHomeFacade _iFeedHomeFacade;
-  FeedHomeBloc(this._iFeedHomeFacade);
-  @override
-  FeedHomeState get initialState => FeedHomeState.initial();
+  FeedHomeBloc(this._iFeedHomeFacade) : super(FeedHomeState.initial());
 
   @override
   Stream<FeedHomeState> mapEventToState(

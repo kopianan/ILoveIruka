@@ -15,9 +15,7 @@ part 'other_bloc.freezed.dart';
 @injectable
 class OtherBloc extends Bloc<OtherEvent, OtherState> {
   IOtherFacade _iOtherFacade;
-  OtherBloc(this._iOtherFacade);
-  @override
-  OtherState get initialState => OtherState.initial();
+  OtherBloc(this._iOtherFacade) : super( OtherState.initial());
 
   @override
   Stream<OtherState> mapEventToState(

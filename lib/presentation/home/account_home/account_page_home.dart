@@ -1,17 +1,17 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/auth_provider.dart';
 import 'package:i_love_iruka/application/auth/authentication/authentication_bloc.dart';
 import 'package:i_love_iruka/application/transaction/transaction_bloc.dart';
 import 'package:i_love_iruka/domain/transaction/transaction_r.dart';
 import 'package:i_love_iruka/injection.dart';
+import 'package:i_love_iruka/presentation/account/account_page.dart';
+import 'package:i_love_iruka/presentation/welcome/welcome_screen.dart';
 import 'package:i_love_iruka/presentation/widgets/member_card.dart';
 import 'package:i_love_iruka/util/color_col.dart';
 import 'package:i_love_iruka/util/flushbar_function.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:i_love_iruka/routes/router.gr.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -108,8 +108,7 @@ class _AccountPagehomeState extends State<AccountPagehome>
                   orElse: () {},
                   signOutState: (e) {
                     if (e.isSignOut) {
-                      ExtendedNavigator.of(context)
-                          .pushReplacementNamed(Routes.welcomeScreen);
+                      Get.offNamed(WelcomeScreen.TAG); 
                     } else {
                       showFlushbarError(errMessage: "Can not log out")
                         ..show(context);
@@ -208,8 +207,7 @@ class _AccountPagehomeState extends State<AccountPagehome>
                             height: double.infinity,
                             child: InkWell(
                               onTap: () {
-                                ExtendedNavigator.of(context)
-                                    .pushNamed(Routes.accountPage);
+                                Get.toNamed(AccountPage.TAG); 
                               },
                               splashColor: Colors.yellow,
                               child: Row(

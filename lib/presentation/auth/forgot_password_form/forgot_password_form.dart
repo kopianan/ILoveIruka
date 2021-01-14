@@ -1,8 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:i_love_iruka/routes/router.gr.dart';
+import 'package:get/get.dart';
+import 'package:i_love_iruka/presentation/auth/forgot_password_form/forgot_password_success_notif.dart';
 
 class ForgotPasswordForm extends StatefulWidget {
+  static final String TAG = '/forgot_password_form_page'; 
+
   @override
   _ForgotPasswordFormState createState() => _ForgotPasswordFormState();
 }
@@ -73,8 +75,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
                   textColor: Colors.white,
                   // padding: EdgeInsets.symmetric(horizontal: 10),
                   onPressed: () {
-                    ExtendedNavigator.of(context)
-                        .pushNamed(Routes.forgotPaswordSuccessNotif);
+                    Get.toNamed(ForgotPaswordSuccessNotif.TAG); 
                   },
                   splashColor: Colors.white,
                   color: Color(0xff2A7FD5),
