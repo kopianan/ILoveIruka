@@ -16,9 +16,8 @@ abstract class IAuthFacade {
   Future<Either<AuthFailure, LoginResponseData>> registerNewUser(
       {RegisterData registerData});
   Future<Either<AuthFailure, List<String>>> getUserRole();
-  Future<Either<AuthFailure, User>> checkAuthentcation();
+  Either<AuthFailure, User> checkAuthentcation();
   Future<Either<AuthFailure, Unit>> changeAvailability(
       {bool status, String id});
-  Future<Either<AuthFailure, User>> saveAuthenticationToLocal({User user});
   Future<Either<AuthFailure, Unit>> signOut();
 }

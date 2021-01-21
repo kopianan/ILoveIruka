@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:i_love_iruka/application/auth/auth_controller.dart';
 import 'package:i_love_iruka/application/auth/auth_provider.dart';
 import 'package:i_love_iruka/application/auth/authentication/authentication_bloc.dart';
 import 'package:i_love_iruka/application/transaction/transaction_bloc.dart';
@@ -24,101 +25,81 @@ class _AccountPagehomeState extends State<AccountPagehome>
     with AutomaticKeepAliveClientMixin<AccountPagehome> {
   @override
   bool get wantKeepAlive => true;
+  AuthController _authController;
+
+  @override
+  void initState() {
+    _authController = Get.put(AuthController());
+    print(_authController.getUserData());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AuthProvider>(
-      builder: (context, authProvider, _) => BlocProvider(
-        create: (context) => getIt<TransactionBloc>()
-          ..add(TransactionEvent.getPointAndLastTrans(
-              userId: GetPointAndLastTransRequest(
-                  id: authProvider.getUserData.id))),
-        child: BlocListener<TransactionBloc, TransactionState>(
-          listener: (context, state) {
-            print(authProvider.getUserData.id);
-            state.maybeWhen(
-              orElse: () {},
-              onProgress: () => print("Loading"),
-              onGetPointOption: (e) => e.fold(
-                  () => print("Loading"),
-                  (a) => a.fold(
-                          (l) => l.map(
-                                badRequest: (e) => print("badRequest"),
-                                serverError: (e) => print("serverError"),
-                                notFound: (e) => print("notFound"),
-                                noTransaction: (e) => print("noTransaction"),
-                              ), (r) {
-                        print(r.toJson());
-                      })),
-            );
-          },
-          child: BlocBuilder<TransactionBloc, TransactionState>(
-              builder: (context, state) {
-            return state.maybeWhen(
-                orElse: () => FullLoadingPage(),
-                onProgress: () => FullLoadingPage(),
-                onGetPointOption: (e) => e.fold(
-                    () => FullLoadingPage(),
-                    (a) => a.fold(
-                          (l) => FullLoadingPage(),
-                          (r) {
-                            return _builAccountContent(
-                                authProvider, context, r);
-                          },
-                        )));
-          }),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<AuthenticationBloc>(),
         ),
-      ),
+        BlocProvider(
+          create: (context) => getIt<TransactionBloc>()
+            ..add(TransactionEvent.getPointAndLastTrans(
+                userId: GetPointAndLastTransRequest(
+                    id: _authController.getUserData().id))),
+        ),
+      ],
+      child: BlocBuilder<TransactionBloc, TransactionState>(
+          builder: (context, state) {
+        return state.maybeWhen(
+            orElse: () => FullLoadingPage(),
+            onProgress: () => FullLoadingPage(),
+            onGetPointOption: (e) => e.fold(
+                () => FullLoadingPage(),
+                (a) => a.fold(
+                      (l) => FullLoadingPage(),
+                      (r) {
+                        return _builAccountContent(context, r);
+                      },
+                    )));
+      }),
     );
   }
 
-  SingleChildScrollView _builAccountContent(AuthProvider authProvider,
+  Widget _builAccountContent(
       BuildContext context, GetPointAndLastTransResponse data) {
-    return SingleChildScrollView(
-      child: Container(
-        color: Color(0xffF6F6F6),
-        child: Stack(
-          overflow: Overflow.visible,
-          children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Color(0xff1988E7), Colors.white],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter)),
-              child: Container(
-                margin: EdgeInsets.only(top: 100, right: 20, left: 20),
-                child: MemberCard(
-                  name: authProvider.getUserData.name,
-                  point: data.customerPoints.toString(),
-                  cardBottomGradient: ColorCol.blueCardBottomGradient,
-                  cardTextColor: ColorCol.blueCardText,
-                  cardTopGradient: ColorCol.blueCardTopGradient,
-                  imagesList: [
-                    'blue_clippath1.png',
-                    'blue_clippath2.png',
-                    'blue_clippath3.png'
-                  ],
+    return BlocProvider(
+      create: (context) => getIt<AuthenticationBloc>(),
+      child: SingleChildScrollView(
+        child: Container(
+          color: Color(0xffF6F6F6),
+          child: Stack(
+            overflow: Overflow.visible,
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [Color(0xff1988E7), Colors.white],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter)),
+                child: Container(
+                  margin: EdgeInsets.only(top: 100, right: 20, left: 20),
+                  child: MemberCard(
+                    name: _authController.getUserData().name,
+                    point: data.customerPoints.toString(),
+                    cardBottomGradient: ColorCol.blueCardBottomGradient,
+                    cardTextColor: ColorCol.blueCardText,
+                    cardTopGradient: ColorCol.blueCardTopGradient,
+                    imagesList: [
+                      'blue_clippath1.png',
+                      'blue_clippath2.png',
+                      'blue_clippath3.png'
+                    ],
+                  ),
                 ),
               ),
-            ),
-            BlocListener<AuthenticationBloc, AuthenticationState>(
-              listener: (context, state) {
-                state.maybeMap(
-                  orElse: () {},
-                  signOutState: (e) {
-                    if (e.isSignOut) {
-                      Get.offNamed(WelcomeScreen.TAG); 
-                    } else {
-                      showFlushbarError(errMessage: "Can not log out")
-                        ..show(context);
-                    }
-                  },
-                );
-              },
-              child: SafeArea(
+              SafeArea(
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,9 +113,9 @@ class _AccountPagehomeState extends State<AccountPagehome>
                       ),
                       InkWell(
                         onTap: () {
-                          print("logout"); 
+                          print("logout");
                           context
-                              .bloc<AuthenticationBloc>()
+                              .read()<AuthenticationBloc>()
                               .add(AuthenticationEvent.signOut());
                         },
                         child: Icon(
@@ -147,153 +128,155 @@ class _AccountPagehomeState extends State<AccountPagehome>
                   ),
                 ),
               ),
-            ),
-            Container(
-              width: double.infinity,
-              margin: EdgeInsets.only(
-                top: 320,
-              ),
-              child: Column(
-                children: <Widget>[
-                  Card(
-                    margin: EdgeInsets.only(right: 20, left: 20),
-                    child: Container(
-                      height: 50,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                          Expanded(
-                              child: Container(
-                            height: double.infinity,
-                            child: InkWell(
-                              onTap: () {
-                                Alert(
-                                  context: context,
-                                  type: AlertType.info,
-                                  title: "COMING SOON",
-                                  desc:
-                                      "Membership program is not available for now.",
-                                  buttons: [
-                                    DialogButton(
-                                      child: Text(
-                                        "OK",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 20),
+              Container(
+                width: double.infinity,
+                margin: EdgeInsets.only(
+                  top: 320,
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Card(
+                      margin: EdgeInsets.only(right: 20, left: 20),
+                      child: Container(
+                        height: 50,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            Expanded(
+                                child: Container(
+                              height: double.infinity,
+                              child: InkWell(
+                                onTap: () {
+                                  Alert(
+                                    context: context,
+                                    type: AlertType.info,
+                                    title: "COMING SOON",
+                                    desc:
+                                        "Membership program is not available for now.",
+                                    buttons: [
+                                      DialogButton(
+                                        child: Text(
+                                          "OK",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        ),
+                                        onPressed: () => Navigator.pop(context),
+                                        width: 120,
+                                      )
+                                    ],
+                                  ).show();
+                                },
+                                splashColor: Colors.yellow,
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: <Widget>[
+                                      Icon(MdiIcons.walletMembership,
+                                          color: Colors.pink),
+                                      SizedBox(
+                                        width: 10,
                                       ),
-                                      onPressed: () => Navigator.pop(context),
-                                      width: 120,
-                                    )
-                                  ],
-                                ).show();
-                              },
-                              splashColor: Colors.yellow,
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: <Widget>[
-                                    Icon(MdiIcons.walletMembership,
-                                        color: Colors.pink),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text("Membership"),
-                                  ]),
-                            ),
-                          )),
-                          Expanded(
-                              child: Container(
-                            height: double.infinity,
-                            child: InkWell(
-                              onTap: () {
-                                Get.toNamed(AccountPage.TAG); 
-                              },
-                              splashColor: Colors.yellow,
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: <Widget>[
-                                    Icon(
-                                      MdiIcons.account,
-                                      color: Colors.blue,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text("My Profile"),
-                                  ]),
-                            ),
-                          )),
-                        ],
+                                      Text("Membership"),
+                                    ]),
+                              ),
+                            )),
+                            Expanded(
+                                child: Container(
+                              height: double.infinity,
+                              child: InkWell(
+                                onTap: () {
+                                  Get.toNamed(AccountPage.TAG);
+                                },
+                                splashColor: Colors.yellow,
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: <Widget>[
+                                      Icon(
+                                        MdiIcons.account,
+                                        color: Colors.blue,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text("My Profile"),
+                                    ]),
+                              ),
+                            )),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(top: 20, right: 20, left: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Container(
-                                  child: Text(
-                                "Recent Activities",
-                                style: TextStyle(
-                                    color: Color(0xff6A6A6A),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
-                              )),
-                              Container(
-                                  child: Text(
-                                "view report",
-                                style: TextStyle(color: Colors.blue),
-                              )),
-                            ],
-                          ),
-                        ),
-                        Card(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 20),
-                          color: Colors.white,
-                          elevation: 7,
-                          child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 5),
-                              child: (data.lastTransaction.customerId == null)
-                                  ? Container(
-                                      width: double.infinity,
-                                      height: 60,
-                                      alignment: Alignment.center,
-                                      child: Text("No Transaction"),
-                                    )
-                                  : Column(
-                                      children: <Widget>[
-                                        ActivitiesComponent(
-                                          earnedPoint:
-                                              data.lastTransaction.earnedPoint,
-                                          total: data.lastTransaction.total
-                                              .toString(),
-                                          transDate:
-                                              data.lastTransaction.createdDate,
-                                          transType: data
-                                              .lastTransaction.transactionType,
-                                        ),
-                                      ],
-                                    )),
-                        )
-                      ],
+                    SizedBox(
+                      height: 20,
                     ),
-                  )
-                ],
-              ),
-            )
-          ],
+                    Container(
+                      color: Colors.white,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            margin:
+                                EdgeInsets.only(top: 20, right: 20, left: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Container(
+                                    child: Text(
+                                  "Recent Activities",
+                                  style: TextStyle(
+                                      color: Color(0xff6A6A6A),
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                )),
+                                Container(
+                                    child: Text(
+                                  "view report",
+                                  style: TextStyle(color: Colors.blue),
+                                )),
+                              ],
+                            ),
+                          ),
+                          Card(
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 20),
+                            color: Colors.white,
+                            elevation: 7,
+                            child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 5),
+                                child: (data.lastTransaction.customerId == null)
+                                    ? Container(
+                                        width: double.infinity,
+                                        height: 60,
+                                        alignment: Alignment.center,
+                                        child: Text("No Transaction"),
+                                      )
+                                    : Column(
+                                        children: <Widget>[
+                                          ActivitiesComponent(
+                                            earnedPoint: data
+                                                .lastTransaction.earnedPoint,
+                                            total: data.lastTransaction.total
+                                                .toString(),
+                                            transDate: data
+                                                .lastTransaction.createdDate,
+                                            transType: data.lastTransaction
+                                                .transactionType,
+                                          ),
+                                        ],
+                                      )),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'transaction_data.dart';
 
@@ -12,9 +12,11 @@ TransactionData _$TransactionDataFromJson(Map<String, dynamic> json) {
   return TransData.fromJson(json);
 }
 
+/// @nodoc
 class _$TransactionDataTearOff {
   const _$TransactionDataTearOff();
 
+// ignore: unused_element
   TransData transData(
       {@JsonKey(name: 'CustomerId') String customerId,
       @JsonKey(name: 'CouponId') String couponId,
@@ -47,11 +49,18 @@ class _$TransactionDataTearOff {
       modifiedDate: modifiedDate,
     );
   }
+
+// ignore: unused_element
+  TransactionData fromJson(Map<String, Object> json) {
+    return TransactionData.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $TransactionData = _$TransactionDataTearOff();
 
+/// @nodoc
 mixin _$TransactionData {
   @JsonKey(name: 'CustomerId')
   String get customerId;
@@ -82,10 +91,73 @@ mixin _$TransactionData {
   @JsonKey(name: 'ModifiedDate')
   String get modifiedDate;
 
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult transData(
+            @JsonKey(name: 'CustomerId')
+                String customerId,
+            @JsonKey(name: 'CouponId')
+                String couponId,
+            @JsonKey(name: 'CouponValue')
+                String couponValue,
+            @JsonKey(name: 'SubTotal')
+                double subTotal,
+            @JsonKey(name: 'Total')
+                double total,
+            @JsonKey(name: 'Notes')
+                String notes,
+            @JsonKey(name: 'EarnedPoint')
+                int earnedPoint,
+            @JsonKey(name: 'CustomerName')
+                String customerName,
+            @JsonKey(name: 'TransactionType')
+                String transactionType,
+            @JsonKey(name: 'TransactionTypeOptions')
+                String transactionTypeOptions,
+            @JsonKey(name: 'CreatedBy')
+                String createdBy,
+            @JsonKey(name: 'CreatedDate')
+                String createdDate,
+            @JsonKey(name: 'ModifiedBy')
+                String modifiedBy,
+            @JsonKey(name: 'ModifiedDate')
+                String modifiedDate),
+  });
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult transData(
+        @JsonKey(name: 'CustomerId') String customerId,
+        @JsonKey(name: 'CouponId') String couponId,
+        @JsonKey(name: 'CouponValue') String couponValue,
+        @JsonKey(name: 'SubTotal') double subTotal,
+        @JsonKey(name: 'Total') double total,
+        @JsonKey(name: 'Notes') String notes,
+        @JsonKey(name: 'EarnedPoint') int earnedPoint,
+        @JsonKey(name: 'CustomerName') String customerName,
+        @JsonKey(name: 'TransactionType') String transactionType,
+        @JsonKey(name: 'TransactionTypeOptions') String transactionTypeOptions,
+        @JsonKey(name: 'CreatedBy') String createdBy,
+        @JsonKey(name: 'CreatedDate') String createdDate,
+        @JsonKey(name: 'ModifiedBy') String modifiedBy,
+        @JsonKey(name: 'ModifiedDate') String modifiedDate),
+    @required TResult orElse(),
+  });
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult transData(TransData value),
+  });
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult transData(TransData value),
+    @required TResult orElse(),
+  });
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $TransactionDataCopyWith<TransactionData> get copyWith;
 }
 
+/// @nodoc
 abstract class $TransactionDataCopyWith<$Res> {
   factory $TransactionDataCopyWith(
           TransactionData value, $Res Function(TransactionData) then) =
@@ -107,6 +179,7 @@ abstract class $TransactionDataCopyWith<$Res> {
       @JsonKey(name: 'ModifiedDate') String modifiedDate});
 }
 
+/// @nodoc
 class _$TransactionDataCopyWithImpl<$Res>
     implements $TransactionDataCopyWith<$Res> {
   _$TransactionDataCopyWithImpl(this._value, this._then);
@@ -164,6 +237,7 @@ class _$TransactionDataCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class $TransDataCopyWith<$Res>
     implements $TransactionDataCopyWith<$Res> {
   factory $TransDataCopyWith(TransData value, $Res Function(TransData) then) =
@@ -186,6 +260,7 @@ abstract class $TransDataCopyWith<$Res>
       @JsonKey(name: 'ModifiedDate') String modifiedDate});
 }
 
+/// @nodoc
 class _$TransDataCopyWithImpl<$Res> extends _$TransactionDataCopyWithImpl<$Res>
     implements $TransDataCopyWith<$Res> {
   _$TransDataCopyWithImpl(TransData _value, $Res Function(TransData) _then)
@@ -244,6 +319,8 @@ class _$TransDataCopyWithImpl<$Res> extends _$TransactionDataCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$TransData implements TransData {
   _$TransData(
       {@JsonKey(name: 'CustomerId') this.customerId,
@@ -376,9 +453,125 @@ class _$TransData implements TransData {
       const DeepCollectionEquality().hash(modifiedBy) ^
       const DeepCollectionEquality().hash(modifiedDate);
 
+  @JsonKey(ignore: true)
   @override
   $TransDataCopyWith<TransData> get copyWith =>
       _$TransDataCopyWithImpl<TransData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult transData(
+            @JsonKey(name: 'CustomerId')
+                String customerId,
+            @JsonKey(name: 'CouponId')
+                String couponId,
+            @JsonKey(name: 'CouponValue')
+                String couponValue,
+            @JsonKey(name: 'SubTotal')
+                double subTotal,
+            @JsonKey(name: 'Total')
+                double total,
+            @JsonKey(name: 'Notes')
+                String notes,
+            @JsonKey(name: 'EarnedPoint')
+                int earnedPoint,
+            @JsonKey(name: 'CustomerName')
+                String customerName,
+            @JsonKey(name: 'TransactionType')
+                String transactionType,
+            @JsonKey(name: 'TransactionTypeOptions')
+                String transactionTypeOptions,
+            @JsonKey(name: 'CreatedBy')
+                String createdBy,
+            @JsonKey(name: 'CreatedDate')
+                String createdDate,
+            @JsonKey(name: 'ModifiedBy')
+                String modifiedBy,
+            @JsonKey(name: 'ModifiedDate')
+                String modifiedDate),
+  }) {
+    assert(transData != null);
+    return transData(
+        customerId,
+        couponId,
+        couponValue,
+        subTotal,
+        total,
+        notes,
+        earnedPoint,
+        customerName,
+        transactionType,
+        transactionTypeOptions,
+        createdBy,
+        createdDate,
+        modifiedBy,
+        modifiedDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult transData(
+        @JsonKey(name: 'CustomerId') String customerId,
+        @JsonKey(name: 'CouponId') String couponId,
+        @JsonKey(name: 'CouponValue') String couponValue,
+        @JsonKey(name: 'SubTotal') double subTotal,
+        @JsonKey(name: 'Total') double total,
+        @JsonKey(name: 'Notes') String notes,
+        @JsonKey(name: 'EarnedPoint') int earnedPoint,
+        @JsonKey(name: 'CustomerName') String customerName,
+        @JsonKey(name: 'TransactionType') String transactionType,
+        @JsonKey(name: 'TransactionTypeOptions') String transactionTypeOptions,
+        @JsonKey(name: 'CreatedBy') String createdBy,
+        @JsonKey(name: 'CreatedDate') String createdDate,
+        @JsonKey(name: 'ModifiedBy') String modifiedBy,
+        @JsonKey(name: 'ModifiedDate') String modifiedDate),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (transData != null) {
+      return transData(
+          customerId,
+          couponId,
+          couponValue,
+          subTotal,
+          total,
+          notes,
+          earnedPoint,
+          customerName,
+          transactionType,
+          transactionTypeOptions,
+          createdBy,
+          createdDate,
+          modifiedBy,
+          modifiedDate);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult transData(TransData value),
+  }) {
+    assert(transData != null);
+    return transData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult transData(TransData value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (transData != null) {
+      return transData(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -448,5 +641,6 @@ abstract class TransData implements TransactionData {
   @JsonKey(name: 'ModifiedDate')
   String get modifiedDate;
   @override
+  @JsonKey(ignore: true)
   $TransDataCopyWith<TransData> get copyWith;
 }

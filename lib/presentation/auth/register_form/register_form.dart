@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/auth_bloc.dart';
+import 'package:i_love_iruka/application/auth/auth_controller.dart';
 import 'package:i_love_iruka/application/auth/auth_provider.dart';
 import 'package:i_love_iruka/domain/auth/register_data.dart';
-import 'package:i_love_iruka/infrastructure/core/shared_pref.dart';
+import 'package:i_love_iruka/infrastructure/core/local_storage.dart';
 import 'package:i_love_iruka/injection.dart';
 import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
 import 'package:i_love_iruka/presentation/widgets/appbar_transparent_back.dart';
@@ -35,6 +36,8 @@ class _RegisterFormState extends State<RegisterForm> {
   final passwordCon = TextEditingController();
   final confirmationPasswordCon = TextEditingController();
 
+  final _authController = Get.put(AuthController());
+
   String fullNameStr;
   String emailStr;
   String passwordStr;
@@ -61,90 +64,85 @@ class _RegisterFormState extends State<RegisterForm> {
         }
       },
       child: Scaffold(
-        body: Consumer<AuthProvider>(
-          builder: (context, authProvider, _) => BlocProvider(
-            create: (context) =>
-                getIt<AuthBloc>()..add(AuthEvent.getUserRoleList()),
-            child:
-                BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
-              state.maybeMap(
-                orElse: () {},
-                failOrSuccessGetRole: (e) {
-                  e.options.fold(
-                      () => () {},
-                      (a) => a.fold(
-                          (l) => () {}, (r) => authProvider.setUserList(r)));
-                },
-                onProgress: (e) => _flushbar =
-                    showFlushbarLoading(loading: "Registering User ....")
-                      ..show(context),
-                failOrSuccessLoginOption: (value) {
-                  dismissFlushbar(_flushbar);
-                  value.failOrSuccessOption.fold(
-                      () => null,
-                      (a) => a.fold(
-                            (l) {
-                              l.maybeMap(
-                                orElse: () {},
-                                badRequest: (e) => errMsg = "Bad Request",
-                                serverError: (e) => errMsg = "Server Error",
-                                notFound: (e) => errMsg = "Not Found",
-                              );
+        body: BlocProvider(
+          create: (context) =>
+              getIt<AuthBloc>()..add(AuthEvent.getUserRoleList()),
+          child: BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
+            state.maybeMap(
+              orElse: () {},
+              failOrSuccessGetRole: (e) {
+                e.options.fold(
+                    () => () {},
+                    (a) => a.fold(
+                        (l) => () {}, (r) => _authController.setUserList(r)));
+              },
+              onProgress: (e) => _flushbar =
+                  showFlushbarLoading(loading: "Registering User ....")
+                    ..show(context),
+              failOrSuccessLoginOption: (value) {
+                dismissFlushbar(_flushbar);
+                value.failOrSuccessOption.fold(
+                    () => null,
+                    (a) => a.fold(
+                          (l) {
+                            l.maybeMap(
+                              orElse: () {},
+                              badRequest: (e) => errMsg = "Bad Request",
+                              serverError: (e) => errMsg = "Server Error",
+                              notFound: (e) => errMsg = "Not Found",
+                            );
 
-                              _flushbar = showFlushbarError(errMessage: errMsg)
-                                ..show(context);
-                            },
-                            (r) {
-                              r.map(
-                                  loginRequestData: (e) {},
-                                  loginResponseData: (e) {
-                                    authProvider.setUserData(e.user);
-                                    saveUserData(e.user).then((value) {
-                                      _flushbar = showFlushbarSuccess(
-                                          succMessage: "Success Created User")
-                                        ..show(context);
-                                      Get.toNamed(DashboardPage.TAG);
-                                    }).catchError((onError) {
-                                      _flushbar = showFlushbarError(
-                                          errMessage:
-                                              "You Cannot Register User")
-                                        ..show(context);
-                                    });
+                            _flushbar = showFlushbarError(errMessage: errMsg)
+                              ..show(context);
+                          },
+                          (r) {
+                            r.map(
+                                loginRequestData: (e) {},
+                                loginResponseData: (e) {
+                                  _authController.setUserData(e.user);
+                                  saveUserData(e.user).then((value) {
+                                    _flushbar = showFlushbarSuccess(
+                                        succMessage: "Success Created User")
+                                      ..show(context);
+                                    Get.toNamed(DashboardPage.TAG);
+                                  }).catchError((onError) {
+                                    _flushbar = showFlushbarError(
+                                        errMessage: "You Cannot Register User")
+                                      ..show(context);
                                   });
-                            },
-                          ));
-                },
-              );
-            }, builder: (context, state) {
-              return state.maybeMap(
-                orElse: () => Container(
-                  child: Text("GAGAL"),
-                ),
-                failOrSuccessGetRole: (e) {
-                  if (e.isLoading) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else
-                    return e.options.fold(
-                        () => Container(),
-                        (a) => a.fold(
-                            (l) => Container(
-                                  child: Text("GAGAL"),
-                                ),
-                            (r) => buildSingleChildScrollView(
-                                context, state, authProvider)));
-                },
-              );
-            }),
-          ),
+                                });
+                          },
+                        ));
+              },
+            );
+          }, builder: (context, state) {
+            return state.maybeMap(
+              orElse: () => Container(
+                child: Text("GAGAL"),
+              ),
+              failOrSuccessGetRole: (e) {
+                if (e.isLoading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else
+                  return e.options.fold(
+                      () => Container(),
+                      (a) => a.fold(
+                          (l) => Container(
+                                child: Text("GAGAL"),
+                              ),
+                          (r) => buildSingleChildScrollView(context, state)));
+              },
+            );
+          }),
         ),
       ),
     );
   }
 
   SingleChildScrollView buildSingleChildScrollView(
-      BuildContext context, AuthState state, AuthProvider authProvider) {
+      BuildContext context, AuthState state) {
     return SingleChildScrollView(
       child: Stack(
         children: <Widget>[
@@ -178,7 +176,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 autovalidate: _autoValidate,
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                  child: formField(context, state, authProvider),
+                  child: formField(context, state),
                 ),
               ),
             ],
@@ -224,8 +222,7 @@ class _RegisterFormState extends State<RegisterForm> {
       return null;
   }
 
-  Column formField(
-      BuildContext context, AuthState state, AuthProvider authProvider) {
+  Column formField(BuildContext context, AuthState state) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -311,7 +308,8 @@ class _RegisterFormState extends State<RegisterForm> {
             ),
             value: actionType,
             isExpanded: true,
-            items: authProvider.getUserList
+            items: _authController
+                .getUserList()
                 .map((f) => DropdownMenuItem(
                       child: Text(f),
                       value: f,

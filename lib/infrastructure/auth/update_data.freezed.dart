@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'update_data.dart';
 
@@ -9,17 +9,19 @@ part of 'update_data.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$UpdateDataTearOff {
   const _$UpdateDataTearOff();
 
+// ignore: unused_element
   UpdateCustomerData call(
-      {@JsonKey(name: 'AccessKey') String accessKey,
-      @JsonKey(name: 'Name') String name,
-      @JsonKey(name: 'Email') String email,
-      @JsonKey(name: 'PhoneNumber') String phoneNumber,
-      @JsonKey(name: 'Address') String address,
-      @JsonKey(name: 'Id') String id,
-      @JsonKey(name: 'Picture') String picture}) {
+      {@JsonKey(name: "AccessKey") String accessKey,
+      @JsonKey(name: "Name") String name,
+      @JsonKey(name: "Email") String email,
+      @JsonKey(name: "PhoneNumber") String phoneNumber,
+      @JsonKey(name: "Address") String address,
+      @JsonKey(name: "Id") String id,
+      @JsonKey(name: "Picture") String picture}) {
     return UpdateCustomerData(
       accessKey: accessKey,
       name: name,
@@ -32,42 +34,47 @@ class _$UpdateDataTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $UpdateData = _$UpdateDataTearOff();
 
+/// @nodoc
 mixin _$UpdateData {
-  @JsonKey(name: 'AccessKey')
+  @JsonKey(name: "AccessKey")
   String get accessKey;
-  @JsonKey(name: 'Name')
+  @JsonKey(name: "Name")
   String get name;
-  @JsonKey(name: 'Email')
+  @JsonKey(name: "Email")
   String get email;
-  @JsonKey(name: 'PhoneNumber')
+  @JsonKey(name: "PhoneNumber")
   String get phoneNumber;
-  @JsonKey(name: 'Address')
+  @JsonKey(name: "Address")
   String get address;
-  @JsonKey(name: 'Id')
+  @JsonKey(name: "Id")
   String get id;
-  @JsonKey(name: 'Picture')
+  @JsonKey(name: "Picture")
   String get picture;
 
+  @JsonKey(ignore: true)
   $UpdateDataCopyWith<UpdateData> get copyWith;
 }
 
+/// @nodoc
 abstract class $UpdateDataCopyWith<$Res> {
   factory $UpdateDataCopyWith(
           UpdateData value, $Res Function(UpdateData) then) =
       _$UpdateDataCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'AccessKey') String accessKey,
-      @JsonKey(name: 'Name') String name,
-      @JsonKey(name: 'Email') String email,
-      @JsonKey(name: 'PhoneNumber') String phoneNumber,
-      @JsonKey(name: 'Address') String address,
-      @JsonKey(name: 'Id') String id,
-      @JsonKey(name: 'Picture') String picture});
+      {@JsonKey(name: "AccessKey") String accessKey,
+      @JsonKey(name: "Name") String name,
+      @JsonKey(name: "Email") String email,
+      @JsonKey(name: "PhoneNumber") String phoneNumber,
+      @JsonKey(name: "Address") String address,
+      @JsonKey(name: "Id") String id,
+      @JsonKey(name: "Picture") String picture});
 }
 
+/// @nodoc
 class _$UpdateDataCopyWithImpl<$Res> implements $UpdateDataCopyWith<$Res> {
   _$UpdateDataCopyWithImpl(this._value, this._then);
 
@@ -98,6 +105,7 @@ class _$UpdateDataCopyWithImpl<$Res> implements $UpdateDataCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class $UpdateCustomerDataCopyWith<$Res>
     implements $UpdateDataCopyWith<$Res> {
   factory $UpdateCustomerDataCopyWith(
@@ -105,15 +113,16 @@ abstract class $UpdateCustomerDataCopyWith<$Res>
       _$UpdateCustomerDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'AccessKey') String accessKey,
-      @JsonKey(name: 'Name') String name,
-      @JsonKey(name: 'Email') String email,
-      @JsonKey(name: 'PhoneNumber') String phoneNumber,
-      @JsonKey(name: 'Address') String address,
-      @JsonKey(name: 'Id') String id,
-      @JsonKey(name: 'Picture') String picture});
+      {@JsonKey(name: "AccessKey") String accessKey,
+      @JsonKey(name: "Name") String name,
+      @JsonKey(name: "Email") String email,
+      @JsonKey(name: "PhoneNumber") String phoneNumber,
+      @JsonKey(name: "Address") String address,
+      @JsonKey(name: "Id") String id,
+      @JsonKey(name: "Picture") String picture});
 }
 
+/// @nodoc
 class _$UpdateCustomerDataCopyWithImpl<$Res>
     extends _$UpdateDataCopyWithImpl<$Res>
     implements $UpdateCustomerDataCopyWith<$Res> {
@@ -147,36 +156,37 @@ class _$UpdateCustomerDataCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$UpdateCustomerData implements UpdateCustomerData {
   const _$UpdateCustomerData(
-      {@JsonKey(name: 'AccessKey') this.accessKey,
-      @JsonKey(name: 'Name') this.name,
-      @JsonKey(name: 'Email') this.email,
-      @JsonKey(name: 'PhoneNumber') this.phoneNumber,
-      @JsonKey(name: 'Address') this.address,
-      @JsonKey(name: 'Id') this.id,
-      @JsonKey(name: 'Picture') this.picture});
+      {@JsonKey(name: "AccessKey") this.accessKey,
+      @JsonKey(name: "Name") this.name,
+      @JsonKey(name: "Email") this.email,
+      @JsonKey(name: "PhoneNumber") this.phoneNumber,
+      @JsonKey(name: "Address") this.address,
+      @JsonKey(name: "Id") this.id,
+      @JsonKey(name: "Picture") this.picture});
 
   @override
-  @JsonKey(name: 'AccessKey')
+  @JsonKey(name: "AccessKey")
   final String accessKey;
   @override
-  @JsonKey(name: 'Name')
+  @JsonKey(name: "Name")
   final String name;
   @override
-  @JsonKey(name: 'Email')
+  @JsonKey(name: "Email")
   final String email;
   @override
-  @JsonKey(name: 'PhoneNumber')
+  @JsonKey(name: "PhoneNumber")
   final String phoneNumber;
   @override
-  @JsonKey(name: 'Address')
+  @JsonKey(name: "Address")
   final String address;
   @override
-  @JsonKey(name: 'Id')
+  @JsonKey(name: "Id")
   final String id;
   @override
-  @JsonKey(name: 'Picture')
+  @JsonKey(name: "Picture")
   final String picture;
 
   @override
@@ -218,6 +228,7 @@ class _$UpdateCustomerData implements UpdateCustomerData {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(picture);
 
+  @JsonKey(ignore: true)
   @override
   $UpdateCustomerDataCopyWith<UpdateCustomerData> get copyWith =>
       _$UpdateCustomerDataCopyWithImpl<UpdateCustomerData>(this, _$identity);
@@ -225,35 +236,36 @@ class _$UpdateCustomerData implements UpdateCustomerData {
 
 abstract class UpdateCustomerData implements UpdateData {
   const factory UpdateCustomerData(
-      {@JsonKey(name: 'AccessKey') String accessKey,
-      @JsonKey(name: 'Name') String name,
-      @JsonKey(name: 'Email') String email,
-      @JsonKey(name: 'PhoneNumber') String phoneNumber,
-      @JsonKey(name: 'Address') String address,
-      @JsonKey(name: 'Id') String id,
-      @JsonKey(name: 'Picture') String picture}) = _$UpdateCustomerData;
+      {@JsonKey(name: "AccessKey") String accessKey,
+      @JsonKey(name: "Name") String name,
+      @JsonKey(name: "Email") String email,
+      @JsonKey(name: "PhoneNumber") String phoneNumber,
+      @JsonKey(name: "Address") String address,
+      @JsonKey(name: "Id") String id,
+      @JsonKey(name: "Picture") String picture}) = _$UpdateCustomerData;
 
   @override
-  @JsonKey(name: 'AccessKey')
+  @JsonKey(name: "AccessKey")
   String get accessKey;
   @override
-  @JsonKey(name: 'Name')
+  @JsonKey(name: "Name")
   String get name;
   @override
-  @JsonKey(name: 'Email')
+  @JsonKey(name: "Email")
   String get email;
   @override
-  @JsonKey(name: 'PhoneNumber')
+  @JsonKey(name: "PhoneNumber")
   String get phoneNumber;
   @override
-  @JsonKey(name: 'Address')
+  @JsonKey(name: "Address")
   String get address;
   @override
-  @JsonKey(name: 'Id')
+  @JsonKey(name: "Id")
   String get id;
   @override
-  @JsonKey(name: 'Picture')
+  @JsonKey(name: "Picture")
   String get picture;
   @override
+  @JsonKey(ignore: true)
   $UpdateCustomerDataCopyWith<UpdateCustomerData> get copyWith;
 }

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'register_data.dart';
 
@@ -12,19 +12,21 @@ RegisterData _$RegisterDataFromJson(Map<String, dynamic> json) {
   return RegisterRequestData.fromJson(json);
 }
 
+/// @nodoc
 class _$RegisterDataTearOff {
   const _$RegisterDataTearOff();
 
+// ignore: unused_element
   RegisterRequestData registerRequestData(
-      {@JsonKey(name: 'AccessKey') String accessKey,
-      @JsonKey(name: 'Name') String name,
-      @JsonKey(name: 'Email') String email,
-      @JsonKey(name: 'Password') String password,
-      @JsonKey(name: 'Role') String role,
-      @JsonKey(name: 'Availability') String availability,
-      @JsonKey(name: 'Styling') String styling,
-      @JsonKey(name: 'Cliping') String cliping,
-      @JsonKey(name: 'TrainingYears') String trainingYears}) {
+      {@JsonKey(name: "AccessKey") String accessKey,
+      @JsonKey(name: "Name") String name,
+      @JsonKey(name: "Email") String email,
+      @JsonKey(name: "Password") String password,
+      @JsonKey(name: "Role") String role,
+      @JsonKey(name: "Availability") String availability,
+      @JsonKey(name: "Styling") String styling,
+      @JsonKey(name: "Cliping") String cliping,
+      @JsonKey(name: "TrainingYears") String trainingYears}) {
     return RegisterRequestData(
       accessKey: accessKey,
       name: name,
@@ -37,51 +39,98 @@ class _$RegisterDataTearOff {
       trainingYears: trainingYears,
     );
   }
+
+// ignore: unused_element
+  RegisterData fromJson(Map<String, Object> json) {
+    return RegisterData.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $RegisterData = _$RegisterDataTearOff();
 
+/// @nodoc
 mixin _$RegisterData {
-  @JsonKey(name: 'AccessKey')
+  @JsonKey(name: "AccessKey")
   String get accessKey;
-  @JsonKey(name: 'Name')
+  @JsonKey(name: "Name")
   String get name;
-  @JsonKey(name: 'Email')
+  @JsonKey(name: "Email")
   String get email;
-  @JsonKey(name: 'Password')
+  @JsonKey(name: "Password")
   String get password;
-  @JsonKey(name: 'Role')
+  @JsonKey(name: "Role")
   String get role;
-  @JsonKey(name: 'Availability')
+  @JsonKey(name: "Availability")
   String get availability;
-  @JsonKey(name: 'Styling')
+  @JsonKey(name: "Styling")
   String get styling;
-  @JsonKey(name: 'Cliping')
+  @JsonKey(name: "Cliping")
   String get cliping;
-  @JsonKey(name: 'TrainingYears')
+  @JsonKey(name: "TrainingYears")
   String get trainingYears;
 
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult registerRequestData(
+            @JsonKey(name: "AccessKey") String accessKey,
+            @JsonKey(name: "Name") String name,
+            @JsonKey(name: "Email") String email,
+            @JsonKey(name: "Password") String password,
+            @JsonKey(name: "Role") String role,
+            @JsonKey(name: "Availability") String availability,
+            @JsonKey(name: "Styling") String styling,
+            @JsonKey(name: "Cliping") String cliping,
+            @JsonKey(name: "TrainingYears") String trainingYears),
+  });
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult registerRequestData(
+        @JsonKey(name: "AccessKey") String accessKey,
+        @JsonKey(name: "Name") String name,
+        @JsonKey(name: "Email") String email,
+        @JsonKey(name: "Password") String password,
+        @JsonKey(name: "Role") String role,
+        @JsonKey(name: "Availability") String availability,
+        @JsonKey(name: "Styling") String styling,
+        @JsonKey(name: "Cliping") String cliping,
+        @JsonKey(name: "TrainingYears") String trainingYears),
+    @required TResult orElse(),
+  });
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult registerRequestData(RegisterRequestData value),
+  });
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult registerRequestData(RegisterRequestData value),
+    @required TResult orElse(),
+  });
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $RegisterDataCopyWith<RegisterData> get copyWith;
 }
 
+/// @nodoc
 abstract class $RegisterDataCopyWith<$Res> {
   factory $RegisterDataCopyWith(
           RegisterData value, $Res Function(RegisterData) then) =
       _$RegisterDataCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'AccessKey') String accessKey,
-      @JsonKey(name: 'Name') String name,
-      @JsonKey(name: 'Email') String email,
-      @JsonKey(name: 'Password') String password,
-      @JsonKey(name: 'Role') String role,
-      @JsonKey(name: 'Availability') String availability,
-      @JsonKey(name: 'Styling') String styling,
-      @JsonKey(name: 'Cliping') String cliping,
-      @JsonKey(name: 'TrainingYears') String trainingYears});
+      {@JsonKey(name: "AccessKey") String accessKey,
+      @JsonKey(name: "Name") String name,
+      @JsonKey(name: "Email") String email,
+      @JsonKey(name: "Password") String password,
+      @JsonKey(name: "Role") String role,
+      @JsonKey(name: "Availability") String availability,
+      @JsonKey(name: "Styling") String styling,
+      @JsonKey(name: "Cliping") String cliping,
+      @JsonKey(name: "TrainingYears") String trainingYears});
 }
 
+/// @nodoc
 class _$RegisterDataCopyWithImpl<$Res> implements $RegisterDataCopyWith<$Res> {
   _$RegisterDataCopyWithImpl(this._value, this._then);
 
@@ -119,6 +168,7 @@ class _$RegisterDataCopyWithImpl<$Res> implements $RegisterDataCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class $RegisterRequestDataCopyWith<$Res>
     implements $RegisterDataCopyWith<$Res> {
   factory $RegisterRequestDataCopyWith(
@@ -126,17 +176,18 @@ abstract class $RegisterRequestDataCopyWith<$Res>
       _$RegisterRequestDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'AccessKey') String accessKey,
-      @JsonKey(name: 'Name') String name,
-      @JsonKey(name: 'Email') String email,
-      @JsonKey(name: 'Password') String password,
-      @JsonKey(name: 'Role') String role,
-      @JsonKey(name: 'Availability') String availability,
-      @JsonKey(name: 'Styling') String styling,
-      @JsonKey(name: 'Cliping') String cliping,
-      @JsonKey(name: 'TrainingYears') String trainingYears});
+      {@JsonKey(name: "AccessKey") String accessKey,
+      @JsonKey(name: "Name") String name,
+      @JsonKey(name: "Email") String email,
+      @JsonKey(name: "Password") String password,
+      @JsonKey(name: "Role") String role,
+      @JsonKey(name: "Availability") String availability,
+      @JsonKey(name: "Styling") String styling,
+      @JsonKey(name: "Cliping") String cliping,
+      @JsonKey(name: "TrainingYears") String trainingYears});
 }
 
+/// @nodoc
 class _$RegisterRequestDataCopyWithImpl<$Res>
     extends _$RegisterDataCopyWithImpl<$Res>
     implements $RegisterRequestDataCopyWith<$Res> {
@@ -178,47 +229,49 @@ class _$RegisterRequestDataCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$RegisterRequestData implements RegisterRequestData {
   _$RegisterRequestData(
-      {@JsonKey(name: 'AccessKey') this.accessKey,
-      @JsonKey(name: 'Name') this.name,
-      @JsonKey(name: 'Email') this.email,
-      @JsonKey(name: 'Password') this.password,
-      @JsonKey(name: 'Role') this.role,
-      @JsonKey(name: 'Availability') this.availability,
-      @JsonKey(name: 'Styling') this.styling,
-      @JsonKey(name: 'Cliping') this.cliping,
-      @JsonKey(name: 'TrainingYears') this.trainingYears});
+      {@JsonKey(name: "AccessKey") this.accessKey,
+      @JsonKey(name: "Name") this.name,
+      @JsonKey(name: "Email") this.email,
+      @JsonKey(name: "Password") this.password,
+      @JsonKey(name: "Role") this.role,
+      @JsonKey(name: "Availability") this.availability,
+      @JsonKey(name: "Styling") this.styling,
+      @JsonKey(name: "Cliping") this.cliping,
+      @JsonKey(name: "TrainingYears") this.trainingYears});
 
   factory _$RegisterRequestData.fromJson(Map<String, dynamic> json) =>
       _$_$RegisterRequestDataFromJson(json);
 
   @override
-  @JsonKey(name: 'AccessKey')
+  @JsonKey(name: "AccessKey")
   final String accessKey;
   @override
-  @JsonKey(name: 'Name')
+  @JsonKey(name: "Name")
   final String name;
   @override
-  @JsonKey(name: 'Email')
+  @JsonKey(name: "Email")
   final String email;
   @override
-  @JsonKey(name: 'Password')
+  @JsonKey(name: "Password")
   final String password;
   @override
-  @JsonKey(name: 'Role')
+  @JsonKey(name: "Role")
   final String role;
   @override
-  @JsonKey(name: 'Availability')
+  @JsonKey(name: "Availability")
   final String availability;
   @override
-  @JsonKey(name: 'Styling')
+  @JsonKey(name: "Styling")
   final String styling;
   @override
-  @JsonKey(name: 'Cliping')
+  @JsonKey(name: "Cliping")
   final String cliping;
   @override
-  @JsonKey(name: 'TrainingYears')
+  @JsonKey(name: "TrainingYears")
   final String trainingYears;
 
   @override
@@ -269,9 +322,75 @@ class _$RegisterRequestData implements RegisterRequestData {
       const DeepCollectionEquality().hash(cliping) ^
       const DeepCollectionEquality().hash(trainingYears);
 
+  @JsonKey(ignore: true)
   @override
   $RegisterRequestDataCopyWith<RegisterRequestData> get copyWith =>
       _$RegisterRequestDataCopyWithImpl<RegisterRequestData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult registerRequestData(
+            @JsonKey(name: "AccessKey") String accessKey,
+            @JsonKey(name: "Name") String name,
+            @JsonKey(name: "Email") String email,
+            @JsonKey(name: "Password") String password,
+            @JsonKey(name: "Role") String role,
+            @JsonKey(name: "Availability") String availability,
+            @JsonKey(name: "Styling") String styling,
+            @JsonKey(name: "Cliping") String cliping,
+            @JsonKey(name: "TrainingYears") String trainingYears),
+  }) {
+    assert(registerRequestData != null);
+    return registerRequestData(accessKey, name, email, password, role,
+        availability, styling, cliping, trainingYears);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult registerRequestData(
+        @JsonKey(name: "AccessKey") String accessKey,
+        @JsonKey(name: "Name") String name,
+        @JsonKey(name: "Email") String email,
+        @JsonKey(name: "Password") String password,
+        @JsonKey(name: "Role") String role,
+        @JsonKey(name: "Availability") String availability,
+        @JsonKey(name: "Styling") String styling,
+        @JsonKey(name: "Cliping") String cliping,
+        @JsonKey(name: "TrainingYears") String trainingYears),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (registerRequestData != null) {
+      return registerRequestData(accessKey, name, email, password, role,
+          availability, styling, cliping, trainingYears);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult registerRequestData(RegisterRequestData value),
+  }) {
+    assert(registerRequestData != null);
+    return registerRequestData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult registerRequestData(RegisterRequestData value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (registerRequestData != null) {
+      return registerRequestData(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -281,47 +400,48 @@ class _$RegisterRequestData implements RegisterRequestData {
 
 abstract class RegisterRequestData implements RegisterData {
   factory RegisterRequestData(
-          {@JsonKey(name: 'AccessKey') String accessKey,
-          @JsonKey(name: 'Name') String name,
-          @JsonKey(name: 'Email') String email,
-          @JsonKey(name: 'Password') String password,
-          @JsonKey(name: 'Role') String role,
-          @JsonKey(name: 'Availability') String availability,
-          @JsonKey(name: 'Styling') String styling,
-          @JsonKey(name: 'Cliping') String cliping,
-          @JsonKey(name: 'TrainingYears') String trainingYears}) =
+          {@JsonKey(name: "AccessKey") String accessKey,
+          @JsonKey(name: "Name") String name,
+          @JsonKey(name: "Email") String email,
+          @JsonKey(name: "Password") String password,
+          @JsonKey(name: "Role") String role,
+          @JsonKey(name: "Availability") String availability,
+          @JsonKey(name: "Styling") String styling,
+          @JsonKey(name: "Cliping") String cliping,
+          @JsonKey(name: "TrainingYears") String trainingYears}) =
       _$RegisterRequestData;
 
   factory RegisterRequestData.fromJson(Map<String, dynamic> json) =
       _$RegisterRequestData.fromJson;
 
   @override
-  @JsonKey(name: 'AccessKey')
+  @JsonKey(name: "AccessKey")
   String get accessKey;
   @override
-  @JsonKey(name: 'Name')
+  @JsonKey(name: "Name")
   String get name;
   @override
-  @JsonKey(name: 'Email')
+  @JsonKey(name: "Email")
   String get email;
   @override
-  @JsonKey(name: 'Password')
+  @JsonKey(name: "Password")
   String get password;
   @override
-  @JsonKey(name: 'Role')
+  @JsonKey(name: "Role")
   String get role;
   @override
-  @JsonKey(name: 'Availability')
+  @JsonKey(name: "Availability")
   String get availability;
   @override
-  @JsonKey(name: 'Styling')
+  @JsonKey(name: "Styling")
   String get styling;
   @override
-  @JsonKey(name: 'Cliping')
+  @JsonKey(name: "Cliping")
   String get cliping;
   @override
-  @JsonKey(name: 'TrainingYears')
+  @JsonKey(name: "TrainingYears")
   String get trainingYears;
   @override
+  @JsonKey(ignore: true)
   $RegisterRequestDataCopyWith<RegisterRequestData> get copyWith;
 }

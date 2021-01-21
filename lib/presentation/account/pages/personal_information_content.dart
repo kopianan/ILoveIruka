@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/auth_bloc.dart';
+import 'package:i_love_iruka/application/auth/auth_controller.dart';
 import 'package:i_love_iruka/application/auth/auth_provider.dart';
 import 'package:i_love_iruka/domain/core/user.dart';
 import 'package:i_love_iruka/domain/core/value_actions.dart';
@@ -21,9 +23,11 @@ import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class PersonalInformationContent extends StatefulWidget {
-  const PersonalInformationContent({Key key, this.authProv}) : super(key: key);
+  const PersonalInformationContent({
+    Key key,
+  }) : super(key: key);
 
-  final AuthProvider authProv;
+  // final AuthProvider authProv;
 
   @override
   _PersonalInformationContentState createState() =>
@@ -45,16 +49,14 @@ class _PersonalInformationContentState
   User user;
 
   Flushbar flushbar;
-  AuthProvider authProv;
   String msg;
   final picker = ImagePicker();
   File _image;
-
+  final auth = Get.put(AuthController());
   @override
   void initState() {
     _image = null;
-    this.authProv = widget.authProv;
-    user = context.read<AuthProvider>().getUserData;
+    user = Get.put(AuthController()).getUserData();
     _fullNameCon = TextEditingController(text: user.name);
     _phoneNumberCon = TextEditingController(text: user.phoneNumber);
     _addressCon = TextEditingController(text: user.address);
@@ -83,11 +85,11 @@ class _PersonalInformationContentState
                       color: const Color(0xff7c94b6),
                       image: new DecorationImage(
                         image: (_image == null)
-                            ? (authProv.getUserData.picture == null)
+                            ? (auth.getUserData().picture == null)
                                 ? new ExactAssetImage(
                                     'images/assets/image_placeholder.png')
                                 : NetworkImage(Constants.getWebUrl() +
-                                    authProv.getUserData.picture)
+                                    auth.getUserData().picture)
                             : FileImage(_image),
                         fit: BoxFit.fill,
                       ),
@@ -107,14 +109,14 @@ class _PersonalInformationContentState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    authProv.getUserData.name,
+                    auth.getUserData().name,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 5,
                   ),
                   Text(
-                    authProv.getUserData.email,
+                    auth.getUserData().email,
                     style: TextStyle(
                       fontSize: 14,
                     ),

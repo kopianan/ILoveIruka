@@ -43,32 +43,18 @@ class _AppWidgetState extends State<AppWidget> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<AuthProvider>(
-          create: (context) => AuthProvider(),
-        )
-      ],
-      child: BlocProvider(
-        create: (context) => getIt<AuthenticationBloc>()
-          ..add(AuthenticationEvent.checkAuthentication()),
-        child: GetMaterialApp(
-          title: 'I Love Iruka',
-          getPages: navigatorPages,
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            inputDecorationTheme:
-                InputDecorationTheme(labelStyle: TextStyle(color: Colors.blue)),
-            textTheme: GoogleFonts.montserratTextTheme(textTheme),
-            primaryColor: Color(0xff558dc5),
-            iconTheme: IconThemeData(
-              color: Colors.white,
-            ),
-            errorColor: Colors.red,
-          ),
-          initialRoute: SplashScreen.TAG,
-        ),
-      ),
+    return GetMaterialApp(
+      title: 'I Love Iruka',
+      getPages: navigatorPages,
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          inputDecorationTheme:
+              InputDecorationTheme(labelStyle: TextStyle(color: Colors.blue)),
+          textTheme: GoogleFonts.montserratTextTheme(textTheme),
+          primaryColor: Color(0xff558dc5),
+          iconTheme: IconThemeData(color: Colors.white),
+          errorColor: Colors.red),
+      initialRoute: SplashScreen.TAG,
     );
   }
 }

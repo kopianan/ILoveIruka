@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'login_data.dart';
 
@@ -20,9 +20,11 @@ LoginData _$LoginDataFromJson(Map<String, dynamic> json) {
   }
 }
 
+/// @nodoc
 class _$LoginDataTearOff {
   const _$LoginDataTearOff();
 
+// ignore: unused_element
   LoginRequestData loginRequestData(
       {@required String username, @required String password}) {
     return LoginRequestData(
@@ -31,48 +33,58 @@ class _$LoginDataTearOff {
     );
   }
 
+// ignore: unused_element
   LoginResponseData loginResponseData(
-      {@required @JsonKey(name: 'User') User user}) {
+      {@required @JsonKey(name: "User") User user}) {
     return LoginResponseData(
       user: user,
     );
   }
+
+// ignore: unused_element
+  LoginData fromJson(Map<String, Object> json) {
+    return LoginData.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $LoginData = _$LoginDataTearOff();
 
+/// @nodoc
 mixin _$LoginData {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginRequestData(String username, String password),
-    @required Result loginResponseData(@JsonKey(name: 'User') User user),
+  TResult when<TResult extends Object>({
+    @required TResult loginRequestData(String username, String password),
+    @required TResult loginResponseData(@JsonKey(name: "User") User user),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginRequestData(String username, String password),
-    Result loginResponseData(@JsonKey(name: 'User') User user),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginRequestData(String username, String password),
+    TResult loginResponseData(@JsonKey(name: "User") User user),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginRequestData(LoginRequestData value),
-    @required Result loginResponseData(LoginResponseData value),
+  TResult map<TResult extends Object>({
+    @required TResult loginRequestData(LoginRequestData value),
+    @required TResult loginResponseData(LoginResponseData value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginRequestData(LoginRequestData value),
-    Result loginResponseData(LoginResponseData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginRequestData(LoginRequestData value),
+    TResult loginResponseData(LoginResponseData value),
+    @required TResult orElse(),
   });
   Map<String, dynamic> toJson();
 }
 
+/// @nodoc
 abstract class $LoginDataCopyWith<$Res> {
   factory $LoginDataCopyWith(LoginData value, $Res Function(LoginData) then) =
       _$LoginDataCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$LoginDataCopyWithImpl<$Res> implements $LoginDataCopyWith<$Res> {
   _$LoginDataCopyWithImpl(this._value, this._then);
 
@@ -81,6 +93,7 @@ class _$LoginDataCopyWithImpl<$Res> implements $LoginDataCopyWith<$Res> {
   final $Res Function(LoginData) _then;
 }
 
+/// @nodoc
 abstract class $LoginRequestDataCopyWith<$Res> {
   factory $LoginRequestDataCopyWith(
           LoginRequestData value, $Res Function(LoginRequestData) then) =
@@ -88,6 +101,7 @@ abstract class $LoginRequestDataCopyWith<$Res> {
   $Res call({String username, String password});
 }
 
+/// @nodoc
 class _$LoginRequestDataCopyWithImpl<$Res> extends _$LoginDataCopyWithImpl<$Res>
     implements $LoginRequestDataCopyWith<$Res> {
   _$LoginRequestDataCopyWithImpl(
@@ -110,6 +124,8 @@ class _$LoginRequestDataCopyWithImpl<$Res> extends _$LoginDataCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$LoginRequestData implements LoginRequestData {
   _$LoginRequestData({@required this.username, @required this.password})
       : assert(username != null),
@@ -146,15 +162,16 @@ class _$LoginRequestData implements LoginRequestData {
       const DeepCollectionEquality().hash(username) ^
       const DeepCollectionEquality().hash(password);
 
+  @JsonKey(ignore: true)
   @override
   $LoginRequestDataCopyWith<LoginRequestData> get copyWith =>
       _$LoginRequestDataCopyWithImpl<LoginRequestData>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginRequestData(String username, String password),
-    @required Result loginResponseData(@JsonKey(name: 'User') User user),
+  TResult when<TResult extends Object>({
+    @required TResult loginRequestData(String username, String password),
+    @required TResult loginResponseData(@JsonKey(name: "User") User user),
   }) {
     assert(loginRequestData != null);
     assert(loginResponseData != null);
@@ -163,10 +180,10 @@ class _$LoginRequestData implements LoginRequestData {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginRequestData(String username, String password),
-    Result loginResponseData(@JsonKey(name: 'User') User user),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginRequestData(String username, String password),
+    TResult loginResponseData(@JsonKey(name: "User") User user),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginRequestData != null) {
@@ -177,9 +194,9 @@ class _$LoginRequestData implements LoginRequestData {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginRequestData(LoginRequestData value),
-    @required Result loginResponseData(LoginResponseData value),
+  TResult map<TResult extends Object>({
+    @required TResult loginRequestData(LoginRequestData value),
+    @required TResult loginResponseData(LoginResponseData value),
   }) {
     assert(loginRequestData != null);
     assert(loginResponseData != null);
@@ -188,10 +205,10 @@ class _$LoginRequestData implements LoginRequestData {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginRequestData(LoginRequestData value),
-    Result loginResponseData(LoginResponseData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginRequestData(LoginRequestData value),
+    TResult loginResponseData(LoginResponseData value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginRequestData != null) {
@@ -217,18 +234,21 @@ abstract class LoginRequestData implements LoginData {
 
   String get username;
   String get password;
+  @JsonKey(ignore: true)
   $LoginRequestDataCopyWith<LoginRequestData> get copyWith;
 }
 
+/// @nodoc
 abstract class $LoginResponseDataCopyWith<$Res> {
   factory $LoginResponseDataCopyWith(
           LoginResponseData value, $Res Function(LoginResponseData) then) =
       _$LoginResponseDataCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'User') User user});
+  $Res call({@JsonKey(name: "User") User user});
 
   $UserCopyWith<$Res> get user;
 }
 
+/// @nodoc
 class _$LoginResponseDataCopyWithImpl<$Res>
     extends _$LoginDataCopyWithImpl<$Res>
     implements $LoginResponseDataCopyWith<$Res> {
@@ -260,15 +280,17 @@ class _$LoginResponseDataCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$LoginResponseData implements LoginResponseData {
-  _$LoginResponseData({@required @JsonKey(name: 'User') this.user})
+  _$LoginResponseData({@required @JsonKey(name: "User") this.user})
       : assert(user != null);
 
   factory _$LoginResponseData.fromJson(Map<String, dynamic> json) =>
       _$_$LoginResponseDataFromJson(json);
 
   @override
-  @JsonKey(name: 'User')
+  @JsonKey(name: "User")
   final User user;
 
   @override
@@ -288,15 +310,16 @@ class _$LoginResponseData implements LoginResponseData {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
 
+  @JsonKey(ignore: true)
   @override
   $LoginResponseDataCopyWith<LoginResponseData> get copyWith =>
       _$LoginResponseDataCopyWithImpl<LoginResponseData>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginRequestData(String username, String password),
-    @required Result loginResponseData(@JsonKey(name: 'User') User user),
+  TResult when<TResult extends Object>({
+    @required TResult loginRequestData(String username, String password),
+    @required TResult loginResponseData(@JsonKey(name: "User") User user),
   }) {
     assert(loginRequestData != null);
     assert(loginResponseData != null);
@@ -305,10 +328,10 @@ class _$LoginResponseData implements LoginResponseData {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginRequestData(String username, String password),
-    Result loginResponseData(@JsonKey(name: 'User') User user),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginRequestData(String username, String password),
+    TResult loginResponseData(@JsonKey(name: "User") User user),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginResponseData != null) {
@@ -319,9 +342,9 @@ class _$LoginResponseData implements LoginResponseData {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginRequestData(LoginRequestData value),
-    @required Result loginResponseData(LoginResponseData value),
+  TResult map<TResult extends Object>({
+    @required TResult loginRequestData(LoginRequestData value),
+    @required TResult loginResponseData(LoginResponseData value),
   }) {
     assert(loginRequestData != null);
     assert(loginResponseData != null);
@@ -330,10 +353,10 @@ class _$LoginResponseData implements LoginResponseData {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginRequestData(LoginRequestData value),
-    Result loginResponseData(LoginResponseData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginRequestData(LoginRequestData value),
+    TResult loginResponseData(LoginResponseData value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginResponseData != null) {
@@ -350,13 +373,14 @@ class _$LoginResponseData implements LoginResponseData {
 }
 
 abstract class LoginResponseData implements LoginData {
-  factory LoginResponseData({@required @JsonKey(name: 'User') User user}) =
+  factory LoginResponseData({@required @JsonKey(name: "User") User user}) =
       _$LoginResponseData;
 
   factory LoginResponseData.fromJson(Map<String, dynamic> json) =
       _$LoginResponseData.fromJson;
 
-  @JsonKey(name: 'User')
+  @JsonKey(name: "User")
   User get user;
+  @JsonKey(ignore: true)
   $LoginResponseDataCopyWith<LoginResponseData> get copyWith;
 }

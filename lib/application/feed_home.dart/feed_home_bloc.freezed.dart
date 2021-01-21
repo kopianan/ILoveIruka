@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'feed_home_bloc.dart';
 
@@ -9,52 +9,59 @@ part of 'feed_home_bloc.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$FeedHomeEventTearOff {
   const _$FeedHomeEventTearOff();
 
+// ignore: unused_element
   _GetTopFeedData getTopFeedData() {
     return _GetTopFeedData();
   }
 
+// ignore: unused_element
   _GetBottomFeedData getBottomFeedData() {
     return _GetBottomFeedData();
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $FeedHomeEvent = _$FeedHomeEventTearOff();
 
+/// @nodoc
 mixin _$FeedHomeEvent {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result getTopFeedData(),
-    @required Result getBottomFeedData(),
+  TResult when<TResult extends Object>({
+    @required TResult getTopFeedData(),
+    @required TResult getBottomFeedData(),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getTopFeedData(),
-    Result getBottomFeedData(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult getTopFeedData(),
+    TResult getBottomFeedData(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result getTopFeedData(_GetTopFeedData value),
-    @required Result getBottomFeedData(_GetBottomFeedData value),
+  TResult map<TResult extends Object>({
+    @required TResult getTopFeedData(_GetTopFeedData value),
+    @required TResult getBottomFeedData(_GetBottomFeedData value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getTopFeedData(_GetTopFeedData value),
-    Result getBottomFeedData(_GetBottomFeedData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult getTopFeedData(_GetTopFeedData value),
+    TResult getBottomFeedData(_GetBottomFeedData value),
+    @required TResult orElse(),
   });
 }
 
+/// @nodoc
 abstract class $FeedHomeEventCopyWith<$Res> {
   factory $FeedHomeEventCopyWith(
           FeedHomeEvent value, $Res Function(FeedHomeEvent) then) =
       _$FeedHomeEventCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$FeedHomeEventCopyWithImpl<$Res>
     implements $FeedHomeEventCopyWith<$Res> {
   _$FeedHomeEventCopyWithImpl(this._value, this._then);
@@ -64,12 +71,14 @@ class _$FeedHomeEventCopyWithImpl<$Res>
   final $Res Function(FeedHomeEvent) _then;
 }
 
+/// @nodoc
 abstract class _$GetTopFeedDataCopyWith<$Res> {
   factory _$GetTopFeedDataCopyWith(
           _GetTopFeedData value, $Res Function(_GetTopFeedData) then) =
       __$GetTopFeedDataCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class __$GetTopFeedDataCopyWithImpl<$Res>
     extends _$FeedHomeEventCopyWithImpl<$Res>
     implements _$GetTopFeedDataCopyWith<$Res> {
@@ -81,6 +90,7 @@ class __$GetTopFeedDataCopyWithImpl<$Res>
   _GetTopFeedData get _value => super._value as _GetTopFeedData;
 }
 
+/// @nodoc
 class _$_GetTopFeedData implements _GetTopFeedData {
   _$_GetTopFeedData();
 
@@ -99,9 +109,9 @@ class _$_GetTopFeedData implements _GetTopFeedData {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result getTopFeedData(),
-    @required Result getBottomFeedData(),
+  TResult when<TResult extends Object>({
+    @required TResult getTopFeedData(),
+    @required TResult getBottomFeedData(),
   }) {
     assert(getTopFeedData != null);
     assert(getBottomFeedData != null);
@@ -110,10 +120,10 @@ class _$_GetTopFeedData implements _GetTopFeedData {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getTopFeedData(),
-    Result getBottomFeedData(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult getTopFeedData(),
+    TResult getBottomFeedData(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getTopFeedData != null) {
@@ -124,9 +134,9 @@ class _$_GetTopFeedData implements _GetTopFeedData {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result getTopFeedData(_GetTopFeedData value),
-    @required Result getBottomFeedData(_GetBottomFeedData value),
+  TResult map<TResult extends Object>({
+    @required TResult getTopFeedData(_GetTopFeedData value),
+    @required TResult getBottomFeedData(_GetBottomFeedData value),
   }) {
     assert(getTopFeedData != null);
     assert(getBottomFeedData != null);
@@ -135,10 +145,10 @@ class _$_GetTopFeedData implements _GetTopFeedData {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getTopFeedData(_GetTopFeedData value),
-    Result getBottomFeedData(_GetBottomFeedData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult getTopFeedData(_GetTopFeedData value),
+    TResult getBottomFeedData(_GetBottomFeedData value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getTopFeedData != null) {
@@ -152,12 +162,14 @@ abstract class _GetTopFeedData implements FeedHomeEvent {
   factory _GetTopFeedData() = _$_GetTopFeedData;
 }
 
+/// @nodoc
 abstract class _$GetBottomFeedDataCopyWith<$Res> {
   factory _$GetBottomFeedDataCopyWith(
           _GetBottomFeedData value, $Res Function(_GetBottomFeedData) then) =
       __$GetBottomFeedDataCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class __$GetBottomFeedDataCopyWithImpl<$Res>
     extends _$FeedHomeEventCopyWithImpl<$Res>
     implements _$GetBottomFeedDataCopyWith<$Res> {
@@ -169,6 +181,7 @@ class __$GetBottomFeedDataCopyWithImpl<$Res>
   _GetBottomFeedData get _value => super._value as _GetBottomFeedData;
 }
 
+/// @nodoc
 class _$_GetBottomFeedData implements _GetBottomFeedData {
   _$_GetBottomFeedData();
 
@@ -187,9 +200,9 @@ class _$_GetBottomFeedData implements _GetBottomFeedData {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result getTopFeedData(),
-    @required Result getBottomFeedData(),
+  TResult when<TResult extends Object>({
+    @required TResult getTopFeedData(),
+    @required TResult getBottomFeedData(),
   }) {
     assert(getTopFeedData != null);
     assert(getBottomFeedData != null);
@@ -198,10 +211,10 @@ class _$_GetBottomFeedData implements _GetBottomFeedData {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getTopFeedData(),
-    Result getBottomFeedData(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult getTopFeedData(),
+    TResult getBottomFeedData(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getBottomFeedData != null) {
@@ -212,9 +225,9 @@ class _$_GetBottomFeedData implements _GetBottomFeedData {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result getTopFeedData(_GetTopFeedData value),
-    @required Result getBottomFeedData(_GetBottomFeedData value),
+  TResult map<TResult extends Object>({
+    @required TResult getTopFeedData(_GetTopFeedData value),
+    @required TResult getBottomFeedData(_GetBottomFeedData value),
   }) {
     assert(getTopFeedData != null);
     assert(getBottomFeedData != null);
@@ -223,10 +236,10 @@ class _$_GetBottomFeedData implements _GetBottomFeedData {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getTopFeedData(_GetTopFeedData value),
-    Result getBottomFeedData(_GetBottomFeedData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult getTopFeedData(_GetTopFeedData value),
+    TResult getBottomFeedData(_GetBottomFeedData value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getBottomFeedData != null) {
@@ -240,13 +253,16 @@ abstract class _GetBottomFeedData implements FeedHomeEvent {
   factory _GetBottomFeedData() = _$_GetBottomFeedData;
 }
 
+/// @nodoc
 class _$FeedHomeStateTearOff {
   const _$FeedHomeStateTearOff();
 
+// ignore: unused_element
   _Initial initial() {
     return _Initial();
   }
 
+// ignore: unused_element
   _FailOrSuccessGetData failOrSuccessGetData(
       {@required Option<Either<FeedFailure, List<Feed>>> responseOptions,
       @required bool isLoading}) {
@@ -256,6 +272,7 @@ class _$FeedHomeStateTearOff {
     );
   }
 
+// ignore: unused_element
   _FailOrSuccessGetDataBottom failOrSuccessGetDataBottom(
       {@required Option<Either<FeedFailure, List<Feed>>> responseOptions,
       @required bool isLoading}) {
@@ -266,55 +283,59 @@ class _$FeedHomeStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $FeedHomeState = _$FeedHomeStateTearOff();
 
+/// @nodoc
 mixin _$FeedHomeState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
     @required
-        Result failOrSuccessGetData(
+        TResult failOrSuccessGetData(
             Option<Either<FeedFailure, List<Feed>>> responseOptions,
             bool isLoading),
     @required
-        Result failOrSuccessGetDataBottom(
+        TResult failOrSuccessGetDataBottom(
             Option<Either<FeedFailure, List<Feed>>> responseOptions,
             bool isLoading),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result failOrSuccessGetData(
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult failOrSuccessGetData(
         Option<Either<FeedFailure, List<Feed>>> responseOptions,
         bool isLoading),
-    Result failOrSuccessGetDataBottom(
+    TResult failOrSuccessGetDataBottom(
         Option<Either<FeedFailure, List<Feed>>> responseOptions,
         bool isLoading),
-    @required Result orElse(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result failOrSuccessGetData(_FailOrSuccessGetData value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult failOrSuccessGetData(_FailOrSuccessGetData value),
     @required
-        Result failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+        TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result failOrSuccessGetData(_FailOrSuccessGetData value),
-    Result failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult failOrSuccessGetData(_FailOrSuccessGetData value),
+    TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+    @required TResult orElse(),
   });
 }
 
+/// @nodoc
 abstract class $FeedHomeStateCopyWith<$Res> {
   factory $FeedHomeStateCopyWith(
           FeedHomeState value, $Res Function(FeedHomeState) then) =
       _$FeedHomeStateCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$FeedHomeStateCopyWithImpl<$Res>
     implements $FeedHomeStateCopyWith<$Res> {
   _$FeedHomeStateCopyWithImpl(this._value, this._then);
@@ -324,11 +345,13 @@ class _$FeedHomeStateCopyWithImpl<$Res>
   final $Res Function(FeedHomeState) _then;
 }
 
+/// @nodoc
 abstract class _$InitialCopyWith<$Res> {
   factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
       __$InitialCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class __$InitialCopyWithImpl<$Res> extends _$FeedHomeStateCopyWithImpl<$Res>
     implements _$InitialCopyWith<$Res> {
   __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
@@ -338,6 +361,7 @@ class __$InitialCopyWithImpl<$Res> extends _$FeedHomeStateCopyWithImpl<$Res>
   _Initial get _value => super._value as _Initial;
 }
 
+/// @nodoc
 class _$_Initial implements _Initial {
   _$_Initial();
 
@@ -356,14 +380,14 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
     @required
-        Result failOrSuccessGetData(
+        TResult failOrSuccessGetData(
             Option<Either<FeedFailure, List<Feed>>> responseOptions,
             bool isLoading),
     @required
-        Result failOrSuccessGetDataBottom(
+        TResult failOrSuccessGetDataBottom(
             Option<Either<FeedFailure, List<Feed>>> responseOptions,
             bool isLoading),
   }) {
@@ -375,15 +399,15 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result failOrSuccessGetData(
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult failOrSuccessGetData(
         Option<Either<FeedFailure, List<Feed>>> responseOptions,
         bool isLoading),
-    Result failOrSuccessGetDataBottom(
+    TResult failOrSuccessGetDataBottom(
         Option<Either<FeedFailure, List<Feed>>> responseOptions,
         bool isLoading),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initial != null) {
@@ -394,11 +418,11 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result failOrSuccessGetData(_FailOrSuccessGetData value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult failOrSuccessGetData(_FailOrSuccessGetData value),
     @required
-        Result failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+        TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
@@ -408,11 +432,11 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result failOrSuccessGetData(_FailOrSuccessGetData value),
-    Result failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult failOrSuccessGetData(_FailOrSuccessGetData value),
+    TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initial != null) {
@@ -426,6 +450,7 @@ abstract class _Initial implements FeedHomeState {
   factory _Initial() = _$_Initial;
 }
 
+/// @nodoc
 abstract class _$FailOrSuccessGetDataCopyWith<$Res> {
   factory _$FailOrSuccessGetDataCopyWith(_FailOrSuccessGetData value,
           $Res Function(_FailOrSuccessGetData) then) =
@@ -435,6 +460,7 @@ abstract class _$FailOrSuccessGetDataCopyWith<$Res> {
       bool isLoading});
 }
 
+/// @nodoc
 class __$FailOrSuccessGetDataCopyWithImpl<$Res>
     extends _$FeedHomeStateCopyWithImpl<$Res>
     implements _$FailOrSuccessGetDataCopyWith<$Res> {
@@ -459,6 +485,7 @@ class __$FailOrSuccessGetDataCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_FailOrSuccessGetData implements _FailOrSuccessGetData {
   _$_FailOrSuccessGetData(
       {@required this.responseOptions, @required this.isLoading})
@@ -493,6 +520,7 @@ class _$_FailOrSuccessGetData implements _FailOrSuccessGetData {
       const DeepCollectionEquality().hash(responseOptions) ^
       const DeepCollectionEquality().hash(isLoading);
 
+  @JsonKey(ignore: true)
   @override
   _$FailOrSuccessGetDataCopyWith<_FailOrSuccessGetData> get copyWith =>
       __$FailOrSuccessGetDataCopyWithImpl<_FailOrSuccessGetData>(
@@ -500,14 +528,14 @@ class _$_FailOrSuccessGetData implements _FailOrSuccessGetData {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
     @required
-        Result failOrSuccessGetData(
+        TResult failOrSuccessGetData(
             Option<Either<FeedFailure, List<Feed>>> responseOptions,
             bool isLoading),
     @required
-        Result failOrSuccessGetDataBottom(
+        TResult failOrSuccessGetDataBottom(
             Option<Either<FeedFailure, List<Feed>>> responseOptions,
             bool isLoading),
   }) {
@@ -519,15 +547,15 @@ class _$_FailOrSuccessGetData implements _FailOrSuccessGetData {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result failOrSuccessGetData(
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult failOrSuccessGetData(
         Option<Either<FeedFailure, List<Feed>>> responseOptions,
         bool isLoading),
-    Result failOrSuccessGetDataBottom(
+    TResult failOrSuccessGetDataBottom(
         Option<Either<FeedFailure, List<Feed>>> responseOptions,
         bool isLoading),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (failOrSuccessGetData != null) {
@@ -538,11 +566,11 @@ class _$_FailOrSuccessGetData implements _FailOrSuccessGetData {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result failOrSuccessGetData(_FailOrSuccessGetData value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult failOrSuccessGetData(_FailOrSuccessGetData value),
     @required
-        Result failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+        TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
@@ -552,11 +580,11 @@ class _$_FailOrSuccessGetData implements _FailOrSuccessGetData {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result failOrSuccessGetData(_FailOrSuccessGetData value),
-    Result failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult failOrSuccessGetData(_FailOrSuccessGetData value),
+    TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (failOrSuccessGetData != null) {
@@ -573,9 +601,11 @@ abstract class _FailOrSuccessGetData implements FeedHomeState {
 
   Option<Either<FeedFailure, List<Feed>>> get responseOptions;
   bool get isLoading;
+  @JsonKey(ignore: true)
   _$FailOrSuccessGetDataCopyWith<_FailOrSuccessGetData> get copyWith;
 }
 
+/// @nodoc
 abstract class _$FailOrSuccessGetDataBottomCopyWith<$Res> {
   factory _$FailOrSuccessGetDataBottomCopyWith(
           _FailOrSuccessGetDataBottom value,
@@ -586,6 +616,7 @@ abstract class _$FailOrSuccessGetDataBottomCopyWith<$Res> {
       bool isLoading});
 }
 
+/// @nodoc
 class __$FailOrSuccessGetDataBottomCopyWithImpl<$Res>
     extends _$FeedHomeStateCopyWithImpl<$Res>
     implements _$FailOrSuccessGetDataBottomCopyWith<$Res> {
@@ -611,6 +642,7 @@ class __$FailOrSuccessGetDataBottomCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_FailOrSuccessGetDataBottom implements _FailOrSuccessGetDataBottom {
   _$_FailOrSuccessGetDataBottom(
       {@required this.responseOptions, @required this.isLoading})
@@ -645,6 +677,7 @@ class _$_FailOrSuccessGetDataBottom implements _FailOrSuccessGetDataBottom {
       const DeepCollectionEquality().hash(responseOptions) ^
       const DeepCollectionEquality().hash(isLoading);
 
+  @JsonKey(ignore: true)
   @override
   _$FailOrSuccessGetDataBottomCopyWith<_FailOrSuccessGetDataBottom>
       get copyWith => __$FailOrSuccessGetDataBottomCopyWithImpl<
@@ -652,14 +685,14 @@ class _$_FailOrSuccessGetDataBottom implements _FailOrSuccessGetDataBottom {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
     @required
-        Result failOrSuccessGetData(
+        TResult failOrSuccessGetData(
             Option<Either<FeedFailure, List<Feed>>> responseOptions,
             bool isLoading),
     @required
-        Result failOrSuccessGetDataBottom(
+        TResult failOrSuccessGetDataBottom(
             Option<Either<FeedFailure, List<Feed>>> responseOptions,
             bool isLoading),
   }) {
@@ -671,15 +704,15 @@ class _$_FailOrSuccessGetDataBottom implements _FailOrSuccessGetDataBottom {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result failOrSuccessGetData(
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult failOrSuccessGetData(
         Option<Either<FeedFailure, List<Feed>>> responseOptions,
         bool isLoading),
-    Result failOrSuccessGetDataBottom(
+    TResult failOrSuccessGetDataBottom(
         Option<Either<FeedFailure, List<Feed>>> responseOptions,
         bool isLoading),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (failOrSuccessGetDataBottom != null) {
@@ -690,11 +723,11 @@ class _$_FailOrSuccessGetDataBottom implements _FailOrSuccessGetDataBottom {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result failOrSuccessGetData(_FailOrSuccessGetData value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult failOrSuccessGetData(_FailOrSuccessGetData value),
     @required
-        Result failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+        TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
@@ -704,11 +737,11 @@ class _$_FailOrSuccessGetDataBottom implements _FailOrSuccessGetDataBottom {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result failOrSuccessGetData(_FailOrSuccessGetData value),
-    Result failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult failOrSuccessGetData(_FailOrSuccessGetData value),
+    TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (failOrSuccessGetDataBottom != null) {
@@ -725,6 +758,7 @@ abstract class _FailOrSuccessGetDataBottom implements FeedHomeState {
 
   Option<Either<FeedFailure, List<Feed>>> get responseOptions;
   bool get isLoading;
+  @JsonKey(ignore: true)
   _$FailOrSuccessGetDataBottomCopyWith<_FailOrSuccessGetDataBottom>
       get copyWith;
 }

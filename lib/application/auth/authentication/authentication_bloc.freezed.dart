@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'authentication_bloc.dart';
 
@@ -9,62 +9,59 @@ part of 'authentication_bloc.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$AuthenticationEventTearOff {
   const _$AuthenticationEventTearOff();
 
+// ignore: unused_element
   CheckAuthentication checkAuthentication() {
     return CheckAuthentication();
   }
 
-  SaveAuthentication saveAuthentication({User r}) {
-    return SaveAuthentication(
-      r: r,
-    );
-  }
-
+// ignore: unused_element
   SignOut signOut() {
     return SignOut();
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $AuthenticationEvent = _$AuthenticationEventTearOff();
 
+/// @nodoc
 mixin _$AuthenticationEvent {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result checkAuthentication(),
-    @required Result saveAuthentication(User r),
-    @required Result signOut(),
+  TResult when<TResult extends Object>({
+    @required TResult checkAuthentication(),
+    @required TResult signOut(),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result checkAuthentication(),
-    Result saveAuthentication(User r),
-    Result signOut(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult checkAuthentication(),
+    TResult signOut(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result checkAuthentication(CheckAuthentication value),
-    @required Result saveAuthentication(SaveAuthentication value),
-    @required Result signOut(SignOut value),
+  TResult map<TResult extends Object>({
+    @required TResult checkAuthentication(CheckAuthentication value),
+    @required TResult signOut(SignOut value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result checkAuthentication(CheckAuthentication value),
-    Result saveAuthentication(SaveAuthentication value),
-    Result signOut(SignOut value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult checkAuthentication(CheckAuthentication value),
+    TResult signOut(SignOut value),
+    @required TResult orElse(),
   });
 }
 
+/// @nodoc
 abstract class $AuthenticationEventCopyWith<$Res> {
   factory $AuthenticationEventCopyWith(
           AuthenticationEvent value, $Res Function(AuthenticationEvent) then) =
       _$AuthenticationEventCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$AuthenticationEventCopyWithImpl<$Res>
     implements $AuthenticationEventCopyWith<$Res> {
   _$AuthenticationEventCopyWithImpl(this._value, this._then);
@@ -74,12 +71,14 @@ class _$AuthenticationEventCopyWithImpl<$Res>
   final $Res Function(AuthenticationEvent) _then;
 }
 
+/// @nodoc
 abstract class $CheckAuthenticationCopyWith<$Res> {
   factory $CheckAuthenticationCopyWith(
           CheckAuthentication value, $Res Function(CheckAuthentication) then) =
       _$CheckAuthenticationCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$CheckAuthenticationCopyWithImpl<$Res>
     extends _$AuthenticationEventCopyWithImpl<$Res>
     implements $CheckAuthenticationCopyWith<$Res> {
@@ -91,6 +90,7 @@ class _$CheckAuthenticationCopyWithImpl<$Res>
   CheckAuthentication get _value => super._value as CheckAuthentication;
 }
 
+/// @nodoc
 class _$CheckAuthentication implements CheckAuthentication {
   _$CheckAuthentication();
 
@@ -109,24 +109,21 @@ class _$CheckAuthentication implements CheckAuthentication {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result checkAuthentication(),
-    @required Result saveAuthentication(User r),
-    @required Result signOut(),
+  TResult when<TResult extends Object>({
+    @required TResult checkAuthentication(),
+    @required TResult signOut(),
   }) {
     assert(checkAuthentication != null);
-    assert(saveAuthentication != null);
     assert(signOut != null);
     return checkAuthentication();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result checkAuthentication(),
-    Result saveAuthentication(User r),
-    Result signOut(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult checkAuthentication(),
+    TResult signOut(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (checkAuthentication != null) {
@@ -137,24 +134,21 @@ class _$CheckAuthentication implements CheckAuthentication {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result checkAuthentication(CheckAuthentication value),
-    @required Result saveAuthentication(SaveAuthentication value),
-    @required Result signOut(SignOut value),
+  TResult map<TResult extends Object>({
+    @required TResult checkAuthentication(CheckAuthentication value),
+    @required TResult signOut(SignOut value),
   }) {
     assert(checkAuthentication != null);
-    assert(saveAuthentication != null);
     assert(signOut != null);
     return checkAuthentication(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result checkAuthentication(CheckAuthentication value),
-    Result saveAuthentication(SaveAuthentication value),
-    Result signOut(SignOut value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult checkAuthentication(CheckAuthentication value),
+    TResult signOut(SignOut value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (checkAuthentication != null) {
@@ -168,141 +162,13 @@ abstract class CheckAuthentication implements AuthenticationEvent {
   factory CheckAuthentication() = _$CheckAuthentication;
 }
 
-abstract class $SaveAuthenticationCopyWith<$Res> {
-  factory $SaveAuthenticationCopyWith(
-          SaveAuthentication value, $Res Function(SaveAuthentication) then) =
-      _$SaveAuthenticationCopyWithImpl<$Res>;
-  $Res call({User r});
-
-  $UserCopyWith<$Res> get r;
-}
-
-class _$SaveAuthenticationCopyWithImpl<$Res>
-    extends _$AuthenticationEventCopyWithImpl<$Res>
-    implements $SaveAuthenticationCopyWith<$Res> {
-  _$SaveAuthenticationCopyWithImpl(
-      SaveAuthentication _value, $Res Function(SaveAuthentication) _then)
-      : super(_value, (v) => _then(v as SaveAuthentication));
-
-  @override
-  SaveAuthentication get _value => super._value as SaveAuthentication;
-
-  @override
-  $Res call({
-    Object r = freezed,
-  }) {
-    return _then(SaveAuthentication(
-      r: r == freezed ? _value.r : r as User,
-    ));
-  }
-
-  @override
-  $UserCopyWith<$Res> get r {
-    if (_value.r == null) {
-      return null;
-    }
-    return $UserCopyWith<$Res>(_value.r, (value) {
-      return _then(_value.copyWith(r: value));
-    });
-  }
-}
-
-class _$SaveAuthentication implements SaveAuthentication {
-  _$SaveAuthentication({this.r});
-
-  @override
-  final User r;
-
-  @override
-  String toString() {
-    return 'AuthenticationEvent.saveAuthentication(r: $r)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is SaveAuthentication &&
-            (identical(other.r, r) ||
-                const DeepCollectionEquality().equals(other.r, r)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(r);
-
-  @override
-  $SaveAuthenticationCopyWith<SaveAuthentication> get copyWith =>
-      _$SaveAuthenticationCopyWithImpl<SaveAuthentication>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result checkAuthentication(),
-    @required Result saveAuthentication(User r),
-    @required Result signOut(),
-  }) {
-    assert(checkAuthentication != null);
-    assert(saveAuthentication != null);
-    assert(signOut != null);
-    return saveAuthentication(r);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result checkAuthentication(),
-    Result saveAuthentication(User r),
-    Result signOut(),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (saveAuthentication != null) {
-      return saveAuthentication(r);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result checkAuthentication(CheckAuthentication value),
-    @required Result saveAuthentication(SaveAuthentication value),
-    @required Result signOut(SignOut value),
-  }) {
-    assert(checkAuthentication != null);
-    assert(saveAuthentication != null);
-    assert(signOut != null);
-    return saveAuthentication(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result checkAuthentication(CheckAuthentication value),
-    Result saveAuthentication(SaveAuthentication value),
-    Result signOut(SignOut value),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (saveAuthentication != null) {
-      return saveAuthentication(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SaveAuthentication implements AuthenticationEvent {
-  factory SaveAuthentication({User r}) = _$SaveAuthentication;
-
-  User get r;
-  $SaveAuthenticationCopyWith<SaveAuthentication> get copyWith;
-}
-
+/// @nodoc
 abstract class $SignOutCopyWith<$Res> {
   factory $SignOutCopyWith(SignOut value, $Res Function(SignOut) then) =
       _$SignOutCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$SignOutCopyWithImpl<$Res>
     extends _$AuthenticationEventCopyWithImpl<$Res>
     implements $SignOutCopyWith<$Res> {
@@ -313,6 +179,7 @@ class _$SignOutCopyWithImpl<$Res>
   SignOut get _value => super._value as SignOut;
 }
 
+/// @nodoc
 class _$SignOut implements SignOut {
   _$SignOut();
 
@@ -331,24 +198,21 @@ class _$SignOut implements SignOut {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result checkAuthentication(),
-    @required Result saveAuthentication(User r),
-    @required Result signOut(),
+  TResult when<TResult extends Object>({
+    @required TResult checkAuthentication(),
+    @required TResult signOut(),
   }) {
     assert(checkAuthentication != null);
-    assert(saveAuthentication != null);
     assert(signOut != null);
     return signOut();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result checkAuthentication(),
-    Result saveAuthentication(User r),
-    Result signOut(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult checkAuthentication(),
+    TResult signOut(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (signOut != null) {
@@ -359,24 +223,21 @@ class _$SignOut implements SignOut {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result checkAuthentication(CheckAuthentication value),
-    @required Result saveAuthentication(SaveAuthentication value),
-    @required Result signOut(SignOut value),
+  TResult map<TResult extends Object>({
+    @required TResult checkAuthentication(CheckAuthentication value),
+    @required TResult signOut(SignOut value),
   }) {
     assert(checkAuthentication != null);
-    assert(saveAuthentication != null);
     assert(signOut != null);
     return signOut(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result checkAuthentication(CheckAuthentication value),
-    Result saveAuthentication(SaveAuthentication value),
-    Result signOut(SignOut value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult checkAuthentication(CheckAuthentication value),
+    TResult signOut(SignOut value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (signOut != null) {
@@ -390,29 +251,35 @@ abstract class SignOut implements AuthenticationEvent {
   factory SignOut() = _$SignOut;
 }
 
+/// @nodoc
 class _$AuthenticationStateTearOff {
   const _$AuthenticationStateTearOff();
 
+// ignore: unused_element
   Initial initial() {
     return Initial();
   }
 
+// ignore: unused_element
   Authenticated authenticated({@required User user}) {
     return Authenticated(
       user: user,
     );
   }
 
+// ignore: unused_element
   AuthenticationUpdated authenticationUpdated({@required User user}) {
     return AuthenticationUpdated(
       user: user,
     );
   }
 
+// ignore: unused_element
   UnAuthenticated unAuthenticated() {
     return UnAuthenticated();
   }
 
+// ignore: unused_element
   SignOutState signOutState({@required bool isSignOut}) {
     return SignOutState(
       isSignOut: isSignOut,
@@ -420,52 +287,56 @@ class _$AuthenticationStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $AuthenticationState = _$AuthenticationStateTearOff();
 
+/// @nodoc
 mixin _$AuthenticationState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result authenticated(User user),
-    @required Result authenticationUpdated(User user),
-    @required Result unAuthenticated(),
-    @required Result signOutState(bool isSignOut),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult authenticated(User user),
+    @required TResult authenticationUpdated(User user),
+    @required TResult unAuthenticated(),
+    @required TResult signOutState(bool isSignOut),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result authenticated(User user),
-    Result authenticationUpdated(User user),
-    Result unAuthenticated(),
-    Result signOutState(bool isSignOut),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult authenticated(User user),
+    TResult authenticationUpdated(User user),
+    TResult unAuthenticated(),
+    TResult signOutState(bool isSignOut),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(Initial value),
-    @required Result authenticated(Authenticated value),
-    @required Result authenticationUpdated(AuthenticationUpdated value),
-    @required Result unAuthenticated(UnAuthenticated value),
-    @required Result signOutState(SignOutState value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(Initial value),
+    @required TResult authenticated(Authenticated value),
+    @required TResult authenticationUpdated(AuthenticationUpdated value),
+    @required TResult unAuthenticated(UnAuthenticated value),
+    @required TResult signOutState(SignOutState value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(Initial value),
-    Result authenticated(Authenticated value),
-    Result authenticationUpdated(AuthenticationUpdated value),
-    Result unAuthenticated(UnAuthenticated value),
-    Result signOutState(SignOutState value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(Initial value),
+    TResult authenticated(Authenticated value),
+    TResult authenticationUpdated(AuthenticationUpdated value),
+    TResult unAuthenticated(UnAuthenticated value),
+    TResult signOutState(SignOutState value),
+    @required TResult orElse(),
   });
 }
 
+/// @nodoc
 abstract class $AuthenticationStateCopyWith<$Res> {
   factory $AuthenticationStateCopyWith(
           AuthenticationState value, $Res Function(AuthenticationState) then) =
       _$AuthenticationStateCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$AuthenticationStateCopyWithImpl<$Res>
     implements $AuthenticationStateCopyWith<$Res> {
   _$AuthenticationStateCopyWithImpl(this._value, this._then);
@@ -475,11 +346,13 @@ class _$AuthenticationStateCopyWithImpl<$Res>
   final $Res Function(AuthenticationState) _then;
 }
 
+/// @nodoc
 abstract class $InitialCopyWith<$Res> {
   factory $InitialCopyWith(Initial value, $Res Function(Initial) then) =
       _$InitialCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$InitialCopyWithImpl<$Res>
     extends _$AuthenticationStateCopyWithImpl<$Res>
     implements $InitialCopyWith<$Res> {
@@ -490,6 +363,7 @@ class _$InitialCopyWithImpl<$Res>
   Initial get _value => super._value as Initial;
 }
 
+/// @nodoc
 class _$Initial implements Initial {
   _$Initial();
 
@@ -508,12 +382,12 @@ class _$Initial implements Initial {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result authenticated(User user),
-    @required Result authenticationUpdated(User user),
-    @required Result unAuthenticated(),
-    @required Result signOutState(bool isSignOut),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult authenticated(User user),
+    @required TResult authenticationUpdated(User user),
+    @required TResult unAuthenticated(),
+    @required TResult signOutState(bool isSignOut),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -525,13 +399,13 @@ class _$Initial implements Initial {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result authenticated(User user),
-    Result authenticationUpdated(User user),
-    Result unAuthenticated(),
-    Result signOutState(bool isSignOut),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult authenticated(User user),
+    TResult authenticationUpdated(User user),
+    TResult unAuthenticated(),
+    TResult signOutState(bool isSignOut),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initial != null) {
@@ -542,12 +416,12 @@ class _$Initial implements Initial {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(Initial value),
-    @required Result authenticated(Authenticated value),
-    @required Result authenticationUpdated(AuthenticationUpdated value),
-    @required Result unAuthenticated(UnAuthenticated value),
-    @required Result signOutState(SignOutState value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(Initial value),
+    @required TResult authenticated(Authenticated value),
+    @required TResult authenticationUpdated(AuthenticationUpdated value),
+    @required TResult unAuthenticated(UnAuthenticated value),
+    @required TResult signOutState(SignOutState value),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -559,13 +433,13 @@ class _$Initial implements Initial {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(Initial value),
-    Result authenticated(Authenticated value),
-    Result authenticationUpdated(AuthenticationUpdated value),
-    Result unAuthenticated(UnAuthenticated value),
-    Result signOutState(SignOutState value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(Initial value),
+    TResult authenticated(Authenticated value),
+    TResult authenticationUpdated(AuthenticationUpdated value),
+    TResult unAuthenticated(UnAuthenticated value),
+    TResult signOutState(SignOutState value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initial != null) {
@@ -579,6 +453,7 @@ abstract class Initial implements AuthenticationState {
   factory Initial() = _$Initial;
 }
 
+/// @nodoc
 abstract class $AuthenticatedCopyWith<$Res> {
   factory $AuthenticatedCopyWith(
           Authenticated value, $Res Function(Authenticated) then) =
@@ -588,6 +463,7 @@ abstract class $AuthenticatedCopyWith<$Res> {
   $UserCopyWith<$Res> get user;
 }
 
+/// @nodoc
 class _$AuthenticatedCopyWithImpl<$Res>
     extends _$AuthenticationStateCopyWithImpl<$Res>
     implements $AuthenticatedCopyWith<$Res> {
@@ -618,6 +494,7 @@ class _$AuthenticatedCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$Authenticated implements Authenticated {
   _$Authenticated({@required this.user}) : assert(user != null);
 
@@ -641,18 +518,19 @@ class _$Authenticated implements Authenticated {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
 
+  @JsonKey(ignore: true)
   @override
   $AuthenticatedCopyWith<Authenticated> get copyWith =>
       _$AuthenticatedCopyWithImpl<Authenticated>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result authenticated(User user),
-    @required Result authenticationUpdated(User user),
-    @required Result unAuthenticated(),
-    @required Result signOutState(bool isSignOut),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult authenticated(User user),
+    @required TResult authenticationUpdated(User user),
+    @required TResult unAuthenticated(),
+    @required TResult signOutState(bool isSignOut),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -664,13 +542,13 @@ class _$Authenticated implements Authenticated {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result authenticated(User user),
-    Result authenticationUpdated(User user),
-    Result unAuthenticated(),
-    Result signOutState(bool isSignOut),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult authenticated(User user),
+    TResult authenticationUpdated(User user),
+    TResult unAuthenticated(),
+    TResult signOutState(bool isSignOut),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (authenticated != null) {
@@ -681,12 +559,12 @@ class _$Authenticated implements Authenticated {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(Initial value),
-    @required Result authenticated(Authenticated value),
-    @required Result authenticationUpdated(AuthenticationUpdated value),
-    @required Result unAuthenticated(UnAuthenticated value),
-    @required Result signOutState(SignOutState value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(Initial value),
+    @required TResult authenticated(Authenticated value),
+    @required TResult authenticationUpdated(AuthenticationUpdated value),
+    @required TResult unAuthenticated(UnAuthenticated value),
+    @required TResult signOutState(SignOutState value),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -698,13 +576,13 @@ class _$Authenticated implements Authenticated {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(Initial value),
-    Result authenticated(Authenticated value),
-    Result authenticationUpdated(AuthenticationUpdated value),
-    Result unAuthenticated(UnAuthenticated value),
-    Result signOutState(SignOutState value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(Initial value),
+    TResult authenticated(Authenticated value),
+    TResult authenticationUpdated(AuthenticationUpdated value),
+    TResult unAuthenticated(UnAuthenticated value),
+    TResult signOutState(SignOutState value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (authenticated != null) {
@@ -718,9 +596,11 @@ abstract class Authenticated implements AuthenticationState {
   factory Authenticated({@required User user}) = _$Authenticated;
 
   User get user;
+  @JsonKey(ignore: true)
   $AuthenticatedCopyWith<Authenticated> get copyWith;
 }
 
+/// @nodoc
 abstract class $AuthenticationUpdatedCopyWith<$Res> {
   factory $AuthenticationUpdatedCopyWith(AuthenticationUpdated value,
           $Res Function(AuthenticationUpdated) then) =
@@ -730,6 +610,7 @@ abstract class $AuthenticationUpdatedCopyWith<$Res> {
   $UserCopyWith<$Res> get user;
 }
 
+/// @nodoc
 class _$AuthenticationUpdatedCopyWithImpl<$Res>
     extends _$AuthenticationStateCopyWithImpl<$Res>
     implements $AuthenticationUpdatedCopyWith<$Res> {
@@ -760,6 +641,7 @@ class _$AuthenticationUpdatedCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$AuthenticationUpdated implements AuthenticationUpdated {
   _$AuthenticationUpdated({@required this.user}) : assert(user != null);
 
@@ -783,6 +665,7 @@ class _$AuthenticationUpdated implements AuthenticationUpdated {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
 
+  @JsonKey(ignore: true)
   @override
   $AuthenticationUpdatedCopyWith<AuthenticationUpdated> get copyWith =>
       _$AuthenticationUpdatedCopyWithImpl<AuthenticationUpdated>(
@@ -790,12 +673,12 @@ class _$AuthenticationUpdated implements AuthenticationUpdated {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result authenticated(User user),
-    @required Result authenticationUpdated(User user),
-    @required Result unAuthenticated(),
-    @required Result signOutState(bool isSignOut),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult authenticated(User user),
+    @required TResult authenticationUpdated(User user),
+    @required TResult unAuthenticated(),
+    @required TResult signOutState(bool isSignOut),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -807,13 +690,13 @@ class _$AuthenticationUpdated implements AuthenticationUpdated {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result authenticated(User user),
-    Result authenticationUpdated(User user),
-    Result unAuthenticated(),
-    Result signOutState(bool isSignOut),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult authenticated(User user),
+    TResult authenticationUpdated(User user),
+    TResult unAuthenticated(),
+    TResult signOutState(bool isSignOut),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (authenticationUpdated != null) {
@@ -824,12 +707,12 @@ class _$AuthenticationUpdated implements AuthenticationUpdated {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(Initial value),
-    @required Result authenticated(Authenticated value),
-    @required Result authenticationUpdated(AuthenticationUpdated value),
-    @required Result unAuthenticated(UnAuthenticated value),
-    @required Result signOutState(SignOutState value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(Initial value),
+    @required TResult authenticated(Authenticated value),
+    @required TResult authenticationUpdated(AuthenticationUpdated value),
+    @required TResult unAuthenticated(UnAuthenticated value),
+    @required TResult signOutState(SignOutState value),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -841,13 +724,13 @@ class _$AuthenticationUpdated implements AuthenticationUpdated {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(Initial value),
-    Result authenticated(Authenticated value),
-    Result authenticationUpdated(AuthenticationUpdated value),
-    Result unAuthenticated(UnAuthenticated value),
-    Result signOutState(SignOutState value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(Initial value),
+    TResult authenticated(Authenticated value),
+    TResult authenticationUpdated(AuthenticationUpdated value),
+    TResult unAuthenticated(UnAuthenticated value),
+    TResult signOutState(SignOutState value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (authenticationUpdated != null) {
@@ -862,15 +745,18 @@ abstract class AuthenticationUpdated implements AuthenticationState {
       _$AuthenticationUpdated;
 
   User get user;
+  @JsonKey(ignore: true)
   $AuthenticationUpdatedCopyWith<AuthenticationUpdated> get copyWith;
 }
 
+/// @nodoc
 abstract class $UnAuthenticatedCopyWith<$Res> {
   factory $UnAuthenticatedCopyWith(
           UnAuthenticated value, $Res Function(UnAuthenticated) then) =
       _$UnAuthenticatedCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$UnAuthenticatedCopyWithImpl<$Res>
     extends _$AuthenticationStateCopyWithImpl<$Res>
     implements $UnAuthenticatedCopyWith<$Res> {
@@ -882,6 +768,7 @@ class _$UnAuthenticatedCopyWithImpl<$Res>
   UnAuthenticated get _value => super._value as UnAuthenticated;
 }
 
+/// @nodoc
 class _$UnAuthenticated implements UnAuthenticated {
   _$UnAuthenticated();
 
@@ -900,12 +787,12 @@ class _$UnAuthenticated implements UnAuthenticated {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result authenticated(User user),
-    @required Result authenticationUpdated(User user),
-    @required Result unAuthenticated(),
-    @required Result signOutState(bool isSignOut),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult authenticated(User user),
+    @required TResult authenticationUpdated(User user),
+    @required TResult unAuthenticated(),
+    @required TResult signOutState(bool isSignOut),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -917,13 +804,13 @@ class _$UnAuthenticated implements UnAuthenticated {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result authenticated(User user),
-    Result authenticationUpdated(User user),
-    Result unAuthenticated(),
-    Result signOutState(bool isSignOut),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult authenticated(User user),
+    TResult authenticationUpdated(User user),
+    TResult unAuthenticated(),
+    TResult signOutState(bool isSignOut),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (unAuthenticated != null) {
@@ -934,12 +821,12 @@ class _$UnAuthenticated implements UnAuthenticated {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(Initial value),
-    @required Result authenticated(Authenticated value),
-    @required Result authenticationUpdated(AuthenticationUpdated value),
-    @required Result unAuthenticated(UnAuthenticated value),
-    @required Result signOutState(SignOutState value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(Initial value),
+    @required TResult authenticated(Authenticated value),
+    @required TResult authenticationUpdated(AuthenticationUpdated value),
+    @required TResult unAuthenticated(UnAuthenticated value),
+    @required TResult signOutState(SignOutState value),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -951,13 +838,13 @@ class _$UnAuthenticated implements UnAuthenticated {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(Initial value),
-    Result authenticated(Authenticated value),
-    Result authenticationUpdated(AuthenticationUpdated value),
-    Result unAuthenticated(UnAuthenticated value),
-    Result signOutState(SignOutState value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(Initial value),
+    TResult authenticated(Authenticated value),
+    TResult authenticationUpdated(AuthenticationUpdated value),
+    TResult unAuthenticated(UnAuthenticated value),
+    TResult signOutState(SignOutState value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (unAuthenticated != null) {
@@ -971,6 +858,7 @@ abstract class UnAuthenticated implements AuthenticationState {
   factory UnAuthenticated() = _$UnAuthenticated;
 }
 
+/// @nodoc
 abstract class $SignOutStateCopyWith<$Res> {
   factory $SignOutStateCopyWith(
           SignOutState value, $Res Function(SignOutState) then) =
@@ -978,6 +866,7 @@ abstract class $SignOutStateCopyWith<$Res> {
   $Res call({bool isSignOut});
 }
 
+/// @nodoc
 class _$SignOutStateCopyWithImpl<$Res>
     extends _$AuthenticationStateCopyWithImpl<$Res>
     implements $SignOutStateCopyWith<$Res> {
@@ -998,6 +887,7 @@ class _$SignOutStateCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$SignOutState implements SignOutState {
   _$SignOutState({@required this.isSignOut}) : assert(isSignOut != null);
 
@@ -1022,18 +912,19 @@ class _$SignOutState implements SignOutState {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(isSignOut);
 
+  @JsonKey(ignore: true)
   @override
   $SignOutStateCopyWith<SignOutState> get copyWith =>
       _$SignOutStateCopyWithImpl<SignOutState>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result authenticated(User user),
-    @required Result authenticationUpdated(User user),
-    @required Result unAuthenticated(),
-    @required Result signOutState(bool isSignOut),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult authenticated(User user),
+    @required TResult authenticationUpdated(User user),
+    @required TResult unAuthenticated(),
+    @required TResult signOutState(bool isSignOut),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -1045,13 +936,13 @@ class _$SignOutState implements SignOutState {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result authenticated(User user),
-    Result authenticationUpdated(User user),
-    Result unAuthenticated(),
-    Result signOutState(bool isSignOut),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult authenticated(User user),
+    TResult authenticationUpdated(User user),
+    TResult unAuthenticated(),
+    TResult signOutState(bool isSignOut),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (signOutState != null) {
@@ -1062,12 +953,12 @@ class _$SignOutState implements SignOutState {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(Initial value),
-    @required Result authenticated(Authenticated value),
-    @required Result authenticationUpdated(AuthenticationUpdated value),
-    @required Result unAuthenticated(UnAuthenticated value),
-    @required Result signOutState(SignOutState value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(Initial value),
+    @required TResult authenticated(Authenticated value),
+    @required TResult authenticationUpdated(AuthenticationUpdated value),
+    @required TResult unAuthenticated(UnAuthenticated value),
+    @required TResult signOutState(SignOutState value),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -1079,13 +970,13 @@ class _$SignOutState implements SignOutState {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(Initial value),
-    Result authenticated(Authenticated value),
-    Result authenticationUpdated(AuthenticationUpdated value),
-    Result unAuthenticated(UnAuthenticated value),
-    Result signOutState(SignOutState value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(Initial value),
+    TResult authenticated(Authenticated value),
+    TResult authenticationUpdated(AuthenticationUpdated value),
+    TResult unAuthenticated(UnAuthenticated value),
+    TResult signOutState(SignOutState value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (signOutState != null) {
@@ -1099,5 +990,6 @@ abstract class SignOutState implements AuthenticationState {
   factory SignOutState({@required bool isSignOut}) = _$SignOutState;
 
   bool get isSignOut;
+  @JsonKey(ignore: true)
   $SignOutStateCopyWith<SignOutState> get copyWith;
 }

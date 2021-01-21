@@ -4,9 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/auth_bloc.dart';
+import 'package:i_love_iruka/application/auth/auth_controller.dart';
 import 'package:i_love_iruka/application/auth/auth_provider.dart';
 import 'package:i_love_iruka/domain/auth/login_data.dart';
-import 'package:i_love_iruka/infrastructure/core/shared_pref.dart';
+import 'package:i_love_iruka/infrastructure/core/local_storage.dart';
 import 'package:i_love_iruka/presentation/auth/forgot_password_form/forgot_password_form.dart';
 import 'package:i_love_iruka/presentation/auth/register_form/register_form.dart';
 import 'package:i_love_iruka/presentation/auth/widgets/email_address.dart';
@@ -71,8 +72,7 @@ class _SignInFormState extends State<SignInForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AuthProvider>(
-      builder: (context, authProvider, _) => BlocProvider(
+    return  BlocProvider(
         create: (context) => getIt<AuthBloc>(),
         child: BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
           state.maybeMap(
@@ -102,7 +102,8 @@ class _SignInFormState extends State<SignInForm> {
                     r.map(
                         loginRequestData: (e) {},
                         loginResponseData: (e) {
-                          authProvider.setUserData(e.user);
+                          final _auth = Get.put(AuthController());
+                          _auth.setUserData(e.user);
                           saveUserData(e.user).then((value) {
                             Get.offAllNamed(DashboardPage.TAG);
                             Fluttertoast.showToast(msg: "Success Login");
@@ -122,7 +123,7 @@ class _SignInFormState extends State<SignInForm> {
             orElse: () => signInPageContent(context),
           );
         }),
-      ),
+      
     );
   }
 

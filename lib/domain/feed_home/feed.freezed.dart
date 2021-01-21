@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'feed.dart';
 
@@ -12,9 +12,11 @@ Feed _$FeedFromJson(Map<String, dynamic> json) {
   return TopFeedData.fromJson(json);
 }
 
+/// @nodoc
 class _$FeedTearOff {
   const _$FeedTearOff();
 
+// ignore: unused_element
   TopFeedData topFeedData(
       {@JsonKey(name: 'ProductName') String productName,
       @JsonKey(name: 'Description') String description,
@@ -45,11 +47,18 @@ class _$FeedTearOff {
       isActive: isActive,
     );
   }
+
+// ignore: unused_element
+  Feed fromJson(Map<String, Object> json) {
+    return Feed.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $Feed = _$FeedTearOff();
 
+/// @nodoc
 mixin _$Feed {
   @JsonKey(name: 'ProductName')
   String get productName;
@@ -78,10 +87,57 @@ mixin _$Feed {
   @JsonKey(name: 'IsActive')
   bool get isActive;
 
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult topFeedData(
+            @JsonKey(name: 'ProductName') String productName,
+            @JsonKey(name: 'Description') String description,
+            @JsonKey(name: 'Link') String link,
+            @JsonKey(name: 'Picture') String picture,
+            @JsonKey(name: 'Priority') int priority,
+            @JsonKey(name: 'ScheduleDate') String scheduleDate,
+            @JsonKey(name: 'EventStatus') int eventStatus,
+            @JsonKey(name: 'Id') String id,
+            @JsonKey(name: 'CreatedDate') String createdDate,
+            @JsonKey(name: 'CreatedBy') String createdBy,
+            @JsonKey(name: 'ModifiedDate') String modifiedDate,
+            @JsonKey(name: 'ModifiedBy') String modifiedBy,
+            @JsonKey(name: 'IsActive') bool isActive),
+  });
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult topFeedData(
+        @JsonKey(name: 'ProductName') String productName,
+        @JsonKey(name: 'Description') String description,
+        @JsonKey(name: 'Link') String link,
+        @JsonKey(name: 'Picture') String picture,
+        @JsonKey(name: 'Priority') int priority,
+        @JsonKey(name: 'ScheduleDate') String scheduleDate,
+        @JsonKey(name: 'EventStatus') int eventStatus,
+        @JsonKey(name: 'Id') String id,
+        @JsonKey(name: 'CreatedDate') String createdDate,
+        @JsonKey(name: 'CreatedBy') String createdBy,
+        @JsonKey(name: 'ModifiedDate') String modifiedDate,
+        @JsonKey(name: 'ModifiedBy') String modifiedBy,
+        @JsonKey(name: 'IsActive') bool isActive),
+    @required TResult orElse(),
+  });
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult topFeedData(TopFeedData value),
+  });
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult topFeedData(TopFeedData value),
+    @required TResult orElse(),
+  });
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $FeedCopyWith<Feed> get copyWith;
 }
 
+/// @nodoc
 abstract class $FeedCopyWith<$Res> {
   factory $FeedCopyWith(Feed value, $Res Function(Feed) then) =
       _$FeedCopyWithImpl<$Res>;
@@ -101,6 +157,7 @@ abstract class $FeedCopyWith<$Res> {
       @JsonKey(name: 'IsActive') bool isActive});
 }
 
+/// @nodoc
 class _$FeedCopyWithImpl<$Res> implements $FeedCopyWith<$Res> {
   _$FeedCopyWithImpl(this._value, this._then);
 
@@ -151,6 +208,7 @@ class _$FeedCopyWithImpl<$Res> implements $FeedCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class $TopFeedDataCopyWith<$Res> implements $FeedCopyWith<$Res> {
   factory $TopFeedDataCopyWith(
           TopFeedData value, $Res Function(TopFeedData) then) =
@@ -172,6 +230,7 @@ abstract class $TopFeedDataCopyWith<$Res> implements $FeedCopyWith<$Res> {
       @JsonKey(name: 'IsActive') bool isActive});
 }
 
+/// @nodoc
 class _$TopFeedDataCopyWithImpl<$Res> extends _$FeedCopyWithImpl<$Res>
     implements $TopFeedDataCopyWith<$Res> {
   _$TopFeedDataCopyWithImpl(
@@ -225,6 +284,8 @@ class _$TopFeedDataCopyWithImpl<$Res> extends _$FeedCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$TopFeedData implements TopFeedData {
   _$TopFeedData(
       {@JsonKey(name: 'ProductName') this.productName,
@@ -349,9 +410,107 @@ class _$TopFeedData implements TopFeedData {
       const DeepCollectionEquality().hash(modifiedBy) ^
       const DeepCollectionEquality().hash(isActive);
 
+  @JsonKey(ignore: true)
   @override
   $TopFeedDataCopyWith<TopFeedData> get copyWith =>
       _$TopFeedDataCopyWithImpl<TopFeedData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult topFeedData(
+            @JsonKey(name: 'ProductName') String productName,
+            @JsonKey(name: 'Description') String description,
+            @JsonKey(name: 'Link') String link,
+            @JsonKey(name: 'Picture') String picture,
+            @JsonKey(name: 'Priority') int priority,
+            @JsonKey(name: 'ScheduleDate') String scheduleDate,
+            @JsonKey(name: 'EventStatus') int eventStatus,
+            @JsonKey(name: 'Id') String id,
+            @JsonKey(name: 'CreatedDate') String createdDate,
+            @JsonKey(name: 'CreatedBy') String createdBy,
+            @JsonKey(name: 'ModifiedDate') String modifiedDate,
+            @JsonKey(name: 'ModifiedBy') String modifiedBy,
+            @JsonKey(name: 'IsActive') bool isActive),
+  }) {
+    assert(topFeedData != null);
+    return topFeedData(
+        productName,
+        description,
+        link,
+        picture,
+        priority,
+        scheduleDate,
+        eventStatus,
+        id,
+        createdDate,
+        createdBy,
+        modifiedDate,
+        modifiedBy,
+        isActive);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult topFeedData(
+        @JsonKey(name: 'ProductName') String productName,
+        @JsonKey(name: 'Description') String description,
+        @JsonKey(name: 'Link') String link,
+        @JsonKey(name: 'Picture') String picture,
+        @JsonKey(name: 'Priority') int priority,
+        @JsonKey(name: 'ScheduleDate') String scheduleDate,
+        @JsonKey(name: 'EventStatus') int eventStatus,
+        @JsonKey(name: 'Id') String id,
+        @JsonKey(name: 'CreatedDate') String createdDate,
+        @JsonKey(name: 'CreatedBy') String createdBy,
+        @JsonKey(name: 'ModifiedDate') String modifiedDate,
+        @JsonKey(name: 'ModifiedBy') String modifiedBy,
+        @JsonKey(name: 'IsActive') bool isActive),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (topFeedData != null) {
+      return topFeedData(
+          productName,
+          description,
+          link,
+          picture,
+          priority,
+          scheduleDate,
+          eventStatus,
+          id,
+          createdDate,
+          createdBy,
+          modifiedDate,
+          modifiedBy,
+          isActive);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult topFeedData(TopFeedData value),
+  }) {
+    assert(topFeedData != null);
+    return topFeedData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult topFeedData(TopFeedData value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (topFeedData != null) {
+      return topFeedData(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -418,5 +577,6 @@ abstract class TopFeedData implements Feed {
   @JsonKey(name: 'IsActive')
   bool get isActive;
   @override
+  @JsonKey(ignore: true)
   $TopFeedDataCopyWith<TopFeedData> get copyWith;
 }

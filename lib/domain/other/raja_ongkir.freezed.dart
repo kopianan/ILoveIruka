@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'raja_ongkir.dart';
 
@@ -12,9 +12,11 @@ RajaOngkir _$RajaOngkirFromJson(Map<String, dynamic> json) {
   return _RajaOngkir.fromJson(json);
 }
 
+/// @nodoc
 class _$RajaOngkirTearOff {
   const _$RajaOngkirTearOff();
 
+// ignore: unused_element
   _RajaOngkir call(
       {@JsonKey(name: 'city_id') String cityId,
       @JsonKey(name: 'province_id') String provinceId,
@@ -27,11 +29,18 @@ class _$RajaOngkirTearOff {
       cityName: cityName,
     );
   }
+
+// ignore: unused_element
+  RajaOngkir fromJson(Map<String, Object> json) {
+    return RajaOngkir.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $RajaOngkir = _$RajaOngkirTearOff();
 
+/// @nodoc
 mixin _$RajaOngkir {
   @JsonKey(name: 'city_id')
   String get cityId;
@@ -42,9 +51,11 @@ mixin _$RajaOngkir {
   String get cityName;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $RajaOngkirCopyWith<RajaOngkir> get copyWith;
 }
 
+/// @nodoc
 abstract class $RajaOngkirCopyWith<$Res> {
   factory $RajaOngkirCopyWith(
           RajaOngkir value, $Res Function(RajaOngkir) then) =
@@ -56,6 +67,7 @@ abstract class $RajaOngkirCopyWith<$Res> {
       @JsonKey(name: 'city_name') String cityName});
 }
 
+/// @nodoc
 class _$RajaOngkirCopyWithImpl<$Res> implements $RajaOngkirCopyWith<$Res> {
   _$RajaOngkirCopyWithImpl(this._value, this._then);
 
@@ -80,6 +92,7 @@ class _$RajaOngkirCopyWithImpl<$Res> implements $RajaOngkirCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$RajaOngkirCopyWith<$Res> implements $RajaOngkirCopyWith<$Res> {
   factory _$RajaOngkirCopyWith(
           _RajaOngkir value, $Res Function(_RajaOngkir) then) =
@@ -92,6 +105,7 @@ abstract class _$RajaOngkirCopyWith<$Res> implements $RajaOngkirCopyWith<$Res> {
       @JsonKey(name: 'city_name') String cityName});
 }
 
+/// @nodoc
 class __$RajaOngkirCopyWithImpl<$Res> extends _$RajaOngkirCopyWithImpl<$Res>
     implements _$RajaOngkirCopyWith<$Res> {
   __$RajaOngkirCopyWithImpl(
@@ -119,6 +133,8 @@ class __$RajaOngkirCopyWithImpl<$Res> extends _$RajaOngkirCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_RajaOngkir implements _RajaOngkir {
   _$_RajaOngkir(
       {@JsonKey(name: 'city_id') this.cityId,
@@ -171,6 +187,7 @@ class _$_RajaOngkir implements _RajaOngkir {
       const DeepCollectionEquality().hash(province) ^
       const DeepCollectionEquality().hash(cityName);
 
+  @JsonKey(ignore: true)
   @override
   _$RajaOngkirCopyWith<_RajaOngkir> get copyWith =>
       __$RajaOngkirCopyWithImpl<_RajaOngkir>(this, _$identity);
@@ -203,5 +220,6 @@ abstract class _RajaOngkir implements RajaOngkir {
   @JsonKey(name: 'city_name')
   String get cityName;
   @override
+  @JsonKey(ignore: true)
   _$RajaOngkirCopyWith<_RajaOngkir> get copyWith;
 }

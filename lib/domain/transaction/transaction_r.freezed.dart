@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'transaction_r.dart';
 
@@ -20,9 +20,11 @@ TransactionR _$TransactionRFromJson(Map<String, dynamic> json) {
   }
 }
 
+/// @nodoc
 class _$TransactionRTearOff {
   const _$TransactionRTearOff();
 
+// ignore: unused_element
   GetPointAndLastTransResponse getPointAndLastTransResponse(
       {TransactionData lastTransaction, int customerPoints}) {
     return GetPointAndLastTransResponse(
@@ -31,53 +33,64 @@ class _$TransactionRTearOff {
     );
   }
 
+// ignore: unused_element
   GetPointAndLastTransRequest getPointAndLastTransRequest({String id}) {
     return GetPointAndLastTransRequest(
       id: id,
     );
   }
+
+// ignore: unused_element
+  TransactionR fromJson(Map<String, Object> json) {
+    return TransactionR.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $TransactionR = _$TransactionRTearOff();
 
+/// @nodoc
 mixin _$TransactionR {
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result getPointAndLastTransResponse(
+        TResult getPointAndLastTransResponse(
             TransactionData lastTransaction, int customerPoints),
-    @required Result getPointAndLastTransRequest(String id),
+    @required TResult getPointAndLastTransRequest(String id),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getPointAndLastTransResponse(
+  TResult maybeWhen<TResult extends Object>({
+    TResult getPointAndLastTransResponse(
         TransactionData lastTransaction, int customerPoints),
-    Result getPointAndLastTransRequest(String id),
-    @required Result orElse(),
+    TResult getPointAndLastTransRequest(String id),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
+  TResult map<TResult extends Object>({
     @required
-        Result getPointAndLastTransResponse(GetPointAndLastTransResponse value),
+        TResult getPointAndLastTransResponse(
+            GetPointAndLastTransResponse value),
     @required
-        Result getPointAndLastTransRequest(GetPointAndLastTransRequest value),
+        TResult getPointAndLastTransRequest(GetPointAndLastTransRequest value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getPointAndLastTransResponse(GetPointAndLastTransResponse value),
-    Result getPointAndLastTransRequest(GetPointAndLastTransRequest value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult getPointAndLastTransResponse(GetPointAndLastTransResponse value),
+    TResult getPointAndLastTransRequest(GetPointAndLastTransRequest value),
+    @required TResult orElse(),
   });
   Map<String, dynamic> toJson();
 }
 
+/// @nodoc
 abstract class $TransactionRCopyWith<$Res> {
   factory $TransactionRCopyWith(
           TransactionR value, $Res Function(TransactionR) then) =
       _$TransactionRCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$TransactionRCopyWithImpl<$Res> implements $TransactionRCopyWith<$Res> {
   _$TransactionRCopyWithImpl(this._value, this._then);
 
@@ -86,6 +99,7 @@ class _$TransactionRCopyWithImpl<$Res> implements $TransactionRCopyWith<$Res> {
   final $Res Function(TransactionR) _then;
 }
 
+/// @nodoc
 abstract class $GetPointAndLastTransResponseCopyWith<$Res> {
   factory $GetPointAndLastTransResponseCopyWith(
           GetPointAndLastTransResponse value,
@@ -96,6 +110,7 @@ abstract class $GetPointAndLastTransResponseCopyWith<$Res> {
   $TransactionDataCopyWith<$Res> get lastTransaction;
 }
 
+/// @nodoc
 class _$GetPointAndLastTransResponseCopyWithImpl<$Res>
     extends _$TransactionRCopyWithImpl<$Res>
     implements $GetPointAndLastTransResponseCopyWith<$Res> {
@@ -135,6 +150,8 @@ class _$GetPointAndLastTransResponseCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$GetPointAndLastTransResponse implements GetPointAndLastTransResponse {
   _$GetPointAndLastTransResponse({this.lastTransaction, this.customerPoints});
 
@@ -169,6 +186,7 @@ class _$GetPointAndLastTransResponse implements GetPointAndLastTransResponse {
       const DeepCollectionEquality().hash(lastTransaction) ^
       const DeepCollectionEquality().hash(customerPoints);
 
+  @JsonKey(ignore: true)
   @override
   $GetPointAndLastTransResponseCopyWith<GetPointAndLastTransResponse>
       get copyWith => _$GetPointAndLastTransResponseCopyWithImpl<
@@ -176,11 +194,11 @@ class _$GetPointAndLastTransResponse implements GetPointAndLastTransResponse {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result getPointAndLastTransResponse(
+        TResult getPointAndLastTransResponse(
             TransactionData lastTransaction, int customerPoints),
-    @required Result getPointAndLastTransRequest(String id),
+    @required TResult getPointAndLastTransRequest(String id),
   }) {
     assert(getPointAndLastTransResponse != null);
     assert(getPointAndLastTransRequest != null);
@@ -189,11 +207,11 @@ class _$GetPointAndLastTransResponse implements GetPointAndLastTransResponse {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getPointAndLastTransResponse(
+  TResult maybeWhen<TResult extends Object>({
+    TResult getPointAndLastTransResponse(
         TransactionData lastTransaction, int customerPoints),
-    Result getPointAndLastTransRequest(String id),
-    @required Result orElse(),
+    TResult getPointAndLastTransRequest(String id),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getPointAndLastTransResponse != null) {
@@ -204,11 +222,12 @@ class _$GetPointAndLastTransResponse implements GetPointAndLastTransResponse {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
+  TResult map<TResult extends Object>({
     @required
-        Result getPointAndLastTransResponse(GetPointAndLastTransResponse value),
+        TResult getPointAndLastTransResponse(
+            GetPointAndLastTransResponse value),
     @required
-        Result getPointAndLastTransRequest(GetPointAndLastTransRequest value),
+        TResult getPointAndLastTransRequest(GetPointAndLastTransRequest value),
   }) {
     assert(getPointAndLastTransResponse != null);
     assert(getPointAndLastTransRequest != null);
@@ -217,10 +236,10 @@ class _$GetPointAndLastTransResponse implements GetPointAndLastTransResponse {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getPointAndLastTransResponse(GetPointAndLastTransResponse value),
-    Result getPointAndLastTransRequest(GetPointAndLastTransRequest value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult getPointAndLastTransResponse(GetPointAndLastTransResponse value),
+    TResult getPointAndLastTransRequest(GetPointAndLastTransRequest value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getPointAndLastTransResponse != null) {
@@ -246,10 +265,12 @@ abstract class GetPointAndLastTransResponse implements TransactionR {
 
   TransactionData get lastTransaction;
   int get customerPoints;
+  @JsonKey(ignore: true)
   $GetPointAndLastTransResponseCopyWith<GetPointAndLastTransResponse>
       get copyWith;
 }
 
+/// @nodoc
 abstract class $GetPointAndLastTransRequestCopyWith<$Res> {
   factory $GetPointAndLastTransRequestCopyWith(
           GetPointAndLastTransRequest value,
@@ -258,6 +279,7 @@ abstract class $GetPointAndLastTransRequestCopyWith<$Res> {
   $Res call({String id});
 }
 
+/// @nodoc
 class _$GetPointAndLastTransRequestCopyWithImpl<$Res>
     extends _$TransactionRCopyWithImpl<$Res>
     implements $GetPointAndLastTransRequestCopyWith<$Res> {
@@ -280,6 +302,8 @@ class _$GetPointAndLastTransRequestCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$GetPointAndLastTransRequest implements GetPointAndLastTransRequest {
   _$GetPointAndLastTransRequest({this.id});
 
@@ -306,6 +330,7 @@ class _$GetPointAndLastTransRequest implements GetPointAndLastTransRequest {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
 
+  @JsonKey(ignore: true)
   @override
   $GetPointAndLastTransRequestCopyWith<GetPointAndLastTransRequest>
       get copyWith => _$GetPointAndLastTransRequestCopyWithImpl<
@@ -313,11 +338,11 @@ class _$GetPointAndLastTransRequest implements GetPointAndLastTransRequest {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result getPointAndLastTransResponse(
+        TResult getPointAndLastTransResponse(
             TransactionData lastTransaction, int customerPoints),
-    @required Result getPointAndLastTransRequest(String id),
+    @required TResult getPointAndLastTransRequest(String id),
   }) {
     assert(getPointAndLastTransResponse != null);
     assert(getPointAndLastTransRequest != null);
@@ -326,11 +351,11 @@ class _$GetPointAndLastTransRequest implements GetPointAndLastTransRequest {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getPointAndLastTransResponse(
+  TResult maybeWhen<TResult extends Object>({
+    TResult getPointAndLastTransResponse(
         TransactionData lastTransaction, int customerPoints),
-    Result getPointAndLastTransRequest(String id),
-    @required Result orElse(),
+    TResult getPointAndLastTransRequest(String id),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getPointAndLastTransRequest != null) {
@@ -341,11 +366,12 @@ class _$GetPointAndLastTransRequest implements GetPointAndLastTransRequest {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
+  TResult map<TResult extends Object>({
     @required
-        Result getPointAndLastTransResponse(GetPointAndLastTransResponse value),
+        TResult getPointAndLastTransResponse(
+            GetPointAndLastTransResponse value),
     @required
-        Result getPointAndLastTransRequest(GetPointAndLastTransRequest value),
+        TResult getPointAndLastTransRequest(GetPointAndLastTransRequest value),
   }) {
     assert(getPointAndLastTransResponse != null);
     assert(getPointAndLastTransRequest != null);
@@ -354,10 +380,10 @@ class _$GetPointAndLastTransRequest implements GetPointAndLastTransRequest {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getPointAndLastTransResponse(GetPointAndLastTransResponse value),
-    Result getPointAndLastTransRequest(GetPointAndLastTransRequest value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult getPointAndLastTransResponse(GetPointAndLastTransResponse value),
+    TResult getPointAndLastTransRequest(GetPointAndLastTransRequest value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getPointAndLastTransRequest != null) {
@@ -381,6 +407,7 @@ abstract class GetPointAndLastTransRequest implements TransactionR {
       _$GetPointAndLastTransRequest.fromJson;
 
   String get id;
+  @JsonKey(ignore: true)
   $GetPointAndLastTransRequestCopyWith<GetPointAndLastTransRequest>
       get copyWith;
 }

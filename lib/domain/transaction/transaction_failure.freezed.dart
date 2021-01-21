@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'transaction_failure.dart';
 
@@ -9,68 +9,77 @@ part of 'transaction_failure.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$TransactionFailureTearOff {
   const _$TransactionFailureTearOff();
 
+// ignore: unused_element
   _BadRequest badRequest() {
     return const _BadRequest();
   }
 
+// ignore: unused_element
   _ServerError serverError() {
     return const _ServerError();
   }
 
+// ignore: unused_element
   _NotFound notFound() {
     return const _NotFound();
   }
 
+// ignore: unused_element
   _NoTransaction noTransaction() {
     return const _NoTransaction();
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $TransactionFailure = _$TransactionFailureTearOff();
 
+/// @nodoc
 mixin _$TransactionFailure {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result badRequest(),
-    @required Result serverError(),
-    @required Result notFound(),
-    @required Result noTransaction(),
+  TResult when<TResult extends Object>({
+    @required TResult badRequest(),
+    @required TResult serverError(),
+    @required TResult notFound(),
+    @required TResult noTransaction(),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result badRequest(),
-    Result serverError(),
-    Result notFound(),
-    Result noTransaction(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult badRequest(),
+    TResult serverError(),
+    TResult notFound(),
+    TResult noTransaction(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result badRequest(_BadRequest value),
-    @required Result serverError(_ServerError value),
-    @required Result notFound(_NotFound value),
-    @required Result noTransaction(_NoTransaction value),
+  TResult map<TResult extends Object>({
+    @required TResult badRequest(_BadRequest value),
+    @required TResult serverError(_ServerError value),
+    @required TResult notFound(_NotFound value),
+    @required TResult noTransaction(_NoTransaction value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result badRequest(_BadRequest value),
-    Result serverError(_ServerError value),
-    Result notFound(_NotFound value),
-    Result noTransaction(_NoTransaction value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult badRequest(_BadRequest value),
+    TResult serverError(_ServerError value),
+    TResult notFound(_NotFound value),
+    TResult noTransaction(_NoTransaction value),
+    @required TResult orElse(),
   });
 }
 
+/// @nodoc
 abstract class $TransactionFailureCopyWith<$Res> {
   factory $TransactionFailureCopyWith(
           TransactionFailure value, $Res Function(TransactionFailure) then) =
       _$TransactionFailureCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$TransactionFailureCopyWithImpl<$Res>
     implements $TransactionFailureCopyWith<$Res> {
   _$TransactionFailureCopyWithImpl(this._value, this._then);
@@ -80,12 +89,14 @@ class _$TransactionFailureCopyWithImpl<$Res>
   final $Res Function(TransactionFailure) _then;
 }
 
+/// @nodoc
 abstract class _$BadRequestCopyWith<$Res> {
   factory _$BadRequestCopyWith(
           _BadRequest value, $Res Function(_BadRequest) then) =
       __$BadRequestCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class __$BadRequestCopyWithImpl<$Res>
     extends _$TransactionFailureCopyWithImpl<$Res>
     implements _$BadRequestCopyWith<$Res> {
@@ -97,6 +108,7 @@ class __$BadRequestCopyWithImpl<$Res>
   _BadRequest get _value => super._value as _BadRequest;
 }
 
+/// @nodoc
 class _$_BadRequest implements _BadRequest {
   const _$_BadRequest();
 
@@ -115,11 +127,11 @@ class _$_BadRequest implements _BadRequest {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result badRequest(),
-    @required Result serverError(),
-    @required Result notFound(),
-    @required Result noTransaction(),
+  TResult when<TResult extends Object>({
+    @required TResult badRequest(),
+    @required TResult serverError(),
+    @required TResult notFound(),
+    @required TResult noTransaction(),
   }) {
     assert(badRequest != null);
     assert(serverError != null);
@@ -130,12 +142,12 @@ class _$_BadRequest implements _BadRequest {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result badRequest(),
-    Result serverError(),
-    Result notFound(),
-    Result noTransaction(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult badRequest(),
+    TResult serverError(),
+    TResult notFound(),
+    TResult noTransaction(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (badRequest != null) {
@@ -146,11 +158,11 @@ class _$_BadRequest implements _BadRequest {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result badRequest(_BadRequest value),
-    @required Result serverError(_ServerError value),
-    @required Result notFound(_NotFound value),
-    @required Result noTransaction(_NoTransaction value),
+  TResult map<TResult extends Object>({
+    @required TResult badRequest(_BadRequest value),
+    @required TResult serverError(_ServerError value),
+    @required TResult notFound(_NotFound value),
+    @required TResult noTransaction(_NoTransaction value),
   }) {
     assert(badRequest != null);
     assert(serverError != null);
@@ -161,12 +173,12 @@ class _$_BadRequest implements _BadRequest {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result badRequest(_BadRequest value),
-    Result serverError(_ServerError value),
-    Result notFound(_NotFound value),
-    Result noTransaction(_NoTransaction value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult badRequest(_BadRequest value),
+    TResult serverError(_ServerError value),
+    TResult notFound(_NotFound value),
+    TResult noTransaction(_NoTransaction value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (badRequest != null) {
@@ -180,12 +192,14 @@ abstract class _BadRequest implements TransactionFailure {
   const factory _BadRequest() = _$_BadRequest;
 }
 
+/// @nodoc
 abstract class _$ServerErrorCopyWith<$Res> {
   factory _$ServerErrorCopyWith(
           _ServerError value, $Res Function(_ServerError) then) =
       __$ServerErrorCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class __$ServerErrorCopyWithImpl<$Res>
     extends _$TransactionFailureCopyWithImpl<$Res>
     implements _$ServerErrorCopyWith<$Res> {
@@ -197,6 +211,7 @@ class __$ServerErrorCopyWithImpl<$Res>
   _ServerError get _value => super._value as _ServerError;
 }
 
+/// @nodoc
 class _$_ServerError implements _ServerError {
   const _$_ServerError();
 
@@ -215,11 +230,11 @@ class _$_ServerError implements _ServerError {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result badRequest(),
-    @required Result serverError(),
-    @required Result notFound(),
-    @required Result noTransaction(),
+  TResult when<TResult extends Object>({
+    @required TResult badRequest(),
+    @required TResult serverError(),
+    @required TResult notFound(),
+    @required TResult noTransaction(),
   }) {
     assert(badRequest != null);
     assert(serverError != null);
@@ -230,12 +245,12 @@ class _$_ServerError implements _ServerError {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result badRequest(),
-    Result serverError(),
-    Result notFound(),
-    Result noTransaction(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult badRequest(),
+    TResult serverError(),
+    TResult notFound(),
+    TResult noTransaction(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (serverError != null) {
@@ -246,11 +261,11 @@ class _$_ServerError implements _ServerError {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result badRequest(_BadRequest value),
-    @required Result serverError(_ServerError value),
-    @required Result notFound(_NotFound value),
-    @required Result noTransaction(_NoTransaction value),
+  TResult map<TResult extends Object>({
+    @required TResult badRequest(_BadRequest value),
+    @required TResult serverError(_ServerError value),
+    @required TResult notFound(_NotFound value),
+    @required TResult noTransaction(_NoTransaction value),
   }) {
     assert(badRequest != null);
     assert(serverError != null);
@@ -261,12 +276,12 @@ class _$_ServerError implements _ServerError {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result badRequest(_BadRequest value),
-    Result serverError(_ServerError value),
-    Result notFound(_NotFound value),
-    Result noTransaction(_NoTransaction value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult badRequest(_BadRequest value),
+    TResult serverError(_ServerError value),
+    TResult notFound(_NotFound value),
+    TResult noTransaction(_NoTransaction value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (serverError != null) {
@@ -280,11 +295,13 @@ abstract class _ServerError implements TransactionFailure {
   const factory _ServerError() = _$_ServerError;
 }
 
+/// @nodoc
 abstract class _$NotFoundCopyWith<$Res> {
   factory _$NotFoundCopyWith(_NotFound value, $Res Function(_NotFound) then) =
       __$NotFoundCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class __$NotFoundCopyWithImpl<$Res>
     extends _$TransactionFailureCopyWithImpl<$Res>
     implements _$NotFoundCopyWith<$Res> {
@@ -295,6 +312,7 @@ class __$NotFoundCopyWithImpl<$Res>
   _NotFound get _value => super._value as _NotFound;
 }
 
+/// @nodoc
 class _$_NotFound implements _NotFound {
   const _$_NotFound();
 
@@ -313,11 +331,11 @@ class _$_NotFound implements _NotFound {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result badRequest(),
-    @required Result serverError(),
-    @required Result notFound(),
-    @required Result noTransaction(),
+  TResult when<TResult extends Object>({
+    @required TResult badRequest(),
+    @required TResult serverError(),
+    @required TResult notFound(),
+    @required TResult noTransaction(),
   }) {
     assert(badRequest != null);
     assert(serverError != null);
@@ -328,12 +346,12 @@ class _$_NotFound implements _NotFound {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result badRequest(),
-    Result serverError(),
-    Result notFound(),
-    Result noTransaction(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult badRequest(),
+    TResult serverError(),
+    TResult notFound(),
+    TResult noTransaction(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (notFound != null) {
@@ -344,11 +362,11 @@ class _$_NotFound implements _NotFound {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result badRequest(_BadRequest value),
-    @required Result serverError(_ServerError value),
-    @required Result notFound(_NotFound value),
-    @required Result noTransaction(_NoTransaction value),
+  TResult map<TResult extends Object>({
+    @required TResult badRequest(_BadRequest value),
+    @required TResult serverError(_ServerError value),
+    @required TResult notFound(_NotFound value),
+    @required TResult noTransaction(_NoTransaction value),
   }) {
     assert(badRequest != null);
     assert(serverError != null);
@@ -359,12 +377,12 @@ class _$_NotFound implements _NotFound {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result badRequest(_BadRequest value),
-    Result serverError(_ServerError value),
-    Result notFound(_NotFound value),
-    Result noTransaction(_NoTransaction value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult badRequest(_BadRequest value),
+    TResult serverError(_ServerError value),
+    TResult notFound(_NotFound value),
+    TResult noTransaction(_NoTransaction value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (notFound != null) {
@@ -378,12 +396,14 @@ abstract class _NotFound implements TransactionFailure {
   const factory _NotFound() = _$_NotFound;
 }
 
+/// @nodoc
 abstract class _$NoTransactionCopyWith<$Res> {
   factory _$NoTransactionCopyWith(
           _NoTransaction value, $Res Function(_NoTransaction) then) =
       __$NoTransactionCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class __$NoTransactionCopyWithImpl<$Res>
     extends _$TransactionFailureCopyWithImpl<$Res>
     implements _$NoTransactionCopyWith<$Res> {
@@ -395,6 +415,7 @@ class __$NoTransactionCopyWithImpl<$Res>
   _NoTransaction get _value => super._value as _NoTransaction;
 }
 
+/// @nodoc
 class _$_NoTransaction implements _NoTransaction {
   const _$_NoTransaction();
 
@@ -413,11 +434,11 @@ class _$_NoTransaction implements _NoTransaction {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result badRequest(),
-    @required Result serverError(),
-    @required Result notFound(),
-    @required Result noTransaction(),
+  TResult when<TResult extends Object>({
+    @required TResult badRequest(),
+    @required TResult serverError(),
+    @required TResult notFound(),
+    @required TResult noTransaction(),
   }) {
     assert(badRequest != null);
     assert(serverError != null);
@@ -428,12 +449,12 @@ class _$_NoTransaction implements _NoTransaction {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result badRequest(),
-    Result serverError(),
-    Result notFound(),
-    Result noTransaction(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult badRequest(),
+    TResult serverError(),
+    TResult notFound(),
+    TResult noTransaction(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (noTransaction != null) {
@@ -444,11 +465,11 @@ class _$_NoTransaction implements _NoTransaction {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result badRequest(_BadRequest value),
-    @required Result serverError(_ServerError value),
-    @required Result notFound(_NotFound value),
-    @required Result noTransaction(_NoTransaction value),
+  TResult map<TResult extends Object>({
+    @required TResult badRequest(_BadRequest value),
+    @required TResult serverError(_ServerError value),
+    @required TResult notFound(_NotFound value),
+    @required TResult noTransaction(_NoTransaction value),
   }) {
     assert(badRequest != null);
     assert(serverError != null);
@@ -459,12 +480,12 @@ class _$_NoTransaction implements _NoTransaction {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result badRequest(_BadRequest value),
-    Result serverError(_ServerError value),
-    Result notFound(_NotFound value),
-    Result noTransaction(_NoTransaction value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult badRequest(_BadRequest value),
+    TResult serverError(_ServerError value),
+    TResult notFound(_NotFound value),
+    TResult noTransaction(_NoTransaction value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (noTransaction != null) {

@@ -9,7 +9,7 @@ import 'package:i_love_iruka/domain/auth/login_data.dart';
 import 'package:i_love_iruka/domain/auth/register_data.dart';
 import 'package:i_love_iruka/domain/core/user.dart';
 import 'package:i_love_iruka/infrastructure/auth/update_data.dart';
-import 'package:i_love_iruka/infrastructure/core/shared_pref.dart';
+import 'package:i_love_iruka/infrastructure/core/local_storage.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:injectable/injectable.dart';
 
@@ -98,9 +98,9 @@ class AuthRepository implements IAuthFacade {
   }
 
   @override
-  Future<Either<AuthFailure, User>> checkAuthentcation() async {
+  Either<AuthFailure, User> checkAuthentcation() {
     try {
-      final _userDataString = await getUserData();
+      final _userDataString = getUserData();
       return _userDataString.fold(
         (l) => left(AuthFailure.serverError()),
         (r) => right(r),
@@ -114,12 +114,10 @@ class AuthRepository implements IAuthFacade {
   Future<Either<AuthFailure, Unit>> signOut() async {
     try {
       final _result = await deleteAllData();
-      return _result.fold((l) => left(AuthFailure.serverError()), (r) {
-        if (r)
-          return right(unit);
-        else
-          return left(AuthFailure.serverError());
-      });
+      if (_result)
+        return right(unit);
+      else
+        return left(AuthFailure.serverError());
     } catch (e) {
       return left(AuthFailure.serverError());
     }
@@ -157,20 +155,6 @@ class AuthRepository implements IAuthFacade {
         return left(AuthFailure.serverError());
       }
       return left(AuthFailure.defaultError());
-    }
-  }
-
-  @override
-  Future<Either<AuthFailure, User>> saveAuthenticationToLocal(
-      {User user}) async {
-    try {
-      final _result = await saveUserData(user);
-      if (_result)
-        return right(user);
-      else
-        return left(AuthFailure.serverError());
-    } catch (e) {
-      return left(AuthFailure.serverError());
     }
   }
 

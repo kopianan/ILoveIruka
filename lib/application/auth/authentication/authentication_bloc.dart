@@ -29,18 +29,11 @@ class AuthenticationBloc
         (r) => AuthenticationState.signOutState(isSignOut: true),
       );
     }, checkAuthentication: (e) async* {
-      final response = await _iAuthFacade.checkAuthentcation();
+      final response = _iAuthFacade.checkAuthentcation();
       yield response.fold(
         (l) => AuthenticationState.unAuthenticated(),
         (r) => AuthenticationState.authenticated(user: r),
       );
-    }, saveAuthentication: (e) async* {
-      final _updatedData =
-          await _iAuthFacade.saveAuthenticationToLocal(user: e.r);
-
-      yield _updatedData.fold(
-          (l) => AuthenticationState.authenticationUpdated(user: null),
-          (r) => AuthenticationState.authenticationUpdated(user: r));
     });
   }
 }
