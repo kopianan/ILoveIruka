@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/auth_bloc.dart';
 import 'package:i_love_iruka/application/auth/auth_controller.dart';
@@ -37,6 +39,8 @@ class _AccountPageState extends State<AccountPage>
   Flushbar flushbar;
   String msg;
   final _auth = Get.put(AuthController());
+
+  DatePickerTheme test ; 
 
   @override
   Widget build(BuildContext context) {
