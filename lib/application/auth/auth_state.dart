@@ -16,6 +16,8 @@ abstract class AuthState with _$AuthState {
       _FailOrSuccessOption;
   factory AuthState.failOrSuccessUpdateCustomerOption(
           {@required
+              bool isLoding,
+          @required
               Option<Either<AuthFailure, LoginData>> updateCustomerOption}) =
       _FailOrSuccessUpdateCustomerOption;
 }

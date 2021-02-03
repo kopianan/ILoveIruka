@@ -42,7 +42,7 @@ Future<bool> deleteAllData() async {
   final storageBox = GetStorage(_storageBox);
 
   try {
-    await storageBox.remove(_storageBox);
+    await storageBox.erase();
     return (true);
   } catch (e) {
     return false;

@@ -38,6 +38,8 @@ class AuthRepository implements IAuthFacade {
           return left(AuthFailure.notFound());
         } else if (e.response.statusCode == 400) {
           return left(AuthFailure.badRequest());
+        } else {
+          return left(AuthFailure.serverError());
         }
       } else {
         return left(AuthFailure.serverError());

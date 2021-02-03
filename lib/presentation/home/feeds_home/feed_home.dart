@@ -43,7 +43,6 @@ class _FeedHomeState extends State<FeedHome>
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-               
                 ],
               ),
             ),
@@ -53,8 +52,8 @@ class _FeedHomeState extends State<FeedHome>
             shrinkWrap: true,
             children: <Widget>[
               BlocProvider(
-                create: (context) => getIt<FeedHomeBloc>()
-                  ..add(FeedHomeEvent.getTopFeedData()),
+                create: (context) =>
+                    getIt<FeedHomeBloc>()..add(FeedHomeEvent.getTopFeedData()),
                 child: BlocBuilder<FeedHomeBloc, FeedHomeState>(
                   builder: (context, state) {
                     return state.maybeMap(
@@ -65,8 +64,7 @@ class _FeedHomeState extends State<FeedHome>
                         else
                           return e.responseOptions.fold(
                             () => CarouselLoading(),
-                            (a) => a.fold(
-                                (l) => CarouselError(feedFailure: l),
+                            (a) => a.fold((l) => CarouselError(feedFailure: l),
                                 (r) => _buildTopFeedDataContent(r)),
                           );
                       },
@@ -77,8 +75,7 @@ class _FeedHomeState extends State<FeedHome>
               ),
               Container(
                   width: MediaQuery.of(context).size.width,
-                  margin:
-                      EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Card(
                     elevation: 2,
                     child: Padding(
@@ -86,14 +83,12 @@ class _FeedHomeState extends State<FeedHome>
                       child: GridView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        gridDelegate:
-                            SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 4,
-                                childAspectRatio: 01,
-                                mainAxisSpacing: 10),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4,
+                            childAspectRatio: 01,
+                            mainAxisSpacing: 10),
                         itemCount: listServiceMenu.length,
-                        itemBuilder: (context, index) =>
-                            listServiceMenu[index],
+                        itemBuilder: (context, index) => listServiceMenu[index],
                       ),
                     ),
                   )),
@@ -113,16 +108,14 @@ class _FeedHomeState extends State<FeedHome>
                             return e.responseOptions.fold(
                                 () => Container(child: Text("Option")),
                                 (a) => a.fold(
-                                    (l) =>
-                                        Container(child: Text("Tidak ada")),
+                                    (l) => Container(child: Text("Tidak ada")),
                                     (r) => Container(
                                           child: ListView.builder(
                                               itemCount: r.length,
                                               shrinkWrap: true,
                                               physics:
                                                   NeverScrollableScrollPhysics(),
-                                              itemBuilder:
-                                                  (context, index) {
+                                              itemBuilder: (context, index) {
                                                 return FeedBottomContent(
                                                   feed: r[index],
                                                 );
@@ -196,37 +189,92 @@ class _FeedHomeState extends State<FeedHome>
 
   List<ServiceMenuItem> listServiceMenu = [
     ServiceMenuItem(
-      assetPath: "images/assets/pet_shop.png",
-      name: "Shop",
+      assetPath: "images/assets/pet_grooming.png",
+      name: "Sispet",
       onClick: () {
-        launch("https://tokopedia.com/irukapet");
+        launch("https://sispet.id");
       },
     ),
     ServiceMenuItem(
-      assetPath: "images/assets/pet_grooming.png",
-      name: "Grooming Salon",
+      assetPath: "images/assets/aesthetic.png",
+      name: "Pet Aesthetic",
+      onClick: () {
+        launch("https://iloveiruka.com/salon-therapy/");
+      },
+    ),
+    ServiceMenuItem(
+        assetPath: "images/assets/pet_school.png",
+        name: "Pet School",
+        onClick: () {
+          launch("https://iloveiruka.com/iruka-grooming-school/");
+        }),
+    ServiceMenuItem(
+      assetPath: "images/assets/vet_corner.png",
+      name: "Vet Corner",
+      onClick: () {
+        launch("https://iloveiruka.com/vet-corner/");
+      },
+    ),
+    ServiceMenuItem(
+      assetPath: "images/assets/pet_hotel.png",
+      name: "Pet Sitting",
       onClick: () {
         launch("https://wa.me/6281211854630");
       },
     ),
     ServiceMenuItem(
-        assetPath: "images/assets/instagram.png",
-        name: "Instagram",
-        onClick: () {
-          launch("https://instagram.com/iloveiruka");
-        }),
-    ServiceMenuItem(
-      assetPath: "images/assets/youtube.png",
-      name: "Youtube",
+      assetPath: "images/assets/point_food.png",
+      name: "Booking",
       onClick: () {
-        launch("https://www.youtube.com/channel/UCohGUOh8j_gI5RTNBydOpFA/");
+        launch("https://wa.me/6281211854630");
       },
     ),
     ServiceMenuItem(
-      assetPath: "images/assets/global.png",
-      name: "Our Website",
+      assetPath: "images/assets/telephone.png",
+      name: "Contact",
       onClick: () {
-        launch("https://iloveiruka.com/");
+        Get.dialog(AlertDialog(
+          title: Text("Contact"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: Container(
+                    height: 30,
+                    width: 30,
+                    child: Image.asset('images/assets/whatsapp.png')),
+                title: Text("Whatsapp"),
+                onTap: () {
+                  Get.back();
+                  launch("https://wa.me/6281211854630");
+                },
+              ),
+              ListTile(
+                leading: Container(
+                    height: 30,
+                    width: 30,
+                    child: Image.asset('images/assets/youtube.png')),
+                title: Text("Youtube"),
+                onTap: () {
+                  Get.back();
+                  launch(
+                      "https://www.youtube.com/channel/UCohGUOh8j_gI5RTNBydOpFA/");
+                },
+              ),
+              ListTile(
+                leading: Container(
+                    height: 30,
+                    width: 30,
+                    child: Image.asset('images/assets/instagram.png')),
+                title: Text("Instagram"),
+                onTap: () {
+                  Get.back();
+                  launch("https://instagram.com/iloveiruka");
+                },
+              ),
+            ],
+          ),
+        ));
       },
     ),
   ];

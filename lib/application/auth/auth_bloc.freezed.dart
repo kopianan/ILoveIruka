@@ -1039,8 +1039,10 @@ class _$AuthStateTearOff {
 
 // ignore: unused_element
   _FailOrSuccessUpdateCustomerOption failOrSuccessUpdateCustomerOption(
-      {@required Option<Either<AuthFailure, LoginData>> updateCustomerOption}) {
+      {@required bool isLoding,
+      @required Option<Either<AuthFailure, LoginData>> updateCustomerOption}) {
     return _FailOrSuccessUpdateCustomerOption(
+      isLoding: isLoding,
       updateCustomerOption: updateCustomerOption,
     );
   }
@@ -1066,7 +1068,7 @@ mixin _$AuthState {
         TResult failOrSuccessLoginOption(
             Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
     @required
-        TResult failOrSuccessUpdateCustomerOption(
+        TResult failOrSuccessUpdateCustomerOption(bool isLoding,
             Option<Either<AuthFailure, LoginData>> updateCustomerOption),
   });
   @optionalTypeArgs
@@ -1079,7 +1081,7 @@ mixin _$AuthState {
         Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     TResult failOrSuccessLoginOption(
         Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
-    TResult failOrSuccessUpdateCustomerOption(
+    TResult failOrSuccessUpdateCustomerOption(bool isLoding,
         Option<Either<AuthFailure, LoginData>> updateCustomerOption),
     @required TResult orElse(),
   });
@@ -1170,7 +1172,7 @@ class _$_Initial implements _Initial {
         TResult failOrSuccessLoginOption(
             Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
     @required
-        TResult failOrSuccessUpdateCustomerOption(
+        TResult failOrSuccessUpdateCustomerOption(bool isLoding,
             Option<Either<AuthFailure, LoginData>> updateCustomerOption),
   }) {
     assert(initial != null);
@@ -1193,7 +1195,7 @@ class _$_Initial implements _Initial {
         Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     TResult failOrSuccessLoginOption(
         Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
-    TResult failOrSuccessUpdateCustomerOption(
+    TResult failOrSuccessUpdateCustomerOption(bool isLoding,
         Option<Either<AuthFailure, LoginData>> updateCustomerOption),
     @required TResult orElse(),
   }) {
@@ -1299,7 +1301,7 @@ class _$_OnProgreess implements _OnProgreess {
         TResult failOrSuccessLoginOption(
             Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
     @required
-        TResult failOrSuccessUpdateCustomerOption(
+        TResult failOrSuccessUpdateCustomerOption(bool isLoding,
             Option<Either<AuthFailure, LoginData>> updateCustomerOption),
   }) {
     assert(initial != null);
@@ -1322,7 +1324,7 @@ class _$_OnProgreess implements _OnProgreess {
         Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     TResult failOrSuccessLoginOption(
         Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
-    TResult failOrSuccessUpdateCustomerOption(
+    TResult failOrSuccessUpdateCustomerOption(bool isLoding,
         Option<Either<AuthFailure, LoginData>> updateCustomerOption),
     @required TResult orElse(),
   }) {
@@ -1456,7 +1458,7 @@ class _$_ChangeAvailability implements _ChangeAvailability {
         TResult failOrSuccessLoginOption(
             Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
     @required
-        TResult failOrSuccessUpdateCustomerOption(
+        TResult failOrSuccessUpdateCustomerOption(bool isLoding,
             Option<Either<AuthFailure, LoginData>> updateCustomerOption),
   }) {
     assert(initial != null);
@@ -1479,7 +1481,7 @@ class _$_ChangeAvailability implements _ChangeAvailability {
         Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     TResult failOrSuccessLoginOption(
         Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
-    TResult failOrSuccessUpdateCustomerOption(
+    TResult failOrSuccessUpdateCustomerOption(bool isLoding,
         Option<Either<AuthFailure, LoginData>> updateCustomerOption),
     @required TResult orElse(),
   }) {
@@ -1628,7 +1630,7 @@ class _$_FailOrSuccessGetRole implements _FailOrSuccessGetRole {
         TResult failOrSuccessLoginOption(
             Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
     @required
-        TResult failOrSuccessUpdateCustomerOption(
+        TResult failOrSuccessUpdateCustomerOption(bool isLoding,
             Option<Either<AuthFailure, LoginData>> updateCustomerOption),
   }) {
     assert(initial != null);
@@ -1651,7 +1653,7 @@ class _$_FailOrSuccessGetRole implements _FailOrSuccessGetRole {
         Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     TResult failOrSuccessLoginOption(
         Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
-    TResult failOrSuccessUpdateCustomerOption(
+    TResult failOrSuccessUpdateCustomerOption(bool isLoding,
         Option<Either<AuthFailure, LoginData>> updateCustomerOption),
     @required TResult orElse(),
   }) {
@@ -1793,7 +1795,7 @@ class _$_FailOrSuccessOption implements _FailOrSuccessOption {
         TResult failOrSuccessLoginOption(
             Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
     @required
-        TResult failOrSuccessUpdateCustomerOption(
+        TResult failOrSuccessUpdateCustomerOption(bool isLoding,
             Option<Either<AuthFailure, LoginData>> updateCustomerOption),
   }) {
     assert(initial != null);
@@ -1816,7 +1818,7 @@ class _$_FailOrSuccessOption implements _FailOrSuccessOption {
         Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     TResult failOrSuccessLoginOption(
         Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
-    TResult failOrSuccessUpdateCustomerOption(
+    TResult failOrSuccessUpdateCustomerOption(bool isLoding,
         Option<Either<AuthFailure, LoginData>> updateCustomerOption),
     @required TResult orElse(),
   }) {
@@ -1885,7 +1887,9 @@ abstract class _$FailOrSuccessUpdateCustomerOptionCopyWith<$Res> {
           _FailOrSuccessUpdateCustomerOption value,
           $Res Function(_FailOrSuccessUpdateCustomerOption) then) =
       __$FailOrSuccessUpdateCustomerOptionCopyWithImpl<$Res>;
-  $Res call({Option<Either<AuthFailure, LoginData>> updateCustomerOption});
+  $Res call(
+      {bool isLoding,
+      Option<Either<AuthFailure, LoginData>> updateCustomerOption});
 }
 
 /// @nodoc
@@ -1903,9 +1907,11 @@ class __$FailOrSuccessUpdateCustomerOptionCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object isLoding = freezed,
     Object updateCustomerOption = freezed,
   }) {
     return _then(_FailOrSuccessUpdateCustomerOption(
+      isLoding: isLoding == freezed ? _value.isLoding : isLoding as bool,
       updateCustomerOption: updateCustomerOption == freezed
           ? _value.updateCustomerOption
           : updateCustomerOption as Option<Either<AuthFailure, LoginData>>,
@@ -1916,21 +1922,28 @@ class __$FailOrSuccessUpdateCustomerOptionCopyWithImpl<$Res>
 /// @nodoc
 class _$_FailOrSuccessUpdateCustomerOption
     implements _FailOrSuccessUpdateCustomerOption {
-  _$_FailOrSuccessUpdateCustomerOption({@required this.updateCustomerOption})
-      : assert(updateCustomerOption != null);
+  _$_FailOrSuccessUpdateCustomerOption(
+      {@required this.isLoding, @required this.updateCustomerOption})
+      : assert(isLoding != null),
+        assert(updateCustomerOption != null);
 
+  @override
+  final bool isLoding;
   @override
   final Option<Either<AuthFailure, LoginData>> updateCustomerOption;
 
   @override
   String toString() {
-    return 'AuthState.failOrSuccessUpdateCustomerOption(updateCustomerOption: $updateCustomerOption)';
+    return 'AuthState.failOrSuccessUpdateCustomerOption(isLoding: $isLoding, updateCustomerOption: $updateCustomerOption)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _FailOrSuccessUpdateCustomerOption &&
+            (identical(other.isLoding, isLoding) ||
+                const DeepCollectionEquality()
+                    .equals(other.isLoding, isLoding)) &&
             (identical(other.updateCustomerOption, updateCustomerOption) ||
                 const DeepCollectionEquality()
                     .equals(other.updateCustomerOption, updateCustomerOption)));
@@ -1939,6 +1952,7 @@ class _$_FailOrSuccessUpdateCustomerOption
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(isLoding) ^
       const DeepCollectionEquality().hash(updateCustomerOption);
 
   @JsonKey(ignore: true)
@@ -1963,7 +1977,7 @@ class _$_FailOrSuccessUpdateCustomerOption
         TResult failOrSuccessLoginOption(
             Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
     @required
-        TResult failOrSuccessUpdateCustomerOption(
+        TResult failOrSuccessUpdateCustomerOption(bool isLoding,
             Option<Either<AuthFailure, LoginData>> updateCustomerOption),
   }) {
     assert(initial != null);
@@ -1972,7 +1986,7 @@ class _$_FailOrSuccessUpdateCustomerOption
     assert(failOrSuccessGetRole != null);
     assert(failOrSuccessLoginOption != null);
     assert(failOrSuccessUpdateCustomerOption != null);
-    return failOrSuccessUpdateCustomerOption(updateCustomerOption);
+    return failOrSuccessUpdateCustomerOption(isLoding, updateCustomerOption);
   }
 
   @override
@@ -1986,13 +2000,13 @@ class _$_FailOrSuccessUpdateCustomerOption
         Option<Either<AuthFailure, List<String>>> options, bool isLoading),
     TResult failOrSuccessLoginOption(
         Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
-    TResult failOrSuccessUpdateCustomerOption(
+    TResult failOrSuccessUpdateCustomerOption(bool isLoding,
         Option<Either<AuthFailure, LoginData>> updateCustomerOption),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (failOrSuccessUpdateCustomerOption != null) {
-      return failOrSuccessUpdateCustomerOption(updateCustomerOption);
+      return failOrSuccessUpdateCustomerOption(isLoding, updateCustomerOption);
     }
     return orElse();
   }
@@ -2041,9 +2055,12 @@ class _$_FailOrSuccessUpdateCustomerOption
 abstract class _FailOrSuccessUpdateCustomerOption implements AuthState {
   factory _FailOrSuccessUpdateCustomerOption(
           {@required
+              bool isLoding,
+          @required
               Option<Either<AuthFailure, LoginData>> updateCustomerOption}) =
       _$_FailOrSuccessUpdateCustomerOption;
 
+  bool get isLoding;
   Option<Either<AuthFailure, LoginData>> get updateCustomerOption;
   @JsonKey(ignore: true)
   _$FailOrSuccessUpdateCustomerOptionCopyWith<

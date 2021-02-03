@@ -29,10 +29,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async* {
     yield* event.map(
       updateGroomer: (e) async* {
-        yield AuthState.onProgress();
+        yield AuthState.failOrSuccessUpdateCustomerOption(
+            isLoding: true, updateCustomerOption: none());
         final _result = await _iAuthFacade.updateGroomer(e.user);
         yield AuthState.failOrSuccessUpdateCustomerOption(
-            updateCustomerOption: some(_result));
+            isLoding: false, updateCustomerOption: some(_result));
       },
       changeGroomerAvailability: (e) async* {
         yield AuthState.onProgress();
@@ -41,10 +42,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         yield AuthState.changeAvailability(some(_result));
       },
       updateCustomer: (e) async* {
-        yield AuthState.onProgress();
+        yield AuthState.failOrSuccessUpdateCustomerOption(
+            isLoding: true, updateCustomerOption: none());
         final _result = await _iAuthFacade.updateCustomer(e.data, e.image);
         yield AuthState.failOrSuccessUpdateCustomerOption(
-            updateCustomerOption: some(_result));
+            isLoding: false, updateCustomerOption: some(_result));
       },
       getUserRoleList: (e) async* {
         yield AuthState.failOrSuccessGetRole(

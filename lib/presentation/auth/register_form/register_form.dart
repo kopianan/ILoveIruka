@@ -35,7 +35,7 @@ class _RegisterFormState extends State<RegisterForm> {
   final emailCon = TextEditingController();
   final passwordCon = TextEditingController();
   final confirmationPasswordCon = TextEditingController();
-
+  final registerBloc = getIt<AuthBloc>();
   final _authController = Get.put(AuthController());
 
   String fullNameStr;
@@ -104,7 +104,7 @@ class _RegisterFormState extends State<RegisterForm> {
                                     _flushbar = showFlushbarSuccess(
                                         succMessage: "Success Created User")
                                       ..show(context);
-                                    Get.toNamed(DashboardPage.TAG);
+                                    Get.offAllNamed(DashboardPage.TAG);
                                   }).catchError((onError) {
                                     _flushbar = showFlushbarError(
                                         errMessage: "You Cannot Register User")
@@ -117,8 +117,8 @@ class _RegisterFormState extends State<RegisterForm> {
             );
           }, builder: (context, state) {
             return state.maybeMap(
-              orElse: () => Container(
-                child: Text("GAGAL"),
+              orElse: () => Center(
+                child: CircularProgressIndicator(),
               ),
               failOrSuccessGetRole: (e) {
                 if (e.isLoading) {
@@ -141,50 +141,97 @@ class _RegisterFormState extends State<RegisterForm> {
     );
   }
 
-  SingleChildScrollView buildSingleChildScrollView(
-      BuildContext context, AuthState state) {
-    return SingleChildScrollView(
-      child: Stack(
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              Stack(
-                children: <Widget>[
-                  Container(
-                    height: 300,
-                    child: Image.asset(
-                      'images/dev_images/signin_decoration.png',
-                      alignment: Alignment.bottomRight,
-                      fit: BoxFit.fitWidth,
-                      width: double.infinity,
+  Widget buildSingleChildScrollView(BuildContext context, AuthState state) {
+    return BlocProvider(
+      create: (context) => registerBloc,
+      child: BlocConsumer<AuthBloc, AuthState>(
+        listener: (context, state) {
+          state.maybeMap(
+              orElse: () {},
+              failOrSuccessLoginOption: (value) {
+                dismissFlushbar(_flushbar);
+
+                value.failOrSuccessOption.fold(
+                    () => null,
+                    (a) => a.fold(
+                          (l) {
+                            l.maybeMap(
+                              orElse: () {},
+                              badRequest: (e) => errMsg = "Bad Request",
+                              serverError: (e) => errMsg = "Server Error",
+                              notFound: (e) => errMsg = "Not Found",
+                            );
+
+                            _flushbar = showFlushbarError(errMessage: errMsg)
+                              ..show(context);
+                          },
+                          (r) {
+                            r.map(
+                                loginRequestData: (e) {},
+                                loginResponseData: (e) {
+                                  _authController.setUserData(e.user);
+                                  saveUserData(e.user).then((value) {
+                                    _flushbar = showFlushbarSuccess(
+                                        succMessage: "Success Created User")
+                                      ..show(context);
+                                    Get.offAllNamed(DashboardPage.TAG);
+                                  }).catchError((onError) {
+                                    _flushbar = showFlushbarError(
+                                        errMessage: "You Cannot Register User")
+                                      ..show(context);
+                                  });
+                                });
+                          },
+                        ));
+              });
+        },
+        builder: (context, state) {
+          return SingleChildScrollView(
+            child: Stack(
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Stack(
+                      children: <Widget>[
+                        Container(
+                          height: 300,
+                          child: Image.asset(
+                            'images/dev_images/signin_decoration.png',
+                            alignment: Alignment.bottomRight,
+                            fit: BoxFit.fitWidth,
+                            width: double.infinity,
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 30, top: 80),
+                          child: Text(
+                            "Create Your\nNew Account",
+                            style: TextStyle(
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        )
+                      ],
                     ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 30, top: 80),
-                    child: Text(
-                      "Create Your\nNew Account",
-                      style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                    Form(
+                      key: _formKey,
+                      autovalidate: _autoValidate,
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                        child: formField(context, state),
+                      ),
                     ),
-                  )
-                ],
-              ),
-              Form(
-                key: _formKey,
-                autovalidate: _autoValidate,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                  child: formField(context, state),
+                  ],
                 ),
-              ),
-            ],
-          ),
-          AppBarTransparentBack(function: () {
-            Navigator.pop(context, true);
-          }),
-        ],
+                AppBarTransparentBack(function: () {
+                  Navigator.pop(context, true);
+                }),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
