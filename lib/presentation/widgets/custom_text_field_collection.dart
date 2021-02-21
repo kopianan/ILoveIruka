@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class CustomPassword extends StatefulWidget {
   CustomPassword({
@@ -10,7 +10,6 @@ class CustomPassword extends StatefulWidget {
     @required this.onFieldSubmited,
     @required this.hint,
     @required this.label,
-    
   });
   final TextEditingController controller;
   final FormFieldValidator<String> validator;
@@ -66,20 +65,20 @@ class _CustomPasswordState extends State<CustomPassword> {
 }
 
 class CustomTextField extends StatelessWidget {
-  CustomTextField({
-    Key key,
-    @required this.controller,
-    @required this.validator,
-    @required this.focusNode,
-    @required this.textInputAction,
-    @required this.onFieldSubmited,
-    @required this.hint,
-    @required this.label,
-    @required this.isEnable,
-    this.textInputType, 
-    this.suffixText, 
-    this.minLength
-  }) : super(
+  CustomTextField(
+      {Key key,
+      @required this.controller,
+      @required this.validator,
+      @required this.focusNode,
+      @required this.textInputAction,
+      @required this.onFieldSubmited,
+      @required this.hint,
+      @required this.label,
+      @required this.isEnable,
+      this.textInputType,
+      this.suffixText,
+      this.minLength})
+      : super(
           key: key,
         );
   final TextEditingController controller;
@@ -92,7 +91,7 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final bool isEnable;
   final String suffixText;
-  final int minLength ; 
+  final int minLength;
 
   @override
   Widget build(BuildContext context) {
@@ -100,11 +99,12 @@ class CustomTextField extends StatelessWidget {
       style: TextStyle(letterSpacing: 1),
       controller: controller,
       focusNode: focusNode,
-      keyboardType: (textInputType == null) ? TextInputType.text:textInputType,
+      keyboardType:
+          (textInputType == null) ? TextInputType.text : textInputType,
       enabled: isEnable,
       textInputAction: textInputAction,
       minLines: (minLength == null) ? 1 : minLength,
-      maxLines: (minLength == null) ? 2 : minLength, 
+      maxLines: (minLength == null) ? 2 : minLength,
       onFieldSubmitted: (term) {
         onFieldSubmited(term);
       },
@@ -119,7 +119,7 @@ class CustomTextField extends StatelessWidget {
         alignLabelWithHint: true,
         contentPadding: EdgeInsets.only(bottom: 1),
         isDense: true,
-        suffixIcon: Icon(MdiIcons.pencil),
+        suffixIcon: Icon(Icons.edit),
         hintText: hint,
         suffixText: (suffixText == null) ? null : suffixText,
         labelStyle: TextStyle(fontWeight: FontWeight.bold),

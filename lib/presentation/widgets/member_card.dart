@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/util/constants.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class MemberCard extends StatelessWidget {
   const MemberCard(
       {Key key,
       @required this.cardBottomGradient,
       @required this.cardTextColor,
-      @required this.cardTopGradient, 
+      @required this.cardTopGradient,
       @required this.imagesList,
       @required this.name,
-      @required this.point
-
-      })
+      @required this.point})
       : super(key: key);
 
   final Color cardTopGradient;
   final Color cardBottomGradient;
   final Color cardTextColor;
+
   ///Berurutan muali dari 1,2,3
-  final List<String> imagesList ; 
-  final String name ; 
-  final String point ; 
+  final List<String> imagesList;
+  final String name;
+  final String point;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -73,7 +72,7 @@ class MemberCard extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Icon(
-                      MdiIcons.accountCircle,
+                      Icons.person,
                       size: 50,
                       color: cardTextColor,
                     ),
@@ -83,7 +82,7 @@ class MemberCard extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Text(
-                         name,
+                          name,
                           style: TextStyle(
                               color: cardTextColor,
                               fontSize: 16,
@@ -120,7 +119,7 @@ class MemberCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                     point,
+                      point,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: cardTextColor,

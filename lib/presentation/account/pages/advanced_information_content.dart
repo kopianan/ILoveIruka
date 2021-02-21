@@ -18,7 +18,7 @@ import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
 import 'package:i_love_iruka/presentation/widgets/custom_text_field_collection.dart';
 import 'package:i_love_iruka/util/flushbar_function.dart';
 import 'package:intl/intl.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 
 class AdvancedInformationContent extends StatefulWidget {
@@ -600,7 +600,7 @@ class _AdvancedInformationContentState
         labelText: label,
         contentPadding: EdgeInsets.only(bottom: 1),
         isDense: true,
-        suffixIcon: Icon(MdiIcons.calendar),
+        suffixIcon: Icon(Icons.calendar_today),
         hintText: hint,
         labelStyle: TextStyle(fontWeight: FontWeight.bold),
         errorMaxLines: 1,

@@ -17,7 +17,7 @@ import 'package:i_love_iruka/presentation/widgets/custom_text_field_collection.d
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:i_love_iruka/util/flushbar_function.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -98,7 +98,7 @@ class _PersonalInformationContentState
                         width: 4.0,
                       )),
                   child: Icon(
-                    MdiIcons.pencil,
+                    Icons.edit,
                     color: Colors.black,
                   ),
                 ),
@@ -148,7 +148,7 @@ class _PersonalInformationContentState
                     textColor: Colors.pink[200],
                     child: Row(
                       children: <Widget>[
-                        Icon(MdiIcons.dogSide, color: Colors.pink[200]),
+                        Icon(Icons.donut_large, color: Colors.pink[200]),
                         Text("Pets Info")
                       ],
                     ),

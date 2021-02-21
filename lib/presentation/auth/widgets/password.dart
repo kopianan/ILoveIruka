@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+// import 'package:material_design_icons_flutter/material_deign_icons_flutter.dart';
 
 class Password extends StatefulWidget {
   Password(
@@ -38,7 +38,7 @@ class _PasswordState extends State<Password> {
             labelText: "Password",
             contentPadding: EdgeInsets.only(bottom: 5),
             isDense: true,
-            prefixIcon: Icon(MdiIcons.lock),
+            prefixIcon: Icon(Icons.lock),
             hintText: "Password",
             labelStyle: TextStyle(fontWeight: FontWeight.bold),
             errorMaxLines: 1,

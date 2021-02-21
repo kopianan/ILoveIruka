@@ -50,7 +50,14 @@ class _AppWidgetState extends State<AppWidget> {
       theme: ThemeData(
           inputDecorationTheme:
               InputDecorationTheme(labelStyle: TextStyle(color: Colors.blue)),
-          textTheme: GoogleFonts.montserratTextTheme(textTheme),
+          textTheme: GoogleFonts.notoSansTextTheme(
+            TextTheme(
+              // bodyText1: TextStyle(fontSize: 12),
+              bodyText2: TextStyle(
+                fontSize: 11,
+              ), //default text
+            ),
+          ),
           primaryColor: Color(0xff558dc5),
           iconTheme: IconThemeData(color: Colors.white),
           errorColor: Colors.red),

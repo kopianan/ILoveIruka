@@ -4,7 +4,7 @@ import 'package:i_love_iruka/application/auth/auth_controller.dart';
 import 'package:i_love_iruka/application/auth/auth_provider.dart';
 import 'package:i_love_iruka/presentation/home/account_home/account_page_home.dart';
 import 'package:i_love_iruka/presentation/home/feeds_home/feed_home.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -52,6 +52,10 @@ class _DashboardPageState extends State<DashboardPage> {
           children: <Widget>[
             FeedHome(),
             AccountPagehome(),
+            Container(color: Colors.green),
+            Container(
+              color: Colors.blue,
+            )
           ],
         ),
       ),
@@ -64,10 +68,15 @@ class _DashboardPageState extends State<DashboardPage> {
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.apps), label: 'Home'),
             BottomNavigationBarItem(
-                icon: Icon(MdiIcons.account), label: 'Users')
+                icon: Icon(Icons.subscriptions_outlined), label: 'Member'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.pets_outlined), label: 'Pets'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Users'),
           ]),
       floatingActionButton: FloatingActionButton(
-        child: Icon(MdiIcons.qrcode),
+        child: Icon(
+          Icons.qr_code,
+        ),
         onPressed: () {
           showDialog(
               barrierDismissible: false,

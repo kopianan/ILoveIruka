@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class CustomInputText extends StatelessWidget {
   CustomInputText(
@@ -34,7 +34,7 @@ class CustomInputText extends StatelessWidget {
             labelText: "Email",
             contentPadding: EdgeInsets.only(bottom: 5),
             isDense: true,
-            prefixIcon: Icon(MdiIcons.email),
+            prefixIcon: Icon(Icons.email),
             hintText: "Enter email address",
             labelStyle: TextStyle(fontWeight: FontWeight.bold),
             errorMaxLines: 1,
