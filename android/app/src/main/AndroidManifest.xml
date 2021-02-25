@@ -26,10 +26,13 @@
     <meta-data
     android:name="flutterEmbedding"
     android:value="2" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+              <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyDu12TtYX2urnQTNyRY-seinw_GaGOxqrs"/>
     </application>
 </manifest>

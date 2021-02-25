@@ -14,25 +14,17 @@ class _$AuthFailureTearOff {
   const _$AuthFailureTearOff();
 
 // ignore: unused_element
-  _BadRequest badRequest({String errorMessage}) {
-    return _BadRequest(
+  _ResponseError responseError({String errorMessage}) {
+    return _ResponseError(
       errorMessage: errorMessage,
     );
   }
 
 // ignore: unused_element
-  _ServerError serverError() {
-    return const _ServerError();
-  }
-
-// ignore: unused_element
-  _NotFound notFound() {
-    return const _NotFound();
-  }
-
-// ignore: unused_element
-  _DefaultError defaultError() {
-    return const _DefaultError();
+  _ServerError serverError({String errorMessage}) {
+    return _ServerError(
+      errorMessage: errorMessage,
+    );
   }
 }
 
@@ -42,36 +34,33 @@ const $AuthFailure = _$AuthFailureTearOff();
 
 /// @nodoc
 mixin _$AuthFailure {
+  String get errorMessage;
+
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult badRequest(String errorMessage),
-    @required TResult serverError(),
-    @required TResult notFound(),
-    @required TResult defaultError(),
+    @required TResult responseError(String errorMessage),
+    @required TResult serverError(String errorMessage),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult badRequest(String errorMessage),
-    TResult serverError(),
-    TResult notFound(),
-    TResult defaultError(),
+    TResult responseError(String errorMessage),
+    TResult serverError(String errorMessage),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult badRequest(_BadRequest value),
+    @required TResult responseError(_ResponseError value),
     @required TResult serverError(_ServerError value),
-    @required TResult notFound(_NotFound value),
-    @required TResult defaultError(_DefaultError value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult badRequest(_BadRequest value),
+    TResult responseError(_ResponseError value),
     TResult serverError(_ServerError value),
-    TResult notFound(_NotFound value),
-    TResult defaultError(_DefaultError value),
     @required TResult orElse(),
   });
+
+  @JsonKey(ignore: true)
+  $AuthFailureCopyWith<AuthFailure> get copyWith;
 }
 
 /// @nodoc
@@ -79,6 +68,7 @@ abstract class $AuthFailureCopyWith<$Res> {
   factory $AuthFailureCopyWith(
           AuthFailure value, $Res Function(AuthFailure) then) =
       _$AuthFailureCopyWithImpl<$Res>;
+  $Res call({String errorMessage});
 }
 
 /// @nodoc
@@ -88,31 +78,12 @@ class _$AuthFailureCopyWithImpl<$Res> implements $AuthFailureCopyWith<$Res> {
   final AuthFailure _value;
   // ignore: unused_field
   final $Res Function(AuthFailure) _then;
-}
-
-/// @nodoc
-abstract class _$BadRequestCopyWith<$Res> {
-  factory _$BadRequestCopyWith(
-          _BadRequest value, $Res Function(_BadRequest) then) =
-      __$BadRequestCopyWithImpl<$Res>;
-  $Res call({String errorMessage});
-}
-
-/// @nodoc
-class __$BadRequestCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
-    implements _$BadRequestCopyWith<$Res> {
-  __$BadRequestCopyWithImpl(
-      _BadRequest _value, $Res Function(_BadRequest) _then)
-      : super(_value, (v) => _then(v as _BadRequest));
-
-  @override
-  _BadRequest get _value => super._value as _BadRequest;
 
   @override
   $Res call({
     Object errorMessage = freezed,
   }) {
-    return _then(_BadRequest(
+    return _then(_value.copyWith(
       errorMessage: errorMessage == freezed
           ? _value.errorMessage
           : errorMessage as String,
@@ -121,21 +92,53 @@ class __$BadRequestCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$_BadRequest implements _BadRequest {
-  const _$_BadRequest({this.errorMessage});
+abstract class _$ResponseErrorCopyWith<$Res>
+    implements $AuthFailureCopyWith<$Res> {
+  factory _$ResponseErrorCopyWith(
+          _ResponseError value, $Res Function(_ResponseError) then) =
+      __$ResponseErrorCopyWithImpl<$Res>;
+  @override
+  $Res call({String errorMessage});
+}
+
+/// @nodoc
+class __$ResponseErrorCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements _$ResponseErrorCopyWith<$Res> {
+  __$ResponseErrorCopyWithImpl(
+      _ResponseError _value, $Res Function(_ResponseError) _then)
+      : super(_value, (v) => _then(v as _ResponseError));
+
+  @override
+  _ResponseError get _value => super._value as _ResponseError;
+
+  @override
+  $Res call({
+    Object errorMessage = freezed,
+  }) {
+    return _then(_ResponseError(
+      errorMessage: errorMessage == freezed
+          ? _value.errorMessage
+          : errorMessage as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_ResponseError implements _ResponseError {
+  const _$_ResponseError({this.errorMessage});
 
   @override
   final String errorMessage;
 
   @override
   String toString() {
-    return 'AuthFailure.badRequest(errorMessage: $errorMessage)';
+    return 'AuthFailure.responseError(errorMessage: $errorMessage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _BadRequest &&
+        (other is _ResponseError &&
             (identical(other.errorMessage, errorMessage) ||
                 const DeepCollectionEquality()
                     .equals(other.errorMessage, errorMessage)));
@@ -147,36 +150,30 @@ class _$_BadRequest implements _BadRequest {
 
   @JsonKey(ignore: true)
   @override
-  _$BadRequestCopyWith<_BadRequest> get copyWith =>
-      __$BadRequestCopyWithImpl<_BadRequest>(this, _$identity);
+  _$ResponseErrorCopyWith<_ResponseError> get copyWith =>
+      __$ResponseErrorCopyWithImpl<_ResponseError>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult badRequest(String errorMessage),
-    @required TResult serverError(),
-    @required TResult notFound(),
-    @required TResult defaultError(),
+    @required TResult responseError(String errorMessage),
+    @required TResult serverError(String errorMessage),
   }) {
-    assert(badRequest != null);
+    assert(responseError != null);
     assert(serverError != null);
-    assert(notFound != null);
-    assert(defaultError != null);
-    return badRequest(errorMessage);
+    return responseError(errorMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult badRequest(String errorMessage),
-    TResult serverError(),
-    TResult notFound(),
-    TResult defaultError(),
+    TResult responseError(String errorMessage),
+    TResult serverError(String errorMessage),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (badRequest != null) {
-      return badRequest(errorMessage);
+    if (responseError != null) {
+      return responseError(errorMessage);
     }
     return orElse();
   }
@@ -184,48 +181,47 @@ class _$_BadRequest implements _BadRequest {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult badRequest(_BadRequest value),
+    @required TResult responseError(_ResponseError value),
     @required TResult serverError(_ServerError value),
-    @required TResult notFound(_NotFound value),
-    @required TResult defaultError(_DefaultError value),
   }) {
-    assert(badRequest != null);
+    assert(responseError != null);
     assert(serverError != null);
-    assert(notFound != null);
-    assert(defaultError != null);
-    return badRequest(this);
+    return responseError(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult badRequest(_BadRequest value),
+    TResult responseError(_ResponseError value),
     TResult serverError(_ServerError value),
-    TResult notFound(_NotFound value),
-    TResult defaultError(_DefaultError value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (badRequest != null) {
-      return badRequest(this);
+    if (responseError != null) {
+      return responseError(this);
     }
     return orElse();
   }
 }
 
-abstract class _BadRequest implements AuthFailure {
-  const factory _BadRequest({String errorMessage}) = _$_BadRequest;
+abstract class _ResponseError implements AuthFailure {
+  const factory _ResponseError({String errorMessage}) = _$_ResponseError;
 
+  @override
   String get errorMessage;
+  @override
   @JsonKey(ignore: true)
-  _$BadRequestCopyWith<_BadRequest> get copyWith;
+  _$ResponseErrorCopyWith<_ResponseError> get copyWith;
 }
 
 /// @nodoc
-abstract class _$ServerErrorCopyWith<$Res> {
+abstract class _$ServerErrorCopyWith<$Res>
+    implements $AuthFailureCopyWith<$Res> {
   factory _$ServerErrorCopyWith(
           _ServerError value, $Res Function(_ServerError) then) =
       __$ServerErrorCopyWithImpl<$Res>;
+  @override
+  $Res call({String errorMessage});
 }
 
 /// @nodoc
@@ -237,52 +233,70 @@ class __$ServerErrorCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
 
   @override
   _ServerError get _value => super._value as _ServerError;
+
+  @override
+  $Res call({
+    Object errorMessage = freezed,
+  }) {
+    return _then(_ServerError(
+      errorMessage: errorMessage == freezed
+          ? _value.errorMessage
+          : errorMessage as String,
+    ));
+  }
 }
 
 /// @nodoc
 class _$_ServerError implements _ServerError {
-  const _$_ServerError();
+  const _$_ServerError({this.errorMessage});
+
+  @override
+  final String errorMessage;
 
   @override
   String toString() {
-    return 'AuthFailure.serverError()';
+    return 'AuthFailure.serverError(errorMessage: $errorMessage)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ServerError);
+    return identical(this, other) ||
+        (other is _ServerError &&
+            (identical(other.errorMessage, errorMessage) ||
+                const DeepCollectionEquality()
+                    .equals(other.errorMessage, errorMessage)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ServerErrorCopyWith<_ServerError> get copyWith =>
+      __$ServerErrorCopyWithImpl<_ServerError>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult badRequest(String errorMessage),
-    @required TResult serverError(),
-    @required TResult notFound(),
-    @required TResult defaultError(),
+    @required TResult responseError(String errorMessage),
+    @required TResult serverError(String errorMessage),
   }) {
-    assert(badRequest != null);
+    assert(responseError != null);
     assert(serverError != null);
-    assert(notFound != null);
-    assert(defaultError != null);
-    return serverError();
+    return serverError(errorMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult badRequest(String errorMessage),
-    TResult serverError(),
-    TResult notFound(),
-    TResult defaultError(),
+    TResult responseError(String errorMessage),
+    TResult serverError(String errorMessage),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (serverError != null) {
-      return serverError();
+      return serverError(errorMessage);
     }
     return orElse();
   }
@@ -290,25 +304,19 @@ class _$_ServerError implements _ServerError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult badRequest(_BadRequest value),
+    @required TResult responseError(_ResponseError value),
     @required TResult serverError(_ServerError value),
-    @required TResult notFound(_NotFound value),
-    @required TResult defaultError(_DefaultError value),
   }) {
-    assert(badRequest != null);
+    assert(responseError != null);
     assert(serverError != null);
-    assert(notFound != null);
-    assert(defaultError != null);
     return serverError(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult badRequest(_BadRequest value),
+    TResult responseError(_ResponseError value),
     TResult serverError(_ServerError value),
-    TResult notFound(_NotFound value),
-    TResult defaultError(_DefaultError value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -320,207 +328,11 @@ class _$_ServerError implements _ServerError {
 }
 
 abstract class _ServerError implements AuthFailure {
-  const factory _ServerError() = _$_ServerError;
-}
-
-/// @nodoc
-abstract class _$NotFoundCopyWith<$Res> {
-  factory _$NotFoundCopyWith(_NotFound value, $Res Function(_NotFound) then) =
-      __$NotFoundCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$NotFoundCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
-    implements _$NotFoundCopyWith<$Res> {
-  __$NotFoundCopyWithImpl(_NotFound _value, $Res Function(_NotFound) _then)
-      : super(_value, (v) => _then(v as _NotFound));
+  const factory _ServerError({String errorMessage}) = _$_ServerError;
 
   @override
-  _NotFound get _value => super._value as _NotFound;
-}
-
-/// @nodoc
-class _$_NotFound implements _NotFound {
-  const _$_NotFound();
-
+  String get errorMessage;
   @override
-  String toString() {
-    return 'AuthFailure.notFound()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _NotFound);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult badRequest(String errorMessage),
-    @required TResult serverError(),
-    @required TResult notFound(),
-    @required TResult defaultError(),
-  }) {
-    assert(badRequest != null);
-    assert(serverError != null);
-    assert(notFound != null);
-    assert(defaultError != null);
-    return notFound();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult badRequest(String errorMessage),
-    TResult serverError(),
-    TResult notFound(),
-    TResult defaultError(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (notFound != null) {
-      return notFound();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult badRequest(_BadRequest value),
-    @required TResult serverError(_ServerError value),
-    @required TResult notFound(_NotFound value),
-    @required TResult defaultError(_DefaultError value),
-  }) {
-    assert(badRequest != null);
-    assert(serverError != null);
-    assert(notFound != null);
-    assert(defaultError != null);
-    return notFound(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult badRequest(_BadRequest value),
-    TResult serverError(_ServerError value),
-    TResult notFound(_NotFound value),
-    TResult defaultError(_DefaultError value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (notFound != null) {
-      return notFound(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _NotFound implements AuthFailure {
-  const factory _NotFound() = _$_NotFound;
-}
-
-/// @nodoc
-abstract class _$DefaultErrorCopyWith<$Res> {
-  factory _$DefaultErrorCopyWith(
-          _DefaultError value, $Res Function(_DefaultError) then) =
-      __$DefaultErrorCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$DefaultErrorCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
-    implements _$DefaultErrorCopyWith<$Res> {
-  __$DefaultErrorCopyWithImpl(
-      _DefaultError _value, $Res Function(_DefaultError) _then)
-      : super(_value, (v) => _then(v as _DefaultError));
-
-  @override
-  _DefaultError get _value => super._value as _DefaultError;
-}
-
-/// @nodoc
-class _$_DefaultError implements _DefaultError {
-  const _$_DefaultError();
-
-  @override
-  String toString() {
-    return 'AuthFailure.defaultError()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _DefaultError);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult badRequest(String errorMessage),
-    @required TResult serverError(),
-    @required TResult notFound(),
-    @required TResult defaultError(),
-  }) {
-    assert(badRequest != null);
-    assert(serverError != null);
-    assert(notFound != null);
-    assert(defaultError != null);
-    return defaultError();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult badRequest(String errorMessage),
-    TResult serverError(),
-    TResult notFound(),
-    TResult defaultError(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (defaultError != null) {
-      return defaultError();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult badRequest(_BadRequest value),
-    @required TResult serverError(_ServerError value),
-    @required TResult notFound(_NotFound value),
-    @required TResult defaultError(_DefaultError value),
-  }) {
-    assert(badRequest != null);
-    assert(serverError != null);
-    assert(notFound != null);
-    assert(defaultError != null);
-    return defaultError(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult badRequest(_BadRequest value),
-    TResult serverError(_ServerError value),
-    TResult notFound(_NotFound value),
-    TResult defaultError(_DefaultError value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (defaultError != null) {
-      return defaultError(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _DefaultError implements AuthFailure {
-  const factory _DefaultError() = _$_DefaultError;
+  @JsonKey(ignore: true)
+  _$ServerErrorCopyWith<_ServerError> get copyWith;
 }

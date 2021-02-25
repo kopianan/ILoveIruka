@@ -1,9 +1,15 @@
 import 'package:carousel_slider/carousel_slider.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:i_love_iruka/application/feed_home.dart/feed_controller.dart';
+import 'package:i_love_iruka/application/feed_home.dart/feed_home_bloc.dart';
 import 'package:i_love_iruka/domain/feed_home/feed.dart';
 import 'package:i_love_iruka/domain/feed_home/feed_failure.dart';
+import 'package:i_love_iruka/domain/feed_home/menu_data_model.dart';
+import 'package:i_love_iruka/injection.dart';
 import 'package:i_love_iruka/presentation/feed_detail/feed_detail_page.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -29,6 +35,8 @@ class _FeedHomeState extends State<FeedHome>
   ];
 
   int _current = 0;
+
+  final feedController = Get.put(FeedController());
 
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
@@ -119,12 +127,31 @@ class _FeedHomeState extends State<FeedHome>
           SliverPadding(
             padding: EdgeInsets.only(bottom: 10),
             sliver: SliverToBoxAdapter(
-              child: Container(
-                child: CarouselSlider(
-                  options: carouselOptions(),
-                  items: imgList
-                      .map((item) => carouselImageContainer(item))
-                      .toList(),
+              child: BlocProvider(
+                create: (context) =>
+                    getIt<FeedHomeBloc>()..add(FeedHomeEvent.getTopFeedData()),
+                child: Container(
+                  child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
+                    listener: (context, state) {
+                      //set top feed data
+                      state.maybeMap(
+                        orElse: () {},
+                        failOrSuccessGetData: (val) {
+                          val.responseOptions.fold(
+                              () {},
+                              (a) => a.fold(
+                                    (l) {},
+                                    (r) {
+                                      feedController.setTopFeed(r);
+                                    },
+                                  ));
+                        },
+                      );
+                    },
+                    builder: (context, state) {
+                      return onGetTopFeed(state);
+                    },
+                  ),
                 ),
               ),
             ),
@@ -133,132 +160,150 @@ class _FeedHomeState extends State<FeedHome>
             child: sectionTitle(_horizontalMargin, "Features"),
           ),
           SliverToBoxAdapter(
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: _horizontalMargin),
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: listServiceMenu.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4, mainAxisSpacing: 5, crossAxisSpacing: 5),
-                itemBuilder: (context, index) {
-                  return listServiceMenu[index];
-                },
-              ),
-            ),
-          ),
+              child: BlocProvider(
+                  create: (context) => getIt<FeedHomeBloc>()
+                    ..add(FeedHomeEvent.getHomeMenuList()),
+                  child: Container(
+                    child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
+                      listener: (context, state) {
+                        print(state);
+                      },
+                      builder: (context, state) => onGetHomeMenu(state),
+                    ),
+                  ))),
           SliverToBoxAdapter(
             child: sectionTitle(_horizontalMargin, "Newsletter"),
           ),
-          SliverList(delegate: SliverChildBuilderDelegate((context, index) {
-            return newsletterItem(_horizontalMargin);
-          }))
+          SliverToBoxAdapter(
+            child: BlocProvider(
+              create: (context) =>
+                  getIt<FeedHomeBloc>()..add(FeedHomeEvent.getBottomFeedData()),
+              child: Container(
+                child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
+                  listener: (context, state) {
+                    state.maybeMap(
+                      orElse: () {},
+                      failOrSuccessGetDataBottom: (val) {
+                        val.responseOptions.fold(
+                            () {},
+                            (a) => a.fold(
+                                  (l) {},
+                                  (r) {
+                                    feedController.setBottomFeed(r);
+                                  },
+                                ));
+                      },
+                    );
+                  },
+                  builder: (context, state) {
+                    return onGetBottomFeed(state);
+                  },
+                ),
+              ),
+            ),
+          ),
+          // SliverList(delegate: SliverChildBuilderDelegate((context, index) {
+          //   return newsletterItem(_horizontalMargin);
+          // }))
         ]),
       ),
     );
+  }
 
-    // SingleChildScrollView(
-    //   child: Stack(
-    //     overflow: Overflow.visible,
-    //     children: <Widget>[
-    //       // AppBarHeaderBackground(),
-    //       SafeArea(
-    //         child: Container(
-    //           margin: EdgeInsets.only(top: 10, left: 10, right: 10),
-    //           child: Row(
-    //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //             crossAxisAlignment: CrossAxisAlignment.start,
-    //             children: <Widget>[],
-    //           ),
-    //         ),
-    //       ),
-    //       ListView(
-    //         physics: NeverScrollableScrollPhysics(),
-    //         shrinkWrap: true,
-    //         children: <Widget>[
-    //           BlocProvider(
-    //             create: (context) =>
-    //                 getIt<FeedHomeBloc>()..add(FeedHomeEvent.getTopFeedData()),
-    //             child: BlocBuilder<FeedHomeBloc, FeedHomeState>(
-    //               builder: (context, state) {
-    //                 return state.maybeMap(
-    //                   orElse: () => CarouselLoading(),
-    //                   failOrSuccessGetData: (e) {
-    //                     if (e.isLoading)
-    //                       return CarouselLoading();
-    //                     else
-    //                       return e.responseOptions.fold(
-    //                         () => CarouselLoading(),
-    //                         (a) => a.fold((l) => CarouselError(feedFailure: l),
-    //                             (r) => _buildTopFeedDataContent(r)),
-    //                       );
-    //                   },
-    //                 );
-    //                 // return _buildTopFeedDataContent();
-    //               },
-    //             ),
-    //           ),
-    //           Container(
-    //               width: MediaQuery.of(context).size.width,
-    //               margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-    //               child: Card(
-    //                 elevation: 2,
-    //                 child: Padding(
-    //                   padding: const EdgeInsets.symmetric(vertical: 20),
-    //                   child: GridView.builder(
-    //                     physics: NeverScrollableScrollPhysics(),
-    //                     shrinkWrap: true,
-    //                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    //                         crossAxisCount: 4,
-    //                         childAspectRatio: 01,
-    //                         mainAxisSpacing: 10),
-    //                     itemCount: listServiceMenu.length,
-    //                     itemBuilder: (context, index) => listServiceMenu[index],
-    //                   ),
-    //                 ),
-    //               )),
-    //           BlocProvider(
-    //               create: (context) => getIt<FeedHomeBloc>()
-    //                 ..add(FeedHomeEvent.getBottomFeedData()),
-    //               child: BlocBuilder<FeedHomeBloc, FeedHomeState>(
-    //                 builder: (context, state) {
-    //                   return state.maybeMap(
-    //                     failOrSuccessGetDataBottom: (e) {
-    //                       if (e.isLoading) {
-    //                         return Container(
-    //                           alignment: Alignment.center,
-    //                           child: CircularProgressIndicator(),
-    //                         );
-    //                       } else {
-    //                         return e.responseOptions.fold(
-    //                             () => Container(child: Text("Option")),
-    //                             (a) => a.fold(
-    //                                 (l) => Container(child: Text("Tidak ada")),
-    //                                 (r) => Container(
-    //                                       child: ListView.builder(
-    //                                           itemCount: r.length,
-    //                                           shrinkWrap: true,
-    //                                           physics:
-    //                                               NeverScrollableScrollPhysics(),
-    //                                           itemBuilder: (context, index) {
-    //                                             return FeedBottomContent(
-    //                                               feed: r[index],
-    //                                             );
-    //                                           }),
-    //                                     )));
-    //                       }
-    //                     },
-    //                     orElse: () => Container(child: Text("Or Else")),
-    //                   );
+  Widget onGetHomeMenu(FeedHomeState state) {
+    var loadingContainer = AspectRatio(
+        aspectRatio: 3,
+        child: Container(child: Center(child: CircularProgressIndicator())));
+    return state.maybeMap(
+      orElse: () => loadingContainer,
+      onGetHomeMenuList: (val) {
+        if (val.isLoading) {
+          return loadingContainer;
+        } else {
+          return val.homeMenuData.fold(
+              () => loadingContainer,
+              (a) => a.fold(
+                    (l) => loadingContainer,
+                    (r) => _featuresMenuGrid(r),
+                  ));
+        }
+      },
+    );
+  }
 
-    //                   // FeedBottomContent();
-    //                 },
-    //               ))
-    //         ],
-    //       ),
-    //     ],
-    //   ),
-    // );
+  Container _featuresMenuGrid(List<MenuDataModel> listHome) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20),
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: listHome.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4, mainAxisSpacing: 5, crossAxisSpacing: 5),
+        itemBuilder: (context, index) {
+          return ServiceMenuItem(
+            assetUrl: Constants.getStagingUrl() + listHome[index].imageUrl,
+            name: listHome[index].label,
+            onClick: () {},
+          );
+        },
+      ),
+    );
+  }
+
+  Widget onGetTopFeed(FeedHomeState state) {
+    var loadingContainer = AspectRatio(
+        aspectRatio: 3,
+        child: Container(child: Center(child: CircularProgressIndicator())));
+    return state.maybeMap(
+        orElse: () => Container(),
+        failOrSuccessGetData: (val) {
+          if (val.isLoading) {
+            return loadingContainer;
+          } else {
+            return val.responseOptions.fold(
+                () => loadingContainer,
+                (a) => a.fold(
+                    (l) => loadingContainer,
+                    (r) => GetX<FeedController>(
+                          builder: (controller) => CarouselSlider(
+                            options: carouselOptions(),
+                            items: controller.getTopFeed
+                                .map((item) => carouselImageContainer(item))
+                                .toList(),
+                          ),
+                        )));
+          }
+        });
+  }
+
+  Widget onGetBottomFeed(FeedHomeState state) {
+    var loadingContainer =
+        Container(child: Center(child: CircularProgressIndicator()));
+    return state.maybeMap(
+      orElse: () => Container(),
+      failOrSuccessGetDataBottom: (val) {
+        if (val.isLoading) {
+          return loadingContainer;
+        } else {
+          return val.responseOptions.fold(
+              () => loadingContainer,
+              (a) => a.fold(
+                  (l) => loadingContainer,
+                  (r) => GetX<FeedController>(
+                        builder: (controller) => Container(
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: controller.getBottomFeed.length,
+                                itemBuilder: (context, index) {
+                                  return newsletterItem(
+                                      controller.getBottomFeed[index]);
+                                })),
+                      )));
+        }
+      },
+    );
   }
 
   Container sectionTitle(double _horizontalMargin, String title) {
@@ -272,7 +317,8 @@ class _FeedHomeState extends State<FeedHome>
     );
   }
 
-  Container newsletterItem(double _horizontalMargin) {
+  Container newsletterItem(Feed feed) {
+    const double _horizontalMargin = 15;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -286,9 +332,12 @@ class _FeedHomeState extends State<FeedHome>
             height: 80,
             width: 80,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.red,
-            ),
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.red,
+                image: DecorationImage(
+                    image: NetworkImage(
+                        Constants.getWebUrl() + '/' + feed.picture),
+                    fit: BoxFit.cover)),
           ),
           SizedBox(
             width: 10,
@@ -299,7 +348,7 @@ class _FeedHomeState extends State<FeedHome>
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Judul Postingan",
+                    Text(feed.productName,
                         maxLines: 2,
                         style: TextStyle(
                           fontSize: 14,
@@ -309,7 +358,7 @@ class _FeedHomeState extends State<FeedHome>
                       height: 5,
                     ),
                     Text(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+                      feed.description,
                       maxLines: 3,
                       style: TextStyle(fontSize: 11),
                       overflow: TextOverflow.ellipsis,
@@ -347,16 +396,29 @@ class _FeedHomeState extends State<FeedHome>
     );
   }
 
-  Container carouselImageContainer(String item) {
+  Container carouselImageContainer(Feed item) {
     return Container(
       child: Container(
         margin: EdgeInsets.all(5.0),
         child: ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
             child: Image.network(
-              item,
+              Constants.getWebUrl() + "/" + item.picture,
               fit: BoxFit.cover,
               width: 1000.0,
+              loadingBuilder: (context, child, loading) {
+                if (loading == null)
+                  return child;
+                else
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: (loading.expectedTotalBytes != null)
+                          ? loading.cumulativeBytesLoaded /
+                              loading.expectedTotalBytes
+                          : null,
+                    ),
+                  );
+              },
               errorBuilder: (context, exception, err) {
                 return Image.asset(
                   'images/assets/instagram.png',
@@ -369,159 +431,108 @@ class _FeedHomeState extends State<FeedHome>
     );
   }
 
-  Column _buildTopFeedDataContent(List<Feed> imgList) {
-    return Column(
-      children: <Widget>[
-        Container(
-          margin: EdgeInsets.only(top: 70),
-          child: CarouselSlider(
-            options: CarouselOptions(
-              autoPlay: true,
-              aspectRatio: 2.0,
-              autoPlayInterval: Duration(seconds: 10),
-              enlargeCenterPage: true,
-            ),
-            items: imgList
-                .map((item) => Container(
-                      child: Container(
-                        margin: EdgeInsets.all(5.0),
-                        child: ClipRRect(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.0)),
-                            child: Image.network(
-                                Constants.getWebUrl() + item.picture,
-                                fit: BoxFit.cover,
-                                width: 1000.0)),
-                      ),
-                    ))
-                .toList(),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: imgList.map((url) {
-              int index = imgList.indexOf(url);
-              return Container(
-                width: 8.0,
-                height: 8.0,
-                margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 3.0),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: _current == index
-                        ? Color(0xffFFA4A4)
-                        : Color(0xffE5E5E5)),
-              );
-            }).toList(),
-          ),
-        ),
-      ],
-    );
-  }
-
-  List<ServiceMenuItem> listServiceMenu = [
-    ServiceMenuItem(
-      assetPath: "images/assets/pet_grooming.png",
-      name: "Sispet",
-      onClick: () {
-        launch("https://sispet.id");
-      },
-    ),
-    ServiceMenuItem(
-      assetPath: "images/assets/aesthetic.png",
-      name: "Pet Aesthetic",
-      onClick: () {
-        launch("https://iloveiruka.com/salon-therapy/");
-      },
-    ),
-    ServiceMenuItem(
-        assetPath: "images/assets/pet_school.png",
-        name: "Pet School",
-        onClick: () {
-          launch("https://iloveiruka.com/iruka-grooming-school/");
-        }),
-    ServiceMenuItem(
-      assetPath: "images/assets/vet_corner.png",
-      name: "Vet Corner",
-      onClick: () {
-        launch("https://iloveiruka.com/vet-corner/");
-      },
-    ),
-    ServiceMenuItem(
-      assetPath: "images/assets/pet_hotel.png",
-      name: "Pet Sitting",
-      onClick: () {
-        launch("https://wa.me/6281211854630");
-      },
-    ),
-    ServiceMenuItem(
-      assetPath: "images/assets/point_food.png",
-      name: "Booking",
-      onClick: () {
-        launch("https://wa.me/6281211854630");
-      },
-    ),
-    ServiceMenuItem(
-      assetPath: "images/assets/telephone.png",
-      name: "Contact",
-      onClick: () {
-        Get.dialog(AlertDialog(
-          title: Text("Contact"),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                leading: Container(
-                    height: 30,
-                    width: 30,
-                    child: Image.asset('images/assets/whatsapp.png')),
-                title: Text("Whatsapp"),
-                onTap: () {
-                  Get.back();
-                  launch("https://wa.me/6281211854630");
-                },
-              ),
-              ListTile(
-                leading: Container(
-                    height: 30,
-                    width: 30,
-                    child: Image.asset('images/assets/youtube.png')),
-                title: Text("Youtube"),
-                onTap: () {
-                  Get.back();
-                  launch(
-                      "https://www.youtube.com/channel/UCohGUOh8j_gI5RTNBydOpFA/");
-                },
-              ),
-              ListTile(
-                leading: Container(
-                    height: 30,
-                    width: 30,
-                    child: Image.asset('images/assets/instagram.png')),
-                title: Text("Instagram"),
-                onTap: () {
-                  Get.back();
-                  launch("https://instagram.com/iloveiruka");
-                },
-              ),
-            ],
-          ),
-        ));
-      },
-    ),
-  ];
+  // List<ServiceMenuItem> listServiceMenu = [
+  //   ServiceMenuItem(
+  //     assetPath: "images/assets/pet_grooming.png",
+  //     name: "Sispet",
+  //     onClick: () {
+  //       launch("https://sispet.id");
+  //     },
+  //   ),
+  //   ServiceMenuItem(
+  //     assetPath: "images/assets/aesthetic.png",
+  //     name: "Pet Aesthetic",
+  //     onClick: () {
+  //       launch("https://iloveiruka.com/salon-therapy/");
+  //     },
+  //   ),
+  //   ServiceMenuItem(
+  //       assetPath: "images/assets/pet_school.png",
+  //       name: "Pet School",
+  //       onClick: () {
+  //         launch("https://iloveiruka.com/iruka-grooming-school/");
+  //       }),
+  //   ServiceMenuItem(
+  //     assetPath: "images/assets/vet_corner.png",
+  //     name: "Vet Corner",
+  //     onClick: () {
+  //       launch("https://iloveiruka.com/vet-corner/");
+  //     },
+  //   ),
+  //   ServiceMenuItem(
+  //     assetPath: "images/assets/pet_hotel.png",
+  //     name: "Pet Sitting",
+  //     onClick: () {
+  //       launch("https://wa.me/6281211854630");
+  //     },
+  //   ),
+  //   ServiceMenuItem(
+  //     assetPath: "images/assets/point_food.png",
+  //     name: "Booking",
+  //     onClick: () {
+  //       launch("https://wa.me/6281211854630");
+  //     },
+  //   ),
+  //   ServiceMenuItem(
+  //     assetPath: "images/assets/telephone.png",
+  //     name: "Contact",
+  //     onClick: () {
+  //       Get.dialog(AlertDialog(
+  //         title: Text("Contact"),
+  //         content: Column(
+  //           mainAxisSize: MainAxisSize.min,
+  //           children: [
+  //             ListTile(
+  //               leading: Container(
+  //                   height: 30,
+  //                   width: 30,
+  //                   child: Image.asset('images/assets/whatsapp.png')),
+  //               title: Text("Whatsapp"),
+  //               onTap: () {
+  //                 Get.back();
+  //                 launch("https://wa.me/6281211854630");
+  //               },
+  //             ),
+  //             ListTile(
+  //               leading: Container(
+  //                   height: 30,
+  //                   width: 30,
+  //                   child: Image.asset('images/assets/youtube.png')),
+  //               title: Text("Youtube"),
+  //               onTap: () {
+  //                 Get.back();
+  //                 launch(
+  //                     "https://www.youtube.com/channel/UCohGUOh8j_gI5RTNBydOpFA/");
+  //               },
+  //             ),
+  //             ListTile(
+  //               leading: Container(
+  //                   height: 30,
+  //                   width: 30,
+  //                   child: Image.asset('images/assets/instagram.png')),
+  //               title: Text("Instagram"),
+  //               onTap: () {
+  //                 Get.back();
+  //                 launch("https://instagram.com/iloveiruka");
+  //               },
+  //             ),
+  //           ],
+  //         ),
+  //       ));
+  //     },
+  //   ),
+  // ];
 }
 
 class ServiceMenuItem extends StatelessWidget {
   const ServiceMenuItem(
       {Key key,
-      @required this.assetPath,
+      @required this.assetUrl,
       @required this.name,
       @required this.onClick})
       : super(key: key);
 
-  final String assetPath;
+  final String assetUrl;
   final String name;
   final Function onClick;
 
@@ -536,7 +547,7 @@ class ServiceMenuItem extends StatelessWidget {
           child: Container(
             width: 40,
             height: 40,
-            child: Image.asset(assetPath),
+            child: Image.network(assetUrl),
           ),
         ),
         SizedBox(
@@ -658,50 +669,6 @@ class CarouselLoading extends StatelessWidget {
       width: double.infinity,
       color: Colors.grey,
       child: Center(child: CircularProgressIndicator()),
-    );
-  }
-}
-
-class CarouselError extends StatelessWidget {
-  const CarouselError({this.feedFailure});
-  final FeedFailure feedFailure;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 70),
-      child: CarouselSlider(
-          options: CarouselOptions(
-            autoPlay: false,
-            aspectRatio: 2.0,
-            enableInfiniteScroll: false,
-            enlargeCenterPage: true,
-          ),
-          items: [
-            feedFailure.maybeMap(
-                orElse: () => Container(
-                      margin: EdgeInsets.all(10.0),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                          child: InkWell(
-                              onTap: () {},
-                              child: Container(
-                                  child: Image.asset(
-                                      "images/assets/refresh.png",
-                                      fit: BoxFit.cover,
-                                      width: 1000.0)))),
-                    ),
-                dataIsEmpty: (e) => Container(
-                      child: Container(
-                        margin: EdgeInsets.all(10.0),
-                        child: ClipRRect(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.0)),
-                            child: Image.asset("images/assets/no_image.jpg",
-                                fit: BoxFit.cover, width: 1000.0)),
-                      ),
-                    )),
-          ]),
     );
   }
 }

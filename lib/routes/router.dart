@@ -1,13 +1,16 @@
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:i_love_iruka/presentation/account/account_page.dart';
-import 'package:i_love_iruka/presentation/appointment/appointment_form.dart';
 import 'package:i_love_iruka/presentation/auth/forgot_password_form/forgot_password_form.dart';
 import 'package:i_love_iruka/presentation/auth/forgot_password_form/forgot_password_success_notif.dart';
 import 'package:i_love_iruka/presentation/auth/register_form/register_form.dart';
 import 'package:i_love_iruka/presentation/auth/sign_in_form/sign_in_form.dart';
+import 'package:i_love_iruka/presentation/auth/signin_signout/signin_signout_page.dart';
 import 'package:i_love_iruka/presentation/feed_detail/feed_detail_page.dart';
 import 'package:i_love_iruka/presentation/home/account_home/partnership_location_page.dart';
 import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
+import 'package:i_love_iruka/presentation/home/pets/my_pets_page.dart';
+import 'package:i_love_iruka/presentation/home/pets/pets_detail_page.dart';
+import 'package:i_love_iruka/presentation/home/pets/pets_match_page.dart';
+import 'package:i_love_iruka/presentation/membership/membership_card_list.dart';
 import 'package:i_love_iruka/presentation/splah_screen/splash_screen.dart';
 import 'package:i_love_iruka/presentation/welcome/welcome_screen.dart';
 
@@ -20,15 +23,14 @@ List<GetPage> navigatorPages = [
       name: ForgotPaswordSuccessNotif.TAG,
       page: () => ForgotPaswordSuccessNotif()),
   GetPage(name: WelcomeScreen.TAG, page: () => WelcomeScreen()),
-  GetPage(name: AccountPage.TAG, page: () => AccountPage()),
-  GetPage(name: AppointmentForm.TAG, page: () => AppointmentForm()),
   GetPage(name: FeedDetailPage.TAG, page: () => FeedDetailPage()),
+  GetPage(name: SplashScreen.TAG, page: () => SplashScreen()),
   GetPage(
-    name: SplashScreen.TAG,
-    page: () => SplashScreen(),
-  ),
+      name: PartnershipLocationPage.TAG, page: () => PartnershipLocationPage()),
+  GetPage(name: PetsDetailPage.TAG, page: () => PetsDetailPage()),
+  GetPage(name: PetsMatchPage.TAG, page: () => PetsMatchPage()),
   GetPage(
-    name: PartnershipLocationPage.TAG,
-    page: () => PartnershipLocationPage(),
-  ),
+      name: MembershipCardListPage.TAG, page: () => MembershipCardListPage()),
+  GetPage(name: MyPetsPage.TAG, page: () => MyPetsPage()),
+  GetPage(name: SigninSignoutPage.TAG, page: () => SigninSignoutPage()),
 ];

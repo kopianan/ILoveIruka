@@ -1,21 +1,11 @@
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/auth_controller.dart';
-import 'package:i_love_iruka/application/transaction/transaction_bloc.dart';
-import 'package:i_love_iruka/domain/transaction/transaction_r.dart';
-import 'package:i_love_iruka/infrastructure/core/local_storage.dart';
-import 'package:i_love_iruka/injection.dart';
-import 'package:i_love_iruka/presentation/account/account_page.dart';
-import 'package:i_love_iruka/presentation/auth/sign_in_form/sign_in_form.dart';
 import 'package:i_love_iruka/presentation/home/account_home/partnership_location_page.dart';
-import 'package:i_love_iruka/presentation/splah_screen/splash_screen.dart';
-import 'package:i_love_iruka/presentation/welcome/welcome_screen.dart';
+import 'package:i_love_iruka/presentation/membership/membership_card_list.dart';
 import 'package:i_love_iruka/presentation/widgets/member_card.dart';
-import 'package:i_love_iruka/util/color_col.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:wave/config.dart';
-import 'package:wave/wave.dart';
 
 class AccountPagehome extends StatefulWidget {
   @override
@@ -40,19 +30,92 @@ class _AccountPagehomeState extends State<AccountPagehome>
     return SafeArea(
       child: CustomScrollView(
         slivers: [
+          SliverAppBar(
+            iconTheme: IconThemeData(color: Colors.black54),
+            textTheme: TextTheme(
+              headline6: TextStyle(color: Colors.black54, fontSize: 20),
+            ),
+            leading: null,
+            backgroundColor: Colors.white,
+            title: Text("My account"),
+            actions: [
+              IconButton(
+                icon: Icon(Icons.info_outline),
+                onPressed: () {},
+              )
+            ],
+          ),
+          // SliverToBoxAdapter(
+          //     child: Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       Text("My Account",
+          //           style: TextStyle(
+          //               fontSize: 25,
+          //               fontWeight: FontWeight.bold,
+          //               color: Colors.black54)),
+          //       Icon(Icons.info)
+          //     ],
+          //   ),
+          // )),
+
           SliverToBoxAdapter(
-            child: _buildCard(
-                config: CustomConfig(
-                  colors: [
-                    Colors.white70,
-                    Colors.white54,
-                    Colors.white30,
-                    Colors.white24,
+              child: Padding(
+                  padding: EdgeInsets.only(top: 10), child: GoldCard())),
+          SliverToBoxAdapter(
+            child: Container(
+              margin: EdgeInsets.only(left: 15, bottom: 15, right: 15),
+              padding: EdgeInsets.all(15),
+              height: 60,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey[300],
+                        blurRadius: 4,
+                        spreadRadius: 2,
+                        offset: Offset.fromDirection(45, 2))
                   ],
-                  durations: [32000, 21000, 18000, 5000],
-                  heightPercentages: [0.25, 0.26, 0.28, 0.31],
-                ),
-                backgroundColor: Colors.blue[600]),
+                  image: DecorationImage(
+                      image: AssetImage('images/assets/point_background.jpg'),
+                      fit: BoxFit.cover)),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "My Points",
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black38),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.money,
+                        color: Colors.black38,
+                        size: 35,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "200",
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black38),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
           ),
           SliverToBoxAdapter(
             child: Container(
@@ -73,12 +136,15 @@ class _AccountPagehomeState extends State<AccountPagehome>
                   ),
                   ListView(
                     shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
                     children: [
                       buildMembershipMenuItem(
                         Icon(Icons.credit_card, color: Colors.blue[600]),
                         "Membership Type",
                         "Upgrade your membership for more benefits",
-                        () {},
+                        () {
+                          Get.toNamed(MembershipCardListPage.TAG);
+                        },
                       ),
                       SizedBox(
                         height: 20,
@@ -183,276 +249,30 @@ class _AccountPagehomeState extends State<AccountPagehome>
     );
   }
 
-  _buildCard({
-    Config config,
-    Color backgroundColor = Colors.transparent,
-    DecorationImage backgroundImage,
-    double height = 220.0,
-  }) {
-    return Container(
-      height: height,
-      width: double.infinity,
-      child: Card(
-        elevation: 4.0,
-        margin: EdgeInsets.only(right: 16.0, left: 16.0, bottom: 16.0),
-        clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15.0))),
-        child: Stack(
-          children: [
-            WaveWidget(
-              config: config,
-              backgroundColor: backgroundColor,
-              backgroundImage: backgroundImage,
-              size: Size(double.infinity, double.infinity),
-              waveAmplitude: 0,
-            ),
-            Text("DLFJ")
-          ],
-        ),
-      ),
-    );
-    // @override
-    // Widget build(BuildContext context) {
-    //   return BlocProvider(
-    //     create: (context) => getIt<TransactionBloc>()
-    //       ..add(TransactionEvent.getPointAndLastTrans(
-    //           userId: GetPointAndLastTransRequest(
-    //               id: _authController.getUserData().id))),
-    //     child: BlocBuilder<TransactionBloc, TransactionState>(
-    //         builder: (context, state) {
-    //       return state.maybeWhen(
-    //           orElse: () => FullLoadingPage(),
-    //           onProgress: () => FullLoadingPage(),
-    //           onGetPointOption: (e) => e.fold(
-    //               () => FullLoadingPage(),
-    //               (a) => a.fold(
-    //                     (l) => FullLoadingPage(),
-    //                     (r) {
-    //                       return _builAccountContent(context, r);
-    //                     },
-    //                   )));
-    //     }),
-    //   );
-    // }
-  }
+  // @override
+  // Widget build(BuildContext context) {
+  //   return BlocProvider(
+  //     create: (context) => getIt<TransactionBloc>()
+  //       ..add(TransactionEvent.getPointAndLastTrans(
+  //           userId: GetPointAndLastTransRequest(
+  //               id: _authController.getUserData().id))),
+  //     child: BlocBuilder<TransactionBloc, TransactionState>(
+  //         builder: (context, state) {
+  //       return state.maybeWhen(
+  //           orElse: () => FullLoadingPage(),
+  //           onProgress: () => FullLoadingPage(),
+  //           onGetPointOption: (e) => e.fold(
+  //               () => FullLoadingPage(),
+  //               (a) => a.fold(
+  //                     (l) => FullLoadingPage(),
+  //                     (r) {
+  //                       return _builAccountContent(context, r);
+  //                     },
+  //                   )));
+  //     }),
+  //   );
+  // }
 
-  Widget _builAccountContent(
-      BuildContext context, GetPointAndLastTransResponse data) {
-    return SingleChildScrollView(
-      child: Container(
-        color: Color(0xffF6F6F6),
-        child: Stack(
-          overflow: Overflow.visible,
-          children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Color(0xff1988E7), Colors.white],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter)),
-              child: Container(
-                margin: EdgeInsets.only(top: 100, right: 20, left: 20),
-                child: MemberCard(
-                  name: _authController.getUserData().name,
-                  point: data.customerPoints.toString(),
-                  cardBottomGradient: ColorCol.blueCardBottomGradient,
-                  cardTextColor: ColorCol.blueCardText,
-                  cardTopGradient: ColorCol.blueCardTopGradient,
-                  imagesList: [
-                    'blue_clippath1.png',
-                    'blue_clippath2.png',
-                    'blue_clippath3.png'
-                  ],
-                ),
-              ),
-            ),
-            SafeArea(
-              child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      "Welcome",
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        print("logout");
-                        deleteAllData().then((value) {
-                          if (value == true)
-                            Get.offAllNamed(
-                              WelcomeScreen.TAG,
-                            );
-                          else
-                            print("gagal logout");
-                        });
-                      },
-                      child: Icon(
-                        Icons.logout,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              margin: EdgeInsets.only(
-                top: 320,
-              ),
-              child: Column(
-                children: <Widget>[
-                  Card(
-                    margin: EdgeInsets.only(right: 20, left: 20),
-                    child: Container(
-                      height: 50,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                          Expanded(
-                              child: Container(
-                            height: double.infinity,
-                            child: InkWell(
-                              onTap: () {
-                                Alert(
-                                  context: context,
-                                  type: AlertType.info,
-                                  title: "COMING SOON",
-                                  desc:
-                                      "Membership program is not available for now.",
-                                  buttons: [
-                                    DialogButton(
-                                      child: Text(
-                                        "OK",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 20),
-                                      ),
-                                      onPressed: () => Navigator.pop(context),
-                                      width: 120,
-                                    )
-                                  ],
-                                ).show();
-                              },
-                              splashColor: Colors.yellow,
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: <Widget>[
-                                    Icon(Icons.wallet_giftcard,
-                                        color: Colors.pink),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text("Membership"),
-                                  ]),
-                            ),
-                          )),
-                          Expanded(
-                              child: Container(
-                            height: double.infinity,
-                            child: InkWell(
-                              onTap: () {
-                                Get.toNamed(AccountPage.TAG);
-                              },
-                              splashColor: Colors.yellow,
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.person,
-                                      color: Colors.blue,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text("My Profile"),
-                                  ]),
-                            ),
-                          )),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    color: Colors.white,
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(top: 20, right: 20, left: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Container(
-                                  child: Text(
-                                "Recent Activities",
-                                style: TextStyle(
-                                    color: Color(0xff6A6A6A),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
-                              )),
-                              Container(
-                                  child: Text(
-                                "view report",
-                                style: TextStyle(color: Colors.blue),
-                              )),
-                            ],
-                          ),
-                        ),
-                        Card(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 20),
-                          color: Colors.white,
-                          elevation: 7,
-                          child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 5),
-                              child: (data.lastTransaction.customerId == null)
-                                  ? Container(
-                                      width: double.infinity,
-                                      height: 60,
-                                      alignment: Alignment.center,
-                                      child: Text("No Transaction"),
-                                    )
-                                  : Column(
-                                      children: <Widget>[
-                                        ActivitiesComponent(
-                                          earnedPoint:
-                                              data.lastTransaction.earnedPoint,
-                                          total: data.lastTransaction.total
-                                              .toString(),
-                                          transDate:
-                                              data.lastTransaction.createdDate,
-                                          transType: data
-                                              .lastTransaction.transactionType,
-                                        ),
-                                      ],
-                                    )),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
 }
 
 class FullLoadingPage extends StatelessWidget {

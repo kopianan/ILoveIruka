@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:i_love_iruka/domain/core/user.dart';
-
 // class AuthProvider with ChangeNotifier {
 //   User _user;
 //   List<String> _userList;

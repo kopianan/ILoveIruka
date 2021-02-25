@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/auth_controller.dart';
 import 'package:i_love_iruka/application/auth/auth_provider.dart';
+import 'package:i_love_iruka/application/auth/user_controller.dart';
+import 'package:i_love_iruka/infrastructure/core/pref.dart';
 import 'package:i_love_iruka/presentation/home/account_home/account_page_home.dart';
 import 'package:i_love_iruka/presentation/home/feeds_home/feed_home.dart';
+import 'package:i_love_iruka/presentation/home/pets/pets_match_page.dart';
 // import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -38,6 +41,15 @@ class _DashboardPageState extends State<DashboardPage> {
     });
   }
 
+  final userController = Get.put(UserController());
+
+  @override
+  void initState() {
+    //set data to usr controller.
+    userController.setDataUser(Pref().getUserData);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +64,7 @@ class _DashboardPageState extends State<DashboardPage> {
           children: <Widget>[
             FeedHome(),
             AccountPagehome(),
-            Container(color: Colors.green),
+            PetsMatchPage(),
             Container(
               color: Colors.blue,
             )

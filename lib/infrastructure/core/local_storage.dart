@@ -2,10 +2,9 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:i_love_iruka/domain/auth/auth_failure.dart';
 import 'package:i_love_iruka/domain/core/user.dart';
 
-String _storageBox = "user_storage";
+String _storageBox = "iruka_storage";
 String _userDataKey = "user_data_key";
 
 String get getUserStorageKey => _storageBox;

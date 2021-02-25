@@ -5,9 +5,10 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:i_love_iruka/domain/auth/auth_failure.dart';
 import 'package:i_love_iruka/domain/auth/i_auth_facade.dart';
-import 'package:i_love_iruka/domain/auth/login_data.dart';
-import 'package:i_love_iruka/domain/auth/register_data.dart';
+import 'package:i_love_iruka/domain/auth/sign_up_request.dart';
 import 'package:i_love_iruka/domain/core/user.dart';
+import 'package:i_love_iruka/domain/user/role_data_model.dart';
+import 'package:i_love_iruka/domain/user/user_data_model.dart';
 import 'package:i_love_iruka/infrastructure/auth/update_data.dart';
 import 'package:i_love_iruka/infrastructure/core/local_storage.dart';
 import 'package:i_love_iruka/util/constants.dart';
@@ -19,84 +20,53 @@ class AuthRepository implements IAuthFacade {
   AuthRepository(this._dio);
 
   @override
-  Future<Either<AuthFailure, LoginResponseData>> registerNewUser(
-      {RegisterData registerData}) async {
+  Future<Either<AuthFailure, UserDataModel>> registerNewUser(
+      {SignUpRequest signUpRequest}) async {
     Response response;
-    FormData form;
-    form = FormData.fromMap(registerData.toJson());
     try {
       response = await _dio.post(
-        Constants.getBaseUrl() + "/RegisterUserMobile",
-        data: form,
+        Constants.getStagingUrl() + "/api/v1/users/end-user/sign-up",
+        data: signUpRequest.toJson(),
       );
       print(response.data);
-      final _result = LoginResponseData.fromJson(response.data);
+      final _result = UserDataModel.fromJson(response.data['data']);
       return right(_result);
     } on DioError catch (e) {
       if (e.type == DioErrorType.RESPONSE) {
-        if (e.response.statusCode == 404) {
-          return left(AuthFailure.notFound());
-        } else if (e.response.statusCode == 400) {
-          return left(AuthFailure.badRequest());
-        } else {
-          return left(AuthFailure.serverError());
+        if (e.type == DioErrorType.RESPONSE) {
+          if (e.response.statusCode == 404 || e.response.statusCode == 400) {
+            return left(AuthFailure.responseError(
+                errorMessage: e.response.data['message']));
+          }
         }
-      } else {
-        return left(AuthFailure.serverError());
       }
+
+      return left(AuthFailure.serverError(
+          errorMessage: e.response.data['message']['message']));
     }
   }
 
   @override
-  Future<Either<AuthFailure, LoginResponseData>> singInUser(
-      LoginRequestData loginRequestData) async {
-    Response response;
-
-    try {
-      response = await _dio.post(
-        Constants.getBaseUrl() + "/Login",
-        data: loginRequestData.toJson(),
-      );
-      print(response.data);
-      final _result = LoginResponseData.fromJson(response.data);
-      return right(_result);
-    } on DioError catch (e) {
-      print(e.response.data.toString());
-      if (e.type == DioErrorType.RESPONSE) {
-        if (e.response.statusCode == 404) {
-          return left(AuthFailure.notFound());
-        } else if (e.response.statusCode == 400) {
-          return left(
-              AuthFailure.badRequest(errorMessage: e.response.data.toString()));
-        }
-      } else {
-        return left(AuthFailure.serverError());
-      }
-      return left(AuthFailure.defaultError());
-    }
-  }
-
-  @override
-  Future<Either<AuthFailure, List<String>>> getUserRole() async {
+  Future<Either<AuthFailure, List<RoleDataModel>>> getUserRole() async {
     Response response;
     try {
-      response = await _dio.get(Constants.getBaseUrl() + "/GetRole");
-      print(response.data);
-      final List _result = response.data['RoleList'];
-      List<String> _res = _result.map((e) => e.toString()).toList();
+      response =
+          await _dio.get(Constants.getStagingUrl() + "/api/v1/roles/end-user");
+
+      final List _result = response.data['data'];
+      List<RoleDataModel> _res =
+          _result.map((e) => RoleDataModel.fromJson(e)).toList();
       return right(_res);
     } on DioError catch (e) {
       if (e.type == DioErrorType.RESPONSE) {
-        if (e.response.statusCode == 404) {
-          return left(AuthFailure.notFound());
-        } else if (e.response.statusCode == 400) {
-          return left(AuthFailure.badRequest());
+        if (e.response.statusCode == 404 || e.response.statusCode == 400) {
+          return left(AuthFailure.responseError(
+              errorMessage: e.response.data['message']));
         }
-      } else {
-        return left(AuthFailure.serverError());
       }
+
+      return left(AuthFailure.serverError(errorMessage: e.toString()));
     }
-    return left(AuthFailure.serverError());
   }
 
   @override
@@ -126,41 +96,6 @@ class AuthRepository implements IAuthFacade {
   }
 
   @override
-  Future<Either<AuthFailure, LoginResponseData>> updateCustomer(
-      UpdateCustomerData updated, File image) async {
-    Response response;
-
-    final formData = FormData.fromMap({
-      "AccessKey": updated.accessKey,
-      "Name": updated.name,
-      "Email": updated.email,
-      "PhoneNumber": updated.phoneNumber,
-      "Address": updated.address,
-      "Id": updated.id,
-      "Picture": (image == null) ? "" : MultipartFile.fromFileSync(image.path)
-    });
-
-    try {
-      response = await _dio.post(Constants.getBaseUrl() + "/EditUserMobile",
-          data: formData);
-      print(response.data);
-      final _result = LoginResponseData.fromJson(response.data);
-      return right(_result);
-    } on DioError catch (e) {
-      if (e.type == DioErrorType.RESPONSE) {
-        if (e.response.statusCode == 404) {
-          return left(AuthFailure.notFound());
-        } else if (e.response.statusCode == 400) {
-          return left(AuthFailure.badRequest());
-        }
-      } else {
-        return left(AuthFailure.serverError());
-      }
-      return left(AuthFailure.defaultError());
-    }
-  }
-
-  @override
   Future<Either<AuthFailure, Unit>> changeAvailability(
       {bool status, String id}) async {
     Response response;
@@ -176,41 +111,40 @@ class AuthRepository implements IAuthFacade {
     } on DioError catch (e) {
       print(e.error.toString());
       if (e.type == DioErrorType.RESPONSE) {
-        if (e.response.statusCode == 404) {
-          return left(AuthFailure.notFound());
-        } else if (e.response.statusCode == 400) {
-          return left(AuthFailure.badRequest());
-        }
-      } else {
-        return left(AuthFailure.serverError());
+        //   if (e.response.statusCode == 404) {
+        //     return left(AuthFailure.notFound());
+        //   } else if (e.response.statusCode == 400) {
+        //     return left(AuthFailure.badRequest());
+        //   }
+        // } else {
+        //   return left(AuthFailure.serverError());
+        // }
       }
+      return left(AuthFailure.serverError());
     }
-    return left(AuthFailure.serverError());
   }
 
   @override
-  Future<Either<AuthFailure, LoginResponseData>> updateGroomer(
-      User user) async {
+  Future<Either<AuthFailure, UserDataModel>> loginUser(
+      String username, String password) async {
     Response response;
 
-    final formData = FormData.fromMap(user.toJson());
     try {
-      response = await _dio.post(Constants.getBaseUrl() + "/EditUserMobile",
-          data: formData);
-      print(response.data);
-      final _result = LoginResponseData.fromJson(response.data);
+      response = await _dio.post(
+          Constants.getStagingUrl() + "/api/v1/users/end-user/login",
+          data: {'username': '$username', 'password': '$password'});
+
+      final _result = UserDataModel.fromJson(response.data['data']);
       return right(_result);
     } on DioError catch (e) {
+      print(e.response.data.toString());
       if (e.type == DioErrorType.RESPONSE) {
-        if (e.response.statusCode == 404) {
-          return left(AuthFailure.notFound());
-        } else if (e.response.statusCode == 400) {
-          return left(AuthFailure.badRequest());
+        if (e.response.statusCode == 404 || e.response.statusCode == 400) {
+          return left(AuthFailure.responseError(
+              errorMessage: e.response.data['message']));
         }
-      } else {
-        return left(AuthFailure.serverError());
       }
-      return left(AuthFailure.defaultError());
+      return left(AuthFailure.serverError());
     }
   }
 }

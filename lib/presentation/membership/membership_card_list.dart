@@ -1,95 +1,175 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/presentation/widgets/member_card.dart';
-import 'package:i_love_iruka/presentation/widgets/page_header.dart';
-import 'package:i_love_iruka/util/color_col.dart';
+import 'package:wave/config.dart';
+import 'package:wave/wave.dart';
 
-class MemberShipCardList extends StatefulWidget {
+class MembershipCardListPage extends StatefulWidget {
+  static final String TAG = "/membership_card_list_page";
+  MembershipCardListPage({Key key}) : super(key: key);
+
   @override
-  _MemberShipCardListState createState() => _MemberShipCardListState();
+  _MembershipCardListPageState createState() => _MembershipCardListPageState();
 }
 
-class _MemberShipCardListState extends State<MemberShipCardList> {
-  var height;
-  var width;
+class _MembershipCardListPageState extends State<MembershipCardListPage> {
+  List<Widget> cardList = [
+    SilverCard(),
+    GoldCard(),
+    PlatinumCard(),
+  ];
+
+  PageController _pageController = PageController();
+  CarouselController _carouselController = CarouselController();
+  int index = 0;
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    height = MediaQuery.of(context).size.height;
-    width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Container(
-                  width: double.infinity,
-                  height: height * 0.21, //300,
-                  decoration: BoxDecoration(
-                      // color: Colors.green,
-                      ),
-                ),
-               PageHeader(title: "Member List Card",),
-                Positioned(
-                  bottom: 0,
-                  left: width * 0.07, // 30,
-                  right: width * 0.07, // 30,
-                  child: Container(
-                      height: height * 0.07, //150,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey[400],
-                                blurRadius: 5,
-                                offset: Offset(0, 2))
-                          ]),
-                      child: Container(
-                          alignment: Alignment.center,
-                          child: Text("asdlfkjasdkl"))),
-                )
-              ],
-            ),
-            ListView(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              children: <Widget>[
-                MemberCard(
-                  cardBottomGradient: ColorCol.yellowCardBottomGradient,
-                  cardTextColor: ColorCol.yellowCardText,
-                  cardTopGradient: ColorCol.yellowCardTopGradient,
-                  imagesList: [
-                    'yellow_clippath1.png',
-                    'yellow_clippath2.png',
-                    'yellow_clippath3.png'
-                  ],
-                ),
-                MemberCard(
-                  cardBottomGradient: ColorCol.bronzeCardBottomGradient,
-                  cardTextColor: ColorCol.bronzeCardText,
-                  cardTopGradient: ColorCol.bronzeCardTopGradient,
-                  imagesList: [
-                    'bronze_clippath1.png',
-                    'bronze_clippath2.png',
-                    'bronze_clippath3.png'
-                  ],
-                ),
-                MemberCard(
-                  cardBottomGradient: ColorCol.blueCardBottomGradient,
-                  cardTextColor: ColorCol.blueCardText,
-                  cardTopGradient: ColorCol.blueCardTopGradient,
-                  imagesList: [
-                    'blue_clippath1.png',
-                    'blue_clippath2.png',
-                    'blue_clippath3.png'
-                  ],
-                ),
-              ],
-            )
-          ],
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Text("Member List"),
         ),
-      ),
+        body: DefaultTabController(
+          length: 3,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: CarouselSlider(
+                  carouselController: _carouselController,
+                  items: cardList,
+                  options: CarouselOptions(
+                      onPageChanged: (index, reason) {
+                        _pageController.animateToPage(index,
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.linear);
+                      },
+                      enlargeCenterPage: false,
+                      autoPlay: false,
+                      height: 190,
+                      enableInfiniteScroll: false),
+                ),
+              ),
+              Expanded(
+                child: PageView(
+                  onPageChanged: (page) {
+                    _carouselController.animateToPage(page);
+                    // _carouselController.jumpToPage(page);
+                  },
+                  children: [
+                    Container(
+                      color: Colors.green,
+                    ),
+                    Container(
+                      color: Colors.blue,
+                    ),
+                    Container(
+                      color: Colors.red,
+                    ),
+                  ],
+                  controller: _pageController,
+                ),
+              ),
+            ],
+          ),
+        )
+        // body: SingleChildScrollView(
+        //   child: Padding(
+        //     padding: const EdgeInsets.all(10),
+        //     child: Column(
+        //       children: [
+        //         SilverCard(),
+        //         GoldCard(),
+        //         PlatinumCard(),
+        //       ],
+        //     ),
+        //   ),
+        // ),
+        );
+  }
+}
+
+class PlatinumCard extends StatelessWidget {
+  const PlatinumCard({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MemberCard(
+      textColor: Color(0xFF898989),
+      backCardColor: [
+        Color(0xff35393f),
+        Color(0xff68737f),
+        Color(0xff1e2022),
+      ],
+      // backgroundColor: Colors.blue[600],
+      backgroundColor: Color(0xff35393f),
+      backNumber: "1234-9389-8372-9384",
+      name: "Anan Alfred",
+      validUntil: '20/10',
+      type: "Silver VIP",
     );
   }
 }
+
+class GoldCard extends StatelessWidget {
+  const GoldCard({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MemberCard(
+      textColor: Color(0xFFEFA700),
+      backCardColor: [
+        Color(0xffFFD700),
+        Color(0xffDAA520),
+        Color(0xffF0E68C),
+      ],
+      // backgroundColor: Colors.blue[600],
+      backgroundColor: Color(0xFFF1D900),
+      backNumber: "1234-9389-8372-9384",
+      name: "Anan Alfred",
+      validUntil: '20/10',
+      type: "Silver VIP",
+    );
+  }
+}
+
+class SilverCard extends StatelessWidget {
+  const SilverCard({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MemberCard(
+      textColor: Color(0xFF0D5CAB),
+      backCardColor: [Colors.blue[500], Colors.blue[300], Colors.blue[800]],
+      // backgroundColor: Colors.blue[600],
+      backgroundColor: Color(0xFF1E78FF),
+      backNumber: "1234-9389-8372-9384",
+      name: "Anan Alfred",
+      validUntil: '20/10',
+      type: "Silver VIP",
+    );
+  }
+}
+//  Color(0xffFFD700),
+// Color(0xffDAA520),
+// Color(0xffF0E68C),
+
+//            Colors.blue[500],
+//           Colors.blue[300],
+//           Colors.blue[800]
+
+// Color(0xff35393f),
+// Color(0xff68737f),
+// Color(0xff1e2022),
