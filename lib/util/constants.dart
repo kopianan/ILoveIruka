@@ -14,7 +14,6 @@ class Constants {
 
   static String _stagingUrl = 'http://api-staging.irukacms.com:5000';
 
-  static String image_devPath = "images/dev_images/";
 
   static String _userSharedPref = "user_login_data";
 

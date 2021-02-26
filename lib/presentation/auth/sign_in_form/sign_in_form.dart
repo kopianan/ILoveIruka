@@ -1,4 +1,3 @@
-import 'package:flash/flash.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +14,7 @@ import 'package:provider/provider.dart';
 import '../../../injection.dart';
 
 class SignInForm extends StatefulWidget {
-  static final String TAG = '/sign_in_form_page';
+  static const String TAG = '/sign_in_form_page';
   @override
   _SignInFormState createState() => _SignInFormState();
 }

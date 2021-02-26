@@ -15,46 +15,48 @@ class FeedHomeRepository extends IFeedHomeFacade {
   @override
   Future<Either<FeedFailure, List<Feed>>> getTopFeedData() async {
     Response response;
+
     try {
       response = await _dio.get(
-        Constants.getBaseUrl() + "/GetAllEvent",
+        Constants.getStagingUrl() + "/api/v1/feeds/banner",
       );
-      final List _res = response.data['eventList'];
-      List<Feed> _result = _res.map((e) => TopFeedData.fromJson(e)).toList();
-      if (_result.isEmpty)
-        return left(FeedFailure("data is empty"));
-      else
-        return right(_result);
+      List _dataList = response.data['data'];
+      final _result = _dataList.map((e) => Feed.fromJson(e)).toList();
+      return right(_result);
     } on DioError catch (e) {
       if (e.type == DioErrorType.RESPONSE) {
-        if (e.response.statusCode == 404 || e.response.statusCode == 400) {
-          return left(FeedFailure(e.response.data['message']));
+        if (e.type == DioErrorType.RESPONSE) {
+          if (e.response.statusCode == 404 || e.response.statusCode == 400) {
+            return left(FeedFailure(e.response.data['message']));
+          }
         }
       }
-      return left(FeedFailure("Server Error"));
+
+      return left(FeedFailure(e.response.data['message']['message']));
     }
   }
 
   @override
   Future<Either<FeedFailure, List<Feed>>> getBottomFeedData() async {
     Response response;
+
     try {
       response = await _dio.get(
-        Constants.getBaseUrl() + "/GetAllProduct",
+        Constants.getStagingUrl() + "/api/v1/feeds/bottom",
       );
-      final List _res = response.data['productList'];
-      List<Feed> _result = _res.map((e) => TopFeedData.fromJson(e)).toList();
-      if (_result.isEmpty)
-        return left(FeedFailure("data is empty"));
-      else
-        return right(_result);
+      List _dataList = response.data['data'];
+      final _result = _dataList.map((e) => Feed.fromJson(e)).toList();
+      return right(_result);
     } on DioError catch (e) {
       if (e.type == DioErrorType.RESPONSE) {
-        if (e.response.statusCode == 404 || e.response.statusCode == 400) {
-          return left(FeedFailure(e.response.data['message']));
+        if (e.type == DioErrorType.RESPONSE) {
+          if (e.response.statusCode == 404 || e.response.statusCode == 400) {
+            return left(FeedFailure(e.response.data['message']));
+          }
         }
       }
-      return left(FeedFailure("Server Error"));
+
+      return left(FeedFailure(e.response.data['message']['message']));
     }
   }
 

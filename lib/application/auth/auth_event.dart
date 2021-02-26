@@ -9,6 +9,4 @@ abstract class AuthEvent with _$AuthEvent {
   factory AuthEvent.getUserRoleList() = _GetUserRoleList;
   factory AuthEvent.updateCustomer({UpdateCustomerData data, File image}) =
       _UpdateCustomer;
-  factory AuthEvent.changeGroomerAvailability({bool isAvailable, String id}) =
-      _ChangeGroomerAvailability;
 }

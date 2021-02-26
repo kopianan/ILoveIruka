@@ -9,7 +9,7 @@ class MessageHandler extends StatefulWidget {
 }
 
 class _MessageHandlerState extends State<MessageHandler> {
-  final FirebaseMessaging _fcm = FirebaseMessaging() ; 
+  
   @override
   Widget build(BuildContext context) {
     return Container(

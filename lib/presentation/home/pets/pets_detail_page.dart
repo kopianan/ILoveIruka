@@ -1,10 +1,9 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 
 // InstaProfilePage
 class PetsDetailPage extends StatefulWidget {
-  static final String TAG = '/pets_detail_page';
+  static const String TAG = '/pets_detail_page';
   @override
   _PetsDetailPageState createState() => _PetsDetailPageState();
 }

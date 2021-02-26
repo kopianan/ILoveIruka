@@ -257,11 +257,11 @@ class _$AuthenticationStateTearOff {
 
 // ignore: unused_element
   Initial initial() {
-    return Initial();
+    return const Initial();
   }
 
 // ignore: unused_element
-  Authenticated authenticated({@required User user}) {
+  Authenticated authenticated({@required UserDataModel user}) {
     return Authenticated(
       user: user,
     );
@@ -276,7 +276,7 @@ class _$AuthenticationStateTearOff {
 
 // ignore: unused_element
   UnAuthenticated unAuthenticated() {
-    return UnAuthenticated();
+    return const UnAuthenticated();
   }
 
 // ignore: unused_element
@@ -296,7 +296,7 @@ mixin _$AuthenticationState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult authenticated(User user),
+    @required TResult authenticated(UserDataModel user),
     @required TResult authenticationUpdated(User user),
     @required TResult unAuthenticated(),
     @required TResult signOutState(bool isSignOut),
@@ -304,7 +304,7 @@ mixin _$AuthenticationState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult authenticated(User user),
+    TResult authenticated(UserDataModel user),
     TResult authenticationUpdated(User user),
     TResult unAuthenticated(),
     TResult signOutState(bool isSignOut),
@@ -365,7 +365,7 @@ class _$InitialCopyWithImpl<$Res>
 
 /// @nodoc
 class _$Initial implements Initial {
-  _$Initial();
+  const _$Initial();
 
   @override
   String toString() {
@@ -384,7 +384,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult authenticated(User user),
+    @required TResult authenticated(UserDataModel user),
     @required TResult authenticationUpdated(User user),
     @required TResult unAuthenticated(),
     @required TResult signOutState(bool isSignOut),
@@ -401,7 +401,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult authenticated(User user),
+    TResult authenticated(UserDataModel user),
     TResult authenticationUpdated(User user),
     TResult unAuthenticated(),
     TResult signOutState(bool isSignOut),
@@ -450,7 +450,7 @@ class _$Initial implements Initial {
 }
 
 abstract class Initial implements AuthenticationState {
-  factory Initial() = _$Initial;
+  const factory Initial() = _$Initial;
 }
 
 /// @nodoc
@@ -458,9 +458,9 @@ abstract class $AuthenticatedCopyWith<$Res> {
   factory $AuthenticatedCopyWith(
           Authenticated value, $Res Function(Authenticated) then) =
       _$AuthenticatedCopyWithImpl<$Res>;
-  $Res call({User user});
+  $Res call({UserDataModel user});
 
-  $UserCopyWith<$Res> get user;
+  $UserDataModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -479,16 +479,16 @@ class _$AuthenticatedCopyWithImpl<$Res>
     Object user = freezed,
   }) {
     return _then(Authenticated(
-      user: user == freezed ? _value.user : user as User,
+      user: user == freezed ? _value.user : user as UserDataModel,
     ));
   }
 
   @override
-  $UserCopyWith<$Res> get user {
+  $UserDataModelCopyWith<$Res> get user {
     if (_value.user == null) {
       return null;
     }
-    return $UserCopyWith<$Res>(_value.user, (value) {
+    return $UserDataModelCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value));
     });
   }
@@ -496,10 +496,10 @@ class _$AuthenticatedCopyWithImpl<$Res>
 
 /// @nodoc
 class _$Authenticated implements Authenticated {
-  _$Authenticated({@required this.user}) : assert(user != null);
+  const _$Authenticated({@required this.user}) : assert(user != null);
 
   @override
-  final User user;
+  final UserDataModel user;
 
   @override
   String toString() {
@@ -527,7 +527,7 @@ class _$Authenticated implements Authenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult authenticated(User user),
+    @required TResult authenticated(UserDataModel user),
     @required TResult authenticationUpdated(User user),
     @required TResult unAuthenticated(),
     @required TResult signOutState(bool isSignOut),
@@ -544,7 +544,7 @@ class _$Authenticated implements Authenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult authenticated(User user),
+    TResult authenticated(UserDataModel user),
     TResult authenticationUpdated(User user),
     TResult unAuthenticated(),
     TResult signOutState(bool isSignOut),
@@ -593,9 +593,9 @@ class _$Authenticated implements Authenticated {
 }
 
 abstract class Authenticated implements AuthenticationState {
-  factory Authenticated({@required User user}) = _$Authenticated;
+  const factory Authenticated({@required UserDataModel user}) = _$Authenticated;
 
-  User get user;
+  UserDataModel get user;
   @JsonKey(ignore: true)
   $AuthenticatedCopyWith<Authenticated> get copyWith;
 }
@@ -643,7 +643,7 @@ class _$AuthenticationUpdatedCopyWithImpl<$Res>
 
 /// @nodoc
 class _$AuthenticationUpdated implements AuthenticationUpdated {
-  _$AuthenticationUpdated({@required this.user}) : assert(user != null);
+  const _$AuthenticationUpdated({@required this.user}) : assert(user != null);
 
   @override
   final User user;
@@ -675,7 +675,7 @@ class _$AuthenticationUpdated implements AuthenticationUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult authenticated(User user),
+    @required TResult authenticated(UserDataModel user),
     @required TResult authenticationUpdated(User user),
     @required TResult unAuthenticated(),
     @required TResult signOutState(bool isSignOut),
@@ -692,7 +692,7 @@ class _$AuthenticationUpdated implements AuthenticationUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult authenticated(User user),
+    TResult authenticated(UserDataModel user),
     TResult authenticationUpdated(User user),
     TResult unAuthenticated(),
     TResult signOutState(bool isSignOut),
@@ -741,7 +741,7 @@ class _$AuthenticationUpdated implements AuthenticationUpdated {
 }
 
 abstract class AuthenticationUpdated implements AuthenticationState {
-  factory AuthenticationUpdated({@required User user}) =
+  const factory AuthenticationUpdated({@required User user}) =
       _$AuthenticationUpdated;
 
   User get user;
@@ -770,7 +770,7 @@ class _$UnAuthenticatedCopyWithImpl<$Res>
 
 /// @nodoc
 class _$UnAuthenticated implements UnAuthenticated {
-  _$UnAuthenticated();
+  const _$UnAuthenticated();
 
   @override
   String toString() {
@@ -789,7 +789,7 @@ class _$UnAuthenticated implements UnAuthenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult authenticated(User user),
+    @required TResult authenticated(UserDataModel user),
     @required TResult authenticationUpdated(User user),
     @required TResult unAuthenticated(),
     @required TResult signOutState(bool isSignOut),
@@ -806,7 +806,7 @@ class _$UnAuthenticated implements UnAuthenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult authenticated(User user),
+    TResult authenticated(UserDataModel user),
     TResult authenticationUpdated(User user),
     TResult unAuthenticated(),
     TResult signOutState(bool isSignOut),
@@ -855,7 +855,7 @@ class _$UnAuthenticated implements UnAuthenticated {
 }
 
 abstract class UnAuthenticated implements AuthenticationState {
-  factory UnAuthenticated() = _$UnAuthenticated;
+  const factory UnAuthenticated() = _$UnAuthenticated;
 }
 
 /// @nodoc
@@ -889,7 +889,7 @@ class _$SignOutStateCopyWithImpl<$Res>
 
 /// @nodoc
 class _$SignOutState implements SignOutState {
-  _$SignOutState({@required this.isSignOut}) : assert(isSignOut != null);
+  const _$SignOutState({@required this.isSignOut}) : assert(isSignOut != null);
 
   @override
   final bool isSignOut;
@@ -921,7 +921,7 @@ class _$SignOutState implements SignOutState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult authenticated(User user),
+    @required TResult authenticated(UserDataModel user),
     @required TResult authenticationUpdated(User user),
     @required TResult unAuthenticated(),
     @required TResult signOutState(bool isSignOut),
@@ -938,7 +938,7 @@ class _$SignOutState implements SignOutState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult authenticated(User user),
+    TResult authenticated(UserDataModel user),
     TResult authenticationUpdated(User user),
     TResult unAuthenticated(),
     TResult signOutState(bool isSignOut),
@@ -987,7 +987,7 @@ class _$SignOutState implements SignOutState {
 }
 
 abstract class SignOutState implements AuthenticationState {
-  factory SignOutState({@required bool isSignOut}) = _$SignOutState;
+  const factory SignOutState({@required bool isSignOut}) = _$SignOutState;
 
   bool get isSignOut;
   @JsonKey(ignore: true)

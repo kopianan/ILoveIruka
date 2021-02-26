@@ -4,7 +4,6 @@ import 'package:i_love_iruka/injection.dart';
 import 'package:i_love_iruka/presentation/app_widget.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:injectable/injectable.dart';
-import 'package:build_daemon/constants.dart';
 
 void main() async {
   configureInjection(Environment.prod);

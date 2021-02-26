@@ -1,11 +1,8 @@
-import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:i_love_iruka/application/auth/auth_controller.dart';
+import 'package:i_love_iruka/application/auth/user_controller.dart';
 import 'package:i_love_iruka/presentation/home/account_home/partnership_location_page.dart';
 import 'package:i_love_iruka/presentation/membership/membership_card_list.dart';
-import 'package:i_love_iruka/presentation/widgets/member_card.dart';
-import 'package:wave/config.dart';
 
 class AccountPagehome extends StatefulWidget {
   @override
@@ -16,14 +13,13 @@ class _AccountPagehomeState extends State<AccountPagehome>
     with AutomaticKeepAliveClientMixin<AccountPagehome> {
   @override
   bool get wantKeepAlive => true;
-  AuthController _authController;
 
   @override
   void initState() {
-    _authController = Get.put(AuthController());
-    print(_authController.getUserData());
     super.initState();
   }
+
+  final userController = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +59,12 @@ class _AccountPagehomeState extends State<AccountPagehome>
 
           SliverToBoxAdapter(
               child: Padding(
-                  padding: EdgeInsets.only(top: 10), child: GoldCard())),
+                  padding: EdgeInsets.only(top: 10),
+                  child: SilverCard(
+                    cardNumber: "123",
+                    name: userController.getUserData().fullName,
+                    validUntil: '20/10',
+                  ))),
           SliverToBoxAdapter(
             child: Container(
               margin: EdgeInsets.only(left: 15, bottom: 15, right: 15),
@@ -128,7 +129,8 @@ class _AccountPagehomeState extends State<AccountPagehome>
                   Container(
                     child: Text(
                       "Membership Program",
-                      style: TextStyle(fontSize: 18),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ),
                   SizedBox(

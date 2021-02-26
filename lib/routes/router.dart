@@ -4,6 +4,7 @@ import 'package:i_love_iruka/presentation/auth/forgot_password_form/forgot_passw
 import 'package:i_love_iruka/presentation/auth/register_form/register_form.dart';
 import 'package:i_love_iruka/presentation/auth/sign_in_form/sign_in_form.dart';
 import 'package:i_love_iruka/presentation/auth/signin_signout/signin_signout_page.dart';
+import 'package:i_love_iruka/presentation/core/photo_viewer_page.dart';
 import 'package:i_love_iruka/presentation/feed_detail/feed_detail_page.dart';
 import 'package:i_love_iruka/presentation/home/account_home/partnership_location_page.dart';
 import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
@@ -33,4 +34,6 @@ List<GetPage> navigatorPages = [
       name: MembershipCardListPage.TAG, page: () => MembershipCardListPage()),
   GetPage(name: MyPetsPage.TAG, page: () => MyPetsPage()),
   GetPage(name: SigninSignoutPage.TAG, page: () => SigninSignoutPage()),
+  GetPage(name: FeedDetailPage.TAG, page: () => FeedDetailPage()),
+  GetPage(name: PhotoViewerPage.TAG, page: () => PhotoViewerPage()),
 ];

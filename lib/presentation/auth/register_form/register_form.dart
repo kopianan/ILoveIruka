@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/auth_bloc.dart';
-import 'package:i_love_iruka/application/auth/auth_controller.dart';
 import 'package:i_love_iruka/domain/auth/sign_up_request.dart';
 import 'package:i_love_iruka/domain/user/role_data_model.dart';
 import 'package:i_love_iruka/infrastructure/functions/custom_alert.dart';
 import 'package:i_love_iruka/injection.dart';
 import 'package:i_love_iruka/presentation/auth/widgets/decoration.dart';
+import 'package:i_love_iruka/presentation/welcome/welcome_screen.dart';
+import 'package:i_love_iruka/presentation/widgets/btn_primarary_blue_loading.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
-import 'package:i_love_iruka/util/flushbar_function.dart';
 
 class RegisterForm extends StatefulWidget {
-  static final String TAG = '/register_form_page';
+  static const String TAG = '/register_form_page';
   @override
   _RegisterFormState createState() => _RegisterFormState();
 }
@@ -31,9 +31,6 @@ class _RegisterFormState extends State<RegisterForm> {
   final emailCon = TextEditingController();
   final passwordCon = TextEditingController();
   final confirmationPasswordCon = TextEditingController();
-  final userNameCon = TextEditingController();
-
-  final _authController = Get.put(AuthController());
 
   RoleDataModel actionType;
   fieldFocusChange({
@@ -83,6 +80,9 @@ class _RegisterFormState extends State<RegisterForm> {
                   },
                   (success) {
                     print(success);
+                    Get.offNamed(WelcomeScreen.TAG);
+                    showSuccessFlash(
+                        context, "Success, Please re sign-in user");
                   },
                 ));
       },
@@ -221,29 +221,6 @@ class _RegisterFormState extends State<RegisterForm> {
                         Container(
                           decoration: textFieldShadow(),
                           child: TextFormField(
-                            controller: userNameCon,
-                            textInputAction: TextInputAction.next,
-                            focusNode: userNameFN,
-                            onFieldSubmitted: (term) {
-                              fieldFocusChange(
-                                context: context,
-                                currentFocus: userNameFN,
-                                nextFocus: passwordFN,
-                              );
-                            },
-                            decoration: InputDecoration(
-                              labelText: "Username",
-                              hintText: "Input your username",
-                            ),
-                            validator: validateName,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          decoration: textFieldShadow(),
-                          child: TextFormField(
                             obscureText: obsecureTextPassword,
                             controller: passwordCon,
                             validator: validatePassword,
@@ -311,11 +288,25 @@ class _RegisterFormState extends State<RegisterForm> {
                         SizedBox(
                           height: 20,
                         ),
-                        BtnPrimaryBlue(
-                          text: "Register",
-                          context: context,
-                          onPressed: () {
-                            _validateInputs(context);
+                        state.maybeMap(
+                          orElse: () => BtnPrimaryBlue(
+                            text: "Register",
+                            context: context,
+                            onPressed: () {
+                              _validateInputs(context);
+                            },
+                          ),
+                          onRegisterUser: (e) {
+                            if (e.isLoading)
+                              return BtnPrimaryBlueLoading();
+                            else
+                              return BtnPrimaryBlue(
+                                text: "Register",
+                                context: context,
+                                onPressed: () {
+                                  _validateInputs(context);
+                                },
+                              );
                           },
                         ),
                       ],
@@ -376,7 +367,7 @@ class _RegisterFormState extends State<RegisterForm> {
           passwordConfirmation: confirmationPasswordCon.text,
           phoneNumber: "",
           roleId: actionType.id,
-          userName: userNameCon.text);
+          userName: "");
 
       context.read<AuthBloc>().add(AuthEvent.registerWithEmail(_request));
     } else {

@@ -7,9 +7,9 @@ class BtnPrimaryBlueLoading extends StatelessWidget {
     return Container(
       child: MaterialButton(
         onPressed: () {},
-        textColor: Colors.white,
+        textColor: Colors.black,
         splashColor: Colors.white,
-        color: Color(0xff2A7FD5),
+        color: Color(0xFFE0E0E0),
         minWidth: double.infinity,
         height: 50,
         elevation: 8,

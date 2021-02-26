@@ -40,15 +40,6 @@ class _$AuthEventTearOff {
       image: image,
     );
   }
-
-// ignore: unused_element
-  _ChangeGroomerAvailability changeGroomerAvailability(
-      {bool isAvailable, String id}) {
-    return _ChangeGroomerAvailability(
-      isAvailable: isAvailable,
-      id: id,
-    );
-  }
 }
 
 /// @nodoc
@@ -63,7 +54,6 @@ mixin _$AuthEvent {
     @required TResult registerWithEmail(SignUpRequest request),
     @required TResult getUserRoleList(),
     @required TResult updateCustomer(UpdateCustomerData data, File image),
-    @required TResult changeGroomerAvailability(bool isAvailable, String id),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -71,7 +61,6 @@ mixin _$AuthEvent {
     TResult registerWithEmail(SignUpRequest request),
     TResult getUserRoleList(),
     TResult updateCustomer(UpdateCustomerData data, File image),
-    TResult changeGroomerAvailability(bool isAvailable, String id),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -80,8 +69,6 @@ mixin _$AuthEvent {
     @required TResult registerWithEmail(_RegisterWithEmail value),
     @required TResult getUserRoleList(_GetUserRoleList value),
     @required TResult updateCustomer(_UpdateCustomer value),
-    @required
-        TResult changeGroomerAvailability(_ChangeGroomerAvailability value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -89,7 +76,6 @@ mixin _$AuthEvent {
     TResult registerWithEmail(_RegisterWithEmail value),
     TResult getUserRoleList(_GetUserRoleList value),
     TResult updateCustomer(_UpdateCustomer value),
-    TResult changeGroomerAvailability(_ChangeGroomerAvailability value),
     @required TResult orElse(),
   });
 }
@@ -185,13 +171,11 @@ class _$_LoginWithEmail implements _LoginWithEmail {
     @required TResult registerWithEmail(SignUpRequest request),
     @required TResult getUserRoleList(),
     @required TResult updateCustomer(UpdateCustomerData data, File image),
-    @required TResult changeGroomerAvailability(bool isAvailable, String id),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
-    assert(changeGroomerAvailability != null);
     return loginWithEmail(username, password);
   }
 
@@ -202,7 +186,6 @@ class _$_LoginWithEmail implements _LoginWithEmail {
     TResult registerWithEmail(SignUpRequest request),
     TResult getUserRoleList(),
     TResult updateCustomer(UpdateCustomerData data, File image),
-    TResult changeGroomerAvailability(bool isAvailable, String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -219,14 +202,11 @@ class _$_LoginWithEmail implements _LoginWithEmail {
     @required TResult registerWithEmail(_RegisterWithEmail value),
     @required TResult getUserRoleList(_GetUserRoleList value),
     @required TResult updateCustomer(_UpdateCustomer value),
-    @required
-        TResult changeGroomerAvailability(_ChangeGroomerAvailability value),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
-    assert(changeGroomerAvailability != null);
     return loginWithEmail(this);
   }
 
@@ -237,7 +217,6 @@ class _$_LoginWithEmail implements _LoginWithEmail {
     TResult registerWithEmail(_RegisterWithEmail value),
     TResult getUserRoleList(_GetUserRoleList value),
     TResult updateCustomer(_UpdateCustomer value),
-    TResult changeGroomerAvailability(_ChangeGroomerAvailability value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -334,13 +313,11 @@ class _$_RegisterWithEmail implements _RegisterWithEmail {
     @required TResult registerWithEmail(SignUpRequest request),
     @required TResult getUserRoleList(),
     @required TResult updateCustomer(UpdateCustomerData data, File image),
-    @required TResult changeGroomerAvailability(bool isAvailable, String id),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
-    assert(changeGroomerAvailability != null);
     return registerWithEmail(request);
   }
 
@@ -351,7 +328,6 @@ class _$_RegisterWithEmail implements _RegisterWithEmail {
     TResult registerWithEmail(SignUpRequest request),
     TResult getUserRoleList(),
     TResult updateCustomer(UpdateCustomerData data, File image),
-    TResult changeGroomerAvailability(bool isAvailable, String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -368,14 +344,11 @@ class _$_RegisterWithEmail implements _RegisterWithEmail {
     @required TResult registerWithEmail(_RegisterWithEmail value),
     @required TResult getUserRoleList(_GetUserRoleList value),
     @required TResult updateCustomer(_UpdateCustomer value),
-    @required
-        TResult changeGroomerAvailability(_ChangeGroomerAvailability value),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
-    assert(changeGroomerAvailability != null);
     return registerWithEmail(this);
   }
 
@@ -386,7 +359,6 @@ class _$_RegisterWithEmail implements _RegisterWithEmail {
     TResult registerWithEmail(_RegisterWithEmail value),
     TResult getUserRoleList(_GetUserRoleList value),
     TResult updateCustomer(_UpdateCustomer value),
-    TResult changeGroomerAvailability(_ChangeGroomerAvailability value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -447,13 +419,11 @@ class _$_GetUserRoleList implements _GetUserRoleList {
     @required TResult registerWithEmail(SignUpRequest request),
     @required TResult getUserRoleList(),
     @required TResult updateCustomer(UpdateCustomerData data, File image),
-    @required TResult changeGroomerAvailability(bool isAvailable, String id),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
-    assert(changeGroomerAvailability != null);
     return getUserRoleList();
   }
 
@@ -464,7 +434,6 @@ class _$_GetUserRoleList implements _GetUserRoleList {
     TResult registerWithEmail(SignUpRequest request),
     TResult getUserRoleList(),
     TResult updateCustomer(UpdateCustomerData data, File image),
-    TResult changeGroomerAvailability(bool isAvailable, String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -481,14 +450,11 @@ class _$_GetUserRoleList implements _GetUserRoleList {
     @required TResult registerWithEmail(_RegisterWithEmail value),
     @required TResult getUserRoleList(_GetUserRoleList value),
     @required TResult updateCustomer(_UpdateCustomer value),
-    @required
-        TResult changeGroomerAvailability(_ChangeGroomerAvailability value),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
-    assert(changeGroomerAvailability != null);
     return getUserRoleList(this);
   }
 
@@ -499,7 +465,6 @@ class _$_GetUserRoleList implements _GetUserRoleList {
     TResult registerWithEmail(_RegisterWithEmail value),
     TResult getUserRoleList(_GetUserRoleList value),
     TResult updateCustomer(_UpdateCustomer value),
-    TResult changeGroomerAvailability(_ChangeGroomerAvailability value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -586,13 +551,11 @@ class _$_UpdateCustomer implements _UpdateCustomer {
     @required TResult registerWithEmail(SignUpRequest request),
     @required TResult getUserRoleList(),
     @required TResult updateCustomer(UpdateCustomerData data, File image),
-    @required TResult changeGroomerAvailability(bool isAvailable, String id),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
-    assert(changeGroomerAvailability != null);
     return updateCustomer(data, image);
   }
 
@@ -603,7 +566,6 @@ class _$_UpdateCustomer implements _UpdateCustomer {
     TResult registerWithEmail(SignUpRequest request),
     TResult getUserRoleList(),
     TResult updateCustomer(UpdateCustomerData data, File image),
-    TResult changeGroomerAvailability(bool isAvailable, String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -620,14 +582,11 @@ class _$_UpdateCustomer implements _UpdateCustomer {
     @required TResult registerWithEmail(_RegisterWithEmail value),
     @required TResult getUserRoleList(_GetUserRoleList value),
     @required TResult updateCustomer(_UpdateCustomer value),
-    @required
-        TResult changeGroomerAvailability(_ChangeGroomerAvailability value),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
-    assert(changeGroomerAvailability != null);
     return updateCustomer(this);
   }
 
@@ -638,7 +597,6 @@ class _$_UpdateCustomer implements _UpdateCustomer {
     TResult registerWithEmail(_RegisterWithEmail value),
     TResult getUserRoleList(_GetUserRoleList value),
     TResult updateCustomer(_UpdateCustomer value),
-    TResult changeGroomerAvailability(_ChangeGroomerAvailability value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -657,157 +615,6 @@ abstract class _UpdateCustomer implements AuthEvent {
   File get image;
   @JsonKey(ignore: true)
   _$UpdateCustomerCopyWith<_UpdateCustomer> get copyWith;
-}
-
-/// @nodoc
-abstract class _$ChangeGroomerAvailabilityCopyWith<$Res> {
-  factory _$ChangeGroomerAvailabilityCopyWith(_ChangeGroomerAvailability value,
-          $Res Function(_ChangeGroomerAvailability) then) =
-      __$ChangeGroomerAvailabilityCopyWithImpl<$Res>;
-  $Res call({bool isAvailable, String id});
-}
-
-/// @nodoc
-class __$ChangeGroomerAvailabilityCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res>
-    implements _$ChangeGroomerAvailabilityCopyWith<$Res> {
-  __$ChangeGroomerAvailabilityCopyWithImpl(_ChangeGroomerAvailability _value,
-      $Res Function(_ChangeGroomerAvailability) _then)
-      : super(_value, (v) => _then(v as _ChangeGroomerAvailability));
-
-  @override
-  _ChangeGroomerAvailability get _value =>
-      super._value as _ChangeGroomerAvailability;
-
-  @override
-  $Res call({
-    Object isAvailable = freezed,
-    Object id = freezed,
-  }) {
-    return _then(_ChangeGroomerAvailability(
-      isAvailable:
-          isAvailable == freezed ? _value.isAvailable : isAvailable as bool,
-      id: id == freezed ? _value.id : id as String,
-    ));
-  }
-}
-
-/// @nodoc
-class _$_ChangeGroomerAvailability implements _ChangeGroomerAvailability {
-  _$_ChangeGroomerAvailability({this.isAvailable, this.id});
-
-  @override
-  final bool isAvailable;
-  @override
-  final String id;
-
-  @override
-  String toString() {
-    return 'AuthEvent.changeGroomerAvailability(isAvailable: $isAvailable, id: $id)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _ChangeGroomerAvailability &&
-            (identical(other.isAvailable, isAvailable) ||
-                const DeepCollectionEquality()
-                    .equals(other.isAvailable, isAvailable)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(isAvailable) ^
-      const DeepCollectionEquality().hash(id);
-
-  @JsonKey(ignore: true)
-  @override
-  _$ChangeGroomerAvailabilityCopyWith<_ChangeGroomerAvailability>
-      get copyWith =>
-          __$ChangeGroomerAvailabilityCopyWithImpl<_ChangeGroomerAvailability>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult loginWithEmail(String username, String password),
-    @required TResult registerWithEmail(SignUpRequest request),
-    @required TResult getUserRoleList(),
-    @required TResult updateCustomer(UpdateCustomerData data, File image),
-    @required TResult changeGroomerAvailability(bool isAvailable, String id),
-  }) {
-    assert(loginWithEmail != null);
-    assert(registerWithEmail != null);
-    assert(getUserRoleList != null);
-    assert(updateCustomer != null);
-    assert(changeGroomerAvailability != null);
-    return changeGroomerAvailability(isAvailable, id);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult loginWithEmail(String username, String password),
-    TResult registerWithEmail(SignUpRequest request),
-    TResult getUserRoleList(),
-    TResult updateCustomer(UpdateCustomerData data, File image),
-    TResult changeGroomerAvailability(bool isAvailable, String id),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (changeGroomerAvailability != null) {
-      return changeGroomerAvailability(isAvailable, id);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult loginWithEmail(_LoginWithEmail value),
-    @required TResult registerWithEmail(_RegisterWithEmail value),
-    @required TResult getUserRoleList(_GetUserRoleList value),
-    @required TResult updateCustomer(_UpdateCustomer value),
-    @required
-        TResult changeGroomerAvailability(_ChangeGroomerAvailability value),
-  }) {
-    assert(loginWithEmail != null);
-    assert(registerWithEmail != null);
-    assert(getUserRoleList != null);
-    assert(updateCustomer != null);
-    assert(changeGroomerAvailability != null);
-    return changeGroomerAvailability(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult loginWithEmail(_LoginWithEmail value),
-    TResult registerWithEmail(_RegisterWithEmail value),
-    TResult getUserRoleList(_GetUserRoleList value),
-    TResult updateCustomer(_UpdateCustomer value),
-    TResult changeGroomerAvailability(_ChangeGroomerAvailability value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (changeGroomerAvailability != null) {
-      return changeGroomerAvailability(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ChangeGroomerAvailability implements AuthEvent {
-  factory _ChangeGroomerAvailability({bool isAvailable, String id}) =
-      _$_ChangeGroomerAvailability;
-
-  bool get isAvailable;
-  String get id;
-  @JsonKey(ignore: true)
-  _$ChangeGroomerAvailabilityCopyWith<_ChangeGroomerAvailability> get copyWith;
 }
 
 /// @nodoc

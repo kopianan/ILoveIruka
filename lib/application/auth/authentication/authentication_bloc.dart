@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:i_love_iruka/domain/auth/i_auth_facade.dart';
 import 'package:i_love_iruka/domain/core/user.dart';
+import 'package:i_love_iruka/domain/user/user_data_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';

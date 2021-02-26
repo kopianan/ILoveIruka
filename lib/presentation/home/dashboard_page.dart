@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:i_love_iruka/application/auth/auth_controller.dart';
-import 'package:i_love_iruka/application/auth/auth_provider.dart';
 import 'package:i_love_iruka/application/auth/user_controller.dart';
 import 'package:i_love_iruka/infrastructure/core/pref.dart';
 import 'package:i_love_iruka/presentation/home/account_home/account_page_home.dart';
 import 'package:i_love_iruka/presentation/home/feeds_home/feed_home.dart';
 import 'package:i_love_iruka/presentation/home/pets/pets_match_page.dart';
-// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:provider/provider.dart';
+import 'package:i_love_iruka/presentation/welcome/welcome_screen.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class DashboardPage extends StatefulWidget {
-  static final String TAG = '/dashboard_page';
+  static const String TAG = '/dashboard_page';
   DashboardPage({Key key}) : super(key: key);
   @override
   _DashboardPageState createState() => _DashboardPageState();
@@ -21,7 +18,6 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int bottomSelectedIndex = 0;
-  final _authController = Get.put(AuthController());
   PageController pageController = PageController(
     initialPage: 0,
     keepPage: true,
@@ -66,8 +62,20 @@ class _DashboardPageState extends State<DashboardPage> {
             AccountPagehome(),
             PetsMatchPage(),
             Container(
-              color: Colors.blue,
-            )
+                color: Colors.blue,
+                child: Center(
+                  child: FlatButton(
+                    child: Text("SIGN OUT"),
+                    onPressed: () {
+                      try {
+                        Pref().removeStorageData();
+                        Get.offAllNamed(WelcomeScreen.TAG);
+                      } catch (e) {
+                        print(e);
+                      }
+                    },
+                  ),
+                ))
           ],
         ),
       ),
@@ -122,7 +130,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               alignment: Alignment.center,
                               child: QrImage(
                                   size: 250,
-                                  data: _authController.getUserData().id),
+                                  data: userController.getUserData().fullName),
                             ),
                             Container(
                                 margin: EdgeInsets.only(top: 10),

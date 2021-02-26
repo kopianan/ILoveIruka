@@ -4,7 +4,7 @@ import 'package:i_love_iruka/presentation/home/pets/my_pets_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/pets_detail_page.dart';
 
 class PetsMatchPage extends StatefulWidget {
-  static final String TAG = '/pets_match_page';
+  static const String TAG = '/pets_match_page';
   PetsMatchPage({Key key}) : super(key: key);
 
   @override

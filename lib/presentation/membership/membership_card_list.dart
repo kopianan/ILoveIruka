@@ -1,12 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:i_love_iruka/presentation/widgets/member_card.dart';
-import 'package:wave/config.dart';
-import 'package:wave/wave.dart';
 
 class MembershipCardListPage extends StatefulWidget {
-  static final String TAG = "/membership_card_list_page";
+  static const String TAG = "/membership_card_list_page";
   MembershipCardListPage({Key key}) : super(key: key);
 
   @override
@@ -96,9 +93,17 @@ class _MembershipCardListPageState extends State<MembershipCardListPage> {
 }
 
 class PlatinumCard extends StatelessWidget {
-  const PlatinumCard({
-    Key key,
-  }) : super(key: key);
+  const PlatinumCard(
+      {Key key,
+      this.cardNumber = "123",
+      this.name: "nama",
+      this.validUntil: "20/10"})
+      : super(
+          key: key,
+        );
+  final String cardNumber;
+  final String name;
+  final String validUntil;
 
   @override
   Widget build(BuildContext context) {
@@ -111,19 +116,24 @@ class PlatinumCard extends StatelessWidget {
       ],
       // backgroundColor: Colors.blue[600],
       backgroundColor: Color(0xff35393f),
-      backNumber: "1234-9389-8372-9384",
-      name: "Anan Alfred",
-      validUntil: '20/10',
+      backNumber: cardNumber,
+      name: name,
+      validUntil: validUntil,
       type: "Silver VIP",
     );
   }
 }
 
 class GoldCard extends StatelessWidget {
-  const GoldCard({
-    Key key,
-  }) : super(key: key);
-
+  const GoldCard(
+      {Key key,
+      this.cardNumber = "123",
+      this.name: "nama",
+      this.validUntil: "20/10"})
+      : super(key: key);
+  final String cardNumber;
+  final String name;
+  final String validUntil;
   @override
   Widget build(BuildContext context) {
     return MemberCard(
@@ -135,19 +145,24 @@ class GoldCard extends StatelessWidget {
       ],
       // backgroundColor: Colors.blue[600],
       backgroundColor: Color(0xFFF1D900),
-      backNumber: "1234-9389-8372-9384",
-      name: "Anan Alfred",
-      validUntil: '20/10',
+      backNumber: cardNumber,
+      name: name,
+      validUntil: validUntil,
       type: "Silver VIP",
     );
   }
 }
 
 class SilverCard extends StatelessWidget {
-  const SilverCard({
-    Key key,
-  }) : super(key: key);
-
+  const SilverCard(
+      {Key key,
+      this.cardNumber = "123",
+      this.name: "nama",
+      this.validUntil: "20/10"})
+      : super(key: key);
+  final String cardNumber;
+  final String name;
+  final String validUntil;
   @override
   Widget build(BuildContext context) {
     return MemberCard(
@@ -155,9 +170,9 @@ class SilverCard extends StatelessWidget {
       backCardColor: [Colors.blue[500], Colors.blue[300], Colors.blue[800]],
       // backgroundColor: Colors.blue[600],
       backgroundColor: Color(0xFF1E78FF),
-      backNumber: "1234-9389-8372-9384",
-      name: "Anan Alfred",
-      validUntil: '20/10',
+      backNumber: cardNumber,
+      name: name,
+      validUntil: validUntil,
       type: "Silver VIP",
     );
   }

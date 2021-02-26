@@ -3,7 +3,7 @@ import 'package:i_love_iruka/presentation/auth/register_form/register_form.dart'
 import 'package:i_love_iruka/presentation/auth/sign_in_form/sign_in_form.dart';
 
 class SigninSignoutPage extends StatefulWidget {
-  static final String TAG = '/signin_signout_page';
+  static const String TAG = '/signin_signout_page';
   SigninSignoutPage({Key key}) : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class _SigninSignoutPageState extends State<SigninSignoutPage> {
             slivers: [
               SliverToBoxAdapter(
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -62,7 +62,7 @@ class _SigninSignoutPageState extends State<SigninSignoutPage> {
                     text: "Sign in",
                   ),
                   Tab(
-                    text: "Sign out",
+                    text: "Register",
                   ),
                 ]),
               ),

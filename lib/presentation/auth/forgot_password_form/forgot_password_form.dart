@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:i_love_iruka/presentation/auth/forgot_password_form/forgot_password_success_notif.dart';
 
 class ForgotPasswordForm extends StatefulWidget {
-  static final String TAG = '/forgot_password_form_page'; 
+  static const String TAG = '/forgot_password_form_page'; 
 
   @override
   _ForgotPasswordFormState createState() => _ForgotPasswordFormState();

@@ -28,12 +28,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthEvent event,
   ) async* {
     yield* event.map(
-      changeGroomerAvailability: (e) async* {
-        yield AuthState.onProgress();
-        final _result = await _iAuthFacade.changeAvailability(
-            id: e.id, status: e.isAvailable);
-        yield AuthState.changeAvailability(some(_result));
-      },
       getUserRoleList: (e) async* {
         yield AuthState.onGetUserRoleList(
           roleOptions: none(),

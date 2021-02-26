@@ -28,4 +28,12 @@ class Pref {
       throw Exception(e);
     }
   }
+
+  void removeStorageData() {
+    _storage.erase().then((value) {
+      print("Removed");
+    }).catchError((onError) {
+      throw Exception(onError.toString());
+    });
+  }
 }
