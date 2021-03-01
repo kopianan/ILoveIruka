@@ -130,40 +130,40 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
               ),
             ),
           ),
-          SliverToBoxAdapter(
-              child: Container(
-            height: 70,
-            margin: EdgeInsets.only(left: horizontal),
-            child: ListView.builder(
-                itemCount: _icons.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: EdgeInsets.all(15),
-                    width: 60,
-                    child: FittedBox(
-                        child: index == 0
-                            ? Text(
-                                "All",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              )
-                            : Icon(
-                                _icons[index],
-                              )),
-                    decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.grey[300],
-                              blurRadius: 4,
-                              spreadRadius: 2,
-                              offset: Offset.fromDirection(45, 3))
-                        ],
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white),
-                    margin: EdgeInsets.only(right: 10, bottom: 10),
-                  );
-                }),
-          )),
+          // SliverToBoxAdapter(
+          //     child: Container(
+          //   height: 70,
+          //   margin: EdgeInsets.only(left: horizontal),
+          //   child: ListView.builder(
+          //       itemCount: _icons.length,
+          //       scrollDirection: Axis.horizontal,
+          //       itemBuilder: (context, index) {
+          //         return Container(
+          //           padding: EdgeInsets.all(15),
+          //           width: 60,
+          //           child: FittedBox(
+          //               child: index == 0
+          //                   ? Text(
+          //                       "All",
+          //                       style: TextStyle(fontWeight: FontWeight.bold),
+          //                     )
+          //                   : Icon(
+          //                       _icons[index],
+          //                     )),
+          //           decoration: BoxDecoration(
+          //               boxShadow: [
+          //                 BoxShadow(
+          //                     color: Colors.grey[300],
+          //                     blurRadius: 4,
+          //                     spreadRadius: 2,
+          //                     offset: Offset.fromDirection(45, 3))
+          //               ],
+          //               borderRadius: BorderRadius.circular(10),
+          //               color: Colors.white),
+          //           margin: EdgeInsets.only(right: 10, bottom: 10),
+          //         );
+          //       }),
+          // )),
           // SliverToBoxAdapter(
           //   child: SizedBox(
           //     height: 10,
