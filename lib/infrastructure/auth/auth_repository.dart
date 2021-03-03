@@ -1,15 +1,11 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:i_love_iruka/domain/auth/auth_failure.dart';
 import 'package:i_love_iruka/domain/auth/i_auth_facade.dart';
-import 'package:i_love_iruka/domain/auth/login_data.dart';
-import 'package:i_love_iruka/domain/auth/register_data.dart';
-import 'package:i_love_iruka/domain/core/user.dart';
-import 'package:i_love_iruka/infrastructure/auth/update_data.dart';
-import 'package:i_love_iruka/infrastructure/core/shared_pref.dart';
+import 'package:i_love_iruka/domain/auth/sign_up_request.dart';
+import 'package:i_love_iruka/domain/user/role_data_model.dart';
+import 'package:i_love_iruka/domain/user/user_data_model.dart';
+import 'package:i_love_iruka/infrastructure/core/pref.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:injectable/injectable.dart';
 
@@ -19,212 +15,94 @@ class AuthRepository implements IAuthFacade {
   AuthRepository(this._dio);
 
   @override
-  Future<Either<AuthFailure, LoginResponseData>> registerNewUser(
-      {RegisterData registerData}) async {
+  Future<Either<AuthFailure, UserDataModel>> registerNewUser(
+      {SignUpRequest signUpRequest}) async {
     Response response;
-    FormData form;
-    form = FormData.fromMap(registerData.toJson());
     try {
       response = await _dio.post(
-        Constants.getBaseUrl() + "/RegisterUserMobile",
-        data: form,
+        Constants.getStagingUrl() + "/api/v1/users/end-user/sign-up",
+        data: signUpRequest.toJson(),
       );
       print(response.data);
-      final _result = LoginResponseData.fromJson(response.data);
+      final _result = UserDataModel.fromJson(response.data['data']);
       return right(_result);
     } on DioError catch (e) {
       if (e.type == DioErrorType.RESPONSE) {
-        if (e.response.statusCode == 404) {
-          return left(AuthFailure.notFound());
-        } else if (e.response.statusCode == 400) {
-          return left(AuthFailure.badRequest());
+        if (e.type == DioErrorType.RESPONSE) {
+          if (e.response.statusCode == 404 || e.response.statusCode == 400) {
+            return left(AuthFailure.responseError(
+                errorMessage: e.response.data['message']));
+          }
         }
-      } else {
-        return left(AuthFailure.serverError());
       }
+
+      return left(AuthFailure.serverError(
+          errorMessage: e.response.data['message']['message']));
     }
   }
 
   @override
-  Future<Either<AuthFailure, LoginResponseData>> singInUser(
-      LoginRequestData loginRequestData) async {
+  Future<Either<AuthFailure, List<RoleDataModel>>> getUserRole() async {
+    Response response;
+    try {
+      response =
+          await _dio.get(Constants.getStagingUrl() + "/api/v1/roles/end-user");
+
+      final List _result = response.data['data'];
+      List<RoleDataModel> _res =
+          _result.map((e) => RoleDataModel.fromJson(e)).toList();
+      return right(_res);
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.RESPONSE) {
+        if (e.response.statusCode == 404 || e.response.statusCode == 400) {
+          return left(AuthFailure.responseError(
+              errorMessage: e.response.data['message']));
+        }
+      }
+
+      return left(AuthFailure.serverError(errorMessage: e.toString()));
+    }
+  }
+
+  @override
+  Either<AuthFailure, UserDataModel> checkAuthentcation() {
+    final pref = Pref();
+    try {
+      final _userData = pref.getUserData;
+      if (_userData == null) {
+        return left(AuthFailure.responseError(errorMessage: "No User Data"));
+      } else {
+        return right(_userData);
+      }
+    } catch (e) {
+      return left(AuthFailure.serverError());
+    }
+  }
+
+  @override
+  Future<Either<AuthFailure, Unit>> signOut() async {}
+
+  @override
+  Future<Either<AuthFailure, UserDataModel>> loginUser(
+      String username, String password) async {
     Response response;
 
     try {
       response = await _dio.post(
-        Constants.getBaseUrl() + "/Login",
-        data: loginRequestData.toJson(),
-      );
-      print(response.data);
-      final _result = LoginResponseData.fromJson(response.data);
+          Constants.getStagingUrl() + "/api/v1/users/end-user/login",
+          data: {'username': '$username', 'password': '$password'});
+
+      final _result = UserDataModel.fromJson(response.data['data']);
       return right(_result);
     } on DioError catch (e) {
       print(e.response.data.toString());
       if (e.type == DioErrorType.RESPONSE) {
-        if (e.response.statusCode == 404) {
-          return left(AuthFailure.notFound());
-        } else if (e.response.statusCode == 400) {
-          return left(
-              AuthFailure.badRequest(errorMessage: e.response.data.toString()));
+        if (e.response.statusCode == 404 || e.response.statusCode == 400) {
+          return left(AuthFailure.responseError(
+              errorMessage: e.response.data['message']));
         }
-      } else {
-        return left(AuthFailure.serverError());
       }
-      return left(AuthFailure.defaultError());
-    }
-  }
-
-  @override
-  Future<Either<AuthFailure, List<String>>> getUserRole() async {
-    Response response;
-    try {
-      response = await _dio.get(Constants.getBaseUrl() + "/GetRole");
-      print(response.data);
-      final List _result = response.data['RoleList'];
-      List<String> _res = _result.map((e) => e.toString()).toList();
-      return right(_res);
-    } on DioError catch (e) {
-      if (e.type == DioErrorType.RESPONSE) {
-        if (e.response.statusCode == 404) {
-          return left(AuthFailure.notFound());
-        } else if (e.response.statusCode == 400) {
-          return left(AuthFailure.badRequest());
-        }
-      } else {
-        return left(AuthFailure.serverError());
-      }
-    }
-    return left(AuthFailure.serverError());
-  }
-
-  @override
-  Future<Either<AuthFailure, User>> checkAuthentcation() async {
-    try {
-      final _userDataString = await getUserData();
-      return _userDataString.fold(
-        (l) => left(AuthFailure.serverError()),
-        (r) => right(r),
-      );
-    } catch (e) {
       return left(AuthFailure.serverError());
-    }
-  }
-
-  @override
-  Future<Either<AuthFailure, Unit>> signOut() async {
-    try {
-      final _result = await deleteAllData();
-      return _result.fold((l) => left(AuthFailure.serverError()), (r) {
-        if (r)
-          return right(unit);
-        else
-          return left(AuthFailure.serverError());
-      });
-    } catch (e) {
-      return left(AuthFailure.serverError());
-    }
-  }
-
-  @override
-  Future<Either<AuthFailure, LoginResponseData>> updateCustomer(
-      UpdateCustomerData updated, File image) async {
-    Response response;
-
-    final formData = FormData.fromMap({
-      "AccessKey": updated.accessKey,
-      "Name": updated.name,
-      "Email": updated.email,
-      "PhoneNumber": updated.phoneNumber,
-      "Address": updated.address,
-      "Id": updated.id,
-      "Picture": (image == null) ? "" : MultipartFile.fromFileSync(image.path)
-    });
-
-    try {
-      response = await _dio.post(Constants.getBaseUrl() + "/EditUserMobile",
-          data: formData);
-      print(response.data);
-      final _result = LoginResponseData.fromJson(response.data);
-      return right(_result);
-    } on DioError catch (e) {
-      if (e.type == DioErrorType.RESPONSE) {
-        if (e.response.statusCode == 404) {
-          return left(AuthFailure.notFound());
-        } else if (e.response.statusCode == 400) {
-          return left(AuthFailure.badRequest());
-        }
-      } else {
-        return left(AuthFailure.serverError());
-      }
-      return left(AuthFailure.defaultError());
-    }
-  }
-
-  @override
-  Future<Either<AuthFailure, User>> saveAuthenticationToLocal(
-      {User user}) async {
-    try {
-      final _result = await saveUserData(user);
-      if (_result)
-        return right(user);
-      else
-        return left(AuthFailure.serverError());
-    } catch (e) {
-      return left(AuthFailure.serverError());
-    }
-  }
-
-  @override
-  Future<Either<AuthFailure, Unit>> changeAvailability(
-      {bool status, String id}) async {
-    Response response;
-
-    final _params = {"userId": "$id", "status": "$status"};
-    try {
-      response = await _dio.put(
-        Constants.getBaseUrl() + "/ChangeGroomerAvailabilityStatus",
-        queryParameters: _params,
-      );
-      print(response.data);
-      return right(unit);
-    } on DioError catch (e) {
-      print(e.error.toString());
-      if (e.type == DioErrorType.RESPONSE) {
-        if (e.response.statusCode == 404) {
-          return left(AuthFailure.notFound());
-        } else if (e.response.statusCode == 400) {
-          return left(AuthFailure.badRequest());
-        }
-      } else {
-        return left(AuthFailure.serverError());
-      }
-    }
-    return left(AuthFailure.serverError());
-  }
-
-  @override
-  Future<Either<AuthFailure, LoginResponseData>> updateGroomer(
-      User user) async {
-    Response response;
-
-    final formData = FormData.fromMap(user.toJson());
-    try {
-      response = await _dio.post(Constants.getBaseUrl() + "/EditUserMobile",
-          data: formData);
-      print(response.data);
-      final _result = LoginResponseData.fromJson(response.data);
-      return right(_result);
-    } on DioError catch (e) {
-      if (e.type == DioErrorType.RESPONSE) {
-        if (e.response.statusCode == 404) {
-          return left(AuthFailure.notFound());
-        } else if (e.response.statusCode == 400) {
-          return left(AuthFailure.badRequest());
-        }
-      } else {
-        return left(AuthFailure.serverError());
-      }
-      return left(AuthFailure.defaultError());
     }
   }
 }

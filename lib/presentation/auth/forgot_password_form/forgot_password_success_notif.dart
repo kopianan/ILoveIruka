@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class ForgotPaswordSuccessNotif extends StatefulWidget {
-  static final String TAG = '/forgot_password_success_notif_page'; 
+  static const String TAG = '/forgot_password_success_notif_page';
 
   @override
   _ForgotPaswordSuccessNotifState createState() =>
@@ -73,7 +73,7 @@ class _ForgotPaswordSuccessNotifState extends State<ForgotPaswordSuccessNotif> {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
-                            Icon(MdiIcons.emailOutline, color: Colors.white),
+                            Icon(Icons.email, color: Colors.white),
                             SizedBox(
                               width: 7,
                             ),

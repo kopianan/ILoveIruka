@@ -3,8 +3,7 @@ part 'auth_failure.freezed.dart';
 
 @freezed
 abstract class AuthFailure with _$AuthFailure {
-  const factory AuthFailure.badRequest({String errorMessage}) = _BadRequest;
-  const factory AuthFailure.serverError() = _ServerError;
-  const factory AuthFailure.notFound() = _NotFound;
-  const factory AuthFailure.defaultError() = _DefaultError;
+  const factory AuthFailure.responseError({String errorMessage}) =
+      _ResponseError;
+  const factory AuthFailure.serverError({String errorMessage}) = _ServerError;
 }

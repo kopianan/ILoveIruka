@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:i_love_iruka/presentation/auth/register_form/register_form.dart';
-import 'package:i_love_iruka/presentation/auth/sign_in_form/sign_in_form.dart';
+import 'package:i_love_iruka/presentation/auth/signin_signout/signin_signout_page.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  static final String TAG = '/welcome_screen_page';
+  static const String TAG = '/welcome_screen_page';
 
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
@@ -69,26 +68,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 30),
                     child: BtnPrimaryBlue(
-                      text: "Sign in",
+                      text: "Start",
                       onPressed: () {
-                        Get.toNamed(SignInForm.TAG);
+                        Get.toNamed(SigninSignoutPage.TAG);
                       },
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Get.toNamed(RegisterForm.TAG);
-                    },
-                    child: Text(
-                      "Create an account",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xffEE2424)),
-                      maxLines: 2,
                     ),
                   ),
                 ],

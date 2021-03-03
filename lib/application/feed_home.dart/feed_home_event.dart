@@ -2,6 +2,7 @@ part of 'feed_home_bloc.dart';
 
 @freezed
 abstract class FeedHomeEvent with _$FeedHomeEvent {
-  factory FeedHomeEvent.getTopFeedData() = _GetTopFeedData;
-  factory FeedHomeEvent.getBottomFeedData() = _GetBottomFeedData;
+  const factory FeedHomeEvent.getTopFeedData() = _GetTopFeedData;
+  const factory FeedHomeEvent.getBottomFeedData() = _GetBottomFeedData;
+  const factory FeedHomeEvent.getHomeMenuList() = _GetHomeMenuList;
 }

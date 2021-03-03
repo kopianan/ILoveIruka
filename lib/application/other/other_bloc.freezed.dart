@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'other_bloc.dart';
 
@@ -9,13 +9,16 @@ part of 'other_bloc.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$OtherEventTearOff {
   const _$OtherEventTearOff();
 
+// ignore: unused_element
   _GetProvinceOnly getProvinceOnly() {
     return _GetProvinceOnly();
   }
 
+// ignore: unused_element
   _GetCityOnly getCityOnly({String provinceId}) {
     return _GetCityOnly(
       provinceId: provinceId,
@@ -23,40 +26,44 @@ class _$OtherEventTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $OtherEvent = _$OtherEventTearOff();
 
+/// @nodoc
 mixin _$OtherEvent {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result getProvinceOnly(),
-    @required Result getCityOnly(String provinceId),
+  TResult when<TResult extends Object>({
+    @required TResult getProvinceOnly(),
+    @required TResult getCityOnly(String provinceId),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getProvinceOnly(),
-    Result getCityOnly(String provinceId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult getProvinceOnly(),
+    TResult getCityOnly(String provinceId),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result getProvinceOnly(_GetProvinceOnly value),
-    @required Result getCityOnly(_GetCityOnly value),
+  TResult map<TResult extends Object>({
+    @required TResult getProvinceOnly(_GetProvinceOnly value),
+    @required TResult getCityOnly(_GetCityOnly value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getProvinceOnly(_GetProvinceOnly value),
-    Result getCityOnly(_GetCityOnly value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult getProvinceOnly(_GetProvinceOnly value),
+    TResult getCityOnly(_GetCityOnly value),
+    @required TResult orElse(),
   });
 }
 
+/// @nodoc
 abstract class $OtherEventCopyWith<$Res> {
   factory $OtherEventCopyWith(
           OtherEvent value, $Res Function(OtherEvent) then) =
       _$OtherEventCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$OtherEventCopyWithImpl<$Res> implements $OtherEventCopyWith<$Res> {
   _$OtherEventCopyWithImpl(this._value, this._then);
 
@@ -65,12 +72,14 @@ class _$OtherEventCopyWithImpl<$Res> implements $OtherEventCopyWith<$Res> {
   final $Res Function(OtherEvent) _then;
 }
 
+/// @nodoc
 abstract class _$GetProvinceOnlyCopyWith<$Res> {
   factory _$GetProvinceOnlyCopyWith(
           _GetProvinceOnly value, $Res Function(_GetProvinceOnly) then) =
       __$GetProvinceOnlyCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class __$GetProvinceOnlyCopyWithImpl<$Res>
     extends _$OtherEventCopyWithImpl<$Res>
     implements _$GetProvinceOnlyCopyWith<$Res> {
@@ -82,6 +91,7 @@ class __$GetProvinceOnlyCopyWithImpl<$Res>
   _GetProvinceOnly get _value => super._value as _GetProvinceOnly;
 }
 
+/// @nodoc
 class _$_GetProvinceOnly implements _GetProvinceOnly {
   _$_GetProvinceOnly();
 
@@ -100,9 +110,9 @@ class _$_GetProvinceOnly implements _GetProvinceOnly {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result getProvinceOnly(),
-    @required Result getCityOnly(String provinceId),
+  TResult when<TResult extends Object>({
+    @required TResult getProvinceOnly(),
+    @required TResult getCityOnly(String provinceId),
   }) {
     assert(getProvinceOnly != null);
     assert(getCityOnly != null);
@@ -111,10 +121,10 @@ class _$_GetProvinceOnly implements _GetProvinceOnly {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getProvinceOnly(),
-    Result getCityOnly(String provinceId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult getProvinceOnly(),
+    TResult getCityOnly(String provinceId),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getProvinceOnly != null) {
@@ -125,9 +135,9 @@ class _$_GetProvinceOnly implements _GetProvinceOnly {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result getProvinceOnly(_GetProvinceOnly value),
-    @required Result getCityOnly(_GetCityOnly value),
+  TResult map<TResult extends Object>({
+    @required TResult getProvinceOnly(_GetProvinceOnly value),
+    @required TResult getCityOnly(_GetCityOnly value),
   }) {
     assert(getProvinceOnly != null);
     assert(getCityOnly != null);
@@ -136,10 +146,10 @@ class _$_GetProvinceOnly implements _GetProvinceOnly {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getProvinceOnly(_GetProvinceOnly value),
-    Result getCityOnly(_GetCityOnly value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult getProvinceOnly(_GetProvinceOnly value),
+    TResult getCityOnly(_GetCityOnly value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getProvinceOnly != null) {
@@ -153,6 +163,7 @@ abstract class _GetProvinceOnly implements OtherEvent {
   factory _GetProvinceOnly() = _$_GetProvinceOnly;
 }
 
+/// @nodoc
 abstract class _$GetCityOnlyCopyWith<$Res> {
   factory _$GetCityOnlyCopyWith(
           _GetCityOnly value, $Res Function(_GetCityOnly) then) =
@@ -160,6 +171,7 @@ abstract class _$GetCityOnlyCopyWith<$Res> {
   $Res call({String provinceId});
 }
 
+/// @nodoc
 class __$GetCityOnlyCopyWithImpl<$Res> extends _$OtherEventCopyWithImpl<$Res>
     implements _$GetCityOnlyCopyWith<$Res> {
   __$GetCityOnlyCopyWithImpl(
@@ -180,6 +192,7 @@ class __$GetCityOnlyCopyWithImpl<$Res> extends _$OtherEventCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_GetCityOnly implements _GetCityOnly {
   _$_GetCityOnly({this.provinceId});
 
@@ -204,15 +217,16 @@ class _$_GetCityOnly implements _GetCityOnly {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(provinceId);
 
+  @JsonKey(ignore: true)
   @override
   _$GetCityOnlyCopyWith<_GetCityOnly> get copyWith =>
       __$GetCityOnlyCopyWithImpl<_GetCityOnly>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result getProvinceOnly(),
-    @required Result getCityOnly(String provinceId),
+  TResult when<TResult extends Object>({
+    @required TResult getProvinceOnly(),
+    @required TResult getCityOnly(String provinceId),
   }) {
     assert(getProvinceOnly != null);
     assert(getCityOnly != null);
@@ -221,10 +235,10 @@ class _$_GetCityOnly implements _GetCityOnly {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getProvinceOnly(),
-    Result getCityOnly(String provinceId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult getProvinceOnly(),
+    TResult getCityOnly(String provinceId),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getCityOnly != null) {
@@ -235,9 +249,9 @@ class _$_GetCityOnly implements _GetCityOnly {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result getProvinceOnly(_GetProvinceOnly value),
-    @required Result getCityOnly(_GetCityOnly value),
+  TResult map<TResult extends Object>({
+    @required TResult getProvinceOnly(_GetProvinceOnly value),
+    @required TResult getCityOnly(_GetCityOnly value),
   }) {
     assert(getProvinceOnly != null);
     assert(getCityOnly != null);
@@ -246,10 +260,10 @@ class _$_GetCityOnly implements _GetCityOnly {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getProvinceOnly(_GetProvinceOnly value),
-    Result getCityOnly(_GetCityOnly value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult getProvinceOnly(_GetProvinceOnly value),
+    TResult getCityOnly(_GetCityOnly value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getCityOnly != null) {
@@ -263,16 +277,20 @@ abstract class _GetCityOnly implements OtherEvent {
   factory _GetCityOnly({String provinceId}) = _$_GetCityOnly;
 
   String get provinceId;
+  @JsonKey(ignore: true)
   _$GetCityOnlyCopyWith<_GetCityOnly> get copyWith;
 }
 
+/// @nodoc
 class _$OtherStateTearOff {
   const _$OtherStateTearOff();
 
+// ignore: unused_element
   _Initial initial() {
     return _Initial();
   }
 
+// ignore: unused_element
   _GetProvinceOption getProvinceOption(
       {bool isLoading,
       Option<Either<String, List<RajaOngkir>>> getProvinceOption}) {
@@ -282,6 +300,7 @@ class _$OtherStateTearOff {
     );
   }
 
+// ignore: unused_element
   _GetCityOption getCityOption(
       {bool isLoading,
       Option<Either<String, List<RajaOngkir>>> getCityOption}) {
@@ -292,50 +311,54 @@ class _$OtherStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $OtherState = _$OtherStateTearOff();
 
+/// @nodoc
 mixin _$OtherState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
     @required
-        Result getProvinceOption(bool isLoading,
+        TResult getProvinceOption(bool isLoading,
             Option<Either<String, List<RajaOngkir>>> getProvinceOption),
     @required
-        Result getCityOption(bool isLoading,
+        TResult getCityOption(bool isLoading,
             Option<Either<String, List<RajaOngkir>>> getCityOption),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result getProvinceOption(bool isLoading,
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult getProvinceOption(bool isLoading,
         Option<Either<String, List<RajaOngkir>>> getProvinceOption),
-    Result getCityOption(
+    TResult getCityOption(
         bool isLoading, Option<Either<String, List<RajaOngkir>>> getCityOption),
-    @required Result orElse(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result getProvinceOption(_GetProvinceOption value),
-    @required Result getCityOption(_GetCityOption value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult getProvinceOption(_GetProvinceOption value),
+    @required TResult getCityOption(_GetCityOption value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result getProvinceOption(_GetProvinceOption value),
-    Result getCityOption(_GetCityOption value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult getProvinceOption(_GetProvinceOption value),
+    TResult getCityOption(_GetCityOption value),
+    @required TResult orElse(),
   });
 }
 
+/// @nodoc
 abstract class $OtherStateCopyWith<$Res> {
   factory $OtherStateCopyWith(
           OtherState value, $Res Function(OtherState) then) =
       _$OtherStateCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$OtherStateCopyWithImpl<$Res> implements $OtherStateCopyWith<$Res> {
   _$OtherStateCopyWithImpl(this._value, this._then);
 
@@ -344,11 +367,13 @@ class _$OtherStateCopyWithImpl<$Res> implements $OtherStateCopyWith<$Res> {
   final $Res Function(OtherState) _then;
 }
 
+/// @nodoc
 abstract class _$InitialCopyWith<$Res> {
   factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
       __$InitialCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class __$InitialCopyWithImpl<$Res> extends _$OtherStateCopyWithImpl<$Res>
     implements _$InitialCopyWith<$Res> {
   __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
@@ -358,6 +383,7 @@ class __$InitialCopyWithImpl<$Res> extends _$OtherStateCopyWithImpl<$Res>
   _Initial get _value => super._value as _Initial;
 }
 
+/// @nodoc
 class _$_Initial implements _Initial {
   _$_Initial();
 
@@ -376,13 +402,13 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
     @required
-        Result getProvinceOption(bool isLoading,
+        TResult getProvinceOption(bool isLoading,
             Option<Either<String, List<RajaOngkir>>> getProvinceOption),
     @required
-        Result getCityOption(bool isLoading,
+        TResult getCityOption(bool isLoading,
             Option<Either<String, List<RajaOngkir>>> getCityOption),
   }) {
     assert(initial != null);
@@ -393,13 +419,13 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result getProvinceOption(bool isLoading,
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult getProvinceOption(bool isLoading,
         Option<Either<String, List<RajaOngkir>>> getProvinceOption),
-    Result getCityOption(
+    TResult getCityOption(
         bool isLoading, Option<Either<String, List<RajaOngkir>>> getCityOption),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initial != null) {
@@ -410,10 +436,10 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result getProvinceOption(_GetProvinceOption value),
-    @required Result getCityOption(_GetCityOption value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult getProvinceOption(_GetProvinceOption value),
+    @required TResult getCityOption(_GetCityOption value),
   }) {
     assert(initial != null);
     assert(getProvinceOption != null);
@@ -423,11 +449,11 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result getProvinceOption(_GetProvinceOption value),
-    Result getCityOption(_GetCityOption value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult getProvinceOption(_GetProvinceOption value),
+    TResult getCityOption(_GetCityOption value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initial != null) {
@@ -441,6 +467,7 @@ abstract class _Initial implements OtherState {
   factory _Initial() = _$_Initial;
 }
 
+/// @nodoc
 abstract class _$GetProvinceOptionCopyWith<$Res> {
   factory _$GetProvinceOptionCopyWith(
           _GetProvinceOption value, $Res Function(_GetProvinceOption) then) =
@@ -450,6 +477,7 @@ abstract class _$GetProvinceOptionCopyWith<$Res> {
       Option<Either<String, List<RajaOngkir>>> getProvinceOption});
 }
 
+/// @nodoc
 class __$GetProvinceOptionCopyWithImpl<$Res>
     extends _$OtherStateCopyWithImpl<$Res>
     implements _$GetProvinceOptionCopyWith<$Res> {
@@ -474,6 +502,7 @@ class __$GetProvinceOptionCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_GetProvinceOption implements _GetProvinceOption {
   _$_GetProvinceOption({this.isLoading, this.getProvinceOption});
 
@@ -505,19 +534,20 @@ class _$_GetProvinceOption implements _GetProvinceOption {
       const DeepCollectionEquality().hash(isLoading) ^
       const DeepCollectionEquality().hash(getProvinceOption);
 
+  @JsonKey(ignore: true)
   @override
   _$GetProvinceOptionCopyWith<_GetProvinceOption> get copyWith =>
       __$GetProvinceOptionCopyWithImpl<_GetProvinceOption>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
     @required
-        Result getProvinceOption(bool isLoading,
+        TResult getProvinceOption(bool isLoading,
             Option<Either<String, List<RajaOngkir>>> getProvinceOption),
     @required
-        Result getCityOption(bool isLoading,
+        TResult getCityOption(bool isLoading,
             Option<Either<String, List<RajaOngkir>>> getCityOption),
   }) {
     assert(initial != null);
@@ -528,13 +558,13 @@ class _$_GetProvinceOption implements _GetProvinceOption {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result getProvinceOption(bool isLoading,
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult getProvinceOption(bool isLoading,
         Option<Either<String, List<RajaOngkir>>> getProvinceOption),
-    Result getCityOption(
+    TResult getCityOption(
         bool isLoading, Option<Either<String, List<RajaOngkir>>> getCityOption),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getProvinceOption != null) {
@@ -545,10 +575,10 @@ class _$_GetProvinceOption implements _GetProvinceOption {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result getProvinceOption(_GetProvinceOption value),
-    @required Result getCityOption(_GetCityOption value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult getProvinceOption(_GetProvinceOption value),
+    @required TResult getCityOption(_GetCityOption value),
   }) {
     assert(initial != null);
     assert(getProvinceOption != null);
@@ -558,11 +588,11 @@ class _$_GetProvinceOption implements _GetProvinceOption {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result getProvinceOption(_GetProvinceOption value),
-    Result getCityOption(_GetCityOption value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult getProvinceOption(_GetProvinceOption value),
+    TResult getCityOption(_GetCityOption value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getProvinceOption != null) {
@@ -580,9 +610,11 @@ abstract class _GetProvinceOption implements OtherState {
 
   bool get isLoading;
   Option<Either<String, List<RajaOngkir>>> get getProvinceOption;
+  @JsonKey(ignore: true)
   _$GetProvinceOptionCopyWith<_GetProvinceOption> get copyWith;
 }
 
+/// @nodoc
 abstract class _$GetCityOptionCopyWith<$Res> {
   factory _$GetCityOptionCopyWith(
           _GetCityOption value, $Res Function(_GetCityOption) then) =
@@ -591,6 +623,7 @@ abstract class _$GetCityOptionCopyWith<$Res> {
       {bool isLoading, Option<Either<String, List<RajaOngkir>>> getCityOption});
 }
 
+/// @nodoc
 class __$GetCityOptionCopyWithImpl<$Res> extends _$OtherStateCopyWithImpl<$Res>
     implements _$GetCityOptionCopyWith<$Res> {
   __$GetCityOptionCopyWithImpl(
@@ -614,6 +647,7 @@ class __$GetCityOptionCopyWithImpl<$Res> extends _$OtherStateCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_GetCityOption implements _GetCityOption {
   _$_GetCityOption({this.isLoading, this.getCityOption});
 
@@ -645,19 +679,20 @@ class _$_GetCityOption implements _GetCityOption {
       const DeepCollectionEquality().hash(isLoading) ^
       const DeepCollectionEquality().hash(getCityOption);
 
+  @JsonKey(ignore: true)
   @override
   _$GetCityOptionCopyWith<_GetCityOption> get copyWith =>
       __$GetCityOptionCopyWithImpl<_GetCityOption>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
     @required
-        Result getProvinceOption(bool isLoading,
+        TResult getProvinceOption(bool isLoading,
             Option<Either<String, List<RajaOngkir>>> getProvinceOption),
     @required
-        Result getCityOption(bool isLoading,
+        TResult getCityOption(bool isLoading,
             Option<Either<String, List<RajaOngkir>>> getCityOption),
   }) {
     assert(initial != null);
@@ -668,13 +703,13 @@ class _$_GetCityOption implements _GetCityOption {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result getProvinceOption(bool isLoading,
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult getProvinceOption(bool isLoading,
         Option<Either<String, List<RajaOngkir>>> getProvinceOption),
-    Result getCityOption(
+    TResult getCityOption(
         bool isLoading, Option<Either<String, List<RajaOngkir>>> getCityOption),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getCityOption != null) {
@@ -685,10 +720,10 @@ class _$_GetCityOption implements _GetCityOption {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result getProvinceOption(_GetProvinceOption value),
-    @required Result getCityOption(_GetCityOption value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult getProvinceOption(_GetProvinceOption value),
+    @required TResult getCityOption(_GetCityOption value),
   }) {
     assert(initial != null);
     assert(getProvinceOption != null);
@@ -698,11 +733,11 @@ class _$_GetCityOption implements _GetCityOption {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result getProvinceOption(_GetProvinceOption value),
-    Result getCityOption(_GetCityOption value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult getProvinceOption(_GetProvinceOption value),
+    TResult getCityOption(_GetCityOption value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getCityOption != null) {
@@ -720,5 +755,6 @@ abstract class _GetCityOption implements OtherState {
 
   bool get isLoading;
   Option<Either<String, List<RajaOngkir>>> get getCityOption;
+  @JsonKey(ignore: true)
   _$GetCityOptionCopyWith<_GetCityOption> get copyWith;
 }

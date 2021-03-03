@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:i_love_iruka/domain/feed_home/feed.dart';
 import 'package:i_love_iruka/domain/feed_home/feed_failure.dart';
 import 'package:i_love_iruka/domain/feed_home/i_feed_home_facade.dart';
-import 'package:i_love_iruka/presentation/home/feeds_home/feed_home.dart';
+import 'package:i_love_iruka/domain/feed_home/menu_data_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
@@ -49,6 +49,13 @@ class FeedHomeBloc extends Bloc<FeedHomeEvent, FeedHomeState> {
           responseOptions: some(_result),
           isLoading: false,
         );
+      },
+      getHomeMenuList: (_GetHomeMenuList value) async* {
+        yield FeedHomeState.onGetHomeMenuList(
+            homeMenuData: none(), isLoading: true);
+        final _result = await _iFeedHomeFacade.getHomeMenuList();
+        yield FeedHomeState.onGetHomeMenuList(
+            homeMenuData: some(_result), isLoading: false);
       },
     );
   }

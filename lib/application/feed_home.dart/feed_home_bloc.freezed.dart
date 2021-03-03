@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'feed_home_bloc.dart';
 
@@ -9,52 +9,68 @@ part of 'feed_home_bloc.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$FeedHomeEventTearOff {
   const _$FeedHomeEventTearOff();
 
+// ignore: unused_element
   _GetTopFeedData getTopFeedData() {
-    return _GetTopFeedData();
+    return const _GetTopFeedData();
   }
 
+// ignore: unused_element
   _GetBottomFeedData getBottomFeedData() {
-    return _GetBottomFeedData();
+    return const _GetBottomFeedData();
+  }
+
+// ignore: unused_element
+  _GetHomeMenuList getHomeMenuList() {
+    return const _GetHomeMenuList();
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $FeedHomeEvent = _$FeedHomeEventTearOff();
 
+/// @nodoc
 mixin _$FeedHomeEvent {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result getTopFeedData(),
-    @required Result getBottomFeedData(),
+  TResult when<TResult extends Object>({
+    @required TResult getTopFeedData(),
+    @required TResult getBottomFeedData(),
+    @required TResult getHomeMenuList(),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getTopFeedData(),
-    Result getBottomFeedData(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult getTopFeedData(),
+    TResult getBottomFeedData(),
+    TResult getHomeMenuList(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result getTopFeedData(_GetTopFeedData value),
-    @required Result getBottomFeedData(_GetBottomFeedData value),
+  TResult map<TResult extends Object>({
+    @required TResult getTopFeedData(_GetTopFeedData value),
+    @required TResult getBottomFeedData(_GetBottomFeedData value),
+    @required TResult getHomeMenuList(_GetHomeMenuList value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getTopFeedData(_GetTopFeedData value),
-    Result getBottomFeedData(_GetBottomFeedData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult getTopFeedData(_GetTopFeedData value),
+    TResult getBottomFeedData(_GetBottomFeedData value),
+    TResult getHomeMenuList(_GetHomeMenuList value),
+    @required TResult orElse(),
   });
 }
 
+/// @nodoc
 abstract class $FeedHomeEventCopyWith<$Res> {
   factory $FeedHomeEventCopyWith(
           FeedHomeEvent value, $Res Function(FeedHomeEvent) then) =
       _$FeedHomeEventCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$FeedHomeEventCopyWithImpl<$Res>
     implements $FeedHomeEventCopyWith<$Res> {
   _$FeedHomeEventCopyWithImpl(this._value, this._then);
@@ -64,12 +80,14 @@ class _$FeedHomeEventCopyWithImpl<$Res>
   final $Res Function(FeedHomeEvent) _then;
 }
 
+/// @nodoc
 abstract class _$GetTopFeedDataCopyWith<$Res> {
   factory _$GetTopFeedDataCopyWith(
           _GetTopFeedData value, $Res Function(_GetTopFeedData) then) =
       __$GetTopFeedDataCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class __$GetTopFeedDataCopyWithImpl<$Res>
     extends _$FeedHomeEventCopyWithImpl<$Res>
     implements _$GetTopFeedDataCopyWith<$Res> {
@@ -81,8 +99,9 @@ class __$GetTopFeedDataCopyWithImpl<$Res>
   _GetTopFeedData get _value => super._value as _GetTopFeedData;
 }
 
+/// @nodoc
 class _$_GetTopFeedData implements _GetTopFeedData {
-  _$_GetTopFeedData();
+  const _$_GetTopFeedData();
 
   @override
   String toString() {
@@ -99,21 +118,24 @@ class _$_GetTopFeedData implements _GetTopFeedData {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result getTopFeedData(),
-    @required Result getBottomFeedData(),
+  TResult when<TResult extends Object>({
+    @required TResult getTopFeedData(),
+    @required TResult getBottomFeedData(),
+    @required TResult getHomeMenuList(),
   }) {
     assert(getTopFeedData != null);
     assert(getBottomFeedData != null);
+    assert(getHomeMenuList != null);
     return getTopFeedData();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getTopFeedData(),
-    Result getBottomFeedData(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult getTopFeedData(),
+    TResult getBottomFeedData(),
+    TResult getHomeMenuList(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getTopFeedData != null) {
@@ -124,21 +146,24 @@ class _$_GetTopFeedData implements _GetTopFeedData {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result getTopFeedData(_GetTopFeedData value),
-    @required Result getBottomFeedData(_GetBottomFeedData value),
+  TResult map<TResult extends Object>({
+    @required TResult getTopFeedData(_GetTopFeedData value),
+    @required TResult getBottomFeedData(_GetBottomFeedData value),
+    @required TResult getHomeMenuList(_GetHomeMenuList value),
   }) {
     assert(getTopFeedData != null);
     assert(getBottomFeedData != null);
+    assert(getHomeMenuList != null);
     return getTopFeedData(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getTopFeedData(_GetTopFeedData value),
-    Result getBottomFeedData(_GetBottomFeedData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult getTopFeedData(_GetTopFeedData value),
+    TResult getBottomFeedData(_GetBottomFeedData value),
+    TResult getHomeMenuList(_GetHomeMenuList value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getTopFeedData != null) {
@@ -149,15 +174,17 @@ class _$_GetTopFeedData implements _GetTopFeedData {
 }
 
 abstract class _GetTopFeedData implements FeedHomeEvent {
-  factory _GetTopFeedData() = _$_GetTopFeedData;
+  const factory _GetTopFeedData() = _$_GetTopFeedData;
 }
 
+/// @nodoc
 abstract class _$GetBottomFeedDataCopyWith<$Res> {
   factory _$GetBottomFeedDataCopyWith(
           _GetBottomFeedData value, $Res Function(_GetBottomFeedData) then) =
       __$GetBottomFeedDataCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class __$GetBottomFeedDataCopyWithImpl<$Res>
     extends _$FeedHomeEventCopyWithImpl<$Res>
     implements _$GetBottomFeedDataCopyWith<$Res> {
@@ -169,8 +196,9 @@ class __$GetBottomFeedDataCopyWithImpl<$Res>
   _GetBottomFeedData get _value => super._value as _GetBottomFeedData;
 }
 
+/// @nodoc
 class _$_GetBottomFeedData implements _GetBottomFeedData {
-  _$_GetBottomFeedData();
+  const _$_GetBottomFeedData();
 
   @override
   String toString() {
@@ -187,21 +215,24 @@ class _$_GetBottomFeedData implements _GetBottomFeedData {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result getTopFeedData(),
-    @required Result getBottomFeedData(),
+  TResult when<TResult extends Object>({
+    @required TResult getTopFeedData(),
+    @required TResult getBottomFeedData(),
+    @required TResult getHomeMenuList(),
   }) {
     assert(getTopFeedData != null);
     assert(getBottomFeedData != null);
+    assert(getHomeMenuList != null);
     return getBottomFeedData();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result getTopFeedData(),
-    Result getBottomFeedData(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult getTopFeedData(),
+    TResult getBottomFeedData(),
+    TResult getHomeMenuList(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getBottomFeedData != null) {
@@ -212,21 +243,24 @@ class _$_GetBottomFeedData implements _GetBottomFeedData {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result getTopFeedData(_GetTopFeedData value),
-    @required Result getBottomFeedData(_GetBottomFeedData value),
+  TResult map<TResult extends Object>({
+    @required TResult getTopFeedData(_GetTopFeedData value),
+    @required TResult getBottomFeedData(_GetBottomFeedData value),
+    @required TResult getHomeMenuList(_GetHomeMenuList value),
   }) {
     assert(getTopFeedData != null);
     assert(getBottomFeedData != null);
+    assert(getHomeMenuList != null);
     return getBottomFeedData(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result getTopFeedData(_GetTopFeedData value),
-    Result getBottomFeedData(_GetBottomFeedData value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult getTopFeedData(_GetTopFeedData value),
+    TResult getBottomFeedData(_GetBottomFeedData value),
+    TResult getHomeMenuList(_GetHomeMenuList value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getBottomFeedData != null) {
@@ -237,16 +271,116 @@ class _$_GetBottomFeedData implements _GetBottomFeedData {
 }
 
 abstract class _GetBottomFeedData implements FeedHomeEvent {
-  factory _GetBottomFeedData() = _$_GetBottomFeedData;
+  const factory _GetBottomFeedData() = _$_GetBottomFeedData;
 }
 
+/// @nodoc
+abstract class _$GetHomeMenuListCopyWith<$Res> {
+  factory _$GetHomeMenuListCopyWith(
+          _GetHomeMenuList value, $Res Function(_GetHomeMenuList) then) =
+      __$GetHomeMenuListCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetHomeMenuListCopyWithImpl<$Res>
+    extends _$FeedHomeEventCopyWithImpl<$Res>
+    implements _$GetHomeMenuListCopyWith<$Res> {
+  __$GetHomeMenuListCopyWithImpl(
+      _GetHomeMenuList _value, $Res Function(_GetHomeMenuList) _then)
+      : super(_value, (v) => _then(v as _GetHomeMenuList));
+
+  @override
+  _GetHomeMenuList get _value => super._value as _GetHomeMenuList;
+}
+
+/// @nodoc
+class _$_GetHomeMenuList implements _GetHomeMenuList {
+  const _$_GetHomeMenuList();
+
+  @override
+  String toString() {
+    return 'FeedHomeEvent.getHomeMenuList()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _GetHomeMenuList);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult getTopFeedData(),
+    @required TResult getBottomFeedData(),
+    @required TResult getHomeMenuList(),
+  }) {
+    assert(getTopFeedData != null);
+    assert(getBottomFeedData != null);
+    assert(getHomeMenuList != null);
+    return getHomeMenuList();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult getTopFeedData(),
+    TResult getBottomFeedData(),
+    TResult getHomeMenuList(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getHomeMenuList != null) {
+      return getHomeMenuList();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult getTopFeedData(_GetTopFeedData value),
+    @required TResult getBottomFeedData(_GetBottomFeedData value),
+    @required TResult getHomeMenuList(_GetHomeMenuList value),
+  }) {
+    assert(getTopFeedData != null);
+    assert(getBottomFeedData != null);
+    assert(getHomeMenuList != null);
+    return getHomeMenuList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult getTopFeedData(_GetTopFeedData value),
+    TResult getBottomFeedData(_GetBottomFeedData value),
+    TResult getHomeMenuList(_GetHomeMenuList value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getHomeMenuList != null) {
+      return getHomeMenuList(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetHomeMenuList implements FeedHomeEvent {
+  const factory _GetHomeMenuList() = _$_GetHomeMenuList;
+}
+
+/// @nodoc
 class _$FeedHomeStateTearOff {
   const _$FeedHomeStateTearOff();
 
+// ignore: unused_element
   _Initial initial() {
     return _Initial();
   }
 
+// ignore: unused_element
   _FailOrSuccessGetData failOrSuccessGetData(
       {@required Option<Either<FeedFailure, List<Feed>>> responseOptions,
       @required bool isLoading}) {
@@ -256,6 +390,7 @@ class _$FeedHomeStateTearOff {
     );
   }
 
+// ignore: unused_element
   _FailOrSuccessGetDataBottom failOrSuccessGetDataBottom(
       {@required Option<Either<FeedFailure, List<Feed>>> responseOptions,
       @required bool isLoading}) {
@@ -264,57 +399,80 @@ class _$FeedHomeStateTearOff {
       isLoading: isLoading,
     );
   }
+
+// ignore: unused_element
+  _OnGetHomeMenuList onGetHomeMenuList(
+      {@required Option<Either<FeedFailure, List<MenuDataModel>>> homeMenuData,
+      @required bool isLoading}) {
+    return _OnGetHomeMenuList(
+      homeMenuData: homeMenuData,
+      isLoading: isLoading,
+    );
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $FeedHomeState = _$FeedHomeStateTearOff();
 
+/// @nodoc
 mixin _$FeedHomeState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
     @required
-        Result failOrSuccessGetData(
+        TResult failOrSuccessGetData(
             Option<Either<FeedFailure, List<Feed>>> responseOptions,
             bool isLoading),
     @required
-        Result failOrSuccessGetDataBottom(
+        TResult failOrSuccessGetDataBottom(
             Option<Either<FeedFailure, List<Feed>>> responseOptions,
+            bool isLoading),
+    @required
+        TResult onGetHomeMenuList(
+            Option<Either<FeedFailure, List<MenuDataModel>>> homeMenuData,
             bool isLoading),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result failOrSuccessGetData(
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult failOrSuccessGetData(
         Option<Either<FeedFailure, List<Feed>>> responseOptions,
         bool isLoading),
-    Result failOrSuccessGetDataBottom(
+    TResult failOrSuccessGetDataBottom(
         Option<Either<FeedFailure, List<Feed>>> responseOptions,
         bool isLoading),
-    @required Result orElse(),
+    TResult onGetHomeMenuList(
+        Option<Either<FeedFailure, List<MenuDataModel>>> homeMenuData,
+        bool isLoading),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result failOrSuccessGetData(_FailOrSuccessGetData value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult failOrSuccessGetData(_FailOrSuccessGetData value),
     @required
-        Result failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+        TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+    @required TResult onGetHomeMenuList(_OnGetHomeMenuList value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result failOrSuccessGetData(_FailOrSuccessGetData value),
-    Result failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult failOrSuccessGetData(_FailOrSuccessGetData value),
+    TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+    TResult onGetHomeMenuList(_OnGetHomeMenuList value),
+    @required TResult orElse(),
   });
 }
 
+/// @nodoc
 abstract class $FeedHomeStateCopyWith<$Res> {
   factory $FeedHomeStateCopyWith(
           FeedHomeState value, $Res Function(FeedHomeState) then) =
       _$FeedHomeStateCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$FeedHomeStateCopyWithImpl<$Res>
     implements $FeedHomeStateCopyWith<$Res> {
   _$FeedHomeStateCopyWithImpl(this._value, this._then);
@@ -324,11 +482,13 @@ class _$FeedHomeStateCopyWithImpl<$Res>
   final $Res Function(FeedHomeState) _then;
 }
 
+/// @nodoc
 abstract class _$InitialCopyWith<$Res> {
   factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
       __$InitialCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class __$InitialCopyWithImpl<$Res> extends _$FeedHomeStateCopyWithImpl<$Res>
     implements _$InitialCopyWith<$Res> {
   __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
@@ -338,6 +498,7 @@ class __$InitialCopyWithImpl<$Res> extends _$FeedHomeStateCopyWithImpl<$Res>
   _Initial get _value => super._value as _Initial;
 }
 
+/// @nodoc
 class _$_Initial implements _Initial {
   _$_Initial();
 
@@ -356,34 +517,42 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
     @required
-        Result failOrSuccessGetData(
+        TResult failOrSuccessGetData(
             Option<Either<FeedFailure, List<Feed>>> responseOptions,
             bool isLoading),
     @required
-        Result failOrSuccessGetDataBottom(
+        TResult failOrSuccessGetDataBottom(
             Option<Either<FeedFailure, List<Feed>>> responseOptions,
+            bool isLoading),
+    @required
+        TResult onGetHomeMenuList(
+            Option<Either<FeedFailure, List<MenuDataModel>>> homeMenuData,
             bool isLoading),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
     assert(failOrSuccessGetDataBottom != null);
+    assert(onGetHomeMenuList != null);
     return initial();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result failOrSuccessGetData(
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult failOrSuccessGetData(
         Option<Either<FeedFailure, List<Feed>>> responseOptions,
         bool isLoading),
-    Result failOrSuccessGetDataBottom(
+    TResult failOrSuccessGetDataBottom(
         Option<Either<FeedFailure, List<Feed>>> responseOptions,
         bool isLoading),
-    @required Result orElse(),
+    TResult onGetHomeMenuList(
+        Option<Either<FeedFailure, List<MenuDataModel>>> homeMenuData,
+        bool isLoading),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initial != null) {
@@ -394,25 +563,28 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result failOrSuccessGetData(_FailOrSuccessGetData value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult failOrSuccessGetData(_FailOrSuccessGetData value),
     @required
-        Result failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+        TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+    @required TResult onGetHomeMenuList(_OnGetHomeMenuList value),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
     assert(failOrSuccessGetDataBottom != null);
+    assert(onGetHomeMenuList != null);
     return initial(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result failOrSuccessGetData(_FailOrSuccessGetData value),
-    Result failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult failOrSuccessGetData(_FailOrSuccessGetData value),
+    TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+    TResult onGetHomeMenuList(_OnGetHomeMenuList value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initial != null) {
@@ -426,6 +598,7 @@ abstract class _Initial implements FeedHomeState {
   factory _Initial() = _$_Initial;
 }
 
+/// @nodoc
 abstract class _$FailOrSuccessGetDataCopyWith<$Res> {
   factory _$FailOrSuccessGetDataCopyWith(_FailOrSuccessGetData value,
           $Res Function(_FailOrSuccessGetData) then) =
@@ -435,6 +608,7 @@ abstract class _$FailOrSuccessGetDataCopyWith<$Res> {
       bool isLoading});
 }
 
+/// @nodoc
 class __$FailOrSuccessGetDataCopyWithImpl<$Res>
     extends _$FeedHomeStateCopyWithImpl<$Res>
     implements _$FailOrSuccessGetDataCopyWith<$Res> {
@@ -459,6 +633,7 @@ class __$FailOrSuccessGetDataCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_FailOrSuccessGetData implements _FailOrSuccessGetData {
   _$_FailOrSuccessGetData(
       {@required this.responseOptions, @required this.isLoading})
@@ -493,6 +668,7 @@ class _$_FailOrSuccessGetData implements _FailOrSuccessGetData {
       const DeepCollectionEquality().hash(responseOptions) ^
       const DeepCollectionEquality().hash(isLoading);
 
+  @JsonKey(ignore: true)
   @override
   _$FailOrSuccessGetDataCopyWith<_FailOrSuccessGetData> get copyWith =>
       __$FailOrSuccessGetDataCopyWithImpl<_FailOrSuccessGetData>(
@@ -500,34 +676,42 @@ class _$_FailOrSuccessGetData implements _FailOrSuccessGetData {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
     @required
-        Result failOrSuccessGetData(
+        TResult failOrSuccessGetData(
             Option<Either<FeedFailure, List<Feed>>> responseOptions,
             bool isLoading),
     @required
-        Result failOrSuccessGetDataBottom(
+        TResult failOrSuccessGetDataBottom(
             Option<Either<FeedFailure, List<Feed>>> responseOptions,
+            bool isLoading),
+    @required
+        TResult onGetHomeMenuList(
+            Option<Either<FeedFailure, List<MenuDataModel>>> homeMenuData,
             bool isLoading),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
     assert(failOrSuccessGetDataBottom != null);
+    assert(onGetHomeMenuList != null);
     return failOrSuccessGetData(responseOptions, isLoading);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result failOrSuccessGetData(
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult failOrSuccessGetData(
         Option<Either<FeedFailure, List<Feed>>> responseOptions,
         bool isLoading),
-    Result failOrSuccessGetDataBottom(
+    TResult failOrSuccessGetDataBottom(
         Option<Either<FeedFailure, List<Feed>>> responseOptions,
         bool isLoading),
-    @required Result orElse(),
+    TResult onGetHomeMenuList(
+        Option<Either<FeedFailure, List<MenuDataModel>>> homeMenuData,
+        bool isLoading),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (failOrSuccessGetData != null) {
@@ -538,25 +722,28 @@ class _$_FailOrSuccessGetData implements _FailOrSuccessGetData {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result failOrSuccessGetData(_FailOrSuccessGetData value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult failOrSuccessGetData(_FailOrSuccessGetData value),
     @required
-        Result failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+        TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+    @required TResult onGetHomeMenuList(_OnGetHomeMenuList value),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
     assert(failOrSuccessGetDataBottom != null);
+    assert(onGetHomeMenuList != null);
     return failOrSuccessGetData(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result failOrSuccessGetData(_FailOrSuccessGetData value),
-    Result failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult failOrSuccessGetData(_FailOrSuccessGetData value),
+    TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+    TResult onGetHomeMenuList(_OnGetHomeMenuList value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (failOrSuccessGetData != null) {
@@ -573,9 +760,11 @@ abstract class _FailOrSuccessGetData implements FeedHomeState {
 
   Option<Either<FeedFailure, List<Feed>>> get responseOptions;
   bool get isLoading;
+  @JsonKey(ignore: true)
   _$FailOrSuccessGetDataCopyWith<_FailOrSuccessGetData> get copyWith;
 }
 
+/// @nodoc
 abstract class _$FailOrSuccessGetDataBottomCopyWith<$Res> {
   factory _$FailOrSuccessGetDataBottomCopyWith(
           _FailOrSuccessGetDataBottom value,
@@ -586,6 +775,7 @@ abstract class _$FailOrSuccessGetDataBottomCopyWith<$Res> {
       bool isLoading});
 }
 
+/// @nodoc
 class __$FailOrSuccessGetDataBottomCopyWithImpl<$Res>
     extends _$FeedHomeStateCopyWithImpl<$Res>
     implements _$FailOrSuccessGetDataBottomCopyWith<$Res> {
@@ -611,6 +801,7 @@ class __$FailOrSuccessGetDataBottomCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_FailOrSuccessGetDataBottom implements _FailOrSuccessGetDataBottom {
   _$_FailOrSuccessGetDataBottom(
       {@required this.responseOptions, @required this.isLoading})
@@ -645,6 +836,7 @@ class _$_FailOrSuccessGetDataBottom implements _FailOrSuccessGetDataBottom {
       const DeepCollectionEquality().hash(responseOptions) ^
       const DeepCollectionEquality().hash(isLoading);
 
+  @JsonKey(ignore: true)
   @override
   _$FailOrSuccessGetDataBottomCopyWith<_FailOrSuccessGetDataBottom>
       get copyWith => __$FailOrSuccessGetDataBottomCopyWithImpl<
@@ -652,34 +844,42 @@ class _$_FailOrSuccessGetDataBottom implements _FailOrSuccessGetDataBottom {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
     @required
-        Result failOrSuccessGetData(
+        TResult failOrSuccessGetData(
             Option<Either<FeedFailure, List<Feed>>> responseOptions,
             bool isLoading),
     @required
-        Result failOrSuccessGetDataBottom(
+        TResult failOrSuccessGetDataBottom(
             Option<Either<FeedFailure, List<Feed>>> responseOptions,
+            bool isLoading),
+    @required
+        TResult onGetHomeMenuList(
+            Option<Either<FeedFailure, List<MenuDataModel>>> homeMenuData,
             bool isLoading),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
     assert(failOrSuccessGetDataBottom != null);
+    assert(onGetHomeMenuList != null);
     return failOrSuccessGetDataBottom(responseOptions, isLoading);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result failOrSuccessGetData(
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult failOrSuccessGetData(
         Option<Either<FeedFailure, List<Feed>>> responseOptions,
         bool isLoading),
-    Result failOrSuccessGetDataBottom(
+    TResult failOrSuccessGetDataBottom(
         Option<Either<FeedFailure, List<Feed>>> responseOptions,
         bool isLoading),
-    @required Result orElse(),
+    TResult onGetHomeMenuList(
+        Option<Either<FeedFailure, List<MenuDataModel>>> homeMenuData,
+        bool isLoading),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (failOrSuccessGetDataBottom != null) {
@@ -690,25 +890,28 @@ class _$_FailOrSuccessGetDataBottom implements _FailOrSuccessGetDataBottom {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result failOrSuccessGetData(_FailOrSuccessGetData value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult failOrSuccessGetData(_FailOrSuccessGetData value),
     @required
-        Result failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+        TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+    @required TResult onGetHomeMenuList(_OnGetHomeMenuList value),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
     assert(failOrSuccessGetDataBottom != null);
+    assert(onGetHomeMenuList != null);
     return failOrSuccessGetDataBottom(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result failOrSuccessGetData(_FailOrSuccessGetData value),
-    Result failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult failOrSuccessGetData(_FailOrSuccessGetData value),
+    TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+    TResult onGetHomeMenuList(_OnGetHomeMenuList value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (failOrSuccessGetDataBottom != null) {
@@ -725,6 +928,172 @@ abstract class _FailOrSuccessGetDataBottom implements FeedHomeState {
 
   Option<Either<FeedFailure, List<Feed>>> get responseOptions;
   bool get isLoading;
+  @JsonKey(ignore: true)
   _$FailOrSuccessGetDataBottomCopyWith<_FailOrSuccessGetDataBottom>
       get copyWith;
+}
+
+/// @nodoc
+abstract class _$OnGetHomeMenuListCopyWith<$Res> {
+  factory _$OnGetHomeMenuListCopyWith(
+          _OnGetHomeMenuList value, $Res Function(_OnGetHomeMenuList) then) =
+      __$OnGetHomeMenuListCopyWithImpl<$Res>;
+  $Res call(
+      {Option<Either<FeedFailure, List<MenuDataModel>>> homeMenuData,
+      bool isLoading});
+}
+
+/// @nodoc
+class __$OnGetHomeMenuListCopyWithImpl<$Res>
+    extends _$FeedHomeStateCopyWithImpl<$Res>
+    implements _$OnGetHomeMenuListCopyWith<$Res> {
+  __$OnGetHomeMenuListCopyWithImpl(
+      _OnGetHomeMenuList _value, $Res Function(_OnGetHomeMenuList) _then)
+      : super(_value, (v) => _then(v as _OnGetHomeMenuList));
+
+  @override
+  _OnGetHomeMenuList get _value => super._value as _OnGetHomeMenuList;
+
+  @override
+  $Res call({
+    Object homeMenuData = freezed,
+    Object isLoading = freezed,
+  }) {
+    return _then(_OnGetHomeMenuList(
+      homeMenuData: homeMenuData == freezed
+          ? _value.homeMenuData
+          : homeMenuData as Option<Either<FeedFailure, List<MenuDataModel>>>,
+      isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_OnGetHomeMenuList implements _OnGetHomeMenuList {
+  const _$_OnGetHomeMenuList(
+      {@required this.homeMenuData, @required this.isLoading})
+      : assert(homeMenuData != null),
+        assert(isLoading != null);
+
+  @override
+  final Option<Either<FeedFailure, List<MenuDataModel>>> homeMenuData;
+  @override
+  final bool isLoading;
+
+  @override
+  String toString() {
+    return 'FeedHomeState.onGetHomeMenuList(homeMenuData: $homeMenuData, isLoading: $isLoading)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _OnGetHomeMenuList &&
+            (identical(other.homeMenuData, homeMenuData) ||
+                const DeepCollectionEquality()
+                    .equals(other.homeMenuData, homeMenuData)) &&
+            (identical(other.isLoading, isLoading) ||
+                const DeepCollectionEquality()
+                    .equals(other.isLoading, isLoading)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(homeMenuData) ^
+      const DeepCollectionEquality().hash(isLoading);
+
+  @JsonKey(ignore: true)
+  @override
+  _$OnGetHomeMenuListCopyWith<_OnGetHomeMenuList> get copyWith =>
+      __$OnGetHomeMenuListCopyWithImpl<_OnGetHomeMenuList>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required
+        TResult failOrSuccessGetData(
+            Option<Either<FeedFailure, List<Feed>>> responseOptions,
+            bool isLoading),
+    @required
+        TResult failOrSuccessGetDataBottom(
+            Option<Either<FeedFailure, List<Feed>>> responseOptions,
+            bool isLoading),
+    @required
+        TResult onGetHomeMenuList(
+            Option<Either<FeedFailure, List<MenuDataModel>>> homeMenuData,
+            bool isLoading),
+  }) {
+    assert(initial != null);
+    assert(failOrSuccessGetData != null);
+    assert(failOrSuccessGetDataBottom != null);
+    assert(onGetHomeMenuList != null);
+    return onGetHomeMenuList(homeMenuData, isLoading);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult failOrSuccessGetData(
+        Option<Either<FeedFailure, List<Feed>>> responseOptions,
+        bool isLoading),
+    TResult failOrSuccessGetDataBottom(
+        Option<Either<FeedFailure, List<Feed>>> responseOptions,
+        bool isLoading),
+    TResult onGetHomeMenuList(
+        Option<Either<FeedFailure, List<MenuDataModel>>> homeMenuData,
+        bool isLoading),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (onGetHomeMenuList != null) {
+      return onGetHomeMenuList(homeMenuData, isLoading);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult failOrSuccessGetData(_FailOrSuccessGetData value),
+    @required
+        TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+    @required TResult onGetHomeMenuList(_OnGetHomeMenuList value),
+  }) {
+    assert(initial != null);
+    assert(failOrSuccessGetData != null);
+    assert(failOrSuccessGetDataBottom != null);
+    assert(onGetHomeMenuList != null);
+    return onGetHomeMenuList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult failOrSuccessGetData(_FailOrSuccessGetData value),
+    TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+    TResult onGetHomeMenuList(_OnGetHomeMenuList value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (onGetHomeMenuList != null) {
+      return onGetHomeMenuList(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnGetHomeMenuList implements FeedHomeState {
+  const factory _OnGetHomeMenuList(
+      {@required Option<Either<FeedFailure, List<MenuDataModel>>> homeMenuData,
+      @required bool isLoading}) = _$_OnGetHomeMenuList;
+
+  Option<Either<FeedFailure, List<MenuDataModel>>> get homeMenuData;
+  bool get isLoading;
+  @JsonKey(ignore: true)
+  _$OnGetHomeMenuListCopyWith<_OnGetHomeMenuList> get copyWith;
 }

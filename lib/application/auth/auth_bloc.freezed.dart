@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'auth_bloc.dart';
 
@@ -9,97 +9,84 @@ part of 'auth_bloc.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$AuthEventTearOff {
   const _$AuthEventTearOff();
 
-  _LoginWithEmail loginWithEmail(LoginRequestData loginRequestData) {
+// ignore: unused_element
+  _LoginWithEmail loginWithEmail(String username, String password) {
     return _LoginWithEmail(
-      loginRequestData,
+      username,
+      password,
     );
   }
 
-  _RegisterWithEmail registerWithEmail(RegisterData registerData) {
+// ignore: unused_element
+  _RegisterWithEmail registerWithEmail(SignUpRequest request) {
     return _RegisterWithEmail(
-      registerData,
+      request,
     );
   }
 
+// ignore: unused_element
   _GetUserRoleList getUserRoleList() {
     return _GetUserRoleList();
   }
 
+// ignore: unused_element
   _UpdateCustomer updateCustomer({UpdateCustomerData data, File image}) {
     return _UpdateCustomer(
       data: data,
       image: image,
     );
   }
-
-  _UpdateGroomer updateGroomer({User user}) {
-    return _UpdateGroomer(
-      user: user,
-    );
-  }
-
-  _ChangeGroomerAvailability changeGroomerAvailability(
-      {bool isAvailable, String id}) {
-    return _ChangeGroomerAvailability(
-      isAvailable: isAvailable,
-      id: id,
-    );
-  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $AuthEvent = _$AuthEventTearOff();
 
+/// @nodoc
 mixin _$AuthEvent {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginWithEmail(LoginRequestData loginRequestData),
-    @required Result registerWithEmail(RegisterData registerData),
-    @required Result getUserRoleList(),
-    @required Result updateCustomer(UpdateCustomerData data, File image),
-    @required Result updateGroomer(User user),
-    @required Result changeGroomerAvailability(bool isAvailable, String id),
+  TResult when<TResult extends Object>({
+    @required TResult loginWithEmail(String username, String password),
+    @required TResult registerWithEmail(SignUpRequest request),
+    @required TResult getUserRoleList(),
+    @required TResult updateCustomer(UpdateCustomerData data, File image),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginWithEmail(LoginRequestData loginRequestData),
-    Result registerWithEmail(RegisterData registerData),
-    Result getUserRoleList(),
-    Result updateCustomer(UpdateCustomerData data, File image),
-    Result updateGroomer(User user),
-    Result changeGroomerAvailability(bool isAvailable, String id),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginWithEmail(String username, String password),
+    TResult registerWithEmail(SignUpRequest request),
+    TResult getUserRoleList(),
+    TResult updateCustomer(UpdateCustomerData data, File image),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginWithEmail(_LoginWithEmail value),
-    @required Result registerWithEmail(_RegisterWithEmail value),
-    @required Result getUserRoleList(_GetUserRoleList value),
-    @required Result updateCustomer(_UpdateCustomer value),
-    @required Result updateGroomer(_UpdateGroomer value),
-    @required
-        Result changeGroomerAvailability(_ChangeGroomerAvailability value),
+  TResult map<TResult extends Object>({
+    @required TResult loginWithEmail(_LoginWithEmail value),
+    @required TResult registerWithEmail(_RegisterWithEmail value),
+    @required TResult getUserRoleList(_GetUserRoleList value),
+    @required TResult updateCustomer(_UpdateCustomer value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginWithEmail(_LoginWithEmail value),
-    Result registerWithEmail(_RegisterWithEmail value),
-    Result getUserRoleList(_GetUserRoleList value),
-    Result updateCustomer(_UpdateCustomer value),
-    Result updateGroomer(_UpdateGroomer value),
-    Result changeGroomerAvailability(_ChangeGroomerAvailability value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginWithEmail(_LoginWithEmail value),
+    TResult registerWithEmail(_RegisterWithEmail value),
+    TResult getUserRoleList(_GetUserRoleList value),
+    TResult updateCustomer(_UpdateCustomer value),
+    @required TResult orElse(),
   });
 }
 
+/// @nodoc
 abstract class $AuthEventCopyWith<$Res> {
   factory $AuthEventCopyWith(AuthEvent value, $Res Function(AuthEvent) then) =
       _$AuthEventCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$AuthEventCopyWithImpl<$Res> implements $AuthEventCopyWith<$Res> {
   _$AuthEventCopyWithImpl(this._value, this._then);
 
@@ -108,13 +95,15 @@ class _$AuthEventCopyWithImpl<$Res> implements $AuthEventCopyWith<$Res> {
   final $Res Function(AuthEvent) _then;
 }
 
+/// @nodoc
 abstract class _$LoginWithEmailCopyWith<$Res> {
   factory _$LoginWithEmailCopyWith(
           _LoginWithEmail value, $Res Function(_LoginWithEmail) then) =
       __$LoginWithEmailCopyWithImpl<$Res>;
-  $Res call({LoginRequestData loginRequestData});
+  $Res call({String username, String password});
 }
 
+/// @nodoc
 class __$LoginWithEmailCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
     implements _$LoginWithEmailCopyWith<$Res> {
   __$LoginWithEmailCopyWithImpl(
@@ -126,112 +115,109 @@ class __$LoginWithEmailCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object loginRequestData = freezed,
+    Object username = freezed,
+    Object password = freezed,
   }) {
     return _then(_LoginWithEmail(
-      loginRequestData == freezed
-          ? _value.loginRequestData
-          : loginRequestData as LoginRequestData,
+      username == freezed ? _value.username : username as String,
+      password == freezed ? _value.password : password as String,
     ));
   }
 }
 
+/// @nodoc
 class _$_LoginWithEmail implements _LoginWithEmail {
-  _$_LoginWithEmail(this.loginRequestData) : assert(loginRequestData != null);
+  _$_LoginWithEmail(this.username, this.password)
+      : assert(username != null),
+        assert(password != null);
 
   @override
-  final LoginRequestData loginRequestData;
+  final String username;
+  @override
+  final String password;
 
   @override
   String toString() {
-    return 'AuthEvent.loginWithEmail(loginRequestData: $loginRequestData)';
+    return 'AuthEvent.loginWithEmail(username: $username, password: $password)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _LoginWithEmail &&
-            (identical(other.loginRequestData, loginRequestData) ||
+            (identical(other.username, username) ||
                 const DeepCollectionEquality()
-                    .equals(other.loginRequestData, loginRequestData)));
+                    .equals(other.username, username)) &&
+            (identical(other.password, password) ||
+                const DeepCollectionEquality()
+                    .equals(other.password, password)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(loginRequestData);
+      const DeepCollectionEquality().hash(username) ^
+      const DeepCollectionEquality().hash(password);
 
+  @JsonKey(ignore: true)
   @override
   _$LoginWithEmailCopyWith<_LoginWithEmail> get copyWith =>
       __$LoginWithEmailCopyWithImpl<_LoginWithEmail>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginWithEmail(LoginRequestData loginRequestData),
-    @required Result registerWithEmail(RegisterData registerData),
-    @required Result getUserRoleList(),
-    @required Result updateCustomer(UpdateCustomerData data, File image),
-    @required Result updateGroomer(User user),
-    @required Result changeGroomerAvailability(bool isAvailable, String id),
+  TResult when<TResult extends Object>({
+    @required TResult loginWithEmail(String username, String password),
+    @required TResult registerWithEmail(SignUpRequest request),
+    @required TResult getUserRoleList(),
+    @required TResult updateCustomer(UpdateCustomerData data, File image),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
-    assert(updateGroomer != null);
-    assert(changeGroomerAvailability != null);
-    return loginWithEmail(loginRequestData);
+    return loginWithEmail(username, password);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginWithEmail(LoginRequestData loginRequestData),
-    Result registerWithEmail(RegisterData registerData),
-    Result getUserRoleList(),
-    Result updateCustomer(UpdateCustomerData data, File image),
-    Result updateGroomer(User user),
-    Result changeGroomerAvailability(bool isAvailable, String id),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginWithEmail(String username, String password),
+    TResult registerWithEmail(SignUpRequest request),
+    TResult getUserRoleList(),
+    TResult updateCustomer(UpdateCustomerData data, File image),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginWithEmail != null) {
-      return loginWithEmail(loginRequestData);
+      return loginWithEmail(username, password);
     }
     return orElse();
   }
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginWithEmail(_LoginWithEmail value),
-    @required Result registerWithEmail(_RegisterWithEmail value),
-    @required Result getUserRoleList(_GetUserRoleList value),
-    @required Result updateCustomer(_UpdateCustomer value),
-    @required Result updateGroomer(_UpdateGroomer value),
-    @required
-        Result changeGroomerAvailability(_ChangeGroomerAvailability value),
+  TResult map<TResult extends Object>({
+    @required TResult loginWithEmail(_LoginWithEmail value),
+    @required TResult registerWithEmail(_RegisterWithEmail value),
+    @required TResult getUserRoleList(_GetUserRoleList value),
+    @required TResult updateCustomer(_UpdateCustomer value),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
-    assert(updateGroomer != null);
-    assert(changeGroomerAvailability != null);
     return loginWithEmail(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginWithEmail(_LoginWithEmail value),
-    Result registerWithEmail(_RegisterWithEmail value),
-    Result getUserRoleList(_GetUserRoleList value),
-    Result updateCustomer(_UpdateCustomer value),
-    Result updateGroomer(_UpdateGroomer value),
-    Result changeGroomerAvailability(_ChangeGroomerAvailability value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginWithEmail(_LoginWithEmail value),
+    TResult registerWithEmail(_RegisterWithEmail value),
+    TResult getUserRoleList(_GetUserRoleList value),
+    TResult updateCustomer(_UpdateCustomer value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginWithEmail != null) {
@@ -242,22 +228,25 @@ class _$_LoginWithEmail implements _LoginWithEmail {
 }
 
 abstract class _LoginWithEmail implements AuthEvent {
-  factory _LoginWithEmail(LoginRequestData loginRequestData) =
-      _$_LoginWithEmail;
+  factory _LoginWithEmail(String username, String password) = _$_LoginWithEmail;
 
-  LoginRequestData get loginRequestData;
+  String get username;
+  String get password;
+  @JsonKey(ignore: true)
   _$LoginWithEmailCopyWith<_LoginWithEmail> get copyWith;
 }
 
+/// @nodoc
 abstract class _$RegisterWithEmailCopyWith<$Res> {
   factory _$RegisterWithEmailCopyWith(
           _RegisterWithEmail value, $Res Function(_RegisterWithEmail) then) =
       __$RegisterWithEmailCopyWithImpl<$Res>;
-  $Res call({RegisterData registerData});
+  $Res call({SignUpRequest request});
 
-  $RegisterDataCopyWith<$Res> get registerData;
+  $SignUpRequestCopyWith<$Res> get request;
 }
 
+/// @nodoc
 class __$RegisterWithEmailCopyWithImpl<$Res>
     extends _$AuthEventCopyWithImpl<$Res>
     implements _$RegisterWithEmailCopyWith<$Res> {
@@ -270,121 +259,107 @@ class __$RegisterWithEmailCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object registerData = freezed,
+    Object request = freezed,
   }) {
     return _then(_RegisterWithEmail(
-      registerData == freezed
-          ? _value.registerData
-          : registerData as RegisterData,
+      request == freezed ? _value.request : request as SignUpRequest,
     ));
   }
 
   @override
-  $RegisterDataCopyWith<$Res> get registerData {
-    if (_value.registerData == null) {
+  $SignUpRequestCopyWith<$Res> get request {
+    if (_value.request == null) {
       return null;
     }
-    return $RegisterDataCopyWith<$Res>(_value.registerData, (value) {
-      return _then(_value.copyWith(registerData: value));
+    return $SignUpRequestCopyWith<$Res>(_value.request, (value) {
+      return _then(_value.copyWith(request: value));
     });
   }
 }
 
+/// @nodoc
 class _$_RegisterWithEmail implements _RegisterWithEmail {
-  _$_RegisterWithEmail(this.registerData) : assert(registerData != null);
+  _$_RegisterWithEmail(this.request) : assert(request != null);
 
   @override
-  final RegisterData registerData;
+  final SignUpRequest request;
 
   @override
   String toString() {
-    return 'AuthEvent.registerWithEmail(registerData: $registerData)';
+    return 'AuthEvent.registerWithEmail(request: $request)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _RegisterWithEmail &&
-            (identical(other.registerData, registerData) ||
-                const DeepCollectionEquality()
-                    .equals(other.registerData, registerData)));
+            (identical(other.request, request) ||
+                const DeepCollectionEquality().equals(other.request, request)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(registerData);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(request);
 
+  @JsonKey(ignore: true)
   @override
   _$RegisterWithEmailCopyWith<_RegisterWithEmail> get copyWith =>
       __$RegisterWithEmailCopyWithImpl<_RegisterWithEmail>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginWithEmail(LoginRequestData loginRequestData),
-    @required Result registerWithEmail(RegisterData registerData),
-    @required Result getUserRoleList(),
-    @required Result updateCustomer(UpdateCustomerData data, File image),
-    @required Result updateGroomer(User user),
-    @required Result changeGroomerAvailability(bool isAvailable, String id),
+  TResult when<TResult extends Object>({
+    @required TResult loginWithEmail(String username, String password),
+    @required TResult registerWithEmail(SignUpRequest request),
+    @required TResult getUserRoleList(),
+    @required TResult updateCustomer(UpdateCustomerData data, File image),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
-    assert(updateGroomer != null);
-    assert(changeGroomerAvailability != null);
-    return registerWithEmail(registerData);
+    return registerWithEmail(request);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginWithEmail(LoginRequestData loginRequestData),
-    Result registerWithEmail(RegisterData registerData),
-    Result getUserRoleList(),
-    Result updateCustomer(UpdateCustomerData data, File image),
-    Result updateGroomer(User user),
-    Result changeGroomerAvailability(bool isAvailable, String id),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginWithEmail(String username, String password),
+    TResult registerWithEmail(SignUpRequest request),
+    TResult getUserRoleList(),
+    TResult updateCustomer(UpdateCustomerData data, File image),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (registerWithEmail != null) {
-      return registerWithEmail(registerData);
+      return registerWithEmail(request);
     }
     return orElse();
   }
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginWithEmail(_LoginWithEmail value),
-    @required Result registerWithEmail(_RegisterWithEmail value),
-    @required Result getUserRoleList(_GetUserRoleList value),
-    @required Result updateCustomer(_UpdateCustomer value),
-    @required Result updateGroomer(_UpdateGroomer value),
-    @required
-        Result changeGroomerAvailability(_ChangeGroomerAvailability value),
+  TResult map<TResult extends Object>({
+    @required TResult loginWithEmail(_LoginWithEmail value),
+    @required TResult registerWithEmail(_RegisterWithEmail value),
+    @required TResult getUserRoleList(_GetUserRoleList value),
+    @required TResult updateCustomer(_UpdateCustomer value),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
-    assert(updateGroomer != null);
-    assert(changeGroomerAvailability != null);
     return registerWithEmail(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginWithEmail(_LoginWithEmail value),
-    Result registerWithEmail(_RegisterWithEmail value),
-    Result getUserRoleList(_GetUserRoleList value),
-    Result updateCustomer(_UpdateCustomer value),
-    Result updateGroomer(_UpdateGroomer value),
-    Result changeGroomerAvailability(_ChangeGroomerAvailability value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginWithEmail(_LoginWithEmail value),
+    TResult registerWithEmail(_RegisterWithEmail value),
+    TResult getUserRoleList(_GetUserRoleList value),
+    TResult updateCustomer(_UpdateCustomer value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (registerWithEmail != null) {
@@ -395,18 +370,21 @@ class _$_RegisterWithEmail implements _RegisterWithEmail {
 }
 
 abstract class _RegisterWithEmail implements AuthEvent {
-  factory _RegisterWithEmail(RegisterData registerData) = _$_RegisterWithEmail;
+  factory _RegisterWithEmail(SignUpRequest request) = _$_RegisterWithEmail;
 
-  RegisterData get registerData;
+  SignUpRequest get request;
+  @JsonKey(ignore: true)
   _$RegisterWithEmailCopyWith<_RegisterWithEmail> get copyWith;
 }
 
+/// @nodoc
 abstract class _$GetUserRoleListCopyWith<$Res> {
   factory _$GetUserRoleListCopyWith(
           _GetUserRoleList value, $Res Function(_GetUserRoleList) then) =
       __$GetUserRoleListCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class __$GetUserRoleListCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
     implements _$GetUserRoleListCopyWith<$Res> {
   __$GetUserRoleListCopyWithImpl(
@@ -417,6 +395,7 @@ class __$GetUserRoleListCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
   _GetUserRoleList get _value => super._value as _GetUserRoleList;
 }
 
+/// @nodoc
 class _$_GetUserRoleList implements _GetUserRoleList {
   _$_GetUserRoleList();
 
@@ -435,33 +414,27 @@ class _$_GetUserRoleList implements _GetUserRoleList {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginWithEmail(LoginRequestData loginRequestData),
-    @required Result registerWithEmail(RegisterData registerData),
-    @required Result getUserRoleList(),
-    @required Result updateCustomer(UpdateCustomerData data, File image),
-    @required Result updateGroomer(User user),
-    @required Result changeGroomerAvailability(bool isAvailable, String id),
+  TResult when<TResult extends Object>({
+    @required TResult loginWithEmail(String username, String password),
+    @required TResult registerWithEmail(SignUpRequest request),
+    @required TResult getUserRoleList(),
+    @required TResult updateCustomer(UpdateCustomerData data, File image),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
-    assert(updateGroomer != null);
-    assert(changeGroomerAvailability != null);
     return getUserRoleList();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginWithEmail(LoginRequestData loginRequestData),
-    Result registerWithEmail(RegisterData registerData),
-    Result getUserRoleList(),
-    Result updateCustomer(UpdateCustomerData data, File image),
-    Result updateGroomer(User user),
-    Result changeGroomerAvailability(bool isAvailable, String id),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginWithEmail(String username, String password),
+    TResult registerWithEmail(SignUpRequest request),
+    TResult getUserRoleList(),
+    TResult updateCustomer(UpdateCustomerData data, File image),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getUserRoleList != null) {
@@ -472,34 +445,27 @@ class _$_GetUserRoleList implements _GetUserRoleList {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginWithEmail(_LoginWithEmail value),
-    @required Result registerWithEmail(_RegisterWithEmail value),
-    @required Result getUserRoleList(_GetUserRoleList value),
-    @required Result updateCustomer(_UpdateCustomer value),
-    @required Result updateGroomer(_UpdateGroomer value),
-    @required
-        Result changeGroomerAvailability(_ChangeGroomerAvailability value),
+  TResult map<TResult extends Object>({
+    @required TResult loginWithEmail(_LoginWithEmail value),
+    @required TResult registerWithEmail(_RegisterWithEmail value),
+    @required TResult getUserRoleList(_GetUserRoleList value),
+    @required TResult updateCustomer(_UpdateCustomer value),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
-    assert(updateGroomer != null);
-    assert(changeGroomerAvailability != null);
     return getUserRoleList(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginWithEmail(_LoginWithEmail value),
-    Result registerWithEmail(_RegisterWithEmail value),
-    Result getUserRoleList(_GetUserRoleList value),
-    Result updateCustomer(_UpdateCustomer value),
-    Result updateGroomer(_UpdateGroomer value),
-    Result changeGroomerAvailability(_ChangeGroomerAvailability value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginWithEmail(_LoginWithEmail value),
+    TResult registerWithEmail(_RegisterWithEmail value),
+    TResult getUserRoleList(_GetUserRoleList value),
+    TResult updateCustomer(_UpdateCustomer value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getUserRoleList != null) {
@@ -513,6 +479,7 @@ abstract class _GetUserRoleList implements AuthEvent {
   factory _GetUserRoleList() = _$_GetUserRoleList;
 }
 
+/// @nodoc
 abstract class _$UpdateCustomerCopyWith<$Res> {
   factory _$UpdateCustomerCopyWith(
           _UpdateCustomer value, $Res Function(_UpdateCustomer) then) =
@@ -520,6 +487,7 @@ abstract class _$UpdateCustomerCopyWith<$Res> {
   $Res call({UpdateCustomerData data, File image});
 }
 
+/// @nodoc
 class __$UpdateCustomerCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
     implements _$UpdateCustomerCopyWith<$Res> {
   __$UpdateCustomerCopyWithImpl(
@@ -541,6 +509,7 @@ class __$UpdateCustomerCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_UpdateCustomer implements _UpdateCustomer {
   _$_UpdateCustomer({this.data, this.image});
 
@@ -570,39 +539,34 @@ class _$_UpdateCustomer implements _UpdateCustomer {
       const DeepCollectionEquality().hash(data) ^
       const DeepCollectionEquality().hash(image);
 
+  @JsonKey(ignore: true)
   @override
   _$UpdateCustomerCopyWith<_UpdateCustomer> get copyWith =>
       __$UpdateCustomerCopyWithImpl<_UpdateCustomer>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginWithEmail(LoginRequestData loginRequestData),
-    @required Result registerWithEmail(RegisterData registerData),
-    @required Result getUserRoleList(),
-    @required Result updateCustomer(UpdateCustomerData data, File image),
-    @required Result updateGroomer(User user),
-    @required Result changeGroomerAvailability(bool isAvailable, String id),
+  TResult when<TResult extends Object>({
+    @required TResult loginWithEmail(String username, String password),
+    @required TResult registerWithEmail(SignUpRequest request),
+    @required TResult getUserRoleList(),
+    @required TResult updateCustomer(UpdateCustomerData data, File image),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
-    assert(updateGroomer != null);
-    assert(changeGroomerAvailability != null);
     return updateCustomer(data, image);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginWithEmail(LoginRequestData loginRequestData),
-    Result registerWithEmail(RegisterData registerData),
-    Result getUserRoleList(),
-    Result updateCustomer(UpdateCustomerData data, File image),
-    Result updateGroomer(User user),
-    Result changeGroomerAvailability(bool isAvailable, String id),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginWithEmail(String username, String password),
+    TResult registerWithEmail(SignUpRequest request),
+    TResult getUserRoleList(),
+    TResult updateCustomer(UpdateCustomerData data, File image),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateCustomer != null) {
@@ -613,34 +577,27 @@ class _$_UpdateCustomer implements _UpdateCustomer {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginWithEmail(_LoginWithEmail value),
-    @required Result registerWithEmail(_RegisterWithEmail value),
-    @required Result getUserRoleList(_GetUserRoleList value),
-    @required Result updateCustomer(_UpdateCustomer value),
-    @required Result updateGroomer(_UpdateGroomer value),
-    @required
-        Result changeGroomerAvailability(_ChangeGroomerAvailability value),
+  TResult map<TResult extends Object>({
+    @required TResult loginWithEmail(_LoginWithEmail value),
+    @required TResult registerWithEmail(_RegisterWithEmail value),
+    @required TResult getUserRoleList(_GetUserRoleList value),
+    @required TResult updateCustomer(_UpdateCustomer value),
   }) {
     assert(loginWithEmail != null);
     assert(registerWithEmail != null);
     assert(getUserRoleList != null);
     assert(updateCustomer != null);
-    assert(updateGroomer != null);
-    assert(changeGroomerAvailability != null);
     return updateCustomer(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginWithEmail(_LoginWithEmail value),
-    Result registerWithEmail(_RegisterWithEmail value),
-    Result getUserRoleList(_GetUserRoleList value),
-    Result updateCustomer(_UpdateCustomer value),
-    Result updateGroomer(_UpdateGroomer value),
-    Result changeGroomerAvailability(_ChangeGroomerAvailability value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginWithEmail(_LoginWithEmail value),
+    TResult registerWithEmail(_RegisterWithEmail value),
+    TResult getUserRoleList(_GetUserRoleList value),
+    TResult updateCustomer(_UpdateCustomer value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateCustomer != null) {
@@ -656,320 +613,25 @@ abstract class _UpdateCustomer implements AuthEvent {
 
   UpdateCustomerData get data;
   File get image;
+  @JsonKey(ignore: true)
   _$UpdateCustomerCopyWith<_UpdateCustomer> get copyWith;
 }
 
-abstract class _$UpdateGroomerCopyWith<$Res> {
-  factory _$UpdateGroomerCopyWith(
-          _UpdateGroomer value, $Res Function(_UpdateGroomer) then) =
-      __$UpdateGroomerCopyWithImpl<$Res>;
-  $Res call({User user});
-
-  $UserCopyWith<$Res> get user;
-}
-
-class __$UpdateGroomerCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
-    implements _$UpdateGroomerCopyWith<$Res> {
-  __$UpdateGroomerCopyWithImpl(
-      _UpdateGroomer _value, $Res Function(_UpdateGroomer) _then)
-      : super(_value, (v) => _then(v as _UpdateGroomer));
-
-  @override
-  _UpdateGroomer get _value => super._value as _UpdateGroomer;
-
-  @override
-  $Res call({
-    Object user = freezed,
-  }) {
-    return _then(_UpdateGroomer(
-      user: user == freezed ? _value.user : user as User,
-    ));
-  }
-
-  @override
-  $UserCopyWith<$Res> get user {
-    if (_value.user == null) {
-      return null;
-    }
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
-  }
-}
-
-class _$_UpdateGroomer implements _UpdateGroomer {
-  _$_UpdateGroomer({this.user});
-
-  @override
-  final User user;
-
-  @override
-  String toString() {
-    return 'AuthEvent.updateGroomer(user: $user)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _UpdateGroomer &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
-
-  @override
-  _$UpdateGroomerCopyWith<_UpdateGroomer> get copyWith =>
-      __$UpdateGroomerCopyWithImpl<_UpdateGroomer>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginWithEmail(LoginRequestData loginRequestData),
-    @required Result registerWithEmail(RegisterData registerData),
-    @required Result getUserRoleList(),
-    @required Result updateCustomer(UpdateCustomerData data, File image),
-    @required Result updateGroomer(User user),
-    @required Result changeGroomerAvailability(bool isAvailable, String id),
-  }) {
-    assert(loginWithEmail != null);
-    assert(registerWithEmail != null);
-    assert(getUserRoleList != null);
-    assert(updateCustomer != null);
-    assert(updateGroomer != null);
-    assert(changeGroomerAvailability != null);
-    return updateGroomer(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginWithEmail(LoginRequestData loginRequestData),
-    Result registerWithEmail(RegisterData registerData),
-    Result getUserRoleList(),
-    Result updateCustomer(UpdateCustomerData data, File image),
-    Result updateGroomer(User user),
-    Result changeGroomerAvailability(bool isAvailable, String id),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (updateGroomer != null) {
-      return updateGroomer(user);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginWithEmail(_LoginWithEmail value),
-    @required Result registerWithEmail(_RegisterWithEmail value),
-    @required Result getUserRoleList(_GetUserRoleList value),
-    @required Result updateCustomer(_UpdateCustomer value),
-    @required Result updateGroomer(_UpdateGroomer value),
-    @required
-        Result changeGroomerAvailability(_ChangeGroomerAvailability value),
-  }) {
-    assert(loginWithEmail != null);
-    assert(registerWithEmail != null);
-    assert(getUserRoleList != null);
-    assert(updateCustomer != null);
-    assert(updateGroomer != null);
-    assert(changeGroomerAvailability != null);
-    return updateGroomer(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginWithEmail(_LoginWithEmail value),
-    Result registerWithEmail(_RegisterWithEmail value),
-    Result getUserRoleList(_GetUserRoleList value),
-    Result updateCustomer(_UpdateCustomer value),
-    Result updateGroomer(_UpdateGroomer value),
-    Result changeGroomerAvailability(_ChangeGroomerAvailability value),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (updateGroomer != null) {
-      return updateGroomer(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateGroomer implements AuthEvent {
-  factory _UpdateGroomer({User user}) = _$_UpdateGroomer;
-
-  User get user;
-  _$UpdateGroomerCopyWith<_UpdateGroomer> get copyWith;
-}
-
-abstract class _$ChangeGroomerAvailabilityCopyWith<$Res> {
-  factory _$ChangeGroomerAvailabilityCopyWith(_ChangeGroomerAvailability value,
-          $Res Function(_ChangeGroomerAvailability) then) =
-      __$ChangeGroomerAvailabilityCopyWithImpl<$Res>;
-  $Res call({bool isAvailable, String id});
-}
-
-class __$ChangeGroomerAvailabilityCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res>
-    implements _$ChangeGroomerAvailabilityCopyWith<$Res> {
-  __$ChangeGroomerAvailabilityCopyWithImpl(_ChangeGroomerAvailability _value,
-      $Res Function(_ChangeGroomerAvailability) _then)
-      : super(_value, (v) => _then(v as _ChangeGroomerAvailability));
-
-  @override
-  _ChangeGroomerAvailability get _value =>
-      super._value as _ChangeGroomerAvailability;
-
-  @override
-  $Res call({
-    Object isAvailable = freezed,
-    Object id = freezed,
-  }) {
-    return _then(_ChangeGroomerAvailability(
-      isAvailable:
-          isAvailable == freezed ? _value.isAvailable : isAvailable as bool,
-      id: id == freezed ? _value.id : id as String,
-    ));
-  }
-}
-
-class _$_ChangeGroomerAvailability implements _ChangeGroomerAvailability {
-  _$_ChangeGroomerAvailability({this.isAvailable, this.id});
-
-  @override
-  final bool isAvailable;
-  @override
-  final String id;
-
-  @override
-  String toString() {
-    return 'AuthEvent.changeGroomerAvailability(isAvailable: $isAvailable, id: $id)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _ChangeGroomerAvailability &&
-            (identical(other.isAvailable, isAvailable) ||
-                const DeepCollectionEquality()
-                    .equals(other.isAvailable, isAvailable)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(isAvailable) ^
-      const DeepCollectionEquality().hash(id);
-
-  @override
-  _$ChangeGroomerAvailabilityCopyWith<_ChangeGroomerAvailability>
-      get copyWith =>
-          __$ChangeGroomerAvailabilityCopyWithImpl<_ChangeGroomerAvailability>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginWithEmail(LoginRequestData loginRequestData),
-    @required Result registerWithEmail(RegisterData registerData),
-    @required Result getUserRoleList(),
-    @required Result updateCustomer(UpdateCustomerData data, File image),
-    @required Result updateGroomer(User user),
-    @required Result changeGroomerAvailability(bool isAvailable, String id),
-  }) {
-    assert(loginWithEmail != null);
-    assert(registerWithEmail != null);
-    assert(getUserRoleList != null);
-    assert(updateCustomer != null);
-    assert(updateGroomer != null);
-    assert(changeGroomerAvailability != null);
-    return changeGroomerAvailability(isAvailable, id);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginWithEmail(LoginRequestData loginRequestData),
-    Result registerWithEmail(RegisterData registerData),
-    Result getUserRoleList(),
-    Result updateCustomer(UpdateCustomerData data, File image),
-    Result updateGroomer(User user),
-    Result changeGroomerAvailability(bool isAvailable, String id),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (changeGroomerAvailability != null) {
-      return changeGroomerAvailability(isAvailable, id);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginWithEmail(_LoginWithEmail value),
-    @required Result registerWithEmail(_RegisterWithEmail value),
-    @required Result getUserRoleList(_GetUserRoleList value),
-    @required Result updateCustomer(_UpdateCustomer value),
-    @required Result updateGroomer(_UpdateGroomer value),
-    @required
-        Result changeGroomerAvailability(_ChangeGroomerAvailability value),
-  }) {
-    assert(loginWithEmail != null);
-    assert(registerWithEmail != null);
-    assert(getUserRoleList != null);
-    assert(updateCustomer != null);
-    assert(updateGroomer != null);
-    assert(changeGroomerAvailability != null);
-    return changeGroomerAvailability(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginWithEmail(_LoginWithEmail value),
-    Result registerWithEmail(_RegisterWithEmail value),
-    Result getUserRoleList(_GetUserRoleList value),
-    Result updateCustomer(_UpdateCustomer value),
-    Result updateGroomer(_UpdateGroomer value),
-    Result changeGroomerAvailability(_ChangeGroomerAvailability value),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (changeGroomerAvailability != null) {
-      return changeGroomerAvailability(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ChangeGroomerAvailability implements AuthEvent {
-  factory _ChangeGroomerAvailability({bool isAvailable, String id}) =
-      _$_ChangeGroomerAvailability;
-
-  bool get isAvailable;
-  String get id;
-  _$ChangeGroomerAvailabilityCopyWith<_ChangeGroomerAvailability> get copyWith;
-}
-
+/// @nodoc
 class _$AuthStateTearOff {
   const _$AuthStateTearOff();
 
+// ignore: unused_element
   _Initial initial() {
     return _Initial();
   }
 
+// ignore: unused_element
   _OnProgreess onProgress() {
     return _OnProgreess();
   }
 
+// ignore: unused_element
   _ChangeAvailability changeAvailability(
       Option<Either<AuthFailure, Unit>> availabilityOption) {
     return _ChangeAvailability(
@@ -977,93 +639,101 @@ class _$AuthStateTearOff {
     );
   }
 
-  _FailOrSuccessGetRole failOrSuccessGetRole(
-      {Option<Either<AuthFailure, List<String>>> options, bool isLoading}) {
-    return _FailOrSuccessGetRole(
-      options: options,
+// ignore: unused_element
+  _OnRegisterUser onRegisterUser(
+      {@required bool isLoading,
+      @required Option<Either<AuthFailure, UserDataModel>> userOption}) {
+    return _OnRegisterUser(
       isLoading: isLoading,
+      userOption: userOption,
     );
   }
 
-  _FailOrSuccessOption failOrSuccessLoginOption(
-      {@required Option<Either<AuthFailure, LoginData>> failOrSuccessOption}) {
-    return _FailOrSuccessOption(
-      failOrSuccessOption: failOrSuccessOption,
+// ignore: unused_element
+  _OnGetUserRoleList onGetUserRoleList(
+      {@required bool isLoading,
+      @required Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions}) {
+    return _OnGetUserRoleList(
+      isLoading: isLoading,
+      roleOptions: roleOptions,
     );
   }
 
-  _FailOrSuccessUpdateCustomerOption failOrSuccessUpdateCustomerOption(
-      {@required Option<Either<AuthFailure, LoginData>> updateCustomerOption}) {
-    return _FailOrSuccessUpdateCustomerOption(
-      updateCustomerOption: updateCustomerOption,
+// ignore: unused_element
+  _OnLoginOption onLoginOption(bool isLoading,
+      Option<Either<AuthFailure, UserDataModel>> onLoginOption) {
+    return _OnLoginOption(
+      isLoading,
+      onLoginOption,
     );
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $AuthState = _$AuthStateTearOff();
 
+/// @nodoc
 mixin _$AuthState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result onProgress(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult onProgress(),
     @required
-        Result changeAvailability(
+        TResult changeAvailability(
             Option<Either<AuthFailure, Unit>> availabilityOption),
     @required
-        Result failOrSuccessGetRole(
-            Option<Either<AuthFailure, List<String>>> options, bool isLoading),
+        TResult onRegisterUser(bool isLoading,
+            Option<Either<AuthFailure, UserDataModel>> userOption),
     @required
-        Result failOrSuccessLoginOption(
-            Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+        TResult onGetUserRoleList(bool isLoading,
+            Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions),
     @required
-        Result failOrSuccessUpdateCustomerOption(
-            Option<Either<AuthFailure, LoginData>> updateCustomerOption),
+        TResult onLoginOption(bool isLoading,
+            Option<Either<AuthFailure, UserDataModel>> onLoginOption),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result onProgress(),
-    Result changeAvailability(
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult onProgress(),
+    TResult changeAvailability(
         Option<Either<AuthFailure, Unit>> availabilityOption),
-    Result failOrSuccessGetRole(
-        Option<Either<AuthFailure, List<String>>> options, bool isLoading),
-    Result failOrSuccessLoginOption(
-        Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
-    Result failOrSuccessUpdateCustomerOption(
-        Option<Either<AuthFailure, LoginData>> updateCustomerOption),
-    @required Result orElse(),
+    TResult onRegisterUser(
+        bool isLoading, Option<Either<AuthFailure, UserDataModel>> userOption),
+    TResult onGetUserRoleList(bool isLoading,
+        Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions),
+    TResult onLoginOption(bool isLoading,
+        Option<Either<AuthFailure, UserDataModel>> onLoginOption),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result onProgress(_OnProgreess value),
-    @required Result changeAvailability(_ChangeAvailability value),
-    @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
-    @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
-    @required
-        Result failOrSuccessUpdateCustomerOption(
-            _FailOrSuccessUpdateCustomerOption value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult onProgress(_OnProgreess value),
+    @required TResult changeAvailability(_ChangeAvailability value),
+    @required TResult onRegisterUser(_OnRegisterUser value),
+    @required TResult onGetUserRoleList(_OnGetUserRoleList value),
+    @required TResult onLoginOption(_OnLoginOption value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result onProgress(_OnProgreess value),
-    Result changeAvailability(_ChangeAvailability value),
-    Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
-    Result failOrSuccessLoginOption(_FailOrSuccessOption value),
-    Result failOrSuccessUpdateCustomerOption(
-        _FailOrSuccessUpdateCustomerOption value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult onProgress(_OnProgreess value),
+    TResult changeAvailability(_ChangeAvailability value),
+    TResult onRegisterUser(_OnRegisterUser value),
+    TResult onGetUserRoleList(_OnGetUserRoleList value),
+    TResult onLoginOption(_OnLoginOption value),
+    @required TResult orElse(),
   });
 }
 
+/// @nodoc
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
   _$AuthStateCopyWithImpl(this._value, this._then);
 
@@ -1072,11 +742,13 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
   final $Res Function(AuthState) _then;
 }
 
+/// @nodoc
 abstract class _$InitialCopyWith<$Res> {
   factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
       __$InitialCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class __$InitialCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
     implements _$InitialCopyWith<$Res> {
   __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
@@ -1086,6 +758,7 @@ class __$InitialCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
   _Initial get _value => super._value as _Initial;
 }
 
+/// @nodoc
 class _$_Initial implements _Initial {
   _$_Initial();
 
@@ -1104,45 +777,45 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result onProgress(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult onProgress(),
     @required
-        Result changeAvailability(
+        TResult changeAvailability(
             Option<Either<AuthFailure, Unit>> availabilityOption),
     @required
-        Result failOrSuccessGetRole(
-            Option<Either<AuthFailure, List<String>>> options, bool isLoading),
+        TResult onRegisterUser(bool isLoading,
+            Option<Either<AuthFailure, UserDataModel>> userOption),
     @required
-        Result failOrSuccessLoginOption(
-            Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+        TResult onGetUserRoleList(bool isLoading,
+            Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions),
     @required
-        Result failOrSuccessUpdateCustomerOption(
-            Option<Either<AuthFailure, LoginData>> updateCustomerOption),
+        TResult onLoginOption(bool isLoading,
+            Option<Either<AuthFailure, UserDataModel>> onLoginOption),
   }) {
     assert(initial != null);
     assert(onProgress != null);
     assert(changeAvailability != null);
-    assert(failOrSuccessGetRole != null);
-    assert(failOrSuccessLoginOption != null);
-    assert(failOrSuccessUpdateCustomerOption != null);
+    assert(onRegisterUser != null);
+    assert(onGetUserRoleList != null);
+    assert(onLoginOption != null);
     return initial();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result onProgress(),
-    Result changeAvailability(
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult onProgress(),
+    TResult changeAvailability(
         Option<Either<AuthFailure, Unit>> availabilityOption),
-    Result failOrSuccessGetRole(
-        Option<Either<AuthFailure, List<String>>> options, bool isLoading),
-    Result failOrSuccessLoginOption(
-        Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
-    Result failOrSuccessUpdateCustomerOption(
-        Option<Either<AuthFailure, LoginData>> updateCustomerOption),
-    @required Result orElse(),
+    TResult onRegisterUser(
+        bool isLoading, Option<Either<AuthFailure, UserDataModel>> userOption),
+    TResult onGetUserRoleList(bool isLoading,
+        Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions),
+    TResult onLoginOption(bool isLoading,
+        Option<Either<AuthFailure, UserDataModel>> onLoginOption),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initial != null) {
@@ -1153,36 +826,33 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result onProgress(_OnProgreess value),
-    @required Result changeAvailability(_ChangeAvailability value),
-    @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
-    @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
-    @required
-        Result failOrSuccessUpdateCustomerOption(
-            _FailOrSuccessUpdateCustomerOption value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult onProgress(_OnProgreess value),
+    @required TResult changeAvailability(_ChangeAvailability value),
+    @required TResult onRegisterUser(_OnRegisterUser value),
+    @required TResult onGetUserRoleList(_OnGetUserRoleList value),
+    @required TResult onLoginOption(_OnLoginOption value),
   }) {
     assert(initial != null);
     assert(onProgress != null);
     assert(changeAvailability != null);
-    assert(failOrSuccessGetRole != null);
-    assert(failOrSuccessLoginOption != null);
-    assert(failOrSuccessUpdateCustomerOption != null);
+    assert(onRegisterUser != null);
+    assert(onGetUserRoleList != null);
+    assert(onLoginOption != null);
     return initial(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result onProgress(_OnProgreess value),
-    Result changeAvailability(_ChangeAvailability value),
-    Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
-    Result failOrSuccessLoginOption(_FailOrSuccessOption value),
-    Result failOrSuccessUpdateCustomerOption(
-        _FailOrSuccessUpdateCustomerOption value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult onProgress(_OnProgreess value),
+    TResult changeAvailability(_ChangeAvailability value),
+    TResult onRegisterUser(_OnRegisterUser value),
+    TResult onGetUserRoleList(_OnGetUserRoleList value),
+    TResult onLoginOption(_OnLoginOption value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initial != null) {
@@ -1196,12 +866,14 @@ abstract class _Initial implements AuthState {
   factory _Initial() = _$_Initial;
 }
 
+/// @nodoc
 abstract class _$OnProgreessCopyWith<$Res> {
   factory _$OnProgreessCopyWith(
           _OnProgreess value, $Res Function(_OnProgreess) then) =
       __$OnProgreessCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class __$OnProgreessCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
     implements _$OnProgreessCopyWith<$Res> {
   __$OnProgreessCopyWithImpl(
@@ -1212,6 +884,7 @@ class __$OnProgreessCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
   _OnProgreess get _value => super._value as _OnProgreess;
 }
 
+/// @nodoc
 class _$_OnProgreess implements _OnProgreess {
   _$_OnProgreess();
 
@@ -1230,45 +903,45 @@ class _$_OnProgreess implements _OnProgreess {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result onProgress(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult onProgress(),
     @required
-        Result changeAvailability(
+        TResult changeAvailability(
             Option<Either<AuthFailure, Unit>> availabilityOption),
     @required
-        Result failOrSuccessGetRole(
-            Option<Either<AuthFailure, List<String>>> options, bool isLoading),
+        TResult onRegisterUser(bool isLoading,
+            Option<Either<AuthFailure, UserDataModel>> userOption),
     @required
-        Result failOrSuccessLoginOption(
-            Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+        TResult onGetUserRoleList(bool isLoading,
+            Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions),
     @required
-        Result failOrSuccessUpdateCustomerOption(
-            Option<Either<AuthFailure, LoginData>> updateCustomerOption),
+        TResult onLoginOption(bool isLoading,
+            Option<Either<AuthFailure, UserDataModel>> onLoginOption),
   }) {
     assert(initial != null);
     assert(onProgress != null);
     assert(changeAvailability != null);
-    assert(failOrSuccessGetRole != null);
-    assert(failOrSuccessLoginOption != null);
-    assert(failOrSuccessUpdateCustomerOption != null);
+    assert(onRegisterUser != null);
+    assert(onGetUserRoleList != null);
+    assert(onLoginOption != null);
     return onProgress();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result onProgress(),
-    Result changeAvailability(
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult onProgress(),
+    TResult changeAvailability(
         Option<Either<AuthFailure, Unit>> availabilityOption),
-    Result failOrSuccessGetRole(
-        Option<Either<AuthFailure, List<String>>> options, bool isLoading),
-    Result failOrSuccessLoginOption(
-        Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
-    Result failOrSuccessUpdateCustomerOption(
-        Option<Either<AuthFailure, LoginData>> updateCustomerOption),
-    @required Result orElse(),
+    TResult onRegisterUser(
+        bool isLoading, Option<Either<AuthFailure, UserDataModel>> userOption),
+    TResult onGetUserRoleList(bool isLoading,
+        Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions),
+    TResult onLoginOption(bool isLoading,
+        Option<Either<AuthFailure, UserDataModel>> onLoginOption),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (onProgress != null) {
@@ -1279,36 +952,33 @@ class _$_OnProgreess implements _OnProgreess {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result onProgress(_OnProgreess value),
-    @required Result changeAvailability(_ChangeAvailability value),
-    @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
-    @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
-    @required
-        Result failOrSuccessUpdateCustomerOption(
-            _FailOrSuccessUpdateCustomerOption value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult onProgress(_OnProgreess value),
+    @required TResult changeAvailability(_ChangeAvailability value),
+    @required TResult onRegisterUser(_OnRegisterUser value),
+    @required TResult onGetUserRoleList(_OnGetUserRoleList value),
+    @required TResult onLoginOption(_OnLoginOption value),
   }) {
     assert(initial != null);
     assert(onProgress != null);
     assert(changeAvailability != null);
-    assert(failOrSuccessGetRole != null);
-    assert(failOrSuccessLoginOption != null);
-    assert(failOrSuccessUpdateCustomerOption != null);
+    assert(onRegisterUser != null);
+    assert(onGetUserRoleList != null);
+    assert(onLoginOption != null);
     return onProgress(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result onProgress(_OnProgreess value),
-    Result changeAvailability(_ChangeAvailability value),
-    Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
-    Result failOrSuccessLoginOption(_FailOrSuccessOption value),
-    Result failOrSuccessUpdateCustomerOption(
-        _FailOrSuccessUpdateCustomerOption value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult onProgress(_OnProgreess value),
+    TResult changeAvailability(_ChangeAvailability value),
+    TResult onRegisterUser(_OnRegisterUser value),
+    TResult onGetUserRoleList(_OnGetUserRoleList value),
+    TResult onLoginOption(_OnLoginOption value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (onProgress != null) {
@@ -1322,6 +992,7 @@ abstract class _OnProgreess implements AuthState {
   factory _OnProgreess() = _$_OnProgreess;
 }
 
+/// @nodoc
 abstract class _$ChangeAvailabilityCopyWith<$Res> {
   factory _$ChangeAvailabilityCopyWith(
           _ChangeAvailability value, $Res Function(_ChangeAvailability) then) =
@@ -1329,6 +1000,7 @@ abstract class _$ChangeAvailabilityCopyWith<$Res> {
   $Res call({Option<Either<AuthFailure, Unit>> availabilityOption});
 }
 
+/// @nodoc
 class __$ChangeAvailabilityCopyWithImpl<$Res>
     extends _$AuthStateCopyWithImpl<$Res>
     implements _$ChangeAvailabilityCopyWith<$Res> {
@@ -1351,6 +1023,7 @@ class __$ChangeAvailabilityCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_ChangeAvailability implements _ChangeAvailability {
   _$_ChangeAvailability(this.availabilityOption)
       : assert(availabilityOption != null);
@@ -1377,51 +1050,52 @@ class _$_ChangeAvailability implements _ChangeAvailability {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(availabilityOption);
 
+  @JsonKey(ignore: true)
   @override
   _$ChangeAvailabilityCopyWith<_ChangeAvailability> get copyWith =>
       __$ChangeAvailabilityCopyWithImpl<_ChangeAvailability>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result onProgress(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult onProgress(),
     @required
-        Result changeAvailability(
+        TResult changeAvailability(
             Option<Either<AuthFailure, Unit>> availabilityOption),
     @required
-        Result failOrSuccessGetRole(
-            Option<Either<AuthFailure, List<String>>> options, bool isLoading),
+        TResult onRegisterUser(bool isLoading,
+            Option<Either<AuthFailure, UserDataModel>> userOption),
     @required
-        Result failOrSuccessLoginOption(
-            Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+        TResult onGetUserRoleList(bool isLoading,
+            Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions),
     @required
-        Result failOrSuccessUpdateCustomerOption(
-            Option<Either<AuthFailure, LoginData>> updateCustomerOption),
+        TResult onLoginOption(bool isLoading,
+            Option<Either<AuthFailure, UserDataModel>> onLoginOption),
   }) {
     assert(initial != null);
     assert(onProgress != null);
     assert(changeAvailability != null);
-    assert(failOrSuccessGetRole != null);
-    assert(failOrSuccessLoginOption != null);
-    assert(failOrSuccessUpdateCustomerOption != null);
+    assert(onRegisterUser != null);
+    assert(onGetUserRoleList != null);
+    assert(onLoginOption != null);
     return changeAvailability(availabilityOption);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result onProgress(),
-    Result changeAvailability(
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult onProgress(),
+    TResult changeAvailability(
         Option<Either<AuthFailure, Unit>> availabilityOption),
-    Result failOrSuccessGetRole(
-        Option<Either<AuthFailure, List<String>>> options, bool isLoading),
-    Result failOrSuccessLoginOption(
-        Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
-    Result failOrSuccessUpdateCustomerOption(
-        Option<Either<AuthFailure, LoginData>> updateCustomerOption),
-    @required Result orElse(),
+    TResult onRegisterUser(
+        bool isLoading, Option<Either<AuthFailure, UserDataModel>> userOption),
+    TResult onGetUserRoleList(bool isLoading,
+        Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions),
+    TResult onLoginOption(bool isLoading,
+        Option<Either<AuthFailure, UserDataModel>> onLoginOption),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (changeAvailability != null) {
@@ -1432,36 +1106,33 @@ class _$_ChangeAvailability implements _ChangeAvailability {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result onProgress(_OnProgreess value),
-    @required Result changeAvailability(_ChangeAvailability value),
-    @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
-    @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
-    @required
-        Result failOrSuccessUpdateCustomerOption(
-            _FailOrSuccessUpdateCustomerOption value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult onProgress(_OnProgreess value),
+    @required TResult changeAvailability(_ChangeAvailability value),
+    @required TResult onRegisterUser(_OnRegisterUser value),
+    @required TResult onGetUserRoleList(_OnGetUserRoleList value),
+    @required TResult onLoginOption(_OnLoginOption value),
   }) {
     assert(initial != null);
     assert(onProgress != null);
     assert(changeAvailability != null);
-    assert(failOrSuccessGetRole != null);
-    assert(failOrSuccessLoginOption != null);
-    assert(failOrSuccessUpdateCustomerOption != null);
+    assert(onRegisterUser != null);
+    assert(onGetUserRoleList != null);
+    assert(onLoginOption != null);
     return changeAvailability(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result onProgress(_OnProgreess value),
-    Result changeAvailability(_ChangeAvailability value),
-    Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
-    Result failOrSuccessLoginOption(_FailOrSuccessOption value),
-    Result failOrSuccessUpdateCustomerOption(
-        _FailOrSuccessUpdateCustomerOption value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult onProgress(_OnProgreess value),
+    TResult changeAvailability(_ChangeAvailability value),
+    TResult onRegisterUser(_OnRegisterUser value),
+    TResult onGetUserRoleList(_OnGetUserRoleList value),
+    TResult onLoginOption(_OnLoginOption value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (changeAvailability != null) {
@@ -1477,499 +1148,524 @@ abstract class _ChangeAvailability implements AuthState {
       _$_ChangeAvailability;
 
   Option<Either<AuthFailure, Unit>> get availabilityOption;
+  @JsonKey(ignore: true)
   _$ChangeAvailabilityCopyWith<_ChangeAvailability> get copyWith;
 }
 
-abstract class _$FailOrSuccessGetRoleCopyWith<$Res> {
-  factory _$FailOrSuccessGetRoleCopyWith(_FailOrSuccessGetRole value,
-          $Res Function(_FailOrSuccessGetRole) then) =
-      __$FailOrSuccessGetRoleCopyWithImpl<$Res>;
+/// @nodoc
+abstract class _$OnRegisterUserCopyWith<$Res> {
+  factory _$OnRegisterUserCopyWith(
+          _OnRegisterUser value, $Res Function(_OnRegisterUser) then) =
+      __$OnRegisterUserCopyWithImpl<$Res>;
   $Res call(
-      {Option<Either<AuthFailure, List<String>>> options, bool isLoading});
+      {bool isLoading, Option<Either<AuthFailure, UserDataModel>> userOption});
 }
 
-class __$FailOrSuccessGetRoleCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res>
-    implements _$FailOrSuccessGetRoleCopyWith<$Res> {
-  __$FailOrSuccessGetRoleCopyWithImpl(
-      _FailOrSuccessGetRole _value, $Res Function(_FailOrSuccessGetRole) _then)
-      : super(_value, (v) => _then(v as _FailOrSuccessGetRole));
+/// @nodoc
+class __$OnRegisterUserCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$OnRegisterUserCopyWith<$Res> {
+  __$OnRegisterUserCopyWithImpl(
+      _OnRegisterUser _value, $Res Function(_OnRegisterUser) _then)
+      : super(_value, (v) => _then(v as _OnRegisterUser));
 
   @override
-  _FailOrSuccessGetRole get _value => super._value as _FailOrSuccessGetRole;
+  _OnRegisterUser get _value => super._value as _OnRegisterUser;
 
   @override
   $Res call({
-    Object options = freezed,
     Object isLoading = freezed,
+    Object userOption = freezed,
   }) {
-    return _then(_FailOrSuccessGetRole(
-      options: options == freezed
-          ? _value.options
-          : options as Option<Either<AuthFailure, List<String>>>,
+    return _then(_OnRegisterUser(
       isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
+      userOption: userOption == freezed
+          ? _value.userOption
+          : userOption as Option<Either<AuthFailure, UserDataModel>>,
     ));
   }
 }
 
-class _$_FailOrSuccessGetRole implements _FailOrSuccessGetRole {
-  _$_FailOrSuccessGetRole({this.options, this.isLoading});
+/// @nodoc
+class _$_OnRegisterUser implements _OnRegisterUser {
+  const _$_OnRegisterUser({@required this.isLoading, @required this.userOption})
+      : assert(isLoading != null),
+        assert(userOption != null);
 
-  @override
-  final Option<Either<AuthFailure, List<String>>> options;
   @override
   final bool isLoading;
+  @override
+  final Option<Either<AuthFailure, UserDataModel>> userOption;
 
   @override
   String toString() {
-    return 'AuthState.failOrSuccessGetRole(options: $options, isLoading: $isLoading)';
+    return 'AuthState.onRegisterUser(isLoading: $isLoading, userOption: $userOption)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _FailOrSuccessGetRole &&
-            (identical(other.options, options) ||
-                const DeepCollectionEquality()
-                    .equals(other.options, options)) &&
+        (other is _OnRegisterUser &&
             (identical(other.isLoading, isLoading) ||
                 const DeepCollectionEquality()
-                    .equals(other.isLoading, isLoading)));
+                    .equals(other.isLoading, isLoading)) &&
+            (identical(other.userOption, userOption) ||
+                const DeepCollectionEquality()
+                    .equals(other.userOption, userOption)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(options) ^
-      const DeepCollectionEquality().hash(isLoading);
+      const DeepCollectionEquality().hash(isLoading) ^
+      const DeepCollectionEquality().hash(userOption);
 
+  @JsonKey(ignore: true)
   @override
-  _$FailOrSuccessGetRoleCopyWith<_FailOrSuccessGetRole> get copyWith =>
-      __$FailOrSuccessGetRoleCopyWithImpl<_FailOrSuccessGetRole>(
-          this, _$identity);
+  _$OnRegisterUserCopyWith<_OnRegisterUser> get copyWith =>
+      __$OnRegisterUserCopyWithImpl<_OnRegisterUser>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result onProgress(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult onProgress(),
     @required
-        Result changeAvailability(
+        TResult changeAvailability(
             Option<Either<AuthFailure, Unit>> availabilityOption),
     @required
-        Result failOrSuccessGetRole(
-            Option<Either<AuthFailure, List<String>>> options, bool isLoading),
+        TResult onRegisterUser(bool isLoading,
+            Option<Either<AuthFailure, UserDataModel>> userOption),
     @required
-        Result failOrSuccessLoginOption(
-            Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+        TResult onGetUserRoleList(bool isLoading,
+            Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions),
     @required
-        Result failOrSuccessUpdateCustomerOption(
-            Option<Either<AuthFailure, LoginData>> updateCustomerOption),
+        TResult onLoginOption(bool isLoading,
+            Option<Either<AuthFailure, UserDataModel>> onLoginOption),
   }) {
     assert(initial != null);
     assert(onProgress != null);
     assert(changeAvailability != null);
-    assert(failOrSuccessGetRole != null);
-    assert(failOrSuccessLoginOption != null);
-    assert(failOrSuccessUpdateCustomerOption != null);
-    return failOrSuccessGetRole(options, isLoading);
+    assert(onRegisterUser != null);
+    assert(onGetUserRoleList != null);
+    assert(onLoginOption != null);
+    return onRegisterUser(isLoading, userOption);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result onProgress(),
-    Result changeAvailability(
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult onProgress(),
+    TResult changeAvailability(
         Option<Either<AuthFailure, Unit>> availabilityOption),
-    Result failOrSuccessGetRole(
-        Option<Either<AuthFailure, List<String>>> options, bool isLoading),
-    Result failOrSuccessLoginOption(
-        Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
-    Result failOrSuccessUpdateCustomerOption(
-        Option<Either<AuthFailure, LoginData>> updateCustomerOption),
-    @required Result orElse(),
+    TResult onRegisterUser(
+        bool isLoading, Option<Either<AuthFailure, UserDataModel>> userOption),
+    TResult onGetUserRoleList(bool isLoading,
+        Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions),
+    TResult onLoginOption(bool isLoading,
+        Option<Either<AuthFailure, UserDataModel>> onLoginOption),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (failOrSuccessGetRole != null) {
-      return failOrSuccessGetRole(options, isLoading);
+    if (onRegisterUser != null) {
+      return onRegisterUser(isLoading, userOption);
     }
     return orElse();
   }
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result onProgress(_OnProgreess value),
-    @required Result changeAvailability(_ChangeAvailability value),
-    @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
-    @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
-    @required
-        Result failOrSuccessUpdateCustomerOption(
-            _FailOrSuccessUpdateCustomerOption value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult onProgress(_OnProgreess value),
+    @required TResult changeAvailability(_ChangeAvailability value),
+    @required TResult onRegisterUser(_OnRegisterUser value),
+    @required TResult onGetUserRoleList(_OnGetUserRoleList value),
+    @required TResult onLoginOption(_OnLoginOption value),
   }) {
     assert(initial != null);
     assert(onProgress != null);
     assert(changeAvailability != null);
-    assert(failOrSuccessGetRole != null);
-    assert(failOrSuccessLoginOption != null);
-    assert(failOrSuccessUpdateCustomerOption != null);
-    return failOrSuccessGetRole(this);
+    assert(onRegisterUser != null);
+    assert(onGetUserRoleList != null);
+    assert(onLoginOption != null);
+    return onRegisterUser(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result onProgress(_OnProgreess value),
-    Result changeAvailability(_ChangeAvailability value),
-    Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
-    Result failOrSuccessLoginOption(_FailOrSuccessOption value),
-    Result failOrSuccessUpdateCustomerOption(
-        _FailOrSuccessUpdateCustomerOption value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult onProgress(_OnProgreess value),
+    TResult changeAvailability(_ChangeAvailability value),
+    TResult onRegisterUser(_OnRegisterUser value),
+    TResult onGetUserRoleList(_OnGetUserRoleList value),
+    TResult onLoginOption(_OnLoginOption value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (failOrSuccessGetRole != null) {
-      return failOrSuccessGetRole(this);
+    if (onRegisterUser != null) {
+      return onRegisterUser(this);
     }
     return orElse();
   }
 }
 
-abstract class _FailOrSuccessGetRole implements AuthState {
-  factory _FailOrSuccessGetRole(
-      {Option<Either<AuthFailure, List<String>>> options,
-      bool isLoading}) = _$_FailOrSuccessGetRole;
+abstract class _OnRegisterUser implements AuthState {
+  const factory _OnRegisterUser(
+          {@required bool isLoading,
+          @required Option<Either<AuthFailure, UserDataModel>> userOption}) =
+      _$_OnRegisterUser;
 
-  Option<Either<AuthFailure, List<String>>> get options;
   bool get isLoading;
-  _$FailOrSuccessGetRoleCopyWith<_FailOrSuccessGetRole> get copyWith;
+  Option<Either<AuthFailure, UserDataModel>> get userOption;
+  @JsonKey(ignore: true)
+  _$OnRegisterUserCopyWith<_OnRegisterUser> get copyWith;
 }
 
-abstract class _$FailOrSuccessOptionCopyWith<$Res> {
-  factory _$FailOrSuccessOptionCopyWith(_FailOrSuccessOption value,
-          $Res Function(_FailOrSuccessOption) then) =
-      __$FailOrSuccessOptionCopyWithImpl<$Res>;
-  $Res call({Option<Either<AuthFailure, LoginData>> failOrSuccessOption});
+/// @nodoc
+abstract class _$OnGetUserRoleListCopyWith<$Res> {
+  factory _$OnGetUserRoleListCopyWith(
+          _OnGetUserRoleList value, $Res Function(_OnGetUserRoleList) then) =
+      __$OnGetUserRoleListCopyWithImpl<$Res>;
+  $Res call(
+      {bool isLoading,
+      Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions});
 }
 
-class __$FailOrSuccessOptionCopyWithImpl<$Res>
+/// @nodoc
+class __$OnGetUserRoleListCopyWithImpl<$Res>
     extends _$AuthStateCopyWithImpl<$Res>
-    implements _$FailOrSuccessOptionCopyWith<$Res> {
-  __$FailOrSuccessOptionCopyWithImpl(
-      _FailOrSuccessOption _value, $Res Function(_FailOrSuccessOption) _then)
-      : super(_value, (v) => _then(v as _FailOrSuccessOption));
+    implements _$OnGetUserRoleListCopyWith<$Res> {
+  __$OnGetUserRoleListCopyWithImpl(
+      _OnGetUserRoleList _value, $Res Function(_OnGetUserRoleList) _then)
+      : super(_value, (v) => _then(v as _OnGetUserRoleList));
 
   @override
-  _FailOrSuccessOption get _value => super._value as _FailOrSuccessOption;
+  _OnGetUserRoleList get _value => super._value as _OnGetUserRoleList;
 
   @override
   $Res call({
-    Object failOrSuccessOption = freezed,
+    Object isLoading = freezed,
+    Object roleOptions = freezed,
   }) {
-    return _then(_FailOrSuccessOption(
-      failOrSuccessOption: failOrSuccessOption == freezed
-          ? _value.failOrSuccessOption
-          : failOrSuccessOption as Option<Either<AuthFailure, LoginData>>,
+    return _then(_OnGetUserRoleList(
+      isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
+      roleOptions: roleOptions == freezed
+          ? _value.roleOptions
+          : roleOptions as Option<Either<AuthFailure, List<RoleDataModel>>>,
     ));
   }
 }
 
-class _$_FailOrSuccessOption implements _FailOrSuccessOption {
-  _$_FailOrSuccessOption({@required this.failOrSuccessOption})
-      : assert(failOrSuccessOption != null);
+/// @nodoc
+class _$_OnGetUserRoleList implements _OnGetUserRoleList {
+  const _$_OnGetUserRoleList(
+      {@required this.isLoading, @required this.roleOptions})
+      : assert(isLoading != null),
+        assert(roleOptions != null);
 
   @override
-  final Option<Either<AuthFailure, LoginData>> failOrSuccessOption;
+  final bool isLoading;
+  @override
+  final Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions;
 
   @override
   String toString() {
-    return 'AuthState.failOrSuccessLoginOption(failOrSuccessOption: $failOrSuccessOption)';
+    return 'AuthState.onGetUserRoleList(isLoading: $isLoading, roleOptions: $roleOptions)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _FailOrSuccessOption &&
-            (identical(other.failOrSuccessOption, failOrSuccessOption) ||
+        (other is _OnGetUserRoleList &&
+            (identical(other.isLoading, isLoading) ||
                 const DeepCollectionEquality()
-                    .equals(other.failOrSuccessOption, failOrSuccessOption)));
+                    .equals(other.isLoading, isLoading)) &&
+            (identical(other.roleOptions, roleOptions) ||
+                const DeepCollectionEquality()
+                    .equals(other.roleOptions, roleOptions)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(failOrSuccessOption);
+      const DeepCollectionEquality().hash(isLoading) ^
+      const DeepCollectionEquality().hash(roleOptions);
 
+  @JsonKey(ignore: true)
   @override
-  _$FailOrSuccessOptionCopyWith<_FailOrSuccessOption> get copyWith =>
-      __$FailOrSuccessOptionCopyWithImpl<_FailOrSuccessOption>(
-          this, _$identity);
+  _$OnGetUserRoleListCopyWith<_OnGetUserRoleList> get copyWith =>
+      __$OnGetUserRoleListCopyWithImpl<_OnGetUserRoleList>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result onProgress(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult onProgress(),
     @required
-        Result changeAvailability(
+        TResult changeAvailability(
             Option<Either<AuthFailure, Unit>> availabilityOption),
     @required
-        Result failOrSuccessGetRole(
-            Option<Either<AuthFailure, List<String>>> options, bool isLoading),
+        TResult onRegisterUser(bool isLoading,
+            Option<Either<AuthFailure, UserDataModel>> userOption),
     @required
-        Result failOrSuccessLoginOption(
-            Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+        TResult onGetUserRoleList(bool isLoading,
+            Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions),
     @required
-        Result failOrSuccessUpdateCustomerOption(
-            Option<Either<AuthFailure, LoginData>> updateCustomerOption),
+        TResult onLoginOption(bool isLoading,
+            Option<Either<AuthFailure, UserDataModel>> onLoginOption),
   }) {
     assert(initial != null);
     assert(onProgress != null);
     assert(changeAvailability != null);
-    assert(failOrSuccessGetRole != null);
-    assert(failOrSuccessLoginOption != null);
-    assert(failOrSuccessUpdateCustomerOption != null);
-    return failOrSuccessLoginOption(failOrSuccessOption);
+    assert(onRegisterUser != null);
+    assert(onGetUserRoleList != null);
+    assert(onLoginOption != null);
+    return onGetUserRoleList(isLoading, roleOptions);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result onProgress(),
-    Result changeAvailability(
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult onProgress(),
+    TResult changeAvailability(
         Option<Either<AuthFailure, Unit>> availabilityOption),
-    Result failOrSuccessGetRole(
-        Option<Either<AuthFailure, List<String>>> options, bool isLoading),
-    Result failOrSuccessLoginOption(
-        Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
-    Result failOrSuccessUpdateCustomerOption(
-        Option<Either<AuthFailure, LoginData>> updateCustomerOption),
-    @required Result orElse(),
+    TResult onRegisterUser(
+        bool isLoading, Option<Either<AuthFailure, UserDataModel>> userOption),
+    TResult onGetUserRoleList(bool isLoading,
+        Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions),
+    TResult onLoginOption(bool isLoading,
+        Option<Either<AuthFailure, UserDataModel>> onLoginOption),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (failOrSuccessLoginOption != null) {
-      return failOrSuccessLoginOption(failOrSuccessOption);
+    if (onGetUserRoleList != null) {
+      return onGetUserRoleList(isLoading, roleOptions);
     }
     return orElse();
   }
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result onProgress(_OnProgreess value),
-    @required Result changeAvailability(_ChangeAvailability value),
-    @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
-    @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
-    @required
-        Result failOrSuccessUpdateCustomerOption(
-            _FailOrSuccessUpdateCustomerOption value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult onProgress(_OnProgreess value),
+    @required TResult changeAvailability(_ChangeAvailability value),
+    @required TResult onRegisterUser(_OnRegisterUser value),
+    @required TResult onGetUserRoleList(_OnGetUserRoleList value),
+    @required TResult onLoginOption(_OnLoginOption value),
   }) {
     assert(initial != null);
     assert(onProgress != null);
     assert(changeAvailability != null);
-    assert(failOrSuccessGetRole != null);
-    assert(failOrSuccessLoginOption != null);
-    assert(failOrSuccessUpdateCustomerOption != null);
-    return failOrSuccessLoginOption(this);
+    assert(onRegisterUser != null);
+    assert(onGetUserRoleList != null);
+    assert(onLoginOption != null);
+    return onGetUserRoleList(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result onProgress(_OnProgreess value),
-    Result changeAvailability(_ChangeAvailability value),
-    Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
-    Result failOrSuccessLoginOption(_FailOrSuccessOption value),
-    Result failOrSuccessUpdateCustomerOption(
-        _FailOrSuccessUpdateCustomerOption value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult onProgress(_OnProgreess value),
+    TResult changeAvailability(_ChangeAvailability value),
+    TResult onRegisterUser(_OnRegisterUser value),
+    TResult onGetUserRoleList(_OnGetUserRoleList value),
+    TResult onLoginOption(_OnLoginOption value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (failOrSuccessLoginOption != null) {
-      return failOrSuccessLoginOption(this);
+    if (onGetUserRoleList != null) {
+      return onGetUserRoleList(this);
     }
     return orElse();
   }
 }
 
-abstract class _FailOrSuccessOption implements AuthState {
-  factory _FailOrSuccessOption(
+abstract class _OnGetUserRoleList implements AuthState {
+  const factory _OnGetUserRoleList(
           {@required
-              Option<Either<AuthFailure, LoginData>> failOrSuccessOption}) =
-      _$_FailOrSuccessOption;
+              bool isLoading,
+          @required
+              Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions}) =
+      _$_OnGetUserRoleList;
 
-  Option<Either<AuthFailure, LoginData>> get failOrSuccessOption;
-  _$FailOrSuccessOptionCopyWith<_FailOrSuccessOption> get copyWith;
+  bool get isLoading;
+  Option<Either<AuthFailure, List<RoleDataModel>>> get roleOptions;
+  @JsonKey(ignore: true)
+  _$OnGetUserRoleListCopyWith<_OnGetUserRoleList> get copyWith;
 }
 
-abstract class _$FailOrSuccessUpdateCustomerOptionCopyWith<$Res> {
-  factory _$FailOrSuccessUpdateCustomerOptionCopyWith(
-          _FailOrSuccessUpdateCustomerOption value,
-          $Res Function(_FailOrSuccessUpdateCustomerOption) then) =
-      __$FailOrSuccessUpdateCustomerOptionCopyWithImpl<$Res>;
-  $Res call({Option<Either<AuthFailure, LoginData>> updateCustomerOption});
+/// @nodoc
+abstract class _$OnLoginOptionCopyWith<$Res> {
+  factory _$OnLoginOptionCopyWith(
+          _OnLoginOption value, $Res Function(_OnLoginOption) then) =
+      __$OnLoginOptionCopyWithImpl<$Res>;
+  $Res call(
+      {bool isLoading,
+      Option<Either<AuthFailure, UserDataModel>> onLoginOption});
 }
 
-class __$FailOrSuccessUpdateCustomerOptionCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res>
-    implements _$FailOrSuccessUpdateCustomerOptionCopyWith<$Res> {
-  __$FailOrSuccessUpdateCustomerOptionCopyWithImpl(
-      _FailOrSuccessUpdateCustomerOption _value,
-      $Res Function(_FailOrSuccessUpdateCustomerOption) _then)
-      : super(_value, (v) => _then(v as _FailOrSuccessUpdateCustomerOption));
+/// @nodoc
+class __$OnLoginOptionCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$OnLoginOptionCopyWith<$Res> {
+  __$OnLoginOptionCopyWithImpl(
+      _OnLoginOption _value, $Res Function(_OnLoginOption) _then)
+      : super(_value, (v) => _then(v as _OnLoginOption));
 
   @override
-  _FailOrSuccessUpdateCustomerOption get _value =>
-      super._value as _FailOrSuccessUpdateCustomerOption;
+  _OnLoginOption get _value => super._value as _OnLoginOption;
 
   @override
   $Res call({
-    Object updateCustomerOption = freezed,
+    Object isLoading = freezed,
+    Object onLoginOption = freezed,
   }) {
-    return _then(_FailOrSuccessUpdateCustomerOption(
-      updateCustomerOption: updateCustomerOption == freezed
-          ? _value.updateCustomerOption
-          : updateCustomerOption as Option<Either<AuthFailure, LoginData>>,
+    return _then(_OnLoginOption(
+      isLoading == freezed ? _value.isLoading : isLoading as bool,
+      onLoginOption == freezed
+          ? _value.onLoginOption
+          : onLoginOption as Option<Either<AuthFailure, UserDataModel>>,
     ));
   }
 }
 
-class _$_FailOrSuccessUpdateCustomerOption
-    implements _FailOrSuccessUpdateCustomerOption {
-  _$_FailOrSuccessUpdateCustomerOption({@required this.updateCustomerOption})
-      : assert(updateCustomerOption != null);
+/// @nodoc
+class _$_OnLoginOption implements _OnLoginOption {
+  const _$_OnLoginOption(this.isLoading, this.onLoginOption)
+      : assert(isLoading != null),
+        assert(onLoginOption != null);
 
   @override
-  final Option<Either<AuthFailure, LoginData>> updateCustomerOption;
+  final bool isLoading;
+  @override
+  final Option<Either<AuthFailure, UserDataModel>> onLoginOption;
 
   @override
   String toString() {
-    return 'AuthState.failOrSuccessUpdateCustomerOption(updateCustomerOption: $updateCustomerOption)';
+    return 'AuthState.onLoginOption(isLoading: $isLoading, onLoginOption: $onLoginOption)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _FailOrSuccessUpdateCustomerOption &&
-            (identical(other.updateCustomerOption, updateCustomerOption) ||
+        (other is _OnLoginOption &&
+            (identical(other.isLoading, isLoading) ||
                 const DeepCollectionEquality()
-                    .equals(other.updateCustomerOption, updateCustomerOption)));
+                    .equals(other.isLoading, isLoading)) &&
+            (identical(other.onLoginOption, onLoginOption) ||
+                const DeepCollectionEquality()
+                    .equals(other.onLoginOption, onLoginOption)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(updateCustomerOption);
+      const DeepCollectionEquality().hash(isLoading) ^
+      const DeepCollectionEquality().hash(onLoginOption);
 
+  @JsonKey(ignore: true)
   @override
-  _$FailOrSuccessUpdateCustomerOptionCopyWith<
-          _FailOrSuccessUpdateCustomerOption>
-      get copyWith => __$FailOrSuccessUpdateCustomerOptionCopyWithImpl<
-          _FailOrSuccessUpdateCustomerOption>(this, _$identity);
+  _$OnLoginOptionCopyWith<_OnLoginOption> get copyWith =>
+      __$OnLoginOptionCopyWithImpl<_OnLoginOption>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result onProgress(),
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult onProgress(),
     @required
-        Result changeAvailability(
+        TResult changeAvailability(
             Option<Either<AuthFailure, Unit>> availabilityOption),
     @required
-        Result failOrSuccessGetRole(
-            Option<Either<AuthFailure, List<String>>> options, bool isLoading),
+        TResult onRegisterUser(bool isLoading,
+            Option<Either<AuthFailure, UserDataModel>> userOption),
     @required
-        Result failOrSuccessLoginOption(
-            Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
+        TResult onGetUserRoleList(bool isLoading,
+            Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions),
     @required
-        Result failOrSuccessUpdateCustomerOption(
-            Option<Either<AuthFailure, LoginData>> updateCustomerOption),
+        TResult onLoginOption(bool isLoading,
+            Option<Either<AuthFailure, UserDataModel>> onLoginOption),
   }) {
     assert(initial != null);
     assert(onProgress != null);
     assert(changeAvailability != null);
-    assert(failOrSuccessGetRole != null);
-    assert(failOrSuccessLoginOption != null);
-    assert(failOrSuccessUpdateCustomerOption != null);
-    return failOrSuccessUpdateCustomerOption(updateCustomerOption);
+    assert(onRegisterUser != null);
+    assert(onGetUserRoleList != null);
+    assert(onLoginOption != null);
+    return onLoginOption(isLoading, this.onLoginOption);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result onProgress(),
-    Result changeAvailability(
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult onProgress(),
+    TResult changeAvailability(
         Option<Either<AuthFailure, Unit>> availabilityOption),
-    Result failOrSuccessGetRole(
-        Option<Either<AuthFailure, List<String>>> options, bool isLoading),
-    Result failOrSuccessLoginOption(
-        Option<Either<AuthFailure, LoginData>> failOrSuccessOption),
-    Result failOrSuccessUpdateCustomerOption(
-        Option<Either<AuthFailure, LoginData>> updateCustomerOption),
-    @required Result orElse(),
+    TResult onRegisterUser(
+        bool isLoading, Option<Either<AuthFailure, UserDataModel>> userOption),
+    TResult onGetUserRoleList(bool isLoading,
+        Option<Either<AuthFailure, List<RoleDataModel>>> roleOptions),
+    TResult onLoginOption(bool isLoading,
+        Option<Either<AuthFailure, UserDataModel>> onLoginOption),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (failOrSuccessUpdateCustomerOption != null) {
-      return failOrSuccessUpdateCustomerOption(updateCustomerOption);
+    if (onLoginOption != null) {
+      return onLoginOption(isLoading, this.onLoginOption);
     }
     return orElse();
   }
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result onProgress(_OnProgreess value),
-    @required Result changeAvailability(_ChangeAvailability value),
-    @required Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
-    @required Result failOrSuccessLoginOption(_FailOrSuccessOption value),
-    @required
-        Result failOrSuccessUpdateCustomerOption(
-            _FailOrSuccessUpdateCustomerOption value),
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult onProgress(_OnProgreess value),
+    @required TResult changeAvailability(_ChangeAvailability value),
+    @required TResult onRegisterUser(_OnRegisterUser value),
+    @required TResult onGetUserRoleList(_OnGetUserRoleList value),
+    @required TResult onLoginOption(_OnLoginOption value),
   }) {
     assert(initial != null);
     assert(onProgress != null);
     assert(changeAvailability != null);
-    assert(failOrSuccessGetRole != null);
-    assert(failOrSuccessLoginOption != null);
-    assert(failOrSuccessUpdateCustomerOption != null);
-    return failOrSuccessUpdateCustomerOption(this);
+    assert(onRegisterUser != null);
+    assert(onGetUserRoleList != null);
+    assert(onLoginOption != null);
+    return onLoginOption(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result onProgress(_OnProgreess value),
-    Result changeAvailability(_ChangeAvailability value),
-    Result failOrSuccessGetRole(_FailOrSuccessGetRole value),
-    Result failOrSuccessLoginOption(_FailOrSuccessOption value),
-    Result failOrSuccessUpdateCustomerOption(
-        _FailOrSuccessUpdateCustomerOption value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult onProgress(_OnProgreess value),
+    TResult changeAvailability(_ChangeAvailability value),
+    TResult onRegisterUser(_OnRegisterUser value),
+    TResult onGetUserRoleList(_OnGetUserRoleList value),
+    TResult onLoginOption(_OnLoginOption value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (failOrSuccessUpdateCustomerOption != null) {
-      return failOrSuccessUpdateCustomerOption(this);
+    if (onLoginOption != null) {
+      return onLoginOption(this);
     }
     return orElse();
   }
 }
 
-abstract class _FailOrSuccessUpdateCustomerOption implements AuthState {
-  factory _FailOrSuccessUpdateCustomerOption(
-          {@required
-              Option<Either<AuthFailure, LoginData>> updateCustomerOption}) =
-      _$_FailOrSuccessUpdateCustomerOption;
+abstract class _OnLoginOption implements AuthState {
+  const factory _OnLoginOption(bool isLoading,
+          Option<Either<AuthFailure, UserDataModel>> onLoginOption) =
+      _$_OnLoginOption;
 
-  Option<Either<AuthFailure, LoginData>> get updateCustomerOption;
-  _$FailOrSuccessUpdateCustomerOptionCopyWith<
-      _FailOrSuccessUpdateCustomerOption> get copyWith;
+  bool get isLoading;
+  Option<Either<AuthFailure, UserDataModel>> get onLoginOption;
+  @JsonKey(ignore: true)
+  _$OnLoginOptionCopyWith<_OnLoginOption> get copyWith;
 }

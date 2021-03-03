@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'feed.dart';
 
@@ -9,98 +9,73 @@ part of 'feed.dart';
 
 T _$identity<T>(T value) => value;
 Feed _$FeedFromJson(Map<String, dynamic> json) {
-  return TopFeedData.fromJson(json);
+  return _Feed.fromJson(json);
 }
 
+/// @nodoc
 class _$FeedTearOff {
   const _$FeedTearOff();
 
-  TopFeedData topFeedData(
-      {@JsonKey(name: 'ProductName') String productName,
-      @JsonKey(name: 'Description') String description,
-      @JsonKey(name: 'Link') String link,
-      @JsonKey(name: 'Picture') String picture,
-      @JsonKey(name: 'Priority') int priority,
-      @JsonKey(name: 'ScheduleDate') String scheduleDate,
-      @JsonKey(name: 'EventStatus') int eventStatus,
-      @JsonKey(name: 'Id') String id,
-      @JsonKey(name: 'CreatedDate') String createdDate,
-      @JsonKey(name: 'CreatedBy') String createdBy,
-      @JsonKey(name: 'ModifiedDate') String modifiedDate,
-      @JsonKey(name: 'ModifiedBy') String modifiedBy,
-      @JsonKey(name: 'IsActive') bool isActive}) {
-    return TopFeedData(
-      productName: productName,
-      description: description,
-      link: link,
-      picture: picture,
-      priority: priority,
-      scheduleDate: scheduleDate,
-      eventStatus: eventStatus,
+// ignore: unused_element
+  _Feed call(
+      {String id,
+      String title,
+      String subtitle,
+      String content,
+      String imageUrl,
+      String type,
+      String typeLabel}) {
+    return _Feed(
       id: id,
-      createdDate: createdDate,
-      createdBy: createdBy,
-      modifiedDate: modifiedDate,
-      modifiedBy: modifiedBy,
-      isActive: isActive,
+      title: title,
+      subtitle: subtitle,
+      content: content,
+      imageUrl: imageUrl,
+      type: type,
+      typeLabel: typeLabel,
     );
+  }
+
+// ignore: unused_element
+  Feed fromJson(Map<String, Object> json) {
+    return Feed.fromJson(json);
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $Feed = _$FeedTearOff();
 
+/// @nodoc
 mixin _$Feed {
-  @JsonKey(name: 'ProductName')
-  String get productName;
-  @JsonKey(name: 'Description')
-  String get description;
-  @JsonKey(name: 'Link')
-  String get link;
-  @JsonKey(name: 'Picture')
-  String get picture;
-  @JsonKey(name: 'Priority')
-  int get priority;
-  @JsonKey(name: 'ScheduleDate')
-  String get scheduleDate;
-  @JsonKey(name: 'EventStatus')
-  int get eventStatus;
-  @JsonKey(name: 'Id')
   String get id;
-  @JsonKey(name: 'CreatedDate')
-  String get createdDate;
-  @JsonKey(name: 'CreatedBy')
-  String get createdBy;
-  @JsonKey(name: 'ModifiedDate')
-  String get modifiedDate;
-  @JsonKey(name: 'ModifiedBy')
-  String get modifiedBy;
-  @JsonKey(name: 'IsActive')
-  bool get isActive;
+  String get title;
+  String get subtitle;
+  String get content;
+  String get imageUrl;
+  String get type;
+  String get typeLabel;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $FeedCopyWith<Feed> get copyWith;
 }
 
+/// @nodoc
 abstract class $FeedCopyWith<$Res> {
   factory $FeedCopyWith(Feed value, $Res Function(Feed) then) =
       _$FeedCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'ProductName') String productName,
-      @JsonKey(name: 'Description') String description,
-      @JsonKey(name: 'Link') String link,
-      @JsonKey(name: 'Picture') String picture,
-      @JsonKey(name: 'Priority') int priority,
-      @JsonKey(name: 'ScheduleDate') String scheduleDate,
-      @JsonKey(name: 'EventStatus') int eventStatus,
-      @JsonKey(name: 'Id') String id,
-      @JsonKey(name: 'CreatedDate') String createdDate,
-      @JsonKey(name: 'CreatedBy') String createdBy,
-      @JsonKey(name: 'ModifiedDate') String modifiedDate,
-      @JsonKey(name: 'ModifiedBy') String modifiedBy,
-      @JsonKey(name: 'IsActive') bool isActive});
+      {String id,
+      String title,
+      String subtitle,
+      String content,
+      String imageUrl,
+      String type,
+      String typeLabel});
 }
 
+/// @nodoc
 class _$FeedCopyWithImpl<$Res> implements $FeedCopyWith<$Res> {
   _$FeedCopyWithImpl(this._value, this._then);
 
@@ -110,313 +85,181 @@ class _$FeedCopyWithImpl<$Res> implements $FeedCopyWith<$Res> {
 
   @override
   $Res call({
-    Object productName = freezed,
-    Object description = freezed,
-    Object link = freezed,
-    Object picture = freezed,
-    Object priority = freezed,
-    Object scheduleDate = freezed,
-    Object eventStatus = freezed,
     Object id = freezed,
-    Object createdDate = freezed,
-    Object createdBy = freezed,
-    Object modifiedDate = freezed,
-    Object modifiedBy = freezed,
-    Object isActive = freezed,
+    Object title = freezed,
+    Object subtitle = freezed,
+    Object content = freezed,
+    Object imageUrl = freezed,
+    Object type = freezed,
+    Object typeLabel = freezed,
   }) {
     return _then(_value.copyWith(
-      productName:
-          productName == freezed ? _value.productName : productName as String,
-      description:
-          description == freezed ? _value.description : description as String,
-      link: link == freezed ? _value.link : link as String,
-      picture: picture == freezed ? _value.picture : picture as String,
-      priority: priority == freezed ? _value.priority : priority as int,
-      scheduleDate: scheduleDate == freezed
-          ? _value.scheduleDate
-          : scheduleDate as String,
-      eventStatus:
-          eventStatus == freezed ? _value.eventStatus : eventStatus as int,
       id: id == freezed ? _value.id : id as String,
-      createdDate:
-          createdDate == freezed ? _value.createdDate : createdDate as String,
-      createdBy: createdBy == freezed ? _value.createdBy : createdBy as String,
-      modifiedDate: modifiedDate == freezed
-          ? _value.modifiedDate
-          : modifiedDate as String,
-      modifiedBy:
-          modifiedBy == freezed ? _value.modifiedBy : modifiedBy as String,
-      isActive: isActive == freezed ? _value.isActive : isActive as bool,
+      title: title == freezed ? _value.title : title as String,
+      subtitle: subtitle == freezed ? _value.subtitle : subtitle as String,
+      content: content == freezed ? _value.content : content as String,
+      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      type: type == freezed ? _value.type : type as String,
+      typeLabel: typeLabel == freezed ? _value.typeLabel : typeLabel as String,
     ));
   }
 }
 
-abstract class $TopFeedDataCopyWith<$Res> implements $FeedCopyWith<$Res> {
-  factory $TopFeedDataCopyWith(
-          TopFeedData value, $Res Function(TopFeedData) then) =
-      _$TopFeedDataCopyWithImpl<$Res>;
+/// @nodoc
+abstract class _$FeedCopyWith<$Res> implements $FeedCopyWith<$Res> {
+  factory _$FeedCopyWith(_Feed value, $Res Function(_Feed) then) =
+      __$FeedCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'ProductName') String productName,
-      @JsonKey(name: 'Description') String description,
-      @JsonKey(name: 'Link') String link,
-      @JsonKey(name: 'Picture') String picture,
-      @JsonKey(name: 'Priority') int priority,
-      @JsonKey(name: 'ScheduleDate') String scheduleDate,
-      @JsonKey(name: 'EventStatus') int eventStatus,
-      @JsonKey(name: 'Id') String id,
-      @JsonKey(name: 'CreatedDate') String createdDate,
-      @JsonKey(name: 'CreatedBy') String createdBy,
-      @JsonKey(name: 'ModifiedDate') String modifiedDate,
-      @JsonKey(name: 'ModifiedBy') String modifiedBy,
-      @JsonKey(name: 'IsActive') bool isActive});
+      {String id,
+      String title,
+      String subtitle,
+      String content,
+      String imageUrl,
+      String type,
+      String typeLabel});
 }
 
-class _$TopFeedDataCopyWithImpl<$Res> extends _$FeedCopyWithImpl<$Res>
-    implements $TopFeedDataCopyWith<$Res> {
-  _$TopFeedDataCopyWithImpl(
-      TopFeedData _value, $Res Function(TopFeedData) _then)
-      : super(_value, (v) => _then(v as TopFeedData));
+/// @nodoc
+class __$FeedCopyWithImpl<$Res> extends _$FeedCopyWithImpl<$Res>
+    implements _$FeedCopyWith<$Res> {
+  __$FeedCopyWithImpl(_Feed _value, $Res Function(_Feed) _then)
+      : super(_value, (v) => _then(v as _Feed));
 
   @override
-  TopFeedData get _value => super._value as TopFeedData;
+  _Feed get _value => super._value as _Feed;
 
   @override
   $Res call({
-    Object productName = freezed,
-    Object description = freezed,
-    Object link = freezed,
-    Object picture = freezed,
-    Object priority = freezed,
-    Object scheduleDate = freezed,
-    Object eventStatus = freezed,
     Object id = freezed,
-    Object createdDate = freezed,
-    Object createdBy = freezed,
-    Object modifiedDate = freezed,
-    Object modifiedBy = freezed,
-    Object isActive = freezed,
+    Object title = freezed,
+    Object subtitle = freezed,
+    Object content = freezed,
+    Object imageUrl = freezed,
+    Object type = freezed,
+    Object typeLabel = freezed,
   }) {
-    return _then(TopFeedData(
-      productName:
-          productName == freezed ? _value.productName : productName as String,
-      description:
-          description == freezed ? _value.description : description as String,
-      link: link == freezed ? _value.link : link as String,
-      picture: picture == freezed ? _value.picture : picture as String,
-      priority: priority == freezed ? _value.priority : priority as int,
-      scheduleDate: scheduleDate == freezed
-          ? _value.scheduleDate
-          : scheduleDate as String,
-      eventStatus:
-          eventStatus == freezed ? _value.eventStatus : eventStatus as int,
+    return _then(_Feed(
       id: id == freezed ? _value.id : id as String,
-      createdDate:
-          createdDate == freezed ? _value.createdDate : createdDate as String,
-      createdBy: createdBy == freezed ? _value.createdBy : createdBy as String,
-      modifiedDate: modifiedDate == freezed
-          ? _value.modifiedDate
-          : modifiedDate as String,
-      modifiedBy:
-          modifiedBy == freezed ? _value.modifiedBy : modifiedBy as String,
-      isActive: isActive == freezed ? _value.isActive : isActive as bool,
+      title: title == freezed ? _value.title : title as String,
+      subtitle: subtitle == freezed ? _value.subtitle : subtitle as String,
+      content: content == freezed ? _value.content : content as String,
+      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      type: type == freezed ? _value.type : type as String,
+      typeLabel: typeLabel == freezed ? _value.typeLabel : typeLabel as String,
     ));
   }
 }
 
 @JsonSerializable()
-class _$TopFeedData implements TopFeedData {
-  _$TopFeedData(
-      {@JsonKey(name: 'ProductName') this.productName,
-      @JsonKey(name: 'Description') this.description,
-      @JsonKey(name: 'Link') this.link,
-      @JsonKey(name: 'Picture') this.picture,
-      @JsonKey(name: 'Priority') this.priority,
-      @JsonKey(name: 'ScheduleDate') this.scheduleDate,
-      @JsonKey(name: 'EventStatus') this.eventStatus,
-      @JsonKey(name: 'Id') this.id,
-      @JsonKey(name: 'CreatedDate') this.createdDate,
-      @JsonKey(name: 'CreatedBy') this.createdBy,
-      @JsonKey(name: 'ModifiedDate') this.modifiedDate,
-      @JsonKey(name: 'ModifiedBy') this.modifiedBy,
-      @JsonKey(name: 'IsActive') this.isActive});
 
-  factory _$TopFeedData.fromJson(Map<String, dynamic> json) =>
-      _$_$TopFeedDataFromJson(json);
+/// @nodoc
+class _$_Feed implements _Feed {
+  _$_Feed(
+      {this.id,
+      this.title,
+      this.subtitle,
+      this.content,
+      this.imageUrl,
+      this.type,
+      this.typeLabel});
+
+  factory _$_Feed.fromJson(Map<String, dynamic> json) =>
+      _$_$_FeedFromJson(json);
 
   @override
-  @JsonKey(name: 'ProductName')
-  final String productName;
-  @override
-  @JsonKey(name: 'Description')
-  final String description;
-  @override
-  @JsonKey(name: 'Link')
-  final String link;
-  @override
-  @JsonKey(name: 'Picture')
-  final String picture;
-  @override
-  @JsonKey(name: 'Priority')
-  final int priority;
-  @override
-  @JsonKey(name: 'ScheduleDate')
-  final String scheduleDate;
-  @override
-  @JsonKey(name: 'EventStatus')
-  final int eventStatus;
-  @override
-  @JsonKey(name: 'Id')
   final String id;
   @override
-  @JsonKey(name: 'CreatedDate')
-  final String createdDate;
+  final String title;
   @override
-  @JsonKey(name: 'CreatedBy')
-  final String createdBy;
+  final String subtitle;
   @override
-  @JsonKey(name: 'ModifiedDate')
-  final String modifiedDate;
+  final String content;
   @override
-  @JsonKey(name: 'ModifiedBy')
-  final String modifiedBy;
+  final String imageUrl;
   @override
-  @JsonKey(name: 'IsActive')
-  final bool isActive;
+  final String type;
+  @override
+  final String typeLabel;
 
   @override
   String toString() {
-    return 'Feed.topFeedData(productName: $productName, description: $description, link: $link, picture: $picture, priority: $priority, scheduleDate: $scheduleDate, eventStatus: $eventStatus, id: $id, createdDate: $createdDate, createdBy: $createdBy, modifiedDate: $modifiedDate, modifiedBy: $modifiedBy, isActive: $isActive)';
+    return 'Feed(id: $id, title: $title, subtitle: $subtitle, content: $content, imageUrl: $imageUrl, type: $type, typeLabel: $typeLabel)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is TopFeedData &&
-            (identical(other.productName, productName) ||
-                const DeepCollectionEquality()
-                    .equals(other.productName, productName)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.link, link) ||
-                const DeepCollectionEquality().equals(other.link, link)) &&
-            (identical(other.picture, picture) ||
-                const DeepCollectionEquality()
-                    .equals(other.picture, picture)) &&
-            (identical(other.priority, priority) ||
-                const DeepCollectionEquality()
-                    .equals(other.priority, priority)) &&
-            (identical(other.scheduleDate, scheduleDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.scheduleDate, scheduleDate)) &&
-            (identical(other.eventStatus, eventStatus) ||
-                const DeepCollectionEquality()
-                    .equals(other.eventStatus, eventStatus)) &&
+        (other is _Feed &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.createdDate, createdDate) ||
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.subtitle, subtitle) ||
                 const DeepCollectionEquality()
-                    .equals(other.createdDate, createdDate)) &&
-            (identical(other.createdBy, createdBy) ||
+                    .equals(other.subtitle, subtitle)) &&
+            (identical(other.content, content) ||
                 const DeepCollectionEquality()
-                    .equals(other.createdBy, createdBy)) &&
-            (identical(other.modifiedDate, modifiedDate) ||
+                    .equals(other.content, content)) &&
+            (identical(other.imageUrl, imageUrl) ||
                 const DeepCollectionEquality()
-                    .equals(other.modifiedDate, modifiedDate)) &&
-            (identical(other.modifiedBy, modifiedBy) ||
+                    .equals(other.imageUrl, imageUrl)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.typeLabel, typeLabel) ||
                 const DeepCollectionEquality()
-                    .equals(other.modifiedBy, modifiedBy)) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality()
-                    .equals(other.isActive, isActive)));
+                    .equals(other.typeLabel, typeLabel)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(productName) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(link) ^
-      const DeepCollectionEquality().hash(picture) ^
-      const DeepCollectionEquality().hash(priority) ^
-      const DeepCollectionEquality().hash(scheduleDate) ^
-      const DeepCollectionEquality().hash(eventStatus) ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(createdDate) ^
-      const DeepCollectionEquality().hash(createdBy) ^
-      const DeepCollectionEquality().hash(modifiedDate) ^
-      const DeepCollectionEquality().hash(modifiedBy) ^
-      const DeepCollectionEquality().hash(isActive);
+      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(subtitle) ^
+      const DeepCollectionEquality().hash(content) ^
+      const DeepCollectionEquality().hash(imageUrl) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(typeLabel);
 
+  @JsonKey(ignore: true)
   @override
-  $TopFeedDataCopyWith<TopFeedData> get copyWith =>
-      _$TopFeedDataCopyWithImpl<TopFeedData>(this, _$identity);
+  _$FeedCopyWith<_Feed> get copyWith =>
+      __$FeedCopyWithImpl<_Feed>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$TopFeedDataToJson(this);
+    return _$_$_FeedToJson(this);
   }
 }
 
-abstract class TopFeedData implements Feed {
-  factory TopFeedData(
-      {@JsonKey(name: 'ProductName') String productName,
-      @JsonKey(name: 'Description') String description,
-      @JsonKey(name: 'Link') String link,
-      @JsonKey(name: 'Picture') String picture,
-      @JsonKey(name: 'Priority') int priority,
-      @JsonKey(name: 'ScheduleDate') String scheduleDate,
-      @JsonKey(name: 'EventStatus') int eventStatus,
-      @JsonKey(name: 'Id') String id,
-      @JsonKey(name: 'CreatedDate') String createdDate,
-      @JsonKey(name: 'CreatedBy') String createdBy,
-      @JsonKey(name: 'ModifiedDate') String modifiedDate,
-      @JsonKey(name: 'ModifiedBy') String modifiedBy,
-      @JsonKey(name: 'IsActive') bool isActive}) = _$TopFeedData;
+abstract class _Feed implements Feed {
+  factory _Feed(
+      {String id,
+      String title,
+      String subtitle,
+      String content,
+      String imageUrl,
+      String type,
+      String typeLabel}) = _$_Feed;
 
-  factory TopFeedData.fromJson(Map<String, dynamic> json) =
-      _$TopFeedData.fromJson;
+  factory _Feed.fromJson(Map<String, dynamic> json) = _$_Feed.fromJson;
 
   @override
-  @JsonKey(name: 'ProductName')
-  String get productName;
-  @override
-  @JsonKey(name: 'Description')
-  String get description;
-  @override
-  @JsonKey(name: 'Link')
-  String get link;
-  @override
-  @JsonKey(name: 'Picture')
-  String get picture;
-  @override
-  @JsonKey(name: 'Priority')
-  int get priority;
-  @override
-  @JsonKey(name: 'ScheduleDate')
-  String get scheduleDate;
-  @override
-  @JsonKey(name: 'EventStatus')
-  int get eventStatus;
-  @override
-  @JsonKey(name: 'Id')
   String get id;
   @override
-  @JsonKey(name: 'CreatedDate')
-  String get createdDate;
+  String get title;
   @override
-  @JsonKey(name: 'CreatedBy')
-  String get createdBy;
+  String get subtitle;
   @override
-  @JsonKey(name: 'ModifiedDate')
-  String get modifiedDate;
+  String get content;
   @override
-  @JsonKey(name: 'ModifiedBy')
-  String get modifiedBy;
+  String get imageUrl;
   @override
-  @JsonKey(name: 'IsActive')
-  bool get isActive;
+  String get type;
   @override
-  $TopFeedDataCopyWith<TopFeedData> get copyWith;
+  String get typeLabel;
+  @override
+  @JsonKey(ignore: true)
+  _$FeedCopyWith<_Feed> get copyWith;
 }

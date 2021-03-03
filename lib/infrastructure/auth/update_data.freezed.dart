@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'update_data.dart';
 
@@ -9,9 +9,11 @@ part of 'update_data.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$UpdateDataTearOff {
   const _$UpdateDataTearOff();
 
+// ignore: unused_element
   UpdateCustomerData call(
       {@JsonKey(name: 'AccessKey') String accessKey,
       @JsonKey(name: 'Name') String name,
@@ -32,9 +34,11 @@ class _$UpdateDataTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $UpdateData = _$UpdateDataTearOff();
 
+/// @nodoc
 mixin _$UpdateData {
   @JsonKey(name: 'AccessKey')
   String get accessKey;
@@ -51,9 +55,11 @@ mixin _$UpdateData {
   @JsonKey(name: 'Picture')
   String get picture;
 
+  @JsonKey(ignore: true)
   $UpdateDataCopyWith<UpdateData> get copyWith;
 }
 
+/// @nodoc
 abstract class $UpdateDataCopyWith<$Res> {
   factory $UpdateDataCopyWith(
           UpdateData value, $Res Function(UpdateData) then) =
@@ -68,6 +74,7 @@ abstract class $UpdateDataCopyWith<$Res> {
       @JsonKey(name: 'Picture') String picture});
 }
 
+/// @nodoc
 class _$UpdateDataCopyWithImpl<$Res> implements $UpdateDataCopyWith<$Res> {
   _$UpdateDataCopyWithImpl(this._value, this._then);
 
@@ -98,6 +105,7 @@ class _$UpdateDataCopyWithImpl<$Res> implements $UpdateDataCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class $UpdateCustomerDataCopyWith<$Res>
     implements $UpdateDataCopyWith<$Res> {
   factory $UpdateCustomerDataCopyWith(
@@ -114,6 +122,7 @@ abstract class $UpdateCustomerDataCopyWith<$Res>
       @JsonKey(name: 'Picture') String picture});
 }
 
+/// @nodoc
 class _$UpdateCustomerDataCopyWithImpl<$Res>
     extends _$UpdateDataCopyWithImpl<$Res>
     implements $UpdateCustomerDataCopyWith<$Res> {
@@ -147,6 +156,7 @@ class _$UpdateCustomerDataCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$UpdateCustomerData implements UpdateCustomerData {
   const _$UpdateCustomerData(
       {@JsonKey(name: 'AccessKey') this.accessKey,
@@ -218,6 +228,7 @@ class _$UpdateCustomerData implements UpdateCustomerData {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(picture);
 
+  @JsonKey(ignore: true)
   @override
   $UpdateCustomerDataCopyWith<UpdateCustomerData> get copyWith =>
       _$UpdateCustomerDataCopyWithImpl<UpdateCustomerData>(this, _$identity);
@@ -255,5 +266,6 @@ abstract class UpdateCustomerData implements UpdateData {
   @JsonKey(name: 'Picture')
   String get picture;
   @override
+  @JsonKey(ignore: true)
   $UpdateCustomerDataCopyWith<UpdateCustomerData> get copyWith;
 }

@@ -1,19 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:i_love_iruka/application/auth/auth_provider.dart';
-import 'package:i_love_iruka/application/auth/authentication/authentication_bloc.dart';
-import 'package:i_love_iruka/application/transaction/transaction_bloc.dart';
-import 'package:i_love_iruka/domain/transaction/transaction_r.dart';
-import 'package:i_love_iruka/injection.dart';
-import 'package:i_love_iruka/presentation/account/account_page.dart';
-import 'package:i_love_iruka/presentation/welcome/welcome_screen.dart';
-import 'package:i_love_iruka/presentation/widgets/member_card.dart';
-import 'package:i_love_iruka/util/color_col.dart';
-import 'package:i_love_iruka/util/flushbar_function.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:i_love_iruka/application/auth/user_controller.dart';
+import 'package:i_love_iruka/presentation/home/account_home/partnership_location_page.dart';
+import 'package:i_love_iruka/presentation/membership/membership_card_list.dart';
 
 class AccountPagehome extends StatefulWidget {
   @override
@@ -26,271 +15,234 @@ class _AccountPagehomeState extends State<AccountPagehome>
   bool get wantKeepAlive => true;
 
   @override
-  Widget build(BuildContext context) {
-    return Consumer<AuthProvider>(
-      builder: (context, authProvider, _) => BlocProvider(
-        create: (context) => getIt<TransactionBloc>()
-          ..add(TransactionEvent.getPointAndLastTrans(
-              userId: GetPointAndLastTransRequest(
-                  id: authProvider.getUserData.id))),
-        child: BlocListener<TransactionBloc, TransactionState>(
-          listener: (context, state) {
-            print(authProvider.getUserData.id);
-            state.maybeWhen(
-              orElse: () {},
-              onProgress: () => print("Loading"),
-              onGetPointOption: (e) => e.fold(
-                  () => print("Loading"),
-                  (a) => a.fold(
-                          (l) => l.map(
-                                badRequest: (e) => print("badRequest"),
-                                serverError: (e) => print("serverError"),
-                                notFound: (e) => print("notFound"),
-                                noTransaction: (e) => print("noTransaction"),
-                              ), (r) {
-                        print(r.toJson());
-                      })),
-            );
-          },
-          child: BlocBuilder<TransactionBloc, TransactionState>(
-              builder: (context, state) {
-            return state.maybeWhen(
-                orElse: () => FullLoadingPage(),
-                onProgress: () => FullLoadingPage(),
-                onGetPointOption: (e) => e.fold(
-                    () => FullLoadingPage(),
-                    (a) => a.fold(
-                          (l) => FullLoadingPage(),
-                          (r) {
-                            return _builAccountContent(
-                                authProvider, context, r);
-                          },
-                        )));
-          }),
-        ),
-      ),
-    );
+  void initState() {
+    super.initState();
   }
 
-  SingleChildScrollView _builAccountContent(AuthProvider authProvider,
-      BuildContext context, GetPointAndLastTransResponse data) {
-    return SingleChildScrollView(
-      child: Container(
-        color: Color(0xffF6F6F6),
-        child: Stack(
-          overflow: Overflow.visible,
-          children: <Widget>[
-            Container(
+  final userController = Get.put(UserController());
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            iconTheme: IconThemeData(color: Colors.black54),
+            textTheme: TextTheme(
+              headline6: TextStyle(color: Colors.black54, fontSize: 20),
+            ),
+            leading: null,
+            backgroundColor: Colors.white,
+            title: Text("My account"),
+            actions: [
+              IconButton(
+                icon: Icon(Icons.info_outline),
+                onPressed: () {},
+              )
+            ],
+          ),
+          // SliverToBoxAdapter(
+          //     child: Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       Text("My Account",
+          //           style: TextStyle(
+          //               fontSize: 25,
+          //               fontWeight: FontWeight.bold,
+          //               color: Colors.black54)),
+          //       Icon(Icons.info)
+          //     ],
+          //   ),
+          // )),
+
+          SliverToBoxAdapter(
+              child: Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: SilverCard(
+                    cardNumber: "123",
+                    name: userController.getUserData().fullName,
+                    validUntil: '20/10',
+                  ))),
+          SliverToBoxAdapter(
+            child: Container(
+              margin: EdgeInsets.only(left: 15, bottom: 15, right: 15),
+              padding: EdgeInsets.all(15),
+              height: 60,
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Color(0xff1988E7), Colors.white],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter)),
-              child: Container(
-                margin: EdgeInsets.only(top: 100, right: 20, left: 20),
-                child: MemberCard(
-                  name: authProvider.getUserData.name,
-                  point: data.customerPoints.toString(),
-                  cardBottomGradient: ColorCol.blueCardBottomGradient,
-                  cardTextColor: ColorCol.blueCardText,
-                  cardTopGradient: ColorCol.blueCardTopGradient,
-                  imagesList: [
-                    'blue_clippath1.png',
-                    'blue_clippath2.png',
-                    'blue_clippath3.png'
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey[300],
+                        blurRadius: 4,
+                        spreadRadius: 2,
+                        offset: Offset.fromDirection(45, 2))
                   ],
-                ),
-              ),
-            ),
-            BlocListener<AuthenticationBloc, AuthenticationState>(
-              listener: (context, state) {
-                state.maybeMap(
-                  orElse: () {},
-                  signOutState: (e) {
-                    if (e.isSignOut) {
-                      Get.offNamed(WelcomeScreen.TAG); 
-                    } else {
-                      showFlushbarError(errMessage: "Can not log out")
-                        ..show(context);
-                    }
-                  },
-                );
-              },
-              child: SafeArea(
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "Welcome",
-                        style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          print("logout"); 
-                          context
-                              .bloc<AuthenticationBloc>()
-                              .add(AuthenticationEvent.signOut());
-                        },
-                        child: Icon(
-                          MdiIcons.logout,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                      )
-                    ],
+                  image: DecorationImage(
+                      image: AssetImage('images/assets/point_background.jpg'),
+                      fit: BoxFit.cover)),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "My Points",
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black38),
                   ),
-                ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.money,
+                        color: Colors.black38,
+                        size: 35,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "200",
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black38),
+                      ),
+                    ],
+                  )
+                ],
               ),
             ),
-            Container(
-              width: double.infinity,
-              margin: EdgeInsets.only(
-                top: 320,
-              ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              padding: EdgeInsets.all(15),
+              color: Colors.white,
               child: Column(
-                children: <Widget>[
-                  Card(
-                    margin: EdgeInsets.only(right: 20, left: 20),
-                    child: Container(
-                      height: 50,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                          Expanded(
-                              child: Container(
-                            height: double.infinity,
-                            child: InkWell(
-                              onTap: () {
-                                Alert(
-                                  context: context,
-                                  type: AlertType.info,
-                                  title: "COMING SOON",
-                                  desc:
-                                      "Membership program is not available for now.",
-                                  buttons: [
-                                    DialogButton(
-                                      child: Text(
-                                        "OK",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 20),
-                                      ),
-                                      onPressed: () => Navigator.pop(context),
-                                      width: 120,
-                                    )
-                                  ],
-                                ).show();
-                              },
-                              splashColor: Colors.yellow,
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: <Widget>[
-                                    Icon(MdiIcons.walletMembership,
-                                        color: Colors.pink),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text("Membership"),
-                                  ]),
-                            ),
-                          )),
-                          Expanded(
-                              child: Container(
-                            height: double.infinity,
-                            child: InkWell(
-                              onTap: () {
-                                Get.toNamed(AccountPage.TAG); 
-                              },
-                              splashColor: Colors.yellow,
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: <Widget>[
-                                    Icon(
-                                      MdiIcons.account,
-                                      color: Colors.blue,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text("My Profile"),
-                                  ]),
-                            ),
-                          )),
-                        ],
-                      ),
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    child: Text(
+                      "Membership Program",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    color: Colors.white,
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(top: 20, right: 20, left: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Container(
-                                  child: Text(
-                                "Recent Activities",
-                                style: TextStyle(
-                                    color: Color(0xff6A6A6A),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
-                              )),
-                              Container(
-                                  child: Text(
-                                "view report",
-                                style: TextStyle(color: Colors.blue),
-                              )),
-                            ],
-                          ),
+                  ListView(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    children: [
+                      buildMembershipMenuItem(
+                        Icon(Icons.credit_card, color: Colors.blue[600]),
+                        "Membership Type",
+                        "Upgrade your membership for more benefits",
+                        () {
+                          Get.toNamed(MembershipCardListPage.TAG);
+                        },
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      buildMembershipMenuItem(
+                        Icon(
+                          Icons.history,
+                          color: Colors.yellow[800],
                         ),
-                        Card(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 20),
-                          color: Colors.white,
-                          elevation: 7,
-                          child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 5),
-                              child: (data.lastTransaction.customerId == null)
-                                  ? Container(
-                                      width: double.infinity,
-                                      height: 60,
-                                      alignment: Alignment.center,
-                                      child: Text("No Transaction"),
-                                    )
-                                  : Column(
-                                      children: <Widget>[
-                                        ActivitiesComponent(
-                                          earnedPoint:
-                                              data.lastTransaction.earnedPoint,
-                                          total: data.lastTransaction.total
-                                              .toString(),
-                                          transDate:
-                                              data.lastTransaction.createdDate,
-                                          transType: data
-                                              .lastTransaction.transactionType,
-                                        ),
-                                      ],
-                                    )),
-                        )
-                      ],
-                    ),
-                  )
+                        "My History Transaction",
+                        "See your recently transaction",
+                        () {},
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      buildMembershipMenuItem(
+                        Icon(
+                          Icons.location_on,
+                          color: Colors.red[800],
+                        ),
+                        "Partnership",
+                        "Find Iruka Partnership arround the world",
+                        () {
+                          Get.toNamed(PartnershipLocationPage.TAG);
+                        },
+                      ),
+                    ],
+                  ),
                 ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  InkWell buildMembershipMenuItem(
+      Icon icon, String title, String description, Function onTap) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.all(15),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey[300],
+                  blurRadius: 4,
+                  spreadRadius: 2,
+                  offset: Offset.fromDirection(45, 5))
+            ]),
+        child: Row(
+          // crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Expanded(
+              flex: 1,
+              child: FittedBox(
+                child: Container(
+                  alignment: Alignment.center,
+                  child: icon,
+                  //  Icon(Icons.credit_card_rounded,
+                  //     color: Colors.blue),
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              flex: 4,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(title,
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold)),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      description,
+                      // "Upgrade your membership for more benefits."
+                    ),
+                  ]),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                alignment: Alignment.bottomRight,
+                child: Text("More", textAlign: TextAlign.end),
               ),
             )
           ],
@@ -298,6 +250,31 @@ class _AccountPagehomeState extends State<AccountPagehome>
       ),
     );
   }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return BlocProvider(
+  //     create: (context) => getIt<TransactionBloc>()
+  //       ..add(TransactionEvent.getPointAndLastTrans(
+  //           userId: GetPointAndLastTransRequest(
+  //               id: _authController.getUserData().id))),
+  //     child: BlocBuilder<TransactionBloc, TransactionState>(
+  //         builder: (context, state) {
+  //       return state.maybeWhen(
+  //           orElse: () => FullLoadingPage(),
+  //           onProgress: () => FullLoadingPage(),
+  //           onGetPointOption: (e) => e.fold(
+  //               () => FullLoadingPage(),
+  //               (a) => a.fold(
+  //                     (l) => FullLoadingPage(),
+  //                     (r) {
+  //                       return _builAccountContent(context, r);
+  //                     },
+  //                   )));
+  //     }),
+  //   );
+  // }
+
 }
 
 class FullLoadingPage extends StatelessWidget {

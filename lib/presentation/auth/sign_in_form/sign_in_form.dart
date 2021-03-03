@@ -1,27 +1,20 @@
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/auth_bloc.dart';
-import 'package:i_love_iruka/application/auth/auth_provider.dart';
-import 'package:i_love_iruka/domain/auth/login_data.dart';
-import 'package:i_love_iruka/infrastructure/core/shared_pref.dart';
-import 'package:i_love_iruka/presentation/auth/forgot_password_form/forgot_password_form.dart';
-import 'package:i_love_iruka/presentation/auth/register_form/register_form.dart';
-import 'package:i_love_iruka/presentation/auth/widgets/email_address.dart';
-import 'package:i_love_iruka/presentation/auth/widgets/password.dart';
+import 'package:i_love_iruka/infrastructure/core/pref.dart';
+import 'package:i_love_iruka/infrastructure/functions/custom_alert.dart';
+import 'package:i_love_iruka/presentation/auth/widgets/decoration.dart';
 import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
-import 'package:i_love_iruka/presentation/widgets/appbar_transparent_back.dart';
+import 'package:i_love_iruka/presentation/widgets/btn_primarary_blue_loading.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
-import 'package:i_love_iruka/presentation/widgets/btn_primary_outline.dart';
-import 'package:i_love_iruka/util/flushbar_function.dart';
 import 'package:provider/provider.dart';
 
 import '../../../injection.dart';
 
 class SignInForm extends StatefulWidget {
-  static final String TAG = '/sign_in_form_page';
+  static const String TAG = '/sign_in_form_page';
   @override
   _SignInFormState createState() => _SignInFormState();
 }
@@ -69,217 +62,167 @@ class _SignInFormState extends State<SignInForm> {
     super.initState();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<AuthProvider>(
-      builder: (context, authProvider, _) => BlocProvider(
-        create: (context) => getIt<AuthBloc>(),
-        child: BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
-          state.maybeMap(
-            orElse: () {},
-            onProgress: (e) {
-              flushbar = showFlushbarLoading(
-                loading: "Signing User, Wait a moment.....",
-              )..show(context);
-            },
-            failOrSuccessLoginOption: (e) {
-              e.failOrSuccessOption.fold(
-                () => null,
-                (a) {
-                  flushbar.dismiss();
-                  a.fold((l) {
-                    String errM;
-
-                    l.map(
-                      defaultError: (e) => errM = "Something wrong",
-                      badRequest: (e) => errM = e.errorMessage,
-                      serverError: (e) => errM = "Server Error",
-                      notFound: (e) => errM = "Something wrong",
-                    );
-                    flushbar = showFlushbarError(errMessage: errM)
-                      ..show(context);
-                  }, (r) {
-                    r.map(
-                        loginRequestData: (e) {},
-                        loginResponseData: (e) {
-                          authProvider.setUserData(e.user);
-                          saveUserData(e.user).then((value) {
-                            Get.offAllNamed(DashboardPage.TAG);
-                            Fluttertoast.showToast(msg: "Success Login");
-                          }).catchError((onError) {
-                            return Fluttertoast.showToast(
-                                msg: "You can not login");
-                          });
-                        });
-                  });
-                },
-              );
-            },
-          );
-        }, builder: (context, state) {
-          return state.maybeMap(
-            failOrSuccessLoginOption: (res) => signInPageContent(context),
-            orElse: () => signInPageContent(context),
-          );
-        }),
-      ),
+  bool obsecureTextPassword = true;
+  onLoginListener(AuthState state) {
+    state.maybeMap(
+      orElse: () {},
+      onLoginOption: (e) {
+        e.onLoginOption.fold(
+          () {},
+          (a) => a.fold((l) {
+            l.map(
+                responseError: (err) =>
+                    showBasicFlash(context, err.errorMessage),
+                serverError: (err) =>
+                    showBasicFlash(context, err.errorMessage));
+          }, (r) {
+            Pref()
+                .saveUserData(r)
+                .then((value) => Get.offNamed(DashboardPage.TAG));
+          }),
+        );
+      },
     );
   }
 
-  Scaffold signInPageContent(BuildContext context) => Scaffold(
-        body: SingleChildScrollView(
-          child: GestureDetector(
-            onTap: () {
-              FocusScopeNode currentFocus = FocusScope.of(context);
-              if (!currentFocus.hasPrimaryFocus) {
-                currentFocus.unfocus();
-              }
-            },
-            child: Stack(
-              children: <Widget>[
-                Column(children: <Widget>[
-                  Stack(
-                    children: <Widget>[
-                      Container(
-                        height: 300,
-                        child: Image.asset(
-                          'images/dev_images/signin_decoration.png',
-                          alignment: Alignment.bottomRight,
-                          fit: BoxFit.fitWidth,
-                          width: double.infinity,
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(left: 30, top: 80),
-                        child: Text(
-                          "Welcome\nBack",
-                          style: TextStyle(
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                  bottomContent(context)
-                ]),
-                AppBarTransparentBack(function: () {
-                  Navigator.pop(context, true);
-                }),
-              ],
-            ),
-          ),
-        ),
-      );
-
-  Widget bottomContent(
-    BuildContext context,
-  ) =>
-      Align(
-        alignment: FractionalOffset.bottomCenter,
-        child: Form(
-          key: _formKey,
-          autovalidate: _autoValidate,
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-            child: Column(
-              children: <Widget>[
-                CustomInputText(
-                  controller: emailController,
-                  focusNode: _emailFN,
-                  textInputAction: TextInputAction.next,
-                  onFieldSubmited: (val) {
-                    fieldFocusChange(
-                        context: context,
-                        currentFocus: _emailFN,
-                        nextFocus: _passwordFN);
-                  },
-                  validator: validateEmail,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Password(
-                  controller: passwordController,
-                  focusNode: _passwordFN,
-                  textInputAction: TextInputAction.done,
-                  onFieldSubmited: (val) {
-                    _passwordFN.unfocus();
-                  },
-                  validator: validatePassword,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  alignment: Alignment.centerRight,
-                  child: InkWell(
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => getIt<AuthBloc>(),
+      child: BlocConsumer<AuthBloc, AuthState>(
+          listener: (context, state) => onLoginListener(state),
+          builder: (context, state) {
+            return Scaffold(
+              body: SingleChildScrollView(
+                child: GestureDetector(
                     onTap: () {
-                      Get.toNamed(ForgotPasswordForm.TAG);
+                      FocusScopeNode currentFocus = FocusScope.of(context);
+                      if (!currentFocus.hasPrimaryFocus) {
+                        currentFocus.unfocus();
+                      }
                     },
-                    child: Text(
-                      "Forgot Password",
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xffEE2424)),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                BtnPrimaryBlue(
-                  text: "Log in",
-                  onPressed: () {
-                    _onLoginPressed(context);
-                  },
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                          child: Divider(
-                        height: 2,
-                        color: Colors.grey,
-                        thickness: 1,
-                      )),
-                      Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          child: Text("OR")),
-                      Expanded(
-                          child: Divider(
-                        color: Colors.grey,
-                        thickness: 1,
-                      )),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                BtnPrimaryOutline(
-                  text: "Sign up",
-                  onPressed: () {
-                    Get.offNamed(RegisterForm.TAG);
-                  },
-                )
-              ],
-            ),
-          ),
-        ),
+                    child: Align(
+                      alignment: FractionalOffset.bottomCenter,
+                      child: Form(
+                        key: _formKey,
+                        autovalidate: _autoValidate,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 20),
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                decoration: textFieldShadow(),
+                                child: TextFormField(
+                                  controller: emailController,
+                                  focusNode: _emailFN,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (term) {
+                                    fieldFocusChange(
+                                        context: context,
+                                        currentFocus: _emailFN,
+                                        nextFocus: _passwordFN);
+                                  },
+                                  decoration: InputDecoration(
+                                    labelText: "Email",
+                                    hintText: "Input your email",
+                                  ),
+                                  validator: validateEmail,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                decoration: textFieldShadow(),
+                                child: TextFormField(
+                                  obscureText: obsecureTextPassword,
+                                  validator: validatePassword,
+                                  controller: passwordController,
+                                  focusNode: _passwordFN,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (term) {
+                                    _passwordFN.unfocus();
+                                  },
+                                  decoration: InputDecoration(
+                                      labelText: "Password",
+                                      hintText: "Input your new password",
+                                      suffixIcon: IconButton(
+                                        splashRadius: 10,
+                                        icon: Icon(obsecureTextPassword
+                                            ? Icons.visibility
+                                            : Icons.visibility_off),
+                                        onPressed: () {
+                                          setState(() {
+                                            obsecureTextPassword =
+                                                !obsecureTextPassword;
+                                          });
+                                        },
+                                      )),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                alignment: Alignment.centerRight,
+                                child: InkWell(
+                                  onTap: () {
+                                    // Get.toNamed(ForgotPasswordForm.TAG);
+                                    print(Pref().getUserData);
+                                  },
+                                  child: Text(
+                                    "Forgot Password",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xffEE2424)),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              buttonAction(context, state),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )),
+              ),
+            );
+          }),
+    );
+  }
+
+  Widget buttonAction(BuildContext context, AuthState state) {
+    return state.maybeMap(orElse: () {
+      return BtnPrimaryBlue(
+        text: "Log in",
+        onPressed: () {
+          _onLoginPressed(context);
+        },
       );
+    }, onLoginOption: (e) {
+      if (e.isLoading) {
+        return BtnPrimaryBlueLoading();
+      } else
+        return BtnPrimaryBlue(
+          text: "Log in",
+          onPressed: () {
+            _onLoginPressed(context);
+          },
+        );
+    });
+  }
+
   void _onLoginPressed(
     BuildContext context,
   ) {
     if (_formKey.currentState.validate()) {
-      context.read<AuthBloc>().add((AuthEvent.loginWithEmail(LoginRequestData(
-            username: emailController.text,
-            password: passwordController.text,
-          ))));
+      // emailController.text
+      context.read<AuthBloc>().add(AuthEvent.loginWithEmail(
+          emailController.text, passwordController.text));
       _formKey.currentState.save();
     } else {
       setState(() {
