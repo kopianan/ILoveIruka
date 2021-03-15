@@ -57,14 +57,14 @@ class _AccountPagehomeState extends State<AccountPagehome>
           //   ),
           // )),
 
-          SliverToBoxAdapter(
-              child: Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: SilverCard(
-                    cardNumber: "123",
-                    name: userController.getUserData().fullName,
-                    validUntil: '20/10',
-                  ))),
+          // SliverToBoxAdapter(
+          //     child: Padding(
+          //         padding: EdgeInsets.only(top: 10),
+          //         child: SilverCard(
+          //           cardNumber: "123",
+          //           name: userController.getUserData().fullName,
+          //           validUntil: '20/10',
+          //         ))),
           SliverToBoxAdapter(
             child: Container(
               margin: EdgeInsets.only(left: 15, bottom: 15, right: 15),
