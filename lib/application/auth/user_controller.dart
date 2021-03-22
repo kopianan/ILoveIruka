@@ -6,7 +6,11 @@ class UserController extends GetxController {
   final userData = UserDataModel().obs;
 
   void setDataUser(UserDataModel dataModel) {
-    this.userData.value = dataModel;
+    try {
+      if (dataModel != null) {
+        this.userData.value = dataModel;
+      }
+    } catch (e) {}
   }
 
   UserDataModel getUserData() {

@@ -53,7 +53,10 @@ class _RegisterFormState extends State<RegisterForm> {
           e.roleOptions.fold(
               () => roleDataList = null,
               (a) => a.fold(
-                    (l) => roleDataList = null,
+                    (l) {
+                      print(l);
+                      roleDataList = null;
+                    },
                     (r) {
                       setState(() {
                         roleDataList = r;
@@ -108,10 +111,11 @@ class _RegisterFormState extends State<RegisterForm> {
             return state.maybeMap(
               orElse: () => _buildLoadingPage(),
               onGetUserRoleList: (e) {
-                if (e.isLoading)
-                  return _buildLoadingPage();
-                else
-                  return _buildSingleChildScrollView(context);
+                return _buildSingleChildScrollView(context, state);
+                // if (e.isLoading)
+                //   return _buildLoadingPage();
+                // else
+                //   return _buildSingleChildScrollView(context);
               },
             );
           },
@@ -126,7 +130,8 @@ class _RegisterFormState extends State<RegisterForm> {
     );
   }
 
-  Widget _buildSingleChildScrollView(BuildContext context) {
+  Widget _buildSingleChildScrollView(
+      BuildContext context, AuthState userTypeState) {
     return SingleChildScrollView(
         physics: NeverScrollableScrollPhysics(),
         child: BlocProvider(
@@ -142,33 +147,44 @@ class _RegisterFormState extends State<RegisterForm> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Container(
-                          decoration: textFieldShadow(),
-                          width: double.infinity,
-                          child: DropdownButtonFormField<RoleDataModel>(
-                            validator: (model) {
-                              if (model == null) {
-                                return "Please choose type account";
-                              } else {
-                                return null;
-                              }
-                            },
-                            hint: Text("Choose account type"),
-                            value: actionType,
-                            isExpanded: true,
-                            items: roleDataList
-                                .map((f) => DropdownMenuItem(
-                                      child: Text(f.name),
-                                      value: f,
-                                    ))
-                                .toList(),
-                            onChanged: (val) {
-                              setState(() {
-                                actionType = val;
-                              });
-                            },
-                          ),
-                        ),
+                        userTypeState.maybeMap(
+                            orElse: () => dropDownNone(),
+                            onGetUserRoleList: (role) {
+                              return role.roleOptions.fold(
+                                  () => dropDownNone(),
+                                  (a) => a.fold(
+                                        (l) => dropDownEror(
+                                            "Can not load data from server"),
+                                        (r) => Container(
+                                          decoration: textFieldShadow(),
+                                          width: double.infinity,
+                                          child: DropdownButtonFormField<
+                                              RoleDataModel>(
+                                            validator: (model) {
+                                              if (model == null) {
+                                                return "Please choose type account";
+                                              } else {
+                                                return null;
+                                              }
+                                            },
+                                            hint: Text("Choose account type"),
+                                            value: actionType,
+                                            isExpanded: true,
+                                            items: roleDataList
+                                                .map((f) => DropdownMenuItem(
+                                                      child: Text(f.name),
+                                                      value: f,
+                                                    ))
+                                                .toList(),
+                                            onChanged: (val) {
+                                              setState(() {
+                                                actionType = val;
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                      ));
+                            }),
                         SizedBox(
                           height: 20,
                         ),
@@ -315,6 +331,32 @@ class _RegisterFormState extends State<RegisterForm> {
                 );
               }),
         ));
+  }
+
+  Container dropDownNone() {
+    return Container(
+      decoration: textFieldShadow(),
+      width: double.infinity,
+      child: DropdownButtonFormField<RoleDataModel>(
+        hint: Text("Choose account type"),
+        isExpanded: true,
+        items: [],
+        onChanged: (val) {},
+      ),
+    );
+  }
+
+  Container dropDownEror(String error) {
+    return Container(
+      decoration: textFieldShadow(),
+      width: double.infinity,
+      child: DropdownButtonFormField<RoleDataModel>(
+        hint: Text(error),
+        isExpanded: true,
+        items: [],
+        onChanged: (val) {},
+      ),
+    );
   }
 
   String validateName(String value) {

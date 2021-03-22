@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:i_love_iruka/presentation/home/pets/add_new_pet_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/pets_detail_page.dart';
 
 class MyPetsPage extends StatefulWidget {
@@ -34,7 +35,7 @@ class _MyPetsPageState extends State<MyPetsPage> {
                           size: 30,
                         ),
                         onPressed: () {
-                          Get.toNamed(PetsDetailPage.TAG);
+                          Get.toNamed(AddNewPetPage.TAG);
                         })
                   ],
                 ),

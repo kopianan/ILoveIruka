@@ -25,7 +25,7 @@ class Pref {
       //decode  and then convert to class
       return UserDataModel.fromJson(_data);
     } catch (e) {
-      throw Exception(e);
+      return null;
     }
   }
 

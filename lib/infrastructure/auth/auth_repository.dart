@@ -13,6 +13,19 @@ import 'package:injectable/injectable.dart';
 class AuthRepository implements IAuthFacade {
   final Dio _dio;
   AuthRepository(this._dio);
+  AuthFailure checkErrorData(DioError e) {
+    if (e.type == DioErrorType.RESPONSE) {
+      if (e.response.statusCode == 404 || e.response.statusCode == 400) {
+        return AuthFailure.responseError(
+            errorMessage: e.response.data['message']);
+      }
+    } else if (e.type == DioErrorType.DEFAULT) {
+      return AuthFailure.serverError(
+          errorMessage: "something wrong with the server");
+    }
+    return AuthFailure.serverError(
+        errorMessage: "something wrong with the server");
+  }
 
   @override
   Future<Either<AuthFailure, UserDataModel>> registerNewUser(
@@ -27,17 +40,7 @@ class AuthRepository implements IAuthFacade {
       final _result = UserDataModel.fromJson(response.data['data']);
       return right(_result);
     } on DioError catch (e) {
-      if (e.type == DioErrorType.RESPONSE) {
-        if (e.type == DioErrorType.RESPONSE) {
-          if (e.response.statusCode == 404 || e.response.statusCode == 400) {
-            return left(AuthFailure.responseError(
-                errorMessage: e.response.data['message']));
-          }
-        }
-      }
-
-      return left(AuthFailure.serverError(
-          errorMessage: e.response.data['message']['message']));
+      return left(checkErrorData(e));
     }
   }
 
@@ -53,14 +56,7 @@ class AuthRepository implements IAuthFacade {
           _result.map((e) => RoleDataModel.fromJson(e)).toList();
       return right(_res);
     } on DioError catch (e) {
-      if (e.type == DioErrorType.RESPONSE) {
-        if (e.response.statusCode == 404 || e.response.statusCode == 400) {
-          return left(AuthFailure.responseError(
-              errorMessage: e.response.data['message']));
-        }
-      }
-
-      return left(AuthFailure.serverError(errorMessage: e.toString()));
+      return left(checkErrorData(e));
     }
   }
 
@@ -95,14 +91,7 @@ class AuthRepository implements IAuthFacade {
       final _result = UserDataModel.fromJson(response.data['data']);
       return right(_result);
     } on DioError catch (e) {
-      print(e.response.data.toString());
-      if (e.type == DioErrorType.RESPONSE) {
-        if (e.response.statusCode == 404 || e.response.statusCode == 400) {
-          return left(AuthFailure.responseError(
-              errorMessage: e.response.data['message']));
-        }
-      }
-      return left(AuthFailure.serverError());
+      return left(checkErrorData(e));
     }
   }
 }

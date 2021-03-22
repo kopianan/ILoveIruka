@@ -5,6 +5,7 @@ import 'package:i_love_iruka/infrastructure/core/pref.dart';
 import 'package:i_love_iruka/presentation/home/account_home/account_page_home.dart';
 import 'package:i_love_iruka/presentation/home/feeds_home/feed_home.dart';
 import 'package:i_love_iruka/presentation/home/pets/pets_match_page.dart';
+import 'package:i_love_iruka/presentation/home/user_home/user_home_page.dart';
 import 'package:i_love_iruka/presentation/welcome/welcome_screen.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -61,21 +62,7 @@ class _DashboardPageState extends State<DashboardPage> {
             FeedHome(),
             AccountPagehome(),
             PetsMatchPage(),
-            Container(
-                color: Colors.blue,
-                child: Center(
-                  child: FlatButton(
-                    child: Text("SIGN OUT"),
-                    onPressed: () {
-                      try {
-                        Pref().removeStorageData();
-                        Get.offAllNamed(WelcomeScreen.TAG);
-                      } catch (e) {
-                        print(e);
-                      }
-                    },
-                  ),
-                ))
+            UserHomePage()
           ],
         ),
       ),
