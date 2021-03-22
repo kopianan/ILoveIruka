@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:i_love_iruka/presentation/widgets/member_card.dart';
 
 class MembershipCardListPage extends StatefulWidget {
@@ -12,9 +14,9 @@ class MembershipCardListPage extends StatefulWidget {
 
 class _MembershipCardListPageState extends State<MembershipCardListPage> {
   List<Widget> cardList = [
-    // SilverCard(),
-    // GoldCard(),
-    // PlatinumCard(),
+    SilverCard(),
+    GoldCard(),
+    PlatinumCard(),
   ];
 
   PageController _pageController = PageController();
@@ -92,91 +94,102 @@ class _MembershipCardListPageState extends State<MembershipCardListPage> {
   }
 }
 
-// class PlatinumCard extends StatelessWidget {
-//   const PlatinumCard(
-//       {Key key,
-//       this.cardNumber = "123",
-//       this.name: "nama",
-//       this.validUntil: "20/10"})
-//       : super(
-//           key: key,
-//         );
-//   final String cardNumber;
-//   final String name;
-//   final String validUntil;
+class PlatinumCard extends StatelessWidget {
+  const PlatinumCard(
+      {Key key,
+      this.cardNumber = "123",
+      this.name: "nama",
+      this.validUntil: "20/10"})
+      : super(
+          key: key,
+        );
+  final String cardNumber;
+  final String name;
+  final String validUntil;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return MemberCard(
-//       textColor: Color(0xFF898989),
-//       backCardColor: [
-//         Color(0xff35393f),
-//         Color(0xff68737f),
-//         Color(0xff1e2022),
-//       ],
-//       // backgroundColor: Colors.blue[600],
-//       backgroundColor: Color(0xff35393f),
-//       backNumber: cardNumber,
-//       name: name,
-//       validUntil: validUntil,
-//       type: "Silver VIP",
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return MemberCard(
+      textColor: Color(0xFF898989),
+      frontColor: [
+        Color(0xff35393f),
+        Color(0xff68737f),
+        Color(0xff1e2022),
+      ],
+      backCardColor: [
+        Color(0xff35393f),
+        Color(0xff68737f),
+        Color(0xff1e2022),
+      ],
+      // backgroundColor: Colors.blue[600],
+      backgroundColor: Color(0xff35393f),
+      backNumber: cardNumber,
+      name: name,
+      validUntil: validUntil,
+      type: "Silver VIP",
+    );
+  }
+}
 
-// class GoldCard extends StatelessWidget {
-//   const GoldCard(
-//       {Key key,
-//       this.cardNumber = "123",
-//       this.name: "nama",
-//       this.validUntil: "20/10"})
-//       : super(key: key);
-//   final String cardNumber;
-//   final String name;
-//   final String validUntil;
-//   @override
-//   Widget build(BuildContext context) {
-//     return MemberCard(
-//       textColor: Color(0xFFEFA700),
-//       backCardColor: [
-//         Color(0xffFFD700),
-//         Color(0xffDAA520),
-//         Color(0xffF0E68C),
-//       ],
-//       // backgroundColor: Colors.blue[600],
-//       backgroundColor: Color(0xFFF1D900),
-//       backNumber: cardNumber,
-//       name: name,
-//       validUntil: validUntil,
-//       type: "Silver VIP",
-//     );
-//   }
-// }
+class GoldCard extends StatelessWidget {
+  const GoldCard(
+      {Key key,
+      this.cardNumber = "123",
+      this.name: "nama",
+      this.validUntil: "20/10"})
+      : super(key: key);
+  final String cardNumber;
+  final String name;
+  final String validUntil;
+  @override
+  Widget build(BuildContext context) {
+    return MemberCard(
+      frontColor: [
+        Color(0xffFFD700),
+        Color(0xffDAA520),
+        Color(0xffF0E68C),
+      ],
+      textColor: Color(0xFFEFA700),
+      backCardColor: [
+        Color(0xffFFD700),
+        Color(0xffDAA520),
+        Color(0xffF0E68C),
+      ],
+      // backgroundColor: Colors.blue[600],
+      backgroundColor: Color(0xFFF1D900),
+      backNumber: cardNumber,
+      name: name,
+      validUntil: validUntil,
+      type: "Silver VIP",
+    );
+  }
+}
 
-// class SilverCard extends StatelessWidget {
-//   const SilverCard(
-//       {Key key,
-//       this.cardNumber = "123",
-//       this.name: "nama",
-//       this.validUntil: "20/10"})
-//       : super(key: key);
-//   final String cardNumber;
-//   final String name;
-//   final String validUntil;
-//   @override
-//   Widget build(BuildContext context) {
-//     return MemberCard(
-//       textColor: Color(0xFF0D5CAB),
-//       backCardColor: [Colors.blue[500], Colors.blue[300], Colors.blue[800]],
-//       // backgroundColor: Colors.blue[600],
-//       backgroundColor: Color(0xFF1E78FF),
-//       backNumber: cardNumber,
-//       name: name,
-//       validUntil: validUntil,
-//       type: "Silver VIP",
-//     );
-//   }
-// }
+class SilverCard extends StatelessWidget {
+  const SilverCard(
+      {Key key,
+      this.cardNumber = "123",
+      this.name: "nama",
+      this.validUntil: "20/10"})
+      : super(key: key);
+  final String cardNumber;
+  final String name;
+  final String validUntil;
+  @override
+  Widget build(BuildContext context) {
+    return MemberCard(
+      frontColor: [Colors.blue[500], Colors.blue[300], Colors.blue[800]],
+      textColor: Color(0xFF0D5CAB),
+      backCardColor: [Colors.blue[500], Colors.blue[300], Colors.blue[800]],
+      // backgroundColor: Colors.blue[600],
+      backgroundColor: Color(0xFF1E78FF),
+      backNumber: cardNumber,
+      name: name,
+      validUntil: validUntil,
+      type: "Silver VIP",
+    );
+  }
+}
 //  Color(0xffFFD700),
 // Color(0xffDAA520),
 // Color(0xffF0E68C),

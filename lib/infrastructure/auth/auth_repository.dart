@@ -36,8 +36,7 @@ class AuthRepository implements IAuthFacade {
         }
       }
 
-      return left(AuthFailure.serverError(
-          errorMessage: e.response.data['message']['message']));
+      return left(AuthFailure.serverError("Server error"));
     }
   }
 
@@ -60,7 +59,7 @@ class AuthRepository implements IAuthFacade {
         }
       }
 
-      return left(AuthFailure.serverError(errorMessage: e.toString()));
+      return left(AuthFailure.serverError("Server error"));
     }
   }
 
@@ -75,7 +74,7 @@ class AuthRepository implements IAuthFacade {
         return right(_userData);
       }
     } catch (e) {
-      return left(AuthFailure.serverError());
+      return left(AuthFailure.serverError("Server error"));
     }
   }
 
@@ -95,14 +94,15 @@ class AuthRepository implements IAuthFacade {
       final _result = UserDataModel.fromJson(response.data['data']);
       return right(_result);
     } on DioError catch (e) {
-      print(e.response.data.toString());
       if (e.type == DioErrorType.RESPONSE) {
         if (e.response.statusCode == 404 || e.response.statusCode == 400) {
           return left(AuthFailure.responseError(
               errorMessage: e.response.data['message']));
         }
+      } else if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+        return left(AuthFailure.responseError(errorMessage: "Time out"));
       }
-      return left(AuthFailure.serverError());
+      return left(AuthFailure.serverError("Server error"));
     }
   }
 }

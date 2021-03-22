@@ -4,6 +4,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:i_love_iruka/presentation/auth/signin_signout/signin_signout_page.dart';
 import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
+import 'package:i_love_iruka/presentation/membership/membership_card_list.dart';
 import 'package:i_love_iruka/presentation/splah_screen/splash_screen.dart';
 import 'package:i_love_iruka/routes/router.dart';
 
@@ -43,7 +44,8 @@ class _AppWidgetState extends State<AppWidget> {
       getPages: navigatorPages,
       debugShowCheckedModeBanner: false,
       theme: theme(),
-      initialRoute: SplashScreen.TAG,
+      // initialRoute: SplashScreen.TAG,
+      home: MembershipCardListPage(),
     );
   }
 

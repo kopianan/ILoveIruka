@@ -21,9 +21,9 @@ class _$AuthFailureTearOff {
   }
 
 // ignore: unused_element
-  _ServerError serverError({String errorMessage}) {
+  _ServerError serverError(String errorMessage) {
     return _ServerError(
-      errorMessage: errorMessage,
+      errorMessage,
     );
   }
 }
@@ -239,16 +239,14 @@ class __$ServerErrorCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
     Object errorMessage = freezed,
   }) {
     return _then(_ServerError(
-      errorMessage: errorMessage == freezed
-          ? _value.errorMessage
-          : errorMessage as String,
+      errorMessage == freezed ? _value.errorMessage : errorMessage as String,
     ));
   }
 }
 
 /// @nodoc
 class _$_ServerError implements _ServerError {
-  const _$_ServerError({this.errorMessage});
+  const _$_ServerError(this.errorMessage) : assert(errorMessage != null);
 
   @override
   final String errorMessage;
@@ -328,7 +326,7 @@ class _$_ServerError implements _ServerError {
 }
 
 abstract class _ServerError implements AuthFailure {
-  const factory _ServerError({String errorMessage}) = _$_ServerError;
+  const factory _ServerError(String errorMessage) = _$_ServerError;
 
   @override
   String get errorMessage;
