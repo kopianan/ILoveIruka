@@ -67,13 +67,17 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
 class PetCustomFormField extends StatelessWidget {
   const PetCustomFormField({
     Key key,
+    this.label,
+    this.hintText,
   }) : super(key: key);
+  final String label;
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
-        "Pet Name",
+        label,
         style: TextStyle(
           fontWeight: FontWeight.bold,
         ),
@@ -82,8 +86,8 @@ class PetCustomFormField extends StatelessWidget {
         height: 5,
       ),
       TextFormField(
-        decoration: InputDecoration(
-            border: OutlineInputBorder(), hintText: "Your pet name"),
+        decoration:
+            InputDecoration(border: OutlineInputBorder(), hintText: hintText),
       ),
     ]);
   }
