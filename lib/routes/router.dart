@@ -8,9 +8,11 @@ import 'package:i_love_iruka/presentation/core/photo_viewer_page.dart';
 import 'package:i_love_iruka/presentation/feed_detail/feed_detail_page.dart';
 import 'package:i_love_iruka/presentation/home/account_home/partnership_location_page.dart';
 import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
+import 'package:i_love_iruka/presentation/home/pets/add_new_pet_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/my_pets_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/pets_detail_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/pets_match_page.dart';
+import 'package:i_love_iruka/presentation/home/user_home/profile/setting_profile_page.dart';
 import 'package:i_love_iruka/presentation/membership/membership_card_list.dart';
 import 'package:i_love_iruka/presentation/splah_screen/splash_screen.dart';
 import 'package:i_love_iruka/presentation/welcome/welcome_screen.dart';
@@ -36,4 +38,6 @@ List<GetPage> navigatorPages = [
   GetPage(name: SigninSignoutPage.TAG, page: () => SigninSignoutPage()),
   GetPage(name: FeedDetailPage.TAG, page: () => FeedDetailPage()),
   GetPage(name: PhotoViewerPage.TAG, page: () => PhotoViewerPage()),
+  GetPage(name: SettingProfielPage.TAG, page: () => SettingProfielPage()),
+  GetPage(name: AddNewPetPage.TAG, page: () => AddNewPetPage()),
 ];

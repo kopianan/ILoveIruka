@@ -12,6 +12,18 @@ class FeedHomeRepository extends IFeedHomeFacade {
   final Dio _dio;
   FeedHomeRepository(this._dio);
 
+  FeedFailure checkErrorData(DioError e) {
+    if (e.type == DioErrorType.RESPONSE) {
+      if (e.response.statusCode == 404 || e.response.statusCode == 400) {
+        return FeedFailure(e.response.data['message']);
+      }
+    } else if (e.type == DioErrorType.DEFAULT) {
+      return FeedFailure("something wrong with the server");
+    }
+
+    return FeedFailure("Server Error");
+  }
+
   @override
   Future<Either<FeedFailure, List<Feed>>> getTopFeedData() async {
     Response response;
@@ -24,15 +36,7 @@ class FeedHomeRepository extends IFeedHomeFacade {
       final _result = _dataList.map((e) => Feed.fromJson(e)).toList();
       return right(_result);
     } on DioError catch (e) {
-      if (e.type == DioErrorType.RESPONSE) {
-        if (e.type == DioErrorType.RESPONSE) {
-          if (e.response.statusCode == 404 || e.response.statusCode == 400) {
-            return left(FeedFailure(e.response.data['message']));
-          }
-        }
-      }
-
-      return left(FeedFailure(e.response.data['message']['message']));
+      return left(checkErrorData(e));
     }
   }
 
@@ -48,15 +52,7 @@ class FeedHomeRepository extends IFeedHomeFacade {
       final _result = _dataList.map((e) => Feed.fromJson(e)).toList();
       return right(_result);
     } on DioError catch (e) {
-      if (e.type == DioErrorType.RESPONSE) {
-        if (e.type == DioErrorType.RESPONSE) {
-          if (e.response.statusCode == 404 || e.response.statusCode == 400) {
-            return left(FeedFailure(e.response.data['message']));
-          }
-        }
-      }
-
-      return left(FeedFailure(e.response.data['message']['message']));
+      return left(checkErrorData(e));
     }
   }
 
@@ -73,12 +69,7 @@ class FeedHomeRepository extends IFeedHomeFacade {
           list.map((e) => MenuDataModel.fromJson(e)).toList();
       return right(listMenu);
     } on DioError catch (e) {
-      if (e.type == DioErrorType.RESPONSE) {
-        if (e.response.statusCode == 404 || e.response.statusCode == 400) {
-          return left(FeedFailure(e.response.data['message']));
-        }
-      }
-      return left(FeedFailure("Server Error"));
+      return left(checkErrorData(e));
     }
   }
 }

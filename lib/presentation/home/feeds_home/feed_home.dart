@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/user_controller.dart';
 import 'package:i_love_iruka/application/feed_home.dart/feed_controller.dart';
@@ -46,7 +47,9 @@ class _FeedHomeState extends State<FeedHome>
     _refreshController.loadComplete();
   }
 
-  final _homeBloc = getIt<FeedHomeBloc>();
+  final _homeTopFeedBloc = getIt<FeedHomeBloc>();
+  final _homeMenuBloc = getIt<FeedHomeBloc>();
+  final _homeBottomFeedBloc = getIt<FeedHomeBloc>();
   @override
   Widget build(BuildContext context) {
     const double _horizontalMargin = 15;
@@ -121,7 +124,7 @@ class _FeedHomeState extends State<FeedHome>
             sliver: SliverToBoxAdapter(
               child: BlocProvider(
                 create: (context) =>
-                    _homeBloc..add(FeedHomeEvent.getTopFeedData()),
+                    _homeTopFeedBloc..add(FeedHomeEvent.getTopFeedData()),
                 child: Container(
                   child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
                     listener: (context, state) {
@@ -129,6 +132,7 @@ class _FeedHomeState extends State<FeedHome>
                       state.maybeMap(
                         orElse: () {},
                         failOrSuccessGetData: (val) {
+                          if (val.isLoading) print("Loading kok");
                           val.responseOptions.fold(
                               () {},
                               (a) => a.fold(
@@ -141,7 +145,7 @@ class _FeedHomeState extends State<FeedHome>
                       );
                     },
                     builder: (context, state) {
-                      return onGetTopFeed(state);
+                      return onGetTopFeed(context, state);
                     },
                   ),
                 ),
@@ -153,8 +157,8 @@ class _FeedHomeState extends State<FeedHome>
           ),
           SliverToBoxAdapter(
               child: BlocProvider(
-                  create: (context) => getIt<FeedHomeBloc>()
-                    ..add(FeedHomeEvent.getHomeMenuList()),
+                  create: (context) =>
+                      _homeMenuBloc..add(FeedHomeEvent.getHomeMenuList()),
                   child: Container(
                     child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
                       listener: (context, state) {},
@@ -167,7 +171,7 @@ class _FeedHomeState extends State<FeedHome>
           SliverToBoxAdapter(
             child: BlocProvider(
               create: (context) =>
-                  getIt<FeedHomeBloc>()..add(FeedHomeEvent.getBottomFeedData()),
+                  _homeBottomFeedBloc..add(FeedHomeEvent.getBottomFeedData()),
               child: Container(
                 child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
                   listener: (context, state) {
@@ -203,6 +207,22 @@ class _FeedHomeState extends State<FeedHome>
   Widget onGetHomeMenu(FeedHomeState state) {
     var loadingContainer = Container(
         height: 300, child: Center(child: CircularProgressIndicator()));
+    var errorContainer = AspectRatio(
+        aspectRatio: 3,
+        child: Container(
+            child: Center(
+                child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+                icon: Icon(Icons.refresh),
+                onPressed: () {
+                  _homeMenuBloc..add(FeedHomeEvent.getTopFeedData());
+                  Fluttertoast.showToast(msg: "Refresh");
+                }),
+            Text("Error, Please refresh")
+          ],
+        ))));
     return state.maybeMap(
       orElse: () => loadingContainer,
       onGetHomeMenuList: (val) {
@@ -212,7 +232,7 @@ class _FeedHomeState extends State<FeedHome>
           return val.homeMenuData.fold(
               () => loadingContainer,
               (a) => a.fold(
-                    (l) => loadingContainer,
+                    (l) => errorContainer,
                     (r) => _featuresMenuGrid(r),
                   ));
         }
@@ -240,10 +260,27 @@ class _FeedHomeState extends State<FeedHome>
     );
   }
 
-  Widget onGetTopFeed(FeedHomeState state) {
+  Widget onGetTopFeed(BuildContext context, FeedHomeState state) {
     var loadingContainer = AspectRatio(
         aspectRatio: 3,
         child: Container(child: Center(child: CircularProgressIndicator())));
+    var errorContainer = AspectRatio(
+        aspectRatio: 3,
+        child: Container(
+            child: Center(
+                child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+                icon: Icon(Icons.refresh),
+                onPressed: () {
+                  _homeTopFeedBloc..add(FeedHomeEvent.getTopFeedData());
+                  Fluttertoast.showToast(msg: "Refresh");
+                }),
+            Text("Error, Please refresh")
+          ],
+        ))));
+
     return state.maybeMap(
         orElse: () => Container(),
         failOrSuccessGetData: (val) {
@@ -253,7 +290,7 @@ class _FeedHomeState extends State<FeedHome>
             return val.responseOptions.fold(
                 () => loadingContainer,
                 (a) => a.fold(
-                    (l) => loadingContainer,
+                    (l) => errorContainer,
                     (r) => GetX<FeedController>(
                           builder: (controller) => CarouselSlider(
                             options: carouselOptions(),
@@ -269,6 +306,22 @@ class _FeedHomeState extends State<FeedHome>
   Widget onGetBottomFeed(FeedHomeState state) {
     var loadingContainer =
         Container(child: Center(child: CircularProgressIndicator()));
+    var errorContainer = AspectRatio(
+        aspectRatio: 3,
+        child: Container(
+            child: Center(
+                child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+                icon: Icon(Icons.refresh),
+                onPressed: () {
+                  _homeBottomFeedBloc..add(FeedHomeEvent.getTopFeedData());
+                  Fluttertoast.showToast(msg: "Refresh");
+                }),
+            Text("Error, Please refresh")
+          ],
+        ))));
     return state.maybeMap(
       orElse: () => Container(),
       failOrSuccessGetDataBottom: (val) {
@@ -278,7 +331,7 @@ class _FeedHomeState extends State<FeedHome>
           return val.responseOptions.fold(
               () => loadingContainer,
               (a) => a.fold(
-                  (l) => loadingContainer,
+                  (l) => errorContainer,
                   (r) => GetX<FeedController>(
                         builder: (controller) => Container(
                             child: ListView.builder(
