@@ -13,11 +13,11 @@ class FeedHomeRepository extends IFeedHomeFacade {
   FeedHomeRepository(this._dio);
 
   FeedFailure checkErrorData(DioError e) {
-    if (e.type == DioErrorType.RESPONSE) {
+    if (e.type == DioErrorType.response) {
       if (e.response.statusCode == 404 || e.response.statusCode == 400) {
         return FeedFailure(e.response.data['message']);
       }
-    } else if (e.type == DioErrorType.DEFAULT) {
+    } else if (e.type == DioErrorType.other) {
       return FeedFailure("something wrong with the server");
     }
 

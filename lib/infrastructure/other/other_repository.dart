@@ -24,7 +24,7 @@ class OtherRepository extends IOtherFacade {
       print(_result.first);
       return right(_result);
     } on DioError catch (e) {
-      if (e.type == DioErrorType.RESPONSE) {
+      if (e.type == DioErrorType.response) {
         return left(e.response.data.toString());
       }
 
@@ -45,7 +45,7 @@ class OtherRepository extends IOtherFacade {
       print(_result.first);
       return right(_result);
     } on DioError catch (e) {
-      if (e.type == DioErrorType.RESPONSE) {
+      if (e.type == DioErrorType.response) {
         return left(e.response.data.toString());
       }
 

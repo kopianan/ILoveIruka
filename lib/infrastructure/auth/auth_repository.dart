@@ -27,8 +27,8 @@ class AuthRepository implements IAuthFacade {
       final _result = UserDataModel.fromJson(response.data['data']);
       return right(_result);
     } on DioError catch (e) {
-      if (e.type == DioErrorType.RESPONSE) {
-        if (e.type == DioErrorType.RESPONSE) {
+      if (e.type == DioErrorType.response) {
+        if (e.type == DioErrorType.response) {
           if (e.response.statusCode == 404 || e.response.statusCode == 400) {
             return left(AuthFailure.responseError(
                 errorMessage: e.response.data['message']));
@@ -52,7 +52,7 @@ class AuthRepository implements IAuthFacade {
           _result.map((e) => RoleDataModel.fromJson(e)).toList();
       return right(_res);
     } on DioError catch (e) {
-      if (e.type == DioErrorType.RESPONSE) {
+      if (e.type == DioErrorType.response) {
         if (e.response.statusCode == 404 || e.response.statusCode == 400) {
           return left(AuthFailure.responseError(
               errorMessage: e.response.data['message']));
@@ -94,12 +94,12 @@ class AuthRepository implements IAuthFacade {
       final _result = UserDataModel.fromJson(response.data['data']);
       return right(_result);
     } on DioError catch (e) {
-      if (e.type == DioErrorType.RESPONSE) {
+      if (e.type == DioErrorType.response) {
         if (e.response.statusCode == 404 || e.response.statusCode == 400) {
           return left(AuthFailure.responseError(
               errorMessage: e.response.data['message']));
         }
-      } else if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+      } else if (e.type == DioErrorType.receiveTimeout) {
         return left(AuthFailure.responseError(errorMessage: "Time out"));
       }
       return left(AuthFailure.serverError("Server error"));

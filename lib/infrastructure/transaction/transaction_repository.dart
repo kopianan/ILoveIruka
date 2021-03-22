@@ -21,10 +21,10 @@ class TransactionRepository extends ITransactionFacade {
           queryParameters: userId.toJson());
       final _res = response.data;
       final _result = GetPointAndLastTransResponse.fromJson(_res);
-  print("REPO" +  _result.toJson().toString());
+      print("REPO" + _result.toJson().toString());
       return right(_result);
     } on DioError catch (e) {
-      if (e.type == DioErrorType.RESPONSE) {
+      if (e.type == DioErrorType.response) {
         if (e.response.statusCode == 404) {
           return left(TransactionFailure.notFound());
         } else if (e.response.statusCode == 400) {

@@ -95,7 +95,7 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
                             selectable: true,
                             styleSheetTheme:
                                 MarkdownStyleSheetBaseTheme.material,
-                            onTapLink: (link) {
+                            onTapLink: (link, link2, link3) {
                               launch(link);
                             },
                           ),
