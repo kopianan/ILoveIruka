@@ -26,45 +26,29 @@ class _AccountPagehomeState extends State<AccountPagehome>
     return SafeArea(
       child: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            iconTheme: IconThemeData(color: Colors.black54),
-            textTheme: TextTheme(
-              headline6: TextStyle(color: Colors.black54, fontSize: 20),
+          SliverToBoxAdapter(
+              child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("My Account",
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black54)),
+                Icon(Icons.info)
+              ],
             ),
-            leading: null,
-            backgroundColor: Colors.white,
-            title: Text("My account"),
-            actions: [
-              IconButton(
-                icon: Icon(Icons.info_outline),
-                onPressed: () {},
-              )
-            ],
-          ),
-          // SliverToBoxAdapter(
-          //     child: Padding(
-          //   padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       Text("My Account",
-          //           style: TextStyle(
-          //               fontSize: 25,
-          //               fontWeight: FontWeight.bold,
-          //               color: Colors.black54)),
-          //       Icon(Icons.info)
-          //     ],
-          //   ),
-          // )),
-
-          // SliverToBoxAdapter(
-          //     child: Padding(
-          //         padding: EdgeInsets.only(top: 10),
-          //         child: SilverCard(
-          //           cardNumber: "123",
-          //           name: userController.getUserData().fullName,
-          //           validUntil: '20/10',
-          //         ))),
+          )),
+          SliverToBoxAdapter(
+              child: Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: SilverCard(
+                    cardNumber: "123",
+                    name: userController.getUserData().fullName,
+                    validUntil: '20/10',
+                  ))),
           SliverToBoxAdapter(
             child: Container(
               margin: EdgeInsets.only(left: 15, bottom: 15, right: 15),

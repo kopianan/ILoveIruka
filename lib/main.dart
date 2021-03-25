@@ -6,6 +6,7 @@ import 'package:i_love_iruka/util/constants.dart';
 import 'package:injectable/injectable.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   configureInjection(Environment.prod);
   await GetStorage.init(Constants().getIrukaStorage);
   runApp(AppWidget());

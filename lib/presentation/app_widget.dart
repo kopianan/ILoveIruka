@@ -44,8 +44,8 @@ class _AppWidgetState extends State<AppWidget> {
       getPages: navigatorPages,
       debugShowCheckedModeBanner: false,
       theme: theme(),
-      // initialRoute: SplashScreen.TAG,
-      home: MembershipCardListPage(),
+      initialRoute: SplashScreen.TAG,
+      home: SplashScreen(),
     );
   }
 

@@ -33,8 +33,10 @@ class _DashboardPageState extends State<DashboardPage> {
   void bottomTapped(int index) {
     setState(() {
       bottomSelectedIndex = index;
-      pageController.animateToPage(index,
-          duration: Duration(milliseconds: 500), curve: Curves.ease);
+      
+      // pageController.animateToPage(index,
+      //     duration: Duration(milliseconds: 500), curve: Curves.ease);
+          pageController.jumpToPage(index);
     });
   }
 

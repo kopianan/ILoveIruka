@@ -4,6 +4,7 @@ import 'package:i_love_iruka/domain/feed_home/feed.dart';
 import 'package:i_love_iruka/domain/feed_home/feed_failure.dart';
 import 'package:i_love_iruka/domain/feed_home/i_feed_home_facade.dart';
 import 'package:i_love_iruka/domain/feed_home/menu_data_model.dart';
+import 'package:i_love_iruka/infrastructure/core/pref.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:injectable/injectable.dart';
 
@@ -14,7 +15,9 @@ class FeedHomeRepository extends IFeedHomeFacade {
 
   FeedFailure checkErrorData(DioError e) {
     if (e.type == DioErrorType.RESPONSE) {
-      if (e.response.statusCode == 404 || e.response.statusCode == 400) {
+      if (e.response.statusCode == 404 ||
+          e.response.statusCode == 400 ||
+          e.response.statusCode == 401) {
         return FeedFailure(e.response.data['message']);
       }
     } else if (e.type == DioErrorType.DEFAULT) {
@@ -24,14 +27,20 @@ class FeedHomeRepository extends IFeedHomeFacade {
     return FeedFailure("Server Error");
   }
 
+  Options getDioOptions() {
+    String _token = Pref().getUserData.token;
+    Options options = Options(headers: {"Authorization": "Bearer $_token"});
+    return options;
+  }
+
   @override
   Future<Either<FeedFailure, List<Feed>>> getTopFeedData() async {
     Response response;
 
     try {
       response = await _dio.get(
-        Constants.getStagingUrl() + "/api/v1/feeds/banner",
-      );
+          Constants.getStagingUrl() + "/api/v1/feeds/banner",
+          options: getDioOptions());
       List _dataList = response.data['data'];
       final _result = _dataList.map((e) => Feed.fromJson(e)).toList();
       return right(_result);
@@ -46,8 +55,8 @@ class FeedHomeRepository extends IFeedHomeFacade {
 
     try {
       response = await _dio.get(
-        Constants.getStagingUrl() + "/api/v1/feeds/bottom",
-      );
+          Constants.getStagingUrl() + "/api/v1/feeds/bottom",
+          options: getDioOptions());
       List _dataList = response.data['data'];
       final _result = _dataList.map((e) => Feed.fromJson(e)).toList();
       return right(_result);
@@ -61,8 +70,9 @@ class FeedHomeRepository extends IFeedHomeFacade {
     Response response;
 
     try {
-      response =
-          await _dio.get(Constants.getStagingUrl() + "/api/v1/menus/shown");
+      response = await _dio.get(
+          Constants.getStagingUrl() + "/api/v1/menus/shown",
+          options: getDioOptions());
 
       List list = (response.data['data']);
       List<MenuDataModel> listMenu =
