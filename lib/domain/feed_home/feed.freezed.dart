@@ -24,7 +24,11 @@ class _$FeedTearOff {
       String content,
       String imageUrl,
       String type,
-      String typeLabel}) {
+      String typeLabel,
+      String startDate,
+      String endDate,
+      String createdAt,
+      String updatedAt}) {
     return _Feed(
       id: id,
       title: title,
@@ -33,6 +37,10 @@ class _$FeedTearOff {
       imageUrl: imageUrl,
       type: type,
       typeLabel: typeLabel,
+      startDate: startDate,
+      endDate: endDate,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
     );
   }
 
@@ -55,6 +63,10 @@ mixin _$Feed {
   String get imageUrl;
   String get type;
   String get typeLabel;
+  String get startDate;
+  String get endDate;
+  String get createdAt;
+  String get updatedAt;
 
   Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
@@ -72,7 +84,11 @@ abstract class $FeedCopyWith<$Res> {
       String content,
       String imageUrl,
       String type,
-      String typeLabel});
+      String typeLabel,
+      String startDate,
+      String endDate,
+      String createdAt,
+      String updatedAt});
 }
 
 /// @nodoc
@@ -92,6 +108,10 @@ class _$FeedCopyWithImpl<$Res> implements $FeedCopyWith<$Res> {
     Object imageUrl = freezed,
     Object type = freezed,
     Object typeLabel = freezed,
+    Object startDate = freezed,
+    Object endDate = freezed,
+    Object createdAt = freezed,
+    Object updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
@@ -101,6 +121,10 @@ class _$FeedCopyWithImpl<$Res> implements $FeedCopyWith<$Res> {
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       type: type == freezed ? _value.type : type as String,
       typeLabel: typeLabel == freezed ? _value.typeLabel : typeLabel as String,
+      startDate: startDate == freezed ? _value.startDate : startDate as String,
+      endDate: endDate == freezed ? _value.endDate : endDate as String,
+      createdAt: createdAt == freezed ? _value.createdAt : createdAt as String,
+      updatedAt: updatedAt == freezed ? _value.updatedAt : updatedAt as String,
     ));
   }
 }
@@ -117,7 +141,11 @@ abstract class _$FeedCopyWith<$Res> implements $FeedCopyWith<$Res> {
       String content,
       String imageUrl,
       String type,
-      String typeLabel});
+      String typeLabel,
+      String startDate,
+      String endDate,
+      String createdAt,
+      String updatedAt});
 }
 
 /// @nodoc
@@ -138,6 +166,10 @@ class __$FeedCopyWithImpl<$Res> extends _$FeedCopyWithImpl<$Res>
     Object imageUrl = freezed,
     Object type = freezed,
     Object typeLabel = freezed,
+    Object startDate = freezed,
+    Object endDate = freezed,
+    Object createdAt = freezed,
+    Object updatedAt = freezed,
   }) {
     return _then(_Feed(
       id: id == freezed ? _value.id : id as String,
@@ -147,6 +179,10 @@ class __$FeedCopyWithImpl<$Res> extends _$FeedCopyWithImpl<$Res>
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       type: type == freezed ? _value.type : type as String,
       typeLabel: typeLabel == freezed ? _value.typeLabel : typeLabel as String,
+      startDate: startDate == freezed ? _value.startDate : startDate as String,
+      endDate: endDate == freezed ? _value.endDate : endDate as String,
+      createdAt: createdAt == freezed ? _value.createdAt : createdAt as String,
+      updatedAt: updatedAt == freezed ? _value.updatedAt : updatedAt as String,
     ));
   }
 }
@@ -162,7 +198,11 @@ class _$_Feed implements _Feed {
       this.content,
       this.imageUrl,
       this.type,
-      this.typeLabel});
+      this.typeLabel,
+      this.startDate,
+      this.endDate,
+      this.createdAt,
+      this.updatedAt});
 
   factory _$_Feed.fromJson(Map<String, dynamic> json) =>
       _$_$_FeedFromJson(json);
@@ -181,10 +221,18 @@ class _$_Feed implements _Feed {
   final String type;
   @override
   final String typeLabel;
+  @override
+  final String startDate;
+  @override
+  final String endDate;
+  @override
+  final String createdAt;
+  @override
+  final String updatedAt;
 
   @override
   String toString() {
-    return 'Feed(id: $id, title: $title, subtitle: $subtitle, content: $content, imageUrl: $imageUrl, type: $type, typeLabel: $typeLabel)';
+    return 'Feed(id: $id, title: $title, subtitle: $subtitle, content: $content, imageUrl: $imageUrl, type: $type, typeLabel: $typeLabel, startDate: $startDate, endDate: $endDate, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -208,7 +256,19 @@ class _$_Feed implements _Feed {
                 const DeepCollectionEquality().equals(other.type, type)) &&
             (identical(other.typeLabel, typeLabel) ||
                 const DeepCollectionEquality()
-                    .equals(other.typeLabel, typeLabel)));
+                    .equals(other.typeLabel, typeLabel)) &&
+            (identical(other.startDate, startDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.startDate, startDate)) &&
+            (identical(other.endDate, endDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.endDate, endDate)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)) &&
+            (identical(other.updatedAt, updatedAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.updatedAt, updatedAt)));
   }
 
   @override
@@ -220,7 +280,11 @@ class _$_Feed implements _Feed {
       const DeepCollectionEquality().hash(content) ^
       const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(typeLabel);
+      const DeepCollectionEquality().hash(typeLabel) ^
+      const DeepCollectionEquality().hash(startDate) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -241,7 +305,11 @@ abstract class _Feed implements Feed {
       String content,
       String imageUrl,
       String type,
-      String typeLabel}) = _$_Feed;
+      String typeLabel,
+      String startDate,
+      String endDate,
+      String createdAt,
+      String updatedAt}) = _$_Feed;
 
   factory _Feed.fromJson(Map<String, dynamic> json) = _$_Feed.fromJson;
 
@@ -259,6 +327,14 @@ abstract class _Feed implements Feed {
   String get type;
   @override
   String get typeLabel;
+  @override
+  String get startDate;
+  @override
+  String get endDate;
+  @override
+  String get createdAt;
+  @override
+  String get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$FeedCopyWith<_Feed> get copyWith;

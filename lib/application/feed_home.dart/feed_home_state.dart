@@ -12,4 +12,7 @@ abstract class FeedHomeState with _$FeedHomeState {
   const factory FeedHomeState.onGetHomeMenuList(
       {@required Option<Either<FeedFailure, List<MenuDataModel>>> homeMenuData,
       @required bool isLoading}) = _OnGetHomeMenuList;
+  const factory FeedHomeState.onGetSingleFeedData(
+      {@required Option<Either<FeedFailure, Feed>> singleData,
+      @required bool isLoading}) = _OnGetSingleFeedData;
 }

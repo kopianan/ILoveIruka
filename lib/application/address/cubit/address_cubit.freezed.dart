@@ -29,8 +29,15 @@ class _$AddressStateTearOff {
   }
 
 // ignore: unused_element
-  _GetProvince getProvince(List<AddressDataModel> data) {
+  _GetProvince getProvince(List<ProvinceDataModel> data) {
     return _GetProvince(
+      data,
+    );
+  }
+
+// ignore: unused_element
+  _GetCity getCity(List<AddressDataModel> data) {
+    return _GetCity(
       data,
     );
   }
@@ -47,14 +54,16 @@ mixin _$AddressState {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult error(),
-    @required TResult getProvince(List<AddressDataModel> data),
+    @required TResult getProvince(List<ProvinceDataModel> data),
+    @required TResult getCity(List<AddressDataModel> data),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
     TResult error(),
-    TResult getProvince(List<AddressDataModel> data),
+    TResult getProvince(List<ProvinceDataModel> data),
+    TResult getCity(List<AddressDataModel> data),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -63,6 +72,7 @@ mixin _$AddressState {
     @required TResult loading(_Loading value),
     @required TResult error(_Error value),
     @required TResult getProvince(_GetProvince value),
+    @required TResult getCity(_GetCity value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -70,6 +80,7 @@ mixin _$AddressState {
     TResult loading(_Loading value),
     TResult error(_Error value),
     TResult getProvince(_GetProvince value),
+    TResult getCity(_GetCity value),
     @required TResult orElse(),
   });
 }
@@ -135,12 +146,14 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult error(),
-    @required TResult getProvince(List<AddressDataModel> data),
+    @required TResult getProvince(List<ProvinceDataModel> data),
+    @required TResult getCity(List<AddressDataModel> data),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(getProvince != null);
+    assert(getCity != null);
     return initial();
   }
 
@@ -150,7 +163,8 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     TResult initial(),
     TResult loading(),
     TResult error(),
-    TResult getProvince(List<AddressDataModel> data),
+    TResult getProvince(List<ProvinceDataModel> data),
+    TResult getCity(List<AddressDataModel> data),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -167,11 +181,13 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     @required TResult loading(_Loading value),
     @required TResult error(_Error value),
     @required TResult getProvince(_GetProvince value),
+    @required TResult getCity(_GetCity value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(getProvince != null);
+    assert(getCity != null);
     return initial(this);
   }
 
@@ -182,6 +198,7 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
     TResult loading(_Loading value),
     TResult error(_Error value),
     TResult getProvince(_GetProvince value),
+    TResult getCity(_GetCity value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -241,12 +258,14 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult error(),
-    @required TResult getProvince(List<AddressDataModel> data),
+    @required TResult getProvince(List<ProvinceDataModel> data),
+    @required TResult getCity(List<AddressDataModel> data),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(getProvince != null);
+    assert(getCity != null);
     return loading();
   }
 
@@ -256,7 +275,8 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     TResult initial(),
     TResult loading(),
     TResult error(),
-    TResult getProvince(List<AddressDataModel> data),
+    TResult getProvince(List<ProvinceDataModel> data),
+    TResult getCity(List<AddressDataModel> data),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -273,11 +293,13 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     @required TResult loading(_Loading value),
     @required TResult error(_Error value),
     @required TResult getProvince(_GetProvince value),
+    @required TResult getCity(_GetCity value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(getProvince != null);
+    assert(getCity != null);
     return loading(this);
   }
 
@@ -288,6 +310,7 @@ class _$_Loading with DiagnosticableTreeMixin implements _Loading {
     TResult loading(_Loading value),
     TResult error(_Error value),
     TResult getProvince(_GetProvince value),
+    TResult getCity(_GetCity value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -347,12 +370,14 @@ class _$_Error with DiagnosticableTreeMixin implements _Error {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult error(),
-    @required TResult getProvince(List<AddressDataModel> data),
+    @required TResult getProvince(List<ProvinceDataModel> data),
+    @required TResult getCity(List<AddressDataModel> data),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(getProvince != null);
+    assert(getCity != null);
     return error();
   }
 
@@ -362,7 +387,8 @@ class _$_Error with DiagnosticableTreeMixin implements _Error {
     TResult initial(),
     TResult loading(),
     TResult error(),
-    TResult getProvince(List<AddressDataModel> data),
+    TResult getProvince(List<ProvinceDataModel> data),
+    TResult getCity(List<AddressDataModel> data),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -379,11 +405,13 @@ class _$_Error with DiagnosticableTreeMixin implements _Error {
     @required TResult loading(_Loading value),
     @required TResult error(_Error value),
     @required TResult getProvince(_GetProvince value),
+    @required TResult getCity(_GetCity value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(getProvince != null);
+    assert(getCity != null);
     return error(this);
   }
 
@@ -394,6 +422,7 @@ class _$_Error with DiagnosticableTreeMixin implements _Error {
     TResult loading(_Loading value),
     TResult error(_Error value),
     TResult getProvince(_GetProvince value),
+    TResult getCity(_GetCity value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -413,7 +442,7 @@ abstract class _$GetProvinceCopyWith<$Res> {
   factory _$GetProvinceCopyWith(
           _GetProvince value, $Res Function(_GetProvince) then) =
       __$GetProvinceCopyWithImpl<$Res>;
-  $Res call({List<AddressDataModel> data});
+  $Res call({List<ProvinceDataModel> data});
 }
 
 /// @nodoc
@@ -431,7 +460,7 @@ class __$GetProvinceCopyWithImpl<$Res> extends _$AddressStateCopyWithImpl<$Res>
     Object data = freezed,
   }) {
     return _then(_GetProvince(
-      data == freezed ? _value.data : data as List<AddressDataModel>,
+      data == freezed ? _value.data : data as List<ProvinceDataModel>,
     ));
   }
 }
@@ -441,7 +470,7 @@ class _$_GetProvince with DiagnosticableTreeMixin implements _GetProvince {
   const _$_GetProvince(this.data) : assert(data != null);
 
   @override
-  final List<AddressDataModel> data;
+  final List<ProvinceDataModel> data;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -479,12 +508,14 @@ class _$_GetProvince with DiagnosticableTreeMixin implements _GetProvince {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult error(),
-    @required TResult getProvince(List<AddressDataModel> data),
+    @required TResult getProvince(List<ProvinceDataModel> data),
+    @required TResult getCity(List<AddressDataModel> data),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(getProvince != null);
+    assert(getCity != null);
     return getProvince(data);
   }
 
@@ -494,7 +525,8 @@ class _$_GetProvince with DiagnosticableTreeMixin implements _GetProvince {
     TResult initial(),
     TResult loading(),
     TResult error(),
-    TResult getProvince(List<AddressDataModel> data),
+    TResult getProvince(List<ProvinceDataModel> data),
+    TResult getCity(List<AddressDataModel> data),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -511,11 +543,13 @@ class _$_GetProvince with DiagnosticableTreeMixin implements _GetProvince {
     @required TResult loading(_Loading value),
     @required TResult error(_Error value),
     @required TResult getProvince(_GetProvince value),
+    @required TResult getCity(_GetCity value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(getProvince != null);
+    assert(getCity != null);
     return getProvince(this);
   }
 
@@ -526,6 +560,7 @@ class _$_GetProvince with DiagnosticableTreeMixin implements _GetProvince {
     TResult loading(_Loading value),
     TResult error(_Error value),
     TResult getProvince(_GetProvince value),
+    TResult getCity(_GetCity value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -537,9 +572,149 @@ class _$_GetProvince with DiagnosticableTreeMixin implements _GetProvince {
 }
 
 abstract class _GetProvince implements AddressState {
-  const factory _GetProvince(List<AddressDataModel> data) = _$_GetProvince;
+  const factory _GetProvince(List<ProvinceDataModel> data) = _$_GetProvince;
+
+  List<ProvinceDataModel> get data;
+  @JsonKey(ignore: true)
+  _$GetProvinceCopyWith<_GetProvince> get copyWith;
+}
+
+/// @nodoc
+abstract class _$GetCityCopyWith<$Res> {
+  factory _$GetCityCopyWith(_GetCity value, $Res Function(_GetCity) then) =
+      __$GetCityCopyWithImpl<$Res>;
+  $Res call({List<AddressDataModel> data});
+}
+
+/// @nodoc
+class __$GetCityCopyWithImpl<$Res> extends _$AddressStateCopyWithImpl<$Res>
+    implements _$GetCityCopyWith<$Res> {
+  __$GetCityCopyWithImpl(_GetCity _value, $Res Function(_GetCity) _then)
+      : super(_value, (v) => _then(v as _GetCity));
+
+  @override
+  _GetCity get _value => super._value as _GetCity;
+
+  @override
+  $Res call({
+    Object data = freezed,
+  }) {
+    return _then(_GetCity(
+      data == freezed ? _value.data : data as List<AddressDataModel>,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_GetCity with DiagnosticableTreeMixin implements _GetCity {
+  const _$_GetCity(this.data) : assert(data != null);
+
+  @override
+  final List<AddressDataModel> data;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AddressState.getCity(data: $data)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AddressState.getCity'))
+      ..add(DiagnosticsProperty('data', data));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetCity &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetCityCopyWith<_GetCity> get copyWith =>
+      __$GetCityCopyWithImpl<_GetCity>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult error(),
+    @required TResult getProvince(List<ProvinceDataModel> data),
+    @required TResult getCity(List<AddressDataModel> data),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(error != null);
+    assert(getProvince != null);
+    assert(getCity != null);
+    return getCity(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult error(),
+    TResult getProvince(List<ProvinceDataModel> data),
+    TResult getCity(List<AddressDataModel> data),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getCity != null) {
+      return getCity(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
+    @required TResult error(_Error value),
+    @required TResult getProvince(_GetProvince value),
+    @required TResult getCity(_GetCity value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(error != null);
+    assert(getProvince != null);
+    assert(getCity != null);
+    return getCity(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
+    TResult error(_Error value),
+    TResult getProvince(_GetProvince value),
+    TResult getCity(_GetCity value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getCity != null) {
+      return getCity(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetCity implements AddressState {
+  const factory _GetCity(List<AddressDataModel> data) = _$_GetCity;
 
   List<AddressDataModel> get data;
   @JsonKey(ignore: true)
-  _$GetProvinceCopyWith<_GetProvince> get copyWith;
+  _$GetCityCopyWith<_GetCity> get copyWith;
 }

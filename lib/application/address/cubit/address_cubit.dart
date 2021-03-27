@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:i_love_iruka/domain/address/address_data_model.dart';
+import 'package:i_love_iruka/domain/address/province_data_model.dart';
 
 part 'address_state.dart';
 part 'address_cubit.freezed.dart';
@@ -20,8 +21,8 @@ class AddressCubit extends Cubit<AddressState> {
       response = await dio.get("https://api.rajaongkir.com/starter/province",
           options: options);
       List results = response.data['rajaongkir']['results'];
-      List<AddressDataModel> listAddress =
-          results.map((e) => AddressDataModel.fromJson(e)).toList();
+      List<ProvinceDataModel> listAddress =
+          results.map((e) => ProvinceDataModel.fromJson(e)).toList();
       emit(AddressState.getProvince(listAddress));
     } on DioError catch (error) {
       print(error);
@@ -38,7 +39,7 @@ class AddressCubit extends Cubit<AddressState> {
       List results = response.data['rajaongkir']['results'];
       List<AddressDataModel> listAddress =
           results.map((e) => AddressDataModel.fromJson(e)).toList();
-      emit(AddressState.getProvince(listAddress));
+      emit(AddressState.getCity(listAddress));
     } on DioError catch (error) {
       print(error);
       emit(AddressState.error());

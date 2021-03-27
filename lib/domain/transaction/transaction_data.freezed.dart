@@ -18,20 +18,20 @@ class _$TransactionDataTearOff {
 
 // ignore: unused_element
   TransData transData(
-      {@JsonKey(name: "CustomerId") String customerId,
-      @JsonKey(name: "CouponId") String couponId,
-      @JsonKey(name: "CouponValue") String couponValue,
-      @JsonKey(name: "SubTotal") double subTotal,
-      @JsonKey(name: "Total") double total,
-      @JsonKey(name: "Notes") String notes,
-      @JsonKey(name: "EarnedPoint") int earnedPoint,
-      @JsonKey(name: "CustomerName") String customerName,
-      @JsonKey(name: "TransactionType") String transactionType,
-      @JsonKey(name: "TransactionTypeOptions") String transactionTypeOptions,
-      @JsonKey(name: "CreatedBy") String createdBy,
-      @JsonKey(name: "CreatedDate") String createdDate,
-      @JsonKey(name: "ModifiedBy") String modifiedBy,
-      @JsonKey(name: "ModifiedDate") String modifiedDate}) {
+      {@JsonKey(name: 'CustomerId') String customerId,
+      @JsonKey(name: 'CouponId') String couponId,
+      @JsonKey(name: 'CouponValue') String couponValue,
+      @JsonKey(name: 'SubTotal') double subTotal,
+      @JsonKey(name: 'Total') double total,
+      @JsonKey(name: 'Notes') String notes,
+      @JsonKey(name: 'EarnedPoint') int earnedPoint,
+      @JsonKey(name: 'CustomerName') String customerName,
+      @JsonKey(name: 'TransactionType') String transactionType,
+      @JsonKey(name: 'TransactionTypeOptions') String transactionTypeOptions,
+      @JsonKey(name: 'CreatedBy') String createdBy,
+      @JsonKey(name: 'CreatedDate') String createdDate,
+      @JsonKey(name: 'ModifiedBy') String modifiedBy,
+      @JsonKey(name: 'ModifiedDate') String modifiedDate}) {
     return TransData(
       customerId: customerId,
       couponId: couponId,
@@ -62,85 +62,85 @@ const $TransactionData = _$TransactionDataTearOff();
 
 /// @nodoc
 mixin _$TransactionData {
-  @JsonKey(name: "CustomerId")
+  @JsonKey(name: 'CustomerId')
   String get customerId;
-  @JsonKey(name: "CouponId")
+  @JsonKey(name: 'CouponId')
   String get couponId;
-  @JsonKey(name: "CouponValue")
+  @JsonKey(name: 'CouponValue')
   String get couponValue;
-  @JsonKey(name: "SubTotal")
+  @JsonKey(name: 'SubTotal')
   double get subTotal;
-  @JsonKey(name: "Total")
+  @JsonKey(name: 'Total')
   double get total;
-  @JsonKey(name: "Notes")
+  @JsonKey(name: 'Notes')
   String get notes;
-  @JsonKey(name: "EarnedPoint")
+  @JsonKey(name: 'EarnedPoint')
   int get earnedPoint;
-  @JsonKey(name: "CustomerName")
+  @JsonKey(name: 'CustomerName')
   String get customerName;
-  @JsonKey(name: "TransactionType")
+  @JsonKey(name: 'TransactionType')
   String get transactionType;
-  @JsonKey(name: "TransactionTypeOptions")
+  @JsonKey(name: 'TransactionTypeOptions')
   String get transactionTypeOptions;
-  @JsonKey(name: "CreatedBy")
+  @JsonKey(name: 'CreatedBy')
   String get createdBy;
-  @JsonKey(name: "CreatedDate")
+  @JsonKey(name: 'CreatedDate')
   String get createdDate;
-  @JsonKey(name: "ModifiedBy")
+  @JsonKey(name: 'ModifiedBy')
   String get modifiedBy;
-  @JsonKey(name: "ModifiedDate")
+  @JsonKey(name: 'ModifiedDate')
   String get modifiedDate;
 
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
         TResult transData(
-            @JsonKey(name: "CustomerId")
+            @JsonKey(name: 'CustomerId')
                 String customerId,
-            @JsonKey(name: "CouponId")
+            @JsonKey(name: 'CouponId')
                 String couponId,
-            @JsonKey(name: "CouponValue")
+            @JsonKey(name: 'CouponValue')
                 String couponValue,
-            @JsonKey(name: "SubTotal")
+            @JsonKey(name: 'SubTotal')
                 double subTotal,
-            @JsonKey(name: "Total")
+            @JsonKey(name: 'Total')
                 double total,
-            @JsonKey(name: "Notes")
+            @JsonKey(name: 'Notes')
                 String notes,
-            @JsonKey(name: "EarnedPoint")
+            @JsonKey(name: 'EarnedPoint')
                 int earnedPoint,
-            @JsonKey(name: "CustomerName")
+            @JsonKey(name: 'CustomerName')
                 String customerName,
-            @JsonKey(name: "TransactionType")
+            @JsonKey(name: 'TransactionType')
                 String transactionType,
-            @JsonKey(name: "TransactionTypeOptions")
+            @JsonKey(name: 'TransactionTypeOptions')
                 String transactionTypeOptions,
-            @JsonKey(name: "CreatedBy")
+            @JsonKey(name: 'CreatedBy')
                 String createdBy,
-            @JsonKey(name: "CreatedDate")
+            @JsonKey(name: 'CreatedDate')
                 String createdDate,
-            @JsonKey(name: "ModifiedBy")
+            @JsonKey(name: 'ModifiedBy')
                 String modifiedBy,
-            @JsonKey(name: "ModifiedDate")
+            @JsonKey(name: 'ModifiedDate')
                 String modifiedDate),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult transData(
-        @JsonKey(name: "CustomerId") String customerId,
-        @JsonKey(name: "CouponId") String couponId,
-        @JsonKey(name: "CouponValue") String couponValue,
-        @JsonKey(name: "SubTotal") double subTotal,
-        @JsonKey(name: "Total") double total,
-        @JsonKey(name: "Notes") String notes,
-        @JsonKey(name: "EarnedPoint") int earnedPoint,
-        @JsonKey(name: "CustomerName") String customerName,
-        @JsonKey(name: "TransactionType") String transactionType,
-        @JsonKey(name: "TransactionTypeOptions") String transactionTypeOptions,
-        @JsonKey(name: "CreatedBy") String createdBy,
-        @JsonKey(name: "CreatedDate") String createdDate,
-        @JsonKey(name: "ModifiedBy") String modifiedBy,
-        @JsonKey(name: "ModifiedDate") String modifiedDate),
+        @JsonKey(name: 'CustomerId') String customerId,
+        @JsonKey(name: 'CouponId') String couponId,
+        @JsonKey(name: 'CouponValue') String couponValue,
+        @JsonKey(name: 'SubTotal') double subTotal,
+        @JsonKey(name: 'Total') double total,
+        @JsonKey(name: 'Notes') String notes,
+        @JsonKey(name: 'EarnedPoint') int earnedPoint,
+        @JsonKey(name: 'CustomerName') String customerName,
+        @JsonKey(name: 'TransactionType') String transactionType,
+        @JsonKey(name: 'TransactionTypeOptions') String transactionTypeOptions,
+        @JsonKey(name: 'CreatedBy') String createdBy,
+        @JsonKey(name: 'CreatedDate') String createdDate,
+        @JsonKey(name: 'ModifiedBy') String modifiedBy,
+        @JsonKey(name: 'ModifiedDate') String modifiedDate),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -163,20 +163,20 @@ abstract class $TransactionDataCopyWith<$Res> {
           TransactionData value, $Res Function(TransactionData) then) =
       _$TransactionDataCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: "CustomerId") String customerId,
-      @JsonKey(name: "CouponId") String couponId,
-      @JsonKey(name: "CouponValue") String couponValue,
-      @JsonKey(name: "SubTotal") double subTotal,
-      @JsonKey(name: "Total") double total,
-      @JsonKey(name: "Notes") String notes,
-      @JsonKey(name: "EarnedPoint") int earnedPoint,
-      @JsonKey(name: "CustomerName") String customerName,
-      @JsonKey(name: "TransactionType") String transactionType,
-      @JsonKey(name: "TransactionTypeOptions") String transactionTypeOptions,
-      @JsonKey(name: "CreatedBy") String createdBy,
-      @JsonKey(name: "CreatedDate") String createdDate,
-      @JsonKey(name: "ModifiedBy") String modifiedBy,
-      @JsonKey(name: "ModifiedDate") String modifiedDate});
+      {@JsonKey(name: 'CustomerId') String customerId,
+      @JsonKey(name: 'CouponId') String couponId,
+      @JsonKey(name: 'CouponValue') String couponValue,
+      @JsonKey(name: 'SubTotal') double subTotal,
+      @JsonKey(name: 'Total') double total,
+      @JsonKey(name: 'Notes') String notes,
+      @JsonKey(name: 'EarnedPoint') int earnedPoint,
+      @JsonKey(name: 'CustomerName') String customerName,
+      @JsonKey(name: 'TransactionType') String transactionType,
+      @JsonKey(name: 'TransactionTypeOptions') String transactionTypeOptions,
+      @JsonKey(name: 'CreatedBy') String createdBy,
+      @JsonKey(name: 'CreatedDate') String createdDate,
+      @JsonKey(name: 'ModifiedBy') String modifiedBy,
+      @JsonKey(name: 'ModifiedDate') String modifiedDate});
 }
 
 /// @nodoc
@@ -244,20 +244,20 @@ abstract class $TransDataCopyWith<$Res>
       _$TransDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: "CustomerId") String customerId,
-      @JsonKey(name: "CouponId") String couponId,
-      @JsonKey(name: "CouponValue") String couponValue,
-      @JsonKey(name: "SubTotal") double subTotal,
-      @JsonKey(name: "Total") double total,
-      @JsonKey(name: "Notes") String notes,
-      @JsonKey(name: "EarnedPoint") int earnedPoint,
-      @JsonKey(name: "CustomerName") String customerName,
-      @JsonKey(name: "TransactionType") String transactionType,
-      @JsonKey(name: "TransactionTypeOptions") String transactionTypeOptions,
-      @JsonKey(name: "CreatedBy") String createdBy,
-      @JsonKey(name: "CreatedDate") String createdDate,
-      @JsonKey(name: "ModifiedBy") String modifiedBy,
-      @JsonKey(name: "ModifiedDate") String modifiedDate});
+      {@JsonKey(name: 'CustomerId') String customerId,
+      @JsonKey(name: 'CouponId') String couponId,
+      @JsonKey(name: 'CouponValue') String couponValue,
+      @JsonKey(name: 'SubTotal') double subTotal,
+      @JsonKey(name: 'Total') double total,
+      @JsonKey(name: 'Notes') String notes,
+      @JsonKey(name: 'EarnedPoint') int earnedPoint,
+      @JsonKey(name: 'CustomerName') String customerName,
+      @JsonKey(name: 'TransactionType') String transactionType,
+      @JsonKey(name: 'TransactionTypeOptions') String transactionTypeOptions,
+      @JsonKey(name: 'CreatedBy') String createdBy,
+      @JsonKey(name: 'CreatedDate') String createdDate,
+      @JsonKey(name: 'ModifiedBy') String modifiedBy,
+      @JsonKey(name: 'ModifiedDate') String modifiedDate});
 }
 
 /// @nodoc
@@ -323,65 +323,65 @@ class _$TransDataCopyWithImpl<$Res> extends _$TransactionDataCopyWithImpl<$Res>
 /// @nodoc
 class _$TransData implements TransData {
   _$TransData(
-      {@JsonKey(name: "CustomerId") this.customerId,
-      @JsonKey(name: "CouponId") this.couponId,
-      @JsonKey(name: "CouponValue") this.couponValue,
-      @JsonKey(name: "SubTotal") this.subTotal,
-      @JsonKey(name: "Total") this.total,
-      @JsonKey(name: "Notes") this.notes,
-      @JsonKey(name: "EarnedPoint") this.earnedPoint,
-      @JsonKey(name: "CustomerName") this.customerName,
-      @JsonKey(name: "TransactionType") this.transactionType,
-      @JsonKey(name: "TransactionTypeOptions") this.transactionTypeOptions,
-      @JsonKey(name: "CreatedBy") this.createdBy,
-      @JsonKey(name: "CreatedDate") this.createdDate,
-      @JsonKey(name: "ModifiedBy") this.modifiedBy,
-      @JsonKey(name: "ModifiedDate") this.modifiedDate});
+      {@JsonKey(name: 'CustomerId') this.customerId,
+      @JsonKey(name: 'CouponId') this.couponId,
+      @JsonKey(name: 'CouponValue') this.couponValue,
+      @JsonKey(name: 'SubTotal') this.subTotal,
+      @JsonKey(name: 'Total') this.total,
+      @JsonKey(name: 'Notes') this.notes,
+      @JsonKey(name: 'EarnedPoint') this.earnedPoint,
+      @JsonKey(name: 'CustomerName') this.customerName,
+      @JsonKey(name: 'TransactionType') this.transactionType,
+      @JsonKey(name: 'TransactionTypeOptions') this.transactionTypeOptions,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'ModifiedBy') this.modifiedBy,
+      @JsonKey(name: 'ModifiedDate') this.modifiedDate});
 
   factory _$TransData.fromJson(Map<String, dynamic> json) =>
       _$_$TransDataFromJson(json);
 
   @override
-  @JsonKey(name: "CustomerId")
+  @JsonKey(name: 'CustomerId')
   final String customerId;
   @override
-  @JsonKey(name: "CouponId")
+  @JsonKey(name: 'CouponId')
   final String couponId;
   @override
-  @JsonKey(name: "CouponValue")
+  @JsonKey(name: 'CouponValue')
   final String couponValue;
   @override
-  @JsonKey(name: "SubTotal")
+  @JsonKey(name: 'SubTotal')
   final double subTotal;
   @override
-  @JsonKey(name: "Total")
+  @JsonKey(name: 'Total')
   final double total;
   @override
-  @JsonKey(name: "Notes")
+  @JsonKey(name: 'Notes')
   final String notes;
   @override
-  @JsonKey(name: "EarnedPoint")
+  @JsonKey(name: 'EarnedPoint')
   final int earnedPoint;
   @override
-  @JsonKey(name: "CustomerName")
+  @JsonKey(name: 'CustomerName')
   final String customerName;
   @override
-  @JsonKey(name: "TransactionType")
+  @JsonKey(name: 'TransactionType')
   final String transactionType;
   @override
-  @JsonKey(name: "TransactionTypeOptions")
+  @JsonKey(name: 'TransactionTypeOptions')
   final String transactionTypeOptions;
   @override
-  @JsonKey(name: "CreatedBy")
+  @JsonKey(name: 'CreatedBy')
   final String createdBy;
   @override
-  @JsonKey(name: "CreatedDate")
+  @JsonKey(name: 'CreatedDate')
   final String createdDate;
   @override
-  @JsonKey(name: "ModifiedBy")
+  @JsonKey(name: 'ModifiedBy')
   final String modifiedBy;
   @override
-  @JsonKey(name: "ModifiedDate")
+  @JsonKey(name: 'ModifiedDate')
   final String modifiedDate;
 
   @override
@@ -463,33 +463,33 @@ class _$TransData implements TransData {
   TResult when<TResult extends Object>({
     @required
         TResult transData(
-            @JsonKey(name: "CustomerId")
+            @JsonKey(name: 'CustomerId')
                 String customerId,
-            @JsonKey(name: "CouponId")
+            @JsonKey(name: 'CouponId')
                 String couponId,
-            @JsonKey(name: "CouponValue")
+            @JsonKey(name: 'CouponValue')
                 String couponValue,
-            @JsonKey(name: "SubTotal")
+            @JsonKey(name: 'SubTotal')
                 double subTotal,
-            @JsonKey(name: "Total")
+            @JsonKey(name: 'Total')
                 double total,
-            @JsonKey(name: "Notes")
+            @JsonKey(name: 'Notes')
                 String notes,
-            @JsonKey(name: "EarnedPoint")
+            @JsonKey(name: 'EarnedPoint')
                 int earnedPoint,
-            @JsonKey(name: "CustomerName")
+            @JsonKey(name: 'CustomerName')
                 String customerName,
-            @JsonKey(name: "TransactionType")
+            @JsonKey(name: 'TransactionType')
                 String transactionType,
-            @JsonKey(name: "TransactionTypeOptions")
+            @JsonKey(name: 'TransactionTypeOptions')
                 String transactionTypeOptions,
-            @JsonKey(name: "CreatedBy")
+            @JsonKey(name: 'CreatedBy')
                 String createdBy,
-            @JsonKey(name: "CreatedDate")
+            @JsonKey(name: 'CreatedDate')
                 String createdDate,
-            @JsonKey(name: "ModifiedBy")
+            @JsonKey(name: 'ModifiedBy')
                 String modifiedBy,
-            @JsonKey(name: "ModifiedDate")
+            @JsonKey(name: 'ModifiedDate')
                 String modifiedDate),
   }) {
     assert(transData != null);
@@ -514,20 +514,20 @@ class _$TransData implements TransData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult transData(
-        @JsonKey(name: "CustomerId") String customerId,
-        @JsonKey(name: "CouponId") String couponId,
-        @JsonKey(name: "CouponValue") String couponValue,
-        @JsonKey(name: "SubTotal") double subTotal,
-        @JsonKey(name: "Total") double total,
-        @JsonKey(name: "Notes") String notes,
-        @JsonKey(name: "EarnedPoint") int earnedPoint,
-        @JsonKey(name: "CustomerName") String customerName,
-        @JsonKey(name: "TransactionType") String transactionType,
-        @JsonKey(name: "TransactionTypeOptions") String transactionTypeOptions,
-        @JsonKey(name: "CreatedBy") String createdBy,
-        @JsonKey(name: "CreatedDate") String createdDate,
-        @JsonKey(name: "ModifiedBy") String modifiedBy,
-        @JsonKey(name: "ModifiedDate") String modifiedDate),
+        @JsonKey(name: 'CustomerId') String customerId,
+        @JsonKey(name: 'CouponId') String couponId,
+        @JsonKey(name: 'CouponValue') String couponValue,
+        @JsonKey(name: 'SubTotal') double subTotal,
+        @JsonKey(name: 'Total') double total,
+        @JsonKey(name: 'Notes') String notes,
+        @JsonKey(name: 'EarnedPoint') int earnedPoint,
+        @JsonKey(name: 'CustomerName') String customerName,
+        @JsonKey(name: 'TransactionType') String transactionType,
+        @JsonKey(name: 'TransactionTypeOptions') String transactionTypeOptions,
+        @JsonKey(name: 'CreatedBy') String createdBy,
+        @JsonKey(name: 'CreatedDate') String createdDate,
+        @JsonKey(name: 'ModifiedBy') String modifiedBy,
+        @JsonKey(name: 'ModifiedDate') String modifiedDate),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -581,64 +581,64 @@ class _$TransData implements TransData {
 
 abstract class TransData implements TransactionData {
   factory TransData(
-      {@JsonKey(name: "CustomerId") String customerId,
-      @JsonKey(name: "CouponId") String couponId,
-      @JsonKey(name: "CouponValue") String couponValue,
-      @JsonKey(name: "SubTotal") double subTotal,
-      @JsonKey(name: "Total") double total,
-      @JsonKey(name: "Notes") String notes,
-      @JsonKey(name: "EarnedPoint") int earnedPoint,
-      @JsonKey(name: "CustomerName") String customerName,
-      @JsonKey(name: "TransactionType") String transactionType,
-      @JsonKey(name: "TransactionTypeOptions") String transactionTypeOptions,
-      @JsonKey(name: "CreatedBy") String createdBy,
-      @JsonKey(name: "CreatedDate") String createdDate,
-      @JsonKey(name: "ModifiedBy") String modifiedBy,
-      @JsonKey(name: "ModifiedDate") String modifiedDate}) = _$TransData;
+      {@JsonKey(name: 'CustomerId') String customerId,
+      @JsonKey(name: 'CouponId') String couponId,
+      @JsonKey(name: 'CouponValue') String couponValue,
+      @JsonKey(name: 'SubTotal') double subTotal,
+      @JsonKey(name: 'Total') double total,
+      @JsonKey(name: 'Notes') String notes,
+      @JsonKey(name: 'EarnedPoint') int earnedPoint,
+      @JsonKey(name: 'CustomerName') String customerName,
+      @JsonKey(name: 'TransactionType') String transactionType,
+      @JsonKey(name: 'TransactionTypeOptions') String transactionTypeOptions,
+      @JsonKey(name: 'CreatedBy') String createdBy,
+      @JsonKey(name: 'CreatedDate') String createdDate,
+      @JsonKey(name: 'ModifiedBy') String modifiedBy,
+      @JsonKey(name: 'ModifiedDate') String modifiedDate}) = _$TransData;
 
   factory TransData.fromJson(Map<String, dynamic> json) = _$TransData.fromJson;
 
   @override
-  @JsonKey(name: "CustomerId")
+  @JsonKey(name: 'CustomerId')
   String get customerId;
   @override
-  @JsonKey(name: "CouponId")
+  @JsonKey(name: 'CouponId')
   String get couponId;
   @override
-  @JsonKey(name: "CouponValue")
+  @JsonKey(name: 'CouponValue')
   String get couponValue;
   @override
-  @JsonKey(name: "SubTotal")
+  @JsonKey(name: 'SubTotal')
   double get subTotal;
   @override
-  @JsonKey(name: "Total")
+  @JsonKey(name: 'Total')
   double get total;
   @override
-  @JsonKey(name: "Notes")
+  @JsonKey(name: 'Notes')
   String get notes;
   @override
-  @JsonKey(name: "EarnedPoint")
+  @JsonKey(name: 'EarnedPoint')
   int get earnedPoint;
   @override
-  @JsonKey(name: "CustomerName")
+  @JsonKey(name: 'CustomerName')
   String get customerName;
   @override
-  @JsonKey(name: "TransactionType")
+  @JsonKey(name: 'TransactionType')
   String get transactionType;
   @override
-  @JsonKey(name: "TransactionTypeOptions")
+  @JsonKey(name: 'TransactionTypeOptions')
   String get transactionTypeOptions;
   @override
-  @JsonKey(name: "CreatedBy")
+  @JsonKey(name: 'CreatedBy')
   String get createdBy;
   @override
-  @JsonKey(name: "CreatedDate")
+  @JsonKey(name: 'CreatedDate')
   String get createdDate;
   @override
-  @JsonKey(name: "ModifiedBy")
+  @JsonKey(name: 'ModifiedBy')
   String get modifiedBy;
   @override
-  @JsonKey(name: "ModifiedDate")
+  @JsonKey(name: 'ModifiedDate')
   String get modifiedDate;
   @override
   @JsonKey(ignore: true)

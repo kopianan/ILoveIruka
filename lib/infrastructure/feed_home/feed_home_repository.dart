@@ -82,4 +82,21 @@ class FeedHomeRepository extends IFeedHomeFacade {
       return left(checkErrorData(e));
     }
   }
+
+  @override
+  Future<Either<FeedFailure, Feed>> getSingleFeedData(String feedId) async {
+    Response response;
+
+    try {
+      response = await _dio.get(
+          Constants.getStagingUrl() + "/api/v1/feeds/$feedId",
+          options: getDioOptions());
+
+      final _data = response.data['data'];
+      final _result = Feed.fromJson(_data);
+      return right(_result);
+    } on DioError catch (e) {
+      return left(checkErrorData(e));
+    }
+  }
 }

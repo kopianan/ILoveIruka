@@ -15,6 +15,10 @@ _$_Feed _$_$_FeedFromJson(Map<String, dynamic> json) {
     imageUrl: json['imageUrl'] as String,
     type: json['type'] as String,
     typeLabel: json['typeLabel'] as String,
+    startDate: json['startDate'] as String,
+    endDate: json['endDate'] as String,
+    createdAt: json['createdAt'] as String,
+    updatedAt: json['updatedAt'] as String,
   );
 }
 
@@ -26,4 +30,8 @@ Map<String, dynamic> _$_$_FeedToJson(_$_Feed instance) => <String, dynamic>{
       'imageUrl': instance.imageUrl,
       'type': instance.type,
       'typeLabel': instance.typeLabel,
+      'startDate': instance.startDate,
+      'endDate': instance.endDate,
+      'createdAt': instance.createdAt,
+      'updatedAt': instance.updatedAt,
     };
