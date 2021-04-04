@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/user_controller.dart';
 import 'package:i_love_iruka/presentation/home/account_home/partnership_location_page.dart';
 import 'package:i_love_iruka/presentation/membership/membership_card_list.dart';
+import 'package:i_love_iruka/presentation/transaction/transaction_history_page.dart';
 
 class AccountPagehome extends StatefulWidget {
   @override
@@ -142,7 +143,9 @@ class _AccountPagehomeState extends State<AccountPagehome>
                         ),
                         "My History Transaction",
                         "See your recently transaction",
-                        () {},
+                        () {
+                          Get.toNamed(TransactionHistoryPage.TAG);
+                        },
                       ),
                       SizedBox(
                         height: 20,

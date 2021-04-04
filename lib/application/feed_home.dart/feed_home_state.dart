@@ -15,4 +15,7 @@ abstract class FeedHomeState with _$FeedHomeState {
   const factory FeedHomeState.onGetSingleFeedData(
       {@required Option<Either<FeedFailure, Feed>> singleData,
       @required bool isLoading}) = _OnGetSingleFeedData;
+  const factory FeedHomeState.onRefreshHomeData(
+      {@required Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+      @required bool isLoading}) = _OnRefreshHomeData;
 }

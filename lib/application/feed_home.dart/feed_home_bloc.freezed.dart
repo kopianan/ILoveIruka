@@ -34,6 +34,11 @@ class _$FeedHomeEventTearOff {
       feedId,
     );
   }
+
+// ignore: unused_element
+  _RefreshHome refreshHome() {
+    return const _RefreshHome();
+  }
 }
 
 /// @nodoc
@@ -48,6 +53,7 @@ mixin _$FeedHomeEvent {
     @required TResult getBottomFeedData(),
     @required TResult getHomeMenuList(),
     @required TResult getSingleFeed(String feedId),
+    @required TResult refreshHome(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -55,6 +61,7 @@ mixin _$FeedHomeEvent {
     TResult getBottomFeedData(),
     TResult getHomeMenuList(),
     TResult getSingleFeed(String feedId),
+    TResult refreshHome(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -63,6 +70,7 @@ mixin _$FeedHomeEvent {
     @required TResult getBottomFeedData(_GetBottomFeedData value),
     @required TResult getHomeMenuList(_GetHomeMenuList value),
     @required TResult getSingleFeed(_GetSingleFeed value),
+    @required TResult refreshHome(_RefreshHome value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -70,6 +78,7 @@ mixin _$FeedHomeEvent {
     TResult getBottomFeedData(_GetBottomFeedData value),
     TResult getHomeMenuList(_GetHomeMenuList value),
     TResult getSingleFeed(_GetSingleFeed value),
+    TResult refreshHome(_RefreshHome value),
     @required TResult orElse(),
   });
 }
@@ -134,11 +143,13 @@ class _$_GetTopFeedData implements _GetTopFeedData {
     @required TResult getBottomFeedData(),
     @required TResult getHomeMenuList(),
     @required TResult getSingleFeed(String feedId),
+    @required TResult refreshHome(),
   }) {
     assert(getTopFeedData != null);
     assert(getBottomFeedData != null);
     assert(getHomeMenuList != null);
     assert(getSingleFeed != null);
+    assert(refreshHome != null);
     return getTopFeedData();
   }
 
@@ -149,6 +160,7 @@ class _$_GetTopFeedData implements _GetTopFeedData {
     TResult getBottomFeedData(),
     TResult getHomeMenuList(),
     TResult getSingleFeed(String feedId),
+    TResult refreshHome(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -165,11 +177,13 @@ class _$_GetTopFeedData implements _GetTopFeedData {
     @required TResult getBottomFeedData(_GetBottomFeedData value),
     @required TResult getHomeMenuList(_GetHomeMenuList value),
     @required TResult getSingleFeed(_GetSingleFeed value),
+    @required TResult refreshHome(_RefreshHome value),
   }) {
     assert(getTopFeedData != null);
     assert(getBottomFeedData != null);
     assert(getHomeMenuList != null);
     assert(getSingleFeed != null);
+    assert(refreshHome != null);
     return getTopFeedData(this);
   }
 
@@ -180,6 +194,7 @@ class _$_GetTopFeedData implements _GetTopFeedData {
     TResult getBottomFeedData(_GetBottomFeedData value),
     TResult getHomeMenuList(_GetHomeMenuList value),
     TResult getSingleFeed(_GetSingleFeed value),
+    TResult refreshHome(_RefreshHome value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -237,11 +252,13 @@ class _$_GetBottomFeedData implements _GetBottomFeedData {
     @required TResult getBottomFeedData(),
     @required TResult getHomeMenuList(),
     @required TResult getSingleFeed(String feedId),
+    @required TResult refreshHome(),
   }) {
     assert(getTopFeedData != null);
     assert(getBottomFeedData != null);
     assert(getHomeMenuList != null);
     assert(getSingleFeed != null);
+    assert(refreshHome != null);
     return getBottomFeedData();
   }
 
@@ -252,6 +269,7 @@ class _$_GetBottomFeedData implements _GetBottomFeedData {
     TResult getBottomFeedData(),
     TResult getHomeMenuList(),
     TResult getSingleFeed(String feedId),
+    TResult refreshHome(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -268,11 +286,13 @@ class _$_GetBottomFeedData implements _GetBottomFeedData {
     @required TResult getBottomFeedData(_GetBottomFeedData value),
     @required TResult getHomeMenuList(_GetHomeMenuList value),
     @required TResult getSingleFeed(_GetSingleFeed value),
+    @required TResult refreshHome(_RefreshHome value),
   }) {
     assert(getTopFeedData != null);
     assert(getBottomFeedData != null);
     assert(getHomeMenuList != null);
     assert(getSingleFeed != null);
+    assert(refreshHome != null);
     return getBottomFeedData(this);
   }
 
@@ -283,6 +303,7 @@ class _$_GetBottomFeedData implements _GetBottomFeedData {
     TResult getBottomFeedData(_GetBottomFeedData value),
     TResult getHomeMenuList(_GetHomeMenuList value),
     TResult getSingleFeed(_GetSingleFeed value),
+    TResult refreshHome(_RefreshHome value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -340,11 +361,13 @@ class _$_GetHomeMenuList implements _GetHomeMenuList {
     @required TResult getBottomFeedData(),
     @required TResult getHomeMenuList(),
     @required TResult getSingleFeed(String feedId),
+    @required TResult refreshHome(),
   }) {
     assert(getTopFeedData != null);
     assert(getBottomFeedData != null);
     assert(getHomeMenuList != null);
     assert(getSingleFeed != null);
+    assert(refreshHome != null);
     return getHomeMenuList();
   }
 
@@ -355,6 +378,7 @@ class _$_GetHomeMenuList implements _GetHomeMenuList {
     TResult getBottomFeedData(),
     TResult getHomeMenuList(),
     TResult getSingleFeed(String feedId),
+    TResult refreshHome(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -371,11 +395,13 @@ class _$_GetHomeMenuList implements _GetHomeMenuList {
     @required TResult getBottomFeedData(_GetBottomFeedData value),
     @required TResult getHomeMenuList(_GetHomeMenuList value),
     @required TResult getSingleFeed(_GetSingleFeed value),
+    @required TResult refreshHome(_RefreshHome value),
   }) {
     assert(getTopFeedData != null);
     assert(getBottomFeedData != null);
     assert(getHomeMenuList != null);
     assert(getSingleFeed != null);
+    assert(refreshHome != null);
     return getHomeMenuList(this);
   }
 
@@ -386,6 +412,7 @@ class _$_GetHomeMenuList implements _GetHomeMenuList {
     TResult getBottomFeedData(_GetBottomFeedData value),
     TResult getHomeMenuList(_GetHomeMenuList value),
     TResult getSingleFeed(_GetSingleFeed value),
+    TResult refreshHome(_RefreshHome value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -465,11 +492,13 @@ class _$_GetSingleFeed implements _GetSingleFeed {
     @required TResult getBottomFeedData(),
     @required TResult getHomeMenuList(),
     @required TResult getSingleFeed(String feedId),
+    @required TResult refreshHome(),
   }) {
     assert(getTopFeedData != null);
     assert(getBottomFeedData != null);
     assert(getHomeMenuList != null);
     assert(getSingleFeed != null);
+    assert(refreshHome != null);
     return getSingleFeed(feedId);
   }
 
@@ -480,6 +509,7 @@ class _$_GetSingleFeed implements _GetSingleFeed {
     TResult getBottomFeedData(),
     TResult getHomeMenuList(),
     TResult getSingleFeed(String feedId),
+    TResult refreshHome(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -496,11 +526,13 @@ class _$_GetSingleFeed implements _GetSingleFeed {
     @required TResult getBottomFeedData(_GetBottomFeedData value),
     @required TResult getHomeMenuList(_GetHomeMenuList value),
     @required TResult getSingleFeed(_GetSingleFeed value),
+    @required TResult refreshHome(_RefreshHome value),
   }) {
     assert(getTopFeedData != null);
     assert(getBottomFeedData != null);
     assert(getHomeMenuList != null);
     assert(getSingleFeed != null);
+    assert(refreshHome != null);
     return getSingleFeed(this);
   }
 
@@ -511,6 +543,7 @@ class _$_GetSingleFeed implements _GetSingleFeed {
     TResult getBottomFeedData(_GetBottomFeedData value),
     TResult getHomeMenuList(_GetHomeMenuList value),
     TResult getSingleFeed(_GetSingleFeed value),
+    TResult refreshHome(_RefreshHome value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -527,6 +560,114 @@ abstract class _GetSingleFeed implements FeedHomeEvent {
   String get feedId;
   @JsonKey(ignore: true)
   _$GetSingleFeedCopyWith<_GetSingleFeed> get copyWith;
+}
+
+/// @nodoc
+abstract class _$RefreshHomeCopyWith<$Res> {
+  factory _$RefreshHomeCopyWith(
+          _RefreshHome value, $Res Function(_RefreshHome) then) =
+      __$RefreshHomeCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$RefreshHomeCopyWithImpl<$Res> extends _$FeedHomeEventCopyWithImpl<$Res>
+    implements _$RefreshHomeCopyWith<$Res> {
+  __$RefreshHomeCopyWithImpl(
+      _RefreshHome _value, $Res Function(_RefreshHome) _then)
+      : super(_value, (v) => _then(v as _RefreshHome));
+
+  @override
+  _RefreshHome get _value => super._value as _RefreshHome;
+}
+
+/// @nodoc
+class _$_RefreshHome implements _RefreshHome {
+  const _$_RefreshHome();
+
+  @override
+  String toString() {
+    return 'FeedHomeEvent.refreshHome()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _RefreshHome);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult getTopFeedData(),
+    @required TResult getBottomFeedData(),
+    @required TResult getHomeMenuList(),
+    @required TResult getSingleFeed(String feedId),
+    @required TResult refreshHome(),
+  }) {
+    assert(getTopFeedData != null);
+    assert(getBottomFeedData != null);
+    assert(getHomeMenuList != null);
+    assert(getSingleFeed != null);
+    assert(refreshHome != null);
+    return refreshHome();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult getTopFeedData(),
+    TResult getBottomFeedData(),
+    TResult getHomeMenuList(),
+    TResult getSingleFeed(String feedId),
+    TResult refreshHome(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (refreshHome != null) {
+      return refreshHome();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult getTopFeedData(_GetTopFeedData value),
+    @required TResult getBottomFeedData(_GetBottomFeedData value),
+    @required TResult getHomeMenuList(_GetHomeMenuList value),
+    @required TResult getSingleFeed(_GetSingleFeed value),
+    @required TResult refreshHome(_RefreshHome value),
+  }) {
+    assert(getTopFeedData != null);
+    assert(getBottomFeedData != null);
+    assert(getHomeMenuList != null);
+    assert(getSingleFeed != null);
+    assert(refreshHome != null);
+    return refreshHome(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult getTopFeedData(_GetTopFeedData value),
+    TResult getBottomFeedData(_GetBottomFeedData value),
+    TResult getHomeMenuList(_GetHomeMenuList value),
+    TResult getSingleFeed(_GetSingleFeed value),
+    TResult refreshHome(_RefreshHome value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (refreshHome != null) {
+      return refreshHome(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RefreshHome implements FeedHomeEvent {
+  const factory _RefreshHome() = _$_RefreshHome;
 }
 
 /// @nodoc
@@ -577,6 +718,16 @@ class _$FeedHomeStateTearOff {
       isLoading: isLoading,
     );
   }
+
+// ignore: unused_element
+  _OnRefreshHomeData onRefreshHomeData(
+      {@required Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+      @required bool isLoading}) {
+    return _OnRefreshHomeData(
+      allDataList: allDataList,
+      isLoading: isLoading,
+    );
+  }
 }
 
 /// @nodoc
@@ -603,6 +754,10 @@ mixin _$FeedHomeState {
     @required
         TResult onGetSingleFeedData(
             Option<Either<FeedFailure, Feed>> singleData, bool isLoading),
+    @required
+        TResult onRefreshHomeData(
+            Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+            bool isLoading),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -618,6 +773,9 @@ mixin _$FeedHomeState {
         bool isLoading),
     TResult onGetSingleFeedData(
         Option<Either<FeedFailure, Feed>> singleData, bool isLoading),
+    TResult onRefreshHomeData(
+        Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+        bool isLoading),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -628,6 +786,7 @@ mixin _$FeedHomeState {
         TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
     @required TResult onGetHomeMenuList(_OnGetHomeMenuList value),
     @required TResult onGetSingleFeedData(_OnGetSingleFeedData value),
+    @required TResult onRefreshHomeData(_OnRefreshHomeData value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -636,6 +795,7 @@ mixin _$FeedHomeState {
     TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
     TResult onGetHomeMenuList(_OnGetHomeMenuList value),
     TResult onGetSingleFeedData(_OnGetSingleFeedData value),
+    TResult onRefreshHomeData(_OnRefreshHomeData value),
     @required TResult orElse(),
   });
 }
@@ -709,12 +869,17 @@ class _$_Initial implements _Initial {
     @required
         TResult onGetSingleFeedData(
             Option<Either<FeedFailure, Feed>> singleData, bool isLoading),
+    @required
+        TResult onRefreshHomeData(
+            Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+            bool isLoading),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
     assert(failOrSuccessGetDataBottom != null);
     assert(onGetHomeMenuList != null);
     assert(onGetSingleFeedData != null);
+    assert(onRefreshHomeData != null);
     return initial();
   }
 
@@ -733,6 +898,9 @@ class _$_Initial implements _Initial {
         bool isLoading),
     TResult onGetSingleFeedData(
         Option<Either<FeedFailure, Feed>> singleData, bool isLoading),
+    TResult onRefreshHomeData(
+        Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+        bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -751,12 +919,14 @@ class _$_Initial implements _Initial {
         TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
     @required TResult onGetHomeMenuList(_OnGetHomeMenuList value),
     @required TResult onGetSingleFeedData(_OnGetSingleFeedData value),
+    @required TResult onRefreshHomeData(_OnRefreshHomeData value),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
     assert(failOrSuccessGetDataBottom != null);
     assert(onGetHomeMenuList != null);
     assert(onGetSingleFeedData != null);
+    assert(onRefreshHomeData != null);
     return initial(this);
   }
 
@@ -768,6 +938,7 @@ class _$_Initial implements _Initial {
     TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
     TResult onGetHomeMenuList(_OnGetHomeMenuList value),
     TResult onGetSingleFeedData(_OnGetSingleFeedData value),
+    TResult onRefreshHomeData(_OnRefreshHomeData value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -877,12 +1048,17 @@ class _$_FailOrSuccessGetData implements _FailOrSuccessGetData {
     @required
         TResult onGetSingleFeedData(
             Option<Either<FeedFailure, Feed>> singleData, bool isLoading),
+    @required
+        TResult onRefreshHomeData(
+            Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+            bool isLoading),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
     assert(failOrSuccessGetDataBottom != null);
     assert(onGetHomeMenuList != null);
     assert(onGetSingleFeedData != null);
+    assert(onRefreshHomeData != null);
     return failOrSuccessGetData(responseOptions, isLoading);
   }
 
@@ -901,6 +1077,9 @@ class _$_FailOrSuccessGetData implements _FailOrSuccessGetData {
         bool isLoading),
     TResult onGetSingleFeedData(
         Option<Either<FeedFailure, Feed>> singleData, bool isLoading),
+    TResult onRefreshHomeData(
+        Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+        bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -919,12 +1098,14 @@ class _$_FailOrSuccessGetData implements _FailOrSuccessGetData {
         TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
     @required TResult onGetHomeMenuList(_OnGetHomeMenuList value),
     @required TResult onGetSingleFeedData(_OnGetSingleFeedData value),
+    @required TResult onRefreshHomeData(_OnRefreshHomeData value),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
     assert(failOrSuccessGetDataBottom != null);
     assert(onGetHomeMenuList != null);
     assert(onGetSingleFeedData != null);
+    assert(onRefreshHomeData != null);
     return failOrSuccessGetData(this);
   }
 
@@ -936,6 +1117,7 @@ class _$_FailOrSuccessGetData implements _FailOrSuccessGetData {
     TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
     TResult onGetHomeMenuList(_OnGetHomeMenuList value),
     TResult onGetSingleFeedData(_OnGetSingleFeedData value),
+    TResult onRefreshHomeData(_OnRefreshHomeData value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1054,12 +1236,17 @@ class _$_FailOrSuccessGetDataBottom implements _FailOrSuccessGetDataBottom {
     @required
         TResult onGetSingleFeedData(
             Option<Either<FeedFailure, Feed>> singleData, bool isLoading),
+    @required
+        TResult onRefreshHomeData(
+            Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+            bool isLoading),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
     assert(failOrSuccessGetDataBottom != null);
     assert(onGetHomeMenuList != null);
     assert(onGetSingleFeedData != null);
+    assert(onRefreshHomeData != null);
     return failOrSuccessGetDataBottom(responseOptions, isLoading);
   }
 
@@ -1078,6 +1265,9 @@ class _$_FailOrSuccessGetDataBottom implements _FailOrSuccessGetDataBottom {
         bool isLoading),
     TResult onGetSingleFeedData(
         Option<Either<FeedFailure, Feed>> singleData, bool isLoading),
+    TResult onRefreshHomeData(
+        Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+        bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1096,12 +1286,14 @@ class _$_FailOrSuccessGetDataBottom implements _FailOrSuccessGetDataBottom {
         TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
     @required TResult onGetHomeMenuList(_OnGetHomeMenuList value),
     @required TResult onGetSingleFeedData(_OnGetSingleFeedData value),
+    @required TResult onRefreshHomeData(_OnRefreshHomeData value),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
     assert(failOrSuccessGetDataBottom != null);
     assert(onGetHomeMenuList != null);
     assert(onGetSingleFeedData != null);
+    assert(onRefreshHomeData != null);
     return failOrSuccessGetDataBottom(this);
   }
 
@@ -1113,6 +1305,7 @@ class _$_FailOrSuccessGetDataBottom implements _FailOrSuccessGetDataBottom {
     TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
     TResult onGetHomeMenuList(_OnGetHomeMenuList value),
     TResult onGetSingleFeedData(_OnGetSingleFeedData value),
+    TResult onRefreshHomeData(_OnRefreshHomeData value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1229,12 +1422,17 @@ class _$_OnGetHomeMenuList implements _OnGetHomeMenuList {
     @required
         TResult onGetSingleFeedData(
             Option<Either<FeedFailure, Feed>> singleData, bool isLoading),
+    @required
+        TResult onRefreshHomeData(
+            Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+            bool isLoading),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
     assert(failOrSuccessGetDataBottom != null);
     assert(onGetHomeMenuList != null);
     assert(onGetSingleFeedData != null);
+    assert(onRefreshHomeData != null);
     return onGetHomeMenuList(homeMenuData, isLoading);
   }
 
@@ -1253,6 +1451,9 @@ class _$_OnGetHomeMenuList implements _OnGetHomeMenuList {
         bool isLoading),
     TResult onGetSingleFeedData(
         Option<Either<FeedFailure, Feed>> singleData, bool isLoading),
+    TResult onRefreshHomeData(
+        Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+        bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1271,12 +1472,14 @@ class _$_OnGetHomeMenuList implements _OnGetHomeMenuList {
         TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
     @required TResult onGetHomeMenuList(_OnGetHomeMenuList value),
     @required TResult onGetSingleFeedData(_OnGetSingleFeedData value),
+    @required TResult onRefreshHomeData(_OnRefreshHomeData value),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
     assert(failOrSuccessGetDataBottom != null);
     assert(onGetHomeMenuList != null);
     assert(onGetSingleFeedData != null);
+    assert(onRefreshHomeData != null);
     return onGetHomeMenuList(this);
   }
 
@@ -1288,6 +1491,7 @@ class _$_OnGetHomeMenuList implements _OnGetHomeMenuList {
     TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
     TResult onGetHomeMenuList(_OnGetHomeMenuList value),
     TResult onGetSingleFeedData(_OnGetSingleFeedData value),
+    TResult onRefreshHomeData(_OnRefreshHomeData value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1402,12 +1606,17 @@ class _$_OnGetSingleFeedData implements _OnGetSingleFeedData {
     @required
         TResult onGetSingleFeedData(
             Option<Either<FeedFailure, Feed>> singleData, bool isLoading),
+    @required
+        TResult onRefreshHomeData(
+            Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+            bool isLoading),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
     assert(failOrSuccessGetDataBottom != null);
     assert(onGetHomeMenuList != null);
     assert(onGetSingleFeedData != null);
+    assert(onRefreshHomeData != null);
     return onGetSingleFeedData(singleData, isLoading);
   }
 
@@ -1426,6 +1635,9 @@ class _$_OnGetSingleFeedData implements _OnGetSingleFeedData {
         bool isLoading),
     TResult onGetSingleFeedData(
         Option<Either<FeedFailure, Feed>> singleData, bool isLoading),
+    TResult onRefreshHomeData(
+        Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+        bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1444,12 +1656,14 @@ class _$_OnGetSingleFeedData implements _OnGetSingleFeedData {
         TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
     @required TResult onGetHomeMenuList(_OnGetHomeMenuList value),
     @required TResult onGetSingleFeedData(_OnGetSingleFeedData value),
+    @required TResult onRefreshHomeData(_OnRefreshHomeData value),
   }) {
     assert(initial != null);
     assert(failOrSuccessGetData != null);
     assert(failOrSuccessGetDataBottom != null);
     assert(onGetHomeMenuList != null);
     assert(onGetSingleFeedData != null);
+    assert(onRefreshHomeData != null);
     return onGetSingleFeedData(this);
   }
 
@@ -1461,6 +1675,7 @@ class _$_OnGetSingleFeedData implements _OnGetSingleFeedData {
     TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
     TResult onGetHomeMenuList(_OnGetHomeMenuList value),
     TResult onGetSingleFeedData(_OnGetSingleFeedData value),
+    TResult onRefreshHomeData(_OnRefreshHomeData value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1480,4 +1695,189 @@ abstract class _OnGetSingleFeedData implements FeedHomeState {
   bool get isLoading;
   @JsonKey(ignore: true)
   _$OnGetSingleFeedDataCopyWith<_OnGetSingleFeedData> get copyWith;
+}
+
+/// @nodoc
+abstract class _$OnRefreshHomeDataCopyWith<$Res> {
+  factory _$OnRefreshHomeDataCopyWith(
+          _OnRefreshHomeData value, $Res Function(_OnRefreshHomeData) then) =
+      __$OnRefreshHomeDataCopyWithImpl<$Res>;
+  $Res call(
+      {Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+      bool isLoading});
+}
+
+/// @nodoc
+class __$OnRefreshHomeDataCopyWithImpl<$Res>
+    extends _$FeedHomeStateCopyWithImpl<$Res>
+    implements _$OnRefreshHomeDataCopyWith<$Res> {
+  __$OnRefreshHomeDataCopyWithImpl(
+      _OnRefreshHomeData _value, $Res Function(_OnRefreshHomeData) _then)
+      : super(_value, (v) => _then(v as _OnRefreshHomeData));
+
+  @override
+  _OnRefreshHomeData get _value => super._value as _OnRefreshHomeData;
+
+  @override
+  $Res call({
+    Object allDataList = freezed,
+    Object isLoading = freezed,
+  }) {
+    return _then(_OnRefreshHomeData(
+      allDataList: allDataList == freezed
+          ? _value.allDataList
+          : allDataList as Option<Either<FeedFailure, List<List<dynamic>>>>,
+      isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_OnRefreshHomeData implements _OnRefreshHomeData {
+  const _$_OnRefreshHomeData(
+      {@required this.allDataList, @required this.isLoading})
+      : assert(allDataList != null),
+        assert(isLoading != null);
+
+  @override
+  final Option<Either<FeedFailure, List<List<dynamic>>>> allDataList;
+  @override
+  final bool isLoading;
+
+  @override
+  String toString() {
+    return 'FeedHomeState.onRefreshHomeData(allDataList: $allDataList, isLoading: $isLoading)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _OnRefreshHomeData &&
+            (identical(other.allDataList, allDataList) ||
+                const DeepCollectionEquality()
+                    .equals(other.allDataList, allDataList)) &&
+            (identical(other.isLoading, isLoading) ||
+                const DeepCollectionEquality()
+                    .equals(other.isLoading, isLoading)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(allDataList) ^
+      const DeepCollectionEquality().hash(isLoading);
+
+  @JsonKey(ignore: true)
+  @override
+  _$OnRefreshHomeDataCopyWith<_OnRefreshHomeData> get copyWith =>
+      __$OnRefreshHomeDataCopyWithImpl<_OnRefreshHomeData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required
+        TResult failOrSuccessGetData(
+            Option<Either<FeedFailure, List<Feed>>> responseOptions,
+            bool isLoading),
+    @required
+        TResult failOrSuccessGetDataBottom(
+            Option<Either<FeedFailure, List<Feed>>> responseOptions,
+            bool isLoading),
+    @required
+        TResult onGetHomeMenuList(
+            Option<Either<FeedFailure, List<MenuDataModel>>> homeMenuData,
+            bool isLoading),
+    @required
+        TResult onGetSingleFeedData(
+            Option<Either<FeedFailure, Feed>> singleData, bool isLoading),
+    @required
+        TResult onRefreshHomeData(
+            Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+            bool isLoading),
+  }) {
+    assert(initial != null);
+    assert(failOrSuccessGetData != null);
+    assert(failOrSuccessGetDataBottom != null);
+    assert(onGetHomeMenuList != null);
+    assert(onGetSingleFeedData != null);
+    assert(onRefreshHomeData != null);
+    return onRefreshHomeData(allDataList, isLoading);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult failOrSuccessGetData(
+        Option<Either<FeedFailure, List<Feed>>> responseOptions,
+        bool isLoading),
+    TResult failOrSuccessGetDataBottom(
+        Option<Either<FeedFailure, List<Feed>>> responseOptions,
+        bool isLoading),
+    TResult onGetHomeMenuList(
+        Option<Either<FeedFailure, List<MenuDataModel>>> homeMenuData,
+        bool isLoading),
+    TResult onGetSingleFeedData(
+        Option<Either<FeedFailure, Feed>> singleData, bool isLoading),
+    TResult onRefreshHomeData(
+        Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+        bool isLoading),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (onRefreshHomeData != null) {
+      return onRefreshHomeData(allDataList, isLoading);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult failOrSuccessGetData(_FailOrSuccessGetData value),
+    @required
+        TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+    @required TResult onGetHomeMenuList(_OnGetHomeMenuList value),
+    @required TResult onGetSingleFeedData(_OnGetSingleFeedData value),
+    @required TResult onRefreshHomeData(_OnRefreshHomeData value),
+  }) {
+    assert(initial != null);
+    assert(failOrSuccessGetData != null);
+    assert(failOrSuccessGetDataBottom != null);
+    assert(onGetHomeMenuList != null);
+    assert(onGetSingleFeedData != null);
+    assert(onRefreshHomeData != null);
+    return onRefreshHomeData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult failOrSuccessGetData(_FailOrSuccessGetData value),
+    TResult failOrSuccessGetDataBottom(_FailOrSuccessGetDataBottom value),
+    TResult onGetHomeMenuList(_OnGetHomeMenuList value),
+    TResult onGetSingleFeedData(_OnGetSingleFeedData value),
+    TResult onRefreshHomeData(_OnRefreshHomeData value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (onRefreshHomeData != null) {
+      return onRefreshHomeData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnRefreshHomeData implements FeedHomeState {
+  const factory _OnRefreshHomeData(
+      {@required Option<Either<FeedFailure, List<List<dynamic>>>> allDataList,
+      @required bool isLoading}) = _$_OnRefreshHomeData;
+
+  Option<Either<FeedFailure, List<List<dynamic>>>> get allDataList;
+  bool get isLoading;
+  @JsonKey(ignore: true)
+  _$OnRefreshHomeDataCopyWith<_OnRefreshHomeData> get copyWith;
 }

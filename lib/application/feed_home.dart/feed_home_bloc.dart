@@ -64,6 +64,17 @@ class FeedHomeBloc extends Bloc<FeedHomeEvent, FeedHomeState> {
         yield FeedHomeState.onGetSingleFeedData(
             singleData: some(_result), isLoading: false);
       },
+
+      ///Banner 0
+      ///Bottom 1
+      ///Shown  2
+      refreshHome: (_RefreshHome value) async* {
+        yield FeedHomeState.onRefreshHomeData(
+            allDataList: none(), isLoading: true);
+        final _result = await _iFeedHomeFacade.refreshHome();
+        yield FeedHomeState.onRefreshHomeData(
+            allDataList: some(_result), isLoading: false);
+      },
     );
   }
 }

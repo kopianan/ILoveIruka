@@ -8,4 +8,5 @@ abstract class IFeedHomeFacade {
   Future<Either<FeedFailure, List<Feed>>> getBottomFeedData();
   Future<Either<FeedFailure, List<MenuDataModel>>> getHomeMenuList();
   Future<Either<FeedFailure, Feed>> getSingleFeedData(String feedId);
+  Future<Either<FeedFailure, List<List<dynamic>>>> refreshHome();
 }

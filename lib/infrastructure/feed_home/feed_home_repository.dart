@@ -99,4 +99,35 @@ class FeedHomeRepository extends IFeedHomeFacade {
       return left(checkErrorData(e));
     }
   }
+
+  
+  @override
+  Future<Either<FeedFailure, List<List<dynamic>>>> refreshHome() async {
+    List<Response> response;
+    String url = Constants.getStagingUrl();
+    Options options = getDioOptions();
+    List<List<dynamic>> allData = <List<dynamic>>[];
+    try {
+      response = await Future.wait([
+        _dio.get(url + "/api/v1/feeds/banner", options: options),
+        _dio.get(url + "/api/v1/feeds/bottom", options: options),
+        _dio.get(url + "/api/v1/menus/shown", options: options),
+      ]);
+
+      print(response.length);
+      List res1 = response[0].data['data'];
+      List res2 = response[1].data['data'];
+      List res3 = response[2].data['data'];
+      List<Feed> listBanner = res1.map((e) => Feed.fromJson(e)).toList();
+      List<Feed> listBootomFeed = res2.map((e) => Feed.fromJson(e)).toList();
+      List<MenuDataModel> listMenu =
+          res3.map((e) => MenuDataModel.fromJson(e)).toList();
+      allData.add(listBanner);
+      allData.add(listBootomFeed);
+      allData.add(listMenu);
+      return right(allData);
+    } on DioError catch (e) {
+      return left(checkErrorData(e));
+    }
+  }
 }

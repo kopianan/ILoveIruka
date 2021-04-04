@@ -6,4 +6,5 @@ abstract class FeedHomeEvent with _$FeedHomeEvent {
   const factory FeedHomeEvent.getBottomFeedData() = _GetBottomFeedData;
   const factory FeedHomeEvent.getHomeMenuList() = _GetHomeMenuList;
   const factory FeedHomeEvent.getSingleFeed(String feedId) = _GetSingleFeed;
+  const factory FeedHomeEvent.refreshHome() = _RefreshHome;
 }

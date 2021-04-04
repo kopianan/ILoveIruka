@@ -1,9 +1,11 @@
 import 'package:get/state_manager.dart';
 import 'package:i_love_iruka/domain/feed_home/feed.dart';
+import 'package:i_love_iruka/domain/feed_home/menu_data_model.dart';
 
 class FeedController extends GetxController {
-  final topFeed = List<Feed>().obs;
-  final bottomFeed = List<Feed>().obs;
+  final topFeed = <Feed>[].obs;
+  final bottomFeed = <Feed>[].obs;
+  final menuList = <MenuDataModel>[].obs;
 
   @override
   void onInit() {
@@ -18,6 +20,11 @@ class FeedController extends GetxController {
     this.bottomFeed.assignAll(listBottomFeed);
   }
 
+  void setMenuList(List<MenuDataModel> menuList) {
+    this.menuList.assignAll(menuList);
+  }
+
   List<Feed> get getTopFeed => this.topFeed;
   List<Feed> get getBottomFeed => this.bottomFeed;
+  List<MenuDataModel> get getMenuData => this.menuList;
 }

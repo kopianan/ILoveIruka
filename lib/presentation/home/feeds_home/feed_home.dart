@@ -36,9 +36,11 @@ class _FeedHomeState extends State<FeedHome>
 
   void _onRefresh() async {
     // monitor network fetch
-    await Future.delayed(Duration(milliseconds: 1000));
+    // await Future.delayed(Duration(milliseconds: 1000));
+    _refresh.add(FeedHomeEvent.refreshHome());
+
     // if failed,use refreshFailed()
-    _refreshController.refreshCompleted();
+    // _refreshController.refreshCompleted();
   }
 
   void _onLoading() async {
@@ -51,157 +53,194 @@ class _FeedHomeState extends State<FeedHome>
   final _homeTopFeedBloc = getIt<FeedHomeBloc>();
   final _homeMenuBloc = getIt<FeedHomeBloc>();
   final _homeBottomFeedBloc = getIt<FeedHomeBloc>();
+  final _refresh = getIt<FeedHomeBloc>();
   @override
   Widget build(BuildContext context) {
     const double _horizontalMargin = 15;
     const double _verticalMargin = 10;
     return SafeArea(
-      child: SmartRefresher(
-        enablePullDown: true,
-        enablePullUp: true,
-        header: WaterDropHeader(),
-        footer: CustomFooter(
-          builder: (BuildContext context, LoadStatus mode) {
-            Widget body;
-            if (mode == LoadStatus.idle) {
-              body = Text("pull up load");
-            } else if (mode == LoadStatus.loading) {
-              body = CupertinoActivityIndicator();
-            } else if (mode == LoadStatus.failed) {
-              body = Text("Load Failed!Click retry!");
-            } else if (mode == LoadStatus.canLoading) {
-              body = Text("release to load more");
-            } else {
-              body = Text("No more Data");
-            }
-            return Container(
-              height: 55.0,
-              child: Center(child: body),
-            );
-          },
-        ),
-        controller: _refreshController,
-        onRefresh: _onRefresh,
-        onLoading: _onLoading,
-        child: CustomScrollView(slivers: [
-          SliverToBoxAdapter(
-              child: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: _horizontalMargin, vertical: _verticalMargin),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Welcome,\n${userController.getUserData().fullName}",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-                Container(
-                  height: 40,
-                  width: 40,
-                  child: Icon(
-                    Icons.image,
-                    color: Colors.black,
-                  ),
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey[300],
-                          spreadRadius: 2,
-                          blurRadius: 4,
-                          offset: Offset.fromDirection(45, 2))
+      child: BlocProvider(
+          create: (context) => _refresh,
+          child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
+              listener: (context, state) {
+            state.maybeMap(
+                orElse: () {},
+                onRefreshHomeData: (ref) {
+                  if (!ref.isLoading) {
+                    _refreshController.refreshCompleted();
+                  }
+                  ref.allDataList.fold(
+                      () => print("Nothing"),
+                      (a) => a.fold(
+                            (l) => print(l),
+                            (r) {
+                              feedController.setTopFeed(r[0]);
+                              feedController.setBottomFeed(r[1]);
+                              feedController.setMenuList(r[2]);
+                            },
+                          ));
+                });
+          }, builder: (context, state) {
+            return SmartRefresher(
+              enablePullDown: true,
+              enablePullUp: true,
+              header: WaterDropHeader(),
+              footer: CustomFooter(
+                builder: (BuildContext context, LoadStatus mode) {
+                  Widget body;
+                  if (mode == LoadStatus.idle) {
+                    body = Text("pull up load");
+                  } else if (mode == LoadStatus.loading) {
+                    body = CupertinoActivityIndicator();
+                  } else if (mode == LoadStatus.failed) {
+                    body = Text("Load Failed!Click retry!");
+                  } else if (mode == LoadStatus.canLoading) {
+                    body = Text("release to load more");
+                  } else {
+                    body = Text("No more Data");
+                  }
+                  return Container(
+                    height: 55.0,
+                    child: Center(child: body),
+                  );
+                },
+              ),
+              controller: _refreshController,
+              onRefresh: _onRefresh,
+              onLoading: _onLoading,
+              child: CustomScrollView(slivers: [
+                SliverToBoxAdapter(
+                    child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: _horizontalMargin, vertical: _verticalMargin),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Welcome,\n${userController.getUserData().fullName}",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                      Container(
+                        height: 40,
+                        width: 40,
+                        child: Icon(
+                          Icons.image,
+                          color: Colors.black,
+                        ),
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey[300],
+                                spreadRadius: 2,
+                                blurRadius: 4,
+                                offset: Offset.fromDirection(45, 2))
+                          ],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      )
                     ],
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
                   ),
-                )
-              ],
-            ),
-          )),
-          SliverPadding(
-            padding: EdgeInsets.only(bottom: 10),
-            sliver: SliverToBoxAdapter(
-              child: BlocProvider(
-                create: (context) =>
-                    _homeTopFeedBloc..add(FeedHomeEvent.getTopFeedData()),
-                child: Container(
-                  child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
-                    listener: (context, state) {
-                      //set top feed data
-                      state.maybeMap(
-                        orElse: () {},
-                        failOrSuccessGetData: (val) {
-                          if (val.isLoading) print("Loading kok");
-                          val.responseOptions.fold(
-                              () {},
-                              (a) => a.fold(
-                                    (l) {},
-                                    (r) {
-                                      feedController.setTopFeed(r);
-                                    },
-                                  ));
-                        },
-                      );
-                    },
-                    builder: (context, state) {
-                      return onGetTopFeed(context, state);
-                    },
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: sectionTitle(_horizontalMargin, "Features"),
-          ),
-          SliverToBoxAdapter(
-              child: BlocProvider(
-                  create: (context) =>
-                      _homeMenuBloc..add(FeedHomeEvent.getHomeMenuList()),
-                  child: Container(
-                    child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
-                      listener: (context, state) {},
-                      builder: (context, state) => onGetHomeMenu(state),
+                )),
+                SliverPadding(
+                  padding: EdgeInsets.only(bottom: 10),
+                  sliver: SliverToBoxAdapter(
+                    child: BlocProvider(
+                      create: (context) =>
+                          _homeTopFeedBloc..add(FeedHomeEvent.getTopFeedData()),
+                      child: Container(
+                        child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
+                          listener: (context, state) {
+                            //set top feed data
+                            state.maybeMap(
+                              orElse: () {},
+                              failOrSuccessGetData: (val) {
+                                if (val.isLoading) print("Loading kok");
+                                val.responseOptions.fold(
+                                    () {},
+                                    (a) => a.fold(
+                                          (l) {},
+                                          (r) {
+                                            feedController.setTopFeed(r);
+                                          },
+                                        ));
+                              },
+                            );
+                          },
+                          builder: (context, state) {
+                            return onGetTopFeed(context, state);
+                          },
+                        ),
+                      ),
                     ),
-                  ))),
-          SliverToBoxAdapter(
-            child: sectionTitle(_horizontalMargin, "Newsletter"),
-          ),
-          SliverToBoxAdapter(
-            child: BlocProvider(
-              create: (context) =>
-                  _homeBottomFeedBloc..add(FeedHomeEvent.getBottomFeedData()),
-              child: Container(
-                child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
-                  listener: (context, state) {
-                    state.maybeMap(
-                      orElse: () {},
-                      failOrSuccessGetDataBottom: (val) {
-                        val.responseOptions.fold(
-                            () {},
-                            (a) => a.fold(
-                                  (l) {},
-                                  (r) {
-                                    feedController.setBottomFeed(r);
-                                  },
-                                ));
-                      },
-                    );
-                  },
-                  builder: (context, state) {
-                    return onGetBottomFeed(state);
-                  },
+                  ),
                 ),
-              ),
-            ),
-          ),
-          // SliverList(delegate: SliverChildBuilderDelegate((context, index) {
-          //   return newsletterItem(_horizontalMargin);
-          // }))
-        ]),
-      ),
+                SliverToBoxAdapter(
+                  child: sectionTitle(_horizontalMargin, "Features"),
+                ),
+                SliverToBoxAdapter(
+                    child: BlocProvider(
+                        create: (context) =>
+                            _homeMenuBloc..add(FeedHomeEvent.getHomeMenuList()),
+                        child: Container(
+                          child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
+                            listener: (context, state) {
+                              state.maybeMap(
+                                  orElse: () => {},
+                                  onGetHomeMenuList: (val) {
+                                    val.homeMenuData.fold(
+                                        () => {},
+                                        (a) => a.fold(
+                                              (l) => {},
+                                              (r) {
+                                                feedController.setMenuList(r);
+                                              },
+                                            ));
+                                  });
+                            },
+                            builder: (context, state) => onGetHomeMenu(state),
+                          ),
+                        ))),
+                SliverToBoxAdapter(
+                  child: sectionTitle(_horizontalMargin, "Newsletter"),
+                ),
+                SliverToBoxAdapter(
+                  child: BlocProvider(
+                    create: (context) => _homeBottomFeedBloc
+                      ..add(FeedHomeEvent.getBottomFeedData()),
+                    child: Container(
+                      child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
+                        listener: (context, state) {
+                          state.maybeMap(
+                            orElse: () {},
+                            failOrSuccessGetDataBottom: (val) {
+                              val.responseOptions.fold(
+                                  () {},
+                                  (a) => a.fold(
+                                        (l) {},
+                                        (r) {
+                                          feedController.setBottomFeed(r);
+                                        },
+                                      ));
+                            },
+                          );
+                        },
+                        builder: (context, state) {
+                          return onGetBottomFeed(state);
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+                // SliverList(delegate: SliverChildBuilderDelegate((context, index) {
+                //   return newsletterItem(_horizontalMargin);
+                // }))
+              ]),
+            );
+          })),
     );
   }
 
@@ -234,14 +273,16 @@ class _FeedHomeState extends State<FeedHome>
               () => loadingContainer,
               (a) => a.fold(
                     (l) => errorContainer,
-                    (r) => _featuresMenuGrid(r),
+                    (r) => GetX<FeedController>(
+                        builder: (controller) =>
+                            _featuresMenuGrid(controller.getMenuData)),
                   ));
         }
       },
     );
   }
 
-  Container _featuresMenuGrid(List<MenuDataModel> listHome) {
+  Widget _featuresMenuGrid(List<MenuDataModel> listHome) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20),
       child: GridView.builder(
