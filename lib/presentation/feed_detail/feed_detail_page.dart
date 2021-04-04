@@ -8,6 +8,7 @@ import 'package:i_love_iruka/infrastructure/functions/custom_formatter.dart';
 import 'package:i_love_iruka/injection.dart';
 import 'package:i_love_iruka/presentation/core/photo_viewer_page.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
+import 'package:i_love_iruka/presentation/widgets/error_handling_widget.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -117,6 +118,9 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
                                     image: NetworkImage(
                                         Constants.getStagingUrl() +
                                             data.imageUrl),
+                                    onError: (obj, err) {
+                                      return onImageLoadingError;
+                                    },
                                     fit: BoxFit.contain)),
                           ),
                         ),

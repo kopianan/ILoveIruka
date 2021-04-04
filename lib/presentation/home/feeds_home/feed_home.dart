@@ -12,6 +12,7 @@ import 'package:i_love_iruka/domain/feed_home/menu_data_model.dart';
 import 'package:i_love_iruka/infrastructure/functions/custom_formatter.dart';
 import 'package:i_love_iruka/injection.dart';
 import 'package:i_love_iruka/presentation/feed_detail/feed_detail_page.dart';
+import 'package:i_love_iruka/presentation/widgets/error_handling_widget.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -384,6 +385,13 @@ class _FeedHomeState extends State<FeedHome>
                   image: DecorationImage(
                       image: NetworkImage(
                           Constants.getStagingUrl() + feed.imageUrl),
+                      onError: (obj, err) {
+                        return Image.asset(
+                          'images/assets/broken_image.png',
+                          fit: BoxFit.cover,
+                          width: 1000.0,
+                        );
+                      },
                       fit: BoxFit.cover)),
             ),
             SizedBox(
@@ -449,6 +457,7 @@ class _FeedHomeState extends State<FeedHome>
     return Container(
       width: double.infinity,
       margin: EdgeInsets.all(5.0),
+      color: Colors.grey[200],
       child: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(5.0)),
           child: Image.network(
@@ -468,11 +477,7 @@ class _FeedHomeState extends State<FeedHome>
                 );
             },
             errorBuilder: (context, exception, err) {
-              return Image.asset(
-                'images/assets/instagram.png',
-                fit: BoxFit.cover,
-                width: 1000.0,
-              );
+              return onImageLoadingError;
             },
           )),
     );

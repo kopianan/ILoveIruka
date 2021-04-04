@@ -24,7 +24,11 @@ class ServiceMenuItem extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.all(10),
               width: double.infinity,
-              child: Image.network(assetUrl),
+              child: Image.network(assetUrl,errorBuilder: (context,obj,err){  return Image.asset(
+                'images/assets/broken_image.png',
+                fit: BoxFit.cover,
+                width: 1000.0,
+              );},),
             ),
           ),
         ),

@@ -19,8 +19,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         // mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Stack(
-            overflow: Overflow.visible,
-            children: <Widget>[
+            clipBehavior: Clip.none, children: <Widget>[
               ClipPath(
                   clipper: CurvedClipper(),
                   child: Image.asset(

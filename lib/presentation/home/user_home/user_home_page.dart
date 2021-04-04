@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/user_controller.dart';
 import 'package:i_love_iruka/presentation/home/user_home/profile/setting_profile_page.dart';
+import 'package:i_love_iruka/presentation/welcome/welcome_screen.dart';
 
 class UserHomePage extends StatefulWidget {
   @override
@@ -56,7 +57,9 @@ class _UserHomePageState extends State<UserHomePage> {
                                 ),
                               ),
                               IconButton(
-                                  icon: Icon(Icons.logout), onPressed: () {}),
+                                  icon: Icon(Icons.logout), onPressed: () {
+                                    Get.offAllNamed(WelcomeScreen.TAG); 
+                                  }),
                             ],
                           ),
                           SizedBox(height: 20),
