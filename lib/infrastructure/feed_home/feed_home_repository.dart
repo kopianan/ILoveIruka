@@ -5,6 +5,7 @@ import 'package:i_love_iruka/domain/feed_home/feed_failure.dart';
 import 'package:i_love_iruka/domain/feed_home/i_feed_home_facade.dart';
 import 'package:i_love_iruka/domain/feed_home/menu_data_model.dart';
 import 'package:i_love_iruka/infrastructure/core/pref.dart';
+import 'package:i_love_iruka/injection.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:injectable/injectable.dart';
 
@@ -36,7 +37,7 @@ class FeedHomeRepository extends IFeedHomeFacade {
   @override
   Future<Either<FeedFailure, List<Feed>>> getTopFeedData() async {
     Response response;
-
+    print(_dio.options.headers);
     try {
       response = await _dio.get(
           Constants.getStagingUrl() + "/api/v1/feeds/banner",
@@ -100,13 +101,14 @@ class FeedHomeRepository extends IFeedHomeFacade {
     }
   }
 
-  
   @override
   Future<Either<FeedFailure, List<List<dynamic>>>> refreshHome() async {
     List<Response> response;
     String url = Constants.getStagingUrl();
     Options options = getDioOptions();
     List<List<dynamic>> allData = <List<dynamic>>[];
+        print(_dio.options.headers);
+
     try {
       response = await Future.wait([
         _dio.get(url + "/api/v1/feeds/banner", options: options),

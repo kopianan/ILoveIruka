@@ -1,7 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:i_love_iruka/domain/user/user_data_model.dart';
 import 'package:i_love_iruka/domain/user/user_req_res_data_model.dart';
+import 'package:injectable/injectable.dart';
 
 class UserController extends GetxController {
   final userData = UserDataModel().obs;
@@ -36,4 +38,5 @@ class UserController extends GetxController {
       return null;
     }
   }
+
 }

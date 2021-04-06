@@ -1,8 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/auth_bloc.dart';
+import 'package:i_love_iruka/infrastructure/core/dio_injection_module.dart';
 import 'package:i_love_iruka/infrastructure/core/pref.dart';
 import 'package:i_love_iruka/infrastructure/functions/custom_alert.dart';
 import 'package:i_love_iruka/presentation/auth/widgets/decoration.dart';
