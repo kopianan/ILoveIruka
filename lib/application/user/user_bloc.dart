@@ -1,11 +1,9 @@
-import 'dart:async';
-import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:i_love_iruka/domain/core/general_failure.dart';
 import 'package:i_love_iruka/domain/user/i_user_facade.dart';
+import 'package:i_love_iruka/domain/user/password_data_model.dart';
 import 'package:injectable/injectable.dart';
 
 part 'user_event.dart';
@@ -25,6 +23,18 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         yield UserState.uploadProfilePhoto(none(), true);
         final _result = await _iUserFacade.uploadPhoto(e.file);
         yield UserState.uploadProfilePhoto(some(_result), false);
+      },
+      changePassword: (_ChangePassword value) async* {
+        yield UserState.loading();
+        try {
+          final result = await _iUserFacade.changePassword(value.password);
+          yield result.fold(
+            (l) => UserState.error(l),
+            (r) => UserState.onChangePassword(r),
+          );
+        } catch (onError) {
+          yield UserState.error(onError);
+        }
       },
     );
   }

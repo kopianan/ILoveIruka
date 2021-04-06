@@ -23,39 +23,57 @@ class _TransactionHistoryPageState extends State<TransactionHistoryPage> {
         create: (context) => getIt<TransactionBloc>()
           ..add(TransactionEvent.getTransactions("userId")),
         child: BlocConsumer<TransactionBloc, TransactionState>(
-          listener: (context, state) {
-            state.map(
-              initial: (e) {
-                print("Initial");
-              },
-              loading: (e) {
-                print("loading");
-              },
-              error: (e) {
-                print("error");
-              },
-              onGetTransaction: (e) {
-                transController.setTransactionsData(e.data.items);
-              },
-            );
-          },
-          builder: (context, state) {
-            return SafeArea(
-              child: GetX<TransactionController>(
-                builder: (trans) => CustomScrollView(
-                  slivers: [
-                    SliverToBoxAdapter(
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: trans.getTransactionDataList.length,
-                            itemBuilder: (context, index) => TransactionItem(
-                                  trans: trans.getTransactionDataList[index],
-                                )))
-                  ],
-                ),
-              ),
-            );
-          },
+            listener: (context, state) {
+          state.map(
+            initial: (e) {
+              print("Initial");
+            },
+            loading: (e) {
+              print("loading");
+            },
+            error: (e) {
+              print("error");
+            },
+            onGetTransaction: (e) {
+              transController.setTransactionsData(e.data.items);
+            },
+          );
+        }, builder: (context, state) {
+          return state.maybeMap(
+            orElse: () {
+              return loadingTranscationPage();
+            },
+            loading: (e) {
+              return loadingTranscationPage();
+            },
+            onGetTransaction: (e) {
+              return defaultTransactionPage();
+            },
+          );
+        }),
+      ),
+    );
+  }
+
+  Widget loadingTranscationPage() {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  SafeArea defaultTransactionPage() {
+    return SafeArea(
+      child: GetX<TransactionController>(
+        builder: (trans) => CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: trans.getTransactionDataList.length,
+                    itemBuilder: (context, index) => TransactionItem(
+                          trans: trans.getTransactionDataList[index],
+                        )))
+          ],
         ),
       ),
     );

@@ -48,7 +48,8 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
         child: BlocConsumer<UserBloc, UserState>(listener: (context, state) {
           // TODO: implement listener
 
-          state.map(
+          state.maybeMap(
+            orElse: () {},
             initial: (e) {
               print("initail");
             },
