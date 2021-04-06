@@ -1,15 +1,21 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:i_love_iruka/domain/user/user_req_res_data_model.dart';
+import 'package:i_love_iruka/infrastructure/functions/custom_alert.dart';
+import 'package:image_picker/image_picker.dart';
+
 import 'package:i_love_iruka/application/address/cubit/address_cubit.dart';
+import 'package:i_love_iruka/application/auth/user_controller.dart';
 import 'package:i_love_iruka/application/user/user_bloc.dart';
 import 'package:i_love_iruka/domain/address/address_data_model.dart';
 import 'package:i_love_iruka/domain/address/province_data_model.dart';
-import 'package:i_love_iruka/infrastructure/functions/custom_alert.dart';
+
 import 'package:i_love_iruka/infrastructure/functions/custom_functions.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../../injection.dart';
 
@@ -28,11 +34,22 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
   List<ProvinceDataModel> provinceList = [];
   final cityCubit = AddressCubit();
   final provinceCubit = AddressCubit();
+  final _userController = Get.put(UserController());
 
+  TextEditingController _name;
+  TextEditingController _phoneNumber;
+  TextEditingController _email;
+  UserRequestDataModel request;
   @override
   void initState() {
-    print("Loading");
+    fillTextFieldFromController();
     super.initState();
+  }
+
+  void fillTextFieldFromController() {
+    _name = TextEditingController(text: _userController.getUserData().fullName);
+    _email = TextEditingController(text: _userController.getUserData().email);
+    _phoneNumber = TextEditingController();
   }
 
   @override
@@ -41,6 +58,14 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
     super.didChangeDependencies();
   }
 
+  void updateProfileBloc(BuildContext context) {
+    request = UserRequestDataModel(
+        fullName: _name.text, imageUrl: path, phoneNumber: _phoneNumber.text);
+    //UPDATING DATA WITH PHOTO
+    context.read<UserBloc>().add(UserEvent.updateProfileData(request));
+  }
+
+  String path;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -49,19 +74,34 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
           // TODO: implement listener
 
           state.maybeMap(
-            orElse: () {},
-            initial: (e) {
-              print("initail");
-            },
-            uploadProfilePhoto: (e) {
-              e.response.fold(
+              orElse: () {},
+              initial: (e) {
+                print("initail");
+              },
+              uploadProfilePhoto: (e) {
+                e.response.fold(
+                    () => print("None"),
+                    (a) => a.fold(
+                          (l) => showBasicFlash(context, l.error),
+                          (r) {
+                            //after finish upload photo, change user user data
+                            path = r;
+                            updateProfileBloc(context);
+                          },
+                        ));
+              },
+              onProfileDataUpdated: (updated) {
+                updated.response.fold(
                   () => print("None"),
                   (a) => a.fold(
-                        (l) => print(l),
-                        (r) => print(r),
-                      ));
-            },
-          );
+                    (l) => showBasicFlash(context, l.error),
+                    (r) {
+                      print(r);
+                      showSuccessFlash(context, "Successful edit data user");
+                    },
+                  ),
+                );
+              });
         }, builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
@@ -71,9 +111,14 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
                 TextButton(
                     onPressed: () {
                       //TODO : Save the image to server.
-                      context
-                          .read<UserBloc>()
-                          .add(UserEvent.changeProfilePhoto(image.path));
+
+                      if (path == null) {
+                        context
+                            .read<UserBloc>()
+                            .add(UserEvent.changeProfilePhoto(image.path));
+                      } else {
+                        updateProfileBloc(context);
+                      }
                     },
                     child: Text("Save"))
               ],
@@ -147,88 +192,102 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
                         ],
                       ),
                     ),
-                    ProfileCustomFormField(),
-                    SizedBox(height: 20),
-                    ProfileCustomFormField(),
-                    SizedBox(height: 20),
-                    ProfileCustomFormField(),
-                    BlocProvider(
-                      create: (context) => provinceCubit..getProvince(),
-                      child: BlocConsumer<AddressCubit, AddressState>(
-                        listener: (context, state) {
-                          state.maybeMap(
-                            orElse: () {},
-                            loading: (e) => print("Loading"),
-                            error: (e) => print("errsdfsdfor"),
-                            getProvince: (e) {
-                              provinceList = e.data;
-                              selectedProvince = provinceList.first;
-                              cityCubit.getCity(provinceList.first.provinceId);
-                            },
-                          );
-                        },
-                        builder: (context, state) {
-                          return state.maybeMap(
-                              orElse: () => defaultDropDown(),
-                              loading: (e) => loadingDropDown(),
-                              error: (e) => errorDropDown(),
-                              getProvince: (e) => DropdownButtonFormField(
-                                    decoration: dropDownDecoration(),
-                                    items: (provinceList == null)
-                                        ? []
-                                        : provinceList
-                                            .map((province) => DropdownMenuItem(
-                                                child: Text(province.province),
-                                                value: province))
-                                            .toList(),
-                                    value: (provinceList == null)
-                                        ? null
-                                        : selectedProvince,
-                                    onTap: () {},
-                                    onChanged: (newData) {
-                                      setState(() {
-                                        selectedProvince = newData;
-                                        cityCubit.getCity(
-                                            selectedProvince.provinceId);
-                                      });
-                                    },
-                                  ));
-                        },
-                      ),
+                    ProfileCustomFormField(
+                      label: "Name",
+                      hint: "Name",
+                      controller: _name,
                     ),
-                    BlocProvider(
-                      create: (context) => cityCubit,
-                      child: BlocConsumer<AddressCubit, AddressState>(
-                        listener: (context, state) {
-                          state.maybeMap(
-                            orElse: () {},
-                            error: (e) => showBasicFlash(context, e.toString()),
-                            getCity: (e) {
-                              cityList = e.data;
-                              selectedCity = cityList.first;
-                            },
-                          );
-                        },
-                        builder: (context, state) {
-                          return state.maybeMap(
-                              orElse: () => defaultDropDown(),
-                              loading: (e) => loadingDropDown(),
-                              error: (e) => errorDropDown(),
-                              getCity: (e) => DropdownButtonFormField(
-                                    decoration: dropDownDecoration(),
-                                    items: cityList
-                                        .map((val) => DropdownMenuItem(
-                                            child: Text(
-                                                val.type + " " + val.cityName),
-                                            value: val))
-                                        .toList(),
-                                    value: selectedCity,
-                                    onTap: () {},
-                                    onChanged: (newData) {},
-                                  ));
-                        },
-                      ),
+                    SizedBox(height: 20),
+                    ProfileCustomFormField(
+                      label: "Email",
+                      hint: "Email",
+                      controller: _email,
+                      isEnabled: false,
                     ),
+                    SizedBox(height: 20),
+                    ProfileCustomFormField(
+                      label: "Phone Number",
+                      controller: _phoneNumber,
+                      hint: "Phone number / Whatsapp",
+                    ),
+                    SizedBox(height: 20),
+                    // BlocProvider(
+                    //   create: (context) => provinceCubit..getProvince(),
+                    //   child: BlocConsumer<AddressCubit, AddressState>(
+                    //     listener: (context, state) {
+                    //       state.maybeMap(
+                    //         orElse: () {},
+                    //         loading: (e) => print("Loading"),
+                    //         error: (e) => print("errsdfsdfor"),
+                    //         getProvince: (e) {
+                    //           provinceList = e.data;
+                    //           selectedProvince = provinceList.first;
+                    //           cityCubit.getCity(provinceList.first.provinceId);
+                    //         },
+                    //       );
+                    //     },
+                    //     builder: (context, state) {
+                    //       return state.maybeMap(
+                    //           orElse: () => defaultDropDown(),
+                    //           loading: (e) => loadingDropDown(),
+                    //           error: (e) => errorDropDown(),
+                    //           getProvince: (e) => DropdownButtonFormField(
+                    //                 decoration: dropDownDecoration(),
+                    //                 items: (provinceList == null)
+                    //                     ? []
+                    //                     : provinceList
+                    //                         .map((province) => DropdownMenuItem(
+                    //                             child: Text(province.province),
+                    //                             value: province))
+                    //                         .toList(),
+                    //                 value: (provinceList == null)
+                    //                     ? null
+                    //                     : selectedProvince,
+                    //                 onTap: () {},
+                    //                 onChanged: (newData) {
+                    //                   setState(() {
+                    //                     selectedProvince = newData;
+                    //                     cityCubit.getCity(
+                    //                         selectedProvince.provinceId);
+                    //                   });
+                    //                 },
+                    //               ));
+                    //     },
+                    //   ),
+                    // ),
+                    // BlocProvider(
+                    //   create: (context) => cityCubit,
+                    //   child: BlocConsumer<AddressCubit, AddressState>(
+                    //     listener: (context, state) {
+                    //       state.maybeMap(
+                    //         orElse: () {},
+                    //         error: (e) => showBasicFlash(context, e.toString()),
+                    //         getCity: (e) {
+                    //           cityList = e.data;
+                    //           selectedCity = cityList.first;
+                    //         },
+                    //       );
+                    //     },
+                    //     builder: (context, state) {
+                    //       return state.maybeMap(
+                    //           orElse: () => defaultDropDown(),
+                    //           loading: (e) => loadingDropDown(),
+                    //           error: (e) => errorDropDown(),
+                    //           getCity: (e) => DropdownButtonFormField(
+                    //                 decoration: dropDownDecoration(),
+                    //                 items: cityList
+                    //                     .map((val) => DropdownMenuItem(
+                    //                         child: Text(
+                    //                             val.type + " " + val.cityName),
+                    //                         value: val))
+                    //                     .toList(),
+                    //                 value: selectedCity,
+                    //                 onTap: () {},
+                    //                 onChanged: (newData) {},
+                    //               ));
+                    //     },
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -259,15 +318,21 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
 }
 
 class ProfileCustomFormField extends StatelessWidget {
-  const ProfileCustomFormField({
-    Key key,
-  }) : super(key: key);
-
+  const ProfileCustomFormField(
+      {Key key,
+      @required this.label,
+      @required this.hint,
+      @required this.controller,
+      this.isEnabled = true});
+  final String label;
+  final String hint;
+  final TextEditingController controller;
+  final isEnabled;
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
-        "Name",
+        this.label,
         style: TextStyle(
           fontWeight: FontWeight.bold,
         ),
@@ -276,8 +341,10 @@ class ProfileCustomFormField extends StatelessWidget {
         height: 5,
       ),
       TextFormField(
+        enabled: this.isEnabled,
+        controller: this.controller,
         decoration:
-            InputDecoration(border: OutlineInputBorder(), hintText: "Name"),
+            InputDecoration(border: OutlineInputBorder(), hintText: this.hint),
       ),
     ]);
   }

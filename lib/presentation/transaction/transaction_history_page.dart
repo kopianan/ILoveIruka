@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:i_love_iruka/application/transaction/bloc/transaction_bloc.dart';
 import 'package:i_love_iruka/application/transaction/transaction_controller.dart';
 import 'package:i_love_iruka/domain/transaction_data/transaction/transaction_data_model.dart';
-import 'package:i_love_iruka/infrastructure/functions/custom_formatter.dart';
 
 import '../../injection.dart';
 
@@ -19,6 +18,12 @@ class _TransactionHistoryPageState extends State<TransactionHistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Transaction History",
+        ),
+        backgroundColor: Colors.white,
+      ),
       body: BlocProvider(
         create: (context) => getIt<TransactionBloc>()
           ..add(TransactionEvent.getTransactions("userId")),
@@ -47,6 +52,9 @@ class _TransactionHistoryPageState extends State<TransactionHistoryPage> {
               return loadingTranscationPage();
             },
             onGetTransaction: (e) {
+              if (e.data.items.length == 0) {
+                return noTransactionPage();
+              }
               return defaultTransactionPage();
             },
           );
@@ -57,8 +65,44 @@ class _TransactionHistoryPageState extends State<TransactionHistoryPage> {
 
   Widget loadingTranscationPage() {
     return Center(
-      child: CircularProgressIndicator(),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          CircularProgressIndicator(),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            "Getting transaction data ...",
+            style: TextStyle(color: Colors.grey),
+          )
+        ],
+      ),
     );
+  }
+
+  Widget noTransactionPage() {
+    return Container(
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.history_edu_sharp,
+              size: 80,
+              color: Colors.grey,
+            ),
+            Text(
+              "No Transaction",
+              style: TextStyle(
+                fontSize: 25,
+                color: Colors.grey,
+              ),
+            )
+          ],
+        ));
   }
 
   SafeArea defaultTransactionPage() {

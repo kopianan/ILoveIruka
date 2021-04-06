@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:i_love_iruka/application/user/user_bloc.dart';
@@ -46,41 +47,61 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         },
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(
-                title: Text("Change Password"), backgroundColor: Colors.white),
-            body: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: [
-                  ChangePasswordField(
-                    label: "Old Password",
-                    hint: "Your old password",
-                    controller: this.oldPassword,
+              resizeToAvoidBottomInset: false,
+              appBar: AppBar(
+                  title: Text("Change Password"),
+                  backgroundColor: Colors.white),
+              body: Stack(children: [
+                Positioned(
+                    bottom: -30,
+                    right: -50,
+                    child: Image.asset(
+                      'images/assets/iruka_cloud.png',
+                      width: 160,
+                    )),
+                SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Container(
+                        height: MediaQuery.of(context).size.height,
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          children: [
+                            SizedBox(height: 20),
+                            ChangePasswordField(
+                              label: "Old Password",
+                              hint: "Your old password",
+                              controller: this.oldPassword,
+                            ),
+                            SizedBox(height: 20),
+                            ChangePasswordField(
+                              label: "New Password",
+                              hint: "Your New password",
+                              controller: this.newPassowrd,
+                            ),
+                            SizedBox(height: 20),
+                            ChangePasswordField(
+                              label: "Re-type Password",
+                              hint: "Confirmation your new password",
+                              controller: this.confPassowrd,
+                            ),
+                            SizedBox(height: 20),
+                            Container(
+                                child: state.maybeMap(
+                              orElse: () => buildBtnPrimaryBlue(context),
+                              loading: (e) => BtnPrimaryBlueLoading(),
+                              error: (e) => buildBtnPrimaryBlue(context),
+                              onChangePassword: (e) =>
+                                  buildBtnPrimaryBlue(context),
+                            ))
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 20),
-                  ChangePasswordField(
-                    label: "New Password",
-                    hint: "Your New password",
-                    controller: this.newPassowrd,
-                  ),
-                  SizedBox(height: 20),
-                  ChangePasswordField(
-                    label: "Re-type Password",
-                    hint: "Confirmation your new password",
-                    controller: this.confPassowrd,
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                      child: state.maybeMap(
-                    orElse: () => buildBtnPrimaryBlue(context),
-                    loading: (e) => BtnPrimaryBlueLoading(),
-                    error: (e) => buildBtnPrimaryBlue(context),
-                    onChangePassword: (e) => buildBtnPrimaryBlue(context),
-                  ))
-                ],
-              ),
-            ),
-          );
+                )
+              ]));
         },
       ),
     );

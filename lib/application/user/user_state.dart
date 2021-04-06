@@ -9,4 +9,7 @@ abstract class UserState with _$UserState {
   const factory UserState.uploadProfilePhoto(
           Option<Either<GeneralFailure, String>> response, bool isLoading) =
       _UploadProfilePhoto;
+  const factory UserState.onProfileDataUpdated(
+      Option<Either<GeneralFailure, UserResponseDataModel>> response,
+      bool isLoading) = _OnProfileDataUpdated;
 }

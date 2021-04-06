@@ -9,7 +9,6 @@ import 'package:i_love_iruka/application/feed_home.dart/feed_controller.dart';
 import 'package:i_love_iruka/application/feed_home.dart/feed_home_bloc.dart';
 import 'package:i_love_iruka/domain/feed_home/feed.dart';
 import 'package:i_love_iruka/domain/feed_home/menu_data_model.dart';
-import 'package:i_love_iruka/infrastructure/functions/custom_formatter.dart';
 import 'package:i_love_iruka/injection.dart';
 import 'package:i_love_iruka/presentation/feed_detail/feed_detail_page.dart';
 import 'package:i_love_iruka/presentation/widgets/error_handling_widget.dart';
@@ -440,8 +439,10 @@ class _FeedHomeState extends State<FeedHome>
             ),
             Expanded(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(feed.title,

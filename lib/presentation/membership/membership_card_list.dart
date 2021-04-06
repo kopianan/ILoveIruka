@@ -1,7 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:i_love_iruka/presentation/widgets/member_card.dart';
 
 class MembershipCardListPage extends StatefulWidget {

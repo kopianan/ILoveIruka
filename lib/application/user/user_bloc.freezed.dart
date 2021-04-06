@@ -26,6 +26,13 @@ class _$UserEventTearOff {
   }
 
 // ignore: unused_element
+  _UpdateProfileData updateProfileData(UserRequestDataModel requestDataModel) {
+    return _UpdateProfileData(
+      requestDataModel,
+    );
+  }
+
+// ignore: unused_element
   _ChangePassword changePassword(PasswordDataModel password) {
     return _ChangePassword(
       password,
@@ -43,12 +50,14 @@ mixin _$UserEvent {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult changeProfilePhoto(String file),
+    @required TResult updateProfileData(UserRequestDataModel requestDataModel),
     @required TResult changePassword(PasswordDataModel password),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult changeProfilePhoto(String file),
+    TResult updateProfileData(UserRequestDataModel requestDataModel),
     TResult changePassword(PasswordDataModel password),
     @required TResult orElse(),
   });
@@ -56,12 +65,14 @@ mixin _$UserEvent {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult changeProfilePhoto(_ChangeProfilePhoto value),
+    @required TResult updateProfileData(_UpdateProfileData value),
     @required TResult changePassword(_ChangePassword value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult changeProfilePhoto(_ChangeProfilePhoto value),
+    TResult updateProfileData(_UpdateProfileData value),
     TResult changePassword(_ChangePassword value),
     @required TResult orElse(),
   });
@@ -120,10 +131,12 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult changeProfilePhoto(String file),
+    @required TResult updateProfileData(UserRequestDataModel requestDataModel),
     @required TResult changePassword(PasswordDataModel password),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
+    assert(updateProfileData != null);
     assert(changePassword != null);
     return started();
   }
@@ -133,6 +146,7 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult changeProfilePhoto(String file),
+    TResult updateProfileData(UserRequestDataModel requestDataModel),
     TResult changePassword(PasswordDataModel password),
     @required TResult orElse(),
   }) {
@@ -148,10 +162,12 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult changeProfilePhoto(_ChangeProfilePhoto value),
+    @required TResult updateProfileData(_UpdateProfileData value),
     @required TResult changePassword(_ChangePassword value),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
+    assert(updateProfileData != null);
     assert(changePassword != null);
     return started(this);
   }
@@ -161,6 +177,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult changeProfilePhoto(_ChangeProfilePhoto value),
+    TResult updateProfileData(_UpdateProfileData value),
     TResult changePassword(_ChangePassword value),
     @required TResult orElse(),
   }) {
@@ -239,10 +256,12 @@ class _$_ChangeProfilePhoto implements _ChangeProfilePhoto {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult changeProfilePhoto(String file),
+    @required TResult updateProfileData(UserRequestDataModel requestDataModel),
     @required TResult changePassword(PasswordDataModel password),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
+    assert(updateProfileData != null);
     assert(changePassword != null);
     return changeProfilePhoto(file);
   }
@@ -252,6 +271,7 @@ class _$_ChangeProfilePhoto implements _ChangeProfilePhoto {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult changeProfilePhoto(String file),
+    TResult updateProfileData(UserRequestDataModel requestDataModel),
     TResult changePassword(PasswordDataModel password),
     @required TResult orElse(),
   }) {
@@ -267,10 +287,12 @@ class _$_ChangeProfilePhoto implements _ChangeProfilePhoto {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult changeProfilePhoto(_ChangeProfilePhoto value),
+    @required TResult updateProfileData(_UpdateProfileData value),
     @required TResult changePassword(_ChangePassword value),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
+    assert(updateProfileData != null);
     assert(changePassword != null);
     return changeProfilePhoto(this);
   }
@@ -280,6 +302,7 @@ class _$_ChangeProfilePhoto implements _ChangeProfilePhoto {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult changeProfilePhoto(_ChangeProfilePhoto value),
+    TResult updateProfileData(_UpdateProfileData value),
     TResult changePassword(_ChangePassword value),
     @required TResult orElse(),
   }) {
@@ -297,6 +320,141 @@ abstract class _ChangeProfilePhoto implements UserEvent {
   String get file;
   @JsonKey(ignore: true)
   _$ChangeProfilePhotoCopyWith<_ChangeProfilePhoto> get copyWith;
+}
+
+/// @nodoc
+abstract class _$UpdateProfileDataCopyWith<$Res> {
+  factory _$UpdateProfileDataCopyWith(
+          _UpdateProfileData value, $Res Function(_UpdateProfileData) then) =
+      __$UpdateProfileDataCopyWithImpl<$Res>;
+  $Res call({UserRequestDataModel requestDataModel});
+}
+
+/// @nodoc
+class __$UpdateProfileDataCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res>
+    implements _$UpdateProfileDataCopyWith<$Res> {
+  __$UpdateProfileDataCopyWithImpl(
+      _UpdateProfileData _value, $Res Function(_UpdateProfileData) _then)
+      : super(_value, (v) => _then(v as _UpdateProfileData));
+
+  @override
+  _UpdateProfileData get _value => super._value as _UpdateProfileData;
+
+  @override
+  $Res call({
+    Object requestDataModel = freezed,
+  }) {
+    return _then(_UpdateProfileData(
+      requestDataModel == freezed
+          ? _value.requestDataModel
+          : requestDataModel as UserRequestDataModel,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_UpdateProfileData implements _UpdateProfileData {
+  const _$_UpdateProfileData(this.requestDataModel)
+      : assert(requestDataModel != null);
+
+  @override
+  final UserRequestDataModel requestDataModel;
+
+  @override
+  String toString() {
+    return 'UserEvent.updateProfileData(requestDataModel: $requestDataModel)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _UpdateProfileData &&
+            (identical(other.requestDataModel, requestDataModel) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestDataModel, requestDataModel)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(requestDataModel);
+
+  @JsonKey(ignore: true)
+  @override
+  _$UpdateProfileDataCopyWith<_UpdateProfileData> get copyWith =>
+      __$UpdateProfileDataCopyWithImpl<_UpdateProfileData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult changeProfilePhoto(String file),
+    @required TResult updateProfileData(UserRequestDataModel requestDataModel),
+    @required TResult changePassword(PasswordDataModel password),
+  }) {
+    assert(started != null);
+    assert(changeProfilePhoto != null);
+    assert(updateProfileData != null);
+    assert(changePassword != null);
+    return updateProfileData(requestDataModel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult changeProfilePhoto(String file),
+    TResult updateProfileData(UserRequestDataModel requestDataModel),
+    TResult changePassword(PasswordDataModel password),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateProfileData != null) {
+      return updateProfileData(requestDataModel);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult changeProfilePhoto(_ChangeProfilePhoto value),
+    @required TResult updateProfileData(_UpdateProfileData value),
+    @required TResult changePassword(_ChangePassword value),
+  }) {
+    assert(started != null);
+    assert(changeProfilePhoto != null);
+    assert(updateProfileData != null);
+    assert(changePassword != null);
+    return updateProfileData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult changeProfilePhoto(_ChangeProfilePhoto value),
+    TResult updateProfileData(_UpdateProfileData value),
+    TResult changePassword(_ChangePassword value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateProfileData != null) {
+      return updateProfileData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateProfileData implements UserEvent {
+  const factory _UpdateProfileData(UserRequestDataModel requestDataModel) =
+      _$_UpdateProfileData;
+
+  UserRequestDataModel get requestDataModel;
+  @JsonKey(ignore: true)
+  _$UpdateProfileDataCopyWith<_UpdateProfileData> get copyWith;
 }
 
 /// @nodoc
@@ -362,10 +520,12 @@ class _$_ChangePassword implements _ChangePassword {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult changeProfilePhoto(String file),
+    @required TResult updateProfileData(UserRequestDataModel requestDataModel),
     @required TResult changePassword(PasswordDataModel password),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
+    assert(updateProfileData != null);
     assert(changePassword != null);
     return changePassword(password);
   }
@@ -375,6 +535,7 @@ class _$_ChangePassword implements _ChangePassword {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult changeProfilePhoto(String file),
+    TResult updateProfileData(UserRequestDataModel requestDataModel),
     TResult changePassword(PasswordDataModel password),
     @required TResult orElse(),
   }) {
@@ -390,10 +551,12 @@ class _$_ChangePassword implements _ChangePassword {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult changeProfilePhoto(_ChangeProfilePhoto value),
+    @required TResult updateProfileData(_UpdateProfileData value),
     @required TResult changePassword(_ChangePassword value),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
+    assert(updateProfileData != null);
     assert(changePassword != null);
     return changePassword(this);
   }
@@ -403,6 +566,7 @@ class _$_ChangePassword implements _ChangePassword {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult changeProfilePhoto(_ChangeProfilePhoto value),
+    TResult updateProfileData(_UpdateProfileData value),
     TResult changePassword(_ChangePassword value),
     @required TResult orElse(),
   }) {
@@ -458,6 +622,16 @@ class _$UserStateTearOff {
       isLoading,
     );
   }
+
+// ignore: unused_element
+  _OnProfileDataUpdated onProfileDataUpdated(
+      Option<Either<GeneralFailure, UserResponseDataModel>> response,
+      bool isLoading) {
+    return _OnProfileDataUpdated(
+      response,
+      isLoading,
+    );
+  }
 }
 
 /// @nodoc
@@ -475,6 +649,10 @@ mixin _$UserState {
     @required
         TResult uploadProfilePhoto(
             Option<Either<GeneralFailure, String>> response, bool isLoading),
+    @required
+        TResult onProfileDataUpdated(
+            Option<Either<GeneralFailure, UserResponseDataModel>> response,
+            bool isLoading),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -484,6 +662,9 @@ mixin _$UserState {
     TResult onChangePassword(String success),
     TResult uploadProfilePhoto(
         Option<Either<GeneralFailure, String>> response, bool isLoading),
+    TResult onProfileDataUpdated(
+        Option<Either<GeneralFailure, UserResponseDataModel>> response,
+        bool isLoading),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -493,6 +674,7 @@ mixin _$UserState {
     @required TResult error(_Error value),
     @required TResult onChangePassword(_OnChangePassword value),
     @required TResult uploadProfilePhoto(_UploadProfilePhoto value),
+    @required TResult onProfileDataUpdated(_OnProfileDataUpdated value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -501,6 +683,7 @@ mixin _$UserState {
     TResult error(_Error value),
     TResult onChangePassword(_OnChangePassword value),
     TResult uploadProfilePhoto(_UploadProfilePhoto value),
+    TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     @required TResult orElse(),
   });
 }
@@ -563,12 +746,17 @@ class _$_Initial implements _Initial {
     @required
         TResult uploadProfilePhoto(
             Option<Either<GeneralFailure, String>> response, bool isLoading),
+    @required
+        TResult onProfileDataUpdated(
+            Option<Either<GeneralFailure, UserResponseDataModel>> response,
+            bool isLoading),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onChangePassword != null);
     assert(uploadProfilePhoto != null);
+    assert(onProfileDataUpdated != null);
     return initial();
   }
 
@@ -581,6 +769,9 @@ class _$_Initial implements _Initial {
     TResult onChangePassword(String success),
     TResult uploadProfilePhoto(
         Option<Either<GeneralFailure, String>> response, bool isLoading),
+    TResult onProfileDataUpdated(
+        Option<Either<GeneralFailure, UserResponseDataModel>> response,
+        bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -598,12 +789,14 @@ class _$_Initial implements _Initial {
     @required TResult error(_Error value),
     @required TResult onChangePassword(_OnChangePassword value),
     @required TResult uploadProfilePhoto(_UploadProfilePhoto value),
+    @required TResult onProfileDataUpdated(_OnProfileDataUpdated value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onChangePassword != null);
     assert(uploadProfilePhoto != null);
+    assert(onProfileDataUpdated != null);
     return initial(this);
   }
 
@@ -615,6 +808,7 @@ class _$_Initial implements _Initial {
     TResult error(_Error value),
     TResult onChangePassword(_OnChangePassword value),
     TResult uploadProfilePhoto(_UploadProfilePhoto value),
+    TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -672,12 +866,17 @@ class _$_Loading implements _Loading {
     @required
         TResult uploadProfilePhoto(
             Option<Either<GeneralFailure, String>> response, bool isLoading),
+    @required
+        TResult onProfileDataUpdated(
+            Option<Either<GeneralFailure, UserResponseDataModel>> response,
+            bool isLoading),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onChangePassword != null);
     assert(uploadProfilePhoto != null);
+    assert(onProfileDataUpdated != null);
     return loading();
   }
 
@@ -690,6 +889,9 @@ class _$_Loading implements _Loading {
     TResult onChangePassword(String success),
     TResult uploadProfilePhoto(
         Option<Either<GeneralFailure, String>> response, bool isLoading),
+    TResult onProfileDataUpdated(
+        Option<Either<GeneralFailure, UserResponseDataModel>> response,
+        bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -707,12 +909,14 @@ class _$_Loading implements _Loading {
     @required TResult error(_Error value),
     @required TResult onChangePassword(_OnChangePassword value),
     @required TResult uploadProfilePhoto(_UploadProfilePhoto value),
+    @required TResult onProfileDataUpdated(_OnProfileDataUpdated value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onChangePassword != null);
     assert(uploadProfilePhoto != null);
+    assert(onProfileDataUpdated != null);
     return loading(this);
   }
 
@@ -724,6 +928,7 @@ class _$_Loading implements _Loading {
     TResult error(_Error value),
     TResult onChangePassword(_OnChangePassword value),
     TResult uploadProfilePhoto(_UploadProfilePhoto value),
+    TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -815,12 +1020,17 @@ class _$_Error implements _Error {
     @required
         TResult uploadProfilePhoto(
             Option<Either<GeneralFailure, String>> response, bool isLoading),
+    @required
+        TResult onProfileDataUpdated(
+            Option<Either<GeneralFailure, UserResponseDataModel>> response,
+            bool isLoading),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onChangePassword != null);
     assert(uploadProfilePhoto != null);
+    assert(onProfileDataUpdated != null);
     return error(failure);
   }
 
@@ -833,6 +1043,9 @@ class _$_Error implements _Error {
     TResult onChangePassword(String success),
     TResult uploadProfilePhoto(
         Option<Either<GeneralFailure, String>> response, bool isLoading),
+    TResult onProfileDataUpdated(
+        Option<Either<GeneralFailure, UserResponseDataModel>> response,
+        bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -850,12 +1063,14 @@ class _$_Error implements _Error {
     @required TResult error(_Error value),
     @required TResult onChangePassword(_OnChangePassword value),
     @required TResult uploadProfilePhoto(_UploadProfilePhoto value),
+    @required TResult onProfileDataUpdated(_OnProfileDataUpdated value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onChangePassword != null);
     assert(uploadProfilePhoto != null);
+    assert(onProfileDataUpdated != null);
     return error(this);
   }
 
@@ -867,6 +1082,7 @@ class _$_Error implements _Error {
     TResult error(_Error value),
     TResult onChangePassword(_OnChangePassword value),
     TResult uploadProfilePhoto(_UploadProfilePhoto value),
+    TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -953,12 +1169,17 @@ class _$_OnChangePassword implements _OnChangePassword {
     @required
         TResult uploadProfilePhoto(
             Option<Either<GeneralFailure, String>> response, bool isLoading),
+    @required
+        TResult onProfileDataUpdated(
+            Option<Either<GeneralFailure, UserResponseDataModel>> response,
+            bool isLoading),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onChangePassword != null);
     assert(uploadProfilePhoto != null);
+    assert(onProfileDataUpdated != null);
     return onChangePassword(success);
   }
 
@@ -971,6 +1192,9 @@ class _$_OnChangePassword implements _OnChangePassword {
     TResult onChangePassword(String success),
     TResult uploadProfilePhoto(
         Option<Either<GeneralFailure, String>> response, bool isLoading),
+    TResult onProfileDataUpdated(
+        Option<Either<GeneralFailure, UserResponseDataModel>> response,
+        bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -988,12 +1212,14 @@ class _$_OnChangePassword implements _OnChangePassword {
     @required TResult error(_Error value),
     @required TResult onChangePassword(_OnChangePassword value),
     @required TResult uploadProfilePhoto(_UploadProfilePhoto value),
+    @required TResult onProfileDataUpdated(_OnProfileDataUpdated value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onChangePassword != null);
     assert(uploadProfilePhoto != null);
+    assert(onProfileDataUpdated != null);
     return onChangePassword(this);
   }
 
@@ -1005,6 +1231,7 @@ class _$_OnChangePassword implements _OnChangePassword {
     TResult error(_Error value),
     TResult onChangePassword(_OnChangePassword value),
     TResult uploadProfilePhoto(_UploadProfilePhoto value),
+    TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1105,12 +1332,17 @@ class _$_UploadProfilePhoto implements _UploadProfilePhoto {
     @required
         TResult uploadProfilePhoto(
             Option<Either<GeneralFailure, String>> response, bool isLoading),
+    @required
+        TResult onProfileDataUpdated(
+            Option<Either<GeneralFailure, UserResponseDataModel>> response,
+            bool isLoading),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onChangePassword != null);
     assert(uploadProfilePhoto != null);
+    assert(onProfileDataUpdated != null);
     return uploadProfilePhoto(response, isLoading);
   }
 
@@ -1123,6 +1355,9 @@ class _$_UploadProfilePhoto implements _UploadProfilePhoto {
     TResult onChangePassword(String success),
     TResult uploadProfilePhoto(
         Option<Either<GeneralFailure, String>> response, bool isLoading),
+    TResult onProfileDataUpdated(
+        Option<Either<GeneralFailure, UserResponseDataModel>> response,
+        bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1140,12 +1375,14 @@ class _$_UploadProfilePhoto implements _UploadProfilePhoto {
     @required TResult error(_Error value),
     @required TResult onChangePassword(_OnChangePassword value),
     @required TResult uploadProfilePhoto(_UploadProfilePhoto value),
+    @required TResult onProfileDataUpdated(_OnProfileDataUpdated value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onChangePassword != null);
     assert(uploadProfilePhoto != null);
+    assert(onProfileDataUpdated != null);
     return uploadProfilePhoto(this);
   }
 
@@ -1157,6 +1394,7 @@ class _$_UploadProfilePhoto implements _UploadProfilePhoto {
     TResult error(_Error value),
     TResult onChangePassword(_OnChangePassword value),
     TResult uploadProfilePhoto(_UploadProfilePhoto value),
+    TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1176,4 +1414,173 @@ abstract class _UploadProfilePhoto implements UserState {
   bool get isLoading;
   @JsonKey(ignore: true)
   _$UploadProfilePhotoCopyWith<_UploadProfilePhoto> get copyWith;
+}
+
+/// @nodoc
+abstract class _$OnProfileDataUpdatedCopyWith<$Res> {
+  factory _$OnProfileDataUpdatedCopyWith(_OnProfileDataUpdated value,
+          $Res Function(_OnProfileDataUpdated) then) =
+      __$OnProfileDataUpdatedCopyWithImpl<$Res>;
+  $Res call(
+      {Option<Either<GeneralFailure, UserResponseDataModel>> response,
+      bool isLoading});
+}
+
+/// @nodoc
+class __$OnProfileDataUpdatedCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res>
+    implements _$OnProfileDataUpdatedCopyWith<$Res> {
+  __$OnProfileDataUpdatedCopyWithImpl(
+      _OnProfileDataUpdated _value, $Res Function(_OnProfileDataUpdated) _then)
+      : super(_value, (v) => _then(v as _OnProfileDataUpdated));
+
+  @override
+  _OnProfileDataUpdated get _value => super._value as _OnProfileDataUpdated;
+
+  @override
+  $Res call({
+    Object response = freezed,
+    Object isLoading = freezed,
+  }) {
+    return _then(_OnProfileDataUpdated(
+      response == freezed
+          ? _value.response
+          : response as Option<Either<GeneralFailure, UserResponseDataModel>>,
+      isLoading == freezed ? _value.isLoading : isLoading as bool,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_OnProfileDataUpdated implements _OnProfileDataUpdated {
+  const _$_OnProfileDataUpdated(this.response, this.isLoading)
+      : assert(response != null),
+        assert(isLoading != null);
+
+  @override
+  final Option<Either<GeneralFailure, UserResponseDataModel>> response;
+  @override
+  final bool isLoading;
+
+  @override
+  String toString() {
+    return 'UserState.onProfileDataUpdated(response: $response, isLoading: $isLoading)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _OnProfileDataUpdated &&
+            (identical(other.response, response) ||
+                const DeepCollectionEquality()
+                    .equals(other.response, response)) &&
+            (identical(other.isLoading, isLoading) ||
+                const DeepCollectionEquality()
+                    .equals(other.isLoading, isLoading)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(response) ^
+      const DeepCollectionEquality().hash(isLoading);
+
+  @JsonKey(ignore: true)
+  @override
+  _$OnProfileDataUpdatedCopyWith<_OnProfileDataUpdated> get copyWith =>
+      __$OnProfileDataUpdatedCopyWithImpl<_OnProfileDataUpdated>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult error(GeneralFailure failure),
+    @required TResult onChangePassword(String success),
+    @required
+        TResult uploadProfilePhoto(
+            Option<Either<GeneralFailure, String>> response, bool isLoading),
+    @required
+        TResult onProfileDataUpdated(
+            Option<Either<GeneralFailure, UserResponseDataModel>> response,
+            bool isLoading),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(error != null);
+    assert(onChangePassword != null);
+    assert(uploadProfilePhoto != null);
+    assert(onProfileDataUpdated != null);
+    return onProfileDataUpdated(response, isLoading);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult error(GeneralFailure failure),
+    TResult onChangePassword(String success),
+    TResult uploadProfilePhoto(
+        Option<Either<GeneralFailure, String>> response, bool isLoading),
+    TResult onProfileDataUpdated(
+        Option<Either<GeneralFailure, UserResponseDataModel>> response,
+        bool isLoading),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (onProfileDataUpdated != null) {
+      return onProfileDataUpdated(response, isLoading);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
+    @required TResult error(_Error value),
+    @required TResult onChangePassword(_OnChangePassword value),
+    @required TResult uploadProfilePhoto(_UploadProfilePhoto value),
+    @required TResult onProfileDataUpdated(_OnProfileDataUpdated value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(error != null);
+    assert(onChangePassword != null);
+    assert(uploadProfilePhoto != null);
+    assert(onProfileDataUpdated != null);
+    return onProfileDataUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
+    TResult error(_Error value),
+    TResult onChangePassword(_OnChangePassword value),
+    TResult uploadProfilePhoto(_UploadProfilePhoto value),
+    TResult onProfileDataUpdated(_OnProfileDataUpdated value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (onProfileDataUpdated != null) {
+      return onProfileDataUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnProfileDataUpdated implements UserState {
+  const factory _OnProfileDataUpdated(
+      Option<Either<GeneralFailure, UserResponseDataModel>> response,
+      bool isLoading) = _$_OnProfileDataUpdated;
+
+  Option<Either<GeneralFailure, UserResponseDataModel>> get response;
+  bool get isLoading;
+  @JsonKey(ignore: true)
+  _$OnProfileDataUpdatedCopyWith<_OnProfileDataUpdated> get copyWith;
 }

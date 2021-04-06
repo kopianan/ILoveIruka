@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:i_love_iruka/domain/core/general_failure.dart';
 import 'package:i_love_iruka/domain/user/i_user_facade.dart';
 import 'package:i_love_iruka/domain/user/password_data_model.dart';
+import 'package:i_love_iruka/domain/user/user_req_res_data_model.dart';
 import 'package:injectable/injectable.dart';
 
 part 'user_event.dart';
@@ -34,6 +35,17 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           );
         } catch (onError) {
           yield UserState.error(onError);
+        }
+      },
+      updateProfileData: (_UpdateProfileData value) async* {
+        yield UserState.onProfileDataUpdated(none(), true);
+        try {
+          final _result =
+              await _iUserFacade.updateUserData(value.requestDataModel);
+          yield UserState.onProfileDataUpdated(some(_result), false);
+        } catch (e) {
+          yield UserState.onProfileDataUpdated(
+              some(left(GeneralFailure("Something wrong"))), false);
         }
       },
     );

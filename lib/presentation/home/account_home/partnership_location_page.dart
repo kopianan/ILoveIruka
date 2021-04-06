@@ -23,7 +23,7 @@ class _PartnershipLocationPageState extends State<PartnershipLocationPage> {
   CarouselController carouselController = CarouselController();
 
   // List<Marker> markers = List<Marker>();
-  List<DummyMap> mapList = List<DummyMap>();
+  List<DummyMap> mapList = <DummyMap>[];
   bool isCarouselHide = false;
   void initMapList() {
     mapList.add(DummyMap("Place 1", 108.5491515, -6.7138127));
