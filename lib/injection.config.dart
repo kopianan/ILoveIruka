@@ -33,7 +33,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
     {String environment, _i2.EnvironmentFilter environmentFilter}) {
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   final dioInjectionModule = _$DioInjectionModule();
-  gh.lazySingleton<_i3.Dio>(() => dioInjectionModule.getHeaders());
+  gh.lazySingleton<_i3.Dio>(() => dioInjectionModule.dio);
   gh.lazySingleton<_i4.IAuthFacade>(() => _i5.AuthRepository(get<_i3.Dio>()));
   gh.lazySingleton<_i6.IFeedHomeFacade>(
       () => _i7.FeedHomeRepository(get<_i3.Dio>()));
