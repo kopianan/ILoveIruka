@@ -12,4 +12,10 @@ abstract class UserState with _$UserState {
   const factory UserState.onProfileDataUpdated(
       Option<Either<GeneralFailure, UserResponseDataModel>> response,
       bool isLoading) = _OnProfileDataUpdated;
+  const factory UserState.onAddressChanged(
+      Option<Either<GeneralFailure, AddressResponse>> response,
+      bool isLoading) = _OnAddressChanged;
+  const factory UserState.onGetAddress(
+      Option<Either<GeneralFailure, AddressResponse>> response,
+      bool isLoading) = _OnGetAddress;
 }

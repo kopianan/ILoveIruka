@@ -78,6 +78,8 @@ class _SignInFormState extends State<SignInForm> {
                 serverError: (err) =>
                     showBasicFlash(context, err.errorMessage));
           }, (r) {
+            print("DATA USER");
+            print(r);
             Pref()
                 .saveUserData(r)
                 .then((value) => Get.offNamed(DashboardPage.TAG));

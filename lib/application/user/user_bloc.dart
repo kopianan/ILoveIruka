@@ -5,6 +5,7 @@ import 'package:i_love_iruka/domain/core/general_failure.dart';
 import 'package:i_love_iruka/domain/user/i_user_facade.dart';
 import 'package:i_love_iruka/domain/user/password_data_model.dart';
 import 'package:i_love_iruka/domain/user/user_req_res_data_model.dart';
+import 'package:i_love_iruka/presentation/home/user_home/address/address_req_res_data_model.dart';
 import 'package:injectable/injectable.dart';
 
 part 'user_event.dart';
@@ -46,6 +47,29 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         } catch (e) {
           yield UserState.onProfileDataUpdated(
               some(left(GeneralFailure("Something wrong"))), false);
+        }
+      },
+      getAddress: (_GetAddress value) async* {
+        yield UserState.onGetAddress(none(), true);
+
+        try {
+          final _result = await _iUserFacade.getAddress();
+          yield UserState.onGetAddress(some(_result), false);
+        } catch (e) {
+          yield UserState.onGetAddress(
+              some(left(GeneralFailure(e.toString()))), false);
+        }
+      },
+      changeAddress: (_ChangeAddress value) async* {
+        yield UserState.onAddressChanged(none(), true);
+
+        try {
+          final _result =
+              await _iUserFacade.changeAddress(value.addressRequest);
+          yield UserState.onAddressChanged(some(_result), false);
+        } catch (e) {
+          yield UserState.onAddressChanged(
+              some(left(GeneralFailure(e.toString()))), false);
         }
       },
     );

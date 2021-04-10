@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/user_controller.dart';
+import 'package:i_love_iruka/presentation/home/user_home/address/address_page.dart';
 import 'package:i_love_iruka/presentation/home/user_home/change_password/change_password_page.dart';
 import 'package:i_love_iruka/presentation/home/user_home/profile/setting_profile_page.dart';
 import 'package:i_love_iruka/presentation/welcome/welcome_screen.dart';
+import 'package:i_love_iruka/util/constants.dart';
 
 class UserHomePage extends StatefulWidget {
   @override
@@ -37,6 +39,14 @@ class _UserHomePageState extends State<UserHomePage> {
                             children: [
                               CircleAvatar(
                                 maxRadius: 25,
+                                backgroundImage: (userController
+                                            .getUserData()
+                                            .imageUrl ==
+                                        null)
+                                    ? AssetImage(
+                                        'images/assets/placeholder.png')
+                                    : NetworkImage(Constants.getStagingUrl() +
+                                        userController.getUserData().imageUrl),
                               ),
                               Expanded(
                                 child: Container(
@@ -80,10 +90,16 @@ class _UserHomePageState extends State<UserHomePage> {
                           onTap: () {},
                         ),
                         buildUserOptionListTile(
-                            leadingIcon: Icons.settings,
+                            leadingIcon: Icons.person_pin,
                             title: "Profile",
                             onTap: () {
                               Get.toNamed(SettingProfielPage.TAG);
+                            }),
+                        buildUserOptionListTile(
+                            leadingIcon: Icons.edit_location_sharp,
+                            title: "Address",
+                            onTap: () {
+                              Get.toNamed(AddressPage.TAG);
                             }),
                         buildUserOptionListTile(
                             leadingIcon: Icons.security_sharp,

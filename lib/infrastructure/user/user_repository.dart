@@ -7,6 +7,7 @@ import 'package:i_love_iruka/domain/user/i_user_facade.dart';
 import 'package:i_love_iruka/domain/user/password_data_model.dart';
 import 'package:i_love_iruka/domain/user/user_req_res_data_model.dart';
 import 'package:i_love_iruka/infrastructure/core/pref.dart';
+import 'package:i_love_iruka/presentation/home/user_home/address/address_req_res_data_model.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path/path.dart';
@@ -100,7 +101,45 @@ class UserRepository extends IUserFacade {
       print(e);
       return left(dioErrorChecker(e));
     } catch (e) {
-      print(e);
+      return left(GeneralFailure("Something Wrong"));
+    }
+  }
+
+  @override
+  Future<Either<GeneralFailure, AddressResponse>> changeAddress(
+      AddressRequest request) async {
+    Response response;
+
+    try {
+      response = await _dio.post(Constants.getStagingUrl() + "/api/v1/address",
+          data: request.toJson(), options: getDioOptions());
+      print(response.data['data']);
+      final _res = response.data['data'];
+      final _data = AddressResponse.fromJson(_res);
+      return right(_data);
+    } on DioError catch (e) {
+      print(e.toString());
+      return left(dioErrorChecker(e));
+    } catch (e) {
+      return left(GeneralFailure("Something Wrong"));
+    }
+  }
+
+  @override
+  Future<Either<GeneralFailure, AddressResponse>> getAddress() async {
+    Response response;
+
+    try {
+      response = await _dio.get(Constants.getStagingUrl() + "/api/v1/address",
+          options: getDioOptions());
+
+      final _res = response.data['data'];
+      final _data = AddressResponse.fromJson(_res);
+      return right(_data);
+    } on DioError catch (e) {
+      return left(dioErrorChecker(e));
+    } catch (e) {
+      return left(GeneralFailure("Something Wrong"));
     }
   }
 }

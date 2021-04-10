@@ -18,11 +18,20 @@ class _$UserDataModelTearOff {
 
 // ignore: unused_element
   _UserDataModel call(
-      {String email, String fullName, RoleDataModel role, String token}) {
+      {String email,
+      String id,
+      String fullName,
+      RoleDataModel role,
+      String imageUrl,
+      String phoneNumber,
+      String token}) {
     return _UserDataModel(
       email: email,
+      id: id,
       fullName: fullName,
       role: role,
+      imageUrl: imageUrl,
+      phoneNumber: phoneNumber,
       token: token,
     );
   }
@@ -40,8 +49,11 @@ const $UserDataModel = _$UserDataModelTearOff();
 /// @nodoc
 mixin _$UserDataModel {
   String get email;
+  String get id;
   String get fullName;
   RoleDataModel get role;
+  String get imageUrl;
+  String get phoneNumber;
   String get token;
 
   Map<String, dynamic> toJson();
@@ -54,7 +66,14 @@ abstract class $UserDataModelCopyWith<$Res> {
   factory $UserDataModelCopyWith(
           UserDataModel value, $Res Function(UserDataModel) then) =
       _$UserDataModelCopyWithImpl<$Res>;
-  $Res call({String email, String fullName, RoleDataModel role, String token});
+  $Res call(
+      {String email,
+      String id,
+      String fullName,
+      RoleDataModel role,
+      String imageUrl,
+      String phoneNumber,
+      String token});
 
   $RoleDataModelCopyWith<$Res> get role;
 }
@@ -71,14 +90,21 @@ class _$UserDataModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object email = freezed,
+    Object id = freezed,
     Object fullName = freezed,
     Object role = freezed,
+    Object imageUrl = freezed,
+    Object phoneNumber = freezed,
     Object token = freezed,
   }) {
     return _then(_value.copyWith(
       email: email == freezed ? _value.email : email as String,
+      id: id == freezed ? _value.id : id as String,
       fullName: fullName == freezed ? _value.fullName : fullName as String,
       role: role == freezed ? _value.role : role as RoleDataModel,
+      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      phoneNumber:
+          phoneNumber == freezed ? _value.phoneNumber : phoneNumber as String,
       token: token == freezed ? _value.token : token as String,
     ));
   }
@@ -101,7 +127,14 @@ abstract class _$UserDataModelCopyWith<$Res>
           _UserDataModel value, $Res Function(_UserDataModel) then) =
       __$UserDataModelCopyWithImpl<$Res>;
   @override
-  $Res call({String email, String fullName, RoleDataModel role, String token});
+  $Res call(
+      {String email,
+      String id,
+      String fullName,
+      RoleDataModel role,
+      String imageUrl,
+      String phoneNumber,
+      String token});
 
   @override
   $RoleDataModelCopyWith<$Res> get role;
@@ -121,14 +154,21 @@ class __$UserDataModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object email = freezed,
+    Object id = freezed,
     Object fullName = freezed,
     Object role = freezed,
+    Object imageUrl = freezed,
+    Object phoneNumber = freezed,
     Object token = freezed,
   }) {
     return _then(_UserDataModel(
       email: email == freezed ? _value.email : email as String,
+      id: id == freezed ? _value.id : id as String,
       fullName: fullName == freezed ? _value.fullName : fullName as String,
       role: role == freezed ? _value.role : role as RoleDataModel,
+      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      phoneNumber:
+          phoneNumber == freezed ? _value.phoneNumber : phoneNumber as String,
       token: token == freezed ? _value.token : token as String,
     ));
   }
@@ -138,7 +178,14 @@ class __$UserDataModelCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_UserDataModel implements _UserDataModel {
-  const _$_UserDataModel({this.email, this.fullName, this.role, this.token});
+  const _$_UserDataModel(
+      {this.email,
+      this.id,
+      this.fullName,
+      this.role,
+      this.imageUrl,
+      this.phoneNumber,
+      this.token});
 
   factory _$_UserDataModel.fromJson(Map<String, dynamic> json) =>
       _$_$_UserDataModelFromJson(json);
@@ -146,15 +193,21 @@ class _$_UserDataModel implements _UserDataModel {
   @override
   final String email;
   @override
+  final String id;
+  @override
   final String fullName;
   @override
   final RoleDataModel role;
+  @override
+  final String imageUrl;
+  @override
+  final String phoneNumber;
   @override
   final String token;
 
   @override
   String toString() {
-    return 'UserDataModel(email: $email, fullName: $fullName, role: $role, token: $token)';
+    return 'UserDataModel(email: $email, id: $id, fullName: $fullName, role: $role, imageUrl: $imageUrl, phoneNumber: $phoneNumber, token: $token)';
   }
 
   @override
@@ -163,11 +216,19 @@ class _$_UserDataModel implements _UserDataModel {
         (other is _UserDataModel &&
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.fullName, fullName) ||
                 const DeepCollectionEquality()
                     .equals(other.fullName, fullName)) &&
             (identical(other.role, role) ||
                 const DeepCollectionEquality().equals(other.role, role)) &&
+            (identical(other.imageUrl, imageUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.imageUrl, imageUrl)) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.phoneNumber, phoneNumber)) &&
             (identical(other.token, token) ||
                 const DeepCollectionEquality().equals(other.token, token)));
   }
@@ -176,8 +237,11 @@ class _$_UserDataModel implements _UserDataModel {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(fullName) ^
       const DeepCollectionEquality().hash(role) ^
+      const DeepCollectionEquality().hash(imageUrl) ^
+      const DeepCollectionEquality().hash(phoneNumber) ^
       const DeepCollectionEquality().hash(token);
 
   @JsonKey(ignore: true)
@@ -194,8 +258,11 @@ class _$_UserDataModel implements _UserDataModel {
 abstract class _UserDataModel implements UserDataModel {
   const factory _UserDataModel(
       {String email,
+      String id,
       String fullName,
       RoleDataModel role,
+      String imageUrl,
+      String phoneNumber,
       String token}) = _$_UserDataModel;
 
   factory _UserDataModel.fromJson(Map<String, dynamic> json) =
@@ -204,9 +271,15 @@ abstract class _UserDataModel implements UserDataModel {
   @override
   String get email;
   @override
+  String get id;
+  @override
   String get fullName;
   @override
   RoleDataModel get role;
+  @override
+  String get imageUrl;
+  @override
+  String get phoneNumber;
   @override
   String get token;
   @override

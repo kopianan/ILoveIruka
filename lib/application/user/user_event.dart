@@ -8,4 +8,7 @@ abstract class UserEvent with _$UserEvent {
       UserRequestDataModel requestDataModel) = _UpdateProfileData;
   const factory UserEvent.changePassword(PasswordDataModel password) =
       _ChangePassword;
+  const factory UserEvent.changeAddress(AddressRequest addressRequest) =
+      _ChangeAddress;
+  const factory UserEvent.getAddress() = _GetAddress;
 }

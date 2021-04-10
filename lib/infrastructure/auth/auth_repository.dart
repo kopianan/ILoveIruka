@@ -85,7 +85,6 @@ class AuthRepository implements IAuthFacade {
   Future<Either<AuthFailure, UserDataModel>> loginUser(
       String username, String password) async {
     Response response;
-print(_dio.options.headers); 
     try {
       response = await _dio.post(
           Constants.getStagingUrl() + "/api/v1/users/end-user/login",

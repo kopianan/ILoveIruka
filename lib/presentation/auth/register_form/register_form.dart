@@ -172,7 +172,7 @@ class _RegisterFormState extends State<RegisterForm> {
                                             isExpanded: true,
                                             items: roleDataList
                                                 .map((f) => DropdownMenuItem(
-                                                      child: Text(f.name),
+                                                      child: Text(f.label),
                                                       value: f,
                                                     ))
                                                 .toList(),

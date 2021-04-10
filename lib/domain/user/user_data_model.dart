@@ -8,8 +8,11 @@ part 'user_data_model.g.dart';
 abstract class UserDataModel implements _$UserDataModel {
   const factory UserDataModel({
     String email,
+    String id,
     String fullName,
     RoleDataModel role,
+    String imageUrl,
+    String phoneNumber,
     String token,
   }) = _UserDataModel;
 
