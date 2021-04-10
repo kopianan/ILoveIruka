@@ -20,21 +20,25 @@ class _$TransactionDataModelTearOff {
   _TransactionDataModel call(
       {String id,
       String transactionNumber,
-      int total,
+      double total,
       String formattedTotal,
+      String formattedTotalInSale,
       @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
           String coupon,
       String remark,
       String createdBy,
+      String createdAt,
       List<TransactionMenuDetailDataModel> details}) {
     return _TransactionDataModel(
       id: id,
       transactionNumber: transactionNumber,
       total: total,
       formattedTotal: formattedTotal,
+      formattedTotalInSale: formattedTotalInSale,
       coupon: coupon,
       remark: remark,
       createdBy: createdBy,
+      createdAt: createdAt,
       details: details,
     );
   }
@@ -53,12 +57,14 @@ const $TransactionDataModel = _$TransactionDataModelTearOff();
 mixin _$TransactionDataModel {
   String get id;
   String get transactionNumber;
-  int get total;
+  double get total;
   String get formattedTotal;
+  String get formattedTotalInSale;
   @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
   String get coupon;
   String get remark;
   String get createdBy;
+  String get createdAt;
   List<TransactionMenuDetailDataModel> get details;
 
   Map<String, dynamic> toJson();
@@ -74,12 +80,14 @@ abstract class $TransactionDataModelCopyWith<$Res> {
   $Res call(
       {String id,
       String transactionNumber,
-      int total,
+      double total,
       String formattedTotal,
+      String formattedTotalInSale,
       @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
           String coupon,
       String remark,
       String createdBy,
+      String createdAt,
       List<TransactionMenuDetailDataModel> details});
 }
 
@@ -98,9 +106,11 @@ class _$TransactionDataModelCopyWithImpl<$Res>
     Object transactionNumber = freezed,
     Object total = freezed,
     Object formattedTotal = freezed,
+    Object formattedTotalInSale = freezed,
     Object coupon = freezed,
     Object remark = freezed,
     Object createdBy = freezed,
+    Object createdAt = freezed,
     Object details = freezed,
   }) {
     return _then(_value.copyWith(
@@ -108,13 +118,17 @@ class _$TransactionDataModelCopyWithImpl<$Res>
       transactionNumber: transactionNumber == freezed
           ? _value.transactionNumber
           : transactionNumber as String,
-      total: total == freezed ? _value.total : total as int,
+      total: total == freezed ? _value.total : total as double,
       formattedTotal: formattedTotal == freezed
           ? _value.formattedTotal
           : formattedTotal as String,
+      formattedTotalInSale: formattedTotalInSale == freezed
+          ? _value.formattedTotalInSale
+          : formattedTotalInSale as String,
       coupon: coupon == freezed ? _value.coupon : coupon as String,
       remark: remark == freezed ? _value.remark : remark as String,
       createdBy: createdBy == freezed ? _value.createdBy : createdBy as String,
+      createdAt: createdAt == freezed ? _value.createdAt : createdAt as String,
       details: details == freezed
           ? _value.details
           : details as List<TransactionMenuDetailDataModel>,
@@ -132,12 +146,14 @@ abstract class _$TransactionDataModelCopyWith<$Res>
   $Res call(
       {String id,
       String transactionNumber,
-      int total,
+      double total,
       String formattedTotal,
+      String formattedTotalInSale,
       @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
           String coupon,
       String remark,
       String createdBy,
+      String createdAt,
       List<TransactionMenuDetailDataModel> details});
 }
 
@@ -158,9 +174,11 @@ class __$TransactionDataModelCopyWithImpl<$Res>
     Object transactionNumber = freezed,
     Object total = freezed,
     Object formattedTotal = freezed,
+    Object formattedTotalInSale = freezed,
     Object coupon = freezed,
     Object remark = freezed,
     Object createdBy = freezed,
+    Object createdAt = freezed,
     Object details = freezed,
   }) {
     return _then(_TransactionDataModel(
@@ -168,13 +186,17 @@ class __$TransactionDataModelCopyWithImpl<$Res>
       transactionNumber: transactionNumber == freezed
           ? _value.transactionNumber
           : transactionNumber as String,
-      total: total == freezed ? _value.total : total as int,
+      total: total == freezed ? _value.total : total as double,
       formattedTotal: formattedTotal == freezed
           ? _value.formattedTotal
           : formattedTotal as String,
+      formattedTotalInSale: formattedTotalInSale == freezed
+          ? _value.formattedTotalInSale
+          : formattedTotalInSale as String,
       coupon: coupon == freezed ? _value.coupon : coupon as String,
       remark: remark == freezed ? _value.remark : remark as String,
       createdBy: createdBy == freezed ? _value.createdBy : createdBy as String,
+      createdAt: createdAt == freezed ? _value.createdAt : createdAt as String,
       details: details == freezed
           ? _value.details
           : details as List<TransactionMenuDetailDataModel>,
@@ -191,10 +213,12 @@ class _$_TransactionDataModel implements _TransactionDataModel {
       this.transactionNumber,
       this.total,
       this.formattedTotal,
+      this.formattedTotalInSale,
       @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
           this.coupon,
       this.remark,
       this.createdBy,
+      this.createdAt,
       this.details});
 
   factory _$_TransactionDataModel.fromJson(Map<String, dynamic> json) =>
@@ -205,9 +229,11 @@ class _$_TransactionDataModel implements _TransactionDataModel {
   @override
   final String transactionNumber;
   @override
-  final int total;
+  final double total;
   @override
   final String formattedTotal;
+  @override
+  final String formattedTotalInSale;
   @override
   @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
   final String coupon;
@@ -216,11 +242,13 @@ class _$_TransactionDataModel implements _TransactionDataModel {
   @override
   final String createdBy;
   @override
+  final String createdAt;
+  @override
   final List<TransactionMenuDetailDataModel> details;
 
   @override
   String toString() {
-    return 'TransactionDataModel(id: $id, transactionNumber: $transactionNumber, total: $total, formattedTotal: $formattedTotal, coupon: $coupon, remark: $remark, createdBy: $createdBy, details: $details)';
+    return 'TransactionDataModel(id: $id, transactionNumber: $transactionNumber, total: $total, formattedTotal: $formattedTotal, formattedTotalInSale: $formattedTotalInSale, coupon: $coupon, remark: $remark, createdBy: $createdBy, createdAt: $createdAt, details: $details)';
   }
 
   @override
@@ -237,6 +265,9 @@ class _$_TransactionDataModel implements _TransactionDataModel {
             (identical(other.formattedTotal, formattedTotal) ||
                 const DeepCollectionEquality()
                     .equals(other.formattedTotal, formattedTotal)) &&
+            (identical(other.formattedTotalInSale, formattedTotalInSale) ||
+                const DeepCollectionEquality().equals(
+                    other.formattedTotalInSale, formattedTotalInSale)) &&
             (identical(other.coupon, coupon) ||
                 const DeepCollectionEquality().equals(other.coupon, coupon)) &&
             (identical(other.remark, remark) ||
@@ -244,6 +275,9 @@ class _$_TransactionDataModel implements _TransactionDataModel {
             (identical(other.createdBy, createdBy) ||
                 const DeepCollectionEquality()
                     .equals(other.createdBy, createdBy)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)) &&
             (identical(other.details, details) ||
                 const DeepCollectionEquality().equals(other.details, details)));
   }
@@ -255,9 +289,11 @@ class _$_TransactionDataModel implements _TransactionDataModel {
       const DeepCollectionEquality().hash(transactionNumber) ^
       const DeepCollectionEquality().hash(total) ^
       const DeepCollectionEquality().hash(formattedTotal) ^
+      const DeepCollectionEquality().hash(formattedTotalInSale) ^
       const DeepCollectionEquality().hash(coupon) ^
       const DeepCollectionEquality().hash(remark) ^
       const DeepCollectionEquality().hash(createdBy) ^
+      const DeepCollectionEquality().hash(createdAt) ^
       const DeepCollectionEquality().hash(details);
 
   @JsonKey(ignore: true)
@@ -276,12 +312,14 @@ abstract class _TransactionDataModel implements TransactionDataModel {
   factory _TransactionDataModel(
       {String id,
       String transactionNumber,
-      int total,
+      double total,
       String formattedTotal,
+      String formattedTotalInSale,
       @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
           String coupon,
       String remark,
       String createdBy,
+      String createdAt,
       List<TransactionMenuDetailDataModel> details}) = _$_TransactionDataModel;
 
   factory _TransactionDataModel.fromJson(Map<String, dynamic> json) =
@@ -292,9 +330,11 @@ abstract class _TransactionDataModel implements TransactionDataModel {
   @override
   String get transactionNumber;
   @override
-  int get total;
+  double get total;
   @override
   String get formattedTotal;
+  @override
+  String get formattedTotalInSale;
   @override
   @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
   String get coupon;
@@ -302,6 +342,8 @@ abstract class _TransactionDataModel implements TransactionDataModel {
   String get remark;
   @override
   String get createdBy;
+  @override
+  String get createdAt;
   @override
   List<TransactionMenuDetailDataModel> get details;
   @override

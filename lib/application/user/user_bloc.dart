@@ -35,7 +35,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
             (r) => UserState.onChangePassword(r),
           );
         } catch (onError) {
-          yield UserState.error(onError);
+          yield UserState.error(GeneralFailure(onError.toString()));
         }
       },
       updateProfileData: (_UpdateProfileData value) async* {

@@ -1,9 +1,11 @@
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/transaction/bloc/transaction_bloc.dart';
 import 'package:i_love_iruka/application/transaction/transaction_controller.dart';
 import 'package:i_love_iruka/domain/transaction_data/transaction/transaction_data_model.dart';
+import 'package:i_love_iruka/infrastructure/functions/custom_formatter.dart';
 
 import '../../injection.dart';
 
@@ -153,11 +155,11 @@ class TransactionItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "10",
+                  getDateFromLocale(trans.createdAt).toString(),
                   style: TextStyle(fontSize: 30),
                 ),
                 Text(
-                  "Mar",
+                  getMonthFromLocale(trans.createdAt).toString(),
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 )
               ],

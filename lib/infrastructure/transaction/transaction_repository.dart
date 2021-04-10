@@ -32,12 +32,10 @@ class TransactionRepository extends ITransactionFacade {
     return options;
   }
 
-//TODO : change the id of user
   @override
-  Future<Either<GeneralFailure, TransactionResponseData>> getTransaction(
-      String userId) async {
+  Future<Either<GeneralFailure, TransactionResponseData>>
+      getTransaction() async {
     Response response;
-//TODO ; change the header ( dummy )
     try {
       response = await _dio.get(
           Constants.getStagingUrl() + "/api/v1/transactions/by-user",

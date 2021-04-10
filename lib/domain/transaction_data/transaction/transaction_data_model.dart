@@ -9,12 +9,14 @@ abstract class TransactionDataModel with _$TransactionDataModel {
   factory TransactionDataModel(
       {String id,
       String transactionNumber,
-      int total,
+      double total,
       String formattedTotal,
+      String formattedTotalInSale,
       @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
           String coupon,
       String remark,
       String createdBy,
+      String createdAt,
       List<TransactionMenuDetailDataModel> details}) = _TransactionDataModel;
 
   factory TransactionDataModel.fromJson(Map<String, dynamic> json) =>

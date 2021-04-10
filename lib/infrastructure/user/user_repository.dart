@@ -72,11 +72,11 @@ class UserRepository extends IUserFacade {
     print(Constants.getStagingUrl());
     try {
       response = await _dio.put(
-          Constants.getStagingUrl() + "/api/v1/users/end-user/change-password",
+          Constants.getStagingUrl() + "/api/v1/users/change-password",
           data: password.toJson(),
           options: getDioOptions());
 
-      return right("Successful Change Password");
+      return right("Change Password Successful");
     } on DioError catch (e) {
       print(e.message);
       return left(dioErrorChecker(e));

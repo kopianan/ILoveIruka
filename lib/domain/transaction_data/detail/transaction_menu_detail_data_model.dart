@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:i_love_iruka/domain/feed_home/menu_data_model.dart';
+import 'package:i_love_iruka/domain/transaction_data/transaction/product_data_model.dart';
 
 part 'transaction_menu_detail_data_model.freezed.dart';
 part 'transaction_menu_detail_data_model.g.dart';
@@ -10,7 +11,7 @@ abstract class TransactionMenuDetailDataModel
   factory TransactionMenuDetailDataModel(
       {int qty,
       int price,
-      List<MenuDataModel> product,
+      ProductDataModel product,
       String id}) = _TransactionMenuDetailDataModel;
 
   factory TransactionMenuDetailDataModel.fromJson(Map<String, dynamic> json) =>

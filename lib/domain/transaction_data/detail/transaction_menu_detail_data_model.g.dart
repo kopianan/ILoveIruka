@@ -11,11 +11,9 @@ _$_TransactionMenuDetailDataModel _$_$_TransactionMenuDetailDataModelFromJson(
   return _$_TransactionMenuDetailDataModel(
     qty: json['qty'] as int,
     price: json['price'] as int,
-    product: (json['product'] as List)
-        ?.map((e) => e == null
-            ? null
-            : MenuDataModel.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+    product: json['product'] == null
+        ? null
+        : ProductDataModel.fromJson(json['product'] as Map<String, dynamic>),
     id: json['id'] as String,
   );
 }

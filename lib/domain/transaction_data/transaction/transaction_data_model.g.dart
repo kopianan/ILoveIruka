@@ -11,11 +11,13 @@ _$_TransactionDataModel _$_$_TransactionDataModelFromJson(
   return _$_TransactionDataModel(
     id: json['id'] as String,
     transactionNumber: json['transactionNumber'] as String,
-    total: json['total'] as int,
+    total: (json['total'] as num)?.toDouble(),
     formattedTotal: json['formattedTotal'] as String,
+    formattedTotalInSale: json['formattedTotalInSale'] as String,
     coupon: json['coupon'] as String ?? 'val',
     remark: json['remark'] as String,
     createdBy: json['createdBy'] as String,
+    createdAt: json['createdAt'] as String,
     details: (json['details'] as List)
         ?.map((e) => e == null
             ? null
@@ -32,8 +34,10 @@ Map<String, dynamic> _$_$_TransactionDataModelToJson(
       'transactionNumber': instance.transactionNumber,
       'total': instance.total,
       'formattedTotal': instance.formattedTotal,
+      'formattedTotalInSale': instance.formattedTotalInSale,
       'coupon': instance.coupon,
       'remark': instance.remark,
       'createdBy': instance.createdBy,
+      'createdAt': instance.createdAt,
       'details': instance.details,
     };

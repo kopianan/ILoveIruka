@@ -5,6 +5,5 @@ import 'package:i_love_iruka/domain/transaction_data/transaction/transaction_dat
 import 'transaction_response_data.dart';
 
 abstract class ITransactionFacade {
-  Future<Either<GeneralFailure, TransactionResponseData>> getTransaction(
-      String userId);
+  Future<Either<GeneralFailure, TransactionResponseData>> getTransaction();
 }

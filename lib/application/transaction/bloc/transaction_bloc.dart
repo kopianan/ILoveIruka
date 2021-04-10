@@ -24,7 +24,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
       started: (e) {},
       getTransactions: (e) async* {
         yield TransactionState.loading();
-        final _result = await _iTransactionFacade.getTransaction("userId");
+        final _result = await _iTransactionFacade.getTransaction();
         yield _result.fold(
           (l) => TransactionState.error(l),
           (r) => TransactionState.onGetTransaction(r),

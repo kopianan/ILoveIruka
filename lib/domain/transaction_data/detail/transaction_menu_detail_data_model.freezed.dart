@@ -19,7 +19,7 @@ class _$TransactionMenuDetailDataModelTearOff {
 
 // ignore: unused_element
   _TransactionMenuDetailDataModel call(
-      {int qty, int price, List<MenuDataModel> product, String id}) {
+      {int qty, int price, ProductDataModel product, String id}) {
     return _TransactionMenuDetailDataModel(
       qty: qty,
       price: price,
@@ -43,7 +43,7 @@ const $TransactionMenuDetailDataModel =
 mixin _$TransactionMenuDetailDataModel {
   int get qty;
   int get price;
-  List<MenuDataModel> get product;
+  ProductDataModel get product;
   String get id;
 
   Map<String, dynamic> toJson();
@@ -58,7 +58,9 @@ abstract class $TransactionMenuDetailDataModelCopyWith<$Res> {
           TransactionMenuDetailDataModel value,
           $Res Function(TransactionMenuDetailDataModel) then) =
       _$TransactionMenuDetailDataModelCopyWithImpl<$Res>;
-  $Res call({int qty, int price, List<MenuDataModel> product, String id});
+  $Res call({int qty, int price, ProductDataModel product, String id});
+
+  $ProductDataModelCopyWith<$Res> get product;
 }
 
 /// @nodoc
@@ -81,9 +83,19 @@ class _$TransactionMenuDetailDataModelCopyWithImpl<$Res>
       qty: qty == freezed ? _value.qty : qty as int,
       price: price == freezed ? _value.price : price as int,
       product:
-          product == freezed ? _value.product : product as List<MenuDataModel>,
+          product == freezed ? _value.product : product as ProductDataModel,
       id: id == freezed ? _value.id : id as String,
     ));
+  }
+
+  @override
+  $ProductDataModelCopyWith<$Res> get product {
+    if (_value.product == null) {
+      return null;
+    }
+    return $ProductDataModelCopyWith<$Res>(_value.product, (value) {
+      return _then(_value.copyWith(product: value));
+    });
   }
 }
 
@@ -95,7 +107,10 @@ abstract class _$TransactionMenuDetailDataModelCopyWith<$Res>
           $Res Function(_TransactionMenuDetailDataModel) then) =
       __$TransactionMenuDetailDataModelCopyWithImpl<$Res>;
   @override
-  $Res call({int qty, int price, List<MenuDataModel> product, String id});
+  $Res call({int qty, int price, ProductDataModel product, String id});
+
+  @override
+  $ProductDataModelCopyWith<$Res> get product;
 }
 
 /// @nodoc
@@ -122,7 +137,7 @@ class __$TransactionMenuDetailDataModelCopyWithImpl<$Res>
       qty: qty == freezed ? _value.qty : qty as int,
       price: price == freezed ? _value.price : price as int,
       product:
-          product == freezed ? _value.product : product as List<MenuDataModel>,
+          product == freezed ? _value.product : product as ProductDataModel,
       id: id == freezed ? _value.id : id as String,
     ));
   }
@@ -145,7 +160,7 @@ class _$_TransactionMenuDetailDataModel
   @override
   final int price;
   @override
-  final List<MenuDataModel> product;
+  final ProductDataModel product;
   @override
   final String id;
 
@@ -194,7 +209,7 @@ abstract class _TransactionMenuDetailDataModel
   factory _TransactionMenuDetailDataModel(
       {int qty,
       int price,
-      List<MenuDataModel> product,
+      ProductDataModel product,
       String id}) = _$_TransactionMenuDetailDataModel;
 
   factory _TransactionMenuDetailDataModel.fromJson(Map<String, dynamic> json) =
@@ -205,7 +220,7 @@ abstract class _TransactionMenuDetailDataModel
   @override
   int get price;
   @override
-  List<MenuDataModel> get product;
+  ProductDataModel get product;
   @override
   String get id;
   @override
