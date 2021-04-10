@@ -30,6 +30,14 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
           (r) => TransactionState.onGetTransaction(r),
         );
       },
+      getTransactionById: (_GetTransactionById value) async* {
+        yield TransactionState.loading();
+        final _result = await _iTransactionFacade.getTransactionById(value.id);
+        yield _result.fold(
+          (l) => TransactionState.error(l),
+          (r) => TransactionState.onGetTransactionById(r),
+        );
+      },
     );
   }
 }

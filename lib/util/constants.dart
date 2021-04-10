@@ -3,8 +3,10 @@ class Constants {
 
   String _storageBox = "iruka_storage";
   String _userKey = "user_sotrage_key";
+  String _memberKey = "member_storage_key";
   String get getIrukaStorage => this._storageBox;
   String get getUserKey => this._userKey;
+  String get getMemberKey => this._memberKey;
 
   static String _webUrl = "https://irukacms.com";
   static String _apiUrl = "/api/Mobile";
@@ -13,7 +15,6 @@ class Constants {
   static String _rajaOngkirBaseUrl = 'https://api.rajaongkir.com/';
 
   static String _stagingUrl = 'http://api-staging.irukacms.com:5000';
-
 
   static String _userSharedPref = "user_login_data";
 

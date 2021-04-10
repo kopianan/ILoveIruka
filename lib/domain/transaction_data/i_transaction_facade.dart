@@ -6,4 +6,6 @@ import 'transaction_response_data.dart';
 
 abstract class ITransactionFacade {
   Future<Either<GeneralFailure, TransactionResponseData>> getTransaction();
+  Future<Either<GeneralFailure, TransactionDataModel>> getTransactionById(
+      String id);
 }

@@ -4,4 +4,5 @@ part of 'membership_bloc.dart';
 abstract class MembershipEvent with _$MembershipEvent {
   const factory MembershipEvent.started() = _Started;
   const factory MembershipEvent.getMembershipList() = _GetMembershipList;
+  const factory MembershipEvent.getMyMembership() = _GetMyMembership;
 }

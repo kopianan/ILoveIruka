@@ -22,6 +22,11 @@ class _$MembershipEventTearOff {
   _GetMembershipList getMembershipList() {
     return const _GetMembershipList();
   }
+
+// ignore: unused_element
+  _GetMyMembership getMyMembership() {
+    return const _GetMyMembership();
+  }
 }
 
 /// @nodoc
@@ -34,22 +39,26 @@ mixin _$MembershipEvent {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getMembershipList(),
+    @required TResult getMyMembership(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getMembershipList(),
+    TResult getMyMembership(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult getMembershipList(_GetMembershipList value),
+    @required TResult getMyMembership(_GetMyMembership value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult getMembershipList(_GetMembershipList value),
+    TResult getMyMembership(_GetMyMembership value),
     @required TResult orElse(),
   });
 }
@@ -109,9 +118,11 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getMembershipList(),
+    @required TResult getMyMembership(),
   }) {
     assert(started != null);
     assert(getMembershipList != null);
+    assert(getMyMembership != null);
     return started();
   }
 
@@ -120,6 +131,7 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getMembershipList(),
+    TResult getMyMembership(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -134,9 +146,11 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult getMembershipList(_GetMembershipList value),
+    @required TResult getMyMembership(_GetMyMembership value),
   }) {
     assert(started != null);
     assert(getMembershipList != null);
+    assert(getMyMembership != null);
     return started(this);
   }
 
@@ -145,6 +159,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult getMembershipList(_GetMembershipList value),
+    TResult getMyMembership(_GetMyMembership value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -200,9 +215,11 @@ class _$_GetMembershipList implements _GetMembershipList {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getMembershipList(),
+    @required TResult getMyMembership(),
   }) {
     assert(started != null);
     assert(getMembershipList != null);
+    assert(getMyMembership != null);
     return getMembershipList();
   }
 
@@ -211,6 +228,7 @@ class _$_GetMembershipList implements _GetMembershipList {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getMembershipList(),
+    TResult getMyMembership(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -225,9 +243,11 @@ class _$_GetMembershipList implements _GetMembershipList {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult getMembershipList(_GetMembershipList value),
+    @required TResult getMyMembership(_GetMyMembership value),
   }) {
     assert(started != null);
     assert(getMembershipList != null);
+    assert(getMyMembership != null);
     return getMembershipList(this);
   }
 
@@ -236,6 +256,7 @@ class _$_GetMembershipList implements _GetMembershipList {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult getMembershipList(_GetMembershipList value),
+    TResult getMyMembership(_GetMyMembership value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -248,6 +269,103 @@ class _$_GetMembershipList implements _GetMembershipList {
 
 abstract class _GetMembershipList implements MembershipEvent {
   const factory _GetMembershipList() = _$_GetMembershipList;
+}
+
+/// @nodoc
+abstract class _$GetMyMembershipCopyWith<$Res> {
+  factory _$GetMyMembershipCopyWith(
+          _GetMyMembership value, $Res Function(_GetMyMembership) then) =
+      __$GetMyMembershipCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetMyMembershipCopyWithImpl<$Res>
+    extends _$MembershipEventCopyWithImpl<$Res>
+    implements _$GetMyMembershipCopyWith<$Res> {
+  __$GetMyMembershipCopyWithImpl(
+      _GetMyMembership _value, $Res Function(_GetMyMembership) _then)
+      : super(_value, (v) => _then(v as _GetMyMembership));
+
+  @override
+  _GetMyMembership get _value => super._value as _GetMyMembership;
+}
+
+/// @nodoc
+class _$_GetMyMembership implements _GetMyMembership {
+  const _$_GetMyMembership();
+
+  @override
+  String toString() {
+    return 'MembershipEvent.getMyMembership()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _GetMyMembership);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult getMembershipList(),
+    @required TResult getMyMembership(),
+  }) {
+    assert(started != null);
+    assert(getMembershipList != null);
+    assert(getMyMembership != null);
+    return getMyMembership();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult getMembershipList(),
+    TResult getMyMembership(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getMyMembership != null) {
+      return getMyMembership();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult getMembershipList(_GetMembershipList value),
+    @required TResult getMyMembership(_GetMyMembership value),
+  }) {
+    assert(started != null);
+    assert(getMembershipList != null);
+    assert(getMyMembership != null);
+    return getMyMembership(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult getMembershipList(_GetMembershipList value),
+    TResult getMyMembership(_GetMyMembership value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getMyMembership != null) {
+      return getMyMembership(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetMyMembership implements MembershipEvent {
+  const factory _GetMyMembership() = _$_GetMyMembership;
 }
 
 /// @nodoc
@@ -278,6 +396,14 @@ class _$MembershipStateTearOff {
       onData: onData,
     );
   }
+
+// ignore: unused_element
+  _OnGetMyMembership onGetMyMembership(
+      {Either<GeneralFailure, MemberInfoDataModel> onData}) {
+    return _OnGetMyMembership(
+      onData: onData,
+    );
+  }
 }
 
 /// @nodoc
@@ -294,6 +420,9 @@ mixin _$MembershipState {
     @required
         TResult onGetMemberList(
             Either<GeneralFailure, List<MembershipDataModel>> onData),
+    @required
+        TResult onGetMyMembership(
+            Either<GeneralFailure, MemberInfoDataModel> onData),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -302,6 +431,8 @@ mixin _$MembershipState {
     TResult error(String err),
     TResult onGetMemberList(
         Either<GeneralFailure, List<MembershipDataModel>> onData),
+    TResult onGetMyMembership(
+        Either<GeneralFailure, MemberInfoDataModel> onData),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -310,6 +441,7 @@ mixin _$MembershipState {
     @required TResult loading(_Loading value),
     @required TResult error(_Error value),
     @required TResult onGetMemberList(_OnGetMemberList value),
+    @required TResult onGetMyMembership(_OnGetMyMembership value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -317,6 +449,7 @@ mixin _$MembershipState {
     TResult loading(_Loading value),
     TResult error(_Error value),
     TResult onGetMemberList(_OnGetMemberList value),
+    TResult onGetMyMembership(_OnGetMyMembership value),
     @required TResult orElse(),
   });
 }
@@ -380,11 +513,15 @@ class _$_Initial implements _Initial {
     @required
         TResult onGetMemberList(
             Either<GeneralFailure, List<MembershipDataModel>> onData),
+    @required
+        TResult onGetMyMembership(
+            Either<GeneralFailure, MemberInfoDataModel> onData),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onGetMemberList != null);
+    assert(onGetMyMembership != null);
     return initial();
   }
 
@@ -396,6 +533,8 @@ class _$_Initial implements _Initial {
     TResult error(String err),
     TResult onGetMemberList(
         Either<GeneralFailure, List<MembershipDataModel>> onData),
+    TResult onGetMyMembership(
+        Either<GeneralFailure, MemberInfoDataModel> onData),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -412,11 +551,13 @@ class _$_Initial implements _Initial {
     @required TResult loading(_Loading value),
     @required TResult error(_Error value),
     @required TResult onGetMemberList(_OnGetMemberList value),
+    @required TResult onGetMyMembership(_OnGetMyMembership value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onGetMemberList != null);
+    assert(onGetMyMembership != null);
     return initial(this);
   }
 
@@ -427,6 +568,7 @@ class _$_Initial implements _Initial {
     TResult loading(_Loading value),
     TResult error(_Error value),
     TResult onGetMemberList(_OnGetMemberList value),
+    TResult onGetMyMembership(_OnGetMyMembership value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -483,11 +625,15 @@ class _$_Loading implements _Loading {
     @required
         TResult onGetMemberList(
             Either<GeneralFailure, List<MembershipDataModel>> onData),
+    @required
+        TResult onGetMyMembership(
+            Either<GeneralFailure, MemberInfoDataModel> onData),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onGetMemberList != null);
+    assert(onGetMyMembership != null);
     return loading();
   }
 
@@ -499,6 +645,8 @@ class _$_Loading implements _Loading {
     TResult error(String err),
     TResult onGetMemberList(
         Either<GeneralFailure, List<MembershipDataModel>> onData),
+    TResult onGetMyMembership(
+        Either<GeneralFailure, MemberInfoDataModel> onData),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -515,11 +663,13 @@ class _$_Loading implements _Loading {
     @required TResult loading(_Loading value),
     @required TResult error(_Error value),
     @required TResult onGetMemberList(_OnGetMemberList value),
+    @required TResult onGetMyMembership(_OnGetMyMembership value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onGetMemberList != null);
+    assert(onGetMyMembership != null);
     return loading(this);
   }
 
@@ -530,6 +680,7 @@ class _$_Loading implements _Loading {
     TResult loading(_Loading value),
     TResult error(_Error value),
     TResult onGetMemberList(_OnGetMemberList value),
+    TResult onGetMyMembership(_OnGetMyMembership value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -608,11 +759,15 @@ class _$_Error implements _Error {
     @required
         TResult onGetMemberList(
             Either<GeneralFailure, List<MembershipDataModel>> onData),
+    @required
+        TResult onGetMyMembership(
+            Either<GeneralFailure, MemberInfoDataModel> onData),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onGetMemberList != null);
+    assert(onGetMyMembership != null);
     return error(err);
   }
 
@@ -624,6 +779,8 @@ class _$_Error implements _Error {
     TResult error(String err),
     TResult onGetMemberList(
         Either<GeneralFailure, List<MembershipDataModel>> onData),
+    TResult onGetMyMembership(
+        Either<GeneralFailure, MemberInfoDataModel> onData),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -640,11 +797,13 @@ class _$_Error implements _Error {
     @required TResult loading(_Loading value),
     @required TResult error(_Error value),
     @required TResult onGetMemberList(_OnGetMemberList value),
+    @required TResult onGetMyMembership(_OnGetMyMembership value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onGetMemberList != null);
+    assert(onGetMyMembership != null);
     return error(this);
   }
 
@@ -655,6 +814,7 @@ class _$_Error implements _Error {
     TResult loading(_Loading value),
     TResult error(_Error value),
     TResult onGetMemberList(_OnGetMemberList value),
+    TResult onGetMyMembership(_OnGetMyMembership value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -742,11 +902,15 @@ class _$_OnGetMemberList implements _OnGetMemberList {
     @required
         TResult onGetMemberList(
             Either<GeneralFailure, List<MembershipDataModel>> onData),
+    @required
+        TResult onGetMyMembership(
+            Either<GeneralFailure, MemberInfoDataModel> onData),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onGetMemberList != null);
+    assert(onGetMyMembership != null);
     return onGetMemberList(onData);
   }
 
@@ -758,6 +922,8 @@ class _$_OnGetMemberList implements _OnGetMemberList {
     TResult error(String err),
     TResult onGetMemberList(
         Either<GeneralFailure, List<MembershipDataModel>> onData),
+    TResult onGetMyMembership(
+        Either<GeneralFailure, MemberInfoDataModel> onData),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -774,11 +940,13 @@ class _$_OnGetMemberList implements _OnGetMemberList {
     @required TResult loading(_Loading value),
     @required TResult error(_Error value),
     @required TResult onGetMemberList(_OnGetMemberList value),
+    @required TResult onGetMyMembership(_OnGetMyMembership value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onGetMemberList != null);
+    assert(onGetMyMembership != null);
     return onGetMemberList(this);
   }
 
@@ -789,6 +957,7 @@ class _$_OnGetMemberList implements _OnGetMemberList {
     TResult loading(_Loading value),
     TResult error(_Error value),
     TResult onGetMemberList(_OnGetMemberList value),
+    TResult onGetMyMembership(_OnGetMyMembership value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -807,4 +976,149 @@ abstract class _OnGetMemberList implements MembershipState {
   Either<GeneralFailure, List<MembershipDataModel>> get onData;
   @JsonKey(ignore: true)
   _$OnGetMemberListCopyWith<_OnGetMemberList> get copyWith;
+}
+
+/// @nodoc
+abstract class _$OnGetMyMembershipCopyWith<$Res> {
+  factory _$OnGetMyMembershipCopyWith(
+          _OnGetMyMembership value, $Res Function(_OnGetMyMembership) then) =
+      __$OnGetMyMembershipCopyWithImpl<$Res>;
+  $Res call({Either<GeneralFailure, MemberInfoDataModel> onData});
+}
+
+/// @nodoc
+class __$OnGetMyMembershipCopyWithImpl<$Res>
+    extends _$MembershipStateCopyWithImpl<$Res>
+    implements _$OnGetMyMembershipCopyWith<$Res> {
+  __$OnGetMyMembershipCopyWithImpl(
+      _OnGetMyMembership _value, $Res Function(_OnGetMyMembership) _then)
+      : super(_value, (v) => _then(v as _OnGetMyMembership));
+
+  @override
+  _OnGetMyMembership get _value => super._value as _OnGetMyMembership;
+
+  @override
+  $Res call({
+    Object onData = freezed,
+  }) {
+    return _then(_OnGetMyMembership(
+      onData: onData == freezed
+          ? _value.onData
+          : onData as Either<GeneralFailure, MemberInfoDataModel>,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_OnGetMyMembership implements _OnGetMyMembership {
+  const _$_OnGetMyMembership({this.onData});
+
+  @override
+  final Either<GeneralFailure, MemberInfoDataModel> onData;
+
+  @override
+  String toString() {
+    return 'MembershipState.onGetMyMembership(onData: $onData)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _OnGetMyMembership &&
+            (identical(other.onData, onData) ||
+                const DeepCollectionEquality().equals(other.onData, onData)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(onData);
+
+  @JsonKey(ignore: true)
+  @override
+  _$OnGetMyMembershipCopyWith<_OnGetMyMembership> get copyWith =>
+      __$OnGetMyMembershipCopyWithImpl<_OnGetMyMembership>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult error(String err),
+    @required
+        TResult onGetMemberList(
+            Either<GeneralFailure, List<MembershipDataModel>> onData),
+    @required
+        TResult onGetMyMembership(
+            Either<GeneralFailure, MemberInfoDataModel> onData),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(error != null);
+    assert(onGetMemberList != null);
+    assert(onGetMyMembership != null);
+    return onGetMyMembership(onData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult error(String err),
+    TResult onGetMemberList(
+        Either<GeneralFailure, List<MembershipDataModel>> onData),
+    TResult onGetMyMembership(
+        Either<GeneralFailure, MemberInfoDataModel> onData),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (onGetMyMembership != null) {
+      return onGetMyMembership(onData);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
+    @required TResult error(_Error value),
+    @required TResult onGetMemberList(_OnGetMemberList value),
+    @required TResult onGetMyMembership(_OnGetMyMembership value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(error != null);
+    assert(onGetMemberList != null);
+    assert(onGetMyMembership != null);
+    return onGetMyMembership(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
+    TResult error(_Error value),
+    TResult onGetMemberList(_OnGetMemberList value),
+    TResult onGetMyMembership(_OnGetMyMembership value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (onGetMyMembership != null) {
+      return onGetMyMembership(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnGetMyMembership implements MembershipState {
+  const factory _OnGetMyMembership(
+          {Either<GeneralFailure, MemberInfoDataModel> onData}) =
+      _$_OnGetMyMembership;
+
+  Either<GeneralFailure, MemberInfoDataModel> get onData;
+  @JsonKey(ignore: true)
+  _$OnGetMyMembershipCopyWith<_OnGetMyMembership> get copyWith;
 }

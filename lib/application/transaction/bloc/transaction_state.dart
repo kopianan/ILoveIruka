@@ -8,4 +8,6 @@ abstract class TransactionState with _$TransactionState {
 
   const factory TransactionState.onGetTransaction(
       TransactionResponseData data) = _OnGetTransaction;
+  const factory TransactionState.onGetTransactionById(
+      TransactionDataModel data) = _OnGetTransactionById;
 }

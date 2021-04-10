@@ -22,7 +22,7 @@ class SplashScreen extends StatelessWidget {
             orElse: () {},
             authenticated: (e) {
               print(e.user);
-              Get.toNamed(DashboardPage.TAG);
+              Get.offNamed(DashboardPage.TAG);
             },
             unAuthenticated: (data) {
               print(data);

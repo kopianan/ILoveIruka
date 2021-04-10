@@ -1,9 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/user_controller.dart';
+import 'package:i_love_iruka/application/membership/membership_bloc.dart';
+import 'package:i_love_iruka/infrastructure/core/pref.dart';
 import 'package:i_love_iruka/presentation/home/account_home/partnership_location_page.dart';
 import 'package:i_love_iruka/presentation/membership/membership_card_list.dart';
 import 'package:i_love_iruka/presentation/transaction/transaction_history_page.dart';
+
+import '../../../injection.dart';
 
 class AccountPagehome extends StatefulWidget {
   @override
@@ -17,10 +24,12 @@ class _AccountPagehomeState extends State<AccountPagehome>
 
   @override
   void initState() {
+    print("Load My Account");
     super.initState();
   }
 
   final userController = Get.put(UserController());
+  final _myMember = getIt<MembershipBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -38,18 +47,43 @@ class _AccountPagehomeState extends State<AccountPagehome>
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                         color: Colors.black54)),
-                Icon(Icons.info)
+                IconButton(
+                    icon: Icon(Icons.refresh),
+                    onPressed: () {
+                      _myMember.add(MembershipEvent.getMyMembership());
+                    }),
               ],
             ),
           )),
-          SliverToBoxAdapter(
-              child: Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: SilverCard(
-                    cardNumber: "123",
-                    name: userController.getUserData().fullName,
-                    validUntil: '20/10',
-                  ))),
+          BlocProvider(
+            create: (context) =>
+                _myMember..add(MembershipEvent.getMyMembership()),
+            child: BlocConsumer<MembershipBloc, MembershipState>(
+                listener: (context, state) {
+              state.maybeMap(
+                orElse: () {},
+                onGetMyMembership: (e) {
+                  e.onData.fold(
+                    (l) => Fluttertoast.showToast(msg: l.error),
+                    (r) {
+                      Pref().saveMemberInfo(r);
+                      userController.setMemberData(r);
+                      Fluttertoast.showToast(msg: "Data Updated");
+                    },
+                  );
+                },
+              );
+            }, builder: (context, state) {
+              return SliverToBoxAdapter(
+                  child: Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: SilverCard(
+                        cardNumber: "123",
+                        name: userController.getUserData().fullName,
+                        validUntil: '20/10',
+                      )));
+            }),
+          ),
           SliverToBoxAdapter(
             child: Container(
               margin: EdgeInsets.only(left: 15, bottom: 15, right: 15),

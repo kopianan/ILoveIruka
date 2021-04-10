@@ -8,4 +8,7 @@ abstract class MembershipState with _$MembershipState {
   const factory MembershipState.onGetMemberList(
           {Either<GeneralFailure, List<MembershipDataModel>> onData}) =
       _OnGetMemberList;
+  const factory MembershipState.onGetMyMembership(
+          {Either<GeneralFailure, MemberInfoDataModel> onData}) =
+      _OnGetMyMembership;
 }

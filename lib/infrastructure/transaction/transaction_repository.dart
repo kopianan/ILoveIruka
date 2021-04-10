@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:i_love_iruka/domain/core/general_failure.dart';
 import 'package:i_love_iruka/domain/transaction_data/i_transaction_facade.dart';
+import 'package:i_love_iruka/domain/transaction_data/transaction/transaction_data_model.dart';
 import 'package:i_love_iruka/domain/transaction_data/transaction_response_data.dart';
 import 'package:i_love_iruka/infrastructure/core/pref.dart';
 import 'package:i_love_iruka/util/constants.dart';
@@ -43,6 +44,23 @@ class TransactionRepository extends ITransactionFacade {
 
       final _data = response.data['data'];
       TransactionResponseData _result = TransactionResponseData.fromJson(_data);
+      return right(_result);
+    } on DioError catch (e) {
+      return left(checkErrorData(e));
+    }
+  }
+
+  @override
+  Future<Either<GeneralFailure, TransactionDataModel>> getTransactionById(
+      String id) async {
+    Response response;
+    try {
+      response = await _dio.get(
+          Constants.getStagingUrl() + "/api/v1/transactions/$id",
+          options: getDioOptions());
+
+      final _data = response.data['data'];
+      TransactionDataModel _result = TransactionDataModel.fromJson(_data);
       return right(_result);
     } on DioError catch (e) {
       return left(checkErrorData(e));

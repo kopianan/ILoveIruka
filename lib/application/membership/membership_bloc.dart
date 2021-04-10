@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:i_love_iruka/domain/core/general_failure.dart';
 import 'package:i_love_iruka/domain/membership/i_membership_facade.dart';
+import 'package:i_love_iruka/domain/membership/member_info_data_model.dart';
 import 'package:i_love_iruka/domain/membership/membership_data_model.dart';
 import 'package:injectable/injectable.dart';
 
@@ -27,8 +28,18 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
         yield MembershipState.loading();
         try {
           final _result = await iMembershipFacade.getMembershipData();
-          print("test");
+
           yield MembershipState.onGetMemberList(onData: _result);
+        } catch (e) {
+          yield MembershipState.error(e.toString());
+        }
+      },
+      getMyMembership: (_GetMyMembership value) async* {
+        yield MembershipState.loading();
+        try {
+          final _result = await iMembershipFacade.getMyMembership();
+
+          yield MembershipState.onGetMyMembership(onData: _result);
         } catch (e) {
           yield MembershipState.error(e.toString());
         }

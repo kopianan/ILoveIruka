@@ -33,10 +33,10 @@ class _DashboardPageState extends State<DashboardPage> {
   void bottomTapped(int index) {
     setState(() {
       bottomSelectedIndex = index;
-      
+
       // pageController.animateToPage(index,
       //     duration: Duration(milliseconds: 500), curve: Curves.ease);
-          pageController.jumpToPage(index);
+      pageController.jumpToPage(index);
     });
   }
 
@@ -46,6 +46,7 @@ class _DashboardPageState extends State<DashboardPage> {
   void initState() {
     //set data to usr controller.
     userController.setDataUser(Pref().getUserData);
+    userController.setMemberData(Pref().getMemberInfo);
     super.initState();
   }
 

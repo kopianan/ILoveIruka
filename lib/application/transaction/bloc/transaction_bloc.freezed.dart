@@ -19,9 +19,14 @@ class _$TransactionEventTearOff {
   }
 
 // ignore: unused_element
-  _GetTransactions getTransactions(String userId) {
-    return _GetTransactions(
-      userId,
+  _GetTransactions getTransactions() {
+    return const _GetTransactions();
+  }
+
+// ignore: unused_element
+  _GetTransactionById getTransactionById(String id) {
+    return _GetTransactionById(
+      id,
     );
   }
 }
@@ -35,23 +40,27 @@ mixin _$TransactionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult getTransactions(String userId),
+    @required TResult getTransactions(),
+    @required TResult getTransactionById(String id),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult getTransactions(String userId),
+    TResult getTransactions(),
+    TResult getTransactionById(String id),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult getTransactions(_GetTransactions value),
+    @required TResult getTransactionById(_GetTransactionById value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult getTransactions(_GetTransactions value),
+    TResult getTransactionById(_GetTransactionById value),
     @required TResult orElse(),
   });
 }
@@ -110,10 +119,12 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult getTransactions(String userId),
+    @required TResult getTransactions(),
+    @required TResult getTransactionById(String id),
   }) {
     assert(started != null);
     assert(getTransactions != null);
+    assert(getTransactionById != null);
     return started();
   }
 
@@ -121,7 +132,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult getTransactions(String userId),
+    TResult getTransactions(),
+    TResult getTransactionById(String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -136,9 +148,11 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult getTransactions(_GetTransactions value),
+    @required TResult getTransactionById(_GetTransactionById value),
   }) {
     assert(started != null);
     assert(getTransactions != null);
+    assert(getTransactionById != null);
     return started(this);
   }
 
@@ -147,6 +161,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult getTransactions(_GetTransactions value),
+    TResult getTransactionById(_GetTransactionById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -166,7 +181,6 @@ abstract class _$GetTransactionsCopyWith<$Res> {
   factory _$GetTransactionsCopyWith(
           _GetTransactions value, $Res Function(_GetTransactions) then) =
       __$GetTransactionsCopyWithImpl<$Res>;
-  $Res call({String userId});
 }
 
 /// @nodoc
@@ -179,67 +193,49 @@ class __$GetTransactionsCopyWithImpl<$Res>
 
   @override
   _GetTransactions get _value => super._value as _GetTransactions;
-
-  @override
-  $Res call({
-    Object userId = freezed,
-  }) {
-    return _then(_GetTransactions(
-      userId == freezed ? _value.userId : userId as String,
-    ));
-  }
 }
 
 /// @nodoc
 class _$_GetTransactions implements _GetTransactions {
-  const _$_GetTransactions(this.userId) : assert(userId != null);
-
-  @override
-  final String userId;
+  const _$_GetTransactions();
 
   @override
   String toString() {
-    return 'TransactionEvent.getTransactions(userId: $userId)';
+    return 'TransactionEvent.getTransactions()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _GetTransactions &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)));
+    return identical(this, other) || (other is _GetTransactions);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userId);
-
-  @JsonKey(ignore: true)
-  @override
-  _$GetTransactionsCopyWith<_GetTransactions> get copyWith =>
-      __$GetTransactionsCopyWithImpl<_GetTransactions>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult getTransactions(String userId),
+    @required TResult getTransactions(),
+    @required TResult getTransactionById(String id),
   }) {
     assert(started != null);
     assert(getTransactions != null);
-    return getTransactions(userId);
+    assert(getTransactionById != null);
+    return getTransactions();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult getTransactions(String userId),
+    TResult getTransactions(),
+    TResult getTransactionById(String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (getTransactions != null) {
-      return getTransactions(userId);
+      return getTransactions();
     }
     return orElse();
   }
@@ -249,9 +245,11 @@ class _$_GetTransactions implements _GetTransactions {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult getTransactions(_GetTransactions value),
+    @required TResult getTransactionById(_GetTransactionById value),
   }) {
     assert(started != null);
     assert(getTransactions != null);
+    assert(getTransactionById != null);
     return getTransactions(this);
   }
 
@@ -260,6 +258,7 @@ class _$_GetTransactions implements _GetTransactions {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult getTransactions(_GetTransactions value),
+    TResult getTransactionById(_GetTransactionById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -271,11 +270,130 @@ class _$_GetTransactions implements _GetTransactions {
 }
 
 abstract class _GetTransactions implements TransactionEvent {
-  const factory _GetTransactions(String userId) = _$_GetTransactions;
+  const factory _GetTransactions() = _$_GetTransactions;
+}
 
-  String get userId;
+/// @nodoc
+abstract class _$GetTransactionByIdCopyWith<$Res> {
+  factory _$GetTransactionByIdCopyWith(
+          _GetTransactionById value, $Res Function(_GetTransactionById) then) =
+      __$GetTransactionByIdCopyWithImpl<$Res>;
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$GetTransactionByIdCopyWithImpl<$Res>
+    extends _$TransactionEventCopyWithImpl<$Res>
+    implements _$GetTransactionByIdCopyWith<$Res> {
+  __$GetTransactionByIdCopyWithImpl(
+      _GetTransactionById _value, $Res Function(_GetTransactionById) _then)
+      : super(_value, (v) => _then(v as _GetTransactionById));
+
+  @override
+  _GetTransactionById get _value => super._value as _GetTransactionById;
+
+  @override
+  $Res call({
+    Object id = freezed,
+  }) {
+    return _then(_GetTransactionById(
+      id == freezed ? _value.id : id as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_GetTransactionById implements _GetTransactionById {
+  const _$_GetTransactionById(this.id) : assert(id != null);
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'TransactionEvent.getTransactionById(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetTransactionById &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+
   @JsonKey(ignore: true)
-  _$GetTransactionsCopyWith<_GetTransactions> get copyWith;
+  @override
+  _$GetTransactionByIdCopyWith<_GetTransactionById> get copyWith =>
+      __$GetTransactionByIdCopyWithImpl<_GetTransactionById>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult getTransactions(),
+    @required TResult getTransactionById(String id),
+  }) {
+    assert(started != null);
+    assert(getTransactions != null);
+    assert(getTransactionById != null);
+    return getTransactionById(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult getTransactions(),
+    TResult getTransactionById(String id),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getTransactionById != null) {
+      return getTransactionById(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult getTransactions(_GetTransactions value),
+    @required TResult getTransactionById(_GetTransactionById value),
+  }) {
+    assert(started != null);
+    assert(getTransactions != null);
+    assert(getTransactionById != null);
+    return getTransactionById(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult getTransactions(_GetTransactions value),
+    TResult getTransactionById(_GetTransactionById value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getTransactionById != null) {
+      return getTransactionById(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetTransactionById implements TransactionEvent {
+  const factory _GetTransactionById(String id) = _$_GetTransactionById;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$GetTransactionByIdCopyWith<_GetTransactionById> get copyWith;
 }
 
 /// @nodoc
@@ -305,6 +423,13 @@ class _$TransactionStateTearOff {
       data,
     );
   }
+
+// ignore: unused_element
+  _OnGetTransactionById onGetTransactionById(TransactionDataModel data) {
+    return _OnGetTransactionById(
+      data,
+    );
+  }
 }
 
 /// @nodoc
@@ -319,6 +444,7 @@ mixin _$TransactionState {
     @required TResult loading(),
     @required TResult error(GeneralFailure failure),
     @required TResult onGetTransaction(TransactionResponseData data),
+    @required TResult onGetTransactionById(TransactionDataModel data),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -326,6 +452,7 @@ mixin _$TransactionState {
     TResult loading(),
     TResult error(GeneralFailure failure),
     TResult onGetTransaction(TransactionResponseData data),
+    TResult onGetTransactionById(TransactionDataModel data),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -334,6 +461,7 @@ mixin _$TransactionState {
     @required TResult loading(_Loading value),
     @required TResult error(_Error value),
     @required TResult onGetTransaction(_OnGetTransaction value),
+    @required TResult onGetTransactionById(_OnGetTransactionById value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -341,6 +469,7 @@ mixin _$TransactionState {
     TResult loading(_Loading value),
     TResult error(_Error value),
     TResult onGetTransaction(_OnGetTransaction value),
+    TResult onGetTransactionById(_OnGetTransactionById value),
     @required TResult orElse(),
   });
 }
@@ -402,11 +531,13 @@ class _$_Initial implements _Initial {
     @required TResult loading(),
     @required TResult error(GeneralFailure failure),
     @required TResult onGetTransaction(TransactionResponseData data),
+    @required TResult onGetTransactionById(TransactionDataModel data),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onGetTransaction != null);
+    assert(onGetTransactionById != null);
     return initial();
   }
 
@@ -417,6 +548,7 @@ class _$_Initial implements _Initial {
     TResult loading(),
     TResult error(GeneralFailure failure),
     TResult onGetTransaction(TransactionResponseData data),
+    TResult onGetTransactionById(TransactionDataModel data),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -433,11 +565,13 @@ class _$_Initial implements _Initial {
     @required TResult loading(_Loading value),
     @required TResult error(_Error value),
     @required TResult onGetTransaction(_OnGetTransaction value),
+    @required TResult onGetTransactionById(_OnGetTransactionById value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onGetTransaction != null);
+    assert(onGetTransactionById != null);
     return initial(this);
   }
 
@@ -448,6 +582,7 @@ class _$_Initial implements _Initial {
     TResult loading(_Loading value),
     TResult error(_Error value),
     TResult onGetTransaction(_OnGetTransaction value),
+    TResult onGetTransactionById(_OnGetTransactionById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -502,11 +637,13 @@ class _$_Loading implements _Loading {
     @required TResult loading(),
     @required TResult error(GeneralFailure failure),
     @required TResult onGetTransaction(TransactionResponseData data),
+    @required TResult onGetTransactionById(TransactionDataModel data),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onGetTransaction != null);
+    assert(onGetTransactionById != null);
     return loading();
   }
 
@@ -517,6 +654,7 @@ class _$_Loading implements _Loading {
     TResult loading(),
     TResult error(GeneralFailure failure),
     TResult onGetTransaction(TransactionResponseData data),
+    TResult onGetTransactionById(TransactionDataModel data),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -533,11 +671,13 @@ class _$_Loading implements _Loading {
     @required TResult loading(_Loading value),
     @required TResult error(_Error value),
     @required TResult onGetTransaction(_OnGetTransaction value),
+    @required TResult onGetTransactionById(_OnGetTransactionById value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onGetTransaction != null);
+    assert(onGetTransactionById != null);
     return loading(this);
   }
 
@@ -548,6 +688,7 @@ class _$_Loading implements _Loading {
     TResult loading(_Loading value),
     TResult error(_Error value),
     TResult onGetTransaction(_OnGetTransaction value),
+    TResult onGetTransactionById(_OnGetTransactionById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -636,11 +777,13 @@ class _$_Error implements _Error {
     @required TResult loading(),
     @required TResult error(GeneralFailure failure),
     @required TResult onGetTransaction(TransactionResponseData data),
+    @required TResult onGetTransactionById(TransactionDataModel data),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onGetTransaction != null);
+    assert(onGetTransactionById != null);
     return error(failure);
   }
 
@@ -651,6 +794,7 @@ class _$_Error implements _Error {
     TResult loading(),
     TResult error(GeneralFailure failure),
     TResult onGetTransaction(TransactionResponseData data),
+    TResult onGetTransactionById(TransactionDataModel data),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -667,11 +811,13 @@ class _$_Error implements _Error {
     @required TResult loading(_Loading value),
     @required TResult error(_Error value),
     @required TResult onGetTransaction(_OnGetTransaction value),
+    @required TResult onGetTransactionById(_OnGetTransactionById value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onGetTransaction != null);
+    assert(onGetTransactionById != null);
     return error(this);
   }
 
@@ -682,6 +828,7 @@ class _$_Error implements _Error {
     TResult loading(_Loading value),
     TResult error(_Error value),
     TResult onGetTransaction(_OnGetTransaction value),
+    TResult onGetTransactionById(_OnGetTransactionById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -777,11 +924,13 @@ class _$_OnGetTransaction implements _OnGetTransaction {
     @required TResult loading(),
     @required TResult error(GeneralFailure failure),
     @required TResult onGetTransaction(TransactionResponseData data),
+    @required TResult onGetTransactionById(TransactionDataModel data),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onGetTransaction != null);
+    assert(onGetTransactionById != null);
     return onGetTransaction(data);
   }
 
@@ -792,6 +941,7 @@ class _$_OnGetTransaction implements _OnGetTransaction {
     TResult loading(),
     TResult error(GeneralFailure failure),
     TResult onGetTransaction(TransactionResponseData data),
+    TResult onGetTransactionById(TransactionDataModel data),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -808,11 +958,13 @@ class _$_OnGetTransaction implements _OnGetTransaction {
     @required TResult loading(_Loading value),
     @required TResult error(_Error value),
     @required TResult onGetTransaction(_OnGetTransaction value),
+    @required TResult onGetTransactionById(_OnGetTransactionById value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(onGetTransaction != null);
+    assert(onGetTransactionById != null);
     return onGetTransaction(this);
   }
 
@@ -823,6 +975,7 @@ class _$_OnGetTransaction implements _OnGetTransaction {
     TResult loading(_Loading value),
     TResult error(_Error value),
     TResult onGetTransaction(_OnGetTransaction value),
+    TResult onGetTransactionById(_OnGetTransactionById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -840,4 +993,153 @@ abstract class _OnGetTransaction implements TransactionState {
   TransactionResponseData get data;
   @JsonKey(ignore: true)
   _$OnGetTransactionCopyWith<_OnGetTransaction> get copyWith;
+}
+
+/// @nodoc
+abstract class _$OnGetTransactionByIdCopyWith<$Res> {
+  factory _$OnGetTransactionByIdCopyWith(_OnGetTransactionById value,
+          $Res Function(_OnGetTransactionById) then) =
+      __$OnGetTransactionByIdCopyWithImpl<$Res>;
+  $Res call({TransactionDataModel data});
+
+  $TransactionDataModelCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$OnGetTransactionByIdCopyWithImpl<$Res>
+    extends _$TransactionStateCopyWithImpl<$Res>
+    implements _$OnGetTransactionByIdCopyWith<$Res> {
+  __$OnGetTransactionByIdCopyWithImpl(
+      _OnGetTransactionById _value, $Res Function(_OnGetTransactionById) _then)
+      : super(_value, (v) => _then(v as _OnGetTransactionById));
+
+  @override
+  _OnGetTransactionById get _value => super._value as _OnGetTransactionById;
+
+  @override
+  $Res call({
+    Object data = freezed,
+  }) {
+    return _then(_OnGetTransactionById(
+      data == freezed ? _value.data : data as TransactionDataModel,
+    ));
+  }
+
+  @override
+  $TransactionDataModelCopyWith<$Res> get data {
+    if (_value.data == null) {
+      return null;
+    }
+    return $TransactionDataModelCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+class _$_OnGetTransactionById implements _OnGetTransactionById {
+  const _$_OnGetTransactionById(this.data) : assert(data != null);
+
+  @override
+  final TransactionDataModel data;
+
+  @override
+  String toString() {
+    return 'TransactionState.onGetTransactionById(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _OnGetTransactionById &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+
+  @JsonKey(ignore: true)
+  @override
+  _$OnGetTransactionByIdCopyWith<_OnGetTransactionById> get copyWith =>
+      __$OnGetTransactionByIdCopyWithImpl<_OnGetTransactionById>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult error(GeneralFailure failure),
+    @required TResult onGetTransaction(TransactionResponseData data),
+    @required TResult onGetTransactionById(TransactionDataModel data),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(error != null);
+    assert(onGetTransaction != null);
+    assert(onGetTransactionById != null);
+    return onGetTransactionById(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult error(GeneralFailure failure),
+    TResult onGetTransaction(TransactionResponseData data),
+    TResult onGetTransactionById(TransactionDataModel data),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (onGetTransactionById != null) {
+      return onGetTransactionById(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
+    @required TResult error(_Error value),
+    @required TResult onGetTransaction(_OnGetTransaction value),
+    @required TResult onGetTransactionById(_OnGetTransactionById value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(error != null);
+    assert(onGetTransaction != null);
+    assert(onGetTransactionById != null);
+    return onGetTransactionById(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
+    TResult error(_Error value),
+    TResult onGetTransaction(_OnGetTransaction value),
+    TResult onGetTransactionById(_OnGetTransactionById value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (onGetTransactionById != null) {
+      return onGetTransactionById(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnGetTransactionById implements TransactionState {
+  const factory _OnGetTransactionById(TransactionDataModel data) =
+      _$_OnGetTransactionById;
+
+  TransactionDataModel get data;
+  @JsonKey(ignore: true)
+  _$OnGetTransactionByIdCopyWith<_OnGetTransactionById> get copyWith;
 }

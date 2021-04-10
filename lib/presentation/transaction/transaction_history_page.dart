@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +10,7 @@ import 'package:i_love_iruka/domain/transaction_data/transaction/transaction_dat
 import 'package:i_love_iruka/infrastructure/functions/custom_formatter.dart';
 
 import '../../injection.dart';
+import 'transaction_detail_page.dart';
 
 class TransactionHistoryPage extends StatefulWidget {
   static final String TAG = '/transaction_history_page';
@@ -21,20 +24,19 @@ class _TransactionHistoryPageState extends State<TransactionHistoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text(
           "Transaction History",
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
       ),
       body: BlocProvider(
-        create: (context) => getIt<TransactionBloc>()
-          ..add(TransactionEvent.getTransactions("userId")),
+        create: (context) =>
+            getIt<TransactionBloc>()..add(TransactionEvent.getTransactions()),
         child: BlocConsumer<TransactionBloc, TransactionState>(
             listener: (context, state) {
-          state.map(
-            initial: (e) {
-              print("Initial");
-            },
+          state.maybeMap(
+            orElse: () {},
             loading: (e) {
               print("loading");
             },
@@ -107,91 +109,123 @@ class _TransactionHistoryPageState extends State<TransactionHistoryPage> {
         ));
   }
 
-  SafeArea defaultTransactionPage() {
-    return SafeArea(
-      child: GetX<TransactionController>(
-        builder: (trans) => CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: trans.getTransactionDataList.length,
-                    itemBuilder: (context, index) => TransactionItem(
-                          trans: trans.getTransactionDataList[index],
-                        )))
-          ],
-        ),
+  Widget defaultTransactionPage() {
+    return GetX<TransactionController>(
+      builder: (trans) => Stack(
+        children: [
+          Positioned(
+              bottom: -100,
+              left: 100,
+              right: -150,
+              child: Image.asset(
+                'images/assets/iruka_cloud.png',
+                width: 300,
+              )),
+          CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: trans.getTransactionDataList.length,
+                      itemBuilder: (context, index) => TransactionItem(
+                            trans: trans.getTransactionDataList[index],
+                          )))
+            ],
+          ),
+        ],
       ),
     );
   }
 }
 
-class TransactionItem extends StatelessWidget {
+class TransactionItem extends StatefulWidget {
   const TransactionItem({Key key, @required this.trans}) : super(key: key);
   final TransactionDataModel trans;
+
+  @override
+  _TransactionItemState createState() => _TransactionItemState();
+}
+
+class _TransactionItemState extends State<TransactionItem> {
+  List<Color> colorList = [
+    Color(0xFF34C7CC),
+    Color(0xFFC6E052),
+    Color(0xFF6AE46A),
+    Color(0xFFFAA6FD),
+  ];
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 10),
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(3),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.grey[200], blurRadius: 3, offset: Offset(3, 3))
-          ]),
-      child: Row(
-        children: [
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 10),
-            width: 80,
-            height: 80,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Colors.blue[100],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  getDateFromLocale(trans.createdAt).toString(),
-                  style: TextStyle(fontSize: 30),
-                ),
-                Text(
-                  getMonthFromLocale(trans.createdAt).toString(),
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-          ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Container(
-                  child: Text(
-                    trans.transactionNumber,
-                    maxLines: 1,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+    return InkWell(
+      onTap: () {
+        Get.toNamed(TransactionDetailPage.TAG, arguments: widget.trans);
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 10),
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(3),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey[200], blurRadius: 3, offset: Offset(3, 3))
+            ]),
+        child: Row(
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 10),
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: colorList[Random().nextInt(3)],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    getDateFromLocale(widget.trans.createdAt).toString(),
+                    style: TextStyle(fontSize: 30, color: Colors.white),
                   ),
-                ),
-                Text(
-                  trans.remark,
-                  maxLines: 2,
-                )
-              ],
+                  Text(
+                    getMonthFromLocale(widget.trans.createdAt).toString(),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  )
+                ],
+              ),
             ),
-          ),
-          Container(
-              padding: EdgeInsets.only(right: 10),
-              child: Text(
-                trans.total.toString(),
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ))
-        ],
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Container(
+                    child: Text(
+                      widget.trans.transactionNumber,
+                      maxLines: 1,
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                  Text(
+                    widget.trans.remark,
+                    maxLines: 2,
+                  )
+                ],
+              ),
+            ),
+            Container(
+                padding: EdgeInsets.only(right: 10),
+                child: Text(
+                  NumberFormat.currency(symbol: "IDR ", decimalDigits: 0)
+                      .format(widget.trans.total),
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ))
+          ],
+        ),
       ),
     );
   }

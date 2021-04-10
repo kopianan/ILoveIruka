@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:i_love_iruka/domain/user/user_data_model.dart';
 import 'package:i_love_iruka/domain/user/user_req_res_data_model.dart';
+import 'package:i_love_iruka/infrastructure/core/pref.dart';
 import 'package:i_love_iruka/infrastructure/functions/custom_alert.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:image_picker/image_picker.dart';
@@ -48,9 +50,11 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
         TextEditingController(text: _userController.getUserData().phoneNumber);
   }
 
-  void updateProfileBloc(BuildContext context) {
+  void updateProfileBloc(BuildContext context, String imagePath) {
     request = UserRequestDataModel(
-        fullName: _name.text, imageUrl: path, phoneNumber: _phoneNumber.text);
+        fullName: _name.text,
+        imageUrl: imagePath,
+        phoneNumber: _phoneNumber.text);
     //UPDATING DATA WITH PHOTO
     context.read<UserBloc>().add(UserEvent.updateProfileData(request));
   }
@@ -76,7 +80,7 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
                           (r) {
                             //after finish upload photo, change user user data
                             path = r;
-                            updateProfileBloc(context);
+                            updateProfileBloc(context, path);
                           },
                         ));
               },
@@ -86,8 +90,15 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
                   (a) => a.fold(
                     (l) => showBasicFlash(context, l.error),
                     (r) {
-                      print(r);
-                      showSuccessFlash(context, "Successful edit data user");
+                      //update data on storage.
+                      UserDataModel _storage = Pref().getUserData;
+                      final _dataCopy = _storage.copyWith(
+                          fullName: r.fullName,
+                          phoneNumber: r.phoneNumber,
+                          imageUrl: r.imageUrl);
+                      Pref().saveUserData(_dataCopy);
+                      _userController.setDataUser(_dataCopy);
+                      showBasicFlash(context, "Change User Data Successful");
                     },
                   ),
                 );
@@ -95,19 +106,19 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
         }, builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.transparent,
+              elevation: 0,
               title: Text("Edit Profile"),
               actions: [
                 TextButton(
                     onPressed: () {
-                      //TODO : Save the image to server.
-
-                      if (path == null) {
+                      if (image == null) {
+                        updateProfileBloc(
+                            context, _userController.getUserData().imageUrl);
+                      } else {
                         context
                             .read<UserBloc>()
                             .add(UserEvent.changeProfilePhoto(image.path));
-                      } else {
-                        updateProfileBloc(context);
                       }
                     },
                     child: Text("Save"))
@@ -118,6 +129,9 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
                 margin: EdgeInsets.symmetric(horizontal: 12),
                 child: Column(
                   children: [
+                    SizedBox(
+                      height: 14,
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Stack(

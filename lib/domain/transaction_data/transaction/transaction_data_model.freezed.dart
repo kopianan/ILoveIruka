@@ -23,7 +23,7 @@ class _$TransactionDataModelTearOff {
       double total,
       String formattedTotal,
       String formattedTotalInSale,
-      @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
+      @JsonKey(nullable: true, includeIfNull: true, defaultValue: 'val')
           String coupon,
       String remark,
       String createdBy,
@@ -60,7 +60,7 @@ mixin _$TransactionDataModel {
   double get total;
   String get formattedTotal;
   String get formattedTotalInSale;
-  @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
+  @JsonKey(nullable: true, includeIfNull: true, defaultValue: 'val')
   String get coupon;
   String get remark;
   String get createdBy;
@@ -83,7 +83,7 @@ abstract class $TransactionDataModelCopyWith<$Res> {
       double total,
       String formattedTotal,
       String formattedTotalInSale,
-      @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
+      @JsonKey(nullable: true, includeIfNull: true, defaultValue: 'val')
           String coupon,
       String remark,
       String createdBy,
@@ -149,7 +149,7 @@ abstract class _$TransactionDataModelCopyWith<$Res>
       double total,
       String formattedTotal,
       String formattedTotalInSale,
-      @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
+      @JsonKey(nullable: true, includeIfNull: true, defaultValue: 'val')
           String coupon,
       String remark,
       String createdBy,
@@ -214,7 +214,7 @@ class _$_TransactionDataModel implements _TransactionDataModel {
       this.total,
       this.formattedTotal,
       this.formattedTotalInSale,
-      @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
+      @JsonKey(nullable: true, includeIfNull: true, defaultValue: 'val')
           this.coupon,
       this.remark,
       this.createdBy,
@@ -235,7 +235,7 @@ class _$_TransactionDataModel implements _TransactionDataModel {
   @override
   final String formattedTotalInSale;
   @override
-  @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
+  @JsonKey(nullable: true, includeIfNull: true, defaultValue: 'val')
   final String coupon;
   @override
   final String remark;
@@ -315,7 +315,7 @@ abstract class _TransactionDataModel implements TransactionDataModel {
       double total,
       String formattedTotal,
       String formattedTotalInSale,
-      @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
+      @JsonKey(nullable: true, includeIfNull: true, defaultValue: 'val')
           String coupon,
       String remark,
       String createdBy,
@@ -336,7 +336,7 @@ abstract class _TransactionDataModel implements TransactionDataModel {
   @override
   String get formattedTotalInSale;
   @override
-  @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
+  @JsonKey(nullable: true, includeIfNull: true, defaultValue: 'val')
   String get coupon;
   @override
   String get remark;
