@@ -14,4 +14,5 @@ abstract class IUserFacade {
   Future<Either<GeneralFailure, AddressResponse>> changeAddress(
       AddressRequest request);
   Future<Either<GeneralFailure, AddressResponse>> getAddress();
+  Future<Either<GeneralFailure, String>> forgotPassword(String email);
 }

@@ -7,6 +7,7 @@ import 'package:i_love_iruka/application/auth/auth_bloc.dart';
 import 'package:i_love_iruka/infrastructure/core/dio_injection_module.dart';
 import 'package:i_love_iruka/infrastructure/core/pref.dart';
 import 'package:i_love_iruka/infrastructure/functions/custom_alert.dart';
+import 'package:i_love_iruka/presentation/auth/forgot_password_form/forgot_password_page.dart';
 import 'package:i_love_iruka/presentation/auth/widgets/decoration.dart';
 import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primarary_blue_loading.dart';
@@ -172,8 +173,7 @@ class _SignInFormState extends State<SignInForm> {
                                 alignment: Alignment.centerRight,
                                 child: InkWell(
                                   onTap: () {
-                                    // Get.toNamed(ForgotPasswordForm.TAG);
-                                    print(Pref().getUserData);
+                                    Get.toNamed(ForgotPasswordPage.TAG);
                                   },
                                   child: Text(
                                     "Forgot Password",

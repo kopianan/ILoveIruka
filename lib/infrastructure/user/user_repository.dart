@@ -142,4 +142,25 @@ class UserRepository extends IUserFacade {
       return left(GeneralFailure("Something Wrong"));
     }
   }
+
+  @override
+  Future<Either<GeneralFailure, String>> forgotPassword(String email) async {
+    Response response;
+
+    try {
+      response = await _dio.post(
+        Constants.getStagingUrl() + "/api/v1/users/forgot-password",
+        data: {"email": email},
+      );
+      if (response.statusCode == 200) {
+        return right("We have been sent password reset to your email");
+      } else {
+        return left(GeneralFailure("Error forgot password"));
+      }
+    } on DioError catch (e) {
+      return left(dioErrorChecker(e));
+    } catch (e) {
+      return left(GeneralFailure("Something Wrong"));
+    }
+  }
 }

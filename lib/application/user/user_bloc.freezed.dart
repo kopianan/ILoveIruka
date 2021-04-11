@@ -50,6 +50,13 @@ class _$UserEventTearOff {
   _GetAddress getAddress() {
     return const _GetAddress();
   }
+
+// ignore: unused_element
+  _ForgotPassword forgotPassword(String email) {
+    return _ForgotPassword(
+      email,
+    );
+  }
 }
 
 /// @nodoc
@@ -66,6 +73,7 @@ mixin _$UserEvent {
     @required TResult changePassword(PasswordDataModel password),
     @required TResult changeAddress(AddressRequest addressRequest),
     @required TResult getAddress(),
+    @required TResult forgotPassword(String email),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -75,6 +83,7 @@ mixin _$UserEvent {
     TResult changePassword(PasswordDataModel password),
     TResult changeAddress(AddressRequest addressRequest),
     TResult getAddress(),
+    TResult forgotPassword(String email),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -85,6 +94,7 @@ mixin _$UserEvent {
     @required TResult changePassword(_ChangePassword value),
     @required TResult changeAddress(_ChangeAddress value),
     @required TResult getAddress(_GetAddress value),
+    @required TResult forgotPassword(_ForgotPassword value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -94,6 +104,7 @@ mixin _$UserEvent {
     TResult changePassword(_ChangePassword value),
     TResult changeAddress(_ChangeAddress value),
     TResult getAddress(_GetAddress value),
+    TResult forgotPassword(_ForgotPassword value),
     @required TResult orElse(),
   });
 }
@@ -155,6 +166,7 @@ class _$_Started implements _Started {
     @required TResult changePassword(PasswordDataModel password),
     @required TResult changeAddress(AddressRequest addressRequest),
     @required TResult getAddress(),
+    @required TResult forgotPassword(String email),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
@@ -162,6 +174,7 @@ class _$_Started implements _Started {
     assert(changePassword != null);
     assert(changeAddress != null);
     assert(getAddress != null);
+    assert(forgotPassword != null);
     return started();
   }
 
@@ -174,6 +187,7 @@ class _$_Started implements _Started {
     TResult changePassword(PasswordDataModel password),
     TResult changeAddress(AddressRequest addressRequest),
     TResult getAddress(),
+    TResult forgotPassword(String email),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -192,6 +206,7 @@ class _$_Started implements _Started {
     @required TResult changePassword(_ChangePassword value),
     @required TResult changeAddress(_ChangeAddress value),
     @required TResult getAddress(_GetAddress value),
+    @required TResult forgotPassword(_ForgotPassword value),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
@@ -199,6 +214,7 @@ class _$_Started implements _Started {
     assert(changePassword != null);
     assert(changeAddress != null);
     assert(getAddress != null);
+    assert(forgotPassword != null);
     return started(this);
   }
 
@@ -211,6 +227,7 @@ class _$_Started implements _Started {
     TResult changePassword(_ChangePassword value),
     TResult changeAddress(_ChangeAddress value),
     TResult getAddress(_GetAddress value),
+    TResult forgotPassword(_ForgotPassword value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -292,6 +309,7 @@ class _$_ChangeProfilePhoto implements _ChangeProfilePhoto {
     @required TResult changePassword(PasswordDataModel password),
     @required TResult changeAddress(AddressRequest addressRequest),
     @required TResult getAddress(),
+    @required TResult forgotPassword(String email),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
@@ -299,6 +317,7 @@ class _$_ChangeProfilePhoto implements _ChangeProfilePhoto {
     assert(changePassword != null);
     assert(changeAddress != null);
     assert(getAddress != null);
+    assert(forgotPassword != null);
     return changeProfilePhoto(file);
   }
 
@@ -311,6 +330,7 @@ class _$_ChangeProfilePhoto implements _ChangeProfilePhoto {
     TResult changePassword(PasswordDataModel password),
     TResult changeAddress(AddressRequest addressRequest),
     TResult getAddress(),
+    TResult forgotPassword(String email),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -329,6 +349,7 @@ class _$_ChangeProfilePhoto implements _ChangeProfilePhoto {
     @required TResult changePassword(_ChangePassword value),
     @required TResult changeAddress(_ChangeAddress value),
     @required TResult getAddress(_GetAddress value),
+    @required TResult forgotPassword(_ForgotPassword value),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
@@ -336,6 +357,7 @@ class _$_ChangeProfilePhoto implements _ChangeProfilePhoto {
     assert(changePassword != null);
     assert(changeAddress != null);
     assert(getAddress != null);
+    assert(forgotPassword != null);
     return changeProfilePhoto(this);
   }
 
@@ -348,6 +370,7 @@ class _$_ChangeProfilePhoto implements _ChangeProfilePhoto {
     TResult changePassword(_ChangePassword value),
     TResult changeAddress(_ChangeAddress value),
     TResult getAddress(_GetAddress value),
+    TResult forgotPassword(_ForgotPassword value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -438,6 +461,7 @@ class _$_UpdateProfileData implements _UpdateProfileData {
     @required TResult changePassword(PasswordDataModel password),
     @required TResult changeAddress(AddressRequest addressRequest),
     @required TResult getAddress(),
+    @required TResult forgotPassword(String email),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
@@ -445,6 +469,7 @@ class _$_UpdateProfileData implements _UpdateProfileData {
     assert(changePassword != null);
     assert(changeAddress != null);
     assert(getAddress != null);
+    assert(forgotPassword != null);
     return updateProfileData(requestDataModel);
   }
 
@@ -457,6 +482,7 @@ class _$_UpdateProfileData implements _UpdateProfileData {
     TResult changePassword(PasswordDataModel password),
     TResult changeAddress(AddressRequest addressRequest),
     TResult getAddress(),
+    TResult forgotPassword(String email),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -475,6 +501,7 @@ class _$_UpdateProfileData implements _UpdateProfileData {
     @required TResult changePassword(_ChangePassword value),
     @required TResult changeAddress(_ChangeAddress value),
     @required TResult getAddress(_GetAddress value),
+    @required TResult forgotPassword(_ForgotPassword value),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
@@ -482,6 +509,7 @@ class _$_UpdateProfileData implements _UpdateProfileData {
     assert(changePassword != null);
     assert(changeAddress != null);
     assert(getAddress != null);
+    assert(forgotPassword != null);
     return updateProfileData(this);
   }
 
@@ -494,6 +522,7 @@ class _$_UpdateProfileData implements _UpdateProfileData {
     TResult changePassword(_ChangePassword value),
     TResult changeAddress(_ChangeAddress value),
     TResult getAddress(_GetAddress value),
+    TResult forgotPassword(_ForgotPassword value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -580,6 +609,7 @@ class _$_ChangePassword implements _ChangePassword {
     @required TResult changePassword(PasswordDataModel password),
     @required TResult changeAddress(AddressRequest addressRequest),
     @required TResult getAddress(),
+    @required TResult forgotPassword(String email),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
@@ -587,6 +617,7 @@ class _$_ChangePassword implements _ChangePassword {
     assert(changePassword != null);
     assert(changeAddress != null);
     assert(getAddress != null);
+    assert(forgotPassword != null);
     return changePassword(password);
   }
 
@@ -599,6 +630,7 @@ class _$_ChangePassword implements _ChangePassword {
     TResult changePassword(PasswordDataModel password),
     TResult changeAddress(AddressRequest addressRequest),
     TResult getAddress(),
+    TResult forgotPassword(String email),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -617,6 +649,7 @@ class _$_ChangePassword implements _ChangePassword {
     @required TResult changePassword(_ChangePassword value),
     @required TResult changeAddress(_ChangeAddress value),
     @required TResult getAddress(_GetAddress value),
+    @required TResult forgotPassword(_ForgotPassword value),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
@@ -624,6 +657,7 @@ class _$_ChangePassword implements _ChangePassword {
     assert(changePassword != null);
     assert(changeAddress != null);
     assert(getAddress != null);
+    assert(forgotPassword != null);
     return changePassword(this);
   }
 
@@ -636,6 +670,7 @@ class _$_ChangePassword implements _ChangePassword {
     TResult changePassword(_ChangePassword value),
     TResult changeAddress(_ChangeAddress value),
     TResult getAddress(_GetAddress value),
+    TResult forgotPassword(_ForgotPassword value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -724,6 +759,7 @@ class _$_ChangeAddress implements _ChangeAddress {
     @required TResult changePassword(PasswordDataModel password),
     @required TResult changeAddress(AddressRequest addressRequest),
     @required TResult getAddress(),
+    @required TResult forgotPassword(String email),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
@@ -731,6 +767,7 @@ class _$_ChangeAddress implements _ChangeAddress {
     assert(changePassword != null);
     assert(changeAddress != null);
     assert(getAddress != null);
+    assert(forgotPassword != null);
     return changeAddress(addressRequest);
   }
 
@@ -743,6 +780,7 @@ class _$_ChangeAddress implements _ChangeAddress {
     TResult changePassword(PasswordDataModel password),
     TResult changeAddress(AddressRequest addressRequest),
     TResult getAddress(),
+    TResult forgotPassword(String email),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -761,6 +799,7 @@ class _$_ChangeAddress implements _ChangeAddress {
     @required TResult changePassword(_ChangePassword value),
     @required TResult changeAddress(_ChangeAddress value),
     @required TResult getAddress(_GetAddress value),
+    @required TResult forgotPassword(_ForgotPassword value),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
@@ -768,6 +807,7 @@ class _$_ChangeAddress implements _ChangeAddress {
     assert(changePassword != null);
     assert(changeAddress != null);
     assert(getAddress != null);
+    assert(forgotPassword != null);
     return changeAddress(this);
   }
 
@@ -780,6 +820,7 @@ class _$_ChangeAddress implements _ChangeAddress {
     TResult changePassword(_ChangePassword value),
     TResult changeAddress(_ChangeAddress value),
     TResult getAddress(_GetAddress value),
+    TResult forgotPassword(_ForgotPassword value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -843,6 +884,7 @@ class _$_GetAddress implements _GetAddress {
     @required TResult changePassword(PasswordDataModel password),
     @required TResult changeAddress(AddressRequest addressRequest),
     @required TResult getAddress(),
+    @required TResult forgotPassword(String email),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
@@ -850,6 +892,7 @@ class _$_GetAddress implements _GetAddress {
     assert(changePassword != null);
     assert(changeAddress != null);
     assert(getAddress != null);
+    assert(forgotPassword != null);
     return getAddress();
   }
 
@@ -862,6 +905,7 @@ class _$_GetAddress implements _GetAddress {
     TResult changePassword(PasswordDataModel password),
     TResult changeAddress(AddressRequest addressRequest),
     TResult getAddress(),
+    TResult forgotPassword(String email),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -880,6 +924,7 @@ class _$_GetAddress implements _GetAddress {
     @required TResult changePassword(_ChangePassword value),
     @required TResult changeAddress(_ChangeAddress value),
     @required TResult getAddress(_GetAddress value),
+    @required TResult forgotPassword(_ForgotPassword value),
   }) {
     assert(started != null);
     assert(changeProfilePhoto != null);
@@ -887,6 +932,7 @@ class _$_GetAddress implements _GetAddress {
     assert(changePassword != null);
     assert(changeAddress != null);
     assert(getAddress != null);
+    assert(forgotPassword != null);
     return getAddress(this);
   }
 
@@ -899,6 +945,7 @@ class _$_GetAddress implements _GetAddress {
     TResult changePassword(_ChangePassword value),
     TResult changeAddress(_ChangeAddress value),
     TResult getAddress(_GetAddress value),
+    TResult forgotPassword(_ForgotPassword value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -911,6 +958,152 @@ class _$_GetAddress implements _GetAddress {
 
 abstract class _GetAddress implements UserEvent {
   const factory _GetAddress() = _$_GetAddress;
+}
+
+/// @nodoc
+abstract class _$ForgotPasswordCopyWith<$Res> {
+  factory _$ForgotPasswordCopyWith(
+          _ForgotPassword value, $Res Function(_ForgotPassword) then) =
+      __$ForgotPasswordCopyWithImpl<$Res>;
+  $Res call({String email});
+}
+
+/// @nodoc
+class __$ForgotPasswordCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
+    implements _$ForgotPasswordCopyWith<$Res> {
+  __$ForgotPasswordCopyWithImpl(
+      _ForgotPassword _value, $Res Function(_ForgotPassword) _then)
+      : super(_value, (v) => _then(v as _ForgotPassword));
+
+  @override
+  _ForgotPassword get _value => super._value as _ForgotPassword;
+
+  @override
+  $Res call({
+    Object email = freezed,
+  }) {
+    return _then(_ForgotPassword(
+      email == freezed ? _value.email : email as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_ForgotPassword implements _ForgotPassword {
+  const _$_ForgotPassword(this.email) : assert(email != null);
+
+  @override
+  final String email;
+
+  @override
+  String toString() {
+    return 'UserEvent.forgotPassword(email: $email)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ForgotPassword &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(email);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ForgotPasswordCopyWith<_ForgotPassword> get copyWith =>
+      __$ForgotPasswordCopyWithImpl<_ForgotPassword>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult changeProfilePhoto(String file),
+    @required TResult updateProfileData(UserRequestDataModel requestDataModel),
+    @required TResult changePassword(PasswordDataModel password),
+    @required TResult changeAddress(AddressRequest addressRequest),
+    @required TResult getAddress(),
+    @required TResult forgotPassword(String email),
+  }) {
+    assert(started != null);
+    assert(changeProfilePhoto != null);
+    assert(updateProfileData != null);
+    assert(changePassword != null);
+    assert(changeAddress != null);
+    assert(getAddress != null);
+    assert(forgotPassword != null);
+    return forgotPassword(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult changeProfilePhoto(String file),
+    TResult updateProfileData(UserRequestDataModel requestDataModel),
+    TResult changePassword(PasswordDataModel password),
+    TResult changeAddress(AddressRequest addressRequest),
+    TResult getAddress(),
+    TResult forgotPassword(String email),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (forgotPassword != null) {
+      return forgotPassword(email);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult changeProfilePhoto(_ChangeProfilePhoto value),
+    @required TResult updateProfileData(_UpdateProfileData value),
+    @required TResult changePassword(_ChangePassword value),
+    @required TResult changeAddress(_ChangeAddress value),
+    @required TResult getAddress(_GetAddress value),
+    @required TResult forgotPassword(_ForgotPassword value),
+  }) {
+    assert(started != null);
+    assert(changeProfilePhoto != null);
+    assert(updateProfileData != null);
+    assert(changePassword != null);
+    assert(changeAddress != null);
+    assert(getAddress != null);
+    assert(forgotPassword != null);
+    return forgotPassword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult changeProfilePhoto(_ChangeProfilePhoto value),
+    TResult updateProfileData(_UpdateProfileData value),
+    TResult changePassword(_ChangePassword value),
+    TResult changeAddress(_ChangeAddress value),
+    TResult getAddress(_GetAddress value),
+    TResult forgotPassword(_ForgotPassword value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (forgotPassword != null) {
+      return forgotPassword(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ForgotPassword implements UserEvent {
+  const factory _ForgotPassword(String email) = _$_ForgotPassword;
+
+  String get email;
+  @JsonKey(ignore: true)
+  _$ForgotPasswordCopyWith<_ForgotPassword> get copyWith;
 }
 
 /// @nodoc
@@ -979,6 +1172,15 @@ class _$UserStateTearOff {
       isLoading,
     );
   }
+
+// ignore: unused_element
+  _OnForgotPassword onForgotPassword(
+      Option<Either<GeneralFailure, String>> response, bool isLoading) {
+    return _OnForgotPassword(
+      response,
+      isLoading,
+    );
+  }
 }
 
 /// @nodoc
@@ -1008,6 +1210,9 @@ mixin _$UserState {
         TResult onGetAddress(
             Option<Either<GeneralFailure, AddressResponse>> response,
             bool isLoading),
+    @required
+        TResult onForgotPassword(
+            Option<Either<GeneralFailure, String>> response, bool isLoading),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -1026,6 +1231,8 @@ mixin _$UserState {
     TResult onGetAddress(
         Option<Either<GeneralFailure, AddressResponse>> response,
         bool isLoading),
+    TResult onForgotPassword(
+        Option<Either<GeneralFailure, String>> response, bool isLoading),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -1038,6 +1245,7 @@ mixin _$UserState {
     @required TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     @required TResult onAddressChanged(_OnAddressChanged value),
     @required TResult onGetAddress(_OnGetAddress value),
+    @required TResult onForgotPassword(_OnForgotPassword value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -1049,6 +1257,7 @@ mixin _$UserState {
     TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     TResult onAddressChanged(_OnAddressChanged value),
     TResult onGetAddress(_OnGetAddress value),
+    TResult onForgotPassword(_OnForgotPassword value),
     @required TResult orElse(),
   });
 }
@@ -1123,6 +1332,9 @@ class _$_Initial implements _Initial {
         TResult onGetAddress(
             Option<Either<GeneralFailure, AddressResponse>> response,
             bool isLoading),
+    @required
+        TResult onForgotPassword(
+            Option<Either<GeneralFailure, String>> response, bool isLoading),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1132,6 +1344,7 @@ class _$_Initial implements _Initial {
     assert(onProfileDataUpdated != null);
     assert(onAddressChanged != null);
     assert(onGetAddress != null);
+    assert(onForgotPassword != null);
     return initial();
   }
 
@@ -1153,6 +1366,8 @@ class _$_Initial implements _Initial {
     TResult onGetAddress(
         Option<Either<GeneralFailure, AddressResponse>> response,
         bool isLoading),
+    TResult onForgotPassword(
+        Option<Either<GeneralFailure, String>> response, bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1173,6 +1388,7 @@ class _$_Initial implements _Initial {
     @required TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     @required TResult onAddressChanged(_OnAddressChanged value),
     @required TResult onGetAddress(_OnGetAddress value),
+    @required TResult onForgotPassword(_OnForgotPassword value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1182,6 +1398,7 @@ class _$_Initial implements _Initial {
     assert(onProfileDataUpdated != null);
     assert(onAddressChanged != null);
     assert(onGetAddress != null);
+    assert(onForgotPassword != null);
     return initial(this);
   }
 
@@ -1196,6 +1413,7 @@ class _$_Initial implements _Initial {
     TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     TResult onAddressChanged(_OnAddressChanged value),
     TResult onGetAddress(_OnGetAddress value),
+    TResult onForgotPassword(_OnForgotPassword value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1265,6 +1483,9 @@ class _$_Loading implements _Loading {
         TResult onGetAddress(
             Option<Either<GeneralFailure, AddressResponse>> response,
             bool isLoading),
+    @required
+        TResult onForgotPassword(
+            Option<Either<GeneralFailure, String>> response, bool isLoading),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1274,6 +1495,7 @@ class _$_Loading implements _Loading {
     assert(onProfileDataUpdated != null);
     assert(onAddressChanged != null);
     assert(onGetAddress != null);
+    assert(onForgotPassword != null);
     return loading();
   }
 
@@ -1295,6 +1517,8 @@ class _$_Loading implements _Loading {
     TResult onGetAddress(
         Option<Either<GeneralFailure, AddressResponse>> response,
         bool isLoading),
+    TResult onForgotPassword(
+        Option<Either<GeneralFailure, String>> response, bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1315,6 +1539,7 @@ class _$_Loading implements _Loading {
     @required TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     @required TResult onAddressChanged(_OnAddressChanged value),
     @required TResult onGetAddress(_OnGetAddress value),
+    @required TResult onForgotPassword(_OnForgotPassword value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1324,6 +1549,7 @@ class _$_Loading implements _Loading {
     assert(onProfileDataUpdated != null);
     assert(onAddressChanged != null);
     assert(onGetAddress != null);
+    assert(onForgotPassword != null);
     return loading(this);
   }
 
@@ -1338,6 +1564,7 @@ class _$_Loading implements _Loading {
     TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     TResult onAddressChanged(_OnAddressChanged value),
     TResult onGetAddress(_OnGetAddress value),
+    TResult onForgotPassword(_OnForgotPassword value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1441,6 +1668,9 @@ class _$_Error implements _Error {
         TResult onGetAddress(
             Option<Either<GeneralFailure, AddressResponse>> response,
             bool isLoading),
+    @required
+        TResult onForgotPassword(
+            Option<Either<GeneralFailure, String>> response, bool isLoading),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1450,6 +1680,7 @@ class _$_Error implements _Error {
     assert(onProfileDataUpdated != null);
     assert(onAddressChanged != null);
     assert(onGetAddress != null);
+    assert(onForgotPassword != null);
     return error(failure);
   }
 
@@ -1471,6 +1702,8 @@ class _$_Error implements _Error {
     TResult onGetAddress(
         Option<Either<GeneralFailure, AddressResponse>> response,
         bool isLoading),
+    TResult onForgotPassword(
+        Option<Either<GeneralFailure, String>> response, bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1491,6 +1724,7 @@ class _$_Error implements _Error {
     @required TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     @required TResult onAddressChanged(_OnAddressChanged value),
     @required TResult onGetAddress(_OnGetAddress value),
+    @required TResult onForgotPassword(_OnForgotPassword value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1500,6 +1734,7 @@ class _$_Error implements _Error {
     assert(onProfileDataUpdated != null);
     assert(onAddressChanged != null);
     assert(onGetAddress != null);
+    assert(onForgotPassword != null);
     return error(this);
   }
 
@@ -1514,6 +1749,7 @@ class _$_Error implements _Error {
     TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     TResult onAddressChanged(_OnAddressChanged value),
     TResult onGetAddress(_OnGetAddress value),
+    TResult onForgotPassword(_OnForgotPassword value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1612,6 +1848,9 @@ class _$_OnChangePassword implements _OnChangePassword {
         TResult onGetAddress(
             Option<Either<GeneralFailure, AddressResponse>> response,
             bool isLoading),
+    @required
+        TResult onForgotPassword(
+            Option<Either<GeneralFailure, String>> response, bool isLoading),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1621,6 +1860,7 @@ class _$_OnChangePassword implements _OnChangePassword {
     assert(onProfileDataUpdated != null);
     assert(onAddressChanged != null);
     assert(onGetAddress != null);
+    assert(onForgotPassword != null);
     return onChangePassword(success);
   }
 
@@ -1642,6 +1882,8 @@ class _$_OnChangePassword implements _OnChangePassword {
     TResult onGetAddress(
         Option<Either<GeneralFailure, AddressResponse>> response,
         bool isLoading),
+    TResult onForgotPassword(
+        Option<Either<GeneralFailure, String>> response, bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1662,6 +1904,7 @@ class _$_OnChangePassword implements _OnChangePassword {
     @required TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     @required TResult onAddressChanged(_OnAddressChanged value),
     @required TResult onGetAddress(_OnGetAddress value),
+    @required TResult onForgotPassword(_OnForgotPassword value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1671,6 +1914,7 @@ class _$_OnChangePassword implements _OnChangePassword {
     assert(onProfileDataUpdated != null);
     assert(onAddressChanged != null);
     assert(onGetAddress != null);
+    assert(onForgotPassword != null);
     return onChangePassword(this);
   }
 
@@ -1685,6 +1929,7 @@ class _$_OnChangePassword implements _OnChangePassword {
     TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     TResult onAddressChanged(_OnAddressChanged value),
     TResult onGetAddress(_OnGetAddress value),
+    TResult onForgotPassword(_OnForgotPassword value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1797,6 +2042,9 @@ class _$_UploadProfilePhoto implements _UploadProfilePhoto {
         TResult onGetAddress(
             Option<Either<GeneralFailure, AddressResponse>> response,
             bool isLoading),
+    @required
+        TResult onForgotPassword(
+            Option<Either<GeneralFailure, String>> response, bool isLoading),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1806,6 +2054,7 @@ class _$_UploadProfilePhoto implements _UploadProfilePhoto {
     assert(onProfileDataUpdated != null);
     assert(onAddressChanged != null);
     assert(onGetAddress != null);
+    assert(onForgotPassword != null);
     return uploadProfilePhoto(response, isLoading);
   }
 
@@ -1827,6 +2076,8 @@ class _$_UploadProfilePhoto implements _UploadProfilePhoto {
     TResult onGetAddress(
         Option<Either<GeneralFailure, AddressResponse>> response,
         bool isLoading),
+    TResult onForgotPassword(
+        Option<Either<GeneralFailure, String>> response, bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1847,6 +2098,7 @@ class _$_UploadProfilePhoto implements _UploadProfilePhoto {
     @required TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     @required TResult onAddressChanged(_OnAddressChanged value),
     @required TResult onGetAddress(_OnGetAddress value),
+    @required TResult onForgotPassword(_OnForgotPassword value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1856,6 +2108,7 @@ class _$_UploadProfilePhoto implements _UploadProfilePhoto {
     assert(onProfileDataUpdated != null);
     assert(onAddressChanged != null);
     assert(onGetAddress != null);
+    assert(onForgotPassword != null);
     return uploadProfilePhoto(this);
   }
 
@@ -1870,6 +2123,7 @@ class _$_UploadProfilePhoto implements _UploadProfilePhoto {
     TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     TResult onAddressChanged(_OnAddressChanged value),
     TResult onGetAddress(_OnGetAddress value),
+    TResult onForgotPassword(_OnForgotPassword value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1988,6 +2242,9 @@ class _$_OnProfileDataUpdated implements _OnProfileDataUpdated {
         TResult onGetAddress(
             Option<Either<GeneralFailure, AddressResponse>> response,
             bool isLoading),
+    @required
+        TResult onForgotPassword(
+            Option<Either<GeneralFailure, String>> response, bool isLoading),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1997,6 +2254,7 @@ class _$_OnProfileDataUpdated implements _OnProfileDataUpdated {
     assert(onProfileDataUpdated != null);
     assert(onAddressChanged != null);
     assert(onGetAddress != null);
+    assert(onForgotPassword != null);
     return onProfileDataUpdated(response, isLoading);
   }
 
@@ -2018,6 +2276,8 @@ class _$_OnProfileDataUpdated implements _OnProfileDataUpdated {
     TResult onGetAddress(
         Option<Either<GeneralFailure, AddressResponse>> response,
         bool isLoading),
+    TResult onForgotPassword(
+        Option<Either<GeneralFailure, String>> response, bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2038,6 +2298,7 @@ class _$_OnProfileDataUpdated implements _OnProfileDataUpdated {
     @required TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     @required TResult onAddressChanged(_OnAddressChanged value),
     @required TResult onGetAddress(_OnGetAddress value),
+    @required TResult onForgotPassword(_OnForgotPassword value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -2047,6 +2308,7 @@ class _$_OnProfileDataUpdated implements _OnProfileDataUpdated {
     assert(onProfileDataUpdated != null);
     assert(onAddressChanged != null);
     assert(onGetAddress != null);
+    assert(onForgotPassword != null);
     return onProfileDataUpdated(this);
   }
 
@@ -2061,6 +2323,7 @@ class _$_OnProfileDataUpdated implements _OnProfileDataUpdated {
     TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     TResult onAddressChanged(_OnAddressChanged value),
     TResult onGetAddress(_OnGetAddress value),
+    TResult onForgotPassword(_OnForgotPassword value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2178,6 +2441,9 @@ class _$_OnAddressChanged implements _OnAddressChanged {
         TResult onGetAddress(
             Option<Either<GeneralFailure, AddressResponse>> response,
             bool isLoading),
+    @required
+        TResult onForgotPassword(
+            Option<Either<GeneralFailure, String>> response, bool isLoading),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -2187,6 +2453,7 @@ class _$_OnAddressChanged implements _OnAddressChanged {
     assert(onProfileDataUpdated != null);
     assert(onAddressChanged != null);
     assert(onGetAddress != null);
+    assert(onForgotPassword != null);
     return onAddressChanged(response, isLoading);
   }
 
@@ -2208,6 +2475,8 @@ class _$_OnAddressChanged implements _OnAddressChanged {
     TResult onGetAddress(
         Option<Either<GeneralFailure, AddressResponse>> response,
         bool isLoading),
+    TResult onForgotPassword(
+        Option<Either<GeneralFailure, String>> response, bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2228,6 +2497,7 @@ class _$_OnAddressChanged implements _OnAddressChanged {
     @required TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     @required TResult onAddressChanged(_OnAddressChanged value),
     @required TResult onGetAddress(_OnGetAddress value),
+    @required TResult onForgotPassword(_OnForgotPassword value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -2237,6 +2507,7 @@ class _$_OnAddressChanged implements _OnAddressChanged {
     assert(onProfileDataUpdated != null);
     assert(onAddressChanged != null);
     assert(onGetAddress != null);
+    assert(onForgotPassword != null);
     return onAddressChanged(this);
   }
 
@@ -2251,6 +2522,7 @@ class _$_OnAddressChanged implements _OnAddressChanged {
     TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     TResult onAddressChanged(_OnAddressChanged value),
     TResult onGetAddress(_OnGetAddress value),
+    TResult onForgotPassword(_OnForgotPassword value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2367,6 +2639,9 @@ class _$_OnGetAddress implements _OnGetAddress {
         TResult onGetAddress(
             Option<Either<GeneralFailure, AddressResponse>> response,
             bool isLoading),
+    @required
+        TResult onForgotPassword(
+            Option<Either<GeneralFailure, String>> response, bool isLoading),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -2376,6 +2651,7 @@ class _$_OnGetAddress implements _OnGetAddress {
     assert(onProfileDataUpdated != null);
     assert(onAddressChanged != null);
     assert(onGetAddress != null);
+    assert(onForgotPassword != null);
     return onGetAddress(response, isLoading);
   }
 
@@ -2397,6 +2673,8 @@ class _$_OnGetAddress implements _OnGetAddress {
     TResult onGetAddress(
         Option<Either<GeneralFailure, AddressResponse>> response,
         bool isLoading),
+    TResult onForgotPassword(
+        Option<Either<GeneralFailure, String>> response, bool isLoading),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2417,6 +2695,7 @@ class _$_OnGetAddress implements _OnGetAddress {
     @required TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     @required TResult onAddressChanged(_OnAddressChanged value),
     @required TResult onGetAddress(_OnGetAddress value),
+    @required TResult onForgotPassword(_OnForgotPassword value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -2426,6 +2705,7 @@ class _$_OnGetAddress implements _OnGetAddress {
     assert(onProfileDataUpdated != null);
     assert(onAddressChanged != null);
     assert(onGetAddress != null);
+    assert(onForgotPassword != null);
     return onGetAddress(this);
   }
 
@@ -2440,6 +2720,7 @@ class _$_OnGetAddress implements _OnGetAddress {
     TResult onProfileDataUpdated(_OnProfileDataUpdated value),
     TResult onAddressChanged(_OnAddressChanged value),
     TResult onGetAddress(_OnGetAddress value),
+    TResult onForgotPassword(_OnForgotPassword value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2459,4 +2740,201 @@ abstract class _OnGetAddress implements UserState {
   bool get isLoading;
   @JsonKey(ignore: true)
   _$OnGetAddressCopyWith<_OnGetAddress> get copyWith;
+}
+
+/// @nodoc
+abstract class _$OnForgotPasswordCopyWith<$Res> {
+  factory _$OnForgotPasswordCopyWith(
+          _OnForgotPassword value, $Res Function(_OnForgotPassword) then) =
+      __$OnForgotPasswordCopyWithImpl<$Res>;
+  $Res call({Option<Either<GeneralFailure, String>> response, bool isLoading});
+}
+
+/// @nodoc
+class __$OnForgotPasswordCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res>
+    implements _$OnForgotPasswordCopyWith<$Res> {
+  __$OnForgotPasswordCopyWithImpl(
+      _OnForgotPassword _value, $Res Function(_OnForgotPassword) _then)
+      : super(_value, (v) => _then(v as _OnForgotPassword));
+
+  @override
+  _OnForgotPassword get _value => super._value as _OnForgotPassword;
+
+  @override
+  $Res call({
+    Object response = freezed,
+    Object isLoading = freezed,
+  }) {
+    return _then(_OnForgotPassword(
+      response == freezed
+          ? _value.response
+          : response as Option<Either<GeneralFailure, String>>,
+      isLoading == freezed ? _value.isLoading : isLoading as bool,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_OnForgotPassword implements _OnForgotPassword {
+  const _$_OnForgotPassword(this.response, this.isLoading)
+      : assert(response != null),
+        assert(isLoading != null);
+
+  @override
+  final Option<Either<GeneralFailure, String>> response;
+  @override
+  final bool isLoading;
+
+  @override
+  String toString() {
+    return 'UserState.onForgotPassword(response: $response, isLoading: $isLoading)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _OnForgotPassword &&
+            (identical(other.response, response) ||
+                const DeepCollectionEquality()
+                    .equals(other.response, response)) &&
+            (identical(other.isLoading, isLoading) ||
+                const DeepCollectionEquality()
+                    .equals(other.isLoading, isLoading)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(response) ^
+      const DeepCollectionEquality().hash(isLoading);
+
+  @JsonKey(ignore: true)
+  @override
+  _$OnForgotPasswordCopyWith<_OnForgotPassword> get copyWith =>
+      __$OnForgotPasswordCopyWithImpl<_OnForgotPassword>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult error(GeneralFailure failure),
+    @required TResult onChangePassword(String success),
+    @required
+        TResult uploadProfilePhoto(
+            Option<Either<GeneralFailure, String>> response, bool isLoading),
+    @required
+        TResult onProfileDataUpdated(
+            Option<Either<GeneralFailure, UserResponseDataModel>> response,
+            bool isLoading),
+    @required
+        TResult onAddressChanged(
+            Option<Either<GeneralFailure, AddressResponse>> response,
+            bool isLoading),
+    @required
+        TResult onGetAddress(
+            Option<Either<GeneralFailure, AddressResponse>> response,
+            bool isLoading),
+    @required
+        TResult onForgotPassword(
+            Option<Either<GeneralFailure, String>> response, bool isLoading),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(error != null);
+    assert(onChangePassword != null);
+    assert(uploadProfilePhoto != null);
+    assert(onProfileDataUpdated != null);
+    assert(onAddressChanged != null);
+    assert(onGetAddress != null);
+    assert(onForgotPassword != null);
+    return onForgotPassword(response, isLoading);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult error(GeneralFailure failure),
+    TResult onChangePassword(String success),
+    TResult uploadProfilePhoto(
+        Option<Either<GeneralFailure, String>> response, bool isLoading),
+    TResult onProfileDataUpdated(
+        Option<Either<GeneralFailure, UserResponseDataModel>> response,
+        bool isLoading),
+    TResult onAddressChanged(
+        Option<Either<GeneralFailure, AddressResponse>> response,
+        bool isLoading),
+    TResult onGetAddress(
+        Option<Either<GeneralFailure, AddressResponse>> response,
+        bool isLoading),
+    TResult onForgotPassword(
+        Option<Either<GeneralFailure, String>> response, bool isLoading),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (onForgotPassword != null) {
+      return onForgotPassword(response, isLoading);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
+    @required TResult error(_Error value),
+    @required TResult onChangePassword(_OnChangePassword value),
+    @required TResult uploadProfilePhoto(_UploadProfilePhoto value),
+    @required TResult onProfileDataUpdated(_OnProfileDataUpdated value),
+    @required TResult onAddressChanged(_OnAddressChanged value),
+    @required TResult onGetAddress(_OnGetAddress value),
+    @required TResult onForgotPassword(_OnForgotPassword value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(error != null);
+    assert(onChangePassword != null);
+    assert(uploadProfilePhoto != null);
+    assert(onProfileDataUpdated != null);
+    assert(onAddressChanged != null);
+    assert(onGetAddress != null);
+    assert(onForgotPassword != null);
+    return onForgotPassword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
+    TResult error(_Error value),
+    TResult onChangePassword(_OnChangePassword value),
+    TResult uploadProfilePhoto(_UploadProfilePhoto value),
+    TResult onProfileDataUpdated(_OnProfileDataUpdated value),
+    TResult onAddressChanged(_OnAddressChanged value),
+    TResult onGetAddress(_OnGetAddress value),
+    TResult onForgotPassword(_OnForgotPassword value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (onForgotPassword != null) {
+      return onForgotPassword(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnForgotPassword implements UserState {
+  const factory _OnForgotPassword(
+          Option<Either<GeneralFailure, String>> response, bool isLoading) =
+      _$_OnForgotPassword;
+
+  Option<Either<GeneralFailure, String>> get response;
+  bool get isLoading;
+  @JsonKey(ignore: true)
+  _$OnForgotPasswordCopyWith<_OnForgotPassword> get copyWith;
 }

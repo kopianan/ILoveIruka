@@ -7,6 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:i_love_iruka/domain/auth/auth_failure.dart';
 import 'package:i_love_iruka/domain/auth/i_auth_facade.dart';
 import 'package:i_love_iruka/domain/auth/sign_up_request.dart';
+import 'package:i_love_iruka/domain/core/general_failure.dart';
 import 'package:i_love_iruka/domain/user/role_data_model.dart';
 import 'package:i_love_iruka/domain/user/user_data_model.dart';
 import 'package:i_love_iruka/infrastructure/auth/update_data.dart';

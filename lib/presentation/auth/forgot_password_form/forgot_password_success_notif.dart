@@ -61,30 +61,30 @@ class _ForgotPaswordSuccessNotifState extends State<ForgotPaswordSuccessNotif> {
                     SizedBox(
                       height: 15,
                     ),
-                    Container(
-                      child: MaterialButton(
-                        textColor: Colors.white,
-                        padding: EdgeInsets.symmetric(horizontal: 30),
-                        onPressed: () {},
-                        splashColor: Colors.blue,
-                        height: 50,
-                        elevation: 8,
-                        highlightElevation: 2,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Icon(Icons.email, color: Colors.white),
-                            SizedBox(
-                              width: 7,
-                            ),
-                            Text("Resend"),
-                          ],
-                        ),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            side: BorderSide(color: Colors.white, width: 2)),
-                      ),
-                    ),
+                    // Container(
+                    //   child: MaterialButton(
+                    //     textColor: Colors.white,
+                    //     padding: EdgeInsets.symmetric(horizontal: 30),
+                    //     onPressed: () {},
+                    //     splashColor: Colors.blue,
+                    //     height: 50,
+                    //     elevation: 8,
+                    //     highlightElevation: 2,
+                    //     child: Row(
+                    //       mainAxisSize: MainAxisSize.min,
+                    //       children: <Widget>[
+                    //         Icon(Icons.email, color: Colors.white),
+                    //         SizedBox(
+                    //           width: 7,
+                    //         ),
+                    //         Text("Resend"),
+                    //       ],
+                    //     ),
+                    //     shape: RoundedRectangleBorder(
+                    //         borderRadius: BorderRadius.circular(10),
+                    //         side: BorderSide(color: Colors.white, width: 2)),
+                    //   ),
+                    // ),
                   ],
                 )),
           ),

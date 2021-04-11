@@ -18,4 +18,7 @@ abstract class UserState with _$UserState {
   const factory UserState.onGetAddress(
       Option<Either<GeneralFailure, AddressResponse>> response,
       bool isLoading) = _OnGetAddress;
+  const factory UserState.onForgotPassword(
+          Option<Either<GeneralFailure, String>> response, bool isLoading) =
+      _OnForgotPassword;
 }

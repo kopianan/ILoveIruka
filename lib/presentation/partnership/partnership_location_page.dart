@@ -1,19 +1,50 @@
 import 'dart:async';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:i_love_iruka/application/partnership/partnership_bloc.dart';
 
-class PartnershipLocationPage extends StatefulWidget {
+import '../../injection.dart';
+
+class PartnershipLocationPage extends StatelessWidget {
   static const String TAG = "/partnership_location_page";
-  PartnershipLocationPage({Key key}) : super(key: key);
-
   @override
-  _PartnershipLocationPageState createState() =>
-      _PartnershipLocationPageState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => getIt<PartnershipBloc>()
+        ..add(
+          PartnershipEvent.getPartnersList(),
+        ),
+      child: BlocConsumer<PartnershipBloc, PartnershipState>(
+        listener: (context, state) {
+          state.maybeMap(
+              orElse: () {},
+              loading: (e) {
+                print(e);
+              },
+              error: (e) {
+                print(e);
+              },
+              onGetParternData: (val) {
+                print(val);
+              });
+        },
+        builder: (context, state) {
+          return Container();
+        },
+      ),
+    );
+  }
 }
 
-class _PartnershipLocationPageState extends State<PartnershipLocationPage> {
+class DoneGettingData extends StatefulWidget {
+  @override
+  _DoneGettingDataState createState() => _DoneGettingDataState();
+}
+
+class _DoneGettingDataState extends State<DoneGettingData> {
   Completer<GoogleMapController> _controller = Completer();
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(-6.7138127, 108.5491515),
@@ -35,6 +66,19 @@ class _PartnershipLocationPageState extends State<PartnershipLocationPage> {
 
   GoogleMapController controller;
   Marker currentMarker;
+  CarouselOptions buildCarouselOptions() {
+    return CarouselOptions(
+        height: 170,
+        onPageChanged: (page, reaseon) {
+          controller.animateCamera(CameraUpdate.newLatLngZoom(
+              LatLng(
+                mapList[page].lat,
+                mapList[page].lang,
+              ),
+              12));
+        });
+  }
+
   @override
   void initState() {
     initMapList();
@@ -93,7 +137,6 @@ class _PartnershipLocationPageState extends State<PartnershipLocationPage> {
               children: [
                 IconButton(
                     color: Colors.black54,
-                    
                     icon: Icon(Icons.arrow_back_rounded),
                     onPressed: () {
                       Get.back(closeOverlays: true);
@@ -224,19 +267,6 @@ class _PartnershipLocationPageState extends State<PartnershipLocationPage> {
             ))
       ],
     ));
-  }
-
-  CarouselOptions buildCarouselOptions() {
-    return CarouselOptions(
-        height: 170,
-        onPageChanged: (page, reaseon) {
-          controller.animateCamera(CameraUpdate.newLatLngZoom(
-              LatLng(
-                mapList[page].lat,
-                mapList[page].lang,
-              ),
-              12));
-        });
   }
 }
 

@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/user_controller.dart';
 import 'package:i_love_iruka/application/membership/membership_bloc.dart';
 import 'package:i_love_iruka/infrastructure/core/pref.dart';
-import 'package:i_love_iruka/presentation/home/account_home/partnership_location_page.dart';
+import 'package:i_love_iruka/presentation/partnership/partnership_location_page.dart';
 import 'package:i_love_iruka/presentation/membership/membership_card_list.dart';
 import 'package:i_love_iruka/presentation/transaction/transaction_history_page.dart';
 

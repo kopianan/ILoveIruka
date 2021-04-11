@@ -72,6 +72,17 @@ class UserBloc extends Bloc<UserEvent, UserState> {
               some(left(GeneralFailure(e.toString()))), false);
         }
       },
+      forgotPassword: (_ForgotPassword value) async* {
+        yield UserState.onForgotPassword(none(), true);
+
+        try {
+          final _result = await _iUserFacade.forgotPassword(value.email);
+          yield UserState.onForgotPassword(some(_result), false);
+        } catch (e) {
+          yield UserState.onForgotPassword(
+              some(left(GeneralFailure(e.toString()))), false);
+        }
+      },
     );
   }
 }

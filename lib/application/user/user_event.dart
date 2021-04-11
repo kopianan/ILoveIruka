@@ -11,4 +11,6 @@ abstract class UserEvent with _$UserEvent {
   const factory UserEvent.changeAddress(AddressRequest addressRequest) =
       _ChangeAddress;
   const factory UserEvent.getAddress() = _GetAddress;
+
+  const factory UserEvent.forgotPassword(String email) = _ForgotPassword;
 }
