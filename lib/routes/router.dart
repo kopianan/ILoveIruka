@@ -7,6 +7,7 @@ import 'package:i_love_iruka/presentation/auth/signin_signout/signin_signout_pag
 import 'package:i_love_iruka/presentation/core/photo_viewer_page.dart';
 import 'package:i_love_iruka/presentation/feed_detail/feed_detail_page.dart';
 import 'package:i_love_iruka/presentation/partnership/partnership_location_page.dart';
+import 'package:i_love_iruka/presentation/partnership/partnership_list_page.dart';
 import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/add_new_pet_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/my_pets_page.dart';
@@ -49,4 +50,5 @@ List<GetPage> navigatorPages = [
       name: TransactionHistoryPage.TAG, page: () => TransactionHistoryPage()),
   GetPage(name: ChangePasswordPage.TAG, page: () => ChangePasswordPage()),
   GetPage(name: TransactionDetailPage.TAG, page: () => TransactionDetailPage()),
+  GetPage(name: PartnershipListPage.TAG, page: () => PartnershipListPage()),
 ];

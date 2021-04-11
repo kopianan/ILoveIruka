@@ -49,8 +49,10 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           return Scaffold(
               resizeToAvoidBottomInset: false,
               appBar: AppBar(
-                  title: Text("Change Password"),
-                  backgroundColor: Colors.white),
+                title: Text("Change Password"),
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+              ),
               body: Stack(children: [
                 Positioned(
                     bottom: -30,

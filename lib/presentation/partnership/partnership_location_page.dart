@@ -2,10 +2,12 @@ import 'dart:async';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:i_love_iruka/application/partnership/partnership_bloc.dart';
 import 'package:i_love_iruka/domain/partnership/partnership_data_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../injection.dart';
 
@@ -120,7 +122,10 @@ class _DoneGettingDataState extends State<DoneGettingData> {
                   ))
               .toSet(),
           initialCameraPosition: CameraPosition(
-            target: LatLng(-6.7138127, 108.5491515),
+            target: LatLng(
+              double.parse(widget.listPartner.first.lat),
+              double.parse(widget.listPartner.first.lang),
+            ),
             zoom: 10,
           ),
           onMapCreated: (GoogleMapController controller) {
@@ -131,7 +136,7 @@ class _DoneGettingDataState extends State<DoneGettingData> {
           },
         ),
         Positioned(
-          top: 20,
+          top: kToolbarHeight / 2,
           left: 0,
           right: 0,
           child: Container(
@@ -143,7 +148,10 @@ class _DoneGettingDataState extends State<DoneGettingData> {
               children: [
                 IconButton(
                     color: Colors.black54,
-                    icon: Icon(Icons.arrow_back_rounded),
+                    icon: Icon(
+                      Icons.arrow_back_rounded,
+                      size: 30,
+                    ),
                     onPressed: () {
                       Get.back(closeOverlays: true);
                     }),
@@ -254,20 +262,37 @@ class _DoneGettingDataState extends State<DoneGettingData> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
-                                              CircleAvatar(
-                                                backgroundColor: Colors.grey,
-                                                child: Icon(Icons.call,
-                                                    color: Colors.white),
+                                              InkWell(
+                                                  onTap: () {
+                                                    onButtonCallPressed(e);
+                                                  },
+                                                  child: CircleAvatar(
+                                                      backgroundColor:
+                                                          Colors.blue,
+                                                      child: Icon(Icons.call,
+                                                          color:
+                                                              Colors.white))),
+                                              InkWell(
+                                                onTap: () {
+                                                  onButtonDirectionPressed(e);
+                                                },
+                                                child: CircleAvatar(
+                                                  backgroundColor:
+                                                      Color(0xFFFA3434),
+                                                  child: Icon(Icons.place,
+                                                      color: Colors.white),
+                                                ),
                                               ),
-                                              CircleAvatar(
-                                                backgroundColor: Colors.grey,
-                                                child: Icon(Icons.place,
-                                                    color: Colors.white),
-                                              ),
-                                              CircleAvatar(
-                                                backgroundColor: Colors.grey,
-                                                child: Icon(Icons.chat_bubble,
-                                                    color: Colors.white),
+                                              InkWell(
+                                                onTap: () {
+                                                  onButtonMessagePressed(e);
+                                                },
+                                                child: CircleAvatar(
+                                                  backgroundColor:
+                                                      Color(0xFF33B94A),
+                                                  child: Icon(Icons.chat_bubble,
+                                                      color: Colors.white),
+                                                ),
                                               ),
                                             ],
                                           )
@@ -293,5 +318,47 @@ class _DoneGettingDataState extends State<DoneGettingData> {
             ))
       ],
     ));
+  }
+
+  void onButtonDirectionPressed(PartnershipDataModel data) {
+    launch("https://www.google.com/maps/search/?api=1&query=${double.parse(data.lat)},${double.parse(data.lang)}")
+        .then((value) => Fluttertoast.showToast(msg: "Go to page"))
+        .onError(
+          (error, stackTrace) => Fluttertoast.showToast(msg: error.toString()),
+        );
+  }
+
+  void onButtonCallPressed(PartnershipDataModel data) {
+    if (data.phoneNumber == null) {
+      Fluttertoast.showToast(msg: "No Phone Number Available");
+    } else
+      launch("tel:${data.phoneNumber}")
+          .then((value) => Fluttertoast.showToast(msg: "Go to page"))
+          .onError(
+            (error, stackTrace) =>
+                Fluttertoast.showToast(msg: error.toString()),
+          );
+  }
+
+  void onButtonMessagePressed(PartnershipDataModel data) {
+    if (data.phoneNumber == null) {
+      Fluttertoast.showToast(msg: "No Phone Number Available");
+    } else {
+      var _result;
+      final _data = data.phoneNumber.replaceAll('+', "");
+      if (_data.substring(1) == "0") {
+        _result = _data.replaceFirst("0", "62");
+      } else if (_data.substring(1) == "8") {
+        _result = "62" + _data;
+      } else {
+        _result = _data;
+      }
+
+      launch("https://wa.me/${_result}").then((e) {
+        Fluttertoast.showToast(msg: "Go to page");
+      }).onError(
+        (error, stackTrace) => Fluttertoast.showToast(msg: error.toString()),
+      );
+    }
   }
 }

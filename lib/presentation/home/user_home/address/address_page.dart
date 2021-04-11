@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:i_love_iruka/application/address/cubit/address_cubit.dart';
+import 'package:i_love_iruka/application/auth/user_controller.dart';
 import 'package:i_love_iruka/application/user/user_bloc.dart';
 import 'package:i_love_iruka/domain/address/address_data_model.dart';
 import 'package:i_love_iruka/domain/address/province_data_model.dart';
@@ -24,6 +26,7 @@ class _AddressPageState extends State<AddressPage> {
   List<ProvinceDataModel> provinceList = [];
   final cityCubit = AddressCubit();
   final provinceCubit = AddressCubit();
+  final userController = Get.put(UserController());
 
   @override
   void initState() {
@@ -37,13 +40,29 @@ class _AddressPageState extends State<AddressPage> {
   }
 
   AddressResponse dataAddress;
-  void fillData(AddressResponse r) {
+  void fillDataWhenGetAddressSuccess(AddressResponse r) {
     if (r.toJson().containsValue(null)) {
     } else {
       dataAddress = r;
       addressController.text = r.address;
       postalController.text = r.postalCode;
     }
+  }
+
+  void fillDataWhenGetAddressError() {
+    final _user = userController.getUserData();
+    dataAddress = AddressResponse(
+        id: _user.id,
+        province: null,
+        address: null,
+        postalCode: null,
+        cityId: null,
+        city: null,
+        provinceId: null,
+        type: null,
+        user: null);
+    addressController.text = "";
+    postalController.text = "";
   }
 
   @override
@@ -60,9 +79,12 @@ class _AddressPageState extends State<AddressPage> {
               e.response.fold(
                   () => {},
                   (a) => a.fold(
-                        (l) => showBasicFlash(context, l.error),
+                        (l) {
+                          fillDataWhenGetAddressError();
+                          provinceCubit.getProvince();
+                        },
                         (r) {
-                          fillData(r);
+                          fillDataWhenGetAddressSuccess(r);
                           provinceCubit.getProvince();
                         },
                       ));
@@ -82,13 +104,13 @@ class _AddressPageState extends State<AddressPage> {
                 return loadingScaffold();
               } else {}
               return e.response.fold(
-                  () => noneScaffold(),
+                  () => noneScaffold(context),
                   (a) => a.fold(
-                        (l) => errorScaffold(),
+                        (l) => onDataScaffold(context),
                         (r) => onDataScaffold(context),
                       ));
             },
-            orElse: () => noneScaffold(),
+            orElse: () => noneScaffold(context),
           );
         },
       ),
@@ -163,10 +185,14 @@ class _AddressPageState extends State<AddressPage> {
                                       getProvince: (e) {
                                         provinceList = e.data;
 
-                                        selectedProvince = e.data.firstWhere(
-                                            (element) =>
-                                                element.provinceId ==
-                                                dataAddress.provinceId);
+                                        try {
+                                          selectedProvince = e.data.firstWhere(
+                                              (element) =>
+                                                  element.provinceId ==
+                                                  dataAddress.provinceId);
+                                        } catch (err) {
+                                          selectedProvince = e.data.first;
+                                        }
 
                                         cityCubit.getCity(
                                             selectedProvince.provinceId);
@@ -332,7 +358,7 @@ class _AddressPageState extends State<AddressPage> {
     );
   }
 
-  Scaffold noneScaffold() {
+  Scaffold noneScaffold(BuildContext context) {
     return Scaffold(
       body: Center(
           child: Text(
@@ -342,7 +368,7 @@ class _AddressPageState extends State<AddressPage> {
     );
   }
 
-  Scaffold errorScaffold() {
+  Scaffold errorScaffold(BuildContext context) {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -350,7 +376,6 @@ class _AddressPageState extends State<AddressPage> {
         children: [
           Icon(Icons.refresh, size: 50, color: Colors.grey),
           Text(
-
             "No Data",
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 30, color: Colors.grey),

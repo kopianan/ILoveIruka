@@ -163,9 +163,11 @@ class MemberCard extends StatelessWidget {
 //         Color(0xff68737f),
 //         Color(0xff1e2022),
                 Container(
+                  width: double.infinity,
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Container(
                         margin: EdgeInsets.all(10),
@@ -182,16 +184,8 @@ class MemberCard extends StatelessWidget {
                     // color: Colors.red,
                     margin: EdgeInsets.all(20),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(
-                          Icons.charging_station_sharp,
-                          size: 18,
-                          color: textColor,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
                         Text(
                           type,
                           style: TextStyle(
@@ -212,6 +206,7 @@ class MemberCard extends StatelessWidget {
                         Text(
                           name,
                           style: TextStyle(
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: textColor,
                           ),
@@ -221,14 +216,15 @@ class MemberCard extends StatelessWidget {
                           children: [
                             Text(
                               "Valid until",
-                              style: TextStyle(color: textColor, fontSize: 8),
+                              style: TextStyle(
+                                  color: Color(0xFFFBFBFB), fontSize: 10),
                             ),
                             Text(
                               validUntil,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  color: textColor,
-                                  fontSize: 10),
+                                  color: Color(0xFFFBFBFB),
+                                  fontSize: 14),
                             ),
                           ],
                         ),

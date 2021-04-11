@@ -95,33 +95,31 @@ class _RegisterFormState extends State<RegisterForm> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        FocusScopeNode currentFocus = FocusScope.of(context);
-        if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
-        }
-      },
-      child: Scaffold(
-          body: BlocProvider(
-        create: (context) =>
-            getIt<AuthBloc>()..add(AuthEvent.getUserRoleList()),
-        child: BlocConsumer<AuthBloc, AuthState>(
-          listener: onGetUserTypeListener,
-          builder: (context, state) {
-            return state.maybeMap(
-              orElse: () => _buildLoadingPage(),
-              onGetUserRoleList: (e) {
-                return _buildSingleChildScrollView(context, state);
-                // if (e.isLoading)
-                //   return _buildLoadingPage();
-                // else
-                //   return _buildSingleChildScrollView(context);
-              },
-            );
-          },
-        ),
-      )),
-    );
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
+        },
+        child: BlocProvider(
+          create: (context) =>
+              getIt<AuthBloc>()..add(AuthEvent.getUserRoleList()),
+          child: BlocConsumer<AuthBloc, AuthState>(
+            listener: onGetUserTypeListener,
+            builder: (context, state) {
+              return state.maybeMap(
+                orElse: () => _buildLoadingPage(),
+                onGetUserRoleList: (e) {
+                  return _buildSingleChildScrollView(context, state);
+                  // if (e.isLoading)
+                  //   return _buildLoadingPage();
+                  // else
+                  //   return _buildSingleChildScrollView(context);
+                },
+              );
+            },
+          ),
+        ));
   }
 
   Widget _buildLoadingPage() {

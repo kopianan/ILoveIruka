@@ -79,7 +79,15 @@ class AuthRepository implements IAuthFacade {
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> signOut() async {}
+  Future<Either<AuthFailure, Unit>> signOut() async {
+    final pref = Pref();
+    try {
+      await pref.removeStorageData();
+      return right(unit);
+    } catch (e) {
+      return left(AuthFailure.serverError("Can not sign"));
+    }
+  }
 
   @override
   Future<Either<AuthFailure, UserDataModel>> loginUser(

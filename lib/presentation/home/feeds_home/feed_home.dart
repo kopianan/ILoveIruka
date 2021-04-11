@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/user_controller.dart';
@@ -15,6 +16,7 @@ import 'package:i_love_iruka/presentation/feed_detail/feed_detail_page.dart';
 import 'package:i_love_iruka/presentation/widgets/error_handling_widget.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'widgets/service_menu_item.dart';
 
@@ -58,134 +60,154 @@ class _FeedHomeState extends State<FeedHome>
   Widget build(BuildContext context) {
     const double _horizontalMargin = 15;
     const double _verticalMargin = 10;
-    return SafeArea(
-      child: BlocProvider(
-          create: (context) => _refresh,
-          child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
-              listener: (context, state) {
-            state.maybeMap(
-                orElse: () {},
-                onRefreshHomeData: (ref) {
-                  if (!ref.isLoading) {
-                    _refreshController.refreshCompleted();
-                  }
-                  ref.allDataList.fold(
-                      () => print("Nothing"),
-                      (a) => a.fold(
-                            (l) => print(l),
-                            (r) {
-                              feedController.setTopFeed(r[0]);
-                              feedController.setBottomFeed(r[1]);
-                              feedController.setMenuList(r[2]);
-                            },
-                          ));
-                });
-          }, builder: (context, state) {
-            return SmartRefresher(
-              enablePullDown: true,
-              enablePullUp: true,
-              header: WaterDropHeader(),
-              footer: CustomFooter(
-                builder: (BuildContext context, LoadStatus mode) {
-                  Widget body;
-                  if (mode == LoadStatus.idle) {
-                    body = Text("pull up load");
-                  } else if (mode == LoadStatus.loading) {
-                    body = CupertinoActivityIndicator();
-                  } else if (mode == LoadStatus.failed) {
-                    body = Text("Load Failed!Click retry!");
-                  } else if (mode == LoadStatus.canLoading) {
-                    body = Text("release to load more");
-                  } else {
-                    body = Text("No more Data");
-                  }
-                  return Container(
-                    height: 55.0,
-                    child: Center(child: body),
-                  );
-                },
+    return BlocProvider(
+        create: (context) => _refresh,
+        child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
+            listener: (context, state) {
+          state.maybeMap(
+              orElse: () {},
+              onRefreshHomeData: (ref) {
+                if (!ref.isLoading) {
+                  _refreshController.refreshCompleted();
+                }
+                ref.allDataList.fold(
+                    () => print("Nothing"),
+                    (a) => a.fold(
+                          (l) => print(l),
+                          (r) {
+                            feedController.setTopFeed(r[0]);
+                            feedController.setBottomFeed(r[1]);
+                            feedController.setMenuList(r[2]);
+                          },
+                        ));
+              });
+        }, builder: (context, state) {
+          return Stack(
+            children: [
+              ClipPath(
+                clipper: WaveClipperTwo(flip: true),
+                child: Container(
+                  height: 150,
+                  color: Color(0xFF3DA3EC),
+                ),
               ),
-              controller: _refreshController,
-              onRefresh: _onRefresh,
-              onLoading: _onLoading,
-              child: CustomScrollView(slivers: [
-                SliverToBoxAdapter(
-                    child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: _horizontalMargin, vertical: _verticalMargin),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Welcome,\n${userController.getUserData().fullName}",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                      ),
-                      Container(
-                        height: 40,
-                        width: 40,
-                        child: Icon(
-                          Icons.image,
-                          color: Colors.black,
-                        ),
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey[300],
-                                spreadRadius: 2,
-                                blurRadius: 4,
-                                offset: Offset.fromDirection(45, 2))
-                          ],
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      )
-                    ],
+              SmartRefresher(
+                enablePullDown: true,
+                enablePullUp: true,
+                header: WaterDropHeader(),
+                footer: CustomFooter(
+                  builder: (BuildContext context, LoadStatus mode) {
+                    Widget body;
+                    if (mode == LoadStatus.idle) {
+                      body = Text("pull up load");
+                    } else if (mode == LoadStatus.loading) {
+                      body = CupertinoActivityIndicator();
+                    } else if (mode == LoadStatus.failed) {
+                      body = Text("Load Failed!Click retry!");
+                    } else if (mode == LoadStatus.canLoading) {
+                      body = Text("release to load more");
+                    } else {
+                      body = Text("No more Data");
+                    }
+                    return Container(
+                      child: Center(child: body),
+                    );
+                  },
+                ),
+                controller: _refreshController,
+                onRefresh: _onRefresh,
+                onLoading: _onLoading,
+                child: CustomScrollView(slivers: [
+                  SliverToBoxAdapter(
+                    child: Container(
+                      height: kToolbarHeight,
+                    ),
                   ),
-                )),
-                SliverPadding(
-                  padding: EdgeInsets.only(bottom: 10),
-                  sliver: SliverToBoxAdapter(
-                    child: BlocProvider(
-                      create: (context) =>
-                          _homeTopFeedBloc..add(FeedHomeEvent.getTopFeedData()),
-                      child: Container(
-                        child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
-                          listener: (context, state) {
-                            //set top feed data
-                            state.maybeMap(
-                              orElse: () {},
-                              failOrSuccessGetData: (val) {
-                                if (val.isLoading) print("Loading kok");
-                                val.responseOptions.fold(
-                                    () {},
-                                    (a) => a.fold(
-                                          (l) {},
-                                          (r) {
-                                            feedController.setTopFeed(r);
-                                          },
-                                        ));
-                              },
-                            );
-                          },
-                          builder: (context, state) {
-                            return onGetTopFeed(context, state);
-                          },
+                  SliverToBoxAdapter(
+                      child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: _horizontalMargin,
+                        vertical: _verticalMargin),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "I Love Iruka",
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black54),
+                            ),
+                            Text(
+                              "${userController.getUserData().fullName}",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black54),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          height: 60,
+                          width: 60,
+                          child: Image.asset('images/assets/iruka_logo.png'),
+                          decoration: BoxDecoration(
+                            // boxShadow: [
+                            //   BoxShadow(
+                            //       color: Colors.grey,
+                            //       spreadRadius: 2,
+                            //       blurRadius: 2,
+                            //       offset: Offset(3, 3))
+                            // ],
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        )
+                      ],
+                    ),
+                  )),
+                  SliverPadding(
+                    padding: EdgeInsets.only(bottom: 10),
+                    sliver: SliverToBoxAdapter(
+                      child: BlocProvider(
+                        create: (context) => _homeTopFeedBloc
+                          ..add(FeedHomeEvent.getTopFeedData()),
+                        child: Container(
+                          child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
+                            listener: (context, state) {
+                              //set top feed data
+                              state.maybeMap(
+                                orElse: () {},
+                                failOrSuccessGetData: (val) {
+                                  if (val.isLoading) print("Loading kok");
+                                  val.responseOptions.fold(
+                                      () {},
+                                      (a) => a.fold(
+                                            (l) {},
+                                            (r) {
+                                              feedController.setTopFeed(r);
+                                            },
+                                          ));
+                                },
+                              );
+                            },
+                            builder: (context, state) {
+                              return onGetTopFeed(context, state);
+                            },
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                SliverToBoxAdapter(
-                  child: sectionTitle(_horizontalMargin, "Features"),
-                ),
-                SliverToBoxAdapter(
-                    child: BlocProvider(
-                        create: (context) =>
-                            _homeMenuBloc..add(FeedHomeEvent.getHomeMenuList()),
-                        child: Container(
+                  SliverToBoxAdapter(
+                    child: sectionTitle(_horizontalMargin, "Features"),
+                  ),
+                  SliverToBoxAdapter(
+                      child: BlocProvider(
+                          create: (context) => _homeMenuBloc
+                            ..add(FeedHomeEvent.getHomeMenuList()),
                           child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
                             listener: (context, state) {
                               state.maybeMap(
@@ -201,47 +223,49 @@ class _FeedHomeState extends State<FeedHome>
                                             ));
                                   });
                             },
-                            builder: (context, state) => onGetHomeMenu(state),
-                          ),
-                        ))),
-                SliverToBoxAdapter(
-                  child: sectionTitle(_horizontalMargin, "Newsletter"),
-                ),
-                SliverToBoxAdapter(
-                  child: BlocProvider(
-                    create: (context) => _homeBottomFeedBloc
-                      ..add(FeedHomeEvent.getBottomFeedData()),
-                    child: Container(
-                      child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
-                        listener: (context, state) {
-                          state.maybeMap(
-                            orElse: () {},
-                            failOrSuccessGetDataBottom: (val) {
-                              val.responseOptions.fold(
-                                  () {},
-                                  (a) => a.fold(
-                                        (l) {},
-                                        (r) {
-                                          feedController.setBottomFeed(r);
-                                        },
-                                      ));
+                            builder: (context, state) {
+                              return onGetHomeMenu(state);
                             },
-                          );
-                        },
-                        builder: (context, state) {
-                          return onGetBottomFeed(state);
-                        },
+                          ))),
+                  SliverToBoxAdapter(
+                    child: sectionTitle(_horizontalMargin, "Newsletter"),
+                  ),
+                  SliverToBoxAdapter(
+                    child: BlocProvider(
+                      create: (context) => _homeBottomFeedBloc
+                        ..add(FeedHomeEvent.getBottomFeedData()),
+                      child: Container(
+                        child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
+                          listener: (context, state) {
+                            state.maybeMap(
+                              orElse: () {},
+                              failOrSuccessGetDataBottom: (val) {
+                                val.responseOptions.fold(
+                                    () {},
+                                    (a) => a.fold(
+                                          (l) {},
+                                          (r) {
+                                            feedController.setBottomFeed(r);
+                                          },
+                                        ));
+                              },
+                            );
+                          },
+                          builder: (context, state) {
+                            return onGetBottomFeed(state);
+                          },
+                        ),
                       ),
                     ),
                   ),
-                ),
-                // SliverList(delegate: SliverChildBuilderDelegate((context, index) {
-                //   return newsletterItem(_horizontalMargin);
-                // }))
-              ]),
-            );
-          })),
-    );
+                  // SliverList(delegate: SliverChildBuilderDelegate((context, index) {
+                  //   return newsletterItem(_horizontalMargin);
+                  // }))
+                ]),
+              ),
+            ],
+          );
+        }));
   }
 
   Widget onGetHomeMenu(FeedHomeState state) {
@@ -274,8 +298,13 @@ class _FeedHomeState extends State<FeedHome>
               (a) => a.fold(
                     (l) => errorContainer,
                     (r) => GetX<FeedController>(
-                        builder: (controller) =>
-                            _featuresMenuGrid(controller.getMenuData)),
+                      builder: (controller) =>
+                          // Container(
+                          //       height: 300,
+                          //       color: Colors.green,
+                          //     )
+                          _featuresMenuGrid(controller.getMenuData),
+                    ),
                   ));
         }
       },
@@ -284,18 +313,27 @@ class _FeedHomeState extends State<FeedHome>
 
   Widget _featuresMenuGrid(List<MenuDataModel> listHome) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 13),
       child: GridView.builder(
+        padding: EdgeInsets.only(bottom: 30),
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemCount: listHome.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4, mainAxisSpacing: 10, crossAxisSpacing: 10),
+          crossAxisCount: 4,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+        ),
         itemBuilder: (context, index) {
           return ServiceMenuItem(
             assetUrl: Constants.getStagingUrl() + listHome[index].imageUrl,
             name: listHome[index].label,
-            onClick: () {},
+            onClick: () {
+              launch(listHome[index].action)
+                  .then((value) => Fluttertoast.showToast(msg: "Go to page"))
+                  .onError((error, stackTrace) =>
+                      Fluttertoast.showToast(msg: "URL ERROR"));
+            },
           );
         },
       ),
@@ -377,6 +415,7 @@ class _FeedHomeState extends State<FeedHome>
                   (r) => GetX<FeedController>(
                         builder: (controller) => Container(
                             child: ListView.builder(
+                                padding: EdgeInsets.zero,
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
                                 itemCount: controller.getBottomFeed.length,
@@ -392,7 +431,7 @@ class _FeedHomeState extends State<FeedHome>
 
   Container sectionTitle(double _horizontalMargin, String title) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: _horizontalMargin, vertical: 15),
+      margin: EdgeInsets.symmetric(horizontal: _horizontalMargin, vertical: 10),
       alignment: Alignment.topLeft,
       child: Text(
         title,
@@ -410,11 +449,20 @@ class _FeedHomeState extends State<FeedHome>
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+                offset: Offset(3, 3),
+                blurRadius: 2,
+                spreadRadius: 2,
+                color: Colors.grey[200])
+          ],
           color: Colors.white,
         ),
         padding: EdgeInsets.all(10),
-        margin:
-            EdgeInsets.symmetric(horizontal: _horizontalMargin, vertical: 5),
+        margin: EdgeInsets.symmetric(
+          horizontal: _horizontalMargin,
+          vertical: 5,
+        ),
         child: Row(
           children: [
             Container(
@@ -489,6 +537,7 @@ class _FeedHomeState extends State<FeedHome>
 
   CarouselOptions carouselOptions() {
     return CarouselOptions(
+      pageSnapping: false,
       autoPlay: true,
       aspectRatio: 2 / 0.8,
       autoPlayInterval: Duration(seconds: 10),
@@ -501,28 +550,33 @@ class _FeedHomeState extends State<FeedHome>
       width: double.infinity,
       margin: EdgeInsets.all(5.0),
       color: Colors.grey[200],
-      child: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(5.0)),
-          child: Image.network(
-            Constants.getStagingUrl() + item.imageUrl,
-            fit: BoxFit.cover,
-            loadingBuilder: (context, child, loading) {
-              if (loading == null)
-                return child;
-              else
-                return Center(
-                  child: CircularProgressIndicator(
-                    value: (loading.expectedTotalBytes != null)
-                        ? loading.cumulativeBytesLoaded /
-                            loading.expectedTotalBytes
-                        : null,
-                  ),
-                );
-            },
-            errorBuilder: (context, exception, err) {
-              return onImageLoadingError;
-            },
-          )),
+      child: InkWell(
+        onTap: () {
+          Get.toNamed(FeedDetailPage.TAG, arguments: item);
+        },
+        child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            child: Image.network(
+              Constants.getStagingUrl() + item.imageUrl,
+              fit: BoxFit.cover,
+              loadingBuilder: (context, child, loading) {
+                if (loading == null)
+                  return child;
+                else
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: (loading.expectedTotalBytes != null)
+                          ? loading.cumulativeBytesLoaded /
+                              loading.expectedTotalBytes
+                          : null,
+                    ),
+                  );
+              },
+              errorBuilder: (context, exception, err) {
+                return onImageLoadingError;
+              },
+            )),
+      ),
     );
   }
 }

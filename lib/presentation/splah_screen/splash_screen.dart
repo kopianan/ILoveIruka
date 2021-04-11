@@ -22,11 +22,12 @@ class SplashScreen extends StatelessWidget {
             orElse: () {},
             authenticated: (e) {
               print(e.user);
-              Get.offNamed(DashboardPage.TAG);
+              Get.offAllNamed(DashboardPage.TAG);
             },
             unAuthenticated: (data) {
               print(data);
-              Get.offNamed(WelcomeScreen.TAG);
+              Get.offNamedUntil(
+                  WelcomeScreen.TAG, ModalRoute.withName(SplashScreen.TAG));
             },
           );
         },

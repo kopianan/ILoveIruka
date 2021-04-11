@@ -141,18 +141,14 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
                             height: 90,
                             padding: EdgeInsets.all(10),
                             child: (image == null &&
-                                    _userController
-                                        .getUserData()
-                                        .imageUrl
-                                        .isEmpty)
+                                    _userController.getUserData().imageUrl ==
+                                        null)
                                 ? Image.asset("images/assets/placeholder.png")
                                 : null,
                             decoration: BoxDecoration(
                               image: ((image == null) &&
-                                      _userController
-                                          .getUserData()
-                                          .imageUrl
-                                          .isEmpty)
+                                      _userController.getUserData().imageUrl ==
+                                          null)
                                   ? null
                                   : (image != null)
                                       ? DecorationImage(

@@ -55,7 +55,7 @@ class _MembershipCardListPageState extends State<MembershipCardListPage> {
             );
           }, builder: (context, state) {
             return state.maybeMap(
-                orElse: () {},
+                orElse: () => Container(),
                 onGetMemberList: (e) {
                   return e.onData.fold(
                     (l) => Container(child: Text("NONE")),
@@ -245,10 +245,12 @@ class SilverCard extends StatelessWidget {
       {Key key,
       this.cardNumber = "123",
       this.name: "nama",
+      this.cardType: "Silver",
       this.validUntil: "20/10"})
       : super(key: key);
   final String cardNumber;
   final String name;
+  final String cardType;
   final String validUntil;
   @override
   Widget build(BuildContext context) {
@@ -261,7 +263,7 @@ class SilverCard extends StatelessWidget {
       backNumber: cardNumber,
       name: name,
       validUntil: validUntil,
-      type: "Silver VIP",
+      type: cardType,
     );
   }
 }

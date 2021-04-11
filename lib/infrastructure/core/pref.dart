@@ -53,11 +53,12 @@ class Pref {
     }
   }
 
-  void removeStorageData() {
-    _storage.erase().then((value) {
-      print("Removed");
-    }).catchError((onError) {
+  Future<void> removeStorageData() async {
+    try {
+      final data = await _storage.erase();
+      return data;
+    } catch (onError) {
       throw Exception(onError.toString());
-    });
+    }
   }
 }

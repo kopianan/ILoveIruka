@@ -11,8 +11,10 @@ abstract class MemberInfoDataModel with _$MemberInfoDataModel {
       String user,
       String memberNumber,
       MembershipDataModel type,
-      String startAt,
-      String endedAt}) = _MemberInfoDataModel;
+      @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
+          String startAt,
+      @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
+          String endedAt}) = _MemberInfoDataModel;
 
   factory MemberInfoDataModel.fromJson(Map<String, dynamic> json) =>
       _$MemberInfoDataModelFromJson(json);

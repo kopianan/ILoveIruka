@@ -10,6 +10,7 @@ import 'package:i_love_iruka/infrastructure/functions/custom_alert.dart';
 import 'package:i_love_iruka/presentation/auth/forgot_password_form/forgot_password_page.dart';
 import 'package:i_love_iruka/presentation/auth/widgets/decoration.dart';
 import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
+import 'package:i_love_iruka/presentation/splah_screen/splash_screen.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primarary_blue_loading.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
 import 'package:provider/provider.dart';
@@ -79,11 +80,12 @@ class _SignInFormState extends State<SignInForm> {
                 serverError: (err) =>
                     showBasicFlash(context, err.errorMessage));
           }, (r) {
-            print("DATA USER");
-            print(r);
-            Pref()
-                .saveUserData(r)
-                .then((value) => Get.offNamed(DashboardPage.TAG));
+            Pref().saveUserData(r).then(
+                  (value) => Get.offNamedUntil(
+                    DashboardPage.TAG,
+                    ModalRoute.withName(SplashScreen.TAG),
+                  ),
+                );
           }),
         );
       },
@@ -97,103 +99,102 @@ class _SignInFormState extends State<SignInForm> {
       child: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) => onLoginListener(state),
           builder: (context, state) {
-            return Scaffold(
-              body: SingleChildScrollView(
-                child: GestureDetector(
-                    onTap: () {
-                      FocusScopeNode currentFocus = FocusScope.of(context);
-                      if (!currentFocus.hasPrimaryFocus) {
-                        currentFocus.unfocus();
-                      }
-                    },
-                    child: Align(
-                      alignment: FractionalOffset.bottomCenter,
-                      child: Form(
-                        key: _formKey,
-                        autovalidate: _autoValidate,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 20),
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                decoration: textFieldShadow(),
-                                child: TextFormField(
-                                  controller: emailController,
-                                  focusNode: _emailFN,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (term) {
-                                    fieldFocusChange(
-                                        context: context,
-                                        currentFocus: _emailFN,
-                                        nextFocus: _passwordFN);
-                                  },
-                                  decoration: InputDecoration(
-                                    labelText: "Email",
-                                    hintText: "Input your email",
-                                  ),
-                                  validator: validateEmail,
+            return SingleChildScrollView(
+              physics: NeverScrollableScrollPhysics(),
+              child: GestureDetector(
+                  onTap: () {
+                    FocusScopeNode currentFocus = FocusScope.of(context);
+                    if (!currentFocus.hasPrimaryFocus) {
+                      currentFocus.unfocus();
+                    }
+                  },
+                  child: Align(
+                    alignment: FractionalOffset.bottomCenter,
+                    child: Form(
+                      key: _formKey,
+                      autovalidate: _autoValidate,
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              decoration: textFieldShadow(),
+                              child: TextFormField(
+                                controller: emailController,
+                                focusNode: _emailFN,
+                                textInputAction: TextInputAction.next,
+                                onFieldSubmitted: (term) {
+                                  fieldFocusChange(
+                                      context: context,
+                                      currentFocus: _emailFN,
+                                      nextFocus: _passwordFN);
+                                },
+                                decoration: InputDecoration(
+                                  labelText: "Email",
+                                  hintText: "Input your email",
+                                ),
+                                validator: validateEmail,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              decoration: textFieldShadow(),
+                              child: TextFormField(
+                                obscureText: obsecureTextPassword,
+                                validator: validatePassword,
+                                controller: passwordController,
+                                focusNode: _passwordFN,
+                                textInputAction: TextInputAction.done,
+                                onFieldSubmitted: (term) {
+                                  _passwordFN.unfocus();
+                                },
+                                decoration: InputDecoration(
+                                    labelText: "Password",
+                                    hintText: "Input your new password",
+                                    suffixIcon: IconButton(
+                                      splashRadius: 10,
+                                      icon: Icon(obsecureTextPassword
+                                          ? Icons.visibility
+                                          : Icons.visibility_off),
+                                      onPressed: () {
+                                        setState(() {
+                                          obsecureTextPassword =
+                                              !obsecureTextPassword;
+                                        });
+                                      },
+                                    )),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              alignment: Alignment.centerRight,
+                              child: InkWell(
+                                onTap: () {
+                                  Get.toNamed(ForgotPasswordPage.TAG);
+                                },
+                                child: Text(
+                                  "Forgot Password",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xffEE2424)),
                                 ),
                               ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Container(
-                                decoration: textFieldShadow(),
-                                child: TextFormField(
-                                  obscureText: obsecureTextPassword,
-                                  validator: validatePassword,
-                                  controller: passwordController,
-                                  focusNode: _passwordFN,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (term) {
-                                    _passwordFN.unfocus();
-                                  },
-                                  decoration: InputDecoration(
-                                      labelText: "Password",
-                                      hintText: "Input your new password",
-                                      suffixIcon: IconButton(
-                                        splashRadius: 10,
-                                        icon: Icon(obsecureTextPassword
-                                            ? Icons.visibility
-                                            : Icons.visibility_off),
-                                        onPressed: () {
-                                          setState(() {
-                                            obsecureTextPassword =
-                                                !obsecureTextPassword;
-                                          });
-                                        },
-                                      )),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Container(
-                                alignment: Alignment.centerRight,
-                                child: InkWell(
-                                  onTap: () {
-                                    Get.toNamed(ForgotPasswordPage.TAG);
-                                  },
-                                  child: Text(
-                                    "Forgot Password",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xffEE2424)),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              buttonAction(context, state),
-                            ],
-                          ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            buttonAction(context, state),
+                          ],
                         ),
                       ),
-                    )),
-              ),
+                    ),
+                  )),
             );
           }),
     );

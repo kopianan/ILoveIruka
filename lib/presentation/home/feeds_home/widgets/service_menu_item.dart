@@ -14,39 +14,59 @@ class ServiceMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Expanded(
-          child: InkWell(
-            onTap: () {
-              onClick();
-            },
-            child: Container(
-              padding: EdgeInsets.all(10),
-              width: double.infinity,
-              child: Image.network(assetUrl,errorBuilder: (context,obj,err){  return Image.asset(
-                'images/assets/broken_image.png',
-                fit: BoxFit.cover,
-                width: 1000.0,
-              );},),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+              color: Colors.grey[300],
+              blurRadius: 2,
+              spreadRadius: 2,
+              offset: Offset(3, 3))
+        ],
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: InkWell(
+        onTap: onClick,
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              flex: 2,
+              child: Container(
+                padding: EdgeInsets.all(4),
+                width: double.infinity,
+                child: Image.network(
+                  assetUrl,
+                  errorBuilder: (context, obj, err) {
+                    return Image.asset(
+                      'images/assets/broken_image.png',
+                      fit: BoxFit.cover,
+                      width: 1000.0,
+                    );
+                  },
+                ),
+              ),
             ),
-          ),
+            SizedBox(
+              height: 5,
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                  width: double.infinity,
+                  // constraints: BoxConstraints(maxWidth: 80,),
+                  alignment: Alignment.topCenter,
+                  child: Text(
+                    name,
+                    style: TextStyle(fontSize: 11),
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  )),
+            )
+          ],
         ),
-        SizedBox(
-          height: 5,
-        ),
-        Container(
-            width: double.infinity,
-            // constraints: BoxConstraints(maxWidth: 80,),
-            alignment: Alignment.topCenter,
-            child: Text(
-              name,
-              style: TextStyle(fontSize: 11),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ))
-      ],
+      ),
     );
   }
 }

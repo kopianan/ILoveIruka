@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/user_controller.dart';
 import 'package:i_love_iruka/application/membership/membership_bloc.dart';
 import 'package:i_love_iruka/infrastructure/core/pref.dart';
+import 'package:i_love_iruka/infrastructure/functions/custom_formatter.dart';
+import 'package:i_love_iruka/presentation/partnership/partnership_list_page.dart';
 import 'package:i_love_iruka/presentation/partnership/partnership_location_page.dart';
 import 'package:i_love_iruka/presentation/membership/membership_card_list.dart';
 import 'package:i_love_iruka/presentation/transaction/transaction_history_page.dart';
@@ -34,28 +36,7 @@ class _AccountPagehomeState extends State<AccountPagehome>
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-              child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("My Account",
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black54)),
-                IconButton(
-                    icon: Icon(Icons.refresh),
-                    onPressed: () {
-                      _myMember.add(MembershipEvent.getMyMembership());
-                    }),
-              ],
-            ),
-          )),
-          BlocProvider(
+        child: BlocProvider(
             create: (context) =>
                 _myMember..add(MembershipEvent.getMyMembership()),
             child: BlocConsumer<MembershipBloc, MembershipState>(
@@ -74,136 +55,180 @@ class _AccountPagehomeState extends State<AccountPagehome>
                 },
               );
             }, builder: (context, state) {
-              return SliverToBoxAdapter(
-                  child: Padding(
-                      padding: EdgeInsets.only(top: 10),
-                      child: SilverCard(
-                        cardNumber: "123",
-                        name: userController.getUserData().fullName,
-                        validUntil: '20/10',
-                      )));
-            }),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              margin: EdgeInsets.only(left: 15, bottom: 15, right: 15),
-              padding: EdgeInsets.all(15),
-              height: 60,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.grey[300],
-                        blurRadius: 4,
-                        spreadRadius: 2,
-                        offset: Offset.fromDirection(45, 2))
-                  ],
-                  image: DecorationImage(
-                      image: AssetImage('images/assets/point_background.jpg'),
-                      fit: BoxFit.cover)),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "My Points",
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black38),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.money,
-                        color: Colors.black38,
-                        size: 35,
+              return CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                      child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("My Account",
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black54)),
+                        IconButton(
+                            icon: Icon(Icons.refresh),
+                            onPressed: () {
+                              _myMember.add(MembershipEvent.getMyMembership());
+                            }),
+                      ],
+                    ),
+                  )),
+                  SliverToBoxAdapter(
+                    child: state.maybeMap(
+                      orElse: () => Container(height: 250),
+                      loading: (e) => Container(
+                        height: 250,
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "200",
-                        style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black38),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              padding: EdgeInsets.all(15),
-              color: Colors.white,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    child: Text(
-                      "Membership Program",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      onGetMyMembership: (e) {
+                        return e.onData.fold(
+                          (l) => Container(
+                            height: 250,
+                            child: Text("Error"),
+                          ),
+                          (r) => GetBuilder<UserController>(
+                            builder: (dataUser) => Padding(
+                              padding: EdgeInsets.only(top: 10),
+                              child: SilverCard(
+                                cardNumber:
+                                    dataUser.getMemberData().memberNumber,
+                                name: dataUser.getUserData().fullName,
+                                validUntil: memberValidUntil(
+                                    dataUser.getMemberData().endedAt),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
-                  SizedBox(
-                    height: 20,
+                  SliverToBoxAdapter(
+                    child: Container(
+                      margin: EdgeInsets.only(left: 15, bottom: 15, right: 15),
+                      padding: EdgeInsets.all(15),
+                      height: 60,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey[300],
+                                blurRadius: 4,
+                                spreadRadius: 2,
+                                offset: Offset.fromDirection(45, 2))
+                          ],
+                          image: DecorationImage(
+                              image: AssetImage(
+                                  'images/assets/point_background.jpg'),
+                              fit: BoxFit.cover)),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "My Points",
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black38),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.money,
+                                color: Colors.black38,
+                                size: 35,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                "200",
+                                style: TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black38),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
                   ),
-                  ListView(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    children: [
-                      buildMembershipMenuItem(
-                        Icon(Icons.credit_card, color: Colors.blue[600]),
-                        "Membership Type",
-                        "Upgrade your membership for more benefits",
-                        () {
-                          Get.toNamed(MembershipCardListPage.TAG);
-                        },
+                  SliverToBoxAdapter(
+                    child: Container(
+                      padding: EdgeInsets.all(15),
+                      color: Colors.white,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            child: Text(
+                              "Membership Program",
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          ListView(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            children: [
+                              buildMembershipMenuItem(
+                                Icon(Icons.credit_card,
+                                    color: Colors.blue[600]),
+                                "Membership Type",
+                                "Upgrade your membership for more benefits",
+                                () {
+                                  Get.toNamed(MembershipCardListPage.TAG);
+                                },
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              buildMembershipMenuItem(
+                                Icon(
+                                  Icons.history,
+                                  color: Colors.yellow[800],
+                                ),
+                                "My History Transaction",
+                                "See your recently transaction",
+                                () {
+                                  Get.toNamed(TransactionHistoryPage.TAG);
+                                },
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              buildMembershipMenuItem(
+                                Icon(
+                                  Icons.location_on,
+                                  color: Colors.red[800],
+                                ),
+                                "Partnership",
+                                "Find Iruka Partnership arround the world",
+                                () {
+                                  Get.toNamed(PartnershipListPage.TAG);
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      buildMembershipMenuItem(
-                        Icon(
-                          Icons.history,
-                          color: Colors.yellow[800],
-                        ),
-                        "My History Transaction",
-                        "See your recently transaction",
-                        () {
-                          Get.toNamed(TransactionHistoryPage.TAG);
-                        },
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      buildMembershipMenuItem(
-                        Icon(
-                          Icons.location_on,
-                          color: Colors.red[800],
-                        ),
-                        "Partnership",
-                        "Find Iruka Partnership arround the world",
-                        () {
-                          Get.toNamed(PartnershipLocationPage.TAG);
-                        },
-                      ),
-                    ],
+                    ),
                   ),
                 ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+              );
+            })));
   }
 
   InkWell buildMembershipMenuItem(
