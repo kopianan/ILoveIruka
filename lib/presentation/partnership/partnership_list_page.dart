@@ -13,6 +13,9 @@ class _PartnershipListPageState extends State<PartnershipListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text("Partnership"),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         actions: [
           IconButton(
             icon: Icon(Icons.map),
@@ -24,9 +27,7 @@ class _PartnershipListPageState extends State<PartnershipListPage> {
       ),
       body: Container(child: ListView.builder(
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text("TEST"),
-          );
+          return ExpansionTile(title: Text("Test"),);
         },
       )),
     );

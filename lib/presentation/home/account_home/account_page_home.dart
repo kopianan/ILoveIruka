@@ -217,7 +217,7 @@ class _AccountPagehomeState extends State<AccountPagehome>
                                 "Partnership",
                                 "Find Iruka Partnership arround the world",
                                 () {
-                                  Get.toNamed(PartnershipListPage.TAG);
+                                  Get.toNamed(PartnershipLocationPage.TAG);
                                 },
                               ),
                             ],
