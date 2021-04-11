@@ -21,11 +21,16 @@ class _$PartnershipDataModelTearOff {
       {String id,
       String fullName,
       String email,
-      @JsonKey(nullable: true) String phoneNumber,
-      @JsonKey(nullable: true) String imageUrl,
-      @JsonKey(nullable: true) String lang,
-      @JsonKey(nullable: true) String lat,
-      @JsonKey(nullable: true) String description}) {
+      @JsonKey(nullable: true)
+          String phoneNumber,
+      @JsonKey(nullable: true, defaultValue: 'no image')
+          String imageUrl,
+      @JsonKey(nullable: true, defaultValue: "1")
+          String lang,
+      @JsonKey(nullable: true, defaultValue: '1')
+          String lat,
+      @JsonKey(nullable: true, defaultValue: 'no description')
+          String description}) {
     return _PartnershipDataModel(
       id: id,
       fullName: fullName,
@@ -55,13 +60,13 @@ mixin _$PartnershipDataModel {
   String get email;
   @JsonKey(nullable: true)
   String get phoneNumber;
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, defaultValue: 'no image')
   String get imageUrl;
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, defaultValue: "1")
   String get lang;
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, defaultValue: '1')
   String get lat;
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, defaultValue: 'no description')
   String get description;
 
   Map<String, dynamic> toJson();
@@ -78,11 +83,16 @@ abstract class $PartnershipDataModelCopyWith<$Res> {
       {String id,
       String fullName,
       String email,
-      @JsonKey(nullable: true) String phoneNumber,
-      @JsonKey(nullable: true) String imageUrl,
-      @JsonKey(nullable: true) String lang,
-      @JsonKey(nullable: true) String lat,
-      @JsonKey(nullable: true) String description});
+      @JsonKey(nullable: true)
+          String phoneNumber,
+      @JsonKey(nullable: true, defaultValue: 'no image')
+          String imageUrl,
+      @JsonKey(nullable: true, defaultValue: "1")
+          String lang,
+      @JsonKey(nullable: true, defaultValue: '1')
+          String lat,
+      @JsonKey(nullable: true, defaultValue: 'no description')
+          String description});
 }
 
 /// @nodoc
@@ -131,11 +141,16 @@ abstract class _$PartnershipDataModelCopyWith<$Res>
       {String id,
       String fullName,
       String email,
-      @JsonKey(nullable: true) String phoneNumber,
-      @JsonKey(nullable: true) String imageUrl,
-      @JsonKey(nullable: true) String lang,
-      @JsonKey(nullable: true) String lat,
-      @JsonKey(nullable: true) String description});
+      @JsonKey(nullable: true)
+          String phoneNumber,
+      @JsonKey(nullable: true, defaultValue: 'no image')
+          String imageUrl,
+      @JsonKey(nullable: true, defaultValue: "1")
+          String lang,
+      @JsonKey(nullable: true, defaultValue: '1')
+          String lat,
+      @JsonKey(nullable: true, defaultValue: 'no description')
+          String description});
 }
 
 /// @nodoc
@@ -183,11 +198,16 @@ class _$_PartnershipDataModel implements _PartnershipDataModel {
       {this.id,
       this.fullName,
       this.email,
-      @JsonKey(nullable: true) this.phoneNumber,
-      @JsonKey(nullable: true) this.imageUrl,
-      @JsonKey(nullable: true) this.lang,
-      @JsonKey(nullable: true) this.lat,
-      @JsonKey(nullable: true) this.description});
+      @JsonKey(nullable: true)
+          this.phoneNumber,
+      @JsonKey(nullable: true, defaultValue: 'no image')
+          this.imageUrl,
+      @JsonKey(nullable: true, defaultValue: "1")
+          this.lang,
+      @JsonKey(nullable: true, defaultValue: '1')
+          this.lat,
+      @JsonKey(nullable: true, defaultValue: 'no description')
+          this.description});
 
   factory _$_PartnershipDataModel.fromJson(Map<String, dynamic> json) =>
       _$_$_PartnershipDataModelFromJson(json);
@@ -202,16 +222,16 @@ class _$_PartnershipDataModel implements _PartnershipDataModel {
   @JsonKey(nullable: true)
   final String phoneNumber;
   @override
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, defaultValue: 'no image')
   final String imageUrl;
   @override
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, defaultValue: "1")
   final String lang;
   @override
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, defaultValue: '1')
   final String lat;
   @override
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, defaultValue: 'no description')
   final String description;
 
   @override
@@ -274,11 +294,16 @@ abstract class _PartnershipDataModel implements PartnershipDataModel {
       {String id,
       String fullName,
       String email,
-      @JsonKey(nullable: true) String phoneNumber,
-      @JsonKey(nullable: true) String imageUrl,
-      @JsonKey(nullable: true) String lang,
-      @JsonKey(nullable: true) String lat,
-      @JsonKey(nullable: true) String description}) = _$_PartnershipDataModel;
+      @JsonKey(nullable: true)
+          String phoneNumber,
+      @JsonKey(nullable: true, defaultValue: 'no image')
+          String imageUrl,
+      @JsonKey(nullable: true, defaultValue: "1")
+          String lang,
+      @JsonKey(nullable: true, defaultValue: '1')
+          String lat,
+      @JsonKey(nullable: true, defaultValue: 'no description')
+          String description}) = _$_PartnershipDataModel;
 
   factory _PartnershipDataModel.fromJson(Map<String, dynamic> json) =
       _$_PartnershipDataModel.fromJson;
@@ -293,16 +318,16 @@ abstract class _PartnershipDataModel implements PartnershipDataModel {
   @JsonKey(nullable: true)
   String get phoneNumber;
   @override
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, defaultValue: 'no image')
   String get imageUrl;
   @override
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, defaultValue: "1")
   String get lang;
   @override
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, defaultValue: '1')
   String get lat;
   @override
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, defaultValue: 'no description')
   String get description;
   @override
   @JsonKey(ignore: true)

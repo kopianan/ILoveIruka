@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:i_love_iruka/application/partnership/partnership_bloc.dart';
+import 'package:i_love_iruka/domain/partnership/partnership_data_model.dart';
 
 import '../../injection.dart';
 
@@ -28,60 +29,67 @@ class PartnershipLocationPage extends StatelessWidget {
                 print(e);
               },
               onGetParternData: (val) {
-                print(val);
+                val.listData.fold(
+                  (l) => print(l),
+                  (r) => print(r),
+                );
               });
         },
         builder: (context, state) {
-          return Container();
+          return state.maybeMap(
+              orElse: () => Scaffold(),
+              loading: (e) => buildLoadingScaffold(),
+              error: (e) => buildErrorScaffold(),
+              onGetParternData: (val) {
+                return val.listData.fold(
+                  (l) => buildErrorScaffold(),
+                  (r) => DoneGettingData(listPartner: r),
+                );
+              });
         },
       ),
     );
   }
+
+  Scaffold buildLoadingScaffold() =>
+      Scaffold(body: Center(child: CircularProgressIndicator()));
+
+  Scaffold buildErrorScaffold() {
+    return Scaffold(
+        body: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        IconButton(
+          icon: Icon(
+            Icons.error,
+            size: 40,
+          ),
+          onPressed: () {},
+        ),
+      ],
+    ));
+  }
 }
 
 class DoneGettingData extends StatefulWidget {
+  DoneGettingData({@required this.listPartner});
+  final List<PartnershipDataModel> listPartner;
+
   @override
   _DoneGettingDataState createState() => _DoneGettingDataState();
 }
 
 class _DoneGettingDataState extends State<DoneGettingData> {
   Completer<GoogleMapController> _controller = Completer();
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(-6.7138127, 108.5491515),
-    zoom: 5,
-  );
-
   CarouselController carouselController = CarouselController();
-
-  // List<Marker> markers = List<Marker>();
-  List<DummyMap> mapList = <DummyMap>[];
+  // List<PartnershipDataModel> listPartner = <PartnershipDataModel>[];
   bool isCarouselHide = false;
-  void initMapList() {
-    mapList.add(DummyMap("Place 1", 108.5491515, -6.7138127));
-    mapList.add(DummyMap("Place 2", 102.146331, -1.302602));
-    mapList.add(DummyMap("Place 3", 108.514797, -6.707118));
-    mapList.add(DummyMap("Place 4", 108.452057, 6.682138));
-    mapList.add(DummyMap("Place 4", 108.029779, -2.968659));
-  }
-
   GoogleMapController controller;
   Marker currentMarker;
-  CarouselOptions buildCarouselOptions() {
-    return CarouselOptions(
-        height: 170,
-        onPageChanged: (page, reaseon) {
-          controller.animateCamera(CameraUpdate.newLatLngZoom(
-              LatLng(
-                mapList[page].lat,
-                mapList[page].lang,
-              ),
-              12));
-        });
-  }
 
   @override
   void initState() {
-    initMapList();
+    // listPartner = widget.listPartner;
     super.initState();
   }
 
@@ -94,15 +102,14 @@ class _DoneGettingDataState extends State<DoneGettingData> {
           zoomControlsEnabled: false,
           mapType: MapType.normal,
           buildingsEnabled: true,
-          // liteModeEnabled: true,
           mapToolbarEnabled: false,
-
-          markers: mapList
+          markers: widget.listPartner
+              // -6.936000, 107.619594
               .map((e) => Marker(
-                    position: LatLng(e.lat, e.lang),
-                    markerId: MarkerId(e.name),
+                    position: LatLng(double.parse(e.lat), double.parse(e.lang)),
+                    markerId: MarkerId(e.id),
                     onTap: () async {
-                      final _currPage = mapList.indexOf(e);
+                      final _currPage = widget.listPartner.indexOf(e);
 
                       Future.delayed(Duration(milliseconds: 800)).then(
                           (value) => carouselController.jumpToPage(_currPage));
@@ -116,7 +123,6 @@ class _DoneGettingDataState extends State<DoneGettingData> {
             target: LatLng(-6.7138127, 108.5491515),
             zoom: 10,
           ),
-
           onMapCreated: (GoogleMapController controller) {
             _controller.complete(controller);
             setState(() {
@@ -211,7 +217,7 @@ class _DoneGettingDataState extends State<DoneGettingData> {
                         ),
                         CarouselSlider(
                           carouselController: carouselController,
-                          items: mapList
+                          items: widget.listPartner
                               .map((e) => Container(
                                   height: 200,
                                   width: double.infinity,
@@ -227,11 +233,19 @@ class _DoneGettingDataState extends State<DoneGettingData> {
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
                                           Text(
-                                            "Nama Tempat",
+                                            e.fullName,
                                             maxLines: 2,
                                             style: TextStyle(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold),
+                                          ),
+                                          Container(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              e.description,
+                                              maxLines: 2,
+                                              style: TextStyle(fontSize: 14),
+                                            ),
                                           ),
                                           SizedBox(
                                             height: 15,
@@ -260,7 +274,19 @@ class _DoneGettingDataState extends State<DoneGettingData> {
                                         ],
                                       ))))
                               .toList(),
-                          options: buildCarouselOptions(),
+                          options: CarouselOptions(
+                              height: 170,
+                              onPageChanged: (page, reaseon) {
+                                controller
+                                    .animateCamera(CameraUpdate.newLatLngZoom(
+                                        LatLng(
+                                          double.parse(
+                                              widget.listPartner[page].lat),
+                                          double.parse(
+                                              widget.listPartner[page].lang),
+                                        ),
+                                        12));
+                              }),
                         ),
                       ],
                     ),
@@ -268,12 +294,4 @@ class _DoneGettingDataState extends State<DoneGettingData> {
       ],
     ));
   }
-}
-
-class DummyMap {
-  String name;
-  double lat;
-  double lang;
-
-  DummyMap(this.name, this.lang, this.lat);
 }

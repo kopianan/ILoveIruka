@@ -9,11 +9,16 @@ abstract class PartnershipDataModel with _$PartnershipDataModel {
       {String id,
       String fullName,
       String email,
-      @JsonKey(nullable: true) String phoneNumber,
-      @JsonKey(nullable: true) String imageUrl,
-      @JsonKey(nullable: true) String lang,
-      @JsonKey(nullable: true) String lat,
-      @JsonKey(nullable: true) String description}) = _PartnershipDataModel;
+      @JsonKey(nullable: true)
+          String phoneNumber,
+      @JsonKey(nullable: true, defaultValue: 'no image')
+          String imageUrl,
+      @JsonKey(nullable: true, defaultValue: "1")
+          String lang,
+      @JsonKey(nullable: true, defaultValue: '1')
+          String lat,
+      @JsonKey(nullable: true, defaultValue: 'no description')
+          String description}) = _PartnershipDataModel;
 
   factory PartnershipDataModel.fromJson(Map<String, dynamic> json) =>
       _$PartnershipDataModelFromJson(json);
