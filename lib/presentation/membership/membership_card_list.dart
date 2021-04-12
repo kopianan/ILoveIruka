@@ -189,23 +189,26 @@ class MemberDescription extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
-                  decoration: BoxDecoration(
-                      color: Color(0xFFFF6A6A),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Upgrade",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                      Icon(
-                        Icons.upgrade,
-                        color: Colors.white,
-                      )
-                    ],
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+                    decoration: BoxDecoration(
+                        color: Color(0xFFFF6A6A),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Upgrade",
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                        Icon(
+                          Icons.upgrade,
+                          color: Colors.white,
+                        )
+                      ],
+                    ),
                   ),
                 )
               ],
