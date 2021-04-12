@@ -8,6 +8,8 @@ import 'package:i_love_iruka/presentation/home/pets/pets_match_page.dart';
 import 'package:i_love_iruka/presentation/home/user_home/user_home_page.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import 'pets/coming_soon.dart';
+
 class DashboardPage extends StatefulWidget {
   static const String TAG = '/dashboard_page';
   DashboardPage({Key key}) : super(key: key);
@@ -63,7 +65,7 @@ class _DashboardPageState extends State<DashboardPage> {
           children: <Widget>[
             FeedHome(),
             AccountPagehome(),
-            PetsMatchPage(),
+            ComingSoon(),
             UserHomePage()
           ],
         ),

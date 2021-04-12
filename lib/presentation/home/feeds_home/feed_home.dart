@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/user_controller.dart';
@@ -145,6 +147,7 @@ class _FeedHomeState extends State<FeedHome>
                               "${userController.getUserData().fullName}",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
+                                  fontSize: 15,
                                   color: Colors.black54),
                             ),
                           ],
@@ -500,19 +503,14 @@ class _FeedHomeState extends State<FeedHome>
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                           )),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        feed.content,
-                        maxLines: 3,
-                        style: TextStyle(fontSize: 11),
-                        overflow: TextOverflow.ellipsis,
+                      Html(
+                        data: feed.content,
+                        shrinkWrap: true,
                       ),
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
                     child: Row(children: [
                       Icon(
                         Icons.access_time_outlined,

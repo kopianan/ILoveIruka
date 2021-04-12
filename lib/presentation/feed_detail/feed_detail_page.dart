@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/feed_home.dart/feed_home_bloc.dart';
@@ -142,15 +143,11 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
                           ),
                         ),
                         SizedBox(height: 20),
-                        Markdown(
-                          padding: EdgeInsets.zero,
-                          controller: scrollController,
+                        Html(
                           data: data.content,
                           shrinkWrap: true,
-                          selectable: true,
-                          styleSheetTheme: MarkdownStyleSheetBaseTheme.material,
-                          onTapLink: (link) {
-                            launch(link);
+                          onLinkTap: (e) {
+                            launch(e);
                           },
                         ),
                         // Text(

@@ -12,20 +12,6 @@ class PetsMatchPage extends StatefulWidget {
 }
 
 class _PetsMatchPageState extends State<PetsMatchPage> {
-  List<IconData> _icons = [
-    Icons.ac_unit,
-    Icons.dashboard_rounded,
-    Icons.face,
-    Icons.cached,
-    Icons.ac_unit,
-    Icons.dashboard_rounded,
-    Icons.face,
-    Icons.cached,
-    Icons.ac_unit,
-    Icons.dashboard_rounded,
-    Icons.face,
-    Icons.cached,
-  ];
   @override
   Widget build(BuildContext context) {
     const double horizontal = 20;

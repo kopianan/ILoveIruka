@@ -10,7 +10,7 @@ String memberValidUntil(String localeDate) {
     final date = DateFormat('MM/yy');
     return date.format(DateTime.parse(localeDate));
   } catch (e) {
-    return "Date Invalid";
+    return "Permanent";
   }
 }
 

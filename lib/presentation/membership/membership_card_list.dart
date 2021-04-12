@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:i_love_iruka/application/membership/membership_bloc.dart';
 import 'package:i_love_iruka/domain/membership/membership_data_model.dart';
 import 'package:i_love_iruka/presentation/widgets/member_card.dart';
@@ -33,9 +36,11 @@ class _MembershipCardListPageState extends State<MembershipCardListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.transparent,
           title: Text("Member List"),
+          elevation: 0,
         ),
         body: BlocProvider(
           create: (context) =>
@@ -102,7 +107,7 @@ class OnDataMembership extends StatelessWidget {
             padding: const EdgeInsets.only(top: 20),
             child: CarouselSlider(
               carouselController: _carouselController,
-              items: cardList,
+              items: list.map((e) => cardList[Random().nextInt(3)]).toList(),
               options: CarouselOptions(
                   onPageChanged: (index, reason) {
                     _pageController.animateToPage(index,
@@ -116,20 +121,17 @@ class OnDataMembership extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: PageView(
+            child: PageView.builder(
+              itemCount: list.length,
+              itemBuilder: (context, index) {
+                return MemberDescription(
+                  membershipDataModel: list[index],
+                );
+              },
               onPageChanged: (page) {
                 _carouselController.animateToPage(page);
                 // _carouselController.jumpToPage(page);
               },
-              children: [
-                MemberDescription(membershipDataModel: list[0]),
-                Container(
-                  color: Colors.blue,
-                ),
-                Container(
-                  color: Colors.red,
-                ),
-              ],
               controller: _pageController,
             ),
           ),
@@ -152,17 +154,65 @@ class MemberDescription extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
-            child: Text(
-              membershipDataModel.label,
-              style: TextStyle(
-                fontSize: 18,
-              ),
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey[300],
+                      blurRadius: 2,
+                      spreadRadius: 2,
+                      offset: Offset(3, 3))
+                ]),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        membershipDataModel.label,
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        "Duration For " +
+                            (membershipDataModel.duration / 30)
+                                .toStringAsFixed(0) +
+                            "Month",
+                        style: TextStyle(fontSize: 15),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+                  decoration: BoxDecoration(
+                      color: Color(0xFFFF6A6A),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Upgrade",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                      Icon(
+                        Icons.upgrade,
+                        color: Colors.white,
+                      )
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
           SizedBox(height: 20),
-          Text(membershipDataModel.description),
+          Html(data: membershipDataModel.description),
         ],
       ),
     );
@@ -172,9 +222,9 @@ class MemberDescription extends StatelessWidget {
 class PlatinumCard extends StatelessWidget {
   const PlatinumCard(
       {Key key,
-      this.cardNumber = "123",
-      this.name: "nama",
-      this.validUntil: "20/10"})
+      this.cardNumber = "123456789",
+      this.name: "NAME XXXX",
+      this.validUntil: "XX/XX"})
       : super(
           key: key,
         );
@@ -245,7 +295,7 @@ class SilverCard extends StatelessWidget {
       {Key key,
       this.cardNumber = "123",
       this.name: "nama",
-      this.cardType: "Silver",
+      this.cardType: "VIP",
       this.validUntil: "20/10"})
       : super(key: key);
   final String cardNumber;

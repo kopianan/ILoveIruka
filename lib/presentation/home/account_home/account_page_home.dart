@@ -95,6 +95,7 @@ class _AccountPagehomeState extends State<AccountPagehome>
                             builder: (dataUser) => Padding(
                               padding: EdgeInsets.only(top: 10),
                               child: SilverCard(
+                                cardType: dataUser.getMemberData().type.label,
                                 cardNumber:
                                     dataUser.getMemberData().memberNumber,
                                 name: dataUser.getUserData().fullName,
@@ -131,32 +132,19 @@ class _AccountPagehomeState extends State<AccountPagehome>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "My Points",
+                            "Points",
                             style: TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black38),
+                                color: Colors.black87),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.money,
-                                color: Colors.black38,
-                                size: 35,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "200",
-                                style: TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black38),
-                              ),
-                            ],
-                          )
+                          Text(
+                            "0",
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87),
+                          ),
                         ],
                       ),
                     ),
