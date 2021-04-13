@@ -86,13 +86,13 @@ class _FeedHomeState extends State<FeedHome>
         }, builder: (context, state) {
           return Stack(
             children: [
-              ClipPath(
-                clipper: WaveClipperTwo(flip: true),
-                child: Container(
-                  height: 150,
-                  color: Color(0xFF3DA3EC),
-                ),
-              ),
+              // ClipPath(
+              //   clipper: WaveClipperTwo(flip: true),
+              //   child: Container(
+              //     height: 150,
+              //     color: Color(0xFF3DA3EC),
+              //   ),
+              // ),
               SmartRefresher(
                 enablePullDown: true,
                 enablePullUp: true,
@@ -120,11 +120,21 @@ class _FeedHomeState extends State<FeedHome>
                 onRefresh: _onRefresh,
                 onLoading: _onLoading,
                 child: CustomScrollView(slivers: [
-                  SliverToBoxAdapter(
-                    child: Container(
-                      height: kToolbarHeight,
+                  SliverAppBar(
+                    title: Text(
+                      "I Love Iruka",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
+                    backgroundColor: Color(0xFF3DA3EC),
                   ),
+                  // SliverToBoxAdapter(
+                  //   child: Container(
+                  //     height: kToolbarHeight,
+                  //   ),
+                  // ),
                   SliverToBoxAdapter(
                       child: Padding(
                     padding: EdgeInsets.symmetric(
@@ -137,7 +147,7 @@ class _FeedHomeState extends State<FeedHome>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "I Love Iruka",
+                              "Welcome",
                               style: TextStyle(
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold,

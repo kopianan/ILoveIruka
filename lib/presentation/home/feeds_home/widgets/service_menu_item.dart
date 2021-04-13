@@ -33,7 +33,7 @@ class ServiceMenuItem extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Container(
-                padding: EdgeInsets.all(4),
+                padding: EdgeInsets.only(top: 10),
                 width: double.infinity,
                 child: Image.network(
                   assetUrl,
@@ -48,22 +48,20 @@ class ServiceMenuItem extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 5,
+              height:2,
             ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                  width: double.infinity,
-                  // constraints: BoxConstraints(maxWidth: 80,),
-                  alignment: Alignment.topCenter,
-                  child: Text(
-                    name,
-                    style: TextStyle(fontSize: 11),
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  )),
-            )
+            Container(
+                padding: EdgeInsets.only(bottom: 4),
+                width: double.infinity,
+                // constraints: BoxConstraints(maxWidth: 80,),
+                alignment: Alignment.topCenter,
+                child: Text(
+                  name,
+                  style: TextStyle(fontSize: 11),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ))
           ],
         ),
       ),
