@@ -65,7 +65,7 @@ class _DashboardPageState extends State<DashboardPage> {
           children: <Widget>[
             FeedHome(),
             AccountPagehome(),
-            ComingSoon(),
+            PetsMatchPage(),
             UserHomePage()
           ],
         ),

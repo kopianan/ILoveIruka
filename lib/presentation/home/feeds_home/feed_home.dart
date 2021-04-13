@@ -557,7 +557,16 @@ class _FeedHomeState extends State<FeedHome>
     return Container(
       width: double.infinity,
       margin: EdgeInsets.all(5.0),
-      color: Colors.grey[200],
+      decoration: BoxDecoration(
+          color: Colors.grey[200],
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey[200],
+                offset: Offset(2, 2),
+                spreadRadius: 1,
+                blurRadius: 1)
+          ]),
       child: InkWell(
         onTap: () {
           Get.toNamed(FeedDetailPage.TAG, arguments: item);

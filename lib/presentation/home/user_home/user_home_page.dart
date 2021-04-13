@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/auth_bloc.dart';
 import 'package:i_love_iruka/application/auth/authentication/authentication_bloc.dart';
 import 'package:i_love_iruka/application/auth/user_controller.dart';
+import 'package:i_love_iruka/presentation/home/pets/my_pets_page.dart';
 import 'package:i_love_iruka/presentation/home/user_home/address/address_page.dart';
 import 'package:i_love_iruka/presentation/home/user_home/change_password/change_password_page.dart';
 import 'package:i_love_iruka/presentation/home/user_home/profile/setting_profile_page.dart';
@@ -127,6 +128,13 @@ class _UserHomePageState extends State<UserHomePage> {
                               ),
                               Column(
                                 children: [
+                                  buildUserOptionListTile(
+                                      leadingIcon: Icon(Icons.pets_outlined,
+                                          size: 25, color: Colors.black),
+                                      title: "My Pets",
+                                      onTap: () {
+                                        Get.toNamed(MyPetsPage.TAG);
+                                      }),
                                   buildUserOptionListTile(
                                       leadingIcon: Icon(Icons.person_pin,
                                           size: 25, color: Colors.black),

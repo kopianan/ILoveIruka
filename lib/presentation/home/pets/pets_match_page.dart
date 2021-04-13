@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tags/flutter_tags.dart';
 import 'package:get/route_manager.dart';
-import 'package:i_love_iruka/presentation/home/pets/my_pets_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/pets_detail_page.dart';
 
 class PetsMatchPage extends StatefulWidget {
@@ -68,146 +68,123 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
             ),
           ),
 
-          SliverToBoxAdapter(
-            child: Container(
-              margin: EdgeInsets.symmetric(
-                  horizontal: horizontal, vertical: horizontal),
-              height: 60,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                      image: AssetImage('images/assets/back.jpg'),
-                      fit: BoxFit.cover,
-                      colorFilter:
-                          ColorFilter.mode(Colors.grey, BlendMode.overlay)),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.grey[300],
-                        blurRadius: 4,
-                        spreadRadius: 3,
-                        offset: Offset.fromDirection(45, 3))
-                  ]),
-              alignment: Alignment.centerRight,
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: InkWell(
-                onTap: () {
-                  Get.toNamed(MyPetsPage.TAG);
-                },
-                child: Row(
-                  // crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      "My Pets",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Icon(Icons.pets)
-                  ],
-                ),
-              ),
-            ),
-          ),
           // SliverToBoxAdapter(
-          //     child: Container(
-          //   height: 70,
-          //   margin: EdgeInsets.only(left: horizontal),
-          //   child: ListView.builder(
-          //       itemCount: _icons.length,
-          //       scrollDirection: Axis.horizontal,
-          //       itemBuilder: (context, index) {
-          //         return Container(
-          //           padding: EdgeInsets.all(15),
-          //           width: 60,
-          //           child: FittedBox(
-          //               child: index == 0
-          //                   ? Text(
-          //                       "All",
-          //                       style: TextStyle(fontWeight: FontWeight.bold),
-          //                     )
-          //                   : Icon(
-          //                       _icons[index],
-          //                     )),
-          //           decoration: BoxDecoration(
-          //               boxShadow: [
-          //                 BoxShadow(
-          //                     color: Colors.grey[300],
-          //                     blurRadius: 4,
-          //                     spreadRadius: 2,
-          //                     offset: Offset.fromDirection(45, 3))
-          //               ],
-          //               borderRadius: BorderRadius.circular(10),
-          //               color: Colors.white),
-          //           margin: EdgeInsets.only(right: 10, bottom: 10),
-          //         );
-          //       }),
-          // )),
-          // SliverToBoxAdapter(
-          //   child: SizedBox(
-          //     height: 10,
+          //   child: Container(
+          //     margin: EdgeInsets.symmetric(
+          //         horizontal: horizontal, vertical: horizontal),
+          //     height: 60,
+          //     width: double.infinity,
+          //     decoration: BoxDecoration(
+          //         color: Colors.white,
+          //         borderRadius: BorderRadius.circular(10),
+          //         image: DecorationImage(
+          //             image: AssetImage('images/assets/back.jpg'),
+          //             fit: BoxFit.cover,
+          //             colorFilter:
+          //                 ColorFilter.mode(Colors.grey, BlendMode.overlay)),
+          //         boxShadow: [
+          //           BoxShadow(
+          //               color: Colors.grey[300],
+          //               blurRadius: 4,
+          //               spreadRadius: 3,
+          //               offset: Offset.fromDirection(45, 3))
+          //         ]),
+          //     alignment: Alignment.centerRight,
+          //     padding: EdgeInsets.symmetric(horizontal: 20),
+          //     child: InkWell(
+          //       onTap: () {
+          //         Get.toNamed(MyPetsPage.TAG);
+          //       },
+          //       child: Row(
+          //         // crossAxisAlignment: CrossAxisAlignment.end,
+          //         mainAxisSize: MainAxisSize.max,
+          //         mainAxisAlignment: MainAxisAlignment.end,
+          //         children: [
+          //           Text(
+          //             "My Pets",
+          //             style: TextStyle(
+          //                 fontSize: 20,
+          //                 fontWeight: FontWeight.bold,
+          //                 color: Colors.black),
+          //           ),
+          //           SizedBox(
+          //             width: 10,
+          //           ),
+          //           Icon(Icons.pets)
+          //         ],
+          //       ),
+          //     ),
           //   ),
           // ),
+          //
           SliverToBoxAdapter(
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 15),
-              child: GridView.builder(
+              child: ListView.builder(
                   itemCount: 10,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      childAspectRatio: 1.5 / 2),
                   itemBuilder: (context, index) {
                     return InkWell(
-                        onTap: () {
-                          Get.toNamed(PetsDetailPage.TAG);
-                        },
+                      onTap: () {
+                        Get.toNamed(PetsDetailPage.TAG);
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(5),
                         child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white),
+                          decoration:
+                              BoxDecoration(color: Colors.white, boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey[300],
+                                blurRadius: 2,
+                                spreadRadius: 2,
+                                offset: Offset(3, 3))
+                          ]),
+                          width: Get.size.width,
+                          height: Get.size.width,
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Expanded(
-                                flex: 3,
-                                child: Container(
-                                  margin: EdgeInsets.only(
-                                      right: 10, left: 10, top: 10),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                            'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80'),
-                                        fit: BoxFit.cover,
-                                      )),
-                                ),
-                              ),
+                                  flex: 5,
+                                  child: Image.network(
+                                    "https://unsplash.com/photos/L2iZFRPaH1M/download?force=true&w=640",
+                                    fit: BoxFit.cover,
+                                  )),
                               Expanded(
-                                  flex: 1,
+                                  flex: 2,
                                   child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text(
-                                        "Si Anying",
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold),
+                                      Expanded(
+                                        child: Tags(
+                                          itemCount: 3,
+                                          itemBuilder: (int index) {
+                                            return Tooltip(
+                                                message: "item.title",
+                                                child: ItemTags(
+                                                  index: index,
+                                                  title: "item.title",
+                                                ));
+                                          },
+                                        ),
                                       ),
-                                      Text("")
+                                      Expanded(
+                                          child: Text(
+                                        "Nama Peliharaan",
+                                        style: TextStyle(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.bold),
+                                      ))
                                     ],
                                   ))
                             ],
                           ),
-                        ));
+                        ),
+                      ),
+                    );
                   }),
             ),
           )
@@ -216,3 +193,43 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
     );
   }
 }
+// InkWell(
+//                         onTap: () {
+//                           Get.toNamed(PetsDetailPage.TAG);
+//                         },
+//                         child: Container(
+//                           decoration: BoxDecoration(
+//                               borderRadius: BorderRadius.circular(10),
+//                               color: Colors.white),
+//                           child: Column(
+//                             children: [
+//                               Expanded(
+//                                 flex: 3,
+//                                 child: Container(
+//                                   margin: EdgeInsets.only(
+//                                       right: 10, left: 10, top: 10),
+//                                   decoration: BoxDecoration(
+//                                       borderRadius: BorderRadius.circular(10),
+//                                       image: DecorationImage(
+//                                         image: NetworkImage(
+//                                             'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80'),
+//                                         fit: BoxFit.cover,
+//                                       )),
+//                                 ),
+//                               ),
+//                               Expanded(
+//                                   flex: 1,
+//                                   child: Column(
+//                                     children: [
+//                                       Text(
+//                                         "Si Anying",
+//                                         style: TextStyle(
+//                                             fontSize: 15,
+//                                             fontWeight: FontWeight.bold),
+//                                       ),
+//                                       Text("")
+//                                     ],
+//                                   ))
+//                             ],
+//                           ),
+//                         ));
