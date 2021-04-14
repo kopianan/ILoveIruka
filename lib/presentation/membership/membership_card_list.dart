@@ -54,7 +54,7 @@ class _MembershipCardListPageState extends State<MembershipCardListPage> {
                 print(e);
                 e.onData.fold(
                   (l) => print(l),
-                  (r) => print(r),
+                  (r) => print(r.length),
                 );
               },
             );

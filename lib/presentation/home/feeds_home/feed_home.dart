@@ -513,9 +513,15 @@ class _FeedHomeState extends State<FeedHome>
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                           )),
-                      Html(
-                        data: feed.content,
-                        shrinkWrap: true,
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        feed.subtitle,
+                        maxLines: 3,
+                      ),
+                      SizedBox(
+                        height: 5,
                       ),
                     ],
                   ),

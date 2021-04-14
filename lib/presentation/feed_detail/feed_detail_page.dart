@@ -33,6 +33,7 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
         body: BlocProvider(
       create: (context) => getIt<FeedHomeBloc>()
         ..add(FeedHomeEvent.getSingleFeed(_currentFeed.id)),

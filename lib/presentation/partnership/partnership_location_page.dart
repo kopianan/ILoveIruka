@@ -43,10 +43,40 @@ class PartnershipLocationPage extends StatelessWidget {
               loading: (e) => buildLoadingScaffold(),
               error: (e) => buildErrorScaffold(),
               onGetParternData: (val) {
-                return val.listData.fold(
-                  (l) => buildErrorScaffold(),
-                  (r) => DoneGettingData(listPartner: r),
-                );
+                return val.listData.fold((l) => buildErrorScaffold(), (r) {
+                  if (r.length == 0) {
+                    return Scaffold(
+                      backgroundColor: Colors.white,
+                      appBar: AppBar(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                      ),
+                      body: Container(
+                          width: double.infinity,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.map,
+                                size: 60,
+                                color: Colors.grey,
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                "No Partnership.. .",
+                                style:
+                                    TextStyle(fontSize: 30, color: Colors.grey),
+                              )
+                            ],
+                          )),
+                    );
+                  } else {
+                    return DoneGettingData(listPartner: r);
+                  }
+                });
               });
         },
       ),
