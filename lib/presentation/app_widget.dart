@@ -59,7 +59,7 @@ class _AppWidgetState extends State<AppWidget> {
             indicatorSize: TabBarIndicatorSize.tab,
             labelColor: Colors.black),
         inputDecorationTheme: inputDecoratationTheme(),
-        textTheme: GoogleFonts.notoSansTextTheme(
+        textTheme: GoogleFonts.nunitoTextTheme(
           TextTheme(
             // bodyText1: TextStyle(fontSize: 12),
             bodyText2: TextStyle(
