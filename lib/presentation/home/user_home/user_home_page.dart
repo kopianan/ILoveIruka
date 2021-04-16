@@ -128,13 +128,13 @@ class _UserHomePageState extends State<UserHomePage> {
                               ),
                               Column(
                                 children: [
-                                  // buildUserOptionListTile(
-                                  //     leadingIcon: Icon(Icons.pets_outlined,
-                                  //         size: 25, color: Colors.black),
-                                  //     title: "My Pets",
-                                  //     onTap: () {
-                                  //       Get.toNamed(MyPetsPage.TAG);
-                                  //     }),
+                                  buildUserOptionListTile(
+                                      leadingIcon: Icon(Icons.pets_outlined,
+                                          size: 25, color: Colors.black),
+                                      title: "My Pets",
+                                      onTap: () {
+                                        Get.toNamed(MyPetsPage.TAG);
+                                      }),
                                   buildUserOptionListTile(
                                       leadingIcon: Icon(Icons.person_pin,
                                           size: 25, color: Colors.black),

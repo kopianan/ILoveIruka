@@ -19,12 +19,12 @@ class ServiceMenuItem extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-              color: Colors.grey[200],
-              blurRadius: 1,
-              spreadRadius: 1,
-              offset: Offset(2,2))
+              color: Colors.grey[300],
+              blurRadius: 2,
+              spreadRadius: 2,
+              offset: Offset(3, 3))
         ],
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(5),
       ),
       child: InkWell(
         onTap: onClick,
@@ -48,7 +48,7 @@ class ServiceMenuItem extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height:2,
+              height: 2,
             ),
             Container(
                 padding: EdgeInsets.only(bottom: 4),
