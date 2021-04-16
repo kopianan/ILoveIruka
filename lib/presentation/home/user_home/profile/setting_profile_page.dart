@@ -1,7 +1,5 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -9,17 +7,12 @@ import 'package:i_love_iruka/domain/user/user_data_model.dart';
 import 'package:i_love_iruka/domain/user/user_req_res_data_model.dart';
 import 'package:i_love_iruka/infrastructure/core/pref.dart';
 import 'package:i_love_iruka/infrastructure/functions/custom_alert.dart';
+import 'package:i_love_iruka/presentation/widgets/global_widget_method.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:image_picker/image_picker.dart';
-
-import 'package:i_love_iruka/application/address/cubit/address_cubit.dart';
 import 'package:i_love_iruka/application/auth/user_controller.dart';
 import 'package:i_love_iruka/application/user/user_bloc.dart';
-import 'package:i_love_iruka/domain/address/address_data_model.dart';
-import 'package:i_love_iruka/domain/address/province_data_model.dart';
-
 import 'package:i_love_iruka/infrastructure/functions/custom_functions.dart';
-
 import '../../../../injection.dart';
 
 class SettingProfielPage extends StatefulWidget {
@@ -60,6 +53,9 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
   }
 
   String path;
+  int labelFlex = 3;
+  int valueFlex = 7;
+  double height = 30;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -108,7 +104,6 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0,
-              title: Text("Edit Profile"),
               actions: [
                 TextButton(
                     onPressed: () {
@@ -121,112 +116,139 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
                             .add(UserEvent.changeProfilePhoto(image.path));
                       }
                     },
-                    child: Text("Save"))
+                    child: ElevatedButton(
+                      child: Icon(Icons.check),
+                      onPressed: () {},
+                    ))
               ],
             ),
             body: SingleChildScrollView(
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 12),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: 14,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Stack(
-                        children: [
-                          Container(
-                            width: 90,
-                            height: 90,
-                            padding: EdgeInsets.all(10),
-                            child: (image == null &&
-                                    _userController.getUserData().imageUrl ==
-                                        null)
-                                ? Image.asset("images/assets/placeholder.png")
-                                : null,
-                            decoration: BoxDecoration(
-                              image: ((image == null) &&
-                                      _userController.getUserData().imageUrl ==
-                                          null)
-                                  ? null
-                                  : (image != null)
-                                      ? DecorationImage(
-                                          image: FileImage(
-                                            image,
-                                          ),
-                                          fit: BoxFit.cover)
-                                      : DecorationImage(
-                                          image: NetworkImage(
-                                              Constants.getStagingUrl() +
-                                                  _userController
-                                                      .getUserData()
-                                                      .imageUrl),
-                                          fit: BoxFit.cover),
-                              border: Border.all(width: 2, color: Colors.white),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.grey[300],
-                                    blurRadius: 1,
-                                    spreadRadius: 1,
-                                    offset: Offset(3, 3))
+                    SizedBox(height: 20),
+                    GlobalWidgetMethod.pageTitle("Edit Profile"),
+                    SizedBox(height: 40),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        labelText("Photo", labelFlex),
+                        Expanded(
+                          flex: valueFlex,
+                          child: Container(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 90,
+                                  height: 90,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.all(10),
+                                  child: (image == null &&
+                                          _userController
+                                                  .getUserData()
+                                                  .imageUrl ==
+                                              null)
+                                      ? Image.asset(
+                                          "images/assets/placeholder.png")
+                                      : null,
+                                  decoration: BoxDecoration(
+                                    image: ((image == null) &&
+                                            _userController
+                                                    .getUserData()
+                                                    .imageUrl ==
+                                                null)
+                                        ? null
+                                        : (image != null)
+                                            ? DecorationImage(
+                                                image: FileImage(
+                                                  image,
+                                                ),
+                                                fit: BoxFit.cover)
+                                            : DecorationImage(
+                                                image: NetworkImage(
+                                                    Constants.getStagingUrl() +
+                                                        _userController
+                                                            .getUserData()
+                                                            .imageUrl),
+                                                fit: BoxFit.cover),
+                                    border: Border.all(
+                                        width: 2, color: Colors.white),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[300],
+                                          blurRadius: 1,
+                                          spreadRadius: 1,
+                                          offset: Offset(3, 3))
+                                    ],
+                                    shape: BoxShape.circle,
+                                    color: Colors.blue[300],
+                                  ),
+                                ),
+                                SizedBox(height: 15),
+                                InkWell(
+                                  onTap: () async {
+                                    try {
+                                      image = await getImageFromPhone(
+                                          ImageSource.gallery);
+                                      setState(() {});
+                                    } catch (e) {
+                                      Fluttertoast.showToast(
+                                          msg: "Something wrong");
+                                    }
+                                  },
+                                  child: Text(
+                                    "Upload Photo",
+                                    style: TextStyle(
+                                        fontSize: 18, color: Colors.blue),
+                                  ),
+                                )
                               ],
-                              shape: BoxShape.circle,
-                              color: Colors.blue[300],
                             ),
                           ),
-                          Positioned(
-                            right: 0,
-                            top: 0,
-                            child: InkWell(
-                              onTap: () async {
-                                try {
-                                  image = await getImageFromPhone(
-                                      ImageSource.gallery);
-                                  setState(() {});
-                                } catch (e) {
-                                  Fluttertoast.showToast(
-                                      msg: "Something wrong");
-                                }
-                              },
-                              child: Container(
-                                child: Icon(
-                                  Icons.edit,
-                                  size: 20,
-                                ),
-                                width: 30,
-                                height: 30,
-                                decoration: BoxDecoration(
-                                  border:
-                                      Border.all(width: 2, color: Colors.white),
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    ProfileCustomFormField(
-                      label: "Name",
-                      hint: "Name",
-                      controller: _name,
+                    SizedBox(height: height),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        labelText("Name", labelFlex),
+                        ValueTextField(
+                          flex: valueFlex,
+                          controller: _name,
+                          hint: "Name",
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 20),
-                    ProfileCustomFormField(
-                      label: "Email",
-                      hint: "Email",
-                      controller: _email,
-                      isEnabled: false,
+                    SizedBox(height: height),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        labelText("Phone", labelFlex),
+                        ValueTextField(
+                          flex: valueFlex,
+                          controller: _phoneNumber,
+                          hint: "Phone number / Whatsapp",
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 20),
-                    ProfileCustomFormField(
-                      label: "Phone Number",
-                      controller: _phoneNumber,
-                      hint: "Phone number / Whatsapp",
+                    SizedBox(height: height),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        labelText("Email", labelFlex),
+                        ValueTextField(
+                          flex: valueFlex,
+                          controller: _email,
+                          hint: "Email",
+                          isEnabled: false,
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: height),
                   ],
                 ),
               ),
@@ -234,37 +256,44 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
           );
         }));
   }
+
+  Expanded labelText(String label, int flex) {
+    return Expanded(
+      flex: flex,
+      child: Text(
+        label,
+        style: TextStyle(
+            fontWeight: FontWeight.w500, color: Colors.grey, fontSize: 15),
+      ),
+    );
+  }
 }
 
-class ProfileCustomFormField extends StatelessWidget {
-  const ProfileCustomFormField(
+class ValueTextField extends StatelessWidget {
+  const ValueTextField(
       {Key key,
-      @required this.label,
       @required this.hint,
       @required this.controller,
-      this.isEnabled = true});
-  final String label;
+      this.isEnabled = true,
+      @required this.flex});
   final String hint;
   final TextEditingController controller;
   final isEnabled;
+  final int flex;
   @override
   Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(
-        this.label,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
+    return Expanded(
+      flex: flex,
+      child: TextFormField(
+        enabled: isEnabled,
+        controller: controller,
+        decoration: InputDecoration(
+            contentPadding: EdgeInsets.only(left: 5, right: 5, bottom: 6),
+            fillColor: Colors.transparent,
+            isDense: true,
+            border: UnderlineInputBorder(),
+            hintText: hint),
       ),
-      SizedBox(
-        height: 5,
-      ),
-      TextFormField(
-        enabled: this.isEnabled,
-        controller: this.controller,
-        decoration:
-            InputDecoration(border: OutlineInputBorder(), hintText: this.hint),
-      ),
-    ]);
+    );
   }
 }

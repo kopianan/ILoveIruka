@@ -6,6 +6,7 @@ import 'package:i_love_iruka/domain/user/password_data_model.dart';
 import 'package:i_love_iruka/infrastructure/functions/custom_alert.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primarary_blue_loading.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
+import 'package:i_love_iruka/presentation/widgets/global_widget_method.dart';
 
 import '../../../../injection.dart';
 
@@ -26,6 +27,9 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     confPassowrd.clear();
   }
 
+  int labelFlex = 2;
+  int valueFlex = 7;
+  double height = 30;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -49,7 +53,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           return Scaffold(
               resizeToAvoidBottomInset: false,
               appBar: AppBar(
-                title: Text("Change Password"),
                 backgroundColor: Colors.transparent,
                 elevation: 0,
               ),
@@ -67,28 +70,55 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                     children: [
                       Container(
                         height: MediaQuery.of(context).size.height,
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 20),
-                            ChangePasswordField(
-                              label: "Old Password",
-                              hint: "Your old password",
-                              controller: this.oldPassword,
+                            SizedBox(height: height),
+                            GlobalWidgetMethod.pageTitle("Change Password"),
+                            SizedBox(height: height),
+                            Row(
+                              children: [
+                                Expanded(
+                                    flex: labelFlex,
+                                    child: Text("Old\nPassword")),
+                                SizedBox(width: 15),
+                                ChangePasswordField(
+                                  flex: valueFlex,
+                                  hint: "Your old password",
+                                  controller: this.oldPassword,
+                                ),
+                              ],
                             ),
-                            SizedBox(height: 20),
-                            ChangePasswordField(
-                              label: "New Password",
-                              hint: "Your New password",
-                              controller: this.newPassowrd,
+                            SizedBox(height: height),
+                            Row(
+                              children: [
+                                Expanded(
+                                    flex: labelFlex,
+                                    child: Text("New Password")),
+                                SizedBox(width: 15),
+                                ChangePasswordField(
+                                  flex: valueFlex,
+                                  hint: "Your new password",
+                                  controller: this.oldPassword,
+                                ),
+                              ],
                             ),
-                            SizedBox(height: 20),
-                            ChangePasswordField(
-                              label: "Re-type Password",
-                              hint: "Confirmation your new password",
-                              controller: this.confPassowrd,
+                            SizedBox(height: height),
+                            Row(
+                              children: [
+                                Expanded(
+                                    flex: labelFlex,
+                                    child: Text("Re-type assword")),
+                                SizedBox(width: 15),
+                                ChangePasswordField(
+                                  flex: valueFlex,
+                                  hint: "Confirmation your new password",
+                                  controller: this.confPassowrd,
+                                ),
+                              ],
                             ),
-                            SizedBox(height: 20),
+                            SizedBox(height: height),
                             Container(
                                 child: state.maybeMap(
                               orElse: () => buildBtnPrimaryBlue(context),
@@ -127,11 +157,11 @@ class ChangePasswordField extends StatefulWidget {
   const ChangePasswordField({
     Key key,
     @required this.hint,
-    @required this.label,
     @required this.controller,
+    @required this.flex,
   }) : super(key: key);
   final String hint;
-  final String label;
+  final int flex;
   final TextEditingController controller;
 
   @override
@@ -149,31 +179,25 @@ class _ChangePasswordFieldState extends State<ChangePasswordField> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(
-        this.widget.label,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      SizedBox(
-        height: 5,
-      ),
-      TextFormField(
+    return Expanded(
+      flex: widget.flex,
+      child: TextFormField(
           controller: editingController,
           obscureText: obsecureText,
           decoration: InputDecoration(
             suffixIcon: IconButton(
-                icon: Icon(
-                    (obsecureText) ? Icons.visibility : Icons.visibility_off),
+                icon: InkWell(
+                  child: Icon(
+                      (obsecureText) ? Icons.visibility : Icons.visibility_off),
+                ),
                 onPressed: () {
                   setState(() {
                     this.obsecureText = !this.obsecureText;
                   });
                 }),
-            border: OutlineInputBorder(),
+            border: UnderlineInputBorder(),
             hintText: this.widget.hint,
           )),
-    ]);
+    );
   }
 }

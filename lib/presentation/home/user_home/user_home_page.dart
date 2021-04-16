@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:i_love_iruka/application/auth/auth_bloc.dart';
+
 import 'package:i_love_iruka/application/auth/authentication/authentication_bloc.dart';
 import 'package:i_love_iruka/application/auth/user_controller.dart';
 import 'package:i_love_iruka/presentation/home/pets/my_pets_page.dart';
@@ -11,6 +11,7 @@ import 'package:i_love_iruka/presentation/home/user_home/address/address_page.da
 import 'package:i_love_iruka/presentation/home/user_home/change_password/change_password_page.dart';
 import 'package:i_love_iruka/presentation/home/user_home/profile/setting_profile_page.dart';
 import 'package:i_love_iruka/presentation/welcome/welcome_screen.dart';
+import 'package:i_love_iruka/presentation/widgets/global_widget_method.dart';
 import 'package:i_love_iruka/util/constants.dart';
 
 import '../../../injection.dart';
@@ -49,10 +50,10 @@ class _UserHomePageState extends State<UserHomePage> {
             builder: (userController) => Stack(
               children: [
                 ClipPath(
-                  clipper: OvalBottomBorderClipper(),
+                  clipper: WaveClipperOne(),
                   child: Container(
                     height: 150,
-                    color: Color(0xFF3DA3EC),
+                    color: Color(0xFFA3D9FF),
                   ),
                 ),
                 Stack(
@@ -74,7 +75,10 @@ class _UserHomePageState extends State<UserHomePage> {
                               Container(
                                 margin: EdgeInsets.symmetric(horizontal: 15),
                                 child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    GlobalWidgetMethod.pageTitle("Settings"),
+                                    SizedBox(height: 30),
                                     Row(
                                       children: [
                                         CircleAvatar(
@@ -100,7 +104,7 @@ class _UserHomePageState extends State<UserHomePage> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text("User Setting",
+                                                Text("Account",
                                                     style: TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 17)),
@@ -129,40 +133,38 @@ class _UserHomePageState extends State<UserHomePage> {
                               Column(
                                 children: [
                                   buildUserOptionListTile(
-                                      leadingIcon: Icon(Icons.pets_outlined,
-                                          size: 25, color: Colors.black),
+                                      icon: Icons.pets_outlined,
+                                      color: Color(0xFF6D87FC),
                                       title: "My Pets",
                                       onTap: () {
                                         Get.toNamed(MyPetsPage.TAG);
                                       }),
                                   buildUserOptionListTile(
-                                      leadingIcon: Icon(Icons.person_pin,
-                                          size: 25, color: Colors.black),
+                                      icon: Icons.person_pin,
                                       title: "Profile",
+                                      color: Color(0xFFEB6161),
                                       onTap: () {
                                         Get.toNamed(SettingProfielPage.TAG);
                                       }),
                                   buildUserOptionListTile(
-                                      leadingIcon: Icon(
-                                          Icons.edit_location_sharp,
-                                          size: 25,
-                                          color: Colors.black),
+                                      icon: Icons.edit_location_sharp,
                                       title: "Address",
+                                      color: Color(0xFF61EB7F),
                                       onTap: () {
                                         Get.toNamed(AddressPage.TAG);
                                       }),
                                   buildUserOptionListTile(
-                                      leadingIcon: Icon(Icons.security_sharp,
-                                          size: 25, color: Colors.black),
+                                      icon: Icons.security_sharp,
+                                      color: Color(0xFFE9EB61),
                                       title: "Change Password",
                                       onTap: () {
                                         Get.toNamed(ChangePasswordPage.TAG);
                                       }),
                                   buildUserOptionListTile(
-                                      leadingIcon: Icon(Icons.security_sharp,
-                                          size: 25, color: Colors.red),
+                                      icon: Icons.security_sharp,
                                       title: "Sign Out",
                                       color: Colors.red,
+                                      textColor: Colors.red,
                                       onTap: () {
                                         Get.dialog(AlertDialog(
                                           content: Text(
@@ -217,25 +219,39 @@ class _UserHomePageState extends State<UserHomePage> {
     );
   }
 
-  Widget buildUserOptionListTile(
-      {@required String title,
-      @required Icon leadingIcon,
-      @required Function onTap,
-      Color color = Colors.black}) {
+  Widget buildUserOptionListTile({
+    @required String title,
+    @required Function onTap,
+    @required IconData icon,
+    Color color = Colors.black,
+    Color textColor = Colors.black,
+  }) {
     return Column(
       children: [
-        ListTile(
+        InkWell(
           onTap: onTap,
-          leading: leadingIcon,
-          title: Text(
-            "$title",
-            style: TextStyle(
-                fontSize: 16, fontWeight: FontWeight.bold, color: color),
-          ),
-          trailing: Icon(
-            Icons.keyboard_arrow_right_rounded,
-            size: 30,
-            color: color,
+          splashColor: color,
+          highlightColor: Colors.white54,
+          child: ListTile(
+            leading: CircleAvatar(
+              backgroundColor: color,
+              child: Icon(icon, size: 25, color: Colors.white),
+            ),
+            title: Text(
+              "$title",
+              style: TextStyle(
+                  fontSize: 16, fontWeight: FontWeight.bold, color: textColor),
+            ),
+            trailing: Container(
+              decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(8)),
+              child: Icon(
+                Icons.keyboard_arrow_right_rounded,
+                size: 30,
+                color: textColor,
+              ),
+            ),
           ),
         ),
         Divider()

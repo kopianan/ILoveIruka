@@ -16,6 +16,7 @@ import 'package:i_love_iruka/infrastructure/functions/custom_formatter.dart';
 import 'package:i_love_iruka/injection.dart';
 import 'package:i_love_iruka/presentation/feed_detail/feed_detail_page.dart';
 import 'package:i_love_iruka/presentation/widgets/error_handling_widget.dart';
+import 'package:i_love_iruka/presentation/widgets/global_widget_method.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -84,199 +85,195 @@ class _FeedHomeState extends State<FeedHome>
                         ));
               });
         }, builder: (context, state) {
-          return Stack(
-            children: [
-              // ClipPath(
-              //   clipper: WaveClipperTwo(flip: true),
-              //   child: Container(
-              //     height: 150,
-              //     color: Color(0xFF3DA3EC),
-              //   ),
-              // ),
-              SmartRefresher(
-                enablePullDown: true,
-                enablePullUp: true,
-                header: WaterDropHeader(),
-                footer: CustomFooter(
-                  builder: (BuildContext context, LoadStatus mode) {
-                    Widget body;
-                    if (mode == LoadStatus.idle) {
-                      body = Text("pull up load");
-                    } else if (mode == LoadStatus.loading) {
-                      body = CupertinoActivityIndicator();
-                    } else if (mode == LoadStatus.failed) {
-                      body = Text("Load Failed!Click retry!");
-                    } else if (mode == LoadStatus.canLoading) {
-                      body = Text("release to load more");
-                    } else {
-                      body = Text("No more Data");
-                    }
-                    return Container(
-                      child: Center(child: body),
-                    );
-                  },
+          return SafeArea(
+            child: Stack(
+              children: [
+                ClipPath(
+                  clipper: WaveClipperOne(),
+                  child: Container(
+                    height: 150,
+                    color: Color(0xFF3FABF8),
+                  ),
                 ),
-                controller: _refreshController,
-                onRefresh: _onRefresh,
-                onLoading: _onLoading,
-                child: CustomScrollView(slivers: [
-                  SliverAppBar(
-                    title: Text(
-                      "I Love Iruka",
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
+                SmartRefresher(
+                  enablePullDown: true,
+                  enablePullUp: true,
+                  header: WaterDropHeader(),
+                  footer: CustomFooter(
+                    builder: (BuildContext context, LoadStatus mode) {
+                      Widget body;
+                      if (mode == LoadStatus.idle) {
+                        body = Text("pull up load");
+                      } else if (mode == LoadStatus.loading) {
+                        body = CupertinoActivityIndicator();
+                      } else if (mode == LoadStatus.failed) {
+                        body = Text("Load Failed!Click retry!");
+                      } else if (mode == LoadStatus.canLoading) {
+                        body = Text("release to load more");
+                      } else {
+                        body = Text("No more Data");
+                      }
+                      return Container(
+                        child: Center(child: body),
+                      );
+                    },
+                  ),
+                  controller: _refreshController,
+                  onRefresh: _onRefresh,
+                  onLoading: _onLoading,
+                  child: CustomScrollView(slivers: [
+                    // SliverAppBar(
+                    //   title: Text(
+                    //     "I Love Iruka",
+                    //     style: TextStyle(
+                    //       fontSize: 25,
+                    //       fontWeight: FontWeight.bold,
+                    //     ),
+                    //   ),
+                    //   backgroundColor: Color(0xFF3DA3EC),
+                    // ),
+                    // SliverToBoxAdapter(
+                    //   child: Container(
+                    //     height: kToolbarHeight,
+                    //   ),
+                    // ),
+                    SliverToBoxAdapter(
+                        child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: _horizontalMargin,
+                          vertical: _verticalMargin),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GlobalWidgetMethod.pageTitle("Welcome"),
+                              Text(
+                                "${userController.getUserData().fullName}",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17,
+                                    color: Colors.black54),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            height: 60,
+                            width: 60,
+                            child: Image.asset('images/assets/iruka_logo.png'),
+                            decoration: BoxDecoration(
+                              // boxShadow: [
+                              //   BoxShadow(
+                              //       color: Colors.grey,
+                              //       spreadRadius: 2,
+                              //       blurRadius: 2,
+                              //       offset: Offset(3, 3))
+                              // ],
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          )
+                        ],
+                      ),
+                    )),
+                    SliverPadding(
+                      padding: EdgeInsets.only(bottom: 10),
+                      sliver: SliverToBoxAdapter(
+                        child: BlocProvider(
+                          create: (context) => _homeTopFeedBloc
+                            ..add(FeedHomeEvent.getTopFeedData()),
+                          child: Container(
+                            child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
+                              listener: (context, state) {
+                                //set top feed data
+                                state.maybeMap(
+                                  orElse: () {},
+                                  failOrSuccessGetData: (val) {
+                                    if (val.isLoading) print("Loading kok");
+                                    val.responseOptions.fold(
+                                        () {},
+                                        (a) => a.fold(
+                                              (l) {},
+                                              (r) {
+                                                feedController.setTopFeed(r);
+                                              },
+                                            ));
+                                  },
+                                );
+                              },
+                              builder: (context, state) {
+                                return onGetTopFeed(context, state);
+                              },
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                    backgroundColor: Color(0xFF3DA3EC),
-                  ),
-                  // SliverToBoxAdapter(
-                  //   child: Container(
-                  //     height: kToolbarHeight,
-                  //   ),
-                  // ),
-                  SliverToBoxAdapter(
-                      child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: _horizontalMargin,
-                        vertical: _verticalMargin),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Welcome",
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black54),
-                            ),
-                            Text(
-                              "${userController.getUserData().fullName}",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  color: Colors.black54),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          height: 60,
-                          width: 60,
-                          child: Image.asset('images/assets/iruka_logo.png'),
-                          decoration: BoxDecoration(
-                            // boxShadow: [
-                            //   BoxShadow(
-                            //       color: Colors.grey,
-                            //       spreadRadius: 2,
-                            //       blurRadius: 2,
-                            //       offset: Offset(3, 3))
-                            // ],
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        )
-                      ],
+                    SliverToBoxAdapter(
+                      child: sectionTitle(_horizontalMargin, "Features"),
                     ),
-                  )),
-                  SliverPadding(
-                    padding: EdgeInsets.only(bottom: 10),
-                    sliver: SliverToBoxAdapter(
+                    SliverToBoxAdapter(
+                        child: BlocProvider(
+                            create: (context) => _homeMenuBloc
+                              ..add(FeedHomeEvent.getHomeMenuList()),
+                            child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
+                              listener: (context, state) {
+                                state.maybeMap(
+                                    orElse: () => {},
+                                    onGetHomeMenuList: (val) {
+                                      val.homeMenuData.fold(
+                                          () => {},
+                                          (a) => a.fold(
+                                                (l) => {},
+                                                (r) {
+                                                  feedController.setMenuList(r);
+                                                },
+                                              ));
+                                    });
+                              },
+                              builder: (context, state) {
+                                return onGetHomeMenu(state);
+                              },
+                            ))),
+                    SliverToBoxAdapter(
+                      child: sectionTitle(_horizontalMargin, "Newsletter"),
+                    ),
+                    SliverToBoxAdapter(
                       child: BlocProvider(
-                        create: (context) => _homeTopFeedBloc
-                          ..add(FeedHomeEvent.getTopFeedData()),
+                        create: (context) => _homeBottomFeedBloc
+                          ..add(FeedHomeEvent.getBottomFeedData()),
                         child: Container(
                           child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
                             listener: (context, state) {
-                              //set top feed data
                               state.maybeMap(
                                 orElse: () {},
-                                failOrSuccessGetData: (val) {
-                                  if (val.isLoading) print("Loading kok");
+                                failOrSuccessGetDataBottom: (val) {
                                   val.responseOptions.fold(
                                       () {},
                                       (a) => a.fold(
                                             (l) {},
                                             (r) {
-                                              feedController.setTopFeed(r);
+                                              feedController.setBottomFeed(r);
                                             },
                                           ));
                                 },
                               );
                             },
                             builder: (context, state) {
-                              return onGetTopFeed(context, state);
+                              return onGetBottomFeed(state);
                             },
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: sectionTitle(_horizontalMargin, "Features"),
-                  ),
-                  SliverToBoxAdapter(
-                      child: BlocProvider(
-                          create: (context) => _homeMenuBloc
-                            ..add(FeedHomeEvent.getHomeMenuList()),
-                          child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
-                            listener: (context, state) {
-                              state.maybeMap(
-                                  orElse: () => {},
-                                  onGetHomeMenuList: (val) {
-                                    val.homeMenuData.fold(
-                                        () => {},
-                                        (a) => a.fold(
-                                              (l) => {},
-                                              (r) {
-                                                feedController.setMenuList(r);
-                                              },
-                                            ));
-                                  });
-                            },
-                            builder: (context, state) {
-                              return onGetHomeMenu(state);
-                            },
-                          ))),
-                  SliverToBoxAdapter(
-                    child: sectionTitle(_horizontalMargin, "Newsletter"),
-                  ),
-                  SliverToBoxAdapter(
-                    child: BlocProvider(
-                      create: (context) => _homeBottomFeedBloc
-                        ..add(FeedHomeEvent.getBottomFeedData()),
-                      child: Container(
-                        child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
-                          listener: (context, state) {
-                            state.maybeMap(
-                              orElse: () {},
-                              failOrSuccessGetDataBottom: (val) {
-                                val.responseOptions.fold(
-                                    () {},
-                                    (a) => a.fold(
-                                          (l) {},
-                                          (r) {
-                                            feedController.setBottomFeed(r);
-                                          },
-                                        ));
-                              },
-                            );
-                          },
-                          builder: (context, state) {
-                            return onGetBottomFeed(state);
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-                  // SliverList(delegate: SliverChildBuilderDelegate((context, index) {
-                  //   return newsletterItem(_horizontalMargin);
-                  // }))
-                ]),
-              ),
-            ],
+                    // SliverList(delegate: SliverChildBuilderDelegate((context, index) {
+                    //   return newsletterItem(_horizontalMargin);
+                    // }))
+                  ]),
+                ),
+              ],
+            ),
           );
         }));
   }

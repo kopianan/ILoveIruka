@@ -7,6 +7,7 @@ import 'package:i_love_iruka/application/user/user_bloc.dart';
 import 'package:i_love_iruka/domain/address/address_data_model.dart';
 import 'package:i_love_iruka/domain/address/province_data_model.dart';
 import 'package:i_love_iruka/infrastructure/functions/custom_alert.dart';
+import 'package:i_love_iruka/presentation/widgets/global_widget_method.dart';
 
 import '../../../../injection.dart';
 import 'address_req_res_data_model.dart';
@@ -123,9 +124,6 @@ class _AddressPageState extends State<AddressPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text(
-          "Change Address",
-        ),
         actions: [
           TextButton(
               onPressed: () {
@@ -140,8 +138,9 @@ class _AddressPageState extends State<AddressPage> {
                 print(request.toString());
                 context.read<UserBloc>().add(UserEvent.changeAddress(request));
               },
-              child: Text(
-                "Save",
+              child: ElevatedButton(
+                child: Icon(Icons.check),
+                onPressed: () {},
               ))
         ],
       ),
@@ -167,6 +166,8 @@ class _AddressPageState extends State<AddressPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
+                          GlobalWidgetMethod.pageTitle("Change Address"),
+                          SizedBox(height: 20),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

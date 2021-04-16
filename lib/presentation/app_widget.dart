@@ -48,6 +48,7 @@ class _AppWidgetState extends State<AppWidget> {
 
   ThemeData theme() {
     return ThemeData(
+      scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
             iconTheme: IconThemeData(color: Colors.black87),
             textTheme: TextTheme(
