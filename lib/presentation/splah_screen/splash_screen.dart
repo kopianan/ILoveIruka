@@ -26,8 +26,8 @@ class SplashScreen extends StatelessWidget {
             },
             unAuthenticated: (data) {
               print(data);
-              Get.offNamedUntil(
-                  WelcomeScreen.TAG, ModalRoute.withName(SplashScreen.TAG));
+              Get.offAllNamed(
+                  WelcomeScreen.TAG,);
             },
           );
         },

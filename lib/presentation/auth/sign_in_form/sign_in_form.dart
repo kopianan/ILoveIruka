@@ -81,9 +81,8 @@ class _SignInFormState extends State<SignInForm> {
                     showBasicFlash(context, err.errorMessage));
           }, (r) {
             Pref().saveUserData(r).then(
-                  (value) => Get.offNamedUntil(
+                  (value) => Get.offAllNamed(
                     DashboardPage.TAG,
-                    ModalRoute.withName(SplashScreen.TAG),
                   ),
                 );
           }),
