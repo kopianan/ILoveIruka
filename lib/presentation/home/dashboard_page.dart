@@ -65,7 +65,7 @@ class _DashboardPageState extends State<DashboardPage> {
           children: <Widget>[
             FeedHome(),
             AccountPagehome(),
-            PetsMatchPage(),
+            // PetsMatchPage(),
             // ComingSoon(),
             UserHomePage()
           ],
@@ -81,67 +81,67 @@ class _DashboardPageState extends State<DashboardPage> {
             BottomNavigationBarItem(icon: Icon(Icons.apps), label: 'Home'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.subscriptions_outlined), label: 'Member'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.pets_outlined), label: 'Pets'),
+            // BottomNavigationBarItem(
+            //     icon: Icon(Icons.pets_outlined), label: 'Pets'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Users'),
           ]),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.qr_code,
-        ),
-        onPressed: () {
-          showDialog(
-              barrierDismissible: false,
-              context: context,
-              builder: (context) => GestureDetector(
-                  onVerticalDragEnd: (down) {
-                    Navigator.pop(context, null);
-                  },
-                  child: Dialog(
-                    backgroundColor: Colors.white,
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Container(
-                        padding: EdgeInsets.only(
-                            top: 20, right: 20, left: 20, bottom: 10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Text(
-                              "QR Code",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                            Text("Scan this qr for transaction"),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              child: QrImage(
-                                  size: 250,
-                                  data: userController.getUserData().fullName),
-                            ),
-                            Container(
-                                margin: EdgeInsets.only(top: 10),
-                                alignment: Alignment.center,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text("Swipe down to close"),
-                                    Icon(
-                                      Icons.keyboard_arrow_down,
-                                      color: Colors.black,
-                                    )
-                                  ],
-                                ))
-                          ],
-                        )),
-                  )));
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(
+      //     Icons.qr_code,
+      //   ),
+      //   onPressed: () {
+      //     showDialog(
+      //         barrierDismissible: false,
+      //         context: context,
+      //         builder: (context) => GestureDetector(
+      //             onVerticalDragEnd: (down) {
+      //               Navigator.pop(context, null);
+      //             },
+      //             child: Dialog(
+      //               backgroundColor: Colors.white,
+      //               elevation: 5,
+      //               shape: RoundedRectangleBorder(
+      //                   borderRadius: BorderRadius.circular(8)),
+      //               child: Container(
+      //                   padding: EdgeInsets.only(
+      //                       top: 20, right: 20, left: 20, bottom: 10),
+      //                   child: Column(
+      //                     crossAxisAlignment: CrossAxisAlignment.start,
+      //                     mainAxisSize: MainAxisSize.min,
+      //                     children: <Widget>[
+      //                       Text(
+      //                         "QR Code",
+      //                         style: TextStyle(
+      //                             fontSize: 18, fontWeight: FontWeight.bold),
+      //                       ),
+      //                       Text("Scan this qr for transaction"),
+      //                       SizedBox(
+      //                         height: 8,
+      //                       ),
+      //                       Container(
+      //                         alignment: Alignment.center,
+      //                         child: QrImage(
+      //                             size: 250,
+      //                             data: userController.getUserData().fullName),
+      //                       ),
+      //                       Container(
+      //                           margin: EdgeInsets.only(top: 10),
+      //                           alignment: Alignment.center,
+      //                           child: Column(
+      //                             mainAxisAlignment: MainAxisAlignment.center,
+      //                             children: <Widget>[
+      //                               Text("Swipe down to close"),
+      //                               Icon(
+      //                                 Icons.keyboard_arrow_down,
+      //                                 color: Colors.black,
+      //                               )
+      //                             ],
+      //                           ))
+      //                     ],
+      //                   )),
+      //             )));
+      //   },
+      // ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
