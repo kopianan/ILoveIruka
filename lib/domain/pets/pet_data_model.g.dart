@@ -8,20 +8,20 @@ part of 'pet_data_model.dart';
 
 _$_PetDataModel _$_$_PetDataModelFromJson(Map<String, dynamic> json) {
   return _$_PetDataModel(
-    json['id'] as String,
-    json['name'] as String,
-    json['profilePictureUrl'] as String,
-    json['birthDate'] as String,
-    json['race'] as String,
-    json['gender'] == null
+    id: json['id'] as String,
+    name: json['name'] as String,
+    profilePictureUrl: json['profilePictureUrl'] as String,
+    birthDate: json['birthDate'] as String,
+    race: json['race'] as String,
+    gender: json['gender'] == null
         ? null
         : Label.fromJson(json['gender'] as Map<String, dynamic>),
-    json['animal'] == null
+    animal: json['animal'] == null
         ? null
         : Label.fromJson(json['animal'] as Map<String, dynamic>),
-    json['bio'] as String,
-    json['weight'] as int,
-    json['user'] as String,
+    bio: json['bio'] as String,
+    weight: json['weight'] as int,
+    user: json['user'] as String,
   );
 }
 

@@ -53,7 +53,6 @@ class _MyPetsPageState extends State<MyPetsPage> {
             create: (context) => petBloc,
             child: BlocConsumer<PetBloc, PetState>(
               listener: (context, state) {
-                print(state);
                 state.maybeMap(
                     orElse: () {},
                     loading: (e) {},
@@ -116,73 +115,94 @@ class _MyPetsPageState extends State<MyPetsPage> {
                             child: GlobalWidgetMethod.pageTitle("My Pet"),
                           ),
                         ),
-                        SliverList(
-                            delegate:
-                                SliverChildBuilderDelegate((context, index) {
-                          return Container(
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 5),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Colors.grey[200],
-                                      blurRadius: 3,
-                                      spreadRadius: 2,
-                                      offset: Offset.fromDirection(45, 2))
-                                ]),
+                        state.maybeMap(
+                          loading: (e) => SliverToBoxAdapter(
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Row(
-                                  children: [
-                                    Container(
-                                        width: 100,
-                                        height: 80,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            image: DecorationImage(
-                                                image: NetworkImage(
-                                                    Constants.getStagingUrl() +
-                                                        myPet.getMyPet[index]
-                                                            .profilePictureUrl),
-                                                fit: BoxFit.cover))),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          myPet.getMyPet[index].name,
-                                          maxLines: 1,
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Text(
-                                          myPet.getMyPet[index].bio,
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        Text(
-                                          myPet.getMyPet[index].animal.label,
-                                          style: TextStyle(
-                                            fontSize: 11,
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
+                                Center(
+                                  child: CircularProgressIndicator(),
+                                )
                               ],
                             ),
-                          );
-                        }, childCount: myPet.getMyPet.length))
+                          ),
+                          orElse: () => SliverList(
+                              delegate:
+                                  SliverChildBuilderDelegate((context, index) {
+                            return InkWell(
+                              onTap: () {
+                                //set data to make it know that we open our pets detail
+                                myPet.setSelectedPet(myPet.getMyPet[index]);
+                                Get.toNamed(PetsDetailPage.TAG,
+                                    arguments: myPet.getMyPet[index]);
+                              },
+                              child: Container(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 5, vertical: 5),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey[200],
+                                          blurRadius: 3,
+                                          spreadRadius: 2,
+                                          offset: Offset.fromDirection(45, 2))
+                                    ]),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                            width: 100,
+                                            height: 80,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                image: DecorationImage(
+                                                    image: NetworkImage(Constants
+                                                            .getStagingUrl() +
+                                                        myPet.getMyPet[index]
+                                                            .profilePictureUrl),
+                                                    fit: BoxFit.cover))),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              myPet.getMyPet[index].name,
+                                              maxLines: 1,
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Text(
+                                              myPet.getMyPet[index].bio,
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                            Text(
+                                              myPet
+                                                  .getMyPet[index].animal.label,
+                                              style: TextStyle(
+                                                fontSize: 11,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }, childCount: myPet.getMyPet.length)),
+                        ),
                       ],
                     ));
               },

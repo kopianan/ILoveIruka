@@ -6,8 +6,8 @@ part 'pet_post_data_model.g.dart';
 @freezed
 abstract class PetPostDataModel with _$PetPostDataModel {
   factory PetPostDataModel(
-      {String id,
-      String catpion,
+      {@JsonKey(nullable: true) String id,
+      @JsonKey(nullable: true) String catpion,
       String pictureUrl,
       String pet}) = _PetPostDataModel;
 

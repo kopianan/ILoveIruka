@@ -92,7 +92,7 @@ class _FeedHomeState extends State<FeedHome>
                   clipper: WaveClipperOne(),
                   child: Container(
                     height: 150,
-                    color: Color(0xFF3FABF8),
+                    color: Color(0xFFADDDFF),
                   ),
                 ),
                 SmartRefresher(

@@ -6,7 +6,7 @@ part 'pet_data_model.g.dart';
 
 @freezed
 abstract class PetDataModel with _$PetDataModel {
-  factory PetDataModel(
+  factory PetDataModel({
     String id,
     String name,
     String profilePictureUrl,
@@ -17,7 +17,7 @@ abstract class PetDataModel with _$PetDataModel {
     String bio,
     int weight,
     String user,
-  ) = _PetDataModel;
+  }) = _PetDataModel;
 
   factory PetDataModel.fromJson(Map<String, dynamic> json) =>
       _$PetDataModelFromJson(json);

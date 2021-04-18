@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:i_love_iruka/domain/core/general_failure.dart';
 import 'package:i_love_iruka/domain/pets/i_pet_facade.dart';
+import 'package:i_love_iruka/domain/pets/pet_add_new_post_request.dart';
 import 'package:i_love_iruka/domain/pets/pet_data_model.dart';
 import 'package:i_love_iruka/domain/pets/pet_post_data_model.dart';
 import 'package:i_love_iruka/domain/pets/pet_req_res.dart';
@@ -80,6 +81,19 @@ class PetBloc extends Bloc<PetEvent, PetState> {
           yield _result.fold(
             (l) => PetState.error(l),
             (r) => PetState.onGetPetPostById(r),
+          );
+        } catch (e) {
+          yield PetState.error(GeneralFailure(e.toString()));
+        }
+      },
+      addNewPetPost: (_AddNewPetPost value) async* {
+        yield PetState.loading();
+        try {
+          final _result =
+              await iPetFacade.addNewPost(value.request, value.petId);
+          yield _result.fold(
+            (l) => PetState.error(l),
+            (r) => PetState.onAddNewPost(r),
           );
         } catch (e) {
           yield PetState.error(GeneralFailure(e.toString()));

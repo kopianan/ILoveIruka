@@ -18,7 +18,7 @@ class _$PetDataModelTearOff {
 
 // ignore: unused_element
   _PetDataModel call(
-      String id,
+      {String id,
       String name,
       String profilePictureUrl,
       String birthDate,
@@ -27,18 +27,18 @@ class _$PetDataModelTearOff {
       Label animal,
       String bio,
       int weight,
-      String user) {
+      String user}) {
     return _PetDataModel(
-      id,
-      name,
-      profilePictureUrl,
-      birthDate,
-      race,
-      gender,
-      animal,
-      bio,
-      weight,
-      user,
+      id: id,
+      name: name,
+      profilePictureUrl: profilePictureUrl,
+      birthDate: birthDate,
+      race: race,
+      gender: gender,
+      animal: animal,
+      bio: bio,
+      weight: weight,
+      user: user,
     );
   }
 
@@ -170,18 +170,18 @@ class __$PetDataModelCopyWithImpl<$Res> extends _$PetDataModelCopyWithImpl<$Res>
     Object user = freezed,
   }) {
     return _then(_PetDataModel(
-      id == freezed ? _value.id : id as String,
-      name == freezed ? _value.name : name as String,
-      profilePictureUrl == freezed
+      id: id == freezed ? _value.id : id as String,
+      name: name == freezed ? _value.name : name as String,
+      profilePictureUrl: profilePictureUrl == freezed
           ? _value.profilePictureUrl
           : profilePictureUrl as String,
-      birthDate == freezed ? _value.birthDate : birthDate as String,
-      race == freezed ? _value.race : race as String,
-      gender == freezed ? _value.gender : gender as Label,
-      animal == freezed ? _value.animal : animal as Label,
-      bio == freezed ? _value.bio : bio as String,
-      weight == freezed ? _value.weight : weight as int,
-      user == freezed ? _value.user : user as String,
+      birthDate: birthDate == freezed ? _value.birthDate : birthDate as String,
+      race: race == freezed ? _value.race : race as String,
+      gender: gender == freezed ? _value.gender : gender as Label,
+      animal: animal == freezed ? _value.animal : animal as Label,
+      bio: bio == freezed ? _value.bio : bio as String,
+      weight: weight == freezed ? _value.weight : weight as int,
+      user: user == freezed ? _value.user : user as String,
     ));
   }
 }
@@ -190,18 +190,17 @@ class __$PetDataModelCopyWithImpl<$Res> extends _$PetDataModelCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_PetDataModel implements _PetDataModel {
-  _$_PetDataModel(this.id, this.name, this.profilePictureUrl, this.birthDate,
-      this.race, this.gender, this.animal, this.bio, this.weight, this.user)
-      : assert(id != null),
-        assert(name != null),
-        assert(profilePictureUrl != null),
-        assert(birthDate != null),
-        assert(race != null),
-        assert(gender != null),
-        assert(animal != null),
-        assert(bio != null),
-        assert(weight != null),
-        assert(user != null);
+  _$_PetDataModel(
+      {this.id,
+      this.name,
+      this.profilePictureUrl,
+      this.birthDate,
+      this.race,
+      this.gender,
+      this.animal,
+      this.bio,
+      this.weight,
+      this.user});
 
   factory _$_PetDataModel.fromJson(Map<String, dynamic> json) =>
       _$_$_PetDataModelFromJson(json);
@@ -287,7 +286,7 @@ class _$_PetDataModel implements _PetDataModel {
 
 abstract class _PetDataModel implements PetDataModel {
   factory _PetDataModel(
-      String id,
+      {String id,
       String name,
       String profilePictureUrl,
       String birthDate,
@@ -296,7 +295,7 @@ abstract class _PetDataModel implements PetDataModel {
       Label animal,
       String bio,
       int weight,
-      String user) = _$_PetDataModel;
+      String user}) = _$_PetDataModel;
 
   factory _PetDataModel.fromJson(Map<String, dynamic> json) =
       _$_PetDataModel.fromJson;

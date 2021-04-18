@@ -5,6 +5,7 @@ import 'package:i_love_iruka/domain/pets/pet_data_model.dart';
 class PetController extends GetxController {
   List<PetDataModel> listPetDataModel = <PetDataModel>[].obs;
   List<PetDataModel> myPet = <PetDataModel>[].obs;
+  Rx<PetDataModel> mySelectedPet = PetDataModel().obs;
 
   void setListPet(List<PetDataModel> dataList) {
     listPetDataModel.assignAll(dataList);
@@ -16,4 +17,11 @@ class PetController extends GetxController {
   }
 
   List<PetDataModel> get getMyPet => this.myPet;
+
+  void setSelectedPet(PetDataModel data) {
+    this.mySelectedPet.value = data;
+    update();
+  }
+
+  PetDataModel get getMySelectedPet => this.mySelectedPet.value;
 }

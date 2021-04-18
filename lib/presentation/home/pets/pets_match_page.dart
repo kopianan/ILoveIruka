@@ -135,35 +135,58 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
                                 style: TextStyle(
                                   fontSize: 20,
                                 )),
-                            Text("Alamat saya",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                )),
+                            // Text("Alamat saya",
+                            //     style: TextStyle(
+                            //       fontSize: 20,
+                            //       fontWeight: FontWeight.bold,
+                            //     )),
                           ],
                         ),
                       ),
                     ),
-                    (pet.getListPet.isEmpty)
-                        ? SliverToBoxAdapter(
-                            child: Container(child: Text("No Data")))
-                        : SliverToBoxAdapter(
-                            child: Container(
-                              margin: EdgeInsets.symmetric(horizontal: 15),
-                              child: ListView.builder(
-                                  itemCount: pet.getListPet.length,
-                                  shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
-                                  itemBuilder: (context, index) {
-                                    return Column(
-                                      children: [
-                                        buildPetItem(pet.getListPet[index]),
-                                        SizedBox(height: 13)
-                                      ],
-                                    );
-                                  }),
-                            ),
-                          )
+                    SliverToBoxAdapter(child: SizedBox(height: 20)),
+                    state.maybeMap(
+                        loading: (e) => SliverToBoxAdapter(
+                                child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              ],
+                            )),
+                        orElse: () => (pet.getListPet.isEmpty)
+                            ? SliverToBoxAdapter(
+                                child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      child: Text(
+                                    "No Data",
+                                    style: TextStyle(
+                                        fontSize: 30, color: Colors.grey),
+                                  )),
+                                ],
+                              ))
+                            : SliverToBoxAdapter(
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 15),
+                                  child: ListView.builder(
+                                      itemCount: pet.getListPet.length,
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemBuilder: (context, index) {
+                                        return Column(
+                                          children: [
+                                            buildPetItem(pet.getListPet[index]),
+                                            SizedBox(height: 13)
+                                          ],
+                                        );
+                                      }),
+                                ),
+                              ))
                   ],
                 ),
               );
@@ -174,104 +197,101 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
     );
   }
 
-  InkWell buildPetItem(PetDataModel pet) {
+  Widget buildPetItem(PetDataModel pet) {
     List<PetTags> tags = [
       PetTags(
         label: "Gender",
-        color: Color(0xFFFFB795),
+        color: Color(0xFF4DA2D6),
         value: pet.gender.label,
       ),
       PetTags(
         label: "Type",
-        color: Color(0xFFAEF3B0),
+        color: Color(0xFF4DA2D6),
         value: pet.animal.label,
       ),
       PetTags(
         label: "Weight",
-        color: Color(0xFFACA1FD),
+        color: Color(0xFF4DA2D6),
         value: pet.weight.toString(),
       ),
       PetTags(
         label: "Race",
-        color: Color(0xFFFAAFFF),
+        color: Color(0xFF4DA2D6),
         value: pet.race,
       ),
       PetTags(
           label: "Age",
-          color: Color(0xFFFDFFA0),
+          color: Color(0xFF4DA2D6),
           value: calculateAge(DateTime.now(), pet.birthDate)),
     ];
-    return InkWell(
-      onTap: () {
-        Get.toNamed(PetsDetailPage.TAG);
-      },
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(5),
-        child: InkWell(
-          onTap: () {
-            Get.toNamed(PetsDetailPage.TAG, arguments: pet);
-          },
-          child: Container(
-            decoration: BoxDecoration(color: Colors.white, boxShadow: [
-              BoxShadow(
-                  color: Colors.grey[400],
-                  blurRadius: 3,
-                  spreadRadius: 3,
-                  offset: Offset.fromDirection(30, 0.3))
-            ]),
-            width: Get.size.width,
-            height: Get.size.width,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                    flex: 5,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(5),
+      child: InkWell(
+        onTap: () {
+          Get.toNamed(PetsDetailPage.TAG, arguments: pet);
+        },
+        child: Container(
+          decoration: BoxDecoration(color: Colors.white, boxShadow: [
+            BoxShadow(
+                color: Colors.grey[400],
+                blurRadius: 3,
+                spreadRadius: 3,
+                offset: Offset.fromDirection(30, 0.3))
+          ]),
+          width: Get.size.width,
+          height: Get.size.width,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                  flex: 5,
+                  child: Container(
                     child: Image.network(
                       // "https://unsplash.com/photos/L2iZFRPaH1M/download?force=true&w=640",
                       Constants.getStagingUrl() + pet.profilePictureUrl,
                       fit: BoxFit.cover,
-                    )),
-                SizedBox(height: 8),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  child: Tags(
-                    itemCount: tags.length,
-                    itemBuilder: (int index) {
-                      return ItemTags(
-                        active: true,
-                        pressEnabled: false,
-                        textActiveColor: Colors.black,
-                        activeColor: tags[index].color,
-                        index: index,
-                        title: tags[index].value,
-                      );
-                    },
+                    ),
+                  )),
+              SizedBox(height: 8),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                child: Tags(
+                  itemCount: tags.length,
+                  itemBuilder: (int index) {
+                    return ItemTags(
+                      active: true,
+                      pressEnabled: false,
+                      textActiveColor: Colors.white,
+                      activeColor: tags[index].color,
+                      index: index,
+                      title: tags[index].value,
+                    );
+                  },
+                ),
+              ),
+              SizedBox(height: 10),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        pet.name,
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        pet.bio,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      )
+                    ],
                   ),
                 ),
-                SizedBox(height: 10),
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          pet.name,
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          pet.bio,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           ),
         ),
       ),

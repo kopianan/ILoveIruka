@@ -18,7 +18,10 @@ class _$PetPostDataModelTearOff {
 
 // ignore: unused_element
   _PetPostDataModel call(
-      {String id, String catpion, String pictureUrl, String pet}) {
+      {@JsonKey(nullable: true) String id,
+      @JsonKey(nullable: true) String catpion,
+      String pictureUrl,
+      String pet}) {
     return _PetPostDataModel(
       id: id,
       catpion: catpion,
@@ -39,7 +42,9 @@ const $PetPostDataModel = _$PetPostDataModelTearOff();
 
 /// @nodoc
 mixin _$PetPostDataModel {
+  @JsonKey(nullable: true)
   String get id;
+  @JsonKey(nullable: true)
   String get catpion;
   String get pictureUrl;
   String get pet;
@@ -54,7 +59,11 @@ abstract class $PetPostDataModelCopyWith<$Res> {
   factory $PetPostDataModelCopyWith(
           PetPostDataModel value, $Res Function(PetPostDataModel) then) =
       _$PetPostDataModelCopyWithImpl<$Res>;
-  $Res call({String id, String catpion, String pictureUrl, String pet});
+  $Res call(
+      {@JsonKey(nullable: true) String id,
+      @JsonKey(nullable: true) String catpion,
+      String pictureUrl,
+      String pet});
 }
 
 /// @nodoc
@@ -90,7 +99,11 @@ abstract class _$PetPostDataModelCopyWith<$Res>
           _PetPostDataModel value, $Res Function(_PetPostDataModel) then) =
       __$PetPostDataModelCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String catpion, String pictureUrl, String pet});
+  $Res call(
+      {@JsonKey(nullable: true) String id,
+      @JsonKey(nullable: true) String catpion,
+      String pictureUrl,
+      String pet});
 }
 
 /// @nodoc
@@ -125,14 +138,20 @@ class __$PetPostDataModelCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_PetPostDataModel implements _PetPostDataModel {
-  _$_PetPostDataModel({this.id, this.catpion, this.pictureUrl, this.pet});
+  _$_PetPostDataModel(
+      {@JsonKey(nullable: true) this.id,
+      @JsonKey(nullable: true) this.catpion,
+      this.pictureUrl,
+      this.pet});
 
   factory _$_PetPostDataModel.fromJson(Map<String, dynamic> json) =>
       _$_$_PetPostDataModelFromJson(json);
 
   @override
+  @JsonKey(nullable: true)
   final String id;
   @override
+  @JsonKey(nullable: true)
   final String catpion;
   @override
   final String pictureUrl;
@@ -181,8 +200,8 @@ class _$_PetPostDataModel implements _PetPostDataModel {
 
 abstract class _PetPostDataModel implements PetPostDataModel {
   factory _PetPostDataModel(
-      {String id,
-      String catpion,
+      {@JsonKey(nullable: true) String id,
+      @JsonKey(nullable: true) String catpion,
       String pictureUrl,
       String pet}) = _$_PetPostDataModel;
 
@@ -190,8 +209,10 @@ abstract class _PetPostDataModel implements PetPostDataModel {
       _$_PetPostDataModel.fromJson;
 
   @override
+  @JsonKey(nullable: true)
   String get id;
   @override
+  @JsonKey(nullable: true)
   String get catpion;
   @override
   String get pictureUrl;
