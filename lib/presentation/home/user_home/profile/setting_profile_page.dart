@@ -53,7 +53,7 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
   }
 
   String path;
-  int labelFlex = 3;
+  int labelFlex = 2;
   int valueFlex = 7;
   double height = 30;
   @override
@@ -116,9 +116,8 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
                             .add(UserEvent.changeProfilePhoto(image.path));
                       }
                     },
-                    child: ElevatedButton(
-                      child: Icon(Icons.check),
-                      onPressed: () {},
+                    child: Icon(
+                      Icons.check,
                     ))
               ],
             ),

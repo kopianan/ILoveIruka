@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/user_controller.dart';
+import 'package:i_love_iruka/application/pet/pet_controller.dart';
 import 'package:i_love_iruka/infrastructure/core/pref.dart';
 import 'package:i_love_iruka/presentation/home/account_home/account_page_home.dart';
 import 'package:i_love_iruka/presentation/home/feeds_home/feed_home.dart';
@@ -42,6 +43,7 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   final userController = Get.put(UserController());
+  final petController = Get.put(PetController());
 
   @override
   void initState() {

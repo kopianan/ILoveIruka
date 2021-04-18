@@ -15,8 +15,8 @@ _$_MemberInfoDataModel _$_$_MemberInfoDataModelFromJson(
     type: json['type'] == null
         ? null
         : MembershipDataModel.fromJson(json['type'] as Map<String, dynamic>),
-    startAt: json['startAt'] as String,
-    endedAt: json['endedAt'] as String,
+    startAt: json['startAt'] as String ?? '2021-04-09T22:54:19.881Z',
+    endedAt: json['endedAt'] as String ?? '2021-04-09T22:54:19.881Z',
   );
 }
 
