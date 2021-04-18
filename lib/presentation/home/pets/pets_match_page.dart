@@ -8,6 +8,8 @@ import 'package:i_love_iruka/application/pet/pet_bloc.dart';
 import 'package:i_love_iruka/application/pet/pet_controller.dart';
 import 'package:i_love_iruka/domain/pets/pet_data_model.dart';
 import 'package:i_love_iruka/domain/pets/pet_req_res.dart';
+import 'package:i_love_iruka/domain/pets/pet_tags.dart';
+import 'package:i_love_iruka/infrastructure/functions/custom_formatter.dart';
 import 'package:i_love_iruka/injection.dart';
 import 'package:i_love_iruka/presentation/home/pets/pets_detail_page.dart';
 import 'package:i_love_iruka/util/constants.dart';
@@ -153,7 +155,12 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
                                   shrinkWrap: true,
                                   physics: NeverScrollableScrollPhysics(),
                                   itemBuilder: (context, index) {
-                                    return buildPetItem(pet.getListPet[index]);
+                                    return Column(
+                                      children: [
+                                        buildPetItem(pet.getListPet[index]),
+                                        SizedBox(height: 13)
+                                      ],
+                                    );
                                   }),
                             ),
                           )
@@ -168,11 +175,31 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
   }
 
   InkWell buildPetItem(PetDataModel pet) {
-    List<String> tags = [
-      pet.gender.label,
-      pet.animal.label,
-      pet.weight.toString(),
-      pet.race
+    List<PetTags> tags = [
+      PetTags(
+        label: "Gender",
+        color: Color(0xFFFFB795),
+        value: pet.gender.label,
+      ),
+      PetTags(
+        label: "Type",
+        color: Color(0xFFAEF3B0),
+        value: pet.animal.label,
+      ),
+      PetTags(
+        label: "Weight",
+        color: Color(0xFFACA1FD),
+        value: pet.weight.toString(),
+      ),
+      PetTags(
+        label: "Race",
+        color: Color(0xFFFAAFFF),
+        value: pet.race,
+      ),
+      PetTags(
+          label: "Age",
+          color: Color(0xFFFDFFA0),
+          value: calculateAge(DateTime.now(), pet.birthDate)),
     ];
     return InkWell(
       onTap: () {
@@ -180,54 +207,71 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
       },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(5),
-        child: Container(
-          decoration: BoxDecoration(color: Colors.white, boxShadow: [
-            BoxShadow(
-                color: Colors.grey[300],
-                blurRadius: 2,
-                spreadRadius: 2,
-                offset: Offset(3, 3))
-          ]),
-          width: Get.size.width,
-          height: Get.size.width,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                  flex: 5,
-                  child: Image.network(
-                    // "https://unsplash.com/photos/L2iZFRPaH1M/download?force=true&w=640",
-                    Constants.getStagingUrl() + pet.profilePictureUrl,
-                    fit: BoxFit.cover,
-                  )),
-              Expanded(
-                  flex: 2,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Tags(
-                          itemCount: tags.length,
-                          itemBuilder: (int index) {
-                            return Tooltip(
-                                message: tags[index],
-                                child: ItemTags(
-                                  index: index,
-                                  title: tags[index],
-                                ));
-                          },
+        child: InkWell(
+          onTap: () {
+            Get.toNamed(PetsDetailPage.TAG, arguments: pet);
+          },
+          child: Container(
+            decoration: BoxDecoration(color: Colors.white, boxShadow: [
+              BoxShadow(
+                  color: Colors.grey[400],
+                  blurRadius: 3,
+                  spreadRadius: 3,
+                  offset: Offset.fromDirection(30, 0.3))
+            ]),
+            width: Get.size.width,
+            height: Get.size.width,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                    flex: 5,
+                    child: Image.network(
+                      // "https://unsplash.com/photos/L2iZFRPaH1M/download?force=true&w=640",
+                      Constants.getStagingUrl() + pet.profilePictureUrl,
+                      fit: BoxFit.cover,
+                    )),
+                SizedBox(height: 8),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                  child: Tags(
+                    itemCount: tags.length,
+                    itemBuilder: (int index) {
+                      return ItemTags(
+                        active: true,
+                        pressEnabled: false,
+                        textActiveColor: Colors.black,
+                        activeColor: tags[index].color,
+                        index: index,
+                        title: tags[index].value,
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: 10),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          pet.name,
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
-                      ),
-                      Expanded(
-                          child: Text(
-                        pet.name,
-                        style: TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.bold),
-                      ))
-                    ],
-                  ))
-            ],
+                        Text(
+                          pet.bio,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -9,4 +9,5 @@ abstract class PetEvent with _$PetEvent {
   const factory PetEvent.saveNewPet(SavePetRequestData petRequestData) =
       _SaveNewPet;
   const factory PetEvent.getMyPet() = _GetMyPet;
+  const factory PetEvent.getPetPostById(String id) = _GetPetPostById;
 }

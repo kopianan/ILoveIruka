@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:i_love_iruka/domain/core/general_failure.dart';
 import 'package:i_love_iruka/domain/pets/i_pet_facade.dart';
 import 'package:i_love_iruka/domain/pets/pet_data_model.dart';
+import 'package:i_love_iruka/domain/pets/pet_post_data_model.dart';
 import 'package:i_love_iruka/domain/pets/pet_req_res.dart';
 import 'package:i_love_iruka/infrastructure/core/pref.dart';
 import 'package:i_love_iruka/util/constants.dart';
@@ -108,6 +109,24 @@ class PetRepository extends IPetFacade {
       List _data = response.data['data'];
       List<PetDataModel> listPet =
           _data.map((e) => PetDataModel.fromJson(e)).toList();
+      return right(listPet);
+    } on DioError catch (e) {
+      return left(checkErrorData(e));
+    }
+  }
+
+  @override
+  Future<Either<GeneralFailure, List<PetPostDataModel>>> getPetPostById(
+      String petId) async {
+    Response response;
+    try {
+      response = await _dio.get(
+          Constants.getStagingUrl() + "/api/v1/petstagram/post/$petId",
+          options: getDioOptions());
+
+      List _data = response.data['data'];
+      List<PetPostDataModel> listPet =
+          _data.map((e) => PetPostDataModel.fromJson(e)).toList();
       return right(listPet);
     } on DioError catch (e) {
       return left(checkErrorData(e));

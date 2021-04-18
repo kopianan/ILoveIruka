@@ -5,6 +5,12 @@ String formatStringDateLocale(String localeDate) {
   return date.format(DateTime.parse(localeDate));
 }
 
+String calculateAge(DateTime currDate, String birthDate) {
+  var _birth = DateTime.parse(birthDate);
+  var total = currDate.year - _birth.year;
+  return total.toString();
+}
+
 String memberValidUntil(String localeDate) {
   try {
     final date = DateFormat('MM/yy');

@@ -10,4 +10,6 @@ abstract class PetState with _$PetState {
   const factory PetState.onUploadPhoto(String photo) = _OnUploadPhoto;
   const factory PetState.onSaveNewPet(PetDataModel data) = _OnSaveNewPet;
   const factory PetState.onGetMyPet(List<PetDataModel> list) = _OnGetMyPet;
+  const factory PetState.onGetPetPostById(List<PetPostDataModel> list) =
+      _OnGetPetPostById;
 }

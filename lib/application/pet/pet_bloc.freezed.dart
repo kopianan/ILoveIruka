@@ -43,6 +43,13 @@ class _$PetEventTearOff {
   _GetMyPet getMyPet() {
     return const _GetMyPet();
   }
+
+// ignore: unused_element
+  _GetPetPostById getPetPostById(String id) {
+    return _GetPetPostById(
+      id,
+    );
+  }
 }
 
 /// @nodoc
@@ -58,6 +65,7 @@ mixin _$PetEvent {
     @required TResult uploadPhoto(File photo),
     @required TResult saveNewPet(SavePetRequestData petRequestData),
     @required TResult getMyPet(),
+    @required TResult getPetPostById(String id),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -66,6 +74,7 @@ mixin _$PetEvent {
     TResult uploadPhoto(File photo),
     TResult saveNewPet(SavePetRequestData petRequestData),
     TResult getMyPet(),
+    TResult getPetPostById(String id),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -75,6 +84,7 @@ mixin _$PetEvent {
     @required TResult uploadPhoto(_UploadPhoto value),
     @required TResult saveNewPet(_SaveNewPet value),
     @required TResult getMyPet(_GetMyPet value),
+    @required TResult getPetPostById(_GetPetPostById value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -83,6 +93,7 @@ mixin _$PetEvent {
     TResult uploadPhoto(_UploadPhoto value),
     TResult saveNewPet(_SaveNewPet value),
     TResult getMyPet(_GetMyPet value),
+    TResult getPetPostById(_GetPetPostById value),
     @required TResult orElse(),
   });
 }
@@ -143,12 +154,14 @@ class _$_Started implements _Started {
     @required TResult uploadPhoto(File photo),
     @required TResult saveNewPet(SavePetRequestData petRequestData),
     @required TResult getMyPet(),
+    @required TResult getPetPostById(String id),
   }) {
     assert(started != null);
     assert(getPetList != null);
     assert(uploadPhoto != null);
     assert(saveNewPet != null);
     assert(getMyPet != null);
+    assert(getPetPostById != null);
     return started();
   }
 
@@ -160,6 +173,7 @@ class _$_Started implements _Started {
     TResult uploadPhoto(File photo),
     TResult saveNewPet(SavePetRequestData petRequestData),
     TResult getMyPet(),
+    TResult getPetPostById(String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -177,12 +191,14 @@ class _$_Started implements _Started {
     @required TResult uploadPhoto(_UploadPhoto value),
     @required TResult saveNewPet(_SaveNewPet value),
     @required TResult getMyPet(_GetMyPet value),
+    @required TResult getPetPostById(_GetPetPostById value),
   }) {
     assert(started != null);
     assert(getPetList != null);
     assert(uploadPhoto != null);
     assert(saveNewPet != null);
     assert(getMyPet != null);
+    assert(getPetPostById != null);
     return started(this);
   }
 
@@ -194,6 +210,7 @@ class _$_Started implements _Started {
     TResult uploadPhoto(_UploadPhoto value),
     TResult saveNewPet(_SaveNewPet value),
     TResult getMyPet(_GetMyPet value),
+    TResult getPetPostById(_GetPetPostById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -276,12 +293,14 @@ class _$_GetPetList implements _GetPetList {
     @required TResult uploadPhoto(File photo),
     @required TResult saveNewPet(SavePetRequestData petRequestData),
     @required TResult getMyPet(),
+    @required TResult getPetPostById(String id),
   }) {
     assert(started != null);
     assert(getPetList != null);
     assert(uploadPhoto != null);
     assert(saveNewPet != null);
     assert(getMyPet != null);
+    assert(getPetPostById != null);
     return getPetList(requestData);
   }
 
@@ -293,6 +312,7 @@ class _$_GetPetList implements _GetPetList {
     TResult uploadPhoto(File photo),
     TResult saveNewPet(SavePetRequestData petRequestData),
     TResult getMyPet(),
+    TResult getPetPostById(String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -310,12 +330,14 @@ class _$_GetPetList implements _GetPetList {
     @required TResult uploadPhoto(_UploadPhoto value),
     @required TResult saveNewPet(_SaveNewPet value),
     @required TResult getMyPet(_GetMyPet value),
+    @required TResult getPetPostById(_GetPetPostById value),
   }) {
     assert(started != null);
     assert(getPetList != null);
     assert(uploadPhoto != null);
     assert(saveNewPet != null);
     assert(getMyPet != null);
+    assert(getPetPostById != null);
     return getPetList(this);
   }
 
@@ -327,6 +349,7 @@ class _$_GetPetList implements _GetPetList {
     TResult uploadPhoto(_UploadPhoto value),
     TResult saveNewPet(_SaveNewPet value),
     TResult getMyPet(_GetMyPet value),
+    TResult getPetPostById(_GetPetPostById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -410,12 +433,14 @@ class _$_UploadPhoto implements _UploadPhoto {
     @required TResult uploadPhoto(File photo),
     @required TResult saveNewPet(SavePetRequestData petRequestData),
     @required TResult getMyPet(),
+    @required TResult getPetPostById(String id),
   }) {
     assert(started != null);
     assert(getPetList != null);
     assert(uploadPhoto != null);
     assert(saveNewPet != null);
     assert(getMyPet != null);
+    assert(getPetPostById != null);
     return uploadPhoto(photo);
   }
 
@@ -427,6 +452,7 @@ class _$_UploadPhoto implements _UploadPhoto {
     TResult uploadPhoto(File photo),
     TResult saveNewPet(SavePetRequestData petRequestData),
     TResult getMyPet(),
+    TResult getPetPostById(String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -444,12 +470,14 @@ class _$_UploadPhoto implements _UploadPhoto {
     @required TResult uploadPhoto(_UploadPhoto value),
     @required TResult saveNewPet(_SaveNewPet value),
     @required TResult getMyPet(_GetMyPet value),
+    @required TResult getPetPostById(_GetPetPostById value),
   }) {
     assert(started != null);
     assert(getPetList != null);
     assert(uploadPhoto != null);
     assert(saveNewPet != null);
     assert(getMyPet != null);
+    assert(getPetPostById != null);
     return uploadPhoto(this);
   }
 
@@ -461,6 +489,7 @@ class _$_UploadPhoto implements _UploadPhoto {
     TResult uploadPhoto(_UploadPhoto value),
     TResult saveNewPet(_SaveNewPet value),
     TResult getMyPet(_GetMyPet value),
+    TResult getPetPostById(_GetPetPostById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -548,12 +577,14 @@ class _$_SaveNewPet implements _SaveNewPet {
     @required TResult uploadPhoto(File photo),
     @required TResult saveNewPet(SavePetRequestData petRequestData),
     @required TResult getMyPet(),
+    @required TResult getPetPostById(String id),
   }) {
     assert(started != null);
     assert(getPetList != null);
     assert(uploadPhoto != null);
     assert(saveNewPet != null);
     assert(getMyPet != null);
+    assert(getPetPostById != null);
     return saveNewPet(petRequestData);
   }
 
@@ -565,6 +596,7 @@ class _$_SaveNewPet implements _SaveNewPet {
     TResult uploadPhoto(File photo),
     TResult saveNewPet(SavePetRequestData petRequestData),
     TResult getMyPet(),
+    TResult getPetPostById(String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -582,12 +614,14 @@ class _$_SaveNewPet implements _SaveNewPet {
     @required TResult uploadPhoto(_UploadPhoto value),
     @required TResult saveNewPet(_SaveNewPet value),
     @required TResult getMyPet(_GetMyPet value),
+    @required TResult getPetPostById(_GetPetPostById value),
   }) {
     assert(started != null);
     assert(getPetList != null);
     assert(uploadPhoto != null);
     assert(saveNewPet != null);
     assert(getMyPet != null);
+    assert(getPetPostById != null);
     return saveNewPet(this);
   }
 
@@ -599,6 +633,7 @@ class _$_SaveNewPet implements _SaveNewPet {
     TResult uploadPhoto(_UploadPhoto value),
     TResult saveNewPet(_SaveNewPet value),
     TResult getMyPet(_GetMyPet value),
+    TResult getPetPostById(_GetPetPostById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -658,12 +693,14 @@ class _$_GetMyPet implements _GetMyPet {
     @required TResult uploadPhoto(File photo),
     @required TResult saveNewPet(SavePetRequestData petRequestData),
     @required TResult getMyPet(),
+    @required TResult getPetPostById(String id),
   }) {
     assert(started != null);
     assert(getPetList != null);
     assert(uploadPhoto != null);
     assert(saveNewPet != null);
     assert(getMyPet != null);
+    assert(getPetPostById != null);
     return getMyPet();
   }
 
@@ -675,6 +712,7 @@ class _$_GetMyPet implements _GetMyPet {
     TResult uploadPhoto(File photo),
     TResult saveNewPet(SavePetRequestData petRequestData),
     TResult getMyPet(),
+    TResult getPetPostById(String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -692,12 +730,14 @@ class _$_GetMyPet implements _GetMyPet {
     @required TResult uploadPhoto(_UploadPhoto value),
     @required TResult saveNewPet(_SaveNewPet value),
     @required TResult getMyPet(_GetMyPet value),
+    @required TResult getPetPostById(_GetPetPostById value),
   }) {
     assert(started != null);
     assert(getPetList != null);
     assert(uploadPhoto != null);
     assert(saveNewPet != null);
     assert(getMyPet != null);
+    assert(getPetPostById != null);
     return getMyPet(this);
   }
 
@@ -709,6 +749,7 @@ class _$_GetMyPet implements _GetMyPet {
     TResult uploadPhoto(_UploadPhoto value),
     TResult saveNewPet(_SaveNewPet value),
     TResult getMyPet(_GetMyPet value),
+    TResult getPetPostById(_GetPetPostById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -721,6 +762,146 @@ class _$_GetMyPet implements _GetMyPet {
 
 abstract class _GetMyPet implements PetEvent {
   const factory _GetMyPet() = _$_GetMyPet;
+}
+
+/// @nodoc
+abstract class _$GetPetPostByIdCopyWith<$Res> {
+  factory _$GetPetPostByIdCopyWith(
+          _GetPetPostById value, $Res Function(_GetPetPostById) then) =
+      __$GetPetPostByIdCopyWithImpl<$Res>;
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$GetPetPostByIdCopyWithImpl<$Res> extends _$PetEventCopyWithImpl<$Res>
+    implements _$GetPetPostByIdCopyWith<$Res> {
+  __$GetPetPostByIdCopyWithImpl(
+      _GetPetPostById _value, $Res Function(_GetPetPostById) _then)
+      : super(_value, (v) => _then(v as _GetPetPostById));
+
+  @override
+  _GetPetPostById get _value => super._value as _GetPetPostById;
+
+  @override
+  $Res call({
+    Object id = freezed,
+  }) {
+    return _then(_GetPetPostById(
+      id == freezed ? _value.id : id as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_GetPetPostById implements _GetPetPostById {
+  const _$_GetPetPostById(this.id) : assert(id != null);
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'PetEvent.getPetPostById(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetPetPostById &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetPetPostByIdCopyWith<_GetPetPostById> get copyWith =>
+      __$GetPetPostByIdCopyWithImpl<_GetPetPostById>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult getPetList(GetPetRequestData requestData),
+    @required TResult uploadPhoto(File photo),
+    @required TResult saveNewPet(SavePetRequestData petRequestData),
+    @required TResult getMyPet(),
+    @required TResult getPetPostById(String id),
+  }) {
+    assert(started != null);
+    assert(getPetList != null);
+    assert(uploadPhoto != null);
+    assert(saveNewPet != null);
+    assert(getMyPet != null);
+    assert(getPetPostById != null);
+    return getPetPostById(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult getPetList(GetPetRequestData requestData),
+    TResult uploadPhoto(File photo),
+    TResult saveNewPet(SavePetRequestData petRequestData),
+    TResult getMyPet(),
+    TResult getPetPostById(String id),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getPetPostById != null) {
+      return getPetPostById(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult getPetList(_GetPetList value),
+    @required TResult uploadPhoto(_UploadPhoto value),
+    @required TResult saveNewPet(_SaveNewPet value),
+    @required TResult getMyPet(_GetMyPet value),
+    @required TResult getPetPostById(_GetPetPostById value),
+  }) {
+    assert(started != null);
+    assert(getPetList != null);
+    assert(uploadPhoto != null);
+    assert(saveNewPet != null);
+    assert(getMyPet != null);
+    assert(getPetPostById != null);
+    return getPetPostById(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult getPetList(_GetPetList value),
+    TResult uploadPhoto(_UploadPhoto value),
+    TResult saveNewPet(_SaveNewPet value),
+    TResult getMyPet(_GetMyPet value),
+    TResult getPetPostById(_GetPetPostById value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getPetPostById != null) {
+      return getPetPostById(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetPetPostById implements PetEvent {
+  const factory _GetPetPostById(String id) = _$_GetPetPostById;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$GetPetPostByIdCopyWith<_GetPetPostById> get copyWith;
 }
 
 /// @nodoc
@@ -771,6 +952,13 @@ class _$PetStateTearOff {
       list,
     );
   }
+
+// ignore: unused_element
+  _OnGetPetPostById onGetPetPostById(List<PetPostDataModel> list) {
+    return _OnGetPetPostById(
+      list,
+    );
+  }
 }
 
 /// @nodoc
@@ -788,6 +976,7 @@ mixin _$PetState {
     @required TResult onUploadPhoto(String photo),
     @required TResult onSaveNewPet(PetDataModel data),
     @required TResult onGetMyPet(List<PetDataModel> list),
+    @required TResult onGetPetPostById(List<PetPostDataModel> list),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -798,6 +987,7 @@ mixin _$PetState {
     TResult onUploadPhoto(String photo),
     TResult onSaveNewPet(PetDataModel data),
     TResult onGetMyPet(List<PetDataModel> list),
+    TResult onGetPetPostById(List<PetPostDataModel> list),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -809,6 +999,7 @@ mixin _$PetState {
     @required TResult onUploadPhoto(_OnUploadPhoto value),
     @required TResult onSaveNewPet(_OnSaveNewPet value),
     @required TResult onGetMyPet(_OnGetMyPet value),
+    @required TResult onGetPetPostById(_OnGetPetPostById value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -819,6 +1010,7 @@ mixin _$PetState {
     TResult onUploadPhoto(_OnUploadPhoto value),
     TResult onSaveNewPet(_OnSaveNewPet value),
     TResult onGetMyPet(_OnGetMyPet value),
+    TResult onGetPetPostById(_OnGetPetPostById value),
     @required TResult orElse(),
   });
 }
@@ -881,6 +1073,7 @@ class _$_Initial implements _Initial {
     @required TResult onUploadPhoto(String photo),
     @required TResult onSaveNewPet(PetDataModel data),
     @required TResult onGetMyPet(List<PetDataModel> list),
+    @required TResult onGetPetPostById(List<PetPostDataModel> list),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -889,6 +1082,7 @@ class _$_Initial implements _Initial {
     assert(onUploadPhoto != null);
     assert(onSaveNewPet != null);
     assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
     return initial();
   }
 
@@ -902,6 +1096,7 @@ class _$_Initial implements _Initial {
     TResult onUploadPhoto(String photo),
     TResult onSaveNewPet(PetDataModel data),
     TResult onGetMyPet(List<PetDataModel> list),
+    TResult onGetPetPostById(List<PetPostDataModel> list),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -921,6 +1116,7 @@ class _$_Initial implements _Initial {
     @required TResult onUploadPhoto(_OnUploadPhoto value),
     @required TResult onSaveNewPet(_OnSaveNewPet value),
     @required TResult onGetMyPet(_OnGetMyPet value),
+    @required TResult onGetPetPostById(_OnGetPetPostById value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -929,6 +1125,7 @@ class _$_Initial implements _Initial {
     assert(onUploadPhoto != null);
     assert(onSaveNewPet != null);
     assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
     return initial(this);
   }
 
@@ -942,6 +1139,7 @@ class _$_Initial implements _Initial {
     TResult onUploadPhoto(_OnUploadPhoto value),
     TResult onSaveNewPet(_OnSaveNewPet value),
     TResult onGetMyPet(_OnGetMyPet value),
+    TResult onGetPetPostById(_OnGetPetPostById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -999,6 +1197,7 @@ class _$_Loading implements _Loading {
     @required TResult onUploadPhoto(String photo),
     @required TResult onSaveNewPet(PetDataModel data),
     @required TResult onGetMyPet(List<PetDataModel> list),
+    @required TResult onGetPetPostById(List<PetPostDataModel> list),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1007,6 +1206,7 @@ class _$_Loading implements _Loading {
     assert(onUploadPhoto != null);
     assert(onSaveNewPet != null);
     assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
     return loading();
   }
 
@@ -1020,6 +1220,7 @@ class _$_Loading implements _Loading {
     TResult onUploadPhoto(String photo),
     TResult onSaveNewPet(PetDataModel data),
     TResult onGetMyPet(List<PetDataModel> list),
+    TResult onGetPetPostById(List<PetPostDataModel> list),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1039,6 +1240,7 @@ class _$_Loading implements _Loading {
     @required TResult onUploadPhoto(_OnUploadPhoto value),
     @required TResult onSaveNewPet(_OnSaveNewPet value),
     @required TResult onGetMyPet(_OnGetMyPet value),
+    @required TResult onGetPetPostById(_OnGetPetPostById value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1047,6 +1249,7 @@ class _$_Loading implements _Loading {
     assert(onUploadPhoto != null);
     assert(onSaveNewPet != null);
     assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
     return loading(this);
   }
 
@@ -1060,6 +1263,7 @@ class _$_Loading implements _Loading {
     TResult onUploadPhoto(_OnUploadPhoto value),
     TResult onSaveNewPet(_OnSaveNewPet value),
     TResult onGetMyPet(_OnGetMyPet value),
+    TResult onGetPetPostById(_OnGetPetPostById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1151,6 +1355,7 @@ class _$_Error implements _Error {
     @required TResult onUploadPhoto(String photo),
     @required TResult onSaveNewPet(PetDataModel data),
     @required TResult onGetMyPet(List<PetDataModel> list),
+    @required TResult onGetPetPostById(List<PetPostDataModel> list),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1159,6 +1364,7 @@ class _$_Error implements _Error {
     assert(onUploadPhoto != null);
     assert(onSaveNewPet != null);
     assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
     return error(failure);
   }
 
@@ -1172,6 +1378,7 @@ class _$_Error implements _Error {
     TResult onUploadPhoto(String photo),
     TResult onSaveNewPet(PetDataModel data),
     TResult onGetMyPet(List<PetDataModel> list),
+    TResult onGetPetPostById(List<PetPostDataModel> list),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1191,6 +1398,7 @@ class _$_Error implements _Error {
     @required TResult onUploadPhoto(_OnUploadPhoto value),
     @required TResult onSaveNewPet(_OnSaveNewPet value),
     @required TResult onGetMyPet(_OnGetMyPet value),
+    @required TResult onGetPetPostById(_OnGetPetPostById value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1199,6 +1407,7 @@ class _$_Error implements _Error {
     assert(onUploadPhoto != null);
     assert(onSaveNewPet != null);
     assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
     return error(this);
   }
 
@@ -1212,6 +1421,7 @@ class _$_Error implements _Error {
     TResult onUploadPhoto(_OnUploadPhoto value),
     TResult onSaveNewPet(_OnSaveNewPet value),
     TResult onGetMyPet(_OnGetMyPet value),
+    TResult onGetPetPostById(_OnGetPetPostById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1297,6 +1507,7 @@ class _$_OnGetPetListData implements _OnGetPetListData {
     @required TResult onUploadPhoto(String photo),
     @required TResult onSaveNewPet(PetDataModel data),
     @required TResult onGetMyPet(List<PetDataModel> list),
+    @required TResult onGetPetPostById(List<PetPostDataModel> list),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1305,6 +1516,7 @@ class _$_OnGetPetListData implements _OnGetPetListData {
     assert(onUploadPhoto != null);
     assert(onSaveNewPet != null);
     assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
     return onGetPetListData(petList);
   }
 
@@ -1318,6 +1530,7 @@ class _$_OnGetPetListData implements _OnGetPetListData {
     TResult onUploadPhoto(String photo),
     TResult onSaveNewPet(PetDataModel data),
     TResult onGetMyPet(List<PetDataModel> list),
+    TResult onGetPetPostById(List<PetPostDataModel> list),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1337,6 +1550,7 @@ class _$_OnGetPetListData implements _OnGetPetListData {
     @required TResult onUploadPhoto(_OnUploadPhoto value),
     @required TResult onSaveNewPet(_OnSaveNewPet value),
     @required TResult onGetMyPet(_OnGetMyPet value),
+    @required TResult onGetPetPostById(_OnGetPetPostById value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1345,6 +1559,7 @@ class _$_OnGetPetListData implements _OnGetPetListData {
     assert(onUploadPhoto != null);
     assert(onSaveNewPet != null);
     assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
     return onGetPetListData(this);
   }
 
@@ -1358,6 +1573,7 @@ class _$_OnGetPetListData implements _OnGetPetListData {
     TResult onUploadPhoto(_OnUploadPhoto value),
     TResult onSaveNewPet(_OnSaveNewPet value),
     TResult onGetMyPet(_OnGetMyPet value),
+    TResult onGetPetPostById(_OnGetPetPostById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1444,6 +1660,7 @@ class _$_OnUploadPhoto implements _OnUploadPhoto {
     @required TResult onUploadPhoto(String photo),
     @required TResult onSaveNewPet(PetDataModel data),
     @required TResult onGetMyPet(List<PetDataModel> list),
+    @required TResult onGetPetPostById(List<PetPostDataModel> list),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1452,6 +1669,7 @@ class _$_OnUploadPhoto implements _OnUploadPhoto {
     assert(onUploadPhoto != null);
     assert(onSaveNewPet != null);
     assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
     return onUploadPhoto(photo);
   }
 
@@ -1465,6 +1683,7 @@ class _$_OnUploadPhoto implements _OnUploadPhoto {
     TResult onUploadPhoto(String photo),
     TResult onSaveNewPet(PetDataModel data),
     TResult onGetMyPet(List<PetDataModel> list),
+    TResult onGetPetPostById(List<PetPostDataModel> list),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1484,6 +1703,7 @@ class _$_OnUploadPhoto implements _OnUploadPhoto {
     @required TResult onUploadPhoto(_OnUploadPhoto value),
     @required TResult onSaveNewPet(_OnSaveNewPet value),
     @required TResult onGetMyPet(_OnGetMyPet value),
+    @required TResult onGetPetPostById(_OnGetPetPostById value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1492,6 +1712,7 @@ class _$_OnUploadPhoto implements _OnUploadPhoto {
     assert(onUploadPhoto != null);
     assert(onSaveNewPet != null);
     assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
     return onUploadPhoto(this);
   }
 
@@ -1505,6 +1726,7 @@ class _$_OnUploadPhoto implements _OnUploadPhoto {
     TResult onUploadPhoto(_OnUploadPhoto value),
     TResult onSaveNewPet(_OnSaveNewPet value),
     TResult onGetMyPet(_OnGetMyPet value),
+    TResult onGetPetPostById(_OnGetPetPostById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1602,6 +1824,7 @@ class _$_OnSaveNewPet implements _OnSaveNewPet {
     @required TResult onUploadPhoto(String photo),
     @required TResult onSaveNewPet(PetDataModel data),
     @required TResult onGetMyPet(List<PetDataModel> list),
+    @required TResult onGetPetPostById(List<PetPostDataModel> list),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1610,6 +1833,7 @@ class _$_OnSaveNewPet implements _OnSaveNewPet {
     assert(onUploadPhoto != null);
     assert(onSaveNewPet != null);
     assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
     return onSaveNewPet(data);
   }
 
@@ -1623,6 +1847,7 @@ class _$_OnSaveNewPet implements _OnSaveNewPet {
     TResult onUploadPhoto(String photo),
     TResult onSaveNewPet(PetDataModel data),
     TResult onGetMyPet(List<PetDataModel> list),
+    TResult onGetPetPostById(List<PetPostDataModel> list),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1642,6 +1867,7 @@ class _$_OnSaveNewPet implements _OnSaveNewPet {
     @required TResult onUploadPhoto(_OnUploadPhoto value),
     @required TResult onSaveNewPet(_OnSaveNewPet value),
     @required TResult onGetMyPet(_OnGetMyPet value),
+    @required TResult onGetPetPostById(_OnGetPetPostById value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1650,6 +1876,7 @@ class _$_OnSaveNewPet implements _OnSaveNewPet {
     assert(onUploadPhoto != null);
     assert(onSaveNewPet != null);
     assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
     return onSaveNewPet(this);
   }
 
@@ -1663,6 +1890,7 @@ class _$_OnSaveNewPet implements _OnSaveNewPet {
     TResult onUploadPhoto(_OnUploadPhoto value),
     TResult onSaveNewPet(_OnSaveNewPet value),
     TResult onGetMyPet(_OnGetMyPet value),
+    TResult onGetPetPostById(_OnGetPetPostById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1748,6 +1976,7 @@ class _$_OnGetMyPet implements _OnGetMyPet {
     @required TResult onUploadPhoto(String photo),
     @required TResult onSaveNewPet(PetDataModel data),
     @required TResult onGetMyPet(List<PetDataModel> list),
+    @required TResult onGetPetPostById(List<PetPostDataModel> list),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1756,6 +1985,7 @@ class _$_OnGetMyPet implements _OnGetMyPet {
     assert(onUploadPhoto != null);
     assert(onSaveNewPet != null);
     assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
     return onGetMyPet(list);
   }
 
@@ -1769,6 +1999,7 @@ class _$_OnGetMyPet implements _OnGetMyPet {
     TResult onUploadPhoto(String photo),
     TResult onSaveNewPet(PetDataModel data),
     TResult onGetMyPet(List<PetDataModel> list),
+    TResult onGetPetPostById(List<PetPostDataModel> list),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1788,6 +2019,7 @@ class _$_OnGetMyPet implements _OnGetMyPet {
     @required TResult onUploadPhoto(_OnUploadPhoto value),
     @required TResult onSaveNewPet(_OnSaveNewPet value),
     @required TResult onGetMyPet(_OnGetMyPet value),
+    @required TResult onGetPetPostById(_OnGetPetPostById value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1796,6 +2028,7 @@ class _$_OnGetMyPet implements _OnGetMyPet {
     assert(onUploadPhoto != null);
     assert(onSaveNewPet != null);
     assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
     return onGetMyPet(this);
   }
 
@@ -1809,6 +2042,7 @@ class _$_OnGetMyPet implements _OnGetMyPet {
     TResult onUploadPhoto(_OnUploadPhoto value),
     TResult onSaveNewPet(_OnSaveNewPet value),
     TResult onGetMyPet(_OnGetMyPet value),
+    TResult onGetPetPostById(_OnGetPetPostById value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1825,4 +2059,157 @@ abstract class _OnGetMyPet implements PetState {
   List<PetDataModel> get list;
   @JsonKey(ignore: true)
   _$OnGetMyPetCopyWith<_OnGetMyPet> get copyWith;
+}
+
+/// @nodoc
+abstract class _$OnGetPetPostByIdCopyWith<$Res> {
+  factory _$OnGetPetPostByIdCopyWith(
+          _OnGetPetPostById value, $Res Function(_OnGetPetPostById) then) =
+      __$OnGetPetPostByIdCopyWithImpl<$Res>;
+  $Res call({List<PetPostDataModel> list});
+}
+
+/// @nodoc
+class __$OnGetPetPostByIdCopyWithImpl<$Res> extends _$PetStateCopyWithImpl<$Res>
+    implements _$OnGetPetPostByIdCopyWith<$Res> {
+  __$OnGetPetPostByIdCopyWithImpl(
+      _OnGetPetPostById _value, $Res Function(_OnGetPetPostById) _then)
+      : super(_value, (v) => _then(v as _OnGetPetPostById));
+
+  @override
+  _OnGetPetPostById get _value => super._value as _OnGetPetPostById;
+
+  @override
+  $Res call({
+    Object list = freezed,
+  }) {
+    return _then(_OnGetPetPostById(
+      list == freezed ? _value.list : list as List<PetPostDataModel>,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_OnGetPetPostById implements _OnGetPetPostById {
+  const _$_OnGetPetPostById(this.list) : assert(list != null);
+
+  @override
+  final List<PetPostDataModel> list;
+
+  @override
+  String toString() {
+    return 'PetState.onGetPetPostById(list: $list)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _OnGetPetPostById &&
+            (identical(other.list, list) ||
+                const DeepCollectionEquality().equals(other.list, list)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(list);
+
+  @JsonKey(ignore: true)
+  @override
+  _$OnGetPetPostByIdCopyWith<_OnGetPetPostById> get copyWith =>
+      __$OnGetPetPostByIdCopyWithImpl<_OnGetPetPostById>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult error(GeneralFailure failure),
+    @required TResult onGetPetListData(List<PetDataModel> petList),
+    @required TResult onUploadPhoto(String photo),
+    @required TResult onSaveNewPet(PetDataModel data),
+    @required TResult onGetMyPet(List<PetDataModel> list),
+    @required TResult onGetPetPostById(List<PetPostDataModel> list),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(error != null);
+    assert(onGetPetListData != null);
+    assert(onUploadPhoto != null);
+    assert(onSaveNewPet != null);
+    assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
+    return onGetPetPostById(list);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult error(GeneralFailure failure),
+    TResult onGetPetListData(List<PetDataModel> petList),
+    TResult onUploadPhoto(String photo),
+    TResult onSaveNewPet(PetDataModel data),
+    TResult onGetMyPet(List<PetDataModel> list),
+    TResult onGetPetPostById(List<PetPostDataModel> list),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (onGetPetPostById != null) {
+      return onGetPetPostById(list);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
+    @required TResult error(_Error value),
+    @required TResult onGetPetListData(_OnGetPetListData value),
+    @required TResult onUploadPhoto(_OnUploadPhoto value),
+    @required TResult onSaveNewPet(_OnSaveNewPet value),
+    @required TResult onGetMyPet(_OnGetMyPet value),
+    @required TResult onGetPetPostById(_OnGetPetPostById value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(error != null);
+    assert(onGetPetListData != null);
+    assert(onUploadPhoto != null);
+    assert(onSaveNewPet != null);
+    assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
+    return onGetPetPostById(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
+    TResult error(_Error value),
+    TResult onGetPetListData(_OnGetPetListData value),
+    TResult onUploadPhoto(_OnUploadPhoto value),
+    TResult onSaveNewPet(_OnSaveNewPet value),
+    TResult onGetMyPet(_OnGetMyPet value),
+    TResult onGetPetPostById(_OnGetPetPostById value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (onGetPetPostById != null) {
+      return onGetPetPostById(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnGetPetPostById implements PetState {
+  const factory _OnGetPetPostById(List<PetPostDataModel> list) =
+      _$_OnGetPetPostById;
+
+  List<PetPostDataModel> get list;
+  @JsonKey(ignore: true)
+  _$OnGetPetPostByIdCopyWith<_OnGetPetPostById> get copyWith;
 }

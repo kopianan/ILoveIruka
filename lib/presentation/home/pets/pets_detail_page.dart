@@ -1,7 +1,13 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tags/flutter_tags.dart';
 import 'package:get/route_manager.dart';
+import 'package:i_love_iruka/application/pet/pet_bloc.dart';
+import 'package:i_love_iruka/domain/pets/pet_data_model.dart';
+import 'package:i_love_iruka/domain/pets/pet_tags.dart';
+import 'package:i_love_iruka/infrastructure/functions/custom_formatter.dart';
+import 'package:i_love_iruka/injection.dart';
+import 'package:i_love_iruka/util/constants.dart';
 
 // InstaProfilePage
 class PetsDetailPage extends StatefulWidget {
@@ -11,6 +17,13 @@ class PetsDetailPage extends StatefulWidget {
 }
 
 class _PetsDetailPageState extends State<PetsDetailPage> {
+  PetDataModel petDataModel;
+  @override
+  void initState() {
+    petDataModel = Get.arguments as PetDataModel;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,8 +45,9 @@ class _PetsDetailPageState extends State<PetsDetailPage> {
                           bottomRight: Radius.circular(30),
                         ),
                         image: DecorationImage(
-                            image: NetworkImage(
-                                "https://www.freepnglogos.com/uploads/dog-png/bow-wow-gourmet-dog-treats-are-healthy-natural-low-4.png"))),
+                            image: NetworkImage(Constants.getStagingUrl() +
+                                petDataModel.profilePictureUrl),
+                            fit: BoxFit.cover)),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -66,7 +80,9 @@ class _PetsDetailPageState extends State<PetsDetailPage> {
                   children: [
                     Stack(
                       children: [
-                        PetsGalleryWidget(),
+                        PetsGalleryWidget(
+                          pets: petDataModel,
+                        ),
                         Positioned(
                           bottom: 0,
                           left: 0,
@@ -129,12 +145,8 @@ class _PetsDetailPageState extends State<PetsDetailPage> {
                         ),
                       ],
                     ),
-                    GridView.count(
-                      padding: EdgeInsets.zero,
-                      crossAxisCount: 3,
-                      children: Colors.primaries.map((color) {
-                        return Container(color: color, height: 150.0);
-                      }).toList(),
+                    PetPhotoGallery(
+                      petId: petDataModel.id,
                     ),
                   ],
                 ),
@@ -147,10 +159,123 @@ class _PetsDetailPageState extends State<PetsDetailPage> {
   }
 }
 
-class PetsGalleryWidget extends StatelessWidget {
-  const PetsGalleryWidget({
-    Key key,
-  }) : super(key: key);
+class PetPhotoGallery extends StatefulWidget {
+  const PetPhotoGallery({Key key, @required this.petId}) : super(key: key);
+  final String petId;
+
+  @override
+  _PetPhotoGalleryState createState() => _PetPhotoGalleryState();
+}
+
+class _PetPhotoGalleryState extends State<PetPhotoGallery> {
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) =>
+          getIt<PetBloc>()..add(PetEvent.getPetPostById(widget.petId)),
+      child: BlocConsumer<PetBloc, PetState>(
+        listener: (context, state) {
+          state.maybeMap(
+            orElse: () {},
+            loading: (e) {},
+            onGetPetPostById: (e) {
+              print(e);
+            },
+          );
+        },
+        builder: (context, state) {
+          return state.maybeMap(
+            orElse: () {
+              return Container();
+            },
+            loading: (e) => Container(
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
+            onGetPetPostById: (e) {
+              if (e.list.length == 0) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.image,
+                        size: 60,
+                        color: Colors.grey,
+                      ),
+                      Text(
+                        "No Post",
+                        style: TextStyle(fontSize: 30, color: Colors.grey),
+                      )
+                    ],
+                  ),
+                );
+              } else
+                return GridView.count(
+                  padding: EdgeInsets.zero,
+                  crossAxisCount: 3,
+                  children: e.list.map((photo) {
+                    return Container(
+                      height: 150.0,
+                      child: Image.network(
+                          Constants.getStagingUrl() + photo.pictureUrl),
+                    );
+                  }).toList(),
+                );
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
+class PetsGalleryWidget extends StatefulWidget {
+  const PetsGalleryWidget({Key key, @required this.pets}) : super(key: key);
+  final PetDataModel pets;
+
+  @override
+  _PetsGalleryWidgetState createState() => _PetsGalleryWidgetState();
+}
+
+class _PetsGalleryWidgetState extends State<PetsGalleryWidget> {
+  List<PetTags> tags;
+  void setTagList() {
+    tags = [
+      PetTags(
+        label: "Gender",
+        color: Color(0xFFFFB795),
+        value: widget.pets.gender.label,
+      ),
+      PetTags(
+        label: "Type",
+        color: Color(0xFFAEF3B0),
+        value: widget.pets.animal.label,
+      ),
+      PetTags(
+        label: "Weight",
+        color: Color(0xFFACA1FD),
+        value: widget.pets.weight.toString() + "gr",
+      ),
+      PetTags(
+        label: "Race",
+        color: Color(0xFFFAAFFF),
+        value: widget.pets.race,
+      ),
+      PetTags(
+        label: "Age",
+        color: Color(0xFFFDFFA0),
+        value: calculateAge(DateTime.now(), widget.pets.birthDate),
+      ),
+    ];
+  }
+
+  @override
+  void initState() {
+    setTagList();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -159,41 +284,59 @@ class PetsGalleryWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Pets Name",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-              ),
-              Text("Alamat sesuai owner")
-            ],
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.pets.name,
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+                // Text("Alamat sesuai owner")
+              ],
+            ),
           ),
           SizedBox(height: 20),
-          Tags(
-            itemCount: 20,
-            horizontalScroll: true,
-            itemBuilder: (index) {
-              return Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.grey[200],
-                ),
-                child: Column(
+          Container(
+            child: Tags(
+              itemCount: tags.length,
+              horizontalScroll: true,
+              itemBuilder: (index) {
+                return Column(
                   children: [
-                    Text("Data"),
-                    Text(
-                      "Data asdf sdf sdfd",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey[300],
+                              offset: Offset(2, 2),
+                              blurRadius: 2,
+                              spreadRadius: 2)
+                        ],
+                        color: tags[index].color,
                       ),
-                    )
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(tags[index].label),
+                          Text(
+                            tags[index].value,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ],
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
           SizedBox(height: 20),
           Container(
@@ -202,14 +345,13 @@ class PetsGalleryWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Pet Description",
+                  "Pet Bio",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 10,
                 ),
-                Text(
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."),
+                Text(widget.pets.bio),
               ],
             ),
           )
