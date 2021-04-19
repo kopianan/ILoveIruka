@@ -168,32 +168,37 @@ class _MyPetsPageState extends State<MyPetsPage> {
                                         SizedBox(
                                           width: 10,
                                         ),
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              myPet.getMyPet[index].name,
-                                              maxLines: 1,
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            Text(
-                                              myPet.getMyPet[index].bio,
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                            Text(
-                                              myPet
-                                                  .getMyPet[index].animal.label,
-                                              style: TextStyle(
-                                                fontSize: 11,
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                myPet.getMyPet[index].name,
+                                                maxLines: 1,
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
-                                            ),
-                                          ],
+                                              Text(
+                                                myPet.getMyPet[index].bio,
+                                                maxLines: 2,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                              Text(
+                                                myPet.getMyPet[index].animal
+                                                    .label,
+                                                style: TextStyle(
+                                                  fontSize: 11,
+                                                  color: Colors.grey,
+                                                  fontWeight: FontWeight.bold
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         )
                                       ],
                                     ),

@@ -23,8 +23,8 @@ class _$TransactionDataModelTearOff {
       double total,
       String formattedTotal,
       String formattedTotalInSale,
-      @JsonKey(nullable: true, includeIfNull: true, defaultValue: 'val')
-          String coupon,
+      double totalInSale,
+      @JsonKey(nullable: true, includeIfNull: true) CoupontDataModel coupon,
       String remark,
       String createdBy,
       String createdAt,
@@ -35,6 +35,7 @@ class _$TransactionDataModelTearOff {
       total: total,
       formattedTotal: formattedTotal,
       formattedTotalInSale: formattedTotalInSale,
+      totalInSale: totalInSale,
       coupon: coupon,
       remark: remark,
       createdBy: createdBy,
@@ -60,8 +61,9 @@ mixin _$TransactionDataModel {
   double get total;
   String get formattedTotal;
   String get formattedTotalInSale;
-  @JsonKey(nullable: true, includeIfNull: true, defaultValue: 'val')
-  String get coupon;
+  double get totalInSale;
+  @JsonKey(nullable: true, includeIfNull: true)
+  CoupontDataModel get coupon;
   String get remark;
   String get createdBy;
   String get createdAt;
@@ -83,12 +85,14 @@ abstract class $TransactionDataModelCopyWith<$Res> {
       double total,
       String formattedTotal,
       String formattedTotalInSale,
-      @JsonKey(nullable: true, includeIfNull: true, defaultValue: 'val')
-          String coupon,
+      double totalInSale,
+      @JsonKey(nullable: true, includeIfNull: true) CoupontDataModel coupon,
       String remark,
       String createdBy,
       String createdAt,
       List<TransactionMenuDetailDataModel> details});
+
+  $CoupontDataModelCopyWith<$Res> get coupon;
 }
 
 /// @nodoc
@@ -107,6 +111,7 @@ class _$TransactionDataModelCopyWithImpl<$Res>
     Object total = freezed,
     Object formattedTotal = freezed,
     Object formattedTotalInSale = freezed,
+    Object totalInSale = freezed,
     Object coupon = freezed,
     Object remark = freezed,
     Object createdBy = freezed,
@@ -125,7 +130,9 @@ class _$TransactionDataModelCopyWithImpl<$Res>
       formattedTotalInSale: formattedTotalInSale == freezed
           ? _value.formattedTotalInSale
           : formattedTotalInSale as String,
-      coupon: coupon == freezed ? _value.coupon : coupon as String,
+      totalInSale:
+          totalInSale == freezed ? _value.totalInSale : totalInSale as double,
+      coupon: coupon == freezed ? _value.coupon : coupon as CoupontDataModel,
       remark: remark == freezed ? _value.remark : remark as String,
       createdBy: createdBy == freezed ? _value.createdBy : createdBy as String,
       createdAt: createdAt == freezed ? _value.createdAt : createdAt as String,
@@ -133,6 +140,16 @@ class _$TransactionDataModelCopyWithImpl<$Res>
           ? _value.details
           : details as List<TransactionMenuDetailDataModel>,
     ));
+  }
+
+  @override
+  $CoupontDataModelCopyWith<$Res> get coupon {
+    if (_value.coupon == null) {
+      return null;
+    }
+    return $CoupontDataModelCopyWith<$Res>(_value.coupon, (value) {
+      return _then(_value.copyWith(coupon: value));
+    });
   }
 }
 
@@ -149,12 +166,15 @@ abstract class _$TransactionDataModelCopyWith<$Res>
       double total,
       String formattedTotal,
       String formattedTotalInSale,
-      @JsonKey(nullable: true, includeIfNull: true, defaultValue: 'val')
-          String coupon,
+      double totalInSale,
+      @JsonKey(nullable: true, includeIfNull: true) CoupontDataModel coupon,
       String remark,
       String createdBy,
       String createdAt,
       List<TransactionMenuDetailDataModel> details});
+
+  @override
+  $CoupontDataModelCopyWith<$Res> get coupon;
 }
 
 /// @nodoc
@@ -175,6 +195,7 @@ class __$TransactionDataModelCopyWithImpl<$Res>
     Object total = freezed,
     Object formattedTotal = freezed,
     Object formattedTotalInSale = freezed,
+    Object totalInSale = freezed,
     Object coupon = freezed,
     Object remark = freezed,
     Object createdBy = freezed,
@@ -193,7 +214,9 @@ class __$TransactionDataModelCopyWithImpl<$Res>
       formattedTotalInSale: formattedTotalInSale == freezed
           ? _value.formattedTotalInSale
           : formattedTotalInSale as String,
-      coupon: coupon == freezed ? _value.coupon : coupon as String,
+      totalInSale:
+          totalInSale == freezed ? _value.totalInSale : totalInSale as double,
+      coupon: coupon == freezed ? _value.coupon : coupon as CoupontDataModel,
       remark: remark == freezed ? _value.remark : remark as String,
       createdBy: createdBy == freezed ? _value.createdBy : createdBy as String,
       createdAt: createdAt == freezed ? _value.createdAt : createdAt as String,
@@ -214,8 +237,8 @@ class _$_TransactionDataModel implements _TransactionDataModel {
       this.total,
       this.formattedTotal,
       this.formattedTotalInSale,
-      @JsonKey(nullable: true, includeIfNull: true, defaultValue: 'val')
-          this.coupon,
+      this.totalInSale,
+      @JsonKey(nullable: true, includeIfNull: true) this.coupon,
       this.remark,
       this.createdBy,
       this.createdAt,
@@ -235,8 +258,10 @@ class _$_TransactionDataModel implements _TransactionDataModel {
   @override
   final String formattedTotalInSale;
   @override
-  @JsonKey(nullable: true, includeIfNull: true, defaultValue: 'val')
-  final String coupon;
+  final double totalInSale;
+  @override
+  @JsonKey(nullable: true, includeIfNull: true)
+  final CoupontDataModel coupon;
   @override
   final String remark;
   @override
@@ -248,7 +273,7 @@ class _$_TransactionDataModel implements _TransactionDataModel {
 
   @override
   String toString() {
-    return 'TransactionDataModel(id: $id, transactionNumber: $transactionNumber, total: $total, formattedTotal: $formattedTotal, formattedTotalInSale: $formattedTotalInSale, coupon: $coupon, remark: $remark, createdBy: $createdBy, createdAt: $createdAt, details: $details)';
+    return 'TransactionDataModel(id: $id, transactionNumber: $transactionNumber, total: $total, formattedTotal: $formattedTotal, formattedTotalInSale: $formattedTotalInSale, totalInSale: $totalInSale, coupon: $coupon, remark: $remark, createdBy: $createdBy, createdAt: $createdAt, details: $details)';
   }
 
   @override
@@ -268,6 +293,9 @@ class _$_TransactionDataModel implements _TransactionDataModel {
             (identical(other.formattedTotalInSale, formattedTotalInSale) ||
                 const DeepCollectionEquality().equals(
                     other.formattedTotalInSale, formattedTotalInSale)) &&
+            (identical(other.totalInSale, totalInSale) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalInSale, totalInSale)) &&
             (identical(other.coupon, coupon) ||
                 const DeepCollectionEquality().equals(other.coupon, coupon)) &&
             (identical(other.remark, remark) ||
@@ -290,6 +318,7 @@ class _$_TransactionDataModel implements _TransactionDataModel {
       const DeepCollectionEquality().hash(total) ^
       const DeepCollectionEquality().hash(formattedTotal) ^
       const DeepCollectionEquality().hash(formattedTotalInSale) ^
+      const DeepCollectionEquality().hash(totalInSale) ^
       const DeepCollectionEquality().hash(coupon) ^
       const DeepCollectionEquality().hash(remark) ^
       const DeepCollectionEquality().hash(createdBy) ^
@@ -315,8 +344,8 @@ abstract class _TransactionDataModel implements TransactionDataModel {
       double total,
       String formattedTotal,
       String formattedTotalInSale,
-      @JsonKey(nullable: true, includeIfNull: true, defaultValue: 'val')
-          String coupon,
+      double totalInSale,
+      @JsonKey(nullable: true, includeIfNull: true) CoupontDataModel coupon,
       String remark,
       String createdBy,
       String createdAt,
@@ -336,8 +365,10 @@ abstract class _TransactionDataModel implements TransactionDataModel {
   @override
   String get formattedTotalInSale;
   @override
-  @JsonKey(nullable: true, includeIfNull: true, defaultValue: 'val')
-  String get coupon;
+  double get totalInSale;
+  @override
+  @JsonKey(nullable: true, includeIfNull: true)
+  CoupontDataModel get coupon;
   @override
   String get remark;
   @override

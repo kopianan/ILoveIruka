@@ -18,10 +18,10 @@ class _$RajaOngkirTearOff {
 
 // ignore: unused_element
   _RajaOngkir call(
-      {@JsonKey(name: 'city_id') String cityId,
-      @JsonKey(name: 'province_id') String provinceId,
+      {@JsonKey(name: "city_id") String cityId,
+      @JsonKey(name: "province_id") String provinceId,
       String province,
-      @JsonKey(name: 'city_name') String cityName}) {
+      @JsonKey(name: "city_name") String cityName}) {
     return _RajaOngkir(
       cityId: cityId,
       provinceId: provinceId,
@@ -42,12 +42,12 @@ const $RajaOngkir = _$RajaOngkirTearOff();
 
 /// @nodoc
 mixin _$RajaOngkir {
-  @JsonKey(name: 'city_id')
+  @JsonKey(name: "city_id")
   String get cityId;
-  @JsonKey(name: 'province_id')
+  @JsonKey(name: "province_id")
   String get provinceId;
   String get province;
-  @JsonKey(name: 'city_name')
+  @JsonKey(name: "city_name")
   String get cityName;
 
   Map<String, dynamic> toJson();
@@ -61,10 +61,10 @@ abstract class $RajaOngkirCopyWith<$Res> {
           RajaOngkir value, $Res Function(RajaOngkir) then) =
       _$RajaOngkirCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'city_id') String cityId,
-      @JsonKey(name: 'province_id') String provinceId,
+      {@JsonKey(name: "city_id") String cityId,
+      @JsonKey(name: "province_id") String provinceId,
       String province,
-      @JsonKey(name: 'city_name') String cityName});
+      @JsonKey(name: "city_name") String cityName});
 }
 
 /// @nodoc
@@ -99,10 +99,10 @@ abstract class _$RajaOngkirCopyWith<$Res> implements $RajaOngkirCopyWith<$Res> {
       __$RajaOngkirCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'city_id') String cityId,
-      @JsonKey(name: 'province_id') String provinceId,
+      {@JsonKey(name: "city_id") String cityId,
+      @JsonKey(name: "province_id") String provinceId,
       String province,
-      @JsonKey(name: 'city_name') String cityName});
+      @JsonKey(name: "city_name") String cityName});
 }
 
 /// @nodoc
@@ -137,24 +137,24 @@ class __$RajaOngkirCopyWithImpl<$Res> extends _$RajaOngkirCopyWithImpl<$Res>
 /// @nodoc
 class _$_RajaOngkir implements _RajaOngkir {
   _$_RajaOngkir(
-      {@JsonKey(name: 'city_id') this.cityId,
-      @JsonKey(name: 'province_id') this.provinceId,
+      {@JsonKey(name: "city_id") this.cityId,
+      @JsonKey(name: "province_id") this.provinceId,
       this.province,
-      @JsonKey(name: 'city_name') this.cityName});
+      @JsonKey(name: "city_name") this.cityName});
 
   factory _$_RajaOngkir.fromJson(Map<String, dynamic> json) =>
       _$_$_RajaOngkirFromJson(json);
 
   @override
-  @JsonKey(name: 'city_id')
+  @JsonKey(name: "city_id")
   final String cityId;
   @override
-  @JsonKey(name: 'province_id')
+  @JsonKey(name: "province_id")
   final String provinceId;
   @override
   final String province;
   @override
-  @JsonKey(name: 'city_name')
+  @JsonKey(name: "city_name")
   final String cityName;
 
   @override
@@ -200,24 +200,24 @@ class _$_RajaOngkir implements _RajaOngkir {
 
 abstract class _RajaOngkir implements RajaOngkir {
   factory _RajaOngkir(
-      {@JsonKey(name: 'city_id') String cityId,
-      @JsonKey(name: 'province_id') String provinceId,
+      {@JsonKey(name: "city_id") String cityId,
+      @JsonKey(name: "province_id") String provinceId,
       String province,
-      @JsonKey(name: 'city_name') String cityName}) = _$_RajaOngkir;
+      @JsonKey(name: "city_name") String cityName}) = _$_RajaOngkir;
 
   factory _RajaOngkir.fromJson(Map<String, dynamic> json) =
       _$_RajaOngkir.fromJson;
 
   @override
-  @JsonKey(name: 'city_id')
+  @JsonKey(name: "city_id")
   String get cityId;
   @override
-  @JsonKey(name: 'province_id')
+  @JsonKey(name: "province_id")
   String get provinceId;
   @override
   String get province;
   @override
-  @JsonKey(name: 'city_name')
+  @JsonKey(name: "city_name")
   String get cityName;
   @override
   @JsonKey(ignore: true)

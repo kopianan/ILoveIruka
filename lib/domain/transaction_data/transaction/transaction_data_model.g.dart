@@ -14,7 +14,10 @@ _$_TransactionDataModel _$_$_TransactionDataModelFromJson(
     total: (json['total'] as num)?.toDouble(),
     formattedTotal: json['formattedTotal'] as String,
     formattedTotalInSale: json['formattedTotalInSale'] as String,
-    coupon: json['coupon'] as String ?? 'val',
+    totalInSale: (json['totalInSale'] as num)?.toDouble(),
+    coupon: json['coupon'] == null
+        ? null
+        : CoupontDataModel.fromJson(json['coupon'] as Map<String, dynamic>),
     remark: json['remark'] as String,
     createdBy: json['createdBy'] as String,
     createdAt: json['createdAt'] as String,
@@ -35,6 +38,7 @@ Map<String, dynamic> _$_$_TransactionDataModelToJson(
       'total': instance.total,
       'formattedTotal': instance.formattedTotal,
       'formattedTotalInSale': instance.formattedTotalInSale,
+      'totalInSale': instance.totalInSale,
       'coupon': instance.coupon,
       'remark': instance.remark,
       'createdBy': instance.createdBy,

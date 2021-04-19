@@ -85,17 +85,18 @@ class _FeedHomeState extends State<FeedHome>
                         ));
               });
         }, builder: (context, state) {
-          return SafeArea(
-            child: Stack(
-              children: [
-                ClipPath(
-                  clipper: WaveClipperOne(),
-                  child: Container(
-                    height: 150,
-                    color: Color(0xFFADDDFF),
-                  ),
+          return Stack(
+            children: [
+              ClipPath(
+                clipper: WaveClipperOne(),
+                child: Container(
+                  height: 150,
+                  color: Color(0xFF5DBBFF),
                 ),
-                SmartRefresher(
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top : kToolbarHeight/2 +10),
+                child: SmartRefresher(
                   enablePullDown: true,
                   enablePullUp: true,
                   header: WaterDropHeader(),
@@ -148,7 +149,8 @@ class _FeedHomeState extends State<FeedHome>
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              GlobalWidgetMethod.pageTitle("Welcome"),
+                              GlobalWidgetMethod.pageTitle("Welcome",
+                                  color: Colors.white),
                               Text(
                                 "${userController.getUserData().fullName}",
                                 style: TextStyle(
@@ -272,8 +274,8 @@ class _FeedHomeState extends State<FeedHome>
                     // }))
                   ]),
                 ),
-              ],
-            ),
+              ),
+            ],
           );
         }));
   }

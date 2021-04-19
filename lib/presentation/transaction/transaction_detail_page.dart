@@ -168,7 +168,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                           child: Row(
                             children: [
                               Text(
-                                "Total",
+                                "Sub Total",
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.bold),
                               ),
@@ -192,8 +192,38 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                                     fontSize: 16, fontWeight: FontWeight.bold),
                               ),
                               Spacer(),
+                              (transactionDataModel.coupon == null)
+                                  ? Text(
+                                      "No coupon",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                  : Text(
+                                      "-" +
+                                          transactionDataModel.coupon.amount
+                                              .toString(),
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    )
+                            ],
+                          ),
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: Container(
+                          child: Row(
+                            children: [
                               Text(
-                                transactionDataModel.coupon,
+                                "Total",
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Spacer(),
+                              Text(
+                                transactionDataModel.formattedTotalInSale
+                                    .toString(),
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.bold),
                               )

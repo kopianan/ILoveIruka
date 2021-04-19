@@ -22,9 +22,9 @@ class _$MemberInfoDataModelTearOff {
       String user,
       String memberNumber,
       MembershipDataModel type,
-      @JsonKey(nullable: true, defaultValue: '2021-04-09T22:54:19.881Z')
+      @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
           String startAt,
-      @JsonKey(nullable: true, defaultValue: '2021-04-09T22:54:19.881Z')
+      @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
           String endedAt}) {
     return _MemberInfoDataModel(
       id: id,
@@ -52,9 +52,9 @@ mixin _$MemberInfoDataModel {
   String get user;
   String get memberNumber;
   MembershipDataModel get type;
-  @JsonKey(nullable: true, defaultValue: '2021-04-09T22:54:19.881Z')
+  @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
   String get startAt;
-  @JsonKey(nullable: true, defaultValue: '2021-04-09T22:54:19.881Z')
+  @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
   String get endedAt;
 
   Map<String, dynamic> toJson();
@@ -72,9 +72,9 @@ abstract class $MemberInfoDataModelCopyWith<$Res> {
       String user,
       String memberNumber,
       MembershipDataModel type,
-      @JsonKey(nullable: true, defaultValue: '2021-04-09T22:54:19.881Z')
+      @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
           String startAt,
-      @JsonKey(nullable: true, defaultValue: '2021-04-09T22:54:19.881Z')
+      @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
           String endedAt});
 
   $MembershipDataModelCopyWith<$Res> get type;
@@ -133,9 +133,9 @@ abstract class _$MemberInfoDataModelCopyWith<$Res>
       String user,
       String memberNumber,
       MembershipDataModel type,
-      @JsonKey(nullable: true, defaultValue: '2021-04-09T22:54:19.881Z')
+      @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
           String startAt,
-      @JsonKey(nullable: true, defaultValue: '2021-04-09T22:54:19.881Z')
+      @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
           String endedAt});
 
   @override
@@ -184,9 +184,9 @@ class _$_MemberInfoDataModel implements _MemberInfoDataModel {
       this.user,
       this.memberNumber,
       this.type,
-      @JsonKey(nullable: true, defaultValue: '2021-04-09T22:54:19.881Z')
+      @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
           this.startAt,
-      @JsonKey(nullable: true, defaultValue: '2021-04-09T22:54:19.881Z')
+      @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
           this.endedAt});
 
   factory _$_MemberInfoDataModel.fromJson(Map<String, dynamic> json) =>
@@ -201,10 +201,10 @@ class _$_MemberInfoDataModel implements _MemberInfoDataModel {
   @override
   final MembershipDataModel type;
   @override
-  @JsonKey(nullable: true, defaultValue: '2021-04-09T22:54:19.881Z')
+  @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
   final String startAt;
   @override
-  @JsonKey(nullable: true, defaultValue: '2021-04-09T22:54:19.881Z')
+  @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
   final String endedAt;
 
   @override
@@ -260,9 +260,9 @@ abstract class _MemberInfoDataModel implements MemberInfoDataModel {
       String user,
       String memberNumber,
       MembershipDataModel type,
-      @JsonKey(nullable: true, defaultValue: '2021-04-09T22:54:19.881Z')
+      @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
           String startAt,
-      @JsonKey(nullable: true, defaultValue: '2021-04-09T22:54:19.881Z')
+      @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
           String endedAt}) = _$_MemberInfoDataModel;
 
   factory _MemberInfoDataModel.fromJson(Map<String, dynamic> json) =
@@ -277,10 +277,10 @@ abstract class _MemberInfoDataModel implements MemberInfoDataModel {
   @override
   MembershipDataModel get type;
   @override
-  @JsonKey(nullable: true, defaultValue: '2021-04-09T22:54:19.881Z')
+  @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
   String get startAt;
   @override
-  @JsonKey(nullable: true, defaultValue: '2021-04-09T22:54:19.881Z')
+  @JsonKey(nullable: true, defaultValue: "2021-04-09T22:54:19.881Z")
   String get endedAt;
   @override
   @JsonKey(ignore: true)

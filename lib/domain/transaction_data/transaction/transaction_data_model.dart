@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:i_love_iruka/domain/transaction_data/coupon/coupont_data_model.dart';
 import 'package:i_love_iruka/domain/transaction_data/detail/transaction_menu_detail_data_model.dart';
 
 part 'transaction_data_model.freezed.dart';
@@ -12,8 +13,8 @@ abstract class TransactionDataModel with _$TransactionDataModel {
       double total,
       String formattedTotal,
       String formattedTotalInSale,
-      @JsonKey(nullable: true, includeIfNull: true, defaultValue: "val")
-          String coupon,
+      double totalInSale,
+      @JsonKey(nullable: true, includeIfNull: true) CoupontDataModel coupon,
       String remark,
       String createdBy,
       String createdAt,

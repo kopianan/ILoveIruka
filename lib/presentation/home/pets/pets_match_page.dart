@@ -244,8 +244,9 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                  flex: 5,
+                  flex: 4,
                   child: Container(
+                    width: double.infinity,
                     child: Image.network(
                       // "https://unsplash.com/photos/L2iZFRPaH1M/download?force=true&w=640",
                       Constants.getStagingUrl() + pet.profilePictureUrl,
@@ -255,7 +256,7 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
               SizedBox(height: 8),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    const EdgeInsets.symmetric( horizontal: 10),
                 child: Tags(
                   itemCount: tags.length,
                   itemBuilder: (int index) {
@@ -270,7 +271,7 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
                   },
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 8),
               Expanded(
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),

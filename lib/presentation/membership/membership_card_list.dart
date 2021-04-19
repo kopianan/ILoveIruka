@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:i_love_iruka/application/membership/membership_bloc.dart';
 import 'package:i_love_iruka/domain/membership/membership_data_model.dart';
 import 'package:i_love_iruka/presentation/widgets/member_card.dart';
@@ -215,7 +216,11 @@ class MemberDescription extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20),
-          Html(data: membershipDataModel.description),
+          // Html(data: membershipDataModel.description),
+          Markdown(
+            data: membershipDataModel.description,
+            shrinkWrap: true,
+          )
         ],
       ),
     );

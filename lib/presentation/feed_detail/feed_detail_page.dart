@@ -33,30 +33,30 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+        backgroundColor: Colors.white,
         body: BlocProvider(
-      create: (context) => getIt<FeedHomeBloc>()
-        ..add(FeedHomeEvent.getSingleFeed(_currentFeed.id)),
-      child:
-          BlocConsumer<FeedHomeBloc, FeedHomeState>(listener: (context, state) {
-        // TODO: implement listener
-      }, builder: (context, state) {
-        return state.maybeMap(
-            orElse: () => onLoading(),
-            onGetSingleFeedData: (data) {
-              if (data.isLoading) {
-                return onLoading();
-              } else {
-                return data.singleData.fold(
-                    () => onLoading(),
-                    (a) => a.fold(
-                          (l) => onError(),
-                          (r) => onCompleted(r),
-                        ));
-              }
-            });
-      }),
-    ));
+          create: (context) => getIt<FeedHomeBloc>()
+            ..add(FeedHomeEvent.getSingleFeed(_currentFeed.id)),
+          child: BlocConsumer<FeedHomeBloc, FeedHomeState>(
+              listener: (context, state) {
+            // TODO: implement listener
+          }, builder: (context, state) {
+            return state.maybeMap(
+                orElse: () => onLoading(),
+                onGetSingleFeedData: (data) {
+                  if (data.isLoading) {
+                    return onLoading();
+                  } else {
+                    return data.singleData.fold(
+                        () => onLoading(),
+                        (a) => a.fold(
+                              (l) => onError(),
+                              (r) => onCompleted(r),
+                            ));
+                  }
+                });
+          }),
+        ));
   }
 
   Container onLoading() {
@@ -144,13 +144,20 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
                           ),
                         ),
                         SizedBox(height: 20),
-                        Html(
-                          data: data.content,
+                        Markdown(
                           shrinkWrap: true,
-                          onLinkTap: (e) {
-                            launch(e);
+                          data: data.content,
+                          onTapLink: (link) {
+                            launch(link);
                           },
-                        ),
+                        )
+                        // Html(
+                        //   data: data.content,
+                        //   shrinkWrap: true,
+                        //   onLinkTap: (e) {
+                        //     launch(e);
+                        //   },
+                        // ),
                         // Text(
                         //   _currentFeed.content,
                         //   style: TextStyle(

@@ -100,7 +100,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                                 ChangePasswordField(
                                   flex: valueFlex,
                                   hint: "Your new password",
-                                  controller: this.oldPassword,
+                                  controller: this.newPassowrd,
                                 ),
                               ],
                             ),
