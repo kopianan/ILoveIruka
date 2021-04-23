@@ -27,7 +27,10 @@ class _$PetDataModelTearOff {
       Label animal,
       String bio,
       int weight,
-      String user}) {
+      String user,
+      @JsonKey(nullable: true) bool isStumbum,
+      @JsonKey(nullable: true) bool isPedigree,
+      @JsonKey(nullable: true) bool isSterile}) {
     return _PetDataModel(
       id: id,
       name: name,
@@ -39,6 +42,9 @@ class _$PetDataModelTearOff {
       bio: bio,
       weight: weight,
       user: user,
+      isStumbum: isStumbum,
+      isPedigree: isPedigree,
+      isSterile: isSterile,
     );
   }
 
@@ -64,6 +70,12 @@ mixin _$PetDataModel {
   String get bio;
   int get weight;
   String get user;
+  @JsonKey(nullable: true)
+  bool get isStumbum;
+  @JsonKey(nullable: true)
+  bool get isPedigree;
+  @JsonKey(nullable: true)
+  bool get isSterile;
 
   Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
@@ -85,7 +97,10 @@ abstract class $PetDataModelCopyWith<$Res> {
       Label animal,
       String bio,
       int weight,
-      String user});
+      String user,
+      @JsonKey(nullable: true) bool isStumbum,
+      @JsonKey(nullable: true) bool isPedigree,
+      @JsonKey(nullable: true) bool isSterile});
 }
 
 /// @nodoc
@@ -108,6 +123,9 @@ class _$PetDataModelCopyWithImpl<$Res> implements $PetDataModelCopyWith<$Res> {
     Object bio = freezed,
     Object weight = freezed,
     Object user = freezed,
+    Object isStumbum = freezed,
+    Object isPedigree = freezed,
+    Object isSterile = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
@@ -122,6 +140,10 @@ class _$PetDataModelCopyWithImpl<$Res> implements $PetDataModelCopyWith<$Res> {
       bio: bio == freezed ? _value.bio : bio as String,
       weight: weight == freezed ? _value.weight : weight as int,
       user: user == freezed ? _value.user : user as String,
+      isStumbum: isStumbum == freezed ? _value.isStumbum : isStumbum as bool,
+      isPedigree:
+          isPedigree == freezed ? _value.isPedigree : isPedigree as bool,
+      isSterile: isSterile == freezed ? _value.isSterile : isSterile as bool,
     ));
   }
 }
@@ -143,7 +165,10 @@ abstract class _$PetDataModelCopyWith<$Res>
       Label animal,
       String bio,
       int weight,
-      String user});
+      String user,
+      @JsonKey(nullable: true) bool isStumbum,
+      @JsonKey(nullable: true) bool isPedigree,
+      @JsonKey(nullable: true) bool isSterile});
 }
 
 /// @nodoc
@@ -168,6 +193,9 @@ class __$PetDataModelCopyWithImpl<$Res> extends _$PetDataModelCopyWithImpl<$Res>
     Object bio = freezed,
     Object weight = freezed,
     Object user = freezed,
+    Object isStumbum = freezed,
+    Object isPedigree = freezed,
+    Object isSterile = freezed,
   }) {
     return _then(_PetDataModel(
       id: id == freezed ? _value.id : id as String,
@@ -182,6 +210,10 @@ class __$PetDataModelCopyWithImpl<$Res> extends _$PetDataModelCopyWithImpl<$Res>
       bio: bio == freezed ? _value.bio : bio as String,
       weight: weight == freezed ? _value.weight : weight as int,
       user: user == freezed ? _value.user : user as String,
+      isStumbum: isStumbum == freezed ? _value.isStumbum : isStumbum as bool,
+      isPedigree:
+          isPedigree == freezed ? _value.isPedigree : isPedigree as bool,
+      isSterile: isSterile == freezed ? _value.isSterile : isSterile as bool,
     ));
   }
 }
@@ -200,7 +232,10 @@ class _$_PetDataModel implements _PetDataModel {
       this.animal,
       this.bio,
       this.weight,
-      this.user});
+      this.user,
+      @JsonKey(nullable: true) this.isStumbum,
+      @JsonKey(nullable: true) this.isPedigree,
+      @JsonKey(nullable: true) this.isSterile});
 
   factory _$_PetDataModel.fromJson(Map<String, dynamic> json) =>
       _$_$_PetDataModelFromJson(json);
@@ -225,10 +260,19 @@ class _$_PetDataModel implements _PetDataModel {
   final int weight;
   @override
   final String user;
+  @override
+  @JsonKey(nullable: true)
+  final bool isStumbum;
+  @override
+  @JsonKey(nullable: true)
+  final bool isPedigree;
+  @override
+  @JsonKey(nullable: true)
+  final bool isSterile;
 
   @override
   String toString() {
-    return 'PetDataModel(id: $id, name: $name, profilePictureUrl: $profilePictureUrl, birthDate: $birthDate, race: $race, gender: $gender, animal: $animal, bio: $bio, weight: $weight, user: $user)';
+    return 'PetDataModel(id: $id, name: $name, profilePictureUrl: $profilePictureUrl, birthDate: $birthDate, race: $race, gender: $gender, animal: $animal, bio: $bio, weight: $weight, user: $user, isStumbum: $isStumbum, isPedigree: $isPedigree, isSterile: $isSterile)';
   }
 
   @override
@@ -256,7 +300,16 @@ class _$_PetDataModel implements _PetDataModel {
             (identical(other.weight, weight) ||
                 const DeepCollectionEquality().equals(other.weight, weight)) &&
             (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)));
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.isStumbum, isStumbum) ||
+                const DeepCollectionEquality()
+                    .equals(other.isStumbum, isStumbum)) &&
+            (identical(other.isPedigree, isPedigree) ||
+                const DeepCollectionEquality()
+                    .equals(other.isPedigree, isPedigree)) &&
+            (identical(other.isSterile, isSterile) ||
+                const DeepCollectionEquality()
+                    .equals(other.isSterile, isSterile)));
   }
 
   @override
@@ -271,7 +324,10 @@ class _$_PetDataModel implements _PetDataModel {
       const DeepCollectionEquality().hash(animal) ^
       const DeepCollectionEquality().hash(bio) ^
       const DeepCollectionEquality().hash(weight) ^
-      const DeepCollectionEquality().hash(user);
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(isStumbum) ^
+      const DeepCollectionEquality().hash(isPedigree) ^
+      const DeepCollectionEquality().hash(isSterile);
 
   @JsonKey(ignore: true)
   @override
@@ -295,7 +351,10 @@ abstract class _PetDataModel implements PetDataModel {
       Label animal,
       String bio,
       int weight,
-      String user}) = _$_PetDataModel;
+      String user,
+      @JsonKey(nullable: true) bool isStumbum,
+      @JsonKey(nullable: true) bool isPedigree,
+      @JsonKey(nullable: true) bool isSterile}) = _$_PetDataModel;
 
   factory _PetDataModel.fromJson(Map<String, dynamic> json) =
       _$_PetDataModel.fromJson;
@@ -320,6 +379,15 @@ abstract class _PetDataModel implements PetDataModel {
   int get weight;
   @override
   String get user;
+  @override
+  @JsonKey(nullable: true)
+  bool get isStumbum;
+  @override
+  @JsonKey(nullable: true)
+  bool get isPedigree;
+  @override
+  @JsonKey(nullable: true)
+  bool get isSterile;
   @override
   @JsonKey(ignore: true)
   _$PetDataModelCopyWith<_PetDataModel> get copyWith;

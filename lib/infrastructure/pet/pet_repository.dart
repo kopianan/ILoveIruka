@@ -80,6 +80,7 @@ class PetRepository extends IPetFacade {
       final _res = response.data['data']['path'];
       return right(_res.toString());
     } on DioError catch (e) {
+      print(e); 
       return left(checkErrorData(e));
     }
   }
@@ -143,9 +144,10 @@ class PetRepository extends IPetFacade {
           Constants.getStagingUrl() + "/api/v1/petstagram/post/$petId",
           options: getDioOptions(),
           data: request.toJson());
-
+      print(response.data);
       return right("Successful upload post");
     } on DioError catch (e) {
+      print(e.toString());
       return left(checkErrorData(e));
     }
   }

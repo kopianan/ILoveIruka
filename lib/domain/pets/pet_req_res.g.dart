@@ -17,6 +17,9 @@ _$SavePetRequestData _$_$SavePetRequestDataFromJson(Map<String, dynamic> json) {
     bio: json['bio'] as String,
     weight: json['weight'] as String,
     birthDate: json['birthDate'] as String,
+    isStumbum: json['isStumbum'] as bool,
+    isSterile: json['isSterile'] as bool,
+    isPedigree: json['isPedigree'] as bool,
   );
 }
 
@@ -32,14 +35,17 @@ Map<String, dynamic> _$_$SavePetRequestDataToJson(
       'bio': instance.bio,
       'weight': instance.weight,
       'birthDate': instance.birthDate,
+      'isStumbum': instance.isStumbum,
+      'isSterile': instance.isSterile,
+      'isPedigree': instance.isPedigree,
     };
 
 _$GetPetRequestData _$_$GetPetRequestDataFromJson(Map<String, dynamic> json) {
   return _$GetPetRequestData(
     name: json['name'] as String ?? '',
     race: json['race'] as String ?? '',
-    gender: json['gender'] as String ?? '',
-    animal: json['animal'] as String ?? '',
+    gender: (json['gender'] as List)?.map((e) => e as String)?.toList() ?? [],
+    animal: (json['animal'] as List)?.map((e) => e as String)?.toList() ?? [],
     weight: (json['weight'] as List)?.map((e) => e as int)?.toList() ?? [],
   );
 }

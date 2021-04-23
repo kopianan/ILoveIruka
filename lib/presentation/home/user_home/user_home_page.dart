@@ -83,18 +83,14 @@ class _UserHomePageState extends State<UserHomePage> {
                                       children: [
                                         CircleAvatar(
                                           maxRadius: 25,
-                                          backgroundImage: (userController
+                                          backgroundImage: NetworkImage(
+                                              Constants.getStagingUrl() +
+                                                  userController
                                                       .getUserData()
-                                                      .imageUrl ==
-                                                  null)
-                                              ? AssetImage(
-                                                  'images/assets/placeholder.png')
-                                              : NetworkImage(
-                                                  Constants.getStagingUrl() +
-                                                      userController
-                                                          .getUserData()
-                                                          .imageUrl,
-                                                ),
+                                                      .imageUrl),
+                                          onBackgroundImageError: (e, trace) =>
+                                              AssetImage(
+                                                  'images/assets/placeholder.png'),
                                         ),
                                         Expanded(
                                           child: Container(

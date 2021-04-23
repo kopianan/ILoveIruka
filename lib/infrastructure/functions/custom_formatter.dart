@@ -7,7 +7,7 @@ String formatStringDateLocale(String localeDate) {
 
 String calculateAge(DateTime currDate, String birthDate) {
   var _birth = DateTime.parse(birthDate);
-  var total = currDate.year - _birth.year;
+  var total = currDate.year - _birth.year +1;
   return total.toString();
 }
 
@@ -46,3 +46,4 @@ String getMonthFromLocale(String localeDate) {
     return "Date From Locale invalid";
   }
 }
+

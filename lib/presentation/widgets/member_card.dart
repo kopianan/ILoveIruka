@@ -19,7 +19,6 @@ class MemberCard extends StatelessWidget {
       {Key key,
       @required this.name,
       @required this.validUntil,
-      @required this.backgroundColor,
       @required this.backNumber,
       @required this.backCardColor,
       @required this.textColor,
@@ -31,7 +30,6 @@ class MemberCard extends StatelessWidget {
   final String validUntil;
   final String type;
   final String backNumber;
-  final Color backgroundColor;
   final double height = 220.0;
   final List<Color> backCardColor;
   final List<Color> frontColor;
@@ -148,14 +146,6 @@ class MemberCard extends StatelessWidget {
                           color: frontColor[1].withOpacity(0.7),
                         ),
                       ),
-
-                      // ClipPath(
-                      //     clipper: WaveClipperTwo(reverse: true, flip: true),
-                      //     child: Container(
-                      //       alignment: Alignment.bottomCenter,
-                      //       height: 100,
-                      //       color: frontColor[2].withOpacity(0.5),
-                      //     )),
                     ],
                   ),
                 ),

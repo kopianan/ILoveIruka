@@ -9,12 +9,15 @@ import 'package:i_love_iruka/application/pet/pet_bloc.dart';
 import 'package:i_love_iruka/domain/pets/label.dart';
 import 'package:i_love_iruka/domain/pets/pet_req_res.dart';
 import 'package:i_love_iruka/presentation/home/pets/widgets/pet_gender_radio_widget.dart';
+import 'package:i_love_iruka/presentation/home/pets/widgets/pet_status_widget.dart';
+import 'package:i_love_iruka/presentation/widgets/btn_primarary_blue_loading.dart';
+import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
 import 'package:i_love_iruka/presentation/widgets/global_widget_method.dart';
 import 'package:i_love_iruka/util/pet_list.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../../injection.dart';
 import 'widgets/decoration_widget.dart';
+import 'widgets/pet_custom_dropdown.dart';
 
 class AddNewPetPage extends StatefulWidget {
   static final String TAG = '/add_new_pet_page';
@@ -34,6 +37,10 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
   Label selectedType;
   Label selectedGender;
   String selectedBreed;
+  bool isStumbum;
+  bool isSterile;
+  bool isPedigree;
+
   Future getImage(ImageSource source) async {
     final pickedFile = await picker.getImage(source: source);
 
@@ -62,27 +69,18 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
   final formKey = GlobalKey<FormState>();
   SavePetRequestData petRequestData;
 
-  void onSubmitPetData(BuildContext context, String photoPath) {
+  void onSubmitPetData(BuildContext context) {
     if (formKey.currentState.validate()) {
       if (selectedType == null) {
+        Fluttertoast.showToast(msg: "Please choose type");
+      } else if (isStumbum == null && isPedigree == null) {
+        Fluttertoast.showToast(msg: "Please choose pet status");
+      } else if (isSterile == null) {
+        Fluttertoast.showToast(msg: "Please choose sterile status");
+      } else if (birthDate.text == "") {
+        Fluttertoast.showToast(msg: "Please choose birth date");
       } else {
-        var _breed = "other";
-        if (selectedBreed == null) {
-          _breed = breed.text;
-        } else {
-          _breed = selectedBreed;
-        }
-        petRequestData = SavePetRequestData(
-            name: name.text,
-            birthDate: date.toIso8601String(),
-            weight: weight.text,
-            profilePictureUrl: photoPath,
-            gender: selectedGender.code,
-            animal: selectedType.code,
-            race: _breed,
-            bio: bio.text);
-
-        petBloc.add(PetEvent.saveNewPet(petRequestData));
+        petBloc.add(PetEvent.uploadPhoto(_image));
       }
     } else {
       Fluttertoast.showToast(msg: "Fill all data ");
@@ -98,12 +96,32 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
         listener: (context, state) {
           state.maybeMap(
             orElse: () {},
-            onGetPetListData: (e) {},
+            error: (e) {
+              print(e.failure);
+            },
             onUploadPhoto: (e) {
-              onSubmitPetData(context, e.photo);
+              var _breed = "other";
+              if (selectedBreed == null)
+                _breed = breed.text;
+              else
+                _breed = selectedBreed;
+              petRequestData = SavePetRequestData(
+                  name: name.text,
+                  birthDate: date.toIso8601String(),
+                  weight: (double.parse(weight.text) / 1000).toString(),
+                  profilePictureUrl: e.photo,
+                  gender: selectedGender.code,
+                  animal: selectedType.code,
+                  race: _breed,
+                  bio: bio.text,
+                  isPedigree: isPedigree,
+                  isSterile: isSterile,
+                  isStumbum: isStumbum);
+              print(petRequestData.toJson());
+              petBloc.add(PetEvent.saveNewPet(petRequestData));
             },
             onSaveNewPet: (e) {
-              print(e.data.toJson());
+              Fluttertoast.showToast(msg: "Successful save pet");
             },
           );
         },
@@ -117,18 +135,6 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
               appBar: AppBar(
                 backgroundColor: Colors.transparent,
                 elevation: 0,
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      if (_image == null) {
-                        Fluttertoast.showToast(msg: "Please upload photo ");
-                      } else {
-                        petBloc.add(PetEvent.uploadPhoto(_image));
-                      }
-                    },
-                    child: Icon(Icons.check),
-                  ),
-                ],
               ),
               body: SingleChildScrollView(
                 child: Container(
@@ -168,6 +174,12 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                               ),
                               SizedBox(height: 5),
                               DateTextFormField(
+                                validator: (e) {
+                                  if (GetUtils.isBlank(e)) {
+                                    return "Plsease insert birth date";
+                                  }
+                                  return null;
+                                },
                                 birthDate: birthDate,
                                 dateTime: (e) {
                                   this.date = e;
@@ -177,10 +189,16 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                         SizedBox(height: 15),
                         PetCustomFormField(
                           controller: weight,
+                          validator: (e) {
+                            if (GetUtils.isNullOrBlank(e))
+                              return "Weight must not empty";
+                            else
+                              return null;
+                          },
                           type: TextInputType.number,
                           label: "Weight",
-                          hintText: "grams",
-                          suffix: 'grams',
+                          hintText: "Kilogram",
+                          suffix: 'kg',
                         ),
                         SizedBox(height: 15),
                         PetGenderRadioWidget(
@@ -196,11 +214,52 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                           label: "Pet Type",
                           items: petType,
                           onChanged: (e) {
+                            isStumbum = null;
+                            isPedigree = null;
                             selectedBreed = null;
                             setState(() {
                               selectedType = e;
                             });
                           },
+                        ),
+                        SizedBox(height: 15),
+                        //0 is dog
+                        (selectedType == null)
+                            ? SizedBox()
+                            : (selectedType.code == "0")
+                                ? PetStatusWidget(
+                                    label: "Pet Status",
+                                    selected: (e) {
+                                      print(e.code);
+                                      if (e.code == "0")
+                                        isStumbum = true;
+                                      else
+                                        isStumbum = false;
+                                    },
+                                    status: dogStatus,
+                                  )
+                                : PetStatusWidget(
+                                    label: "Pet Status",
+                                    selected: (e) {
+                                      print(e.code);
+
+                                      if (e.code == "0")
+                                        isPedigree = true;
+                                      else
+                                        isPedigree = false;
+                                    },
+                                    status: catStatus,
+                                  ),
+                        SizedBox(height: 15),
+                        PetStatusWidget(
+                          label: "Sterile ?",
+                          selected: (e) {
+                            if (e.code == "0")
+                              isSterile = true;
+                            else
+                              isSterile = false;
+                          },
+                          status: sterile,
                         ),
                         SizedBox(height: 15),
                         Column(
@@ -257,6 +316,21 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                           minLines: 4,
                         ),
                         SizedBox(height: 30),
+                        state.maybeMap(
+                            orElse: () => BtnPrimaryBlue(
+                                  text: "Save",
+                                  onPressed: () {
+                                    if (_image == null) {
+                                      Fluttertoast.showToast(
+                                          msg: "Please upload photo ");
+                                    } else {
+                                      onSubmitPetData(context);
+                                    }
+                                  },
+                                ),
+                            loading: (e) => BtnPrimaryBlueLoading()),
+
+                        SizedBox(height: 15),
                       ],
                     ),
                   ),
@@ -328,12 +402,16 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
   }
 }
 
-class DateTextFormField<T> extends StatefulWidget {
+class DateTextFormField extends StatefulWidget {
   const DateTextFormField(
-      {Key key, @required this.birthDate, @required this.dateTime})
+      {Key key,
+      @required this.birthDate,
+      @required this.dateTime,
+      @required this.validator})
       : super(key: key);
   final ValueChanged<DateTime> dateTime;
   final TextEditingController birthDate;
+  final FormFieldValidator<String> validator;
 
   @override
   _DateTextFormFieldState createState() => _DateTextFormFieldState();
@@ -343,6 +421,7 @@ class _DateTextFormFieldState extends State<DateTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+        validator: widget.validator,
         controller: widget.birthDate,
         readOnly: true,
         onTap: () async {
@@ -402,63 +481,6 @@ class PetCustomFormField extends StatelessWidget {
         keyboardType: type,
         decoration: DecorationWidget.getInput(hintText, suffix: suffix),
       ),
-    ]);
-  }
-}
-
-class PetCustomDropDown<T> extends StatefulWidget {
-  const PetCustomDropDown(
-      {Key key,
-      @required this.items,
-      @required this.label,
-      @required this.onChanged,
-      @required this.hintText})
-      : super(key: key);
-  final List<T> items;
-  final String label;
-  final String hintText;
-  final ValueChanged<T> onChanged;
-  @override
-  _PetCustomDropDownState createState() => _PetCustomDropDownState();
-}
-
-class _PetCustomDropDownState extends State<PetCustomDropDown> {
-  Label selectedType;
-  @override
-  void initState() {
-    selectedType = null;
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(
-        widget.label,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      SizedBox(
-        height: 5,
-      ),
-      DropdownButtonFormField(
-          value: selectedType,
-          onChanged: (val) {
-            setState(() {
-              selectedType = val;
-            });
-            FocusScope.of(context).requestFocus(FocusNode());
-
-            return widget.onChanged(val);
-          },
-          decoration: DecorationWidget.getInput(widget.hintText),
-          items: widget.items
-              .map((e) => DropdownMenuItem(
-                    child: Text(e.label),
-                    value: e,
-                  ))
-              .toList()),
     ]);
   }
 }

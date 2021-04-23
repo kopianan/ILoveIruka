@@ -14,12 +14,15 @@ abstract class PetReqRes with _$PetReqRes {
       String animal,
       String bio,
       String weight,
-      String birthDate}) = SavePetRequestData;
+      String birthDate,
+      bool isStumbum,
+      bool isSterile,
+      bool isPedigree}) = SavePetRequestData;
   factory PetReqRes.getPetRequestData({
     @JsonKey(defaultValue: "") String name,
     @JsonKey(defaultValue: "") String race,
-    @JsonKey(defaultValue: "") String gender,
-    @JsonKey(defaultValue: "") String animal,
+    @JsonKey(defaultValue: []) List<String> gender,
+    @JsonKey(defaultValue: []) List<String> animal,
     @JsonKey(defaultValue: []) List<int> weight,
   }) = GetPetRequestData;
 

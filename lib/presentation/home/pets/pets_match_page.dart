@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +12,9 @@ import 'package:i_love_iruka/domain/pets/pet_data_model.dart';
 import 'package:i_love_iruka/domain/pets/pet_req_res.dart';
 import 'package:i_love_iruka/domain/pets/pet_tags.dart';
 import 'package:i_love_iruka/infrastructure/functions/custom_formatter.dart';
+import 'package:i_love_iruka/infrastructure/functions/custom_functions.dart';
 import 'package:i_love_iruka/injection.dart';
+import 'package:i_love_iruka/presentation/home/pets/pet_search_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/pets_detail_page.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -110,6 +114,13 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
                               offset: Offset.fromDirection(70, 3))
                         ]),
                         child: TextFormField(
+                          readOnly: true,
+                          onTap: () async {
+                            var _result = await Get.toNamed(PetSearchPage.TAG);
+                            print(_result);
+                            print(json.encode(_result));
+                            petBloc.add(PetEvent.getPetList(_result));
+                          },
                           style: TextStyle(fontSize: 15),
                           decoration: InputDecoration(
                               contentPadding:
@@ -172,7 +183,7 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
                               ))
                             : SliverToBoxAdapter(
                                 child: Container(
-                                  margin: EdgeInsets.symmetric(horizontal: 15),
+                                  margin: EdgeInsets.symmetric(horizontal: 10),
                                   child: ListView.builder(
                                       itemCount: pet.getListPet.length,
                                       shrinkWrap: true,
@@ -181,7 +192,7 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
                                         return Column(
                                           children: [
                                             buildPetItem(pet.getListPet[index]),
-                                            SizedBox(height: 13)
+                                            SizedBox(height: 20)
                                           ],
                                         );
                                       }),
@@ -200,19 +211,14 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
   Widget buildPetItem(PetDataModel pet) {
     List<PetTags> tags = [
       PetTags(
-        label: "Gender",
-        color: Color(0xFF4DA2D6),
-        value: pet.gender.label,
-      ),
-      PetTags(
         label: "Type",
         color: Color(0xFF4DA2D6),
         value: pet.animal.label,
       ),
       PetTags(
-        label: "Weight",
+        label: "Gender",
         color: Color(0xFF4DA2D6),
-        value: pet.weight.toString(),
+        value: pet.gender.label,
       ),
       PetTags(
         label: "Race",
@@ -220,9 +226,27 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
         value: pet.race,
       ),
       PetTags(
+        label: "Status",
+        color: Color(0xFF4DA2D6),
+        value: checkIfStumbumOrIsPedigree(pet),
+      ),
+      PetTags(
+          label: "Sterile",
+          color: Color(0xFF4DA2D6),
+          value: (pet.isSterile == null)
+              ? "STERILE"
+              : (pet.isSterile)
+                  ? "STERILE"
+                  : "NOT STERILE"),
+      PetTags(
           label: "Age",
           color: Color(0xFF4DA2D6),
-          value: calculateAge(DateTime.now(), pet.birthDate)),
+          value: calculateAge(DateTime.now(), pet.birthDate) + " yo"),
+      PetTags(
+        label: "Weight",
+        color: Color(0xFF4DA2D6),
+        value: (pet.weight * 1000).toString() + " Kg",
+      ),
     ];
     return ClipRRect(
       borderRadius: BorderRadius.circular(5),
@@ -248,16 +272,24 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
                   child: Container(
                     width: double.infinity,
                     child: Image.network(
-                      // "https://unsplash.com/photos/L2iZFRPaH1M/download?force=true&w=640",
                       Constants.getStagingUrl() + pet.profilePictureUrl,
+                      errorBuilder: (BuildContext context, Object exception,
+                          StackTrace stackTrace) {
+                        return Center(
+                          child: Text(
+                            "No Photo",
+                            style: TextStyle(fontSize: 40, color: Colors.grey),
+                          ),
+                        );
+                      },
                       fit: BoxFit.cover,
                     ),
                   )),
               SizedBox(height: 8),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric( horizontal: 10),
+                padding: const EdgeInsets.only(left: 5),
                 child: Tags(
+                  horizontalScroll: true,
                   itemCount: tags.length,
                   itemBuilder: (int index) {
                     return ItemTags(
@@ -271,7 +303,7 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
                   },
                 ),
               ),
-              SizedBox(height: 8),
+              // SizedBox(height: 8),
               Expanded(
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),

@@ -3,6 +3,7 @@ import 'package:flutter_tags/flutter_tags.dart';
 import 'package:i_love_iruka/domain/pets/pet_data_model.dart';
 import 'package:i_love_iruka/domain/pets/pet_tags.dart';
 import 'package:i_love_iruka/infrastructure/functions/custom_formatter.dart';
+import 'package:i_love_iruka/infrastructure/functions/custom_functions.dart';
 
 class PetsGalleryWidget extends StatefulWidget {
   const PetsGalleryWidget({Key key, @required this.pets}) : super(key: key);
@@ -17,24 +18,37 @@ class _PetsGalleryWidgetState extends State<PetsGalleryWidget> {
   void setTagList() {
     tags = [
       PetTags(
-        label: "Gender",
-        color: Color(0xFFFFB795),
-        value: widget.pets.gender.label,
-      ),
-      PetTags(
         label: "Type",
         color: Color(0xFFAEF3B0),
         value: widget.pets.animal.label,
       ),
       PetTags(
-        label: "Weight",
-        color: Color(0xFFACA1FD),
-        value: widget.pets.weight.toString() + "gr",
-      ),
-      PetTags(
         label: "Race",
         color: Color(0xFFFAAFFF),
         value: widget.pets.race,
+      ),
+      PetTags(
+        label: "Status",
+        color: Color(0xFF4DA2D6),
+        value: checkIfStumbumOrIsPedigree(widget.pets),
+      ),
+      PetTags(
+          label: "Sterile",
+          color: Color(0xFF4DA2D6),
+          value: (widget.pets.isSterile == null)
+              ? "STERILE"
+              : (widget.pets.isSterile)
+                  ? "STERILE"
+                  : "NOT STERILE"),
+      PetTags(
+        label: "Gender",
+        color: Color(0xFFFFB795),
+        value: widget.pets.gender.label,
+      ),
+      PetTags(
+        label: "Weight",
+        color: Color(0xFFACA1FD),
+        value: (widget.pets.weight / 1000.0).toStringAsFixed(1) + " Kg",
       ),
       PetTags(
         label: "Age",

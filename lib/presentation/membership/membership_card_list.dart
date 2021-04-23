@@ -230,6 +230,7 @@ class MemberDescription extends StatelessWidget {
 class PlatinumCard extends StatelessWidget {
   const PlatinumCard(
       {Key key,
+      this.cardType: "VIP",
       this.cardNumber = "123456789",
       this.name: "NAME XXXX",
       this.validUntil: "XX/XX"})
@@ -239,6 +240,7 @@ class PlatinumCard extends StatelessWidget {
   final String cardNumber;
   final String name;
   final String validUntil;
+  final String cardType;
 
   @override
   Widget build(BuildContext context) {
@@ -254,12 +256,10 @@ class PlatinumCard extends StatelessWidget {
         Color(0xff68737f),
         Color(0xff1e2022),
       ],
-      // backgroundColor: Colors.blue[600],
-      backgroundColor: Color(0xff35393f),
       backNumber: cardNumber,
       name: name,
       validUntil: validUntil,
-      type: "Silver VIP",
+      type: cardType,
     );
   }
 }
@@ -288,8 +288,6 @@ class GoldCard extends StatelessWidget {
         Color(0xffDAA520),
         Color(0xffF0E68C),
       ],
-      // backgroundColor: Colors.blue[600],
-      backgroundColor: Color(0xFFF1D900),
       backNumber: cardNumber,
       name: name,
       validUntil: validUntil,
@@ -313,11 +311,17 @@ class SilverCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MemberCard(
-      frontColor: [Colors.blue[500], Colors.blue[300], Colors.blue[800]],
+      frontColor: [
+        Color(0xff2196f3),
+        Color(0xff64b5f6),
+        Color(0xff1565c0),
+      ],
       textColor: Color(0xFF0D5CAB),
-      backCardColor: [Colors.blue[500], Colors.blue[300], Colors.blue[800]],
-      // backgroundColor: Colors.blue[600],
-      backgroundColor: Color(0xFF1E78FF),
+      backCardColor: [
+        Color(0xff2196f3),
+        Color(0xff64b5f6),
+        Color(0xff1565c0),
+      ],
       backNumber: cardNumber,
       name: name,
       validUntil: validUntil,

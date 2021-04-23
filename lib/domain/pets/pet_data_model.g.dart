@@ -22,6 +22,9 @@ _$_PetDataModel _$_$_PetDataModelFromJson(Map<String, dynamic> json) {
     bio: json['bio'] as String,
     weight: json['weight'] as int,
     user: json['user'] as String,
+    isStumbum: json['isStumbum'] as bool,
+    isPedigree: json['isPedigree'] as bool,
+    isSterile: json['isSterile'] as bool,
   );
 }
 
@@ -37,4 +40,7 @@ Map<String, dynamic> _$_$_PetDataModelToJson(_$_PetDataModel instance) =>
       'bio': instance.bio,
       'weight': instance.weight,
       'user': instance.user,
+      'isStumbum': instance.isStumbum,
+      'isPedigree': instance.isPedigree,
+      'isSterile': instance.isSterile,
     };

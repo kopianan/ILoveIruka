@@ -164,6 +164,11 @@ class _MyPetsPageState extends State<MyPetsPage> {
                                                             .getStagingUrl() +
                                                         myPet.getMyPet[index]
                                                             .profilePictureUrl),
+                                                    onError: (e, trace) {
+                                                      return Center(
+                                                          child:
+                                                              Text("No Photo"));
+                                                    },
                                                     fit: BoxFit.cover))),
                                         SizedBox(
                                           width: 10,
@@ -192,10 +197,10 @@ class _MyPetsPageState extends State<MyPetsPage> {
                                                 myPet.getMyPet[index].animal
                                                     .label,
                                                 style: TextStyle(
-                                                  fontSize: 11,
-                                                  color: Colors.grey,
-                                                  fontWeight: FontWeight.bold
-                                                ),
+                                                    fontSize: 11,
+                                                    color: Colors.grey,
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             ],
                                           ),

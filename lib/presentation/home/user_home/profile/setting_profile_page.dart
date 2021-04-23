@@ -172,6 +172,10 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
                                                         _userController
                                                             .getUserData()
                                                             .imageUrl),
+                                                onError: (e, trace) {
+                                                  return Center(
+                                                      child: Text("No Photo"));
+                                                },
                                                 fit: BoxFit.cover),
                                     border: Border.all(
                                         width: 2, color: Colors.white),

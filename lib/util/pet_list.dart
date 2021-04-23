@@ -255,3 +255,21 @@ List<Label> gender = [
   Label(code: "0", label: "Male"),
   Label(code: "1", label: "Female"),
 ];
+
+///0 = isTrue 1 = isFalse
+List<Label> catStatus = [
+  Label(code: "0", label: "Pedigree"),
+  Label(code: "1", label: "Not Pedigree")
+];
+
+///0 = isTrue 1 = isFalse
+List<Label> dogStatus = [
+  Label(code: "0", label: "Stumbum"),
+  Label(code: "1", label: "Not Stumbum")
+];
+
+///0 = isTrue 1 = isFalse
+List<Label> sterile = [
+  Label(code: "0", label: "Sterile"),
+  Label(code: "1", label: "Not Sterile")
+];
