@@ -8,12 +8,14 @@ class PetCustomDropDown<T> extends StatefulWidget {
       {Key key,
       @required this.items,
       @required this.label,
+      @required this.initial,
       @required this.onChanged,
       @required this.hintText})
       : super(key: key);
   final List<T> items;
   final String label;
   final String hintText;
+  final Label initial;
   final ValueChanged<T> onChanged;
   @override
   _PetCustomDropDownState createState() => _PetCustomDropDownState();
@@ -23,7 +25,7 @@ class _PetCustomDropDownState extends State<PetCustomDropDown> {
   Label selectedType;
   @override
   void initState() {
-    selectedType = null;
+    selectedType = widget.initial;
     super.initState();
   }
 

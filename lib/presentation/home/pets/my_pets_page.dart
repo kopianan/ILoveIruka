@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 import 'package:i_love_iruka/application/pet/pet_bloc.dart';
@@ -39,7 +40,7 @@ class _MyPetsPageState extends State<MyPetsPage> {
     // if (petController.getMyPet.length == 0) {
     //   petBloc.add(PetEvent.getMyPet());
     // }
-      petBloc.add(PetEvent.getMyPet());
+    petBloc.add(PetEvent.getMyPet());
     super.initState();
   }
 
@@ -101,6 +102,7 @@ class _MyPetsPageState extends State<MyPetsPage> {
                           actions: [
                             TextButton(
                               onPressed: () {
+                                petController.emptySelectedPet();
                                 Get.toNamed(AddNewPetPage.TAG);
                               },
                               child: Text("Add Pet",
@@ -113,7 +115,19 @@ class _MyPetsPageState extends State<MyPetsPage> {
                         SliverToBoxAdapter(
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
-                            child: GlobalWidgetMethod.pageTitle("My Pet"),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GlobalWidgetMethod.pageTitle("My Pet"),
+                                Tooltip(
+                                  showDuration: Duration(milliseconds: 3000),
+                                  waitDuration: Duration(milliseconds: 2000),
+                                  message:
+                                      "Slide left the card for more action",
+                                  child: Icon(Icons.info),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         state.maybeMap(
@@ -130,85 +144,106 @@ class _MyPetsPageState extends State<MyPetsPage> {
                           orElse: () => SliverList(
                               delegate:
                                   SliverChildBuilderDelegate((context, index) {
-                            return InkWell(
-                              onTap: () {
-                                //set data to make it know that we open our pets detail
-                                myPet.setSelectedPet(myPet.getMyPet[index]);
-                                Get.toNamed(PetsDetailPage.TAG,
-                                    arguments: myPet.getMyPet[index]);
-                              },
-                              child: Container(
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: 5, vertical: 5),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.grey[200],
-                                          blurRadius: 3,
-                                          spreadRadius: 2,
-                                          offset: Offset.fromDirection(45, 2))
-                                    ]),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Container(
-                                            width: 100,
-                                            height: 80,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                image: DecorationImage(
-                                                    image: NetworkImage(Constants
-                                                            .getStagingUrl() +
-                                                        myPet.getMyPet[index]
-                                                            .profilePictureUrl),
-                                                    onError: (e, trace) {
-                                                      return Center(
-                                                          child:
-                                                              Text("No Photo"));
-                                                    },
-                                                    fit: BoxFit.cover))),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Expanded(
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                myPet.getMyPet[index].name,
-                                                maxLines: 1,
-                                                style: TextStyle(
-                                                    fontSize: 18,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              Text(
-                                                myPet.getMyPet[index].bio,
-                                                maxLines: 2,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                              Text(
-                                                myPet.getMyPet[index].animal
-                                                    .label,
-                                                style: TextStyle(
-                                                    fontSize: 11,
-                                                    color: Colors.grey,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ],
+                            return Slidable(
+                              actionPane: SlidableDrawerActionPane(),
+                              secondaryActions: [
+                                IconSlideAction(
+                                  caption: 'Delete',
+                                  color: Colors.red,
+                                  icon: Icons.delete,
+                                  onTap: () => {},
+                                ),
+                                IconSlideAction(
+                                  caption: 'Edit',
+                                  color: Colors.green,
+                                  icon: Icons.edit,
+                                  onTap: () {
+                                    myPet.setSelectedPet(myPet.getMyPet[index]);
+                                    Get.toNamed(AddNewPetPage.TAG);
+                                  },
+                                ),
+                              ],
+                              child: InkWell(
+                                onTap: () {
+                                  //set data to make it know that we open our pets detail
+                                  myPet.setSelectedPet(myPet.getMyPet[index]);
+                                  Get.toNamed(PetsDetailPage.TAG,
+                                      arguments: myPet.getMyPet[index]);
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: 5, vertical: 5),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey[200],
+                                            blurRadius: 3,
+                                            spreadRadius: 2,
+                                            offset: Offset.fromDirection(45, 2))
+                                      ]),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Container(
+                                              width: 100,
+                                              height: 80,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  image: DecorationImage(
+                                                      image: NetworkImage(Constants
+                                                              .getStagingUrl() +
+                                                          myPet.getMyPet[index]
+                                                              .profilePictureUrl),
+                                                      onError: (e, trace) {
+                                                        return Center(
+                                                            child: Text(
+                                                                "No Photo"));
+                                                      },
+                                                      fit: BoxFit.cover))),
+                                          SizedBox(
+                                            width: 10,
                                           ),
-                                        )
-                                      ],
-                                    ),
-                                  ],
+                                          Expanded(
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  myPet.getMyPet[index].name,
+                                                  maxLines: 1,
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                Text(
+                                                  myPet.getMyPet[index].bio,
+                                                  maxLines: 2,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                                Text(
+                                                  myPet.getMyPet[index].animal
+                                                      .label,
+                                                  style: TextStyle(
+                                                      fontSize: 11,
+                                                      color: Colors.grey,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             );

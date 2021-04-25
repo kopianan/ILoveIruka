@@ -7,6 +7,12 @@ class PetController extends GetxController {
   List<PetDataModel> myPet = <PetDataModel>[].obs;
   Rx<PetDataModel> mySelectedPet = PetDataModel().obs;
 
+  @override
+  void onInit() {
+    mySelectedPet.nil();
+    super.onInit();
+  }
+
   void setListPet(List<PetDataModel> dataList) {
     listPetDataModel.assignAll(dataList);
   }
@@ -24,4 +30,8 @@ class PetController extends GetxController {
   }
 
   PetDataModel get getMySelectedPet => this.mySelectedPet.value;
+
+  void emptySelectedPet() {
+    mySelectedPet.nil();
+  }
 }

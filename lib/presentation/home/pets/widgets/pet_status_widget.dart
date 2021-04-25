@@ -5,12 +5,14 @@ class PetStatusWidget extends StatefulWidget {
   const PetStatusWidget(
       {Key key,
       @required this.status,
+      @required this.initial,
       @required this.selected,
       @required this.label})
       : super(key: key);
   final List<Label> status;
   final ValueChanged<Label> selected;
   final String label;
+  final Label initial;
   @override
   _PetStatusWidgetState createState() => _PetStatusWidgetState();
 }
@@ -19,6 +21,7 @@ class _PetStatusWidgetState extends State<PetStatusWidget> {
   Label _selected;
   @override
   void initState() {
+    _selected = widget.initial;
     super.initState();
   }
 

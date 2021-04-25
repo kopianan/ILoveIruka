@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
 import 'package:i_love_iruka/application/pet/pet_bloc.dart';
+import 'package:i_love_iruka/application/pet/pet_controller.dart';
 import 'package:i_love_iruka/domain/pets/label.dart';
+import 'package:i_love_iruka/domain/pets/pet_data_model.dart';
 import 'package:i_love_iruka/domain/pets/pet_req_res.dart';
 import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/my_pets_page.dart';
@@ -30,11 +32,11 @@ class AddNewPetPage extends StatefulWidget {
 class _AddNewPetPageState extends State<AddNewPetPage> {
   File _image;
   final picker = ImagePicker();
-  TextEditingController name;
-  TextEditingController birthDate;
-  TextEditingController weight;
-  TextEditingController breed;
-  TextEditingController bio;
+  TextEditingController name = TextEditingController();
+  TextEditingController birthDate = TextEditingController();
+  TextEditingController weight = TextEditingController();
+  TextEditingController breed = TextEditingController();
+  TextEditingController bio = TextEditingController();
   DateTime date;
   Label selectedType;
   Label selectedGender;
@@ -42,61 +44,44 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
   bool isStumbum;
   bool isSterile;
   bool isPedigree;
+  String id;
+  String image;
+  Label stumbum;
+  Label pedigree;
+  Label editSterile;
 
-  Future getImage(ImageSource source) async {
-    final pickedFile = await picker.getImage(source: source);
-
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
-      }
-    });
-  }
+  final PetController petController = Get.put(PetController());
 
   @override
   void initState() {
-    name = TextEditingController();
-    birthDate = TextEditingController();
-    weight = TextEditingController();
-    breed = TextEditingController();
-    bio = TextEditingController();
     selectedGender = gender.first;
-
+    if (petController.getMySelectedPet != null) {
+      PetDataModel _pet = petController.getMySelectedPet;
+      setEditData(_pet);
+    }
     super.initState();
+  }
+
+  void setEditData(PetDataModel pet) {
+    name = TextEditingController(text: pet.name);
+    birthDate = TextEditingController(text: pet.birthDate);
+    weight = TextEditingController(text: (pet.weight / 1000).toString());
+    bio = TextEditingController(text: pet.bio);
+    image = pet.profilePictureUrl;
+    date = DateTime.parse(pet.birthDate); 
+    id = pet.id;
+    selectedGender =
+        gender.firstWhere((element) => element.code == pet.gender.code);
+    selectedType =
+        petType.firstWhere((element) => element.code == pet.animal.code);
+    _editCheckBreed(pet);
+    _editCheckPetStatus(pet);
+    _editCheckSterile(pet);
   }
 
   final petBloc = getIt<PetBloc>();
   final formKey = GlobalKey<FormState>();
   SavePetRequestData petRequestData;
-
-  void onSubmitPetData(BuildContext context) {
-    if (formKey.currentState.validate()) {
-      if (selectedType == null) {
-        Fluttertoast.showToast(msg: "Please choose type");
-      } else if (isStumbum == null && isPedigree == null) {
-        Fluttertoast.showToast(msg: "Please choose pet status");
-      } else if (isSterile == null) {
-        Fluttertoast.showToast(msg: "Please choose sterile status");
-      } else if (birthDate.text == "") {
-        Fluttertoast.showToast(msg: "Please choose birth date");
-      } else if (double.tryParse(weight.text) == null) {
-        Fluttertoast.showToast(
-            msg: "Please insert correct number ex: 1.3",
-            toastLength: Toast.LENGTH_LONG);
-      } else {
-        petBloc.add(PetEvent.uploadPhoto(_image));
-      }
-    } else {
-      Fluttertoast.showToast(msg: "Fill all data ");
-    }
-  }
-
-  void weightConverter(String text) {
-    var _parsed = double.tryParse(text);
-    if (_parsed == null) {}
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +101,7 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                 _breed = breed.text;
               else
                 _breed = selectedBreed;
+
               petRequestData = SavePetRequestData(
                   name: name.text,
                   birthDate: date.toIso8601String(),
@@ -128,7 +114,6 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                   isPedigree: isPedigree,
                   isSterile: isSterile,
                   isStumbum: isStumbum);
-              print(petRequestData.toJson());
               petBloc.add(PetEvent.saveNewPet(petRequestData));
             },
             onSaveNewPet: (e) {
@@ -205,7 +190,7 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                           validator: (e) {
                             if (GetUtils.isNullOrBlank(e)) {
                               return "Weight must not empty";
-                            }  else if (e.contains(",")) {
+                            } else if (e.contains(",")) {
                               return "Use '.' (dot), not ',' (coma)";
                             } else
                               return null;
@@ -219,12 +204,14 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                         PetGenderRadioWidget(
                           initial: selectedGender,
                           selected: (e) {
+                            print(e);
                             selectedGender = e;
                           },
                           genderList: gender,
                         ),
                         SizedBox(height: 15),
                         PetCustomDropDown(
+                          initial: selectedType,
                           hintText: "Choose your pet type",
                           label: "Pet Type",
                           items: petType,
@@ -243,9 +230,9 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                             ? SizedBox()
                             : (selectedType.code == "0")
                                 ? PetStatusWidget(
+                                    initial: stumbum,
                                     label: "Pet Status",
                                     selected: (e) {
-                                      print(e.code);
                                       if (e.code == "0")
                                         isStumbum = true;
                                       else
@@ -254,10 +241,9 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                                     status: dogStatus,
                                   )
                                 : PetStatusWidget(
+                                    initial: pedigree,
                                     label: "Pet Status",
                                     selected: (e) {
-                                      print(e.code);
-
                                       if (e.code == "0")
                                         isPedigree = true;
                                       else
@@ -267,6 +253,7 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                                   ),
                         SizedBox(height: 15),
                         PetStatusWidget(
+                          initial: editSterile,
                           label: "Sterile ?",
                           selected: (e) {
                             if (e.code == "0")
@@ -335,11 +322,35 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                             orElse: () => BtnPrimaryBlue(
                                   text: "Save",
                                   onPressed: () {
-                                    if (_image == null) {
-                                      Fluttertoast.showToast(
-                                          msg: "Please upload photo ");
+                                    if (petController.mySelectedPet != null) {
+                                      var _breed = "other";
+                                      if (selectedBreed == null)
+                                        _breed = breed.text;
+                                      else
+                                        _breed = selectedBreed;
+                                      petRequestData = SavePetRequestData(
+                                          id: id,
+                                          name: name.text,
+                                          birthDate: date.toIso8601String(),
+                                          weight: double.parse(weight.text)
+                                              .toString(),
+                                          profilePictureUrl: image,
+                                          gender: selectedGender.code,
+                                          animal: selectedType.code,
+                                          race: _breed,
+                                          bio: bio.text,
+                                          isPedigree: isPedigree,
+                                          isSterile: isSterile,
+                                          isStumbum: isStumbum);
+                                      petBloc.add(
+                                          PetEvent.saveNewPet(petRequestData));
                                     } else {
-                                      onSubmitPetData(context);
+                                      if (_image == null) {
+                                        Fluttertoast.showToast(
+                                            msg: "Please upload photo ");
+                                      } else {
+                                        onSubmitPetData(context);
+                                      }
                                     }
                                   },
                                 ),
@@ -356,6 +367,111 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
         },
       ),
     );
+  }
+
+  ///Check if pet status isstumbum for dog or sipedigree for cat
+  void _editCheckPetStatus(PetDataModel pet) {
+    if (selectedType.code == "0") {
+      isStumbum = pet.isStumbum;
+      if (isStumbum == true) {
+        //dog is stumbum
+        try {
+          stumbum = dogStatus.firstWhere((element) => element.code == "0");
+        } catch (e) {}
+      } else {
+        //dog is not stumbum
+        try {
+          stumbum = dogStatus.firstWhere((element) => element.code == "1");
+        } catch (e) {}
+      }
+    } else if (selectedType.code == "1") {
+      isPedigree = pet.isPedigree;
+      if (isPedigree == true) {
+        //dog is pedigree
+        try {
+          pedigree = catStatus.firstWhere((element) => element.code == "0");
+        } catch (e) {}
+      } else {
+        //dog is not pedigree
+        try {
+          pedigree = catStatus.firstWhere((element) => element.code == "1");
+        } catch (e) {}
+      }
+    }
+  }
+
+  ///Check if the pet breed exist in list of no
+  void _editCheckBreed(PetDataModel pet) {
+    //is dog
+    if (selectedType.code == "0") {
+      try {
+        selectedBreed = dogRaces.firstWhere((element) => element == pet.race);
+      } catch (e) {
+        selectedBreed = null;
+        breed = TextEditingController(text: pet.race);
+      }
+    } else {
+      //IS CAT
+      try {
+        selectedBreed = catRaces.firstWhere((element) => element == pet.race);
+      } catch (e) {
+        selectedBreed = null;
+        breed = TextEditingController(text: pet.race);
+      }
+    }
+  }
+
+  Future getImage(ImageSource source) async {
+    final pickedFile = await picker.getImage(source: source);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  void _editCheckSterile(PetDataModel pet) {
+    isSterile = pet.isSterile;
+    if (isSterile == true) {
+      //dog is stumbum
+      try {
+        editSterile = sterile.firstWhere((element) => element.code == "0");
+      } catch (e) {}
+    } else {
+      //dog is not editSterile
+      try {
+        editSterile = sterile.firstWhere((element) => element.code == "1");
+      } catch (e) {}
+    }
+  }
+
+  void onSubmitPetData(BuildContext context) {
+    if (formKey.currentState.validate()) {
+      if (selectedType == null) {
+        Fluttertoast.showToast(msg: "Please choose type");
+      } else if (isStumbum == null && isPedigree == null) {
+        Fluttertoast.showToast(msg: "Please choose pet status");
+      } else if (isSterile == null) {
+        Fluttertoast.showToast(msg: "Please choose sterile status");
+      } else if (birthDate.text == "") {
+        Fluttertoast.showToast(msg: "Please choose birth date");
+      } else if (double.tryParse(weight.text) == null) {
+        Fluttertoast.showToast(
+            msg: "Please insert correct number ex: 1.3",
+            toastLength: Toast.LENGTH_LONG);
+      } else {
+        petBloc.add(PetEvent.uploadPhoto(_image));
+      }
+    } else {
+      Fluttertoast.showToast(msg: "Fill all data ");
+    }
+  }
+
+  void weightConverter(String text) {
+    var _parsed = double.tryParse(text);
+    if (_parsed == null) {}
   }
 
   Widget petUploadPhoto() {

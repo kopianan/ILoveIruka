@@ -56,6 +56,7 @@ class _PetGenderRadioWidgetState extends State<PetGenderRadioWidget> {
                         value: e,
                         groupValue: _selected,
                         onChanged: (val) {
+                          widget.selected(val); 
                           setState(() {
                             _selected = val;
                           });
