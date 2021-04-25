@@ -15,7 +15,7 @@ abstract class PetDataModel with _$PetDataModel {
       Label gender,
       Label animal,
       String bio,
-      int weight,
+      double weight,
       String user,
       @JsonKey(nullable: true) bool isStumbum,
       @JsonKey(nullable: true) bool isPedigree,

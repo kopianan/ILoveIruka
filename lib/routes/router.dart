@@ -1,3 +1,4 @@
+import 'package:flutter/animation.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:i_love_iruka/presentation/auth/forgot_password_form/forgot_password_page.dart';
 import 'package:i_love_iruka/presentation/auth/forgot_password_form/forgot_password_success_notif.dart';
@@ -7,6 +8,7 @@ import 'package:i_love_iruka/presentation/auth/signin_signout/signin_signout_pag
 import 'package:i_love_iruka/presentation/core/photo_viewer_page.dart';
 import 'package:i_love_iruka/presentation/feed_detail/feed_detail_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/add_new_post_page.dart';
+import 'package:i_love_iruka/presentation/home/pets/pet_post_detail_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/pet_search_page.dart';
 import 'package:i_love_iruka/presentation/partnership/partnership_location_page.dart';
 import 'package:i_love_iruka/presentation/partnership/partnership_list_page.dart';
@@ -57,5 +59,10 @@ List<GetPage> navigatorPages = [
   GetPage(
       name: PetSearchPage.TAG,
       page: () => PetSearchPage(),
+      fullscreenDialog: true),
+  GetPage(
+      name: PetPostDetailPage.TAG,
+      page: () => PetPostDetailPage(),
+      curve: Curves.slowMiddle,
       fullscreenDialog: true),
 ];

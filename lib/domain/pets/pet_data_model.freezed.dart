@@ -26,7 +26,7 @@ class _$PetDataModelTearOff {
       Label gender,
       Label animal,
       String bio,
-      int weight,
+      double weight,
       String user,
       @JsonKey(nullable: true) bool isStumbum,
       @JsonKey(nullable: true) bool isPedigree,
@@ -68,7 +68,7 @@ mixin _$PetDataModel {
   Label get gender;
   Label get animal;
   String get bio;
-  int get weight;
+  double get weight;
   String get user;
   @JsonKey(nullable: true)
   bool get isStumbum;
@@ -96,7 +96,7 @@ abstract class $PetDataModelCopyWith<$Res> {
       Label gender,
       Label animal,
       String bio,
-      int weight,
+      double weight,
       String user,
       @JsonKey(nullable: true) bool isStumbum,
       @JsonKey(nullable: true) bool isPedigree,
@@ -138,7 +138,7 @@ class _$PetDataModelCopyWithImpl<$Res> implements $PetDataModelCopyWith<$Res> {
       gender: gender == freezed ? _value.gender : gender as Label,
       animal: animal == freezed ? _value.animal : animal as Label,
       bio: bio == freezed ? _value.bio : bio as String,
-      weight: weight == freezed ? _value.weight : weight as int,
+      weight: weight == freezed ? _value.weight : weight as double,
       user: user == freezed ? _value.user : user as String,
       isStumbum: isStumbum == freezed ? _value.isStumbum : isStumbum as bool,
       isPedigree:
@@ -164,7 +164,7 @@ abstract class _$PetDataModelCopyWith<$Res>
       Label gender,
       Label animal,
       String bio,
-      int weight,
+      double weight,
       String user,
       @JsonKey(nullable: true) bool isStumbum,
       @JsonKey(nullable: true) bool isPedigree,
@@ -208,7 +208,7 @@ class __$PetDataModelCopyWithImpl<$Res> extends _$PetDataModelCopyWithImpl<$Res>
       gender: gender == freezed ? _value.gender : gender as Label,
       animal: animal == freezed ? _value.animal : animal as Label,
       bio: bio == freezed ? _value.bio : bio as String,
-      weight: weight == freezed ? _value.weight : weight as int,
+      weight: weight == freezed ? _value.weight : weight as double,
       user: user == freezed ? _value.user : user as String,
       isStumbum: isStumbum == freezed ? _value.isStumbum : isStumbum as bool,
       isPedigree:
@@ -257,7 +257,7 @@ class _$_PetDataModel implements _PetDataModel {
   @override
   final String bio;
   @override
-  final int weight;
+  final double weight;
   @override
   final String user;
   @override
@@ -350,7 +350,7 @@ abstract class _PetDataModel implements PetDataModel {
       Label gender,
       Label animal,
       String bio,
-      int weight,
+      double weight,
       String user,
       @JsonKey(nullable: true) bool isStumbum,
       @JsonKey(nullable: true) bool isPedigree,
@@ -376,7 +376,7 @@ abstract class _PetDataModel implements PetDataModel {
   @override
   String get bio;
   @override
-  int get weight;
+  double get weight;
   @override
   String get user;
   @override

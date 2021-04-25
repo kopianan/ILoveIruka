@@ -36,9 +36,10 @@ class _MyPetsPageState extends State<MyPetsPage> {
   final petController = Get.put(PetController());
   @override
   void initState() {
-    if (petController.getMyPet.length == 0) {
+    // if (petController.getMyPet.length == 0) {
+    //   petBloc.add(PetEvent.getMyPet());
+    // }
       petBloc.add(PetEvent.getMyPet());
-    }
     super.initState();
   }
 

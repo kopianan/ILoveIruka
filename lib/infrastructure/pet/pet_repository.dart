@@ -129,7 +129,7 @@ class PetRepository extends IPetFacade {
       List _data = response.data['data'];
       List<PetPostDataModel> listPet =
           _data.map((e) => PetPostDataModel.fromJson(e)).toList();
-      return right(listPet);
+      return right(listPet.reversed.toList());
     } on DioError catch (e) {
       return left(checkErrorData(e));
     }

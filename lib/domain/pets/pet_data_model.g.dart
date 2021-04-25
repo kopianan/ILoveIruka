@@ -20,7 +20,7 @@ _$_PetDataModel _$_$_PetDataModelFromJson(Map<String, dynamic> json) {
         ? null
         : Label.fromJson(json['animal'] as Map<String, dynamic>),
     bio: json['bio'] as String,
-    weight: json['weight'] as int,
+    weight: (json['weight'] as num)?.toDouble(),
     user: json['user'] as String,
     isStumbum: json['isStumbum'] as bool,
     isPedigree: json['isPedigree'] as bool,

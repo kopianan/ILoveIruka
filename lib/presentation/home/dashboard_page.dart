@@ -124,7 +124,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               alignment: Alignment.center,
                               child: QrImage(
                                   size: 250,
-                                  data: userController.getUserData().fullName),
+                                  data: userController.getUserData().id),
                             ),
                             Container(
                                 margin: EdgeInsets.only(top: 10),

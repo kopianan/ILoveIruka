@@ -8,6 +8,8 @@ import 'package:get/route_manager.dart';
 import 'package:i_love_iruka/application/pet/pet_bloc.dart';
 import 'package:i_love_iruka/domain/pets/label.dart';
 import 'package:i_love_iruka/domain/pets/pet_req_res.dart';
+import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
+import 'package:i_love_iruka/presentation/home/pets/my_pets_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/widgets/pet_gender_radio_widget.dart';
 import 'package:i_love_iruka/presentation/home/pets/widgets/pet_status_widget.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primarary_blue_loading.dart';
@@ -79,12 +81,21 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
         Fluttertoast.showToast(msg: "Please choose sterile status");
       } else if (birthDate.text == "") {
         Fluttertoast.showToast(msg: "Please choose birth date");
+      } else if (double.tryParse(weight.text) == null) {
+        Fluttertoast.showToast(
+            msg: "Please insert correct number ex: 1.3",
+            toastLength: Toast.LENGTH_LONG);
       } else {
         petBloc.add(PetEvent.uploadPhoto(_image));
       }
     } else {
       Fluttertoast.showToast(msg: "Fill all data ");
     }
+  }
+
+  void weightConverter(String text) {
+    var _parsed = double.tryParse(text);
+    if (_parsed == null) {}
   }
 
   @override
@@ -108,7 +119,7 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
               petRequestData = SavePetRequestData(
                   name: name.text,
                   birthDate: date.toIso8601String(),
-                  weight: (double.parse(weight.text) / 1000).toString(),
+                  weight: double.parse(weight.text).toString(),
                   profilePictureUrl: e.photo,
                   gender: selectedGender.code,
                   animal: selectedType.code,
@@ -122,6 +133,8 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
             },
             onSaveNewPet: (e) {
               Fluttertoast.showToast(msg: "Successful save pet");
+              Get.offNamedUntil(
+                  MyPetsPage.TAG, ModalRoute.withName(DashboardPage.TAG));
             },
           );
         },
@@ -190,9 +203,11 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                         PetCustomFormField(
                           controller: weight,
                           validator: (e) {
-                            if (GetUtils.isNullOrBlank(e))
+                            if (GetUtils.isNullOrBlank(e)) {
                               return "Weight must not empty";
-                            else
+                            }  else if (e.contains(",")) {
+                              return "Use '.' (dot), not ',' (coma)";
+                            } else
                               return null;
                           },
                           type: TextInputType.number,

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/pet/pet_controller.dart';
+import 'package:i_love_iruka/application/user/user_bloc.dart';
 import 'package:i_love_iruka/domain/pets/pet_data_model.dart';
 import 'package:i_love_iruka/util/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../../../injection.dart';
 import 'components/pets_gallery_widget.dart';
 import 'components/pets_photo_gallery_widget.dart';
 
@@ -76,22 +81,22 @@ class _PetsDetailPageState extends State<PetsDetailPage> {
             children: <Widget>[
               TabBar(
                 tabs: [
-                  Tab(text: 'Bio Data'),
                   Tab(text: 'Gallery'),
+                  Tab(text: 'Bio Data'),
                 ],
               ),
               Expanded(
                 child: TabBarView(
                   children: [
+                    PetPhotoGallery(petDataModel: petDataModel),
                     Stack(
                       children: [
                         PetsGalleryWidget(pets: petDataModel),
                         (petController.getMySelectedPet == null)
-                            ? ContactMeSection()
+                            ? ContactMeSection(id: petDataModel.user)
                             : SizedBox()
                       ],
                     ),
-                    PetPhotoGallery(petId: petDataModel.id),
                   ],
                 ),
               ),
@@ -104,63 +109,104 @@ class _PetsDetailPageState extends State<PetsDetailPage> {
 }
 
 class ContactMeSection extends StatelessWidget {
-  const ContactMeSection({
-    Key key,
-  }) : super(key: key);
-
+  const ContactMeSection({Key key, @required this.id}) : super(key: key);
+  final String id;
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      bottom: 0,
-      left: 0,
-      right: 0,
-      child: Container(
-        width: double.infinity,
-        height: 70,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-                color: Colors.grey[300],
-                offset: Offset.fromDirection(100, 3),
-                blurRadius: 4,
-                spreadRadius: 3)
-          ],
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: Row(
-          children: [
-            Expanded(
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    maxRadius: 25,
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Text("Owner"), Text("Nama")]),
+    return BlocProvider(
+      create: (context) => getIt<UserBloc>()..add(UserEvent.getSingleUser(id)),
+      child: BlocConsumer<UserBloc, UserState>(
+        listener: (context, state) {
+          state.maybeMap(
+              orElse: () {},
+              onGetSingleUser: (e) {},
+              error: (e) {
+                print(e);
+              });
+        },
+        builder: (context, state) {
+          return Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              width: double.infinity,
+              height: 70,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey[300],
+                      offset: Offset.fromDirection(100, 3),
+                      blurRadius: 4,
+                      spreadRadius: 3)
                 ],
               ),
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: state.maybeMap(
+                orElse: () => Center(),
+                loading: (e) => Center(child: CircularProgressIndicator()),
+                onGetSingleUser: (e) => Row(
+                  children: [
+                    Expanded(
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            maxRadius: 25,
+                            backgroundImage: NetworkImage(
+                              Constants.getStagingUrl() + e.response.imageUrl,
+                            ),
+                            onBackgroundImageError: (e, err) {
+                              return null;
+                            },
+                          ),
+                          SizedBox(
+                            width: 30,
+                          ),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("Owner"),
+                                Text(
+                                  e.response.fullName,
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ]),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: 130,
+                      child: FlatButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          onPressed: () {
+                            try {
+                              launch('tel:${e.response.phoneNumber}');
+                            } catch (e) {
+                              Fluttertoast.showToast(
+                                  msg: "Phone number invalid");
+                            }
+                          },
+                          child: Text(
+                            "Contact me",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          color: Colors.green),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            Container(
-              width: 130,
-              child: FlatButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  onPressed: () {},
-                  child: Text(
-                    "Contact me",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                  color: Colors.green),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

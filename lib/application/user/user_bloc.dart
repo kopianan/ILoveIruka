@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:i_love_iruka/domain/core/general_failure.dart';
 import 'package:i_love_iruka/domain/user/i_user_facade.dart';
 import 'package:i_love_iruka/domain/user/password_data_model.dart';
+import 'package:i_love_iruka/domain/user/user_data_model.dart';
 import 'package:i_love_iruka/domain/user/user_req_res_data_model.dart';
 import 'package:i_love_iruka/presentation/home/user_home/address/address_req_res_data_model.dart';
 import 'package:injectable/injectable.dart';
@@ -81,6 +82,19 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         } catch (e) {
           yield UserState.onForgotPassword(
               some(left(GeneralFailure(e.toString()))), false);
+        }
+      },
+      getSingleUser: (_GetSingleUser value) async* {
+        yield UserState.loading();
+
+        try {
+          final _data = await _iUserFacade.getSingleUser(value.userId);
+          yield _data.fold(
+            (l) => UserState.error(l),
+            (r) => UserState.onGetSingleUser(r),
+          );
+        } catch (e) {
+          yield UserState.error(GeneralFailure(e.toString()));
         }
       },
     );

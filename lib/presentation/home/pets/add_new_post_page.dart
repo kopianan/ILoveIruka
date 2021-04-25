@@ -6,7 +6,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/pet/pet_bloc.dart';
 import 'package:i_love_iruka/domain/pets/pet_add_new_post_request.dart';
+import 'package:i_love_iruka/domain/pets/pet_data_model.dart';
 import 'package:i_love_iruka/infrastructure/functions/custom_functions.dart';
+import 'package:i_love_iruka/presentation/home/pets/my_pets_page.dart';
+import 'package:i_love_iruka/presentation/home/pets/pets_detail_page.dart';
 import 'package:i_love_iruka/presentation/widgets/global_widget_method.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -37,14 +40,14 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
     var request = PetAddNewPostRequest(
         caption: captionController.text, pictureUrl: photo);
 
-    petBloc.add(PetEvent.addNewPetPost(request, petId));
+    petBloc.add(PetEvent.addNewPetPost(request, petDataModel.id));
   }
 
-  String petId;
+  PetDataModel petDataModel;
 
   @override
   void initState() {
-    petId = Get.arguments as String;
+    petDataModel = Get.arguments as PetDataModel;
     super.initState();
   }
 
@@ -68,7 +71,10 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
                   uploadNewPost(e.photo);
                 },
                 onAddNewPost: (e) {
-                  Get.back(closeOverlays: true);
+                  // Get.back(closeOverlays: true);
+                  Get.offNamedUntil(
+                      PetsDetailPage.TAG, ModalRoute.withName(MyPetsPage.TAG),
+                      arguments: petDataModel);
                   Fluttertoast.showToast(msg: e.status);
                 });
           },

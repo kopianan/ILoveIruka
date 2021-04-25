@@ -21,4 +21,6 @@ abstract class UserState with _$UserState {
   const factory UserState.onForgotPassword(
           Option<Either<GeneralFailure, String>> response, bool isLoading) =
       _OnForgotPassword;
+  const factory UserState.onGetSingleUser(UserDataModel response) =
+      _OnGetSingleUser;
 }
