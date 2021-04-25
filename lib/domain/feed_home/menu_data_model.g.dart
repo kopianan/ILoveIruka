@@ -13,7 +13,7 @@ _$TopMenuDataModelData _$_$TopMenuDataModelDataFromJson(
     label: json['label'] as String,
     action: json['action'] as String,
     type: json['type'] as String,
-    imageUrl: json['imageUrl'] as String,
+    imageUrl: json['imageUrl'] as String ?? '',
     order: json['order'] as int,
   );
 }

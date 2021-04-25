@@ -245,7 +245,7 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
       PetTags(
         label: "Weight",
         color: Color(0xFF4DA2D6),
-        value: (pet.weight * 1000).toString() + " Kg",
+        value: pet.weight.toString() + " Kg",
       ),
     ];
     return ClipRRect(

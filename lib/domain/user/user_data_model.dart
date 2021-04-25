@@ -11,7 +11,7 @@ abstract class UserDataModel implements _$UserDataModel {
     String id,
     String fullName,
     RoleDataModel role,
-    String imageUrl,
+    @JsonKey(defaultValue: "") String imageUrl,
     String phoneNumber,
     String token,
   }) = _UserDataModel;

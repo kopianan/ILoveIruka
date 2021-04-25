@@ -13,7 +13,7 @@ _$_PartnershipDataModel _$_$_PartnershipDataModelFromJson(
     fullName: json['fullName'] as String,
     email: json['email'] as String,
     phoneNumber: json['phoneNumber'] as String,
-    imageUrl: json['imageUrl'] as String ?? 'no image',
+    imageUrl: json['imageUrl'] as String ?? '',
     lang: json['lang'] as String ?? '1',
     lat: json['lat'] as String ?? '1',
     description: json['description'] as String ?? 'no description',

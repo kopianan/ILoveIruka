@@ -7,7 +7,8 @@ import 'package:i_love_iruka/presentation/home/user_home/address/address_req_res
 import 'user_req_res_data_model.dart';
 
 abstract class IUserFacade {
-  Future<Either<GeneralFailure, String>> uploadPhoto(String image);
+  Future<Either<GeneralFailure, String>> uploadPhoto(
+      String image, String userId);
   Future<Either<GeneralFailure, UserResponseDataModel>> updateUserData(
       UserRequestDataModel request);
   Future<Either<GeneralFailure, String>> changePassword(

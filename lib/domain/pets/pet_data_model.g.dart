@@ -10,7 +10,7 @@ _$_PetDataModel _$_$_PetDataModelFromJson(Map<String, dynamic> json) {
   return _$_PetDataModel(
     id: json['id'] as String,
     name: json['name'] as String,
-    profilePictureUrl: json['profilePictureUrl'] as String,
+    profilePictureUrl: json['profilePictureUrl'] as String ?? '',
     birthDate: json['birthDate'] as String,
     race: json['race'] as String,
     gender: json['gender'] == null

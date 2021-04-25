@@ -61,11 +61,11 @@ class PetRepository extends IPetFacade {
 
   @override
   Future<Either<GeneralFailure, String>> uploadPetProfilePicture(
-      File image) async {
+      File image, String petId) async {
     Response response;
 
     FormData formData = FormData.fromMap({
-      "id": basename(image.path),
+      "id": petId,
       "file": await MultipartFile.fromFile(image.path,
           contentType: MediaType('image', 'jpeg')),
     });
@@ -80,7 +80,7 @@ class PetRepository extends IPetFacade {
       final _res = response.data['data']['path'];
       return right(_res.toString());
     } on DioError catch (e) {
-      print(e); 
+      print(e);
       return left(checkErrorData(e));
     }
   }

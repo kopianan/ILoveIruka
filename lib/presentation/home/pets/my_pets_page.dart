@@ -200,8 +200,8 @@ class _MyPetsPageState extends State<MyPetsPage> {
                                                               .profilePictureUrl),
                                                       onError: (e, trace) {
                                                         return Center(
-                                                            child: Text(
-                                                                "No Photo"));
+                                                            child: Image.asset(
+                                                                'assets/no)image.jpg'));
                                                       },
                                                       fit: BoxFit.cover))),
                                           SizedBox(

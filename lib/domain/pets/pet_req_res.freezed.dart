@@ -56,11 +56,11 @@ class _$PetReqResTearOff {
 
 // ignore: unused_element
   GetPetRequestData getPetRequestData(
-      {@JsonKey(defaultValue: "") String name,
-      @JsonKey(defaultValue: "") String race,
-      @JsonKey(defaultValue: const []) List<String> gender,
-      @JsonKey(defaultValue: const []) List<String> animal,
-      @JsonKey(defaultValue: const []) List<int> weight}) {
+      {@JsonKey(defaultValue: '') String name,
+      @JsonKey(defaultValue: '') String race,
+      @JsonKey(defaultValue: []) List<String> gender,
+      @JsonKey(defaultValue: []) List<String> animal,
+      @JsonKey(defaultValue: []) List<int> weight}) {
     return GetPetRequestData(
       name: name,
       race: race,
@@ -103,11 +103,11 @@ mixin _$PetReqRes {
             bool isPedigree),
     @required
         TResult getPetRequestData(
-            @JsonKey(defaultValue: "") String name,
-            @JsonKey(defaultValue: "") String race,
-            @JsonKey(defaultValue: const []) List<String> gender,
-            @JsonKey(defaultValue: const []) List<String> animal,
-            @JsonKey(defaultValue: const []) List<int> weight),
+            @JsonKey(defaultValue: '') String name,
+            @JsonKey(defaultValue: '') String race,
+            @JsonKey(defaultValue: []) List<String> gender,
+            @JsonKey(defaultValue: []) List<String> animal,
+            @JsonKey(defaultValue: []) List<int> weight),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -125,11 +125,11 @@ mixin _$PetReqRes {
         bool isSterile,
         bool isPedigree),
     TResult getPetRequestData(
-        @JsonKey(defaultValue: "") String name,
-        @JsonKey(defaultValue: "") String race,
-        @JsonKey(defaultValue: const []) List<String> gender,
-        @JsonKey(defaultValue: const []) List<String> animal,
-        @JsonKey(defaultValue: const []) List<int> weight),
+        @JsonKey(defaultValue: '') String name,
+        @JsonKey(defaultValue: '') String race,
+        @JsonKey(defaultValue: []) List<String> gender,
+        @JsonKey(defaultValue: []) List<String> animal,
+        @JsonKey(defaultValue: []) List<int> weight),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -369,11 +369,11 @@ class _$SavePetRequestData implements SavePetRequestData {
             bool isPedigree),
     @required
         TResult getPetRequestData(
-            @JsonKey(defaultValue: "") String name,
-            @JsonKey(defaultValue: "") String race,
-            @JsonKey(defaultValue: const []) List<String> gender,
-            @JsonKey(defaultValue: const []) List<String> animal,
-            @JsonKey(defaultValue: const []) List<int> weight),
+            @JsonKey(defaultValue: '') String name,
+            @JsonKey(defaultValue: '') String race,
+            @JsonKey(defaultValue: []) List<String> gender,
+            @JsonKey(defaultValue: []) List<String> animal,
+            @JsonKey(defaultValue: []) List<int> weight),
   }) {
     assert(savePetRequestData != null);
     assert(getPetRequestData != null);
@@ -398,11 +398,11 @@ class _$SavePetRequestData implements SavePetRequestData {
         bool isSterile,
         bool isPedigree),
     TResult getPetRequestData(
-        @JsonKey(defaultValue: "") String name,
-        @JsonKey(defaultValue: "") String race,
-        @JsonKey(defaultValue: const []) List<String> gender,
-        @JsonKey(defaultValue: const []) List<String> animal,
-        @JsonKey(defaultValue: const []) List<int> weight),
+        @JsonKey(defaultValue: '') String name,
+        @JsonKey(defaultValue: '') String race,
+        @JsonKey(defaultValue: []) List<String> gender,
+        @JsonKey(defaultValue: []) List<String> animal,
+        @JsonKey(defaultValue: []) List<int> weight),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -490,11 +490,11 @@ abstract class $GetPetRequestDataCopyWith<$Res>
       _$GetPetRequestDataCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(defaultValue: "") String name,
-      @JsonKey(defaultValue: "") String race,
-      @JsonKey(defaultValue: const []) List<String> gender,
-      @JsonKey(defaultValue: const []) List<String> animal,
-      @JsonKey(defaultValue: const []) List<int> weight});
+      {@JsonKey(defaultValue: '') String name,
+      @JsonKey(defaultValue: '') String race,
+      @JsonKey(defaultValue: []) List<String> gender,
+      @JsonKey(defaultValue: []) List<String> animal,
+      @JsonKey(defaultValue: []) List<int> weight});
 }
 
 /// @nodoc
@@ -531,29 +531,29 @@ class _$GetPetRequestDataCopyWithImpl<$Res>
 /// @nodoc
 class _$GetPetRequestData implements GetPetRequestData {
   _$GetPetRequestData(
-      {@JsonKey(defaultValue: "") this.name,
-      @JsonKey(defaultValue: "") this.race,
-      @JsonKey(defaultValue: const []) this.gender,
-      @JsonKey(defaultValue: const []) this.animal,
-      @JsonKey(defaultValue: const []) this.weight});
+      {@JsonKey(defaultValue: '') this.name,
+      @JsonKey(defaultValue: '') this.race,
+      @JsonKey(defaultValue: []) this.gender,
+      @JsonKey(defaultValue: []) this.animal,
+      @JsonKey(defaultValue: []) this.weight});
 
   factory _$GetPetRequestData.fromJson(Map<String, dynamic> json) =>
       _$_$GetPetRequestDataFromJson(json);
 
   @override
-  @JsonKey(defaultValue: "")
+  @JsonKey(defaultValue: '')
   final String name;
   @override
-  @JsonKey(defaultValue: "")
+  @JsonKey(defaultValue: '')
   final String race;
   @override
-  @JsonKey(defaultValue: const [])
+  @JsonKey(defaultValue: [])
   final List<String> gender;
   @override
-  @JsonKey(defaultValue: const [])
+  @JsonKey(defaultValue: [])
   final List<String> animal;
   @override
-  @JsonKey(defaultValue: const [])
+  @JsonKey(defaultValue: [])
   final List<int> weight;
 
   @override
@@ -610,11 +610,11 @@ class _$GetPetRequestData implements GetPetRequestData {
             bool isPedigree),
     @required
         TResult getPetRequestData(
-            @JsonKey(defaultValue: "") String name,
-            @JsonKey(defaultValue: "") String race,
-            @JsonKey(defaultValue: const []) List<String> gender,
-            @JsonKey(defaultValue: const []) List<String> animal,
-            @JsonKey(defaultValue: const []) List<int> weight),
+            @JsonKey(defaultValue: '') String name,
+            @JsonKey(defaultValue: '') String race,
+            @JsonKey(defaultValue: []) List<String> gender,
+            @JsonKey(defaultValue: []) List<String> animal,
+            @JsonKey(defaultValue: []) List<int> weight),
   }) {
     assert(savePetRequestData != null);
     assert(getPetRequestData != null);
@@ -638,11 +638,11 @@ class _$GetPetRequestData implements GetPetRequestData {
         bool isSterile,
         bool isPedigree),
     TResult getPetRequestData(
-        @JsonKey(defaultValue: "") String name,
-        @JsonKey(defaultValue: "") String race,
-        @JsonKey(defaultValue: const []) List<String> gender,
-        @JsonKey(defaultValue: const []) List<String> animal,
-        @JsonKey(defaultValue: const []) List<int> weight),
+        @JsonKey(defaultValue: '') String name,
+        @JsonKey(defaultValue: '') String race,
+        @JsonKey(defaultValue: []) List<String> gender,
+        @JsonKey(defaultValue: []) List<String> animal,
+        @JsonKey(defaultValue: []) List<int> weight),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -686,26 +686,26 @@ class _$GetPetRequestData implements GetPetRequestData {
 
 abstract class GetPetRequestData implements PetReqRes {
   factory GetPetRequestData(
-      {@JsonKey(defaultValue: "") String name,
-      @JsonKey(defaultValue: "") String race,
-      @JsonKey(defaultValue: const []) List<String> gender,
-      @JsonKey(defaultValue: const []) List<String> animal,
-      @JsonKey(defaultValue: const []) List<int> weight}) = _$GetPetRequestData;
+      {@JsonKey(defaultValue: '') String name,
+      @JsonKey(defaultValue: '') String race,
+      @JsonKey(defaultValue: []) List<String> gender,
+      @JsonKey(defaultValue: []) List<String> animal,
+      @JsonKey(defaultValue: []) List<int> weight}) = _$GetPetRequestData;
 
   factory GetPetRequestData.fromJson(Map<String, dynamic> json) =
       _$GetPetRequestData.fromJson;
 
   @override
-  @JsonKey(defaultValue: "")
+  @JsonKey(defaultValue: '')
   String get name;
   @override
-  @JsonKey(defaultValue: "")
+  @JsonKey(defaultValue: '')
   String get race;
-  @JsonKey(defaultValue: const [])
+  @JsonKey(defaultValue: [])
   List<String> get gender;
-  @JsonKey(defaultValue: const [])
+  @JsonKey(defaultValue: [])
   List<String> get animal;
-  @JsonKey(defaultValue: const [])
+  @JsonKey(defaultValue: [])
   List<int> get weight;
   @override
   @JsonKey(ignore: true)

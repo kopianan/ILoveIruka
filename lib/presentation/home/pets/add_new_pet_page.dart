@@ -5,11 +5,13 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
+import 'package:i_love_iruka/application/auth/user_controller.dart';
 import 'package:i_love_iruka/application/pet/pet_bloc.dart';
 import 'package:i_love_iruka/application/pet/pet_controller.dart';
 import 'package:i_love_iruka/domain/pets/label.dart';
 import 'package:i_love_iruka/domain/pets/pet_data_model.dart';
 import 'package:i_love_iruka/domain/pets/pet_req_res.dart';
+import 'package:i_love_iruka/infrastructure/functions/custom_formatter.dart';
 import 'package:i_love_iruka/presentation/home/dashboard_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/my_pets_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/widgets/pet_gender_radio_widget.dart';
@@ -51,6 +53,7 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
   Label editSterile;
 
   final PetController petController = Get.put(PetController());
+  final UserController userController = Get.put(UserController());
 
   @override
   void initState() {
@@ -64,11 +67,13 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
 
   void setEditData(PetDataModel pet) {
     name = TextEditingController(text: pet.name);
-    birthDate = TextEditingController(text: pet.birthDate);
-    weight = TextEditingController(text: (pet.weight / 1000).toString());
+    birthDate = TextEditingController(
+        text: formatDateStringToFormatterd(pet.birthDate));
+    weight = TextEditingController(text: (pet.weight).toString());
     bio = TextEditingController(text: pet.bio);
     image = pet.profilePictureUrl;
-    date = DateTime.parse(pet.birthDate); 
+    date = DateTime.parse(pet.birthDate);
+
     id = pet.id;
     selectedGender =
         gender.firstWhere((element) => element.code == pet.gender.code);
@@ -96,6 +101,7 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
               print(e.failure);
             },
             onUploadPhoto: (e) {
+              print(e);
               var _breed = "other";
               if (selectedBreed == null)
                 _breed = breed.text;
@@ -114,6 +120,7 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                   isPedigree: isPedigree,
                   isSterile: isSterile,
                   isStumbum: isStumbum);
+              print(petRequestData.toJson());
               petBloc.add(PetEvent.saveNewPet(petRequestData));
             },
             onSaveNewPet: (e) {
@@ -322,12 +329,21 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                             orElse: () => BtnPrimaryBlue(
                                   text: "Save",
                                   onPressed: () {
-                                    if (petController.mySelectedPet != null) {
-                                      var _breed = "other";
-                                      if (selectedBreed == null)
-                                        _breed = breed.text;
-                                      else
-                                        _breed = selectedBreed;
+                                    var _breed = "other";
+                                    if (selectedBreed == null)
+                                      _breed = breed.text;
+                                    else
+                                      _breed = selectedBreed;
+                                    var check = petController.mySelectedPet;
+                                    print(check);
+                                    if (check.value == null) {
+                                      if (_image == null) {
+                                        Fluttertoast.showToast(
+                                            msg: "Please upload photo ");
+                                      } else {
+                                        onSubmitPetData(context);
+                                      }
+                                    } else {
                                       petRequestData = SavePetRequestData(
                                           id: id,
                                           name: name.text,
@@ -344,13 +360,6 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                                           isStumbum: isStumbum);
                                       petBloc.add(
                                           PetEvent.saveNewPet(petRequestData));
-                                    } else {
-                                      if (_image == null) {
-                                        Fluttertoast.showToast(
-                                            msg: "Please upload photo ");
-                                      } else {
-                                        onSubmitPetData(context);
-                                      }
                                     }
                                   },
                                 ),
@@ -462,7 +471,8 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
             msg: "Please insert correct number ex: 1.3",
             toastLength: Toast.LENGTH_LONG);
       } else {
-        petBloc.add(PetEvent.uploadPhoto(_image));
+        petBloc
+            .add(PetEvent.uploadPhoto(_image, userController.getUserData().id));
       }
     } else {
       Fluttertoast.showToast(msg: "Fill all data ");

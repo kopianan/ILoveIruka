@@ -12,7 +12,7 @@ _$_Feed _$_$_FeedFromJson(Map<String, dynamic> json) {
     title: json['title'] as String,
     subtitle: json['subtitle'] as String,
     content: json['content'] as String,
-    imageUrl: json['imageUrl'] as String,
+    imageUrl: json['imageUrl'] as String ?? '',
     type: json['type'] as String,
     typeLabel: json['typeLabel'] as String,
     startDate: json['startDate'] as String,

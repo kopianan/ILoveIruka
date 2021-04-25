@@ -19,9 +19,10 @@ class _$UserEventTearOff {
   }
 
 // ignore: unused_element
-  _ChangeProfilePhoto changeProfilePhoto(String file) {
+  _ChangeProfilePhoto changeProfilePhoto(String file, String id) {
     return _ChangeProfilePhoto(
       file,
+      id,
     );
   }
 
@@ -75,7 +76,7 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult changeProfilePhoto(String file),
+    @required TResult changeProfilePhoto(String file, String id),
     @required TResult updateProfileData(UserRequestDataModel requestDataModel),
     @required TResult changePassword(PasswordDataModel password),
     @required TResult changeAddress(AddressRequest addressRequest),
@@ -86,7 +87,7 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult changeProfilePhoto(String file),
+    TResult changeProfilePhoto(String file, String id),
     TResult updateProfileData(UserRequestDataModel requestDataModel),
     TResult changePassword(PasswordDataModel password),
     TResult changeAddress(AddressRequest addressRequest),
@@ -172,7 +173,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult changeProfilePhoto(String file),
+    @required TResult changeProfilePhoto(String file, String id),
     @required TResult updateProfileData(UserRequestDataModel requestDataModel),
     @required TResult changePassword(PasswordDataModel password),
     @required TResult changeAddress(AddressRequest addressRequest),
@@ -195,7 +196,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult changeProfilePhoto(String file),
+    TResult changeProfilePhoto(String file, String id),
     TResult updateProfileData(UserRequestDataModel requestDataModel),
     TResult changePassword(PasswordDataModel password),
     TResult changeAddress(AddressRequest addressRequest),
@@ -264,7 +265,7 @@ abstract class _$ChangeProfilePhotoCopyWith<$Res> {
   factory _$ChangeProfilePhotoCopyWith(
           _ChangeProfilePhoto value, $Res Function(_ChangeProfilePhoto) then) =
       __$ChangeProfilePhotoCopyWithImpl<$Res>;
-  $Res call({String file});
+  $Res call({String file, String id});
 }
 
 /// @nodoc
@@ -281,23 +282,29 @@ class __$ChangeProfilePhotoCopyWithImpl<$Res>
   @override
   $Res call({
     Object file = freezed,
+    Object id = freezed,
   }) {
     return _then(_ChangeProfilePhoto(
       file == freezed ? _value.file : file as String,
+      id == freezed ? _value.id : id as String,
     ));
   }
 }
 
 /// @nodoc
 class _$_ChangeProfilePhoto implements _ChangeProfilePhoto {
-  const _$_ChangeProfilePhoto(this.file) : assert(file != null);
+  const _$_ChangeProfilePhoto(this.file, this.id)
+      : assert(file != null),
+        assert(id != null);
 
   @override
   final String file;
+  @override
+  final String id;
 
   @override
   String toString() {
-    return 'UserEvent.changeProfilePhoto(file: $file)';
+    return 'UserEvent.changeProfilePhoto(file: $file, id: $id)';
   }
 
   @override
@@ -305,12 +312,16 @@ class _$_ChangeProfilePhoto implements _ChangeProfilePhoto {
     return identical(this, other) ||
         (other is _ChangeProfilePhoto &&
             (identical(other.file, file) ||
-                const DeepCollectionEquality().equals(other.file, file)));
+                const DeepCollectionEquality().equals(other.file, file)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(file);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(file) ^
+      const DeepCollectionEquality().hash(id);
 
   @JsonKey(ignore: true)
   @override
@@ -321,7 +332,7 @@ class _$_ChangeProfilePhoto implements _ChangeProfilePhoto {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult changeProfilePhoto(String file),
+    @required TResult changeProfilePhoto(String file, String id),
     @required TResult updateProfileData(UserRequestDataModel requestDataModel),
     @required TResult changePassword(PasswordDataModel password),
     @required TResult changeAddress(AddressRequest addressRequest),
@@ -337,14 +348,14 @@ class _$_ChangeProfilePhoto implements _ChangeProfilePhoto {
     assert(getAddress != null);
     assert(forgotPassword != null);
     assert(getSingleUser != null);
-    return changeProfilePhoto(file);
+    return changeProfilePhoto(file, id);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult changeProfilePhoto(String file),
+    TResult changeProfilePhoto(String file, String id),
     TResult updateProfileData(UserRequestDataModel requestDataModel),
     TResult changePassword(PasswordDataModel password),
     TResult changeAddress(AddressRequest addressRequest),
@@ -355,7 +366,7 @@ class _$_ChangeProfilePhoto implements _ChangeProfilePhoto {
   }) {
     assert(orElse != null);
     if (changeProfilePhoto != null) {
-      return changeProfilePhoto(file);
+      return changeProfilePhoto(file, id);
     }
     return orElse();
   }
@@ -405,9 +416,11 @@ class _$_ChangeProfilePhoto implements _ChangeProfilePhoto {
 }
 
 abstract class _ChangeProfilePhoto implements UserEvent {
-  const factory _ChangeProfilePhoto(String file) = _$_ChangeProfilePhoto;
+  const factory _ChangeProfilePhoto(String file, String id) =
+      _$_ChangeProfilePhoto;
 
   String get file;
+  String get id;
   @JsonKey(ignore: true)
   _$ChangeProfilePhotoCopyWith<_ChangeProfilePhoto> get copyWith;
 }
@@ -479,7 +492,7 @@ class _$_UpdateProfileData implements _UpdateProfileData {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult changeProfilePhoto(String file),
+    @required TResult changeProfilePhoto(String file, String id),
     @required TResult updateProfileData(UserRequestDataModel requestDataModel),
     @required TResult changePassword(PasswordDataModel password),
     @required TResult changeAddress(AddressRequest addressRequest),
@@ -502,7 +515,7 @@ class _$_UpdateProfileData implements _UpdateProfileData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult changeProfilePhoto(String file),
+    TResult changeProfilePhoto(String file, String id),
     TResult updateProfileData(UserRequestDataModel requestDataModel),
     TResult changePassword(PasswordDataModel password),
     TResult changeAddress(AddressRequest addressRequest),
@@ -633,7 +646,7 @@ class _$_ChangePassword implements _ChangePassword {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult changeProfilePhoto(String file),
+    @required TResult changeProfilePhoto(String file, String id),
     @required TResult updateProfileData(UserRequestDataModel requestDataModel),
     @required TResult changePassword(PasswordDataModel password),
     @required TResult changeAddress(AddressRequest addressRequest),
@@ -656,7 +669,7 @@ class _$_ChangePassword implements _ChangePassword {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult changeProfilePhoto(String file),
+    TResult changeProfilePhoto(String file, String id),
     TResult updateProfileData(UserRequestDataModel requestDataModel),
     TResult changePassword(PasswordDataModel password),
     TResult changeAddress(AddressRequest addressRequest),
@@ -789,7 +802,7 @@ class _$_ChangeAddress implements _ChangeAddress {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult changeProfilePhoto(String file),
+    @required TResult changeProfilePhoto(String file, String id),
     @required TResult updateProfileData(UserRequestDataModel requestDataModel),
     @required TResult changePassword(PasswordDataModel password),
     @required TResult changeAddress(AddressRequest addressRequest),
@@ -812,7 +825,7 @@ class _$_ChangeAddress implements _ChangeAddress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult changeProfilePhoto(String file),
+    TResult changeProfilePhoto(String file, String id),
     TResult updateProfileData(UserRequestDataModel requestDataModel),
     TResult changePassword(PasswordDataModel password),
     TResult changeAddress(AddressRequest addressRequest),
@@ -920,7 +933,7 @@ class _$_GetAddress implements _GetAddress {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult changeProfilePhoto(String file),
+    @required TResult changeProfilePhoto(String file, String id),
     @required TResult updateProfileData(UserRequestDataModel requestDataModel),
     @required TResult changePassword(PasswordDataModel password),
     @required TResult changeAddress(AddressRequest addressRequest),
@@ -943,7 +956,7 @@ class _$_GetAddress implements _GetAddress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult changeProfilePhoto(String file),
+    TResult changeProfilePhoto(String file, String id),
     TResult updateProfileData(UserRequestDataModel requestDataModel),
     TResult changePassword(PasswordDataModel password),
     TResult changeAddress(AddressRequest addressRequest),
@@ -1068,7 +1081,7 @@ class _$_ForgotPassword implements _ForgotPassword {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult changeProfilePhoto(String file),
+    @required TResult changeProfilePhoto(String file, String id),
     @required TResult updateProfileData(UserRequestDataModel requestDataModel),
     @required TResult changePassword(PasswordDataModel password),
     @required TResult changeAddress(AddressRequest addressRequest),
@@ -1091,7 +1104,7 @@ class _$_ForgotPassword implements _ForgotPassword {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult changeProfilePhoto(String file),
+    TResult changeProfilePhoto(String file, String id),
     TResult updateProfileData(UserRequestDataModel requestDataModel),
     TResult changePassword(PasswordDataModel password),
     TResult changeAddress(AddressRequest addressRequest),
@@ -1220,7 +1233,7 @@ class _$_GetSingleUser implements _GetSingleUser {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult changeProfilePhoto(String file),
+    @required TResult changeProfilePhoto(String file, String id),
     @required TResult updateProfileData(UserRequestDataModel requestDataModel),
     @required TResult changePassword(PasswordDataModel password),
     @required TResult changeAddress(AddressRequest addressRequest),
@@ -1243,7 +1256,7 @@ class _$_GetSingleUser implements _GetSingleUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult changeProfilePhoto(String file),
+    TResult changeProfilePhoto(String file, String id),
     TResult updateProfileData(UserRequestDataModel requestDataModel),
     TResult changePassword(PasswordDataModel password),
     TResult changeAddress(AddressRequest addressRequest),

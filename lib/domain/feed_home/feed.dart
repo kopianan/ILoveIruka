@@ -10,7 +10,7 @@ abstract class Feed with _$Feed {
     String title,
     String subtitle,
     String content,
-    String imageUrl,
+    @JsonKey(defaultValue: "") String imageUrl,
     String type,
     String typeLabel,
     String startDate,

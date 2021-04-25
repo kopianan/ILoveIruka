@@ -132,8 +132,7 @@ class _PetPhotoGalleryState extends State<PetPhotoGallery> {
         child: FloatingActionButton(
           backgroundColor: Colors.green,
           onPressed: () {
-            // Get.toNamed(AddNewPostPage.TAG, arguments: widget.petDataModel);
-            Get.back(closeOverlays: true);
+            Get.toNamed(AddNewPostPage.TAG, arguments: widget.petDataModel);
           },
           child: Icon(Icons.add),
         ));

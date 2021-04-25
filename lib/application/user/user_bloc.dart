@@ -24,7 +24,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       started: (e) async* {},
       changeProfilePhoto: (e) async* {
         yield UserState.uploadProfilePhoto(none(), true);
-        final _result = await _iUserFacade.uploadPhoto(e.file);
+        final _result = await _iUserFacade.uploadPhoto(e.file, e.id);
         yield UserState.uploadProfilePhoto(some(_result), false);
       },
       changePassword: (_ChangePassword value) async* {

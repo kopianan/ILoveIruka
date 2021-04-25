@@ -9,7 +9,7 @@ abstract class PetDataModel with _$PetDataModel {
   factory PetDataModel(
       {String id,
       String name,
-      String profilePictureUrl,
+      @JsonKey(defaultValue: "") String profilePictureUrl,
       String birthDate,
       String race,
       Label gender,

@@ -14,7 +14,7 @@ _$_UserDataModel _$_$_UserDataModelFromJson(Map<String, dynamic> json) {
     role: json['role'] == null
         ? null
         : RoleDataModel.fromJson(json['role'] as Map<String, dynamic>),
-    imageUrl: json['imageUrl'] as String,
+    imageUrl: json['imageUrl'] as String ?? '',
     phoneNumber: json['phoneNumber'] as String,
     token: json['token'] as String,
   );

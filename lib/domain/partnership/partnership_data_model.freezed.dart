@@ -23,7 +23,7 @@ class _$PartnershipDataModelTearOff {
       String email,
       @JsonKey(nullable: true)
           String phoneNumber,
-      @JsonKey(nullable: true, defaultValue: 'no image')
+      @JsonKey(nullable: true, defaultValue: '')
           String imageUrl,
       @JsonKey(nullable: true, defaultValue: "1")
           String lang,
@@ -60,7 +60,7 @@ mixin _$PartnershipDataModel {
   String get email;
   @JsonKey(nullable: true)
   String get phoneNumber;
-  @JsonKey(nullable: true, defaultValue: 'no image')
+  @JsonKey(nullable: true, defaultValue: '')
   String get imageUrl;
   @JsonKey(nullable: true, defaultValue: "1")
   String get lang;
@@ -85,7 +85,7 @@ abstract class $PartnershipDataModelCopyWith<$Res> {
       String email,
       @JsonKey(nullable: true)
           String phoneNumber,
-      @JsonKey(nullable: true, defaultValue: 'no image')
+      @JsonKey(nullable: true, defaultValue: '')
           String imageUrl,
       @JsonKey(nullable: true, defaultValue: "1")
           String lang,
@@ -143,7 +143,7 @@ abstract class _$PartnershipDataModelCopyWith<$Res>
       String email,
       @JsonKey(nullable: true)
           String phoneNumber,
-      @JsonKey(nullable: true, defaultValue: 'no image')
+      @JsonKey(nullable: true, defaultValue: '')
           String imageUrl,
       @JsonKey(nullable: true, defaultValue: "1")
           String lang,
@@ -200,7 +200,7 @@ class _$_PartnershipDataModel implements _PartnershipDataModel {
       this.email,
       @JsonKey(nullable: true)
           this.phoneNumber,
-      @JsonKey(nullable: true, defaultValue: 'no image')
+      @JsonKey(nullable: true, defaultValue: '')
           this.imageUrl,
       @JsonKey(nullable: true, defaultValue: "1")
           this.lang,
@@ -222,7 +222,7 @@ class _$_PartnershipDataModel implements _PartnershipDataModel {
   @JsonKey(nullable: true)
   final String phoneNumber;
   @override
-  @JsonKey(nullable: true, defaultValue: 'no image')
+  @JsonKey(nullable: true, defaultValue: '')
   final String imageUrl;
   @override
   @JsonKey(nullable: true, defaultValue: "1")
@@ -296,7 +296,7 @@ abstract class _PartnershipDataModel implements PartnershipDataModel {
       String email,
       @JsonKey(nullable: true)
           String phoneNumber,
-      @JsonKey(nullable: true, defaultValue: 'no image')
+      @JsonKey(nullable: true, defaultValue: '')
           String imageUrl,
       @JsonKey(nullable: true, defaultValue: "1")
           String lang,
@@ -318,7 +318,7 @@ abstract class _PartnershipDataModel implements PartnershipDataModel {
   @JsonKey(nullable: true)
   String get phoneNumber;
   @override
-  @JsonKey(nullable: true, defaultValue: 'no image')
+  @JsonKey(nullable: true, defaultValue: '')
   String get imageUrl;
   @override
   @JsonKey(nullable: true, defaultValue: "1")

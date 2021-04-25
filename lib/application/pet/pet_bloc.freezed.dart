@@ -26,9 +26,10 @@ class _$PetEventTearOff {
   }
 
 // ignore: unused_element
-  _UploadPhoto uploadPhoto(File photo) {
+  _UploadPhoto uploadPhoto(File photo, String petId) {
     return _UploadPhoto(
       photo,
+      petId,
     );
   }
 
@@ -70,7 +71,7 @@ mixin _$PetEvent {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getPetList(GetPetRequestData requestData),
-    @required TResult uploadPhoto(File photo),
+    @required TResult uploadPhoto(File photo, String petId),
     @required TResult saveNewPet(SavePetRequestData petRequestData),
     @required TResult getMyPet(),
     @required TResult getPetPostById(String id),
@@ -80,7 +81,7 @@ mixin _$PetEvent {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getPetList(GetPetRequestData requestData),
-    TResult uploadPhoto(File photo),
+    TResult uploadPhoto(File photo, String petId),
     TResult saveNewPet(SavePetRequestData petRequestData),
     TResult getMyPet(),
     TResult getPetPostById(String id),
@@ -163,7 +164,7 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getPetList(GetPetRequestData requestData),
-    @required TResult uploadPhoto(File photo),
+    @required TResult uploadPhoto(File photo, String petId),
     @required TResult saveNewPet(SavePetRequestData petRequestData),
     @required TResult getMyPet(),
     @required TResult getPetPostById(String id),
@@ -184,7 +185,7 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getPetList(GetPetRequestData requestData),
-    TResult uploadPhoto(File photo),
+    TResult uploadPhoto(File photo, String petId),
     TResult saveNewPet(SavePetRequestData petRequestData),
     TResult getMyPet(),
     TResult getPetPostById(String id),
@@ -308,7 +309,7 @@ class _$_GetPetList implements _GetPetList {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getPetList(GetPetRequestData requestData),
-    @required TResult uploadPhoto(File photo),
+    @required TResult uploadPhoto(File photo, String petId),
     @required TResult saveNewPet(SavePetRequestData petRequestData),
     @required TResult getMyPet(),
     @required TResult getPetPostById(String id),
@@ -329,7 +330,7 @@ class _$_GetPetList implements _GetPetList {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getPetList(GetPetRequestData requestData),
-    TResult uploadPhoto(File photo),
+    TResult uploadPhoto(File photo, String petId),
     TResult saveNewPet(SavePetRequestData petRequestData),
     TResult getMyPet(),
     TResult getPetPostById(String id),
@@ -397,7 +398,7 @@ abstract class _$UploadPhotoCopyWith<$Res> {
   factory _$UploadPhotoCopyWith(
           _UploadPhoto value, $Res Function(_UploadPhoto) then) =
       __$UploadPhotoCopyWithImpl<$Res>;
-  $Res call({File photo});
+  $Res call({File photo, String petId});
 }
 
 /// @nodoc
@@ -413,23 +414,29 @@ class __$UploadPhotoCopyWithImpl<$Res> extends _$PetEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object photo = freezed,
+    Object petId = freezed,
   }) {
     return _then(_UploadPhoto(
       photo == freezed ? _value.photo : photo as File,
+      petId == freezed ? _value.petId : petId as String,
     ));
   }
 }
 
 /// @nodoc
 class _$_UploadPhoto implements _UploadPhoto {
-  const _$_UploadPhoto(this.photo) : assert(photo != null);
+  const _$_UploadPhoto(this.photo, this.petId)
+      : assert(photo != null),
+        assert(petId != null);
 
   @override
   final File photo;
+  @override
+  final String petId;
 
   @override
   String toString() {
-    return 'PetEvent.uploadPhoto(photo: $photo)';
+    return 'PetEvent.uploadPhoto(photo: $photo, petId: $petId)';
   }
 
   @override
@@ -437,12 +444,16 @@ class _$_UploadPhoto implements _UploadPhoto {
     return identical(this, other) ||
         (other is _UploadPhoto &&
             (identical(other.photo, photo) ||
-                const DeepCollectionEquality().equals(other.photo, photo)));
+                const DeepCollectionEquality().equals(other.photo, photo)) &&
+            (identical(other.petId, petId) ||
+                const DeepCollectionEquality().equals(other.petId, petId)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(photo);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(photo) ^
+      const DeepCollectionEquality().hash(petId);
 
   @JsonKey(ignore: true)
   @override
@@ -454,7 +465,7 @@ class _$_UploadPhoto implements _UploadPhoto {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getPetList(GetPetRequestData requestData),
-    @required TResult uploadPhoto(File photo),
+    @required TResult uploadPhoto(File photo, String petId),
     @required TResult saveNewPet(SavePetRequestData petRequestData),
     @required TResult getMyPet(),
     @required TResult getPetPostById(String id),
@@ -467,7 +478,7 @@ class _$_UploadPhoto implements _UploadPhoto {
     assert(getMyPet != null);
     assert(getPetPostById != null);
     assert(addNewPetPost != null);
-    return uploadPhoto(photo);
+    return uploadPhoto(photo, petId);
   }
 
   @override
@@ -475,7 +486,7 @@ class _$_UploadPhoto implements _UploadPhoto {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getPetList(GetPetRequestData requestData),
-    TResult uploadPhoto(File photo),
+    TResult uploadPhoto(File photo, String petId),
     TResult saveNewPet(SavePetRequestData petRequestData),
     TResult getMyPet(),
     TResult getPetPostById(String id),
@@ -484,7 +495,7 @@ class _$_UploadPhoto implements _UploadPhoto {
   }) {
     assert(orElse != null);
     if (uploadPhoto != null) {
-      return uploadPhoto(photo);
+      return uploadPhoto(photo, petId);
     }
     return orElse();
   }
@@ -531,9 +542,10 @@ class _$_UploadPhoto implements _UploadPhoto {
 }
 
 abstract class _UploadPhoto implements PetEvent {
-  const factory _UploadPhoto(File photo) = _$_UploadPhoto;
+  const factory _UploadPhoto(File photo, String petId) = _$_UploadPhoto;
 
   File get photo;
+  String get petId;
   @JsonKey(ignore: true)
   _$UploadPhotoCopyWith<_UploadPhoto> get copyWith;
 }
@@ -604,7 +616,7 @@ class _$_SaveNewPet implements _SaveNewPet {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getPetList(GetPetRequestData requestData),
-    @required TResult uploadPhoto(File photo),
+    @required TResult uploadPhoto(File photo, String petId),
     @required TResult saveNewPet(SavePetRequestData petRequestData),
     @required TResult getMyPet(),
     @required TResult getPetPostById(String id),
@@ -625,7 +637,7 @@ class _$_SaveNewPet implements _SaveNewPet {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getPetList(GetPetRequestData requestData),
-    TResult uploadPhoto(File photo),
+    TResult uploadPhoto(File photo, String petId),
     TResult saveNewPet(SavePetRequestData petRequestData),
     TResult getMyPet(),
     TResult getPetPostById(String id),
@@ -726,7 +738,7 @@ class _$_GetMyPet implements _GetMyPet {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getPetList(GetPetRequestData requestData),
-    @required TResult uploadPhoto(File photo),
+    @required TResult uploadPhoto(File photo, String petId),
     @required TResult saveNewPet(SavePetRequestData petRequestData),
     @required TResult getMyPet(),
     @required TResult getPetPostById(String id),
@@ -747,7 +759,7 @@ class _$_GetMyPet implements _GetMyPet {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getPetList(GetPetRequestData requestData),
-    TResult uploadPhoto(File photo),
+    TResult uploadPhoto(File photo, String petId),
     TResult saveNewPet(SavePetRequestData petRequestData),
     TResult getMyPet(),
     TResult getPetPostById(String id),
@@ -868,7 +880,7 @@ class _$_GetPetPostById implements _GetPetPostById {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getPetList(GetPetRequestData requestData),
-    @required TResult uploadPhoto(File photo),
+    @required TResult uploadPhoto(File photo, String petId),
     @required TResult saveNewPet(SavePetRequestData petRequestData),
     @required TResult getMyPet(),
     @required TResult getPetPostById(String id),
@@ -889,7 +901,7 @@ class _$_GetPetPostById implements _GetPetPostById {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getPetList(GetPetRequestData requestData),
-    TResult uploadPhoto(File photo),
+    TResult uploadPhoto(File photo, String petId),
     TResult saveNewPet(SavePetRequestData petRequestData),
     TResult getMyPet(),
     TResult getPetPostById(String id),
@@ -1037,7 +1049,7 @@ class _$_AddNewPetPost implements _AddNewPetPost {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getPetList(GetPetRequestData requestData),
-    @required TResult uploadPhoto(File photo),
+    @required TResult uploadPhoto(File photo, String petId),
     @required TResult saveNewPet(SavePetRequestData petRequestData),
     @required TResult getMyPet(),
     @required TResult getPetPostById(String id),
@@ -1058,7 +1070,7 @@ class _$_AddNewPetPost implements _AddNewPetPost {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getPetList(GetPetRequestData requestData),
-    TResult uploadPhoto(File photo),
+    TResult uploadPhoto(File photo, String petId),
     TResult saveNewPet(SavePetRequestData petRequestData),
     TResult getMyPet(),
     TResult getPetPostById(String id),

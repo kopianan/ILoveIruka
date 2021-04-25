@@ -41,7 +41,8 @@ class PetBloc extends Bloc<PetEvent, PetState> {
       uploadPhoto: (_UploadPhoto value) async* {
         yield PetState.loading();
         try {
-          final _result = await iPetFacade.uploadPetProfilePicture(value.photo);
+          final _result = await iPetFacade.uploadPetProfilePicture(
+              value.photo, value.petId);
           yield _result.fold(
             (l) => PetState.error(l),
             (r) => PetState.onUploadPhoto(r),

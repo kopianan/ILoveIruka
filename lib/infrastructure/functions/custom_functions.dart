@@ -25,7 +25,7 @@ String checkIfStumbumOrIsPedigree(PetDataModel pet) {
       else
         return "NOT STUMBUM";
     } else {
-      if (pet.isStumbum)
+      if (pet.isPedigree)
         return "PEDIGREE";
       else
         return "NOT PEDIGREE";

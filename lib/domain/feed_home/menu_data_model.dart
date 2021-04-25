@@ -10,7 +10,7 @@ abstract class MenuDataModel with _$MenuDataModel {
     @JsonKey(name: 'label') String label,
     @JsonKey(name: 'action') String action,
     @JsonKey(name: 'type') String type,
-    @JsonKey(name: 'imageUrl') String imageUrl,
+    @JsonKey(name: 'imageUrl', defaultValue: "") String imageUrl,
     @JsonKey(name: 'order') int order,
   }) = TopMenuDataModelData;
   factory MenuDataModel.fromJson(Map<String, dynamic> json) =>

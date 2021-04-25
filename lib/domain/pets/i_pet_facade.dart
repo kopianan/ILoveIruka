@@ -11,7 +11,8 @@ import 'package:i_love_iruka/domain/pets/pet_req_res.dart';
 abstract class IPetFacade {
   Future<Either<GeneralFailure, List<PetDataModel>>> getAllPets(
       GetPetRequestData request);
-  Future<Either<GeneralFailure, String>> uploadPetProfilePicture(File photo);
+  Future<Either<GeneralFailure, String>> uploadPetProfilePicture(
+      File photo, String petId);
   Future<Either<GeneralFailure, PetDataModel>> saveNewPet(
       SavePetRequestData data);
   Future<Either<GeneralFailure, List<PetDataModel>>> getMyPet();

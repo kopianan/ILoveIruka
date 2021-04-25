@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/style.dart';
 import 'package:flutter_tags/flutter_tags.dart';
 import 'package:get/route_manager.dart';
 import 'package:i_love_iruka/domain/pets/pet_req_res.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_outline.dart';
 import 'package:i_love_iruka/util/pet_list.dart';
-
-import 'widgets/pet_custom_dropdown.dart';
 
 class PetSearchPage extends StatefulWidget {
   static final String TAG = '/pet_search_page';

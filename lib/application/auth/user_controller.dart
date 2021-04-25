@@ -37,14 +37,7 @@ class UserController extends GetxController {
   }
 
   UserDataModel getUserData() {
-    try {
-      if (userData.value.isBlank) {
-        return null;
-      } else {
-        return this.userData.value;
-      }
-    } catch (e) {
-      return null;
-    }
+    print(userData.value);
+    return this.userData.value;
   }
 }

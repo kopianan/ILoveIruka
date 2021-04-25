@@ -11,7 +11,7 @@ abstract class PartnershipDataModel with _$PartnershipDataModel {
       String email,
       @JsonKey(nullable: true)
           String phoneNumber,
-      @JsonKey(nullable: true, defaultValue: 'no image')
+      @JsonKey(nullable: true, defaultValue: '')
           String imageUrl,
       @JsonKey(nullable: true, defaultValue: "1")
           String lang,

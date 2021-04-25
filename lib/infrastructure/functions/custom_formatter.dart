@@ -47,6 +47,10 @@ String getMonthFromLocale(String localeDate) {
   }
 }
 
+String formatDateStringToFormatterd(String localeDate) {
+  final date = DateFormat('dd MMMM yyyy');
+  return date.format(DateTime.parse(localeDate));
+}
 // String parseStringToDate(String date) {
 //   try {} catch (e) {
 //     return "";

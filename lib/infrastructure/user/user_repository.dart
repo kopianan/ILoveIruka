@@ -41,11 +41,12 @@ class UserRepository extends IUserFacade {
   }
 
   @override
-  Future<Either<GeneralFailure, String>> uploadPhoto(String image) async {
+  Future<Either<GeneralFailure, String>> uploadPhoto(
+      String image, String userId) async {
     Response response;
 
     FormData formData = FormData.fromMap({
-      "id": basename(image),
+      "id": userId,
       "file": await MultipartFile.fromFile(image,
           contentType: MediaType('image', 'jpeg')),
     });

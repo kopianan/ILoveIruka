@@ -48,7 +48,7 @@ class _PetsGalleryWidgetState extends State<PetsGalleryWidget> {
       PetTags(
         label: "Weight",
         color: Color(0xFFACA1FD),
-        value: (widget.pets.weight / 1000.0).toStringAsFixed(1) + " Kg",
+        value: (widget.pets.weight).toStringAsFixed(1) + " Kg",
       ),
       PetTags(
         label: "Age",

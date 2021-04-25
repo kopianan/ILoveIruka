@@ -3,7 +3,8 @@ part of 'user_bloc.dart';
 @freezed
 abstract class UserEvent with _$UserEvent {
   const factory UserEvent.started() = _Started;
-  const factory UserEvent.changeProfilePhoto(String file) = _ChangeProfilePhoto;
+  const factory UserEvent.changeProfilePhoto(String file, String id) =
+      _ChangeProfilePhoto;
   const factory UserEvent.updateProfileData(
       UserRequestDataModel requestDataModel) = _UpdateProfileData;
   const factory UserEvent.changePassword(PasswordDataModel password) =

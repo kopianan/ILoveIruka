@@ -107,13 +107,13 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
               actions: [
                 TextButton(
                     onPressed: () {
+                      var userData = _userController.getUserData();
                       if (image == null) {
-                        updateProfileBloc(
-                            context, _userController.getUserData().imageUrl);
+                        updateProfileBloc(context, userData.imageUrl);
                       } else {
-                        context
-                            .read<UserBloc>()
-                            .add(UserEvent.changeProfilePhoto(image.path));
+                        context.read<UserBloc>().add(
+                            UserEvent.changeProfilePhoto(
+                                image.path, userData.id));
                       }
                     },
                     child: Icon(

@@ -214,7 +214,7 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
           if (file == null) {
             Fluttertoast.showToast(msg: "Please upload image");
           } else {
-            petBloc.add(PetEvent.uploadPhoto(file));
+            petBloc.add(PetEvent.uploadPhoto(file, petDataModel.id));
           }
         } else {}
       },

@@ -22,7 +22,7 @@ class _$UserDataModelTearOff {
       String id,
       String fullName,
       RoleDataModel role,
-      String imageUrl,
+      @JsonKey(defaultValue: "") String imageUrl,
       String phoneNumber,
       String token}) {
     return _UserDataModel(
@@ -52,6 +52,7 @@ mixin _$UserDataModel {
   String get id;
   String get fullName;
   RoleDataModel get role;
+  @JsonKey(defaultValue: "")
   String get imageUrl;
   String get phoneNumber;
   String get token;
@@ -71,7 +72,7 @@ abstract class $UserDataModelCopyWith<$Res> {
       String id,
       String fullName,
       RoleDataModel role,
-      String imageUrl,
+      @JsonKey(defaultValue: "") String imageUrl,
       String phoneNumber,
       String token});
 
@@ -132,7 +133,7 @@ abstract class _$UserDataModelCopyWith<$Res>
       String id,
       String fullName,
       RoleDataModel role,
-      String imageUrl,
+      @JsonKey(defaultValue: "") String imageUrl,
       String phoneNumber,
       String token});
 
@@ -183,7 +184,7 @@ class _$_UserDataModel implements _UserDataModel {
       this.id,
       this.fullName,
       this.role,
-      this.imageUrl,
+      @JsonKey(defaultValue: "") this.imageUrl,
       this.phoneNumber,
       this.token});
 
@@ -199,6 +200,7 @@ class _$_UserDataModel implements _UserDataModel {
   @override
   final RoleDataModel role;
   @override
+  @JsonKey(defaultValue: "")
   final String imageUrl;
   @override
   final String phoneNumber;
@@ -261,7 +263,7 @@ abstract class _UserDataModel implements UserDataModel {
       String id,
       String fullName,
       RoleDataModel role,
-      String imageUrl,
+      @JsonKey(defaultValue: "") String imageUrl,
       String phoneNumber,
       String token}) = _$_UserDataModel;
 
@@ -277,6 +279,7 @@ abstract class _UserDataModel implements UserDataModel {
   @override
   RoleDataModel get role;
   @override
+  @JsonKey(defaultValue: "")
   String get imageUrl;
   @override
   String get phoneNumber;
