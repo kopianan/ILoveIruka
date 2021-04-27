@@ -17,6 +17,7 @@ _$_UserDataModel _$_$_UserDataModelFromJson(Map<String, dynamic> json) {
     imageUrl: json['imageUrl'] as String ?? '',
     phoneNumber: json['phoneNumber'] as String,
     token: json['token'] as String,
+    points: json['points'] as int ?? 0,
   );
 }
 
@@ -29,4 +30,5 @@ Map<String, dynamic> _$_$_UserDataModelToJson(_$_UserDataModel instance) =>
       'imageUrl': instance.imageUrl,
       'phoneNumber': instance.phoneNumber,
       'token': instance.token,
+      'points': instance.points,
     };

@@ -165,7 +165,6 @@ class _MyPetsPageState extends State<MyPetsPage> {
                               ],
                               child: InkWell(
                                 onTap: () {
-                                  //set data to make it know that we open our pets detail
                                   myPet.setSelectedPet(myPet.getMyPet[index]);
                                   Get.toNamed(PetsDetailPage.TAG,
                                       arguments: myPet.getMyPet[index]);

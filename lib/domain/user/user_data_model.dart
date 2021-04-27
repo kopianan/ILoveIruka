@@ -14,6 +14,7 @@ abstract class UserDataModel implements _$UserDataModel {
     @JsonKey(defaultValue: "") String imageUrl,
     String phoneNumber,
     String token,
+    @JsonKey(defaultValue: 0) int points,
   }) = _UserDataModel;
 
   factory UserDataModel.fromJson(Map<String, dynamic> json) =>

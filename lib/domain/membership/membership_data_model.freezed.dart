@@ -18,17 +18,45 @@ class _$MembershipDataModelTearOff {
 
 // ignore: unused_element
   _MembershipDataModel call(
-      {String id,
-      String label,
-      int duration,
-      String description,
-      String createdBy}) {
+      {@JsonKey(name: "id")
+          String id,
+      @JsonKey(name: "label")
+          String label,
+      @JsonKey(name: "duration")
+          int duration,
+      @JsonKey(name: "description")
+          String description,
+      @JsonKey(name: "price")
+          int price,
+      @JsonKey(name: "formattedPrice")
+          String formattedPrice,
+      @JsonKey(name: "specialDiscount")
+          int specialDiscount,
+      @JsonKey(name: "formattedSpecialDiscount")
+          String formattedSpecialDiscount,
+      @JsonKey(name: "colors", defaultValue: const [
+        "FF3CB4FF",
+        "FF3CB4FF",
+        "FF3CB4FF",
+        "FF3CB4FF"
+      ])
+          List<String> colors,
+      @JsonKey(name: "createdBy")
+          String createdBy,
+      @JsonKey(name: "lastUpdatedBy")
+          String lastUpdatedBy}) {
     return _MembershipDataModel(
       id: id,
       label: label,
       duration: duration,
       description: description,
+      price: price,
+      formattedPrice: formattedPrice,
+      specialDiscount: specialDiscount,
+      formattedSpecialDiscount: formattedSpecialDiscount,
+      colors: colors,
       createdBy: createdBy,
+      lastUpdatedBy: lastUpdatedBy,
     );
   }
 
@@ -44,11 +72,30 @@ const $MembershipDataModel = _$MembershipDataModelTearOff();
 
 /// @nodoc
 mixin _$MembershipDataModel {
+  @JsonKey(name: "id")
   String get id;
+  @JsonKey(name: "label")
   String get label;
+  @JsonKey(name: "duration")
   int get duration;
+  @JsonKey(name: "description")
   String get description;
+  @JsonKey(name: "price")
+  int get price;
+  @JsonKey(name: "formattedPrice")
+  String get formattedPrice;
+  @JsonKey(name: "specialDiscount")
+  int get specialDiscount;
+  @JsonKey(name: "formattedSpecialDiscount")
+  String get formattedSpecialDiscount;
+  @JsonKey(
+      name: "colors",
+      defaultValue: const ["FF3CB4FF", "FF3CB4FF", "FF3CB4FF", "FF3CB4FF"])
+  List<String> get colors;
+  @JsonKey(name: "createdBy")
   String get createdBy;
+  @JsonKey(name: "lastUpdatedBy")
+  String get lastUpdatedBy;
 
   Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
@@ -61,11 +108,33 @@ abstract class $MembershipDataModelCopyWith<$Res> {
           MembershipDataModel value, $Res Function(MembershipDataModel) then) =
       _$MembershipDataModelCopyWithImpl<$Res>;
   $Res call(
-      {String id,
-      String label,
-      int duration,
-      String description,
-      String createdBy});
+      {@JsonKey(name: "id")
+          String id,
+      @JsonKey(name: "label")
+          String label,
+      @JsonKey(name: "duration")
+          int duration,
+      @JsonKey(name: "description")
+          String description,
+      @JsonKey(name: "price")
+          int price,
+      @JsonKey(name: "formattedPrice")
+          String formattedPrice,
+      @JsonKey(name: "specialDiscount")
+          int specialDiscount,
+      @JsonKey(name: "formattedSpecialDiscount")
+          String formattedSpecialDiscount,
+      @JsonKey(name: "colors", defaultValue: const [
+        "FF3CB4FF",
+        "FF3CB4FF",
+        "FF3CB4FF",
+        "FF3CB4FF"
+      ])
+          List<String> colors,
+      @JsonKey(name: "createdBy")
+          String createdBy,
+      @JsonKey(name: "lastUpdatedBy")
+          String lastUpdatedBy});
 }
 
 /// @nodoc
@@ -83,7 +152,13 @@ class _$MembershipDataModelCopyWithImpl<$Res>
     Object label = freezed,
     Object duration = freezed,
     Object description = freezed,
+    Object price = freezed,
+    Object formattedPrice = freezed,
+    Object specialDiscount = freezed,
+    Object formattedSpecialDiscount = freezed,
+    Object colors = freezed,
     Object createdBy = freezed,
+    Object lastUpdatedBy = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
@@ -91,7 +166,21 @@ class _$MembershipDataModelCopyWithImpl<$Res>
       duration: duration == freezed ? _value.duration : duration as int,
       description:
           description == freezed ? _value.description : description as String,
+      price: price == freezed ? _value.price : price as int,
+      formattedPrice: formattedPrice == freezed
+          ? _value.formattedPrice
+          : formattedPrice as String,
+      specialDiscount: specialDiscount == freezed
+          ? _value.specialDiscount
+          : specialDiscount as int,
+      formattedSpecialDiscount: formattedSpecialDiscount == freezed
+          ? _value.formattedSpecialDiscount
+          : formattedSpecialDiscount as String,
+      colors: colors == freezed ? _value.colors : colors as List<String>,
       createdBy: createdBy == freezed ? _value.createdBy : createdBy as String,
+      lastUpdatedBy: lastUpdatedBy == freezed
+          ? _value.lastUpdatedBy
+          : lastUpdatedBy as String,
     ));
   }
 }
@@ -104,11 +193,33 @@ abstract class _$MembershipDataModelCopyWith<$Res>
       __$MembershipDataModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
-      String label,
-      int duration,
-      String description,
-      String createdBy});
+      {@JsonKey(name: "id")
+          String id,
+      @JsonKey(name: "label")
+          String label,
+      @JsonKey(name: "duration")
+          int duration,
+      @JsonKey(name: "description")
+          String description,
+      @JsonKey(name: "price")
+          int price,
+      @JsonKey(name: "formattedPrice")
+          String formattedPrice,
+      @JsonKey(name: "specialDiscount")
+          int specialDiscount,
+      @JsonKey(name: "formattedSpecialDiscount")
+          String formattedSpecialDiscount,
+      @JsonKey(name: "colors", defaultValue: const [
+        "FF3CB4FF",
+        "FF3CB4FF",
+        "FF3CB4FF",
+        "FF3CB4FF"
+      ])
+          List<String> colors,
+      @JsonKey(name: "createdBy")
+          String createdBy,
+      @JsonKey(name: "lastUpdatedBy")
+          String lastUpdatedBy});
 }
 
 /// @nodoc
@@ -128,7 +239,13 @@ class __$MembershipDataModelCopyWithImpl<$Res>
     Object label = freezed,
     Object duration = freezed,
     Object description = freezed,
+    Object price = freezed,
+    Object formattedPrice = freezed,
+    Object specialDiscount = freezed,
+    Object formattedSpecialDiscount = freezed,
+    Object colors = freezed,
     Object createdBy = freezed,
+    Object lastUpdatedBy = freezed,
   }) {
     return _then(_MembershipDataModel(
       id: id == freezed ? _value.id : id as String,
@@ -136,7 +253,21 @@ class __$MembershipDataModelCopyWithImpl<$Res>
       duration: duration == freezed ? _value.duration : duration as int,
       description:
           description == freezed ? _value.description : description as String,
+      price: price == freezed ? _value.price : price as int,
+      formattedPrice: formattedPrice == freezed
+          ? _value.formattedPrice
+          : formattedPrice as String,
+      specialDiscount: specialDiscount == freezed
+          ? _value.specialDiscount
+          : specialDiscount as int,
+      formattedSpecialDiscount: formattedSpecialDiscount == freezed
+          ? _value.formattedSpecialDiscount
+          : formattedSpecialDiscount as String,
+      colors: colors == freezed ? _value.colors : colors as List<String>,
       createdBy: createdBy == freezed ? _value.createdBy : createdBy as String,
+      lastUpdatedBy: lastUpdatedBy == freezed
+          ? _value.lastUpdatedBy
+          : lastUpdatedBy as String,
     ));
   }
 }
@@ -146,25 +277,76 @@ class __$MembershipDataModelCopyWithImpl<$Res>
 /// @nodoc
 class _$_MembershipDataModel implements _MembershipDataModel {
   _$_MembershipDataModel(
-      {this.id, this.label, this.duration, this.description, this.createdBy});
+      {@JsonKey(name: "id")
+          this.id,
+      @JsonKey(name: "label")
+          this.label,
+      @JsonKey(name: "duration")
+          this.duration,
+      @JsonKey(name: "description")
+          this.description,
+      @JsonKey(name: "price")
+          this.price,
+      @JsonKey(name: "formattedPrice")
+          this.formattedPrice,
+      @JsonKey(name: "specialDiscount")
+          this.specialDiscount,
+      @JsonKey(name: "formattedSpecialDiscount")
+          this.formattedSpecialDiscount,
+      @JsonKey(name: "colors", defaultValue: const [
+        "FF3CB4FF",
+        "FF3CB4FF",
+        "FF3CB4FF",
+        "FF3CB4FF"
+      ])
+          this.colors,
+      @JsonKey(name: "createdBy")
+          this.createdBy,
+      @JsonKey(name: "lastUpdatedBy")
+          this.lastUpdatedBy});
 
   factory _$_MembershipDataModel.fromJson(Map<String, dynamic> json) =>
       _$_$_MembershipDataModelFromJson(json);
 
   @override
+  @JsonKey(name: "id")
   final String id;
   @override
+  @JsonKey(name: "label")
   final String label;
   @override
+  @JsonKey(name: "duration")
   final int duration;
   @override
+  @JsonKey(name: "description")
   final String description;
   @override
+  @JsonKey(name: "price")
+  final int price;
+  @override
+  @JsonKey(name: "formattedPrice")
+  final String formattedPrice;
+  @override
+  @JsonKey(name: "specialDiscount")
+  final int specialDiscount;
+  @override
+  @JsonKey(name: "formattedSpecialDiscount")
+  final String formattedSpecialDiscount;
+  @override
+  @JsonKey(
+      name: "colors",
+      defaultValue: const ["FF3CB4FF", "FF3CB4FF", "FF3CB4FF", "FF3CB4FF"])
+  final List<String> colors;
+  @override
+  @JsonKey(name: "createdBy")
   final String createdBy;
+  @override
+  @JsonKey(name: "lastUpdatedBy")
+  final String lastUpdatedBy;
 
   @override
   String toString() {
-    return 'MembershipDataModel(id: $id, label: $label, duration: $duration, description: $description, createdBy: $createdBy)';
+    return 'MembershipDataModel(id: $id, label: $label, duration: $duration, description: $description, price: $price, formattedPrice: $formattedPrice, specialDiscount: $specialDiscount, formattedSpecialDiscount: $formattedSpecialDiscount, colors: $colors, createdBy: $createdBy, lastUpdatedBy: $lastUpdatedBy)';
   }
 
   @override
@@ -181,9 +363,27 @@ class _$_MembershipDataModel implements _MembershipDataModel {
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
                     .equals(other.description, description)) &&
+            (identical(other.price, price) ||
+                const DeepCollectionEquality().equals(other.price, price)) &&
+            (identical(other.formattedPrice, formattedPrice) ||
+                const DeepCollectionEquality()
+                    .equals(other.formattedPrice, formattedPrice)) &&
+            (identical(other.specialDiscount, specialDiscount) ||
+                const DeepCollectionEquality()
+                    .equals(other.specialDiscount, specialDiscount)) &&
+            (identical(
+                    other.formattedSpecialDiscount, formattedSpecialDiscount) ||
+                const DeepCollectionEquality().equals(
+                    other.formattedSpecialDiscount,
+                    formattedSpecialDiscount)) &&
+            (identical(other.colors, colors) ||
+                const DeepCollectionEquality().equals(other.colors, colors)) &&
             (identical(other.createdBy, createdBy) ||
                 const DeepCollectionEquality()
-                    .equals(other.createdBy, createdBy)));
+                    .equals(other.createdBy, createdBy)) &&
+            (identical(other.lastUpdatedBy, lastUpdatedBy) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastUpdatedBy, lastUpdatedBy)));
   }
 
   @override
@@ -193,7 +393,13 @@ class _$_MembershipDataModel implements _MembershipDataModel {
       const DeepCollectionEquality().hash(label) ^
       const DeepCollectionEquality().hash(duration) ^
       const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(createdBy);
+      const DeepCollectionEquality().hash(price) ^
+      const DeepCollectionEquality().hash(formattedPrice) ^
+      const DeepCollectionEquality().hash(specialDiscount) ^
+      const DeepCollectionEquality().hash(formattedSpecialDiscount) ^
+      const DeepCollectionEquality().hash(colors) ^
+      const DeepCollectionEquality().hash(createdBy) ^
+      const DeepCollectionEquality().hash(lastUpdatedBy);
 
   @JsonKey(ignore: true)
   @override
@@ -209,25 +415,72 @@ class _$_MembershipDataModel implements _MembershipDataModel {
 
 abstract class _MembershipDataModel implements MembershipDataModel {
   factory _MembershipDataModel(
-      {String id,
-      String label,
-      int duration,
-      String description,
-      String createdBy}) = _$_MembershipDataModel;
+      {@JsonKey(name: "id")
+          String id,
+      @JsonKey(name: "label")
+          String label,
+      @JsonKey(name: "duration")
+          int duration,
+      @JsonKey(name: "description")
+          String description,
+      @JsonKey(name: "price")
+          int price,
+      @JsonKey(name: "formattedPrice")
+          String formattedPrice,
+      @JsonKey(name: "specialDiscount")
+          int specialDiscount,
+      @JsonKey(name: "formattedSpecialDiscount")
+          String formattedSpecialDiscount,
+      @JsonKey(name: "colors", defaultValue: const [
+        "FF3CB4FF",
+        "FF3CB4FF",
+        "FF3CB4FF",
+        "FF3CB4FF"
+      ])
+          List<String> colors,
+      @JsonKey(name: "createdBy")
+          String createdBy,
+      @JsonKey(name: "lastUpdatedBy")
+          String lastUpdatedBy}) = _$_MembershipDataModel;
 
   factory _MembershipDataModel.fromJson(Map<String, dynamic> json) =
       _$_MembershipDataModel.fromJson;
 
   @override
+  @JsonKey(name: "id")
   String get id;
   @override
+  @JsonKey(name: "label")
   String get label;
   @override
+  @JsonKey(name: "duration")
   int get duration;
   @override
+  @JsonKey(name: "description")
   String get description;
   @override
+  @JsonKey(name: "price")
+  int get price;
+  @override
+  @JsonKey(name: "formattedPrice")
+  String get formattedPrice;
+  @override
+  @JsonKey(name: "specialDiscount")
+  int get specialDiscount;
+  @override
+  @JsonKey(name: "formattedSpecialDiscount")
+  String get formattedSpecialDiscount;
+  @override
+  @JsonKey(
+      name: "colors",
+      defaultValue: const ["FF3CB4FF", "FF3CB4FF", "FF3CB4FF", "FF3CB4FF"])
+  List<String> get colors;
+  @override
+  @JsonKey(name: "createdBy")
   String get createdBy;
+  @override
+  @JsonKey(name: "lastUpdatedBy")
+  String get lastUpdatedBy;
   @override
   @JsonKey(ignore: true)
   _$MembershipDataModelCopyWith<_MembershipDataModel> get copyWith;

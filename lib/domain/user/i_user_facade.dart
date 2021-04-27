@@ -18,4 +18,5 @@ abstract class IUserFacade {
   Future<Either<GeneralFailure, AddressResponse>> getAddress();
   Future<Either<GeneralFailure, String>> forgotPassword(String email);
   Future<Either<GeneralFailure, UserDataModel>> getSingleUser(String userId);
+  Future<Either<GeneralFailure, UserDataModel>> refreshUserData(String userId);
 }

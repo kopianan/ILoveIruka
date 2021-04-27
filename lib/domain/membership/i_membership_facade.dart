@@ -6,4 +6,6 @@ import 'package:i_love_iruka/domain/membership/membership_data_model.dart';
 abstract class IMembershipFacade {
   Future<Either<GeneralFailure, List<MembershipDataModel>>> getMembershipData();
   Future<Either<GeneralFailure, MemberInfoDataModel>> getMyMembership();
+  Future<Either<GeneralFailure, MembershipDataModel>> getMembershipById(
+      String id);
 }

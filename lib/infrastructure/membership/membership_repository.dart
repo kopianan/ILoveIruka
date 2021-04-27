@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:i_love_iruka/domain/core/general_failure.dart';
 import 'package:i_love_iruka/domain/membership/i_membership_facade.dart';
 import 'package:i_love_iruka/domain/membership/member_info_data_model.dart';
@@ -63,6 +64,24 @@ class MembershipRepository extends IMembershipFacade {
 
       final _listResult = response.data["data"];
       final _result = MemberInfoDataModel.fromJson(_listResult);
+
+      return right(_result);
+    } on DioError catch (e) {
+      return left(checkErrorData(e));
+    }
+  }
+
+  @override
+  Future<Either<GeneralFailure, MembershipDataModel>> getMembershipById(
+      String id) async {
+    Response response;
+    try {
+      response = await _dio.get(
+          Constants.getStagingUrl() + "/api/v1/member-types/$id",
+          options: getDioOptions());
+
+      final _member = response.data["data"];
+      final _result = MembershipDataModel.fromJson(_member);
 
       return right(_result);
     } on DioError catch (e) {

@@ -100,6 +100,18 @@ class PetBloc extends Bloc<PetEvent, PetState> {
           yield PetState.error(GeneralFailure(e.toString()));
         }
       },
+      deletePetPost: (_DeletePetPost value) async* {
+        yield PetState.loading();
+        try {
+          final _result = await iPetFacade.deletePetPostById(value.petId);
+          yield _result.fold(
+            (l) => PetState.error(l),
+            (r) => PetState.onPetPostDeleted(r),
+          );
+        } catch (e) {
+          yield PetState.error(GeneralFailure(e.toString()));
+        }
+      },
     );
   }
 }

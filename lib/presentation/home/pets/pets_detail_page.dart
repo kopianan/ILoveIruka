@@ -49,15 +49,20 @@ class _PetsDetailPageState extends State<PetsDetailPage> {
                   Container(
                     height: 300 + kToolbarHeight,
                     decoration: BoxDecoration(
-                        color: Colors.cyan,
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(30),
-                          bottomRight: Radius.circular(30),
-                        ),
-                        image: DecorationImage(
-                            image: NetworkImage(Constants.getStagingUrl() +
-                                petDataModel.profilePictureUrl),
-                            fit: BoxFit.cover)),
+                      color: Colors.cyan,
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(30),
+                        bottomRight: Radius.circular(30),
+                      ),
+                      image: DecorationImage(
+                          image: NetworkImage(
+                            Constants.getStagingUrl() +
+                                petDataModel.profilePictureUrl,
+                          ),
+                          onError: (e, trc) =>
+                              Center(child: Image.asset('assets/no_image.jpg')),
+                          fit: BoxFit.cover),
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

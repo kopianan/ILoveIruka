@@ -20,4 +20,5 @@ abstract class IPetFacade {
       PetAddNewPostRequest request, String petId);
   Future<Either<GeneralFailure, List<PetPostDataModel>>> getPetPostById(
       String petId);
+  Future<Either<GeneralFailure, String>> deletePetPostById(String petId);
 }

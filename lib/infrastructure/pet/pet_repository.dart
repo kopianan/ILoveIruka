@@ -123,7 +123,7 @@ class PetRepository extends IPetFacade {
     Response response;
     try {
       response = await _dio.get(
-          Constants.getStagingUrl() + "/api/v1/petstagram/post/$petId",
+          Constants.getStagingUrl() + "/api/v1/petstagram/post/gallery/$petId",
           options: getDioOptions());
 
       List _data = response.data['data'];
@@ -144,8 +144,27 @@ class PetRepository extends IPetFacade {
           Constants.getStagingUrl() + "/api/v1/petstagram/post/$petId",
           options: getDioOptions(),
           data: request.toJson());
-      print(response.data);
       return right("Successful upload post");
+    } on DioError catch (e) {
+      print(e.toString());
+      return left(checkErrorData(e));
+    }
+  }
+
+  @override
+  Future<Either<GeneralFailure, String>> deletePetPostById(String petId) async {
+    Response response;
+    // "data": {
+    //     "id": "6087118cebcf7b189cb17924",
+    //     "caption": "Nice monday night!",
+    //     "pictureUrl": "/di/sini/aja",
+    //     "pet": "607a6eeba7f3a80f483552f5"
+    // }
+    try {
+      response = await _dio.delete(
+          Constants.getStagingUrl() + "/api/v1/petstagram/post/$petId",
+          options: getDioOptions());
+      return right("Successful delete post");
     } on DioError catch (e) {
       print(e.toString());
       return left(checkErrorData(e));

@@ -97,6 +97,19 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           yield UserState.error(GeneralFailure(e.toString()));
         }
       },
+      refreshUserData: (_RefreshUserData value) async* {
+        yield UserState.loading();
+
+        try {
+          final _data = await _iUserFacade.refreshUserData(value.userId);
+          yield _data.fold(
+            (l) => UserState.error(l),
+            (r) => UserState.onRefreshUserData(r),
+          );
+        } catch (e) {
+          yield UserState.error(GeneralFailure(e.toString()));
+        }
+      },
     );
   }
 }

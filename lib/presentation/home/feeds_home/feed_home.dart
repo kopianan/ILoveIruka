@@ -93,7 +93,7 @@ class _FeedHomeState extends State<FeedHome>
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top : kToolbarHeight/2 +10),
+                padding: const EdgeInsets.only(top: kToolbarHeight / 2 + 10),
                 child: SmartRefresher(
                   enablePullDown: true,
                   enablePullUp: true,
@@ -593,7 +593,10 @@ class _FeedHomeState extends State<FeedHome>
                   );
               },
               errorBuilder: (context, exception, err) {
-                return onImageLoadingError;
+                return Image.asset(
+                  'images/assets/broken_image.png',
+                  fit: BoxFit.contain,
+                );
               },
             )),
       ),

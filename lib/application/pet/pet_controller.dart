@@ -6,6 +6,7 @@ class PetController extends GetxController {
   List<PetDataModel> listPetDataModel = <PetDataModel>[].obs;
   List<PetDataModel> myPet = <PetDataModel>[].obs;
   Rx<PetDataModel> mySelectedPet = PetDataModel().obs;
+  Rx<PetDataModel> previouserSelectedPed = PetDataModel().obs;
 
   @override
   void onInit() {

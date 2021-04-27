@@ -23,4 +23,6 @@ abstract class UserState with _$UserState {
       _OnForgotPassword;
   const factory UserState.onGetSingleUser(UserDataModel response) =
       _OnGetSingleUser;
+  const factory UserState.onRefreshUserData(UserDataModel iser) =
+      _OnRefreshUserData;
 }

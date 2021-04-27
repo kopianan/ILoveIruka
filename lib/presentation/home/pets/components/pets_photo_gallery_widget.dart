@@ -90,6 +90,10 @@ class _PetPhotoGalleryState extends State<PetPhotoGallery> {
                               child: Image.network(
                                 Constants.getStagingUrl() + photo.pictureUrl,
                                 fit: BoxFit.cover,
+                                errorBuilder: (e, err, trc) => Image.asset(
+                                  'images/assets/broken_image.png',
+                                  fit: BoxFit.contain,
+                                ),
                                 loadingBuilder: (BuildContext context,
                                     Widget child,
                                     ImageChunkEvent loadingProgress) {

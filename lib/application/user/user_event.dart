@@ -15,4 +15,5 @@ abstract class UserEvent with _$UserEvent {
 
   const factory UserEvent.forgotPassword(String email) = _ForgotPassword;
   const factory UserEvent.getSingleUser(String userId) = _GetSingleUser;
+  const factory UserEvent.refreshUserData(String userId) = _RefreshUserData;
 }

@@ -44,6 +44,18 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
           yield MembershipState.error(e.toString());
         }
       },
+      getMembershipDataById: (_GetMembershipDataById value) async* {
+        yield MembershipState.loading();
+        try {
+          final _result =
+              await iMembershipFacade.getMembershipById(value.membershipId);
+
+          yield MembershipState.onGetSingleMembership(
+              onSingleMembership: _result);
+        } catch (e) {
+          yield MembershipState.error(e.toString());
+        }
+      },
     );
   }
 }

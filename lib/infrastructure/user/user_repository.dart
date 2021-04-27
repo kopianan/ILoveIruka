@@ -184,4 +184,26 @@ class UserRepository extends IUserFacade {
       return left(GeneralFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<GeneralFailure, UserDataModel>> refreshUserData(
+      String userId) async {
+    Response response;
+
+    try {
+      response = await _dio.get(
+          Constants.getStagingUrl() + "/api/v1/users/end-user/$userId",
+          options: getDioOptions());
+
+      final _res = response.data['data'];
+      final _user = UserDataModel.fromJson(_res);
+
+      return right(_user);
+    } on DioError catch (e) {
+      return left(dioErrorChecker(e));
+    } catch (e) {
+      print(e);
+      return left(GeneralFailure("Something Wrong"));
+    }
+  }
 }

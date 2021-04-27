@@ -13,7 +13,14 @@ _$_MembershipDataModel _$_$_MembershipDataModelFromJson(
     label: json['label'] as String,
     duration: json['duration'] as int,
     description: json['description'] as String,
+    price: json['price'] as int,
+    formattedPrice: json['formattedPrice'] as String,
+    specialDiscount: json['specialDiscount'] as int,
+    formattedSpecialDiscount: json['formattedSpecialDiscount'] as String,
+    colors: (json['colors'] as List)?.map((e) => e as String)?.toList() ??
+        ['FF3CB4FF', 'FF3CB4FF', 'FF3CB4FF', 'FF3CB4FF'],
     createdBy: json['createdBy'] as String,
+    lastUpdatedBy: json['lastUpdatedBy'] as String,
   );
 }
 
@@ -24,5 +31,11 @@ Map<String, dynamic> _$_$_MembershipDataModelToJson(
       'label': instance.label,
       'duration': instance.duration,
       'description': instance.description,
+      'price': instance.price,
+      'formattedPrice': instance.formattedPrice,
+      'specialDiscount': instance.specialDiscount,
+      'formattedSpecialDiscount': instance.formattedSpecialDiscount,
+      'colors': instance.colors,
       'createdBy': instance.createdBy,
+      'lastUpdatedBy': instance.lastUpdatedBy,
     };
