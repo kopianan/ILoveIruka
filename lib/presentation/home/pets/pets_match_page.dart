@@ -16,6 +16,7 @@ import 'package:i_love_iruka/infrastructure/functions/custom_functions.dart';
 import 'package:i_love_iruka/injection.dart';
 import 'package:i_love_iruka/presentation/home/pets/pet_search_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/pets_detail_page.dart';
+import 'package:i_love_iruka/presentation/widgets/global_widget_method.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -62,15 +63,16 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
           child: BlocConsumer<PetBloc, PetState>(
             listener: (context, state) {
               state.maybeMap(
-                  orElse: () {},
-                  loading: (e) {},
-                  error: (e) {
-                    _refreshController.refreshCompleted();
-                  },
-                  onGetPetListData: (e) {
-                    _refreshController.refreshCompleted();
-                    pet.setListPet(e.petList);
-                  });
+                orElse: () {},
+                loading: (e) {},
+                error: (e) {
+                  _refreshController.refreshCompleted();
+                },
+                onGetPetListData: (e) {
+                  _refreshController.refreshCompleted();
+                  pet.setListPet(e.petList);
+                },
+              );
             },
             builder: (context, state) {
               return SmartRefresher(
@@ -103,9 +105,17 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
                 child: CustomScrollView(
                   slivers: [
                     SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            right: 10, left: 10, top: 10, bottom: 5),
+                        child: GlobalWidgetMethod.pageTitle("Petstagram",
+                            size: 30),
+                      ),
+                    ),
+                    SliverToBoxAdapter(
                       child: Container(
-                        margin: EdgeInsets.symmetric(
-                            vertical: 10, horizontal: horizontal),
+                        margin:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                         decoration: BoxDecoration(boxShadow: [
                           BoxShadow(
                               blurRadius: 4,
@@ -185,13 +195,15 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
                                 child: Container(
                                   margin: EdgeInsets.symmetric(horizontal: 10),
                                   child: ListView.builder(
-                                      itemCount: pet.getListPet.length,
+                                      itemCount:
+                                          petController.getListPet.length,
                                       shrinkWrap: true,
                                       physics: NeverScrollableScrollPhysics(),
                                       itemBuilder: (context, index) {
                                         return Column(
                                           children: [
-                                            buildPetItem(pet.getListPet[index]),
+                                            buildPetItem(petController
+                                                .getListPet[index]),
                                             SizedBox(height: 20)
                                           ],
                                         );

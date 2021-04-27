@@ -65,6 +65,10 @@ class _MyPetsPageState extends State<MyPetsPage> {
                       myPet.setMyPet(e.list);
 
                       _refreshController.refreshCompleted();
+                    },
+                    onPetDeleted: (e) {
+                      myPet.removeDataFromList(e.petData);
+                      // Get.offNamed(MyPetsPage.TAG);
                     });
               },
               builder: (context, state) {
@@ -119,13 +123,13 @@ class _MyPetsPageState extends State<MyPetsPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 GlobalWidgetMethod.pageTitle("My Pet"),
-                                Tooltip(
-                                  showDuration: Duration(milliseconds: 3000),
-                                  waitDuration: Duration(milliseconds: 2000),
-                                  message:
-                                      "Slide left the card for more action",
-                                  child: Icon(Icons.info),
-                                )
+                                // Tooltip(
+                                //   showDuration: Duration(milliseconds: 3000),
+                                //   waitDuration: Duration(milliseconds: 2000),
+                                //   message:
+                                //       "Slide left the card for more action",
+                                //   child: Icon(Icons.info),
+                                // )
                               ],
                             ),
                           ),
@@ -151,7 +155,10 @@ class _MyPetsPageState extends State<MyPetsPage> {
                                   caption: 'Delete',
                                   color: Colors.red,
                                   icon: Icons.delete,
-                                  onTap: () => {},
+                                  onTap: () => {
+                                    petBloc.add(PetEvent.deletePet(
+                                        myPet.getMyPet[index].id))
+                                  },
                                 ),
                                 IconSlideAction(
                                   caption: 'Edit',

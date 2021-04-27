@@ -126,22 +126,20 @@ class _AddressPageState extends State<AddressPage> {
         elevation: 0,
         actions: [
           TextButton(
-              onPressed: () {
-                AddressRequest request = AddressRequest(
-                    address: addressController.text,
-                    city: selectedCity.cityName,
-                    cityId: selectedCity.cityId,
-                    postalCode: selectedCity.postalCode,
-                    province: selectedProvince.province,
-                    provinceId: selectedProvince.provinceId,
-                    type: selectedCity.type);
-                print(request.toString());
-                context.read<UserBloc>().add(UserEvent.changeAddress(request));
-              },
-              child: ElevatedButton(
-                child: Icon(Icons.check),
-                onPressed: () {},
-              ))
+            onPressed: () {
+              AddressRequest request = AddressRequest(
+                  address: addressController.text,
+                  city: selectedCity.cityName,
+                  cityId: selectedCity.cityId,
+                  postalCode: selectedCity.postalCode,
+                  province: selectedProvince.province,
+                  provinceId: selectedProvince.provinceId,
+                  type: selectedCity.type);
+              print(request.toString());
+              context.read<UserBloc>().add(UserEvent.changeAddress(request));
+            },
+            child: Icon(Icons.check),
+          )
         ],
       ),
       body: Column(

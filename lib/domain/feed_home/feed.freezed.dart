@@ -22,7 +22,7 @@ class _$FeedTearOff {
       String title,
       String subtitle,
       String content,
-      @JsonKey(defaultValue: "") String imageUrl,
+      @JsonKey(defaultValue: '') String imageUrl,
       String type,
       String typeLabel,
       String startDate,
@@ -60,7 +60,7 @@ mixin _$Feed {
   String get title;
   String get subtitle;
   String get content;
-  @JsonKey(defaultValue: "")
+  @JsonKey(defaultValue: '')
   String get imageUrl;
   String get type;
   String get typeLabel;
@@ -83,7 +83,7 @@ abstract class $FeedCopyWith<$Res> {
       String title,
       String subtitle,
       String content,
-      @JsonKey(defaultValue: "") String imageUrl,
+      @JsonKey(defaultValue: '') String imageUrl,
       String type,
       String typeLabel,
       String startDate,
@@ -140,7 +140,7 @@ abstract class _$FeedCopyWith<$Res> implements $FeedCopyWith<$Res> {
       String title,
       String subtitle,
       String content,
-      @JsonKey(defaultValue: "") String imageUrl,
+      @JsonKey(defaultValue: '') String imageUrl,
       String type,
       String typeLabel,
       String startDate,
@@ -197,7 +197,7 @@ class _$_Feed implements _Feed {
       this.title,
       this.subtitle,
       this.content,
-      @JsonKey(defaultValue: "") this.imageUrl,
+      @JsonKey(defaultValue: '') this.imageUrl,
       this.type,
       this.typeLabel,
       this.startDate,
@@ -217,7 +217,7 @@ class _$_Feed implements _Feed {
   @override
   final String content;
   @override
-  @JsonKey(defaultValue: "")
+  @JsonKey(defaultValue: '')
   final String imageUrl;
   @override
   final String type;
@@ -305,7 +305,7 @@ abstract class _Feed implements Feed {
       String title,
       String subtitle,
       String content,
-      @JsonKey(defaultValue: "") String imageUrl,
+      @JsonKey(defaultValue: '') String imageUrl,
       String type,
       String typeLabel,
       String startDate,
@@ -324,7 +324,7 @@ abstract class _Feed implements Feed {
   @override
   String get content;
   @override
-  @JsonKey(defaultValue: "")
+  @JsonKey(defaultValue: '')
   String get imageUrl;
   @override
   String get type;

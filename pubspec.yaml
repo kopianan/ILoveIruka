@@ -15,7 +15,7 @@ dependencies:
   dartz: ^0.9.1
   date_time_picker: ^1.1.1
   dio: ^3.0.9
-  firebase_auth: ^0.16.0
+  # firebase_auth: ^0.16.0
   firebase_core: ^0.4.4+3
   firebase_messaging: ^6.0.9
   flash: ^1.2.0
@@ -61,7 +61,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "images/assets/mobile_app_logo_2.jpg"
+  image_path: "images/assets/iruka_logo_new.jpg"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

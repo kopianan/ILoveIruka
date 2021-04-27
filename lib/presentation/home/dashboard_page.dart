@@ -87,7 +87,7 @@ class _DashboardPageState extends State<DashboardPage> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.subscriptions_outlined), label: 'Member'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.pets_outlined), label: 'Pets'),
+                icon: Icon(Icons.pets_outlined), label: 'Petstagram'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Users'),
           ]),
       floatingActionButton: FloatingActionButton(

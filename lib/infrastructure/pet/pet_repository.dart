@@ -80,7 +80,9 @@ class PetRepository extends IPetFacade {
       final _res = response.data['data']['path'];
       return right(_res.toString());
     } on DioError catch (e) {
-      print(e);
+      print(e.response.data);
+      print(e.request); 
+      print("ERROR UPLOAD PHOTO"); 
       return left(checkErrorData(e));
     }
   }
@@ -97,6 +99,7 @@ class PetRepository extends IPetFacade {
       PetDataModel _result = PetDataModel.fromJson(_data);
       return right(_result);
     } on DioError catch (e) {
+      print(e.request);
       return left(checkErrorData(e));
     }
   }
@@ -165,6 +168,23 @@ class PetRepository extends IPetFacade {
           Constants.getStagingUrl() + "/api/v1/petstagram/post/$petId",
           options: getDioOptions());
       return right("Successful delete post");
+    } on DioError catch (e) {
+      print(e.toString());
+      return left(checkErrorData(e));
+    }
+  }
+
+  @override
+  Future<Either<GeneralFailure, PetDataModel>> deletePet(String petId) async {
+    Response response;
+
+    try {
+      response = await _dio.delete(
+          Constants.getStagingUrl() + "/api/v1/pet/$petId",
+          options: getDioOptions());
+
+      var _pet = PetDataModel.fromJson(response.data['data']);
+      return right(_pet);
     } on DioError catch (e) {
       print(e.toString());
       return left(checkErrorData(e));

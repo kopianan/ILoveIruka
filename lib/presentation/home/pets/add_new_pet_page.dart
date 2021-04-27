@@ -120,6 +120,7 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                   isPedigree: isPedigree,
                   isSterile: isSterile,
                   isStumbum: isStumbum);
+
               print(petRequestData.toJson());
               petBloc.add(PetEvent.saveNewPet(petRequestData));
             },
@@ -431,7 +432,7 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
   }
 
   Future getImage(ImageSource source) async {
-    final pickedFile = await picker.getImage(source: source);
+    final pickedFile = await picker.getImage(source: source, imageQuality: 10);
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
@@ -471,6 +472,7 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
             msg: "Please insert correct number ex: 1.3",
             toastLength: Toast.LENGTH_LONG);
       } else {
+      
         petBloc
             .add(PetEvent.uploadPhoto(_image, userController.getUserData().id));
       }

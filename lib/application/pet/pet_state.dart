@@ -14,4 +14,5 @@ abstract class PetState with _$PetState {
       _OnGetPetPostById;
   const factory PetState.onAddNewPost(String status) = _OnAddNewPost;
   const factory PetState.onPetPostDeleted(String status) = _OnPetPostDeleted;
+  const factory PetState.onPetDeleted(PetDataModel petData) = _OnPetDeleted;
 }

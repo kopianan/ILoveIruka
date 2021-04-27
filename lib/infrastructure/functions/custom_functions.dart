@@ -7,8 +7,9 @@ Future<File> getImageFromPhone(ImageSource source) async {
   final picker = ImagePicker();
   File _image;
 
-  final pickedFile = await picker.getImage(source: source);
+  final pickedFile = await picker.getImage(source: source, imageQuality: 12);
   if (pickedFile != null) {
+    
     _image = File(pickedFile.path);
   } else {
     throw (Exception("Error"));

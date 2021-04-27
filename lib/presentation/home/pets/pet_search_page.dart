@@ -52,22 +52,22 @@ class _PetSearchPageState extends State<PetSearchPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        actions: [
-          TextButton(
-              onPressed: () {
-                request = GetPetRequestData(
-                    animal: getAnimalType(),
-                    gender: getGenderType(),
-                    name: name.text,
-                    race: race.text,
-                    weight: [
-                      weightRange.start.round(),
-                      weightRange.end.round()
-                    ]);
-                print(request);
-              },
-              child: Text("GET"))
-        ],
+        // actions: [
+        //   TextButton(
+        //       onPressed: () {
+        //         request = GetPetRequestData(
+        //             animal: getAnimalType(),
+        //             gender: getGenderType(),
+        //             name: name.text,
+        //             race: race.text,
+        //             weight: [
+        //               weightRange.start.round(),
+        //               weightRange.end.round()
+        //             ]);
+        //         print(request);
+        //       },
+        //       child: Text("GET"))
+        // ],
       ),
       body: SingleChildScrollView(
         child: GestureDetector(

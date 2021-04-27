@@ -22,7 +22,7 @@ class _$MenuDataModelTearOff {
       @JsonKey(name: 'label') String label,
       @JsonKey(name: 'action') String action,
       @JsonKey(name: 'type') String type,
-      @JsonKey(name: 'imageUrl', defaultValue: "") String imageUrl,
+      @JsonKey(name: 'imageUrl', defaultValue: '') String imageUrl,
       @JsonKey(name: 'order') int order}) {
     return TopMenuDataModelData(
       id: id,
@@ -54,7 +54,7 @@ mixin _$MenuDataModel {
   String get action;
   @JsonKey(name: 'type')
   String get type;
-  @JsonKey(name: 'imageUrl', defaultValue: "")
+  @JsonKey(name: 'imageUrl', defaultValue: '')
   String get imageUrl;
   @JsonKey(name: 'order')
   int get order;
@@ -67,7 +67,7 @@ mixin _$MenuDataModel {
             @JsonKey(name: 'label') String label,
             @JsonKey(name: 'action') String action,
             @JsonKey(name: 'type') String type,
-            @JsonKey(name: 'imageUrl', defaultValue: "") String imageUrl,
+            @JsonKey(name: 'imageUrl', defaultValue: '') String imageUrl,
             @JsonKey(name: 'order') int order),
   });
   @optionalTypeArgs
@@ -77,7 +77,7 @@ mixin _$MenuDataModel {
         @JsonKey(name: 'label') String label,
         @JsonKey(name: 'action') String action,
         @JsonKey(name: 'type') String type,
-        @JsonKey(name: 'imageUrl', defaultValue: "") String imageUrl,
+        @JsonKey(name: 'imageUrl', defaultValue: '') String imageUrl,
         @JsonKey(name: 'order') int order),
     @required TResult orElse(),
   });
@@ -105,7 +105,7 @@ abstract class $MenuDataModelCopyWith<$Res> {
       @JsonKey(name: 'label') String label,
       @JsonKey(name: 'action') String action,
       @JsonKey(name: 'type') String type,
-      @JsonKey(name: 'imageUrl', defaultValue: "") String imageUrl,
+      @JsonKey(name: 'imageUrl', defaultValue: '') String imageUrl,
       @JsonKey(name: 'order') int order});
 }
 
@@ -150,7 +150,7 @@ abstract class $TopMenuDataModelDataCopyWith<$Res>
       @JsonKey(name: 'label') String label,
       @JsonKey(name: 'action') String action,
       @JsonKey(name: 'type') String type,
-      @JsonKey(name: 'imageUrl', defaultValue: "") String imageUrl,
+      @JsonKey(name: 'imageUrl', defaultValue: '') String imageUrl,
       @JsonKey(name: 'order') int order});
 }
 
@@ -194,7 +194,7 @@ class _$TopMenuDataModelData implements TopMenuDataModelData {
       @JsonKey(name: 'label') this.label,
       @JsonKey(name: 'action') this.action,
       @JsonKey(name: 'type') this.type,
-      @JsonKey(name: 'imageUrl', defaultValue: "") this.imageUrl,
+      @JsonKey(name: 'imageUrl', defaultValue: '') this.imageUrl,
       @JsonKey(name: 'order') this.order});
 
   factory _$TopMenuDataModelData.fromJson(Map<String, dynamic> json) =>
@@ -213,7 +213,7 @@ class _$TopMenuDataModelData implements TopMenuDataModelData {
   @JsonKey(name: 'type')
   final String type;
   @override
-  @JsonKey(name: 'imageUrl', defaultValue: "")
+  @JsonKey(name: 'imageUrl', defaultValue: '')
   final String imageUrl;
   @override
   @JsonKey(name: 'order')
@@ -268,7 +268,7 @@ class _$TopMenuDataModelData implements TopMenuDataModelData {
             @JsonKey(name: 'label') String label,
             @JsonKey(name: 'action') String action,
             @JsonKey(name: 'type') String type,
-            @JsonKey(name: 'imageUrl', defaultValue: "") String imageUrl,
+            @JsonKey(name: 'imageUrl', defaultValue: '') String imageUrl,
             @JsonKey(name: 'order') int order),
   }) {
     assert(topMenuDataModelData != null);
@@ -283,7 +283,7 @@ class _$TopMenuDataModelData implements TopMenuDataModelData {
         @JsonKey(name: 'label') String label,
         @JsonKey(name: 'action') String action,
         @JsonKey(name: 'type') String type,
-        @JsonKey(name: 'imageUrl', defaultValue: "") String imageUrl,
+        @JsonKey(name: 'imageUrl', defaultValue: '') String imageUrl,
         @JsonKey(name: 'order') int order),
     @required TResult orElse(),
   }) {
@@ -328,7 +328,7 @@ abstract class TopMenuDataModelData implements MenuDataModel {
       @JsonKey(name: 'label') String label,
       @JsonKey(name: 'action') String action,
       @JsonKey(name: 'type') String type,
-      @JsonKey(name: 'imageUrl', defaultValue: "") String imageUrl,
+      @JsonKey(name: 'imageUrl', defaultValue: '') String imageUrl,
       @JsonKey(name: 'order') int order}) = _$TopMenuDataModelData;
 
   factory TopMenuDataModelData.fromJson(Map<String, dynamic> json) =
@@ -347,7 +347,7 @@ abstract class TopMenuDataModelData implements MenuDataModel {
   @JsonKey(name: 'type')
   String get type;
   @override
-  @JsonKey(name: 'imageUrl', defaultValue: "")
+  @JsonKey(name: 'imageUrl', defaultValue: '')
   String get imageUrl;
   @override
   @JsonKey(name: 'order')

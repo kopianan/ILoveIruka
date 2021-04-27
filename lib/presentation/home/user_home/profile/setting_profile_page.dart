@@ -108,6 +108,7 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
                 TextButton(
                     onPressed: () {
                       var userData = _userController.getUserData();
+                      print(userData); 
                       if (image == null) {
                         updateProfileBloc(context, userData.imageUrl);
                       } else {
@@ -199,7 +200,7 @@ class _SettingProfielPageState extends State<SettingProfielPage> {
                                       setState(() {});
                                     } catch (e) {
                                       Fluttertoast.showToast(
-                                          msg: "Something wrong");
+                                          msg: "No image selected");
                                     }
                                   },
                                   child: Text(

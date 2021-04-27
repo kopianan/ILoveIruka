@@ -21,4 +21,5 @@ abstract class IPetFacade {
   Future<Either<GeneralFailure, List<PetPostDataModel>>> getPetPostById(
       String petId);
   Future<Either<GeneralFailure, String>> deletePetPostById(String petId);
+  Future<Either<GeneralFailure, PetDataModel>> deletePet(String petId);
 }

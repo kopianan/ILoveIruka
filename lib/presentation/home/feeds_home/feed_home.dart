@@ -161,8 +161,10 @@ class _FeedHomeState extends State<FeedHome>
                           Container(
                             height: 60,
                             width: 60,
-                            child: Image.asset('images/assets/iruka_logo.png'),
                             decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      'images/assets/iruka_logo_new.jpg'))
                               // boxShadow: [
                               //   BoxShadow(
                               //       color: Colors.grey,
@@ -170,6 +172,7 @@ class _FeedHomeState extends State<FeedHome>
                               //       blurRadius: 2,
                               //       offset: Offset(3, 3))
                               // ],
+                              ,
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
                             ),

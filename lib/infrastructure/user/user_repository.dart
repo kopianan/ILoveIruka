@@ -25,7 +25,7 @@ class UserRepository extends IUserFacade {
           error.response.statusCode == 400) {
         return GeneralFailure(error.response.data['message'].toString());
       } else {
-        return GeneralFailure(error.error.toString());
+        return GeneralFailure(error.response.data['message'].toString());
       }
     } else if (error.type == DioErrorType.DEFAULT) {
       print(error.error);
