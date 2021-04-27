@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:i_love_iruka/domain/membership/member_info_data_model.dart';
 import 'package:i_love_iruka/domain/user/role_data_model.dart';
 
 part 'user_data_model.freezed.dart';
@@ -13,6 +14,7 @@ abstract class UserDataModel implements _$UserDataModel {
     RoleDataModel role,
     @JsonKey(defaultValue: "") String imageUrl,
     String phoneNumber,
+    @JsonKey(nullable: true) MemberInfoDataModel membership,
     String token,
     @JsonKey(defaultValue: 0) int points,
   }) = _UserDataModel;

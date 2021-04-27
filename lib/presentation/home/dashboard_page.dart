@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/application/auth/user_controller.dart';
 import 'package:i_love_iruka/application/pet/pet_controller.dart';
+import 'package:i_love_iruka/application/user/user_bloc.dart';
 import 'package:i_love_iruka/infrastructure/core/pref.dart';
 import 'package:i_love_iruka/presentation/home/account_home/account_page_home.dart';
 import 'package:i_love_iruka/presentation/home/feeds_home/feed_home.dart';
@@ -9,6 +11,7 @@ import 'package:i_love_iruka/presentation/home/pets/pets_match_page.dart';
 import 'package:i_love_iruka/presentation/home/user_home/user_home_page.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import '../../injection.dart';
 import 'pets/coming_soon.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -99,52 +102,70 @@ class _DashboardPageState extends State<DashboardPage> {
                   onVerticalDragEnd: (down) {
                     Navigator.pop(context, null);
                   },
-                  child: Dialog(
-                    backgroundColor: Colors.white,
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Container(
-                        padding: EdgeInsets.only(
-                            top: 20, right: 20, left: 20, bottom: 10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Text(
-                              "QR Code",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                            Text("Scan this qr for transaction"),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              child: QrImage(
-                                  size: 250,
-                                  data: userController.getUserData().id),
-                            ),
-                            Container(
-                                margin: EdgeInsets.only(top: 10),
-                                alignment: Alignment.center,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text("Swipe down to close"),
-                                    Icon(
-                                      Icons.keyboard_arrow_down,
-                                      color: Colors.black,
-                                    )
-                                  ],
-                                ))
-                          ],
-                        )),
+                  child: BlocProvider(
+                    create: (context) => getIt<UserBloc>()
+                      ..add(UserEvent.getSingleUser(
+                          userController.getUserData().id)),
+                    child: BlocConsumer<UserBloc, UserState>(
+                        listener: (context, state) {
+                      state.maybeMap(
+                          orElse: () {},
+                          onGetSingleUser: (e) {
+                            print(e);
+                          });
+                    }, builder: (context, state) {
+                      return state.maybeMap(
+                          orElse: () => buildDialog("000000000"),
+                          onGetSingleUser: (e) {
+                            return buildDialog(
+                                e.response.membership.memberNumber);
+                          });
+                    }),
                   )));
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+
+  Dialog buildDialog(String number) {
+    return Dialog(
+      backgroundColor: Colors.white,
+      elevation: 5,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      child: Container(
+          padding: EdgeInsets.only(top: 20, right: 20, left: 20, bottom: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                "QR Code",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              Text("Scan this qr for transaction"),
+              SizedBox(
+                height: 8,
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: QrImage(size: 250, data: number),
+              ),
+              Container(
+                  margin: EdgeInsets.only(top: 10),
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text("Swipe down to close"),
+                      Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.black,
+                      )
+                    ],
+                  ))
+            ],
+          )),
     );
   }
 }

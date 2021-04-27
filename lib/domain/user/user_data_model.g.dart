@@ -16,6 +16,10 @@ _$_UserDataModel _$_$_UserDataModelFromJson(Map<String, dynamic> json) {
         : RoleDataModel.fromJson(json['role'] as Map<String, dynamic>),
     imageUrl: json['imageUrl'] as String ?? '',
     phoneNumber: json['phoneNumber'] as String,
+    membership: json['membership'] == null
+        ? null
+        : MemberInfoDataModel.fromJson(
+            json['membership'] as Map<String, dynamic>),
     token: json['token'] as String,
     points: json['points'] as int ?? 0,
   );
@@ -29,6 +33,7 @@ Map<String, dynamic> _$_$_UserDataModelToJson(_$_UserDataModel instance) =>
       'role': instance.role,
       'imageUrl': instance.imageUrl,
       'phoneNumber': instance.phoneNumber,
+      'membership': instance.membership,
       'token': instance.token,
       'points': instance.points,
     };

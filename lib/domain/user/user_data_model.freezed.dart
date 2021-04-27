@@ -24,6 +24,7 @@ class _$UserDataModelTearOff {
       RoleDataModel role,
       @JsonKey(defaultValue: "") String imageUrl,
       String phoneNumber,
+      @JsonKey(nullable: true) MemberInfoDataModel membership,
       String token,
       @JsonKey(defaultValue: 0) int points}) {
     return _UserDataModel(
@@ -33,6 +34,7 @@ class _$UserDataModelTearOff {
       role: role,
       imageUrl: imageUrl,
       phoneNumber: phoneNumber,
+      membership: membership,
       token: token,
       points: points,
     );
@@ -57,6 +59,8 @@ mixin _$UserDataModel {
   @JsonKey(defaultValue: "")
   String get imageUrl;
   String get phoneNumber;
+  @JsonKey(nullable: true)
+  MemberInfoDataModel get membership;
   String get token;
   @JsonKey(defaultValue: 0)
   int get points;
@@ -78,10 +82,12 @@ abstract class $UserDataModelCopyWith<$Res> {
       RoleDataModel role,
       @JsonKey(defaultValue: "") String imageUrl,
       String phoneNumber,
+      @JsonKey(nullable: true) MemberInfoDataModel membership,
       String token,
       @JsonKey(defaultValue: 0) int points});
 
   $RoleDataModelCopyWith<$Res> get role;
+  $MemberInfoDataModelCopyWith<$Res> get membership;
 }
 
 /// @nodoc
@@ -101,6 +107,7 @@ class _$UserDataModelCopyWithImpl<$Res>
     Object role = freezed,
     Object imageUrl = freezed,
     Object phoneNumber = freezed,
+    Object membership = freezed,
     Object token = freezed,
     Object points = freezed,
   }) {
@@ -112,6 +119,9 @@ class _$UserDataModelCopyWithImpl<$Res>
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       phoneNumber:
           phoneNumber == freezed ? _value.phoneNumber : phoneNumber as String,
+      membership: membership == freezed
+          ? _value.membership
+          : membership as MemberInfoDataModel,
       token: token == freezed ? _value.token : token as String,
       points: points == freezed ? _value.points : points as int,
     ));
@@ -124,6 +134,16 @@ class _$UserDataModelCopyWithImpl<$Res>
     }
     return $RoleDataModelCopyWith<$Res>(_value.role, (value) {
       return _then(_value.copyWith(role: value));
+    });
+  }
+
+  @override
+  $MemberInfoDataModelCopyWith<$Res> get membership {
+    if (_value.membership == null) {
+      return null;
+    }
+    return $MemberInfoDataModelCopyWith<$Res>(_value.membership, (value) {
+      return _then(_value.copyWith(membership: value));
     });
   }
 }
@@ -142,11 +162,14 @@ abstract class _$UserDataModelCopyWith<$Res>
       RoleDataModel role,
       @JsonKey(defaultValue: "") String imageUrl,
       String phoneNumber,
+      @JsonKey(nullable: true) MemberInfoDataModel membership,
       String token,
       @JsonKey(defaultValue: 0) int points});
 
   @override
   $RoleDataModelCopyWith<$Res> get role;
+  @override
+  $MemberInfoDataModelCopyWith<$Res> get membership;
 }
 
 /// @nodoc
@@ -168,6 +191,7 @@ class __$UserDataModelCopyWithImpl<$Res>
     Object role = freezed,
     Object imageUrl = freezed,
     Object phoneNumber = freezed,
+    Object membership = freezed,
     Object token = freezed,
     Object points = freezed,
   }) {
@@ -179,6 +203,9 @@ class __$UserDataModelCopyWithImpl<$Res>
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       phoneNumber:
           phoneNumber == freezed ? _value.phoneNumber : phoneNumber as String,
+      membership: membership == freezed
+          ? _value.membership
+          : membership as MemberInfoDataModel,
       token: token == freezed ? _value.token : token as String,
       points: points == freezed ? _value.points : points as int,
     ));
@@ -196,6 +223,7 @@ class _$_UserDataModel implements _UserDataModel {
       this.role,
       @JsonKey(defaultValue: "") this.imageUrl,
       this.phoneNumber,
+      @JsonKey(nullable: true) this.membership,
       this.token,
       @JsonKey(defaultValue: 0) this.points});
 
@@ -216,6 +244,9 @@ class _$_UserDataModel implements _UserDataModel {
   @override
   final String phoneNumber;
   @override
+  @JsonKey(nullable: true)
+  final MemberInfoDataModel membership;
+  @override
   final String token;
   @override
   @JsonKey(defaultValue: 0)
@@ -223,7 +254,7 @@ class _$_UserDataModel implements _UserDataModel {
 
   @override
   String toString() {
-    return 'UserDataModel(email: $email, id: $id, fullName: $fullName, role: $role, imageUrl: $imageUrl, phoneNumber: $phoneNumber, token: $token, points: $points)';
+    return 'UserDataModel(email: $email, id: $id, fullName: $fullName, role: $role, imageUrl: $imageUrl, phoneNumber: $phoneNumber, membership: $membership, token: $token, points: $points)';
   }
 
   @override
@@ -245,6 +276,9 @@ class _$_UserDataModel implements _UserDataModel {
             (identical(other.phoneNumber, phoneNumber) ||
                 const DeepCollectionEquality()
                     .equals(other.phoneNumber, phoneNumber)) &&
+            (identical(other.membership, membership) ||
+                const DeepCollectionEquality()
+                    .equals(other.membership, membership)) &&
             (identical(other.token, token) ||
                 const DeepCollectionEquality().equals(other.token, token)) &&
             (identical(other.points, points) ||
@@ -260,6 +294,7 @@ class _$_UserDataModel implements _UserDataModel {
       const DeepCollectionEquality().hash(role) ^
       const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(phoneNumber) ^
+      const DeepCollectionEquality().hash(membership) ^
       const DeepCollectionEquality().hash(token) ^
       const DeepCollectionEquality().hash(points);
 
@@ -282,6 +317,7 @@ abstract class _UserDataModel implements UserDataModel {
       RoleDataModel role,
       @JsonKey(defaultValue: "") String imageUrl,
       String phoneNumber,
+      @JsonKey(nullable: true) MemberInfoDataModel membership,
       String token,
       @JsonKey(defaultValue: 0) int points}) = _$_UserDataModel;
 
@@ -301,6 +337,9 @@ abstract class _UserDataModel implements UserDataModel {
   String get imageUrl;
   @override
   String get phoneNumber;
+  @override
+  @JsonKey(nullable: true)
+  MemberInfoDataModel get membership;
   @override
   String get token;
   @override
