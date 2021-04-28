@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:i_love_iruka/application/pet/pet_bloc.dart';
 import 'package:i_love_iruka/application/pet/pet_controller.dart';
 import 'package:i_love_iruka/application/user/user_bloc.dart';
 import 'package:i_love_iruka/domain/pets/pet_data_model.dart';
+import 'package:i_love_iruka/domain/pets/pet_req_res.dart';
+import 'package:i_love_iruka/infrastructure/functions/custom_functions.dart';
 import 'package:i_love_iruka/util/constants.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../injection.dart';
@@ -47,7 +51,7 @@ class _PetsDetailPageState extends State<PetsDetailPage> {
               SliverList(
                 delegate: SliverChildListDelegate([
                   Container(
-                    height: 300 + kToolbarHeight,
+                    height: 280 + kToolbarHeight,
                     decoration: BoxDecoration(
                       color: Colors.cyan,
                       borderRadius: BorderRadius.only(
@@ -67,13 +71,87 @@ class _PetsDetailPageState extends State<PetsDetailPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          height: kToolbarHeight,
+                          height: kToolbarHeight / 2,
                         ),
-                        IconButton(
-                            icon: Icon(Icons.arrow_back_ios),
-                            onPressed: () {
-                              Get.back(closeOverlays: true);
-                            }),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            IconButton(
+                                icon: Icon(Icons.arrow_back_ios),
+                                onPressed: () {
+                                  Get.back(closeOverlays: true);
+                                }),
+                            (petController.getMySelectedPet == null)
+                                ? SizedBox()
+                                : BlocProvider(
+                                    create: (context) => getIt<PetBloc>(),
+                                    child: BlocConsumer<PetBloc, PetState>(
+                                      listener: (context, state) {
+                                        state.maybeMap(
+                                            orElse: () {},
+                                            error: (e) {
+                                              Fluttertoast.showToast(
+                                                  msg: e.failure.error);
+                                            },
+                                            onSaveNewPet: (e) {
+                                              Fluttertoast.showToast(
+                                                  msg: "Photo updated");
+                                            },
+                                            onUploadPhoto: (e) {
+                                              var _pet = petDataModel;
+                                              var _req = SavePetRequestData(
+                                                  animal: _pet.animal.code,
+                                                  bio: _pet.bio,
+                                                  birthDate: _pet.birthDate,
+                                                  gender: _pet.gender.code,
+                                                  id: _pet.id,
+                                                  isPedigree: _pet.isPedigree,
+                                                  isSterile: _pet.isSterile,
+                                                  isStumbum: _pet.isStumbum,
+                                                  name: _pet.name,
+                                                  race: _pet.race,
+                                                  weight: _pet.weight
+                                                      .toStringAsFixed(0),
+                                                  profilePictureUrl: e.photo);
+
+                                              context.read<PetBloc>().add(
+                                                  PetEvent.saveNewPet(_req));
+                                            });
+                                      },
+                                      builder: (context, state) {
+                                        return InkWell(
+                                          onTap: () {
+                                            getImageFromPhone(
+                                                    ImageSource.gallery)
+                                                .then((value) {
+                                              context.read<PetBloc>().add(
+                                                  PetEvent.uploadPhoto(
+                                                      value, petDataModel.id));
+                                            }).catchError((onError) {
+                                              Fluttertoast.showToast(
+                                                  msg: "No image selected");
+                                            });
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.all(5),
+                                            margin: EdgeInsets.only(right: 5),
+                                            decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.white60,
+                                                border: Border.all(
+                                                    color: Colors.white,
+                                                    width: 3)),
+                                            child: Icon(
+                                              Icons.edit,
+                                              color: Colors.blue,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                          ],
+                        ),
                       ],
                     ),
                   )

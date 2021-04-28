@@ -50,215 +50,223 @@ class _MyPetsPageState extends State<MyPetsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: GetBuilder<PetController>(
-          builder: (myPet) => BlocProvider(
-            create: (context) => petBloc,
-            child: BlocConsumer<PetBloc, PetState>(
-              listener: (context, state) {
-                state.maybeMap(
-                    orElse: () {},
-                    loading: (e) {},
-                    error: (e) {
-                      _refreshController.refreshCompleted();
-                    },
-                    onGetMyPet: (e) {
-                      myPet.setMyPet(e.list);
+        child: BlocProvider(
+          create: (context) => petBloc,
+          child: BlocConsumer<PetBloc, PetState>(
+            listener: (context, state) {
+              state.maybeMap(
+                  orElse: () {},
+                  loading: (e) {},
+                  error: (e) {
+                    _refreshController.refreshCompleted();
+                  },
+                  onGetMyPet: (e) {
+                    petController.setMyPet(e.list);
 
-                      _refreshController.refreshCompleted();
+                    _refreshController.refreshCompleted();
+                  },
+                  onPetDeleted: (e) {
+                    petController.removeDataFromList(e.petData);
+                    // Get.offNamed(MyPetsPage.TAG);
+                  });
+            },
+            builder: (context, state) {
+              return SmartRefresher(
+                  enablePullDown: true,
+                  enablePullUp: true,
+                  header: WaterDropHeader(),
+                  footer: CustomFooter(
+                    builder: (BuildContext context, LoadStatus mode) {
+                      Widget body;
+                      if (mode == LoadStatus.idle) {
+                        body = Text("pull up load");
+                      } else if (mode == LoadStatus.loading) {
+                        body = CupertinoActivityIndicator();
+                      } else if (mode == LoadStatus.failed) {
+                        body = Text("Load Failed!Click retry!");
+                      } else if (mode == LoadStatus.canLoading) {
+                        body = Text("release to load more");
+                      } else {
+                        body = Text("No more Data");
+                      }
+                      return Container(
+                        height: 55.0,
+                        child: Center(child: body),
+                      );
                     },
-                    onPetDeleted: (e) {
-                      myPet.removeDataFromList(e.petData);
-                      // Get.offNamed(MyPetsPage.TAG);
-                    });
-              },
-              builder: (context, state) {
-                return SmartRefresher(
-                    enablePullDown: true,
-                    enablePullUp: true,
-                    header: WaterDropHeader(),
-                    footer: CustomFooter(
-                      builder: (BuildContext context, LoadStatus mode) {
-                        Widget body;
-                        if (mode == LoadStatus.idle) {
-                          body = Text("pull up load");
-                        } else if (mode == LoadStatus.loading) {
-                          body = CupertinoActivityIndicator();
-                        } else if (mode == LoadStatus.failed) {
-                          body = Text("Load Failed!Click retry!");
-                        } else if (mode == LoadStatus.canLoading) {
-                          body = Text("release to load more");
-                        } else {
-                          body = Text("No more Data");
-                        }
-                        return Container(
-                          height: 55.0,
-                          child: Center(child: body),
-                        );
-                      },
-                    ),
-                    controller: _refreshController,
-                    onRefresh: _onRefresh,
-                    onLoading: _onLoading,
-                    child: CustomScrollView(
-                      slivers: [
-                        SliverAppBar(
-                          backgroundColor: Colors.transparent,
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                petController.emptySelectedPet();
-                                Get.toNamed(AddNewPetPage.TAG);
-                              },
-                              child: Text("Add Pet",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            )
-                          ],
-                        ),
-                        SliverToBoxAdapter(
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                GlobalWidgetMethod.pageTitle("My Pet"),
-                                // Tooltip(
-                                //   showDuration: Duration(milliseconds: 3000),
-                                //   waitDuration: Duration(milliseconds: 2000),
-                                //   message:
-                                //       "Slide left the card for more action",
-                                //   child: Icon(Icons.info),
-                                // )
-                              ],
-                            ),
-                          ),
-                        ),
-                        state.maybeMap(
-                          loading: (e) => SliverToBoxAdapter(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Center(
-                                  child: CircularProgressIndicator(),
-                                )
-                              ],
-                            ),
-                          ),
-                          orElse: () => SliverList(
-                              delegate:
-                                  SliverChildBuilderDelegate((context, index) {
-                            return Slidable(
-                              actionPane: SlidableDrawerActionPane(),
-                              secondaryActions: [
-                                IconSlideAction(
-                                  caption: 'Delete',
-                                  color: Colors.red,
-                                  icon: Icons.delete,
-                                  onTap: () => {
-                                    petBloc.add(PetEvent.deletePet(
-                                        myPet.getMyPet[index].id))
-                                  },
-                                ),
-                                IconSlideAction(
-                                  caption: 'Edit',
-                                  color: Colors.green,
-                                  icon: Icons.edit,
-                                  onTap: () {
-                                    myPet.setSelectedPet(myPet.getMyPet[index]);
-                                    Get.toNamed(AddNewPetPage.TAG);
-                                  },
-                                ),
-                              ],
-                              child: InkWell(
-                                onTap: () {
-                                  myPet.setSelectedPet(myPet.getMyPet[index]);
-                                  Get.toNamed(PetsDetailPage.TAG,
-                                      arguments: myPet.getMyPet[index]);
-                                },
-                                child: Container(
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: 5, vertical: 5),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.grey[200],
-                                            blurRadius: 3,
-                                            spreadRadius: 2,
-                                            offset: Offset.fromDirection(45, 2))
-                                      ]),
-                                  child: Column(
+                  ),
+                  controller: _refreshController,
+                  onRefresh: _onRefresh,
+                  onLoading: _onLoading,
+                  child: GetBuilder<PetController>(
+                      builder: (myPet) => CustomScrollView(
+                            slivers: [
+                              SliverAppBar(
+                                backgroundColor: Colors.transparent,
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      petController.emptySelectedPet();
+                                      Get.toNamed(AddNewPetPage.TAG);
+                                    },
+                                    child: Text("Add Pet",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        )),
+                                  )
+                                ],
+                              ),
+                              SliverToBoxAdapter(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Row(
-                                        children: [
-                                          Container(
-                                              width: 100,
-                                              height: 80,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  image: DecorationImage(
-                                                      image: NetworkImage(Constants
-                                                              .getStagingUrl() +
-                                                          myPet.getMyPet[index]
-                                                              .profilePictureUrl),
-                                                      onError: (e, trace) {
-                                                        return Center(
-                                                            child: Image.asset(
-                                                                'assets/no)image.jpg'));
-                                                      },
-                                                      fit: BoxFit.cover))),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  myPet.getMyPet[index].name,
-                                                  maxLines: 1,
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                Text(
-                                                  myPet.getMyPet[index].bio,
-                                                  maxLines: 2,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                                Text(
-                                                  myPet.getMyPet[index].animal
-                                                      .label,
-                                                  style: TextStyle(
-                                                      fontSize: 11,
-                                                      color: Colors.grey,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
+                                      GlobalWidgetMethod.pageTitle("My Pet"),
                                     ],
                                   ),
                                 ),
                               ),
-                            );
-                          }, childCount: myPet.getMyPet.length)),
-                        ),
-                      ],
-                    ));
-              },
-            ),
+                              state.maybeMap(
+                                loading: (e) => SliverToBoxAdapter(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Center(
+                                        child: CircularProgressIndicator(),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                orElse: () => SliverList(
+                                    delegate: SliverChildBuilderDelegate(
+                                        (context, index) {
+                                  return Slidable(
+                                    actionPane: SlidableDrawerActionPane(),
+                                    secondaryActions: [
+                                      IconSlideAction(
+                                        caption: 'Delete',
+                                        color: Colors.red,
+                                        icon: Icons.delete,
+                                        onTap: () => {
+                                          petBloc.add(PetEvent.deletePet(
+                                              myPet.getMyPet[index].id))
+                                        },
+                                      ),
+                                      IconSlideAction(
+                                        caption: 'Edit',
+                                        color: Colors.green,
+                                        icon: Icons.edit,
+                                        onTap: () {
+                                          myPet.setSelectedPet(
+                                              myPet.getMyPet[index]);
+                                          Get.toNamed(AddNewPetPage.TAG);
+                                        },
+                                      ),
+                                    ],
+                                    child: InkWell(
+                                      onTap: () {
+                                        myPet.setSelectedPet(
+                                            myPet.getMyPet[index]);
+                                        Get.toNamed(PetsDetailPage.TAG,
+                                            arguments: myPet.getMyPet[index]);
+                                      },
+                                      child: Container(
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: 5, vertical: 5),
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  color: Colors.grey[200],
+                                                  blurRadius: 3,
+                                                  spreadRadius: 2,
+                                                  offset: Offset.fromDirection(
+                                                      45, 2))
+                                            ]),
+                                        child: Column(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Container(
+                                                    width: 100,
+                                                    height: 80,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        image: DecorationImage(
+                                                            image: NetworkImage(Constants
+                                                                    .getStagingUrl() +
+                                                                myPet
+                                                                    .getMyPet[
+                                                                        index]
+                                                                    .profilePictureUrl),
+                                                            onError:
+                                                                (e, trace) {
+                                                              return Center(
+                                                                  child: Image
+                                                                      .asset(
+                                                                          'assets/no)image.jpg'));
+                                                            },
+                                                            fit:
+                                                                BoxFit.cover))),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Expanded(
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        myPet.getMyPet[index]
+                                                            .name,
+                                                        maxLines: 1,
+                                                        style: TextStyle(
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                      Text(
+                                                        myPet.getMyPet[index]
+                                                            .bio,
+                                                        maxLines: 2,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                      ),
+                                                      Text(
+                                                        myPet.getMyPet[index]
+                                                            .animal.label,
+                                                        style: TextStyle(
+                                                            fontSize: 11,
+                                                            color: Colors.grey,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }, childCount: myPet.getMyPet.length)),
+                              ),
+                            ],
+                          )));
+            },
           ),
         ),
       ),

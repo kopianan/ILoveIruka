@@ -54,13 +54,14 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
 
   final PetController petController = Get.put(PetController());
   final UserController userController = Get.put(UserController());
-
+  bool isEdit = false;
   @override
   void initState() {
     selectedGender = gender.first;
     if (petController.getMySelectedPet != null) {
       PetDataModel _pet = petController.getMySelectedPet;
       setEditData(_pet);
+      isEdit = true;
     }
     super.initState();
   }
@@ -153,7 +154,7 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                       children: [
                         GlobalWidgetMethod.pageTitle("Add Pet"),
                         SizedBox(height: 20),
-                        petUploadPhoto(),
+                        (isEdit) ? SizedBox() : petUploadPhoto(),
                         SizedBox(height: 15),
                         PetCustomFormField(
                           validator: (e) {
@@ -432,7 +433,7 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
   }
 
   Future getImage(ImageSource source) async {
-    final pickedFile = await picker.getImage(source: source, imageQuality: 10);
+    final pickedFile = await picker.getImage(source: source, imageQuality: 20);
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
@@ -472,7 +473,6 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
             msg: "Please insert correct number ex: 1.3",
             toastLength: Toast.LENGTH_LONG);
       } else {
-      
         petBloc
             .add(PetEvent.uploadPhoto(_image, userController.getUserData().id));
       }

@@ -217,7 +217,9 @@ class _PetSearchPageState extends State<PetSearchPage> {
                     Expanded(
                       flex: 2,
                       child: BtnPrimaryOutline(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.back(result: GetPetRequestData());
+                        },
                         text: "Reset",
                       ),
                     ),
