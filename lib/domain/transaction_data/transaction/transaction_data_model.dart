@@ -23,3 +23,4 @@ abstract class TransactionDataModel with _$TransactionDataModel {
   factory TransactionDataModel.fromJson(Map<String, dynamic> json) =>
       _$TransactionDataModelFromJson(json);
 }
+ 
