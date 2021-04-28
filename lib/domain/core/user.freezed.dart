@@ -18,29 +18,29 @@ class _$UserTearOff {
 
 // ignore: unused_element
   _User call(
-      {@JsonKey(name: 'Id') String id,
-      @JsonKey(name: 'accessKey') String accessKey,
-      @JsonKey(name: 'Email') String email,
-      @JsonKey(name: 'Name') String name,
-      @JsonKey(name: 'Description') String description,
-      @JsonKey(name: 'Address') String address,
-      @JsonKey(name: 'PhoneNumber') String phoneNumber,
-      @JsonKey(name: 'Picture') String picture,
-      @JsonKey(name: 'CreatedDate') String createdDate,
-      @JsonKey(name: 'PIC') String pIC,
-      @JsonKey(name: 'KeyFeatures') String keyFeatures,
-      @JsonKey(name: 'CoverageArea') String coverageArea,
-      @JsonKey(name: 'YearsOfExperience') int yearsOfExperience,
-      @JsonKey(name: 'Availability') bool availability,
-      @JsonKey(name: 'Styling') int styling,
-      @JsonKey(name: 'Clipping') int clipping,
-      @JsonKey(name: 'TrainingStartDate') String trainingStartDate,
-      @JsonKey(name: 'TrainingYears') int trainingYears,
-      @JsonKey(name: 'TrainingCourses') String trainingCourses,
-      @JsonKey(name: 'Show') bool show,
-      @JsonKey(name: 'Certificate') String certificate,
-      @JsonKey(name: 'Role') String role,
-      @JsonKey(name: 'IsActive') bool isActive}) {
+      {@JsonKey(name: "Id") String id,
+      @JsonKey(name: "accessKey") String accessKey,
+      @JsonKey(name: "Email") String email,
+      @JsonKey(name: "Name") String name,
+      @JsonKey(name: "Description") String description,
+      @JsonKey(name: "Address") String address,
+      @JsonKey(name: "PhoneNumber") String phoneNumber,
+      @JsonKey(name: "Picture") String picture,
+      @JsonKey(name: "CreatedDate") String createdDate,
+      @JsonKey(name: "PIC") String pIC,
+      @JsonKey(name: "KeyFeatures") String keyFeatures,
+      @JsonKey(name: "CoverageArea") String coverageArea,
+      @JsonKey(name: "YearsOfExperience") int yearsOfExperience,
+      @JsonKey(name: "Availability") bool availability,
+      @JsonKey(name: "Styling") int styling,
+      @JsonKey(name: "Clipping") int clipping,
+      @JsonKey(name: "TrainingStartDate") String trainingStartDate,
+      @JsonKey(name: "TrainingYears") int trainingYears,
+      @JsonKey(name: "TrainingCourses") String trainingCourses,
+      @JsonKey(name: "Show") bool show,
+      @JsonKey(name: "Certificate") String certificate,
+      @JsonKey(name: "Role") String role,
+      @JsonKey(name: "IsActive") bool isActive}) {
     return _User(
       id: id,
       accessKey: accessKey,
@@ -80,51 +80,51 @@ const $User = _$UserTearOff();
 
 /// @nodoc
 mixin _$User {
-  @JsonKey(name: 'Id')
+  @JsonKey(name: "Id")
   String get id;
-  @JsonKey(name: 'accessKey')
+  @JsonKey(name: "accessKey")
   String get accessKey;
-  @JsonKey(name: 'Email')
+  @JsonKey(name: "Email")
   String get email;
-  @JsonKey(name: 'Name')
+  @JsonKey(name: "Name")
   String get name;
-  @JsonKey(name: 'Description')
+  @JsonKey(name: "Description")
   String get description;
-  @JsonKey(name: 'Address')
+  @JsonKey(name: "Address")
   String get address;
-  @JsonKey(name: 'PhoneNumber')
+  @JsonKey(name: "PhoneNumber")
   String get phoneNumber;
-  @JsonKey(name: 'Picture')
+  @JsonKey(name: "Picture")
   String get picture;
-  @JsonKey(name: 'CreatedDate')
+  @JsonKey(name: "CreatedDate")
   String get createdDate;
-  @JsonKey(name: 'PIC')
+  @JsonKey(name: "PIC")
   String get pIC;
-  @JsonKey(name: 'KeyFeatures')
+  @JsonKey(name: "KeyFeatures")
   String get keyFeatures;
-  @JsonKey(name: 'CoverageArea')
+  @JsonKey(name: "CoverageArea")
   String get coverageArea;
-  @JsonKey(name: 'YearsOfExperience')
+  @JsonKey(name: "YearsOfExperience")
   int get yearsOfExperience;
-  @JsonKey(name: 'Availability')
+  @JsonKey(name: "Availability")
   bool get availability;
-  @JsonKey(name: 'Styling')
+  @JsonKey(name: "Styling")
   int get styling;
-  @JsonKey(name: 'Clipping')
+  @JsonKey(name: "Clipping")
   int get clipping;
-  @JsonKey(name: 'TrainingStartDate')
+  @JsonKey(name: "TrainingStartDate")
   String get trainingStartDate;
-  @JsonKey(name: 'TrainingYears')
+  @JsonKey(name: "TrainingYears")
   int get trainingYears;
-  @JsonKey(name: 'TrainingCourses')
+  @JsonKey(name: "TrainingCourses")
   String get trainingCourses;
-  @JsonKey(name: 'Show')
+  @JsonKey(name: "Show")
   bool get show;
-  @JsonKey(name: 'Certificate')
+  @JsonKey(name: "Certificate")
   String get certificate;
-  @JsonKey(name: 'Role')
+  @JsonKey(name: "Role")
   String get role;
-  @JsonKey(name: 'IsActive')
+  @JsonKey(name: "IsActive")
   bool get isActive;
 
   Map<String, dynamic> toJson();
@@ -137,29 +137,29 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'Id') String id,
-      @JsonKey(name: 'accessKey') String accessKey,
-      @JsonKey(name: 'Email') String email,
-      @JsonKey(name: 'Name') String name,
-      @JsonKey(name: 'Description') String description,
-      @JsonKey(name: 'Address') String address,
-      @JsonKey(name: 'PhoneNumber') String phoneNumber,
-      @JsonKey(name: 'Picture') String picture,
-      @JsonKey(name: 'CreatedDate') String createdDate,
-      @JsonKey(name: 'PIC') String pIC,
-      @JsonKey(name: 'KeyFeatures') String keyFeatures,
-      @JsonKey(name: 'CoverageArea') String coverageArea,
-      @JsonKey(name: 'YearsOfExperience') int yearsOfExperience,
-      @JsonKey(name: 'Availability') bool availability,
-      @JsonKey(name: 'Styling') int styling,
-      @JsonKey(name: 'Clipping') int clipping,
-      @JsonKey(name: 'TrainingStartDate') String trainingStartDate,
-      @JsonKey(name: 'TrainingYears') int trainingYears,
-      @JsonKey(name: 'TrainingCourses') String trainingCourses,
-      @JsonKey(name: 'Show') bool show,
-      @JsonKey(name: 'Certificate') String certificate,
-      @JsonKey(name: 'Role') String role,
-      @JsonKey(name: 'IsActive') bool isActive});
+      {@JsonKey(name: "Id") String id,
+      @JsonKey(name: "accessKey") String accessKey,
+      @JsonKey(name: "Email") String email,
+      @JsonKey(name: "Name") String name,
+      @JsonKey(name: "Description") String description,
+      @JsonKey(name: "Address") String address,
+      @JsonKey(name: "PhoneNumber") String phoneNumber,
+      @JsonKey(name: "Picture") String picture,
+      @JsonKey(name: "CreatedDate") String createdDate,
+      @JsonKey(name: "PIC") String pIC,
+      @JsonKey(name: "KeyFeatures") String keyFeatures,
+      @JsonKey(name: "CoverageArea") String coverageArea,
+      @JsonKey(name: "YearsOfExperience") int yearsOfExperience,
+      @JsonKey(name: "Availability") bool availability,
+      @JsonKey(name: "Styling") int styling,
+      @JsonKey(name: "Clipping") int clipping,
+      @JsonKey(name: "TrainingStartDate") String trainingStartDate,
+      @JsonKey(name: "TrainingYears") int trainingYears,
+      @JsonKey(name: "TrainingCourses") String trainingCourses,
+      @JsonKey(name: "Show") bool show,
+      @JsonKey(name: "Certificate") String certificate,
+      @JsonKey(name: "Role") String role,
+      @JsonKey(name: "IsActive") bool isActive});
 }
 
 /// @nodoc
@@ -246,29 +246,29 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$UserCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'Id') String id,
-      @JsonKey(name: 'accessKey') String accessKey,
-      @JsonKey(name: 'Email') String email,
-      @JsonKey(name: 'Name') String name,
-      @JsonKey(name: 'Description') String description,
-      @JsonKey(name: 'Address') String address,
-      @JsonKey(name: 'PhoneNumber') String phoneNumber,
-      @JsonKey(name: 'Picture') String picture,
-      @JsonKey(name: 'CreatedDate') String createdDate,
-      @JsonKey(name: 'PIC') String pIC,
-      @JsonKey(name: 'KeyFeatures') String keyFeatures,
-      @JsonKey(name: 'CoverageArea') String coverageArea,
-      @JsonKey(name: 'YearsOfExperience') int yearsOfExperience,
-      @JsonKey(name: 'Availability') bool availability,
-      @JsonKey(name: 'Styling') int styling,
-      @JsonKey(name: 'Clipping') int clipping,
-      @JsonKey(name: 'TrainingStartDate') String trainingStartDate,
-      @JsonKey(name: 'TrainingYears') int trainingYears,
-      @JsonKey(name: 'TrainingCourses') String trainingCourses,
-      @JsonKey(name: 'Show') bool show,
-      @JsonKey(name: 'Certificate') String certificate,
-      @JsonKey(name: 'Role') String role,
-      @JsonKey(name: 'IsActive') bool isActive});
+      {@JsonKey(name: "Id") String id,
+      @JsonKey(name: "accessKey") String accessKey,
+      @JsonKey(name: "Email") String email,
+      @JsonKey(name: "Name") String name,
+      @JsonKey(name: "Description") String description,
+      @JsonKey(name: "Address") String address,
+      @JsonKey(name: "PhoneNumber") String phoneNumber,
+      @JsonKey(name: "Picture") String picture,
+      @JsonKey(name: "CreatedDate") String createdDate,
+      @JsonKey(name: "PIC") String pIC,
+      @JsonKey(name: "KeyFeatures") String keyFeatures,
+      @JsonKey(name: "CoverageArea") String coverageArea,
+      @JsonKey(name: "YearsOfExperience") int yearsOfExperience,
+      @JsonKey(name: "Availability") bool availability,
+      @JsonKey(name: "Styling") int styling,
+      @JsonKey(name: "Clipping") int clipping,
+      @JsonKey(name: "TrainingStartDate") String trainingStartDate,
+      @JsonKey(name: "TrainingYears") int trainingYears,
+      @JsonKey(name: "TrainingCourses") String trainingCourses,
+      @JsonKey(name: "Show") bool show,
+      @JsonKey(name: "Certificate") String certificate,
+      @JsonKey(name: "Role") String role,
+      @JsonKey(name: "IsActive") bool isActive});
 }
 
 /// @nodoc
@@ -355,101 +355,101 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 /// @nodoc
 class _$_User implements _User {
   _$_User(
-      {@JsonKey(name: 'Id') this.id,
-      @JsonKey(name: 'accessKey') this.accessKey,
-      @JsonKey(name: 'Email') this.email,
-      @JsonKey(name: 'Name') this.name,
-      @JsonKey(name: 'Description') this.description,
-      @JsonKey(name: 'Address') this.address,
-      @JsonKey(name: 'PhoneNumber') this.phoneNumber,
-      @JsonKey(name: 'Picture') this.picture,
-      @JsonKey(name: 'CreatedDate') this.createdDate,
-      @JsonKey(name: 'PIC') this.pIC,
-      @JsonKey(name: 'KeyFeatures') this.keyFeatures,
-      @JsonKey(name: 'CoverageArea') this.coverageArea,
-      @JsonKey(name: 'YearsOfExperience') this.yearsOfExperience,
-      @JsonKey(name: 'Availability') this.availability,
-      @JsonKey(name: 'Styling') this.styling,
-      @JsonKey(name: 'Clipping') this.clipping,
-      @JsonKey(name: 'TrainingStartDate') this.trainingStartDate,
-      @JsonKey(name: 'TrainingYears') this.trainingYears,
-      @JsonKey(name: 'TrainingCourses') this.trainingCourses,
-      @JsonKey(name: 'Show') this.show,
-      @JsonKey(name: 'Certificate') this.certificate,
-      @JsonKey(name: 'Role') this.role,
-      @JsonKey(name: 'IsActive') this.isActive});
+      {@JsonKey(name: "Id") this.id,
+      @JsonKey(name: "accessKey") this.accessKey,
+      @JsonKey(name: "Email") this.email,
+      @JsonKey(name: "Name") this.name,
+      @JsonKey(name: "Description") this.description,
+      @JsonKey(name: "Address") this.address,
+      @JsonKey(name: "PhoneNumber") this.phoneNumber,
+      @JsonKey(name: "Picture") this.picture,
+      @JsonKey(name: "CreatedDate") this.createdDate,
+      @JsonKey(name: "PIC") this.pIC,
+      @JsonKey(name: "KeyFeatures") this.keyFeatures,
+      @JsonKey(name: "CoverageArea") this.coverageArea,
+      @JsonKey(name: "YearsOfExperience") this.yearsOfExperience,
+      @JsonKey(name: "Availability") this.availability,
+      @JsonKey(name: "Styling") this.styling,
+      @JsonKey(name: "Clipping") this.clipping,
+      @JsonKey(name: "TrainingStartDate") this.trainingStartDate,
+      @JsonKey(name: "TrainingYears") this.trainingYears,
+      @JsonKey(name: "TrainingCourses") this.trainingCourses,
+      @JsonKey(name: "Show") this.show,
+      @JsonKey(name: "Certificate") this.certificate,
+      @JsonKey(name: "Role") this.role,
+      @JsonKey(name: "IsActive") this.isActive});
 
   factory _$_User.fromJson(Map<String, dynamic> json) =>
       _$_$_UserFromJson(json);
 
   @override
-  @JsonKey(name: 'Id')
+  @JsonKey(name: "Id")
   final String id;
   @override
-  @JsonKey(name: 'accessKey')
+  @JsonKey(name: "accessKey")
   final String accessKey;
   @override
-  @JsonKey(name: 'Email')
+  @JsonKey(name: "Email")
   final String email;
   @override
-  @JsonKey(name: 'Name')
+  @JsonKey(name: "Name")
   final String name;
   @override
-  @JsonKey(name: 'Description')
+  @JsonKey(name: "Description")
   final String description;
   @override
-  @JsonKey(name: 'Address')
+  @JsonKey(name: "Address")
   final String address;
   @override
-  @JsonKey(name: 'PhoneNumber')
+  @JsonKey(name: "PhoneNumber")
   final String phoneNumber;
   @override
-  @JsonKey(name: 'Picture')
+  @JsonKey(name: "Picture")
   final String picture;
   @override
-  @JsonKey(name: 'CreatedDate')
+  @JsonKey(name: "CreatedDate")
   final String createdDate;
   @override
-  @JsonKey(name: 'PIC')
+  @JsonKey(name: "PIC")
   final String pIC;
   @override
-  @JsonKey(name: 'KeyFeatures')
+  @JsonKey(name: "KeyFeatures")
   final String keyFeatures;
   @override
-  @JsonKey(name: 'CoverageArea')
+  @JsonKey(name: "CoverageArea")
   final String coverageArea;
   @override
-  @JsonKey(name: 'YearsOfExperience')
+  @JsonKey(name: "YearsOfExperience")
   final int yearsOfExperience;
   @override
-  @JsonKey(name: 'Availability')
+  @JsonKey(name: "Availability")
   final bool availability;
   @override
-  @JsonKey(name: 'Styling')
+  @JsonKey(name: "Styling")
   final int styling;
   @override
-  @JsonKey(name: 'Clipping')
+  @JsonKey(name: "Clipping")
   final int clipping;
   @override
-  @JsonKey(name: 'TrainingStartDate')
+  @JsonKey(name: "TrainingStartDate")
   final String trainingStartDate;
   @override
-  @JsonKey(name: 'TrainingYears')
+  @JsonKey(name: "TrainingYears")
   final int trainingYears;
   @override
-  @JsonKey(name: 'TrainingCourses')
+  @JsonKey(name: "TrainingCourses")
   final String trainingCourses;
   @override
-  @JsonKey(name: 'Show')
+  @JsonKey(name: "Show")
   final bool show;
   @override
-  @JsonKey(name: 'Certificate')
+  @JsonKey(name: "Certificate")
   final String certificate;
   @override
-  @JsonKey(name: 'Role')
+  @JsonKey(name: "Role")
   final String role;
   @override
-  @JsonKey(name: 'IsActive')
+  @JsonKey(name: "IsActive")
   final bool isActive;
 
   @override
@@ -566,100 +566,100 @@ class _$_User implements _User {
 
 abstract class _User implements User {
   factory _User(
-      {@JsonKey(name: 'Id') String id,
-      @JsonKey(name: 'accessKey') String accessKey,
-      @JsonKey(name: 'Email') String email,
-      @JsonKey(name: 'Name') String name,
-      @JsonKey(name: 'Description') String description,
-      @JsonKey(name: 'Address') String address,
-      @JsonKey(name: 'PhoneNumber') String phoneNumber,
-      @JsonKey(name: 'Picture') String picture,
-      @JsonKey(name: 'CreatedDate') String createdDate,
-      @JsonKey(name: 'PIC') String pIC,
-      @JsonKey(name: 'KeyFeatures') String keyFeatures,
-      @JsonKey(name: 'CoverageArea') String coverageArea,
-      @JsonKey(name: 'YearsOfExperience') int yearsOfExperience,
-      @JsonKey(name: 'Availability') bool availability,
-      @JsonKey(name: 'Styling') int styling,
-      @JsonKey(name: 'Clipping') int clipping,
-      @JsonKey(name: 'TrainingStartDate') String trainingStartDate,
-      @JsonKey(name: 'TrainingYears') int trainingYears,
-      @JsonKey(name: 'TrainingCourses') String trainingCourses,
-      @JsonKey(name: 'Show') bool show,
-      @JsonKey(name: 'Certificate') String certificate,
-      @JsonKey(name: 'Role') String role,
-      @JsonKey(name: 'IsActive') bool isActive}) = _$_User;
+      {@JsonKey(name: "Id") String id,
+      @JsonKey(name: "accessKey") String accessKey,
+      @JsonKey(name: "Email") String email,
+      @JsonKey(name: "Name") String name,
+      @JsonKey(name: "Description") String description,
+      @JsonKey(name: "Address") String address,
+      @JsonKey(name: "PhoneNumber") String phoneNumber,
+      @JsonKey(name: "Picture") String picture,
+      @JsonKey(name: "CreatedDate") String createdDate,
+      @JsonKey(name: "PIC") String pIC,
+      @JsonKey(name: "KeyFeatures") String keyFeatures,
+      @JsonKey(name: "CoverageArea") String coverageArea,
+      @JsonKey(name: "YearsOfExperience") int yearsOfExperience,
+      @JsonKey(name: "Availability") bool availability,
+      @JsonKey(name: "Styling") int styling,
+      @JsonKey(name: "Clipping") int clipping,
+      @JsonKey(name: "TrainingStartDate") String trainingStartDate,
+      @JsonKey(name: "TrainingYears") int trainingYears,
+      @JsonKey(name: "TrainingCourses") String trainingCourses,
+      @JsonKey(name: "Show") bool show,
+      @JsonKey(name: "Certificate") String certificate,
+      @JsonKey(name: "Role") String role,
+      @JsonKey(name: "IsActive") bool isActive}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
-  @JsonKey(name: 'Id')
+  @JsonKey(name: "Id")
   String get id;
   @override
-  @JsonKey(name: 'accessKey')
+  @JsonKey(name: "accessKey")
   String get accessKey;
   @override
-  @JsonKey(name: 'Email')
+  @JsonKey(name: "Email")
   String get email;
   @override
-  @JsonKey(name: 'Name')
+  @JsonKey(name: "Name")
   String get name;
   @override
-  @JsonKey(name: 'Description')
+  @JsonKey(name: "Description")
   String get description;
   @override
-  @JsonKey(name: 'Address')
+  @JsonKey(name: "Address")
   String get address;
   @override
-  @JsonKey(name: 'PhoneNumber')
+  @JsonKey(name: "PhoneNumber")
   String get phoneNumber;
   @override
-  @JsonKey(name: 'Picture')
+  @JsonKey(name: "Picture")
   String get picture;
   @override
-  @JsonKey(name: 'CreatedDate')
+  @JsonKey(name: "CreatedDate")
   String get createdDate;
   @override
-  @JsonKey(name: 'PIC')
+  @JsonKey(name: "PIC")
   String get pIC;
   @override
-  @JsonKey(name: 'KeyFeatures')
+  @JsonKey(name: "KeyFeatures")
   String get keyFeatures;
   @override
-  @JsonKey(name: 'CoverageArea')
+  @JsonKey(name: "CoverageArea")
   String get coverageArea;
   @override
-  @JsonKey(name: 'YearsOfExperience')
+  @JsonKey(name: "YearsOfExperience")
   int get yearsOfExperience;
   @override
-  @JsonKey(name: 'Availability')
+  @JsonKey(name: "Availability")
   bool get availability;
   @override
-  @JsonKey(name: 'Styling')
+  @JsonKey(name: "Styling")
   int get styling;
   @override
-  @JsonKey(name: 'Clipping')
+  @JsonKey(name: "Clipping")
   int get clipping;
   @override
-  @JsonKey(name: 'TrainingStartDate')
+  @JsonKey(name: "TrainingStartDate")
   String get trainingStartDate;
   @override
-  @JsonKey(name: 'TrainingYears')
+  @JsonKey(name: "TrainingYears")
   int get trainingYears;
   @override
-  @JsonKey(name: 'TrainingCourses')
+  @JsonKey(name: "TrainingCourses")
   String get trainingCourses;
   @override
-  @JsonKey(name: 'Show')
+  @JsonKey(name: "Show")
   bool get show;
   @override
-  @JsonKey(name: 'Certificate')
+  @JsonKey(name: "Certificate")
   String get certificate;
   @override
-  @JsonKey(name: 'Role')
+  @JsonKey(name: "Role")
   String get role;
   @override
-  @JsonKey(name: 'IsActive')
+  @JsonKey(name: "IsActive")
   bool get isActive;
   @override
   @JsonKey(ignore: true)

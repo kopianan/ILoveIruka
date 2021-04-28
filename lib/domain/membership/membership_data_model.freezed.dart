@@ -23,15 +23,15 @@ class _$MembershipDataModelTearOff {
       @JsonKey(name: "label")
           String label,
       @JsonKey(name: "duration")
-          int duration,
+          double duration,
       @JsonKey(name: "description")
           String description,
       @JsonKey(name: "price")
-          int price,
+          double price,
       @JsonKey(name: "formattedPrice")
           String formattedPrice,
       @JsonKey(name: "specialDiscount")
-          int specialDiscount,
+          double specialDiscount,
       @JsonKey(name: "formattedSpecialDiscount")
           String formattedSpecialDiscount,
       @JsonKey(name: "colors", defaultValue: const [
@@ -77,15 +77,15 @@ mixin _$MembershipDataModel {
   @JsonKey(name: "label")
   String get label;
   @JsonKey(name: "duration")
-  int get duration;
+  double get duration;
   @JsonKey(name: "description")
   String get description;
   @JsonKey(name: "price")
-  int get price;
+  double get price;
   @JsonKey(name: "formattedPrice")
   String get formattedPrice;
   @JsonKey(name: "specialDiscount")
-  int get specialDiscount;
+  double get specialDiscount;
   @JsonKey(name: "formattedSpecialDiscount")
   String get formattedSpecialDiscount;
   @JsonKey(
@@ -113,15 +113,15 @@ abstract class $MembershipDataModelCopyWith<$Res> {
       @JsonKey(name: "label")
           String label,
       @JsonKey(name: "duration")
-          int duration,
+          double duration,
       @JsonKey(name: "description")
           String description,
       @JsonKey(name: "price")
-          int price,
+          double price,
       @JsonKey(name: "formattedPrice")
           String formattedPrice,
       @JsonKey(name: "specialDiscount")
-          int specialDiscount,
+          double specialDiscount,
       @JsonKey(name: "formattedSpecialDiscount")
           String formattedSpecialDiscount,
       @JsonKey(name: "colors", defaultValue: const [
@@ -163,16 +163,16 @@ class _$MembershipDataModelCopyWithImpl<$Res>
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
       label: label == freezed ? _value.label : label as String,
-      duration: duration == freezed ? _value.duration : duration as int,
+      duration: duration == freezed ? _value.duration : duration as double,
       description:
           description == freezed ? _value.description : description as String,
-      price: price == freezed ? _value.price : price as int,
+      price: price == freezed ? _value.price : price as double,
       formattedPrice: formattedPrice == freezed
           ? _value.formattedPrice
           : formattedPrice as String,
       specialDiscount: specialDiscount == freezed
           ? _value.specialDiscount
-          : specialDiscount as int,
+          : specialDiscount as double,
       formattedSpecialDiscount: formattedSpecialDiscount == freezed
           ? _value.formattedSpecialDiscount
           : formattedSpecialDiscount as String,
@@ -198,15 +198,15 @@ abstract class _$MembershipDataModelCopyWith<$Res>
       @JsonKey(name: "label")
           String label,
       @JsonKey(name: "duration")
-          int duration,
+          double duration,
       @JsonKey(name: "description")
           String description,
       @JsonKey(name: "price")
-          int price,
+          double price,
       @JsonKey(name: "formattedPrice")
           String formattedPrice,
       @JsonKey(name: "specialDiscount")
-          int specialDiscount,
+          double specialDiscount,
       @JsonKey(name: "formattedSpecialDiscount")
           String formattedSpecialDiscount,
       @JsonKey(name: "colors", defaultValue: const [
@@ -250,16 +250,16 @@ class __$MembershipDataModelCopyWithImpl<$Res>
     return _then(_MembershipDataModel(
       id: id == freezed ? _value.id : id as String,
       label: label == freezed ? _value.label : label as String,
-      duration: duration == freezed ? _value.duration : duration as int,
+      duration: duration == freezed ? _value.duration : duration as double,
       description:
           description == freezed ? _value.description : description as String,
-      price: price == freezed ? _value.price : price as int,
+      price: price == freezed ? _value.price : price as double,
       formattedPrice: formattedPrice == freezed
           ? _value.formattedPrice
           : formattedPrice as String,
       specialDiscount: specialDiscount == freezed
           ? _value.specialDiscount
-          : specialDiscount as int,
+          : specialDiscount as double,
       formattedSpecialDiscount: formattedSpecialDiscount == freezed
           ? _value.formattedSpecialDiscount
           : formattedSpecialDiscount as String,
@@ -316,19 +316,19 @@ class _$_MembershipDataModel implements _MembershipDataModel {
   final String label;
   @override
   @JsonKey(name: "duration")
-  final int duration;
+  final double duration;
   @override
   @JsonKey(name: "description")
   final String description;
   @override
   @JsonKey(name: "price")
-  final int price;
+  final double price;
   @override
   @JsonKey(name: "formattedPrice")
   final String formattedPrice;
   @override
   @JsonKey(name: "specialDiscount")
-  final int specialDiscount;
+  final double specialDiscount;
   @override
   @JsonKey(name: "formattedSpecialDiscount")
   final String formattedSpecialDiscount;
@@ -420,15 +420,15 @@ abstract class _MembershipDataModel implements MembershipDataModel {
       @JsonKey(name: "label")
           String label,
       @JsonKey(name: "duration")
-          int duration,
+          double duration,
       @JsonKey(name: "description")
           String description,
       @JsonKey(name: "price")
-          int price,
+          double price,
       @JsonKey(name: "formattedPrice")
           String formattedPrice,
       @JsonKey(name: "specialDiscount")
-          int specialDiscount,
+          double specialDiscount,
       @JsonKey(name: "formattedSpecialDiscount")
           String formattedSpecialDiscount,
       @JsonKey(name: "colors", defaultValue: const [
@@ -454,19 +454,19 @@ abstract class _MembershipDataModel implements MembershipDataModel {
   String get label;
   @override
   @JsonKey(name: "duration")
-  int get duration;
+  double get duration;
   @override
   @JsonKey(name: "description")
   String get description;
   @override
   @JsonKey(name: "price")
-  int get price;
+  double get price;
   @override
   @JsonKey(name: "formattedPrice")
   String get formattedPrice;
   @override
   @JsonKey(name: "specialDiscount")
-  int get specialDiscount;
+  double get specialDiscount;
   @override
   @JsonKey(name: "formattedSpecialDiscount")
   String get formattedSpecialDiscount;

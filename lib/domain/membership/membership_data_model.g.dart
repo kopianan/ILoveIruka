@@ -11,11 +11,11 @@ _$_MembershipDataModel _$_$_MembershipDataModelFromJson(
   return _$_MembershipDataModel(
     id: json['id'] as String,
     label: json['label'] as String,
-    duration: json['duration'] as int,
+    duration: (json['duration'] as num)?.toDouble(),
     description: json['description'] as String,
-    price: json['price'] as int,
+    price: (json['price'] as num)?.toDouble(),
     formattedPrice: json['formattedPrice'] as String,
-    specialDiscount: json['specialDiscount'] as int,
+    specialDiscount: (json['specialDiscount'] as num)?.toDouble(),
     formattedSpecialDiscount: json['formattedSpecialDiscount'] as String,
     colors: (json['colors'] as List)?.map((e) => e as String)?.toList() ??
         ['FF3CB4FF', 'FF3CB4FF', 'FF3CB4FF', 'FF3CB4FF'],
