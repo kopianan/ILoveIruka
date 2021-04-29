@@ -20,7 +20,7 @@ class _$PetDataModelTearOff {
   _PetDataModel call(
       {String id,
       String name,
-      @JsonKey(defaultValue: '') String profilePictureUrl,
+      @JsonKey(defaultValue: "") String profilePictureUrl,
       String birthDate,
       String race,
       Label gender,
@@ -62,7 +62,7 @@ const $PetDataModel = _$PetDataModelTearOff();
 mixin _$PetDataModel {
   String get id;
   String get name;
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: "")
   String get profilePictureUrl;
   String get birthDate;
   String get race;
@@ -91,7 +91,7 @@ abstract class $PetDataModelCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      @JsonKey(defaultValue: '') String profilePictureUrl,
+      @JsonKey(defaultValue: "") String profilePictureUrl,
       String birthDate,
       String race,
       Label gender,
@@ -159,7 +159,7 @@ abstract class _$PetDataModelCopyWith<$Res>
   $Res call(
       {String id,
       String name,
-      @JsonKey(defaultValue: '') String profilePictureUrl,
+      @JsonKey(defaultValue: "") String profilePictureUrl,
       String birthDate,
       String race,
       Label gender,
@@ -226,7 +226,7 @@ class _$_PetDataModel implements _PetDataModel {
   _$_PetDataModel(
       {this.id,
       this.name,
-      @JsonKey(defaultValue: '') this.profilePictureUrl,
+      @JsonKey(defaultValue: "") this.profilePictureUrl,
       this.birthDate,
       this.race,
       this.gender,
@@ -246,7 +246,7 @@ class _$_PetDataModel implements _PetDataModel {
   @override
   final String name;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: "")
   final String profilePictureUrl;
   @override
   final String birthDate;
@@ -346,7 +346,7 @@ abstract class _PetDataModel implements PetDataModel {
   factory _PetDataModel(
       {String id,
       String name,
-      @JsonKey(defaultValue: '') String profilePictureUrl,
+      @JsonKey(defaultValue: "") String profilePictureUrl,
       String birthDate,
       String race,
       Label gender,
@@ -366,7 +366,7 @@ abstract class _PetDataModel implements PetDataModel {
   @override
   String get name;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: "")
   String get profilePictureUrl;
   @override
   String get birthDate;

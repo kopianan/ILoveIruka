@@ -1,6 +1,6 @@
 name: i_love_iruka
 description: A new Flutter project.
-version: 1.2.3+24
+version: 1.2.3+25
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -61,7 +61,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "images/assets/iruka_logo_new.jpg"
+  image_path: "images/assets/iruka_launcher_2.jpg"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

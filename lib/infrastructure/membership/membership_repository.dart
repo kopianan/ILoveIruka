@@ -50,6 +50,8 @@ class MembershipRepository extends IMembershipFacade {
       return right(_result);
     } on DioError catch (e) {
       return left(checkErrorData(e));
+    } catch (e) {
+      return left(GeneralFailure(e.toString()));
     }
   }
 

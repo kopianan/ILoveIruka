@@ -58,18 +58,22 @@ class _MemberCardState extends State<MemberCard> {
         "#1565c0ff",
       ].map((e) {
         var _rpl = e.replaceFirst("#", "0x");
-        var ff = ("0x") + _rpl.substring(8, 10) + _rpl.substring(2, 8);
-        return Color(int.parse(ff));
+        try {
+          var ff = ("0x") + _rpl.substring(8, 10) + _rpl.substring(2, 8);
+          return Color(int.parse(ff));
+        } catch (e) {
+          return Color(0xffffffff);
+        }
       }).toList();
     } else {
       listColor = _color.map((e) {
         var _rpl = e.replaceFirst("#", "0x");
-        // try {
+        try {
           var ff = ("0x") + _rpl.substring(8, 10) + _rpl.substring(2, 8);
           return Color(int.parse(ff));
-        // } catch (e) {
-        //   return Color(0xffffffff);
-        // }
+        } catch (e) {
+          return Color(0xffffffff);
+        }
       }).toList();
     }
     try {

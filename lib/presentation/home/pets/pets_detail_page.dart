@@ -71,7 +71,7 @@ class _PetsDetailPageState extends State<PetsDetailPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          height: kToolbarHeight / 2,
+                          height: kToolbarHeight ,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

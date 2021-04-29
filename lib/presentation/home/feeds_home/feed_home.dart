@@ -164,7 +164,7 @@ class _FeedHomeState extends State<FeedHome>
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage(
-                                      'images/assets/iruka_logo_new.jpg'))
+                                      'images/assets/iruka_launcher_2.jpg'))
                               // boxShadow: [
                               //   BoxShadow(
                               //       color: Colors.grey,

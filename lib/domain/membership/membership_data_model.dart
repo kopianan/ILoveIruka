@@ -8,11 +8,11 @@ abstract class MembershipDataModel with _$MembershipDataModel {
   factory MembershipDataModel({
     @JsonKey(name: "id") String id,
     @JsonKey(name: "label") String label,
-    @JsonKey(name: "duration") int duration,
+    @JsonKey(name: "duration") double duration,
     @JsonKey(name: "description") String description,
-    @JsonKey(name: "price") int price,
+    @JsonKey(name: "price") double price,
     @JsonKey(name: "formattedPrice") String formattedPrice,
-    @JsonKey(name: "specialDiscount") int specialDiscount,
+    @JsonKey(name: "specialDiscount") double specialDiscount,
     @JsonKey(name: "formattedSpecialDiscount") String formattedSpecialDiscount,
     @JsonKey(name: "colors", defaultValue: [
       "FF3CB4FF",
