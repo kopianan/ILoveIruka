@@ -15,11 +15,7 @@ class PetController extends GetxController {
   }
 
   void removeDataFromList(PetDataModel pet) {
-    var dup = myPet;
-
-    dup.removeWhere((element) => element.id == pet.id);
-    myPet.assignAll(dup);
-    update();
+    myPet.removeWhere((element) => element.id == pet.id);
   }
 
   void setListPet(List<PetDataModel> dataList) {
