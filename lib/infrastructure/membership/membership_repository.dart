@@ -41,9 +41,8 @@ class MembershipRepository extends IMembershipFacade {
     Response response;
     try {
       response = await _dio.get(
-          Constants.getStagingUrl() + "/api/v1/member-types?limit=10&skip=1",
+          Constants.getStagingUrl() + "/api/v1/member-types",
           options: getDioOptions());
-
       final List _listResult = response.data["data"];
       final _result =
           _listResult.map((e) => MembershipDataModel.fromJson(e)).toList();
