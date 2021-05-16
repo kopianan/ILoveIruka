@@ -254,7 +254,7 @@ List<Label> petType = [
 
 List<PetPreferenceDataModel> _petType = [
   PetPreferenceDataModel(
-      code: "0", label: "Dog", image: 'images/assets/dog.png', selected: false),
+      code: "0", label: "Dog", image: 'images/assets/dog.png', selected: true),
   PetPreferenceDataModel(
       code: "1", label: "Cat", image: 'images/assets/cat.png', selected: false)
 ];
@@ -264,6 +264,57 @@ List<Label> gender = [
   Label(code: "0", label: "Male"),
   Label(code: "1", label: "Female"),
 ];
+
+List<PetPreferenceDataModel> _petGender = [
+  PetPreferenceDataModel(
+      code: "0", label: "Male", image: 'images/assets/man.png', selected: true),
+  PetPreferenceDataModel(
+      code: "1",
+      label: "Female",
+      image: 'images/assets/woman.png',
+      selected: false)
+];
+
+List<PetPreferenceDataModel> _petStatus = [
+  PetPreferenceDataModel(
+      code: "0",
+      label: "Pedigree",
+      image: 'images/assets/pedigree.png',
+      selected: true),
+  PetPreferenceDataModel(
+      code: "1",
+      label: "Not Pedigree",
+      image: 'images/assets/not_pet.png',
+      selected: false)
+];
+List<PetPreferenceDataModel> _petStatusDog = [
+  PetPreferenceDataModel(
+      code: "0",
+      label: "Stumbum",
+      image: 'images/assets/pedigree.png',
+      selected: true),
+  PetPreferenceDataModel(
+      code: "1",
+      label: "Not Stumbum",
+      image: 'images/assets/not_pet.png',
+      selected: false)
+];
+List<PetPreferenceDataModel> _petSterile = [
+  PetPreferenceDataModel(
+      code: "0",
+      label: "Sterile",
+      image: 'images/assets/sterile.png',
+      selected: true),
+  PetPreferenceDataModel(
+      code: "1",
+      label: "Not Sterile",
+      image: 'images/assets/not_sterile.png',
+      selected: false)
+];
+List<PetPreferenceDataModel> get getPetSterile => _petSterile;
+List<PetPreferenceDataModel> get getPetStatusDog => _petStatusDog;
+List<PetPreferenceDataModel> get getPetStatus => _petStatus;
+List<PetPreferenceDataModel> get getPetGender => _petGender;
 
 ///0 = isTrue 1 = isFalse
 List<Label> catStatus = [

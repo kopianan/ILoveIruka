@@ -14,7 +14,7 @@ abstract class TransactionDataModel with _$TransactionDataModel {
       String formattedTotal,
       String formattedTotalInSale,
       double totalInSale,
-      @JsonKey(nullable: true, includeIfNull: true) CoupontDataModel coupon,
+      @JsonKey(nullable: true, defaultValue: null) CoupontDataModel coupon,
       String remark,
       String createdBy,
       String createdAt,
@@ -23,4 +23,3 @@ abstract class TransactionDataModel with _$TransactionDataModel {
   factory TransactionDataModel.fromJson(Map<String, dynamic> json) =>
       _$TransactionDataModelFromJson(json);
 }
- 

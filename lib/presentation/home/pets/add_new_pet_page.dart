@@ -273,7 +273,7 @@ class _AddNewPetPageState extends State<AddNewPetPage> {
                           status: sterile,
                         ),
                         SizedBox(height: 15),
-                
+
                         Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

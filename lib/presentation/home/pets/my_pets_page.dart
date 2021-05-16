@@ -4,8 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
+import 'package:i_love_iruka/application/pet/add_pet_controller.dart';
 import 'package:i_love_iruka/application/pet/pet_bloc.dart';
 import 'package:i_love_iruka/application/pet/pet_controller.dart';
+import 'package:i_love_iruka/presentation/home/pets/add_new_pet/add_new_pet_page2.dart';
 import 'package:i_love_iruka/presentation/home/pets/add_new_pet_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/pets_detail_page.dart';
 import 'package:i_love_iruka/presentation/widgets/global_widget_method.dart';
@@ -25,6 +27,7 @@ class MyPetsPage extends StatefulWidget {
 class _MyPetsPageState extends State<MyPetsPage> {
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
+  final addPetController = Get.put(AddPetController());
 
   void _onRefresh() async {
     petBloc.add(PetEvent.getMyPet());
@@ -107,6 +110,7 @@ class _MyPetsPageState extends State<MyPetsPage> {
                           TextButton(
                             onPressed: () {
                               petController.emptySelectedPet();
+                              // Get.toNamed(AddNewPetPage2.TAG);
                               Get.toNamed(AddNewPetPage.TAG);
                             },
                             child: Text("Add Pet",
@@ -162,7 +166,7 @@ class _MyPetsPageState extends State<MyPetsPage> {
                                             actions: [
                                               TextButton(
                                                   onPressed: () {
-                                                    Get.back(); 
+                                                    Get.back();
                                                     petBloc.add(
                                                         PetEvent.deletePet(myPet
                                                             .getMyPet[index]
@@ -233,7 +237,6 @@ class _MyPetsPageState extends State<MyPetsPage> {
                                                             .getStagingUrl() +
                                                         myPet.getMyPet[index]
                                                             .profilePictureUrl),
-                                                            
                                                     onError: (e, trace) {
                                                       return Center(
                                                           child: Image.asset(

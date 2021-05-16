@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:i_love_iruka/application/auth/user_controller.dart';
 import 'package:i_love_iruka/domain/pets/pet_data_model.dart';
 import 'package:i_love_iruka/domain/pets/pet_pref.dart';
 import 'package:i_love_iruka/domain/pets/pet_preference_data_model.dart';
@@ -12,6 +14,7 @@ class PetController extends GetxController {
   List<PetPreferences> petPreferences = <PetPreferences>[].obs;
   Rx<PetDataModel> mySelectedPet = PetDataModel().obs;
   Rx<PetDataModel> previouserSelectedPed = PetDataModel().obs;
+  final userController = Get.put(UserController());
 
   RxBool isFiltered = false.obs;
   List<PetPref> _petType = <PetPref>[].obs;
@@ -84,6 +87,8 @@ class PetController extends GetxController {
   }
 
   void setListPet(List<PetDataModel> dataList) {
+    dataList.removeWhere(
+        (element) => element.user == userController.getUserData().id);
     listPetDataModel.assignAll(dataList);
   }
 

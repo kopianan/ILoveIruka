@@ -10,6 +10,7 @@ import 'package:i_love_iruka/presentation/auth/widgets/decoration.dart';
 import 'package:i_love_iruka/presentation/welcome/welcome_screen.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primarary_blue_loading.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
+import 'package:i_love_iruka/presentation/auth/register_form/register_success_page.dart';
 
 class RegisterForm extends StatefulWidget {
   static const String TAG = '/register_form_page';
@@ -83,9 +84,9 @@ class _RegisterFormState extends State<RegisterForm> {
                   },
                   (success) {
                     print(success);
-                    Get.offNamed(WelcomeScreen.TAG);
+                    Get.offNamed(RegisterSuccessPage.TAG);
                     showSuccessFlash(
-                        context, "Success, Please re sign-in user");
+                        context, "Success, Please verify your email");
                   },
                 ));
       },

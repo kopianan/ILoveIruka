@@ -15,8 +15,8 @@ class Constants {
   static String _rajaOngkirBaseUrl = 'https://api.rajaongkir.com/';
 
   // static String _stagingUrl = 'http://api-staging.irukacms.com:5005';
-  static String _stagingUrl = 'http://apidev.irukacms.com';
-  // static String _stagingUrl = 'http://api.irukacms.com';
+  // static String _stagingUrl = 'http://apidev.irukacms.com';
+  static String _stagingUrl = 'http://api.irukacms.com';
 
   static String _userSharedPref = "user_login_data";
 

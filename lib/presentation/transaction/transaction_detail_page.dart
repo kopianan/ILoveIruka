@@ -69,14 +69,14 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                                     borderRadius: BorderRadius.circular(5),
                                     color: Color(0xFFABF5BB),
                                   ),
-                                  child: Text(
-                                    "+Point",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFF02791C),
-                                    ),
-                                  ),
+                                  // child: Text(
+                                  //   "+Point",
+                                  //   style: TextStyle(
+                                  //     fontSize: 18,
+                                  //     fontWeight: FontWeight.bold,
+                                  //     color: Color(0xFF02791C),
+                                  //   ),
+                                  // ),
                                 )
                               ],
                             ),

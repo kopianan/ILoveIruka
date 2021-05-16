@@ -1,6 +1,6 @@
 name: i_love_iruka
 description: A new Flutter project.
-version: 1.2.3+25
+version: 1.2.3+27
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -81,25 +81,7 @@ flutter:
   assets:
     - images/assets/
 
-    - images/dev_images/petting.png
-    - images/dev_images/background_petting.png
-    - images/dev_images/signin_decoration.png
-    - images/dev_images/forgot_password_decoration.png
-    - images/dev_images/forgot_password_bg_show.png
-    - images/dev_images/forgot_password_image.png
-
-    - images/dev_images/yellow_clippath1.png
-    - images/dev_images/yellow_clippath2.png
-    - images/dev_images/yellow_clippath3.png
-
-    - images/dev_images/blue_clippath1.png
-    - images/dev_images/blue_clippath2.png
-    - images/dev_images/blue_clippath3.png
-
-    - images/dev_images/bronze_clippath1.png
-    - images/dev_images/bronze_clippath2.png
-    - images/dev_images/bronze_clippath3.png
-    - images/assets/iruka_petcare_color.png
+    - images/dev_images/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
