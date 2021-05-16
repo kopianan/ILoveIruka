@@ -71,7 +71,7 @@ class _PetsDetailPageState extends State<PetsDetailPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          height: kToolbarHeight ,
+                          height: kToolbarHeight,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -240,7 +240,7 @@ class ContactMeSection extends StatelessWidget {
                               Constants.getStagingUrl() + e.response.imageUrl,
                             ),
                             onBackgroundImageError: (e, err) {
-                              return null;
+                              return SizedBox();
                             },
                           ),
                           SizedBox(

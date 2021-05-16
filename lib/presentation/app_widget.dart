@@ -4,6 +4,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:i_love_iruka/presentation/splah_screen/splash_screen.dart';
 import 'package:i_love_iruka/routes/router.dart';
+import 'package:i_love_iruka/presentation/home/pets/add_new_pet/add_new_pet_page2.dart';
 
 class AppWidget extends StatefulWidget {
   @override
@@ -43,6 +44,7 @@ class _AppWidgetState extends State<AppWidget> {
       theme: theme(),
       initialRoute: SplashScreen.TAG,
       home: SplashScreen(),
+      // home: AddNewPetPage2(),
     );
   }
 

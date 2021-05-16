@@ -1,4 +1,5 @@
 import 'package:i_love_iruka/domain/pets/label.dart';
+import 'package:i_love_iruka/domain/pets/pet_preference_data_model.dart';
 
 List<String> dogRaces = [
   "Other",
@@ -250,6 +251,14 @@ List<Label> petType = [
   Label(code: "0", label: "Dog"),
   Label(code: "1", label: "Cat"),
 ];
+
+List<PetPreferenceDataModel> _petType = [
+  PetPreferenceDataModel(
+      code: "0", label: "Dog", image: 'images/assets/dog.png', selected: false),
+  PetPreferenceDataModel(
+      code: "1", label: "Cat", image: 'images/assets/cat.png', selected: false)
+];
+List<PetPreferenceDataModel> get getPetType => _petType;
 
 List<Label> gender = [
   Label(code: "0", label: "Male"),

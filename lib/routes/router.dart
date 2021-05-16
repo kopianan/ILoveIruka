@@ -25,6 +25,7 @@ import 'package:i_love_iruka/presentation/splah_screen/splash_screen.dart';
 import 'package:i_love_iruka/presentation/transaction/transaction_detail_page.dart';
 import 'package:i_love_iruka/presentation/transaction/transaction_history_page.dart';
 import 'package:i_love_iruka/presentation/welcome/welcome_screen.dart';
+import 'package:i_love_iruka/presentation/home/pets/add_new_pet/add_new_pet_page2.dart';
 
 List<GetPage> navigatorPages = [
   GetPage(name: DashboardPage.TAG, page: () => DashboardPage()),
@@ -47,6 +48,7 @@ List<GetPage> navigatorPages = [
   GetPage(name: SigninSignoutPage.TAG, page: () => SigninSignoutPage()),
   GetPage(name: FeedDetailPage.TAG, page: () => FeedDetailPage()),
   GetPage(name: PhotoViewerPage.TAG, page: () => PhotoViewerPage()),
+  GetPage(name: AddNewPetPage2.TAG, page: () => AddNewPetPage2()),
   GetPage(name: SettingProfielPage.TAG, page: () => SettingProfielPage()),
   GetPage(name: AddNewPetPage.TAG, page: () => AddNewPetPage()),
   GetPage(name: AddressPage.TAG, page: () => AddressPage()),

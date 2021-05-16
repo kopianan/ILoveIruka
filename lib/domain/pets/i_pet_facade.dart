@@ -6,6 +6,7 @@ import 'package:i_love_iruka/domain/pets/pet_add_new_post_request.dart';
 
 import 'package:i_love_iruka/domain/pets/pet_data_model.dart';
 import 'package:i_love_iruka/domain/pets/pet_post_data_model.dart';
+import 'package:i_love_iruka/domain/pets/pet_report_data_model.dart';
 import 'package:i_love_iruka/domain/pets/pet_req_res.dart';
 
 abstract class IPetFacade {
@@ -22,4 +23,5 @@ abstract class IPetFacade {
       String petId);
   Future<Either<GeneralFailure, String>> deletePetPostById(String petId);
   Future<Either<GeneralFailure, PetDataModel>> deletePet(String petId);
+  Future<Either<String, String>> reportPetPost(PetReportDataModel requestData);
 }

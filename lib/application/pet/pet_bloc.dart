@@ -8,6 +8,7 @@ import 'package:i_love_iruka/domain/pets/i_pet_facade.dart';
 import 'package:i_love_iruka/domain/pets/pet_add_new_post_request.dart';
 import 'package:i_love_iruka/domain/pets/pet_data_model.dart';
 import 'package:i_love_iruka/domain/pets/pet_post_data_model.dart';
+import 'package:i_love_iruka/domain/pets/pet_report_data_model.dart';
 import 'package:i_love_iruka/domain/pets/pet_req_res.dart';
 import 'package:injectable/injectable.dart';
 
@@ -119,6 +120,18 @@ class PetBloc extends Bloc<PetEvent, PetState> {
           yield _result.fold(
             (l) => PetState.error(l),
             (r) => PetState.onPetDeleted(r),
+          );
+        } catch (e) {
+          yield PetState.error(GeneralFailure(e.toString()));
+        }
+      },
+      reportPetPost: (_ReportPetPost value) async* {
+        yield PetState.loading();
+        try {
+          final _result = await iPetFacade.reportPetPost(value.report);
+          yield _result.fold(
+            (l) => PetState.error(GeneralFailure(l)),
+            (r) => PetState.onReportPetPost(r),
           );
         } catch (e) {
           yield PetState.error(GeneralFailure(e.toString()));

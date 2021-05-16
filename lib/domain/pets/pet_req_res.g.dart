@@ -47,6 +47,9 @@ _$GetPetRequestData _$_$GetPetRequestDataFromJson(Map<String, dynamic> json) {
     gender: (json['gender'] as List)?.map((e) => e as String)?.toList() ?? [],
     animal: (json['animal'] as List)?.map((e) => e as String)?.toList() ?? [],
     weight: (json['weight'] as List)?.map((e) => e as int)?.toList() ?? [],
+    isStumbum: json['isStumbum'] as bool,
+    isSterile: json['isSterile'] as bool,
+    isPedigree: json['isPedigree'] as bool,
   );
 }
 
@@ -58,4 +61,7 @@ Map<String, dynamic> _$_$GetPetRequestDataToJson(
       'gender': instance.gender,
       'animal': instance.animal,
       'weight': instance.weight,
+      'isStumbum': instance.isStumbum,
+      'isSterile': instance.isSterile,
+      'isPedigree': instance.isPedigree,
     };

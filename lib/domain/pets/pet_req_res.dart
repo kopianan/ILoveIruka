@@ -24,6 +24,9 @@ abstract class PetReqRes with _$PetReqRes {
     @JsonKey(defaultValue: []) List<String> gender,
     @JsonKey(defaultValue: []) List<String> animal,
     @JsonKey(defaultValue: []) List<int> weight,
+    @JsonKey(defaultValue: null) bool isStumbum,
+    @JsonKey(defaultValue: null) bool isSterile,
+    @JsonKey(defaultValue: null) bool isPedigree,
   }) = GetPetRequestData;
 
   factory PetReqRes.fromJson(Map<String, dynamic> json) =>

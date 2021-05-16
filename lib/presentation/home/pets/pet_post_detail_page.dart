@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:i_love_iruka/application/auth/user_controller.dart';
 import 'package:i_love_iruka/application/pet/pet_bloc.dart';
 import 'package:i_love_iruka/application/pet/pet_controller.dart';
 import 'package:i_love_iruka/domain/pets/pet_post_data_model.dart';
+import 'package:i_love_iruka/domain/pets/pet_report_data_model.dart';
 import 'package:i_love_iruka/presentation/home/pets/my_pets_page.dart';
 import 'package:i_love_iruka/presentation/home/pets/pets_detail_page.dart';
+import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
 import 'package:i_love_iruka/util/constants.dart';
 import 'package:photo_view/photo_view.dart';
 
@@ -20,14 +23,36 @@ class PetPostDetailPage extends StatefulWidget {
 
 class _PetPostDetailPageState extends State<PetPostDetailPage> {
   PetPostDataModel petPostDataModel;
+  TextEditingController description = TextEditingController();
+  String user;
   @override
   void initState() {
-    petPostDataModel = Get.arguments as PetPostDataModel;
+    petPostDataModel = Get.arguments[0] as PetPostDataModel;
+    user = Get.arguments[1] as String;
+    setPopUpData();
     super.initState();
   }
 
   final petBloc = getIt<PetBloc>();
   final petController = Get.put(PetController());
+  final authController = Get.put(UserController());
+
+  List<PopupMenuItem> popUp = <PopupMenuItem>[];
+
+  void setPopUpData() {
+    if (user == authController.getUserData().id) {
+      popUp.add(PopupMenuItem<String>(
+          child: const Text('Delete', style: TextStyle(color: Colors.red)),
+          value: 'delete'));
+    } else {
+      popUp.add(
+        PopupMenuItem<String>(
+            child: const Text('Report', style: TextStyle(color: Colors.black)),
+            value: 'report'),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -35,18 +60,21 @@ class _PetPostDetailPageState extends State<PetPostDetailPage> {
       child: BlocConsumer<PetBloc, PetState>(
         listener: (context, state) {
           state.maybeMap(
-            orElse: () {},
-            loading: (e) => Fluttertoast.showToast(msg: "Loading ..."),
-            error: (e) => Fluttertoast.showToast(msg: e.toString()),
-            onPetPostDeleted: (e) {
-              var _pet = petController.getMySelectedPet;
-              Get.offNamedUntil(
-                  PetsDetailPage.TAG, ModalRoute.withName(MyPetsPage.TAG),
-                  arguments: _pet);
+              orElse: () {},
+              loading: (e) => Fluttertoast.showToast(msg: "Loading ..."),
+              error: (e) => Fluttertoast.showToast(msg: e.toString()),
+              onPetPostDeleted: (e) {
+                var _pet = petController.getMySelectedPet;
+                Get.offNamedUntil(
+                    PetsDetailPage.TAG, ModalRoute.withName(MyPetsPage.TAG),
+                    arguments: _pet);
 
-              Fluttertoast.showToast(msg: e.status);
-            },
-          );
+                Fluttertoast.showToast(msg: e.status);
+              },
+              onReportPetPost: (e) {
+                Get.back();
+                Fluttertoast.showToast(msg: e.postResponse);
+              });
         },
         builder: (context, state) {
           return Scaffold(
@@ -59,45 +87,10 @@ class _PetPostDetailPageState extends State<PetPostDetailPage> {
                 PopupMenuButton(
                   icon: Icon(Icons.more_vert_rounded),
                   itemBuilder: (_) {
-                    return [
-                      // PopupMenuItem<String>(
-                      //     child: const Text('Edit'), value: 'edit'),
-                      PopupMenuItem<String>(
-                          child: const Text('Delete',
-                              style: TextStyle(color: Colors.red)),
-                          value: 'delete'),
-                    ];
+                    return popUp;
                   },
                   onSelected: (val) {
-                    if (val == 'delete') {
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: Text("Delete"),
-                              content: Text(
-                                  "Are you sure want to delete this post ?"),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    petBloc.add(PetEvent.deletePetPost(
-                                        petPostDataModel.id));
-                                  },
-                                  child: Text(
-                                    "Delete",
-                                    style: TextStyle(color: Colors.red),
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {},
-                                  child: Text("No"),
-                                ),
-                              ],
-                            );
-                          });
-                    } else {
-                      Fluttertoast.showToast(msg: "Will be edited");
-                    }
+                    onSelected(val);
                   },
                 )
                 // TextButton(
@@ -164,5 +157,72 @@ class _PetPostDetailPageState extends State<PetPostDetailPage> {
         },
       ),
     );
+  }
+
+  void onSelected(String choice) {
+    if (choice == 'delete') {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text("Delete"),
+              content: Text("Are you sure want to delete this post ?"),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    petBloc.add(PetEvent.deletePetPost(petPostDataModel.id));
+                  },
+                  child: Text(
+                    "Delete",
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Text("No"),
+                ),
+              ],
+            );
+          });
+    } else if (choice == 'report') {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(
+            "Report this post",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          content: Container(
+            width: double.infinity,
+            child: TextFormField(
+              controller: description,
+              decoration: InputDecoration(
+                hintText: "Report description",
+                border: OutlineInputBorder(),
+              ),
+              minLines: 3,
+              maxLines: 4,
+            ),
+          ),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  final _data = PetReportDataModel(
+                      description: description.text, post: petPostDataModel.id);
+                  petBloc.add(PetEvent.reportPetPost(_data));
+                },
+                child: Text("Send Report")),
+            TextButton(
+              onPressed: () {
+                Get.back();
+              },
+              child: Text("Cancel", style: TextStyle(color: Colors.red)),
+            )
+          ],
+        ),
+      );
+    } else {
+      Fluttertoast.showToast(msg: "Will be edited");
+    }
   }
 }

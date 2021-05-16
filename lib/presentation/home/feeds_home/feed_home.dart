@@ -88,7 +88,7 @@ class _FeedHomeState extends State<FeedHome>
               ClipPath(
                 clipper: WaveClipperOne(),
                 child: Container(
-                  height: 150,
+                  height: 160,
                   color: Color(0xFF5DBBFF),
                 ),
               ),
@@ -156,6 +156,7 @@ class _FeedHomeState extends State<FeedHome>
                                     fontSize: 17,
                                     color: Colors.black54),
                               ),
+                              Text(userController.getUserData().role.label)
                             ],
                           ),
                           Container(

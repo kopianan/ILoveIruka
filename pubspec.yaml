@@ -15,7 +15,6 @@ dependencies:
   dartz: ^0.9.1
   date_time_picker: ^1.1.1
   dio: ^3.0.9
-  # firebase_auth: ^0.16.0
   firebase_core: ^0.4.4+3
   firebase_messaging: ^6.0.9
   flash: ^1.2.0
@@ -48,7 +47,7 @@ dependencies:
   pull_to_refresh: ^1.6.4
   qr_flutter: ^3.0.1
   rflutter_alert: ^1.0.3
-  share: ^0.6.3+5
+  share: ^2.0.1
   url_launcher: ^5.2.5
 
 dev_dependencies:

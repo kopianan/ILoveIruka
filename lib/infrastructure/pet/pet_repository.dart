@@ -7,6 +7,7 @@ import 'package:i_love_iruka/domain/pets/i_pet_facade.dart';
 import 'package:i_love_iruka/domain/pets/pet_add_new_post_request.dart';
 import 'package:i_love_iruka/domain/pets/pet_data_model.dart';
 import 'package:i_love_iruka/domain/pets/pet_post_data_model.dart';
+import 'package:i_love_iruka/domain/pets/pet_report_data_model.dart';
 import 'package:i_love_iruka/domain/pets/pet_req_res.dart';
 import 'package:i_love_iruka/infrastructure/core/pref.dart';
 import 'package:i_love_iruka/util/constants.dart';
@@ -81,8 +82,8 @@ class PetRepository extends IPetFacade {
       return right(_res.toString());
     } on DioError catch (e) {
       print(e.response.data);
-      print(e.request); 
-      print("ERROR UPLOAD PHOTO"); 
+      print(e.request);
+      print("ERROR UPLOAD PHOTO");
       return left(checkErrorData(e));
     }
   }
@@ -188,6 +189,28 @@ class PetRepository extends IPetFacade {
     } on DioError catch (e) {
       print(e.toString());
       return left(checkErrorData(e));
+    }
+  }
+
+  @override
+  Future<Either<String, String>> reportPetPost(
+      PetReportDataModel petRequest) async {
+    Response response;
+
+    try {
+      response = await _dio.post(
+          Constants.getStagingUrl() + "/api/v1/petstagram/post/report",
+          options: getDioOptions(),
+          data: petRequest.toJson());
+
+      var _petStatus = response.data['message'];
+      return right(_petStatus);
+    } on DioError catch (e) {
+      try {
+        return left(e.response.data['message'].toString());
+      } catch (e) {
+        return left(e.toString());
+      }
     }
   }
 }

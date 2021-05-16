@@ -14,4 +14,6 @@ abstract class PetEvent with _$PetEvent {
       PetAddNewPostRequest request, String petId) = _AddNewPetPost;
   const factory PetEvent.deletePetPost(String petId) = _DeletePetPost;
   const factory PetEvent.deletePet(String petId) = _DeletePet;
+  const factory PetEvent.reportPetPost(PetReportDataModel report) =
+      _ReportPetPost;
 }

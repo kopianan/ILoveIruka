@@ -73,6 +73,13 @@ class _$PetEventTearOff {
       petId,
     );
   }
+
+// ignore: unused_element
+  _ReportPetPost reportPetPost(PetReportDataModel report) {
+    return _ReportPetPost(
+      report,
+    );
+  }
 }
 
 /// @nodoc
@@ -92,6 +99,7 @@ mixin _$PetEvent {
     @required TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     @required TResult deletePetPost(String petId),
     @required TResult deletePet(String petId),
+    @required TResult reportPetPost(PetReportDataModel report),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -104,6 +112,7 @@ mixin _$PetEvent {
     TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     TResult deletePetPost(String petId),
     TResult deletePet(String petId),
+    TResult reportPetPost(PetReportDataModel report),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -117,6 +126,7 @@ mixin _$PetEvent {
     @required TResult addNewPetPost(_AddNewPetPost value),
     @required TResult deletePetPost(_DeletePetPost value),
     @required TResult deletePet(_DeletePet value),
+    @required TResult reportPetPost(_ReportPetPost value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -129,6 +139,7 @@ mixin _$PetEvent {
     TResult addNewPetPost(_AddNewPetPost value),
     TResult deletePetPost(_DeletePetPost value),
     TResult deletePet(_DeletePet value),
+    TResult reportPetPost(_ReportPetPost value),
     @required TResult orElse(),
   });
 }
@@ -193,6 +204,7 @@ class _$_Started implements _Started {
     @required TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     @required TResult deletePetPost(String petId),
     @required TResult deletePet(String petId),
+    @required TResult reportPetPost(PetReportDataModel report),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -203,6 +215,7 @@ class _$_Started implements _Started {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return started();
   }
 
@@ -218,6 +231,7 @@ class _$_Started implements _Started {
     TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     TResult deletePetPost(String petId),
     TResult deletePet(String petId),
+    TResult reportPetPost(PetReportDataModel report),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -239,6 +253,7 @@ class _$_Started implements _Started {
     @required TResult addNewPetPost(_AddNewPetPost value),
     @required TResult deletePetPost(_DeletePetPost value),
     @required TResult deletePet(_DeletePet value),
+    @required TResult reportPetPost(_ReportPetPost value),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -249,6 +264,7 @@ class _$_Started implements _Started {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return started(this);
   }
 
@@ -264,6 +280,7 @@ class _$_Started implements _Started {
     TResult addNewPetPost(_AddNewPetPost value),
     TResult deletePetPost(_DeletePetPost value),
     TResult deletePet(_DeletePet value),
+    TResult reportPetPost(_ReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -350,6 +367,7 @@ class _$_GetPetList implements _GetPetList {
     @required TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     @required TResult deletePetPost(String petId),
     @required TResult deletePet(String petId),
+    @required TResult reportPetPost(PetReportDataModel report),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -360,6 +378,7 @@ class _$_GetPetList implements _GetPetList {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return getPetList(requestData);
   }
 
@@ -375,6 +394,7 @@ class _$_GetPetList implements _GetPetList {
     TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     TResult deletePetPost(String petId),
     TResult deletePet(String petId),
+    TResult reportPetPost(PetReportDataModel report),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -396,6 +416,7 @@ class _$_GetPetList implements _GetPetList {
     @required TResult addNewPetPost(_AddNewPetPost value),
     @required TResult deletePetPost(_DeletePetPost value),
     @required TResult deletePet(_DeletePet value),
+    @required TResult reportPetPost(_ReportPetPost value),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -406,6 +427,7 @@ class _$_GetPetList implements _GetPetList {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return getPetList(this);
   }
 
@@ -421,6 +443,7 @@ class _$_GetPetList implements _GetPetList {
     TResult addNewPetPost(_AddNewPetPost value),
     TResult deletePetPost(_DeletePetPost value),
     TResult deletePet(_DeletePet value),
+    TResult reportPetPost(_ReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -518,6 +541,7 @@ class _$_UploadPhoto implements _UploadPhoto {
     @required TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     @required TResult deletePetPost(String petId),
     @required TResult deletePet(String petId),
+    @required TResult reportPetPost(PetReportDataModel report),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -528,6 +552,7 @@ class _$_UploadPhoto implements _UploadPhoto {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return uploadPhoto(photo, petId);
   }
 
@@ -543,6 +568,7 @@ class _$_UploadPhoto implements _UploadPhoto {
     TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     TResult deletePetPost(String petId),
     TResult deletePet(String petId),
+    TResult reportPetPost(PetReportDataModel report),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -564,6 +590,7 @@ class _$_UploadPhoto implements _UploadPhoto {
     @required TResult addNewPetPost(_AddNewPetPost value),
     @required TResult deletePetPost(_DeletePetPost value),
     @required TResult deletePet(_DeletePet value),
+    @required TResult reportPetPost(_ReportPetPost value),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -574,6 +601,7 @@ class _$_UploadPhoto implements _UploadPhoto {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return uploadPhoto(this);
   }
 
@@ -589,6 +617,7 @@ class _$_UploadPhoto implements _UploadPhoto {
     TResult addNewPetPost(_AddNewPetPost value),
     TResult deletePetPost(_DeletePetPost value),
     TResult deletePet(_DeletePet value),
+    TResult reportPetPost(_ReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -681,6 +710,7 @@ class _$_SaveNewPet implements _SaveNewPet {
     @required TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     @required TResult deletePetPost(String petId),
     @required TResult deletePet(String petId),
+    @required TResult reportPetPost(PetReportDataModel report),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -691,6 +721,7 @@ class _$_SaveNewPet implements _SaveNewPet {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return saveNewPet(petRequestData);
   }
 
@@ -706,6 +737,7 @@ class _$_SaveNewPet implements _SaveNewPet {
     TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     TResult deletePetPost(String petId),
     TResult deletePet(String petId),
+    TResult reportPetPost(PetReportDataModel report),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -727,6 +759,7 @@ class _$_SaveNewPet implements _SaveNewPet {
     @required TResult addNewPetPost(_AddNewPetPost value),
     @required TResult deletePetPost(_DeletePetPost value),
     @required TResult deletePet(_DeletePet value),
+    @required TResult reportPetPost(_ReportPetPost value),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -737,6 +770,7 @@ class _$_SaveNewPet implements _SaveNewPet {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return saveNewPet(this);
   }
 
@@ -752,6 +786,7 @@ class _$_SaveNewPet implements _SaveNewPet {
     TResult addNewPetPost(_AddNewPetPost value),
     TResult deletePetPost(_DeletePetPost value),
     TResult deletePet(_DeletePet value),
+    TResult reportPetPost(_ReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -815,6 +850,7 @@ class _$_GetMyPet implements _GetMyPet {
     @required TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     @required TResult deletePetPost(String petId),
     @required TResult deletePet(String petId),
+    @required TResult reportPetPost(PetReportDataModel report),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -825,6 +861,7 @@ class _$_GetMyPet implements _GetMyPet {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return getMyPet();
   }
 
@@ -840,6 +877,7 @@ class _$_GetMyPet implements _GetMyPet {
     TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     TResult deletePetPost(String petId),
     TResult deletePet(String petId),
+    TResult reportPetPost(PetReportDataModel report),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -861,6 +899,7 @@ class _$_GetMyPet implements _GetMyPet {
     @required TResult addNewPetPost(_AddNewPetPost value),
     @required TResult deletePetPost(_DeletePetPost value),
     @required TResult deletePet(_DeletePet value),
+    @required TResult reportPetPost(_ReportPetPost value),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -871,6 +910,7 @@ class _$_GetMyPet implements _GetMyPet {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return getMyPet(this);
   }
 
@@ -886,6 +926,7 @@ class _$_GetMyPet implements _GetMyPet {
     TResult addNewPetPost(_AddNewPetPost value),
     TResult deletePetPost(_DeletePetPost value),
     TResult deletePet(_DeletePet value),
+    TResult reportPetPost(_ReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -969,6 +1010,7 @@ class _$_GetPetPostById implements _GetPetPostById {
     @required TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     @required TResult deletePetPost(String petId),
     @required TResult deletePet(String petId),
+    @required TResult reportPetPost(PetReportDataModel report),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -979,6 +1021,7 @@ class _$_GetPetPostById implements _GetPetPostById {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return getPetPostById(id);
   }
 
@@ -994,6 +1037,7 @@ class _$_GetPetPostById implements _GetPetPostById {
     TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     TResult deletePetPost(String petId),
     TResult deletePet(String petId),
+    TResult reportPetPost(PetReportDataModel report),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1015,6 +1059,7 @@ class _$_GetPetPostById implements _GetPetPostById {
     @required TResult addNewPetPost(_AddNewPetPost value),
     @required TResult deletePetPost(_DeletePetPost value),
     @required TResult deletePet(_DeletePet value),
+    @required TResult reportPetPost(_ReportPetPost value),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -1025,6 +1070,7 @@ class _$_GetPetPostById implements _GetPetPostById {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return getPetPostById(this);
   }
 
@@ -1040,6 +1086,7 @@ class _$_GetPetPostById implements _GetPetPostById {
     TResult addNewPetPost(_AddNewPetPost value),
     TResult deletePetPost(_DeletePetPost value),
     TResult deletePet(_DeletePet value),
+    TResult reportPetPost(_ReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1150,6 +1197,7 @@ class _$_AddNewPetPost implements _AddNewPetPost {
     @required TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     @required TResult deletePetPost(String petId),
     @required TResult deletePet(String petId),
+    @required TResult reportPetPost(PetReportDataModel report),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -1160,6 +1208,7 @@ class _$_AddNewPetPost implements _AddNewPetPost {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return addNewPetPost(request, petId);
   }
 
@@ -1175,6 +1224,7 @@ class _$_AddNewPetPost implements _AddNewPetPost {
     TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     TResult deletePetPost(String petId),
     TResult deletePet(String petId),
+    TResult reportPetPost(PetReportDataModel report),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1196,6 +1246,7 @@ class _$_AddNewPetPost implements _AddNewPetPost {
     @required TResult addNewPetPost(_AddNewPetPost value),
     @required TResult deletePetPost(_DeletePetPost value),
     @required TResult deletePet(_DeletePet value),
+    @required TResult reportPetPost(_ReportPetPost value),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -1206,6 +1257,7 @@ class _$_AddNewPetPost implements _AddNewPetPost {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return addNewPetPost(this);
   }
 
@@ -1221,6 +1273,7 @@ class _$_AddNewPetPost implements _AddNewPetPost {
     TResult addNewPetPost(_AddNewPetPost value),
     TResult deletePetPost(_DeletePetPost value),
     TResult deletePet(_DeletePet value),
+    TResult reportPetPost(_ReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1310,6 +1363,7 @@ class _$_DeletePetPost implements _DeletePetPost {
     @required TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     @required TResult deletePetPost(String petId),
     @required TResult deletePet(String petId),
+    @required TResult reportPetPost(PetReportDataModel report),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -1320,6 +1374,7 @@ class _$_DeletePetPost implements _DeletePetPost {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return deletePetPost(petId);
   }
 
@@ -1335,6 +1390,7 @@ class _$_DeletePetPost implements _DeletePetPost {
     TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     TResult deletePetPost(String petId),
     TResult deletePet(String petId),
+    TResult reportPetPost(PetReportDataModel report),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1356,6 +1412,7 @@ class _$_DeletePetPost implements _DeletePetPost {
     @required TResult addNewPetPost(_AddNewPetPost value),
     @required TResult deletePetPost(_DeletePetPost value),
     @required TResult deletePet(_DeletePet value),
+    @required TResult reportPetPost(_ReportPetPost value),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -1366,6 +1423,7 @@ class _$_DeletePetPost implements _DeletePetPost {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return deletePetPost(this);
   }
 
@@ -1381,6 +1439,7 @@ class _$_DeletePetPost implements _DeletePetPost {
     TResult addNewPetPost(_AddNewPetPost value),
     TResult deletePetPost(_DeletePetPost value),
     TResult deletePet(_DeletePet value),
+    TResult reportPetPost(_ReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1467,6 +1526,7 @@ class _$_DeletePet implements _DeletePet {
     @required TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     @required TResult deletePetPost(String petId),
     @required TResult deletePet(String petId),
+    @required TResult reportPetPost(PetReportDataModel report),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -1477,6 +1537,7 @@ class _$_DeletePet implements _DeletePet {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return deletePet(petId);
   }
 
@@ -1492,6 +1553,7 @@ class _$_DeletePet implements _DeletePet {
     TResult addNewPetPost(PetAddNewPostRequest request, String petId),
     TResult deletePetPost(String petId),
     TResult deletePet(String petId),
+    TResult reportPetPost(PetReportDataModel report),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1513,6 +1575,7 @@ class _$_DeletePet implements _DeletePet {
     @required TResult addNewPetPost(_AddNewPetPost value),
     @required TResult deletePetPost(_DeletePetPost value),
     @required TResult deletePet(_DeletePet value),
+    @required TResult reportPetPost(_ReportPetPost value),
   }) {
     assert(started != null);
     assert(getPetList != null);
@@ -1523,6 +1586,7 @@ class _$_DeletePet implements _DeletePet {
     assert(addNewPetPost != null);
     assert(deletePetPost != null);
     assert(deletePet != null);
+    assert(reportPetPost != null);
     return deletePet(this);
   }
 
@@ -1538,6 +1602,7 @@ class _$_DeletePet implements _DeletePet {
     TResult addNewPetPost(_AddNewPetPost value),
     TResult deletePetPost(_DeletePetPost value),
     TResult deletePet(_DeletePet value),
+    TResult reportPetPost(_ReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1554,6 +1619,182 @@ abstract class _DeletePet implements PetEvent {
   String get petId;
   @JsonKey(ignore: true)
   _$DeletePetCopyWith<_DeletePet> get copyWith;
+}
+
+/// @nodoc
+abstract class _$ReportPetPostCopyWith<$Res> {
+  factory _$ReportPetPostCopyWith(
+          _ReportPetPost value, $Res Function(_ReportPetPost) then) =
+      __$ReportPetPostCopyWithImpl<$Res>;
+  $Res call({PetReportDataModel report});
+
+  $PetReportDataModelCopyWith<$Res> get report;
+}
+
+/// @nodoc
+class __$ReportPetPostCopyWithImpl<$Res> extends _$PetEventCopyWithImpl<$Res>
+    implements _$ReportPetPostCopyWith<$Res> {
+  __$ReportPetPostCopyWithImpl(
+      _ReportPetPost _value, $Res Function(_ReportPetPost) _then)
+      : super(_value, (v) => _then(v as _ReportPetPost));
+
+  @override
+  _ReportPetPost get _value => super._value as _ReportPetPost;
+
+  @override
+  $Res call({
+    Object report = freezed,
+  }) {
+    return _then(_ReportPetPost(
+      report == freezed ? _value.report : report as PetReportDataModel,
+    ));
+  }
+
+  @override
+  $PetReportDataModelCopyWith<$Res> get report {
+    if (_value.report == null) {
+      return null;
+    }
+    return $PetReportDataModelCopyWith<$Res>(_value.report, (value) {
+      return _then(_value.copyWith(report: value));
+    });
+  }
+}
+
+/// @nodoc
+class _$_ReportPetPost implements _ReportPetPost {
+  const _$_ReportPetPost(this.report) : assert(report != null);
+
+  @override
+  final PetReportDataModel report;
+
+  @override
+  String toString() {
+    return 'PetEvent.reportPetPost(report: $report)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ReportPetPost &&
+            (identical(other.report, report) ||
+                const DeepCollectionEquality().equals(other.report, report)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(report);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ReportPetPostCopyWith<_ReportPetPost> get copyWith =>
+      __$ReportPetPostCopyWithImpl<_ReportPetPost>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult getPetList(GetPetRequestData requestData),
+    @required TResult uploadPhoto(File photo, String petId),
+    @required TResult saveNewPet(SavePetRequestData petRequestData),
+    @required TResult getMyPet(),
+    @required TResult getPetPostById(String id),
+    @required TResult addNewPetPost(PetAddNewPostRequest request, String petId),
+    @required TResult deletePetPost(String petId),
+    @required TResult deletePet(String petId),
+    @required TResult reportPetPost(PetReportDataModel report),
+  }) {
+    assert(started != null);
+    assert(getPetList != null);
+    assert(uploadPhoto != null);
+    assert(saveNewPet != null);
+    assert(getMyPet != null);
+    assert(getPetPostById != null);
+    assert(addNewPetPost != null);
+    assert(deletePetPost != null);
+    assert(deletePet != null);
+    assert(reportPetPost != null);
+    return reportPetPost(report);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult getPetList(GetPetRequestData requestData),
+    TResult uploadPhoto(File photo, String petId),
+    TResult saveNewPet(SavePetRequestData petRequestData),
+    TResult getMyPet(),
+    TResult getPetPostById(String id),
+    TResult addNewPetPost(PetAddNewPostRequest request, String petId),
+    TResult deletePetPost(String petId),
+    TResult deletePet(String petId),
+    TResult reportPetPost(PetReportDataModel report),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (reportPetPost != null) {
+      return reportPetPost(report);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult getPetList(_GetPetList value),
+    @required TResult uploadPhoto(_UploadPhoto value),
+    @required TResult saveNewPet(_SaveNewPet value),
+    @required TResult getMyPet(_GetMyPet value),
+    @required TResult getPetPostById(_GetPetPostById value),
+    @required TResult addNewPetPost(_AddNewPetPost value),
+    @required TResult deletePetPost(_DeletePetPost value),
+    @required TResult deletePet(_DeletePet value),
+    @required TResult reportPetPost(_ReportPetPost value),
+  }) {
+    assert(started != null);
+    assert(getPetList != null);
+    assert(uploadPhoto != null);
+    assert(saveNewPet != null);
+    assert(getMyPet != null);
+    assert(getPetPostById != null);
+    assert(addNewPetPost != null);
+    assert(deletePetPost != null);
+    assert(deletePet != null);
+    assert(reportPetPost != null);
+    return reportPetPost(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult getPetList(_GetPetList value),
+    TResult uploadPhoto(_UploadPhoto value),
+    TResult saveNewPet(_SaveNewPet value),
+    TResult getMyPet(_GetMyPet value),
+    TResult getPetPostById(_GetPetPostById value),
+    TResult addNewPetPost(_AddNewPetPost value),
+    TResult deletePetPost(_DeletePetPost value),
+    TResult deletePet(_DeletePet value),
+    TResult reportPetPost(_ReportPetPost value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (reportPetPost != null) {
+      return reportPetPost(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ReportPetPost implements PetEvent {
+  const factory _ReportPetPost(PetReportDataModel report) = _$_ReportPetPost;
+
+  PetReportDataModel get report;
+  @JsonKey(ignore: true)
+  _$ReportPetPostCopyWith<_ReportPetPost> get copyWith;
 }
 
 /// @nodoc
@@ -1632,6 +1873,13 @@ class _$PetStateTearOff {
       petData,
     );
   }
+
+// ignore: unused_element
+  _OnReportPetPost onReportPetPost(String postResponse) {
+    return _OnReportPetPost(
+      postResponse,
+    );
+  }
 }
 
 /// @nodoc
@@ -1653,6 +1901,7 @@ mixin _$PetState {
     @required TResult onAddNewPost(String status),
     @required TResult onPetPostDeleted(String status),
     @required TResult onPetDeleted(PetDataModel petData),
+    @required TResult onReportPetPost(String postResponse),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -1667,6 +1916,7 @@ mixin _$PetState {
     TResult onAddNewPost(String status),
     TResult onPetPostDeleted(String status),
     TResult onPetDeleted(PetDataModel petData),
+    TResult onReportPetPost(String postResponse),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -1682,6 +1932,7 @@ mixin _$PetState {
     @required TResult onAddNewPost(_OnAddNewPost value),
     @required TResult onPetPostDeleted(_OnPetPostDeleted value),
     @required TResult onPetDeleted(_OnPetDeleted value),
+    @required TResult onReportPetPost(_OnReportPetPost value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -1696,6 +1947,7 @@ mixin _$PetState {
     TResult onAddNewPost(_OnAddNewPost value),
     TResult onPetPostDeleted(_OnPetPostDeleted value),
     TResult onPetDeleted(_OnPetDeleted value),
+    TResult onReportPetPost(_OnReportPetPost value),
     @required TResult orElse(),
   });
 }
@@ -1762,6 +2014,7 @@ class _$_Initial implements _Initial {
     @required TResult onAddNewPost(String status),
     @required TResult onPetPostDeleted(String status),
     @required TResult onPetDeleted(PetDataModel petData),
+    @required TResult onReportPetPost(String postResponse),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1774,6 +2027,7 @@ class _$_Initial implements _Initial {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return initial();
   }
 
@@ -1791,6 +2045,7 @@ class _$_Initial implements _Initial {
     TResult onAddNewPost(String status),
     TResult onPetPostDeleted(String status),
     TResult onPetDeleted(PetDataModel petData),
+    TResult onReportPetPost(String postResponse),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1814,6 +2069,7 @@ class _$_Initial implements _Initial {
     @required TResult onAddNewPost(_OnAddNewPost value),
     @required TResult onPetPostDeleted(_OnPetPostDeleted value),
     @required TResult onPetDeleted(_OnPetDeleted value),
+    @required TResult onReportPetPost(_OnReportPetPost value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1826,6 +2082,7 @@ class _$_Initial implements _Initial {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return initial(this);
   }
 
@@ -1843,6 +2100,7 @@ class _$_Initial implements _Initial {
     TResult onAddNewPost(_OnAddNewPost value),
     TResult onPetPostDeleted(_OnPetPostDeleted value),
     TResult onPetDeleted(_OnPetDeleted value),
+    TResult onReportPetPost(_OnReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1904,6 +2162,7 @@ class _$_Loading implements _Loading {
     @required TResult onAddNewPost(String status),
     @required TResult onPetPostDeleted(String status),
     @required TResult onPetDeleted(PetDataModel petData),
+    @required TResult onReportPetPost(String postResponse),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1916,6 +2175,7 @@ class _$_Loading implements _Loading {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return loading();
   }
 
@@ -1933,6 +2193,7 @@ class _$_Loading implements _Loading {
     TResult onAddNewPost(String status),
     TResult onPetPostDeleted(String status),
     TResult onPetDeleted(PetDataModel petData),
+    TResult onReportPetPost(String postResponse),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1956,6 +2217,7 @@ class _$_Loading implements _Loading {
     @required TResult onAddNewPost(_OnAddNewPost value),
     @required TResult onPetPostDeleted(_OnPetPostDeleted value),
     @required TResult onPetDeleted(_OnPetDeleted value),
+    @required TResult onReportPetPost(_OnReportPetPost value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -1968,6 +2230,7 @@ class _$_Loading implements _Loading {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return loading(this);
   }
 
@@ -1985,6 +2248,7 @@ class _$_Loading implements _Loading {
     TResult onAddNewPost(_OnAddNewPost value),
     TResult onPetPostDeleted(_OnPetPostDeleted value),
     TResult onPetDeleted(_OnPetDeleted value),
+    TResult onReportPetPost(_OnReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2080,6 +2344,7 @@ class _$_Error implements _Error {
     @required TResult onAddNewPost(String status),
     @required TResult onPetPostDeleted(String status),
     @required TResult onPetDeleted(PetDataModel petData),
+    @required TResult onReportPetPost(String postResponse),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -2092,6 +2357,7 @@ class _$_Error implements _Error {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return error(failure);
   }
 
@@ -2109,6 +2375,7 @@ class _$_Error implements _Error {
     TResult onAddNewPost(String status),
     TResult onPetPostDeleted(String status),
     TResult onPetDeleted(PetDataModel petData),
+    TResult onReportPetPost(String postResponse),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2132,6 +2399,7 @@ class _$_Error implements _Error {
     @required TResult onAddNewPost(_OnAddNewPost value),
     @required TResult onPetPostDeleted(_OnPetPostDeleted value),
     @required TResult onPetDeleted(_OnPetDeleted value),
+    @required TResult onReportPetPost(_OnReportPetPost value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -2144,6 +2412,7 @@ class _$_Error implements _Error {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return error(this);
   }
 
@@ -2161,6 +2430,7 @@ class _$_Error implements _Error {
     TResult onAddNewPost(_OnAddNewPost value),
     TResult onPetPostDeleted(_OnPetPostDeleted value),
     TResult onPetDeleted(_OnPetDeleted value),
+    TResult onReportPetPost(_OnReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2250,6 +2520,7 @@ class _$_OnGetPetListData implements _OnGetPetListData {
     @required TResult onAddNewPost(String status),
     @required TResult onPetPostDeleted(String status),
     @required TResult onPetDeleted(PetDataModel petData),
+    @required TResult onReportPetPost(String postResponse),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -2262,6 +2533,7 @@ class _$_OnGetPetListData implements _OnGetPetListData {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return onGetPetListData(petList);
   }
 
@@ -2279,6 +2551,7 @@ class _$_OnGetPetListData implements _OnGetPetListData {
     TResult onAddNewPost(String status),
     TResult onPetPostDeleted(String status),
     TResult onPetDeleted(PetDataModel petData),
+    TResult onReportPetPost(String postResponse),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2302,6 +2575,7 @@ class _$_OnGetPetListData implements _OnGetPetListData {
     @required TResult onAddNewPost(_OnAddNewPost value),
     @required TResult onPetPostDeleted(_OnPetPostDeleted value),
     @required TResult onPetDeleted(_OnPetDeleted value),
+    @required TResult onReportPetPost(_OnReportPetPost value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -2314,6 +2588,7 @@ class _$_OnGetPetListData implements _OnGetPetListData {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return onGetPetListData(this);
   }
 
@@ -2331,6 +2606,7 @@ class _$_OnGetPetListData implements _OnGetPetListData {
     TResult onAddNewPost(_OnAddNewPost value),
     TResult onPetPostDeleted(_OnPetPostDeleted value),
     TResult onPetDeleted(_OnPetDeleted value),
+    TResult onReportPetPost(_OnReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2421,6 +2697,7 @@ class _$_OnUploadPhoto implements _OnUploadPhoto {
     @required TResult onAddNewPost(String status),
     @required TResult onPetPostDeleted(String status),
     @required TResult onPetDeleted(PetDataModel petData),
+    @required TResult onReportPetPost(String postResponse),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -2433,6 +2710,7 @@ class _$_OnUploadPhoto implements _OnUploadPhoto {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return onUploadPhoto(photo);
   }
 
@@ -2450,6 +2728,7 @@ class _$_OnUploadPhoto implements _OnUploadPhoto {
     TResult onAddNewPost(String status),
     TResult onPetPostDeleted(String status),
     TResult onPetDeleted(PetDataModel petData),
+    TResult onReportPetPost(String postResponse),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2473,6 +2752,7 @@ class _$_OnUploadPhoto implements _OnUploadPhoto {
     @required TResult onAddNewPost(_OnAddNewPost value),
     @required TResult onPetPostDeleted(_OnPetPostDeleted value),
     @required TResult onPetDeleted(_OnPetDeleted value),
+    @required TResult onReportPetPost(_OnReportPetPost value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -2485,6 +2765,7 @@ class _$_OnUploadPhoto implements _OnUploadPhoto {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return onUploadPhoto(this);
   }
 
@@ -2502,6 +2783,7 @@ class _$_OnUploadPhoto implements _OnUploadPhoto {
     TResult onAddNewPost(_OnAddNewPost value),
     TResult onPetPostDeleted(_OnPetPostDeleted value),
     TResult onPetDeleted(_OnPetDeleted value),
+    TResult onReportPetPost(_OnReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2603,6 +2885,7 @@ class _$_OnSaveNewPet implements _OnSaveNewPet {
     @required TResult onAddNewPost(String status),
     @required TResult onPetPostDeleted(String status),
     @required TResult onPetDeleted(PetDataModel petData),
+    @required TResult onReportPetPost(String postResponse),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -2615,6 +2898,7 @@ class _$_OnSaveNewPet implements _OnSaveNewPet {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return onSaveNewPet(data);
   }
 
@@ -2632,6 +2916,7 @@ class _$_OnSaveNewPet implements _OnSaveNewPet {
     TResult onAddNewPost(String status),
     TResult onPetPostDeleted(String status),
     TResult onPetDeleted(PetDataModel petData),
+    TResult onReportPetPost(String postResponse),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2655,6 +2940,7 @@ class _$_OnSaveNewPet implements _OnSaveNewPet {
     @required TResult onAddNewPost(_OnAddNewPost value),
     @required TResult onPetPostDeleted(_OnPetPostDeleted value),
     @required TResult onPetDeleted(_OnPetDeleted value),
+    @required TResult onReportPetPost(_OnReportPetPost value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -2667,6 +2953,7 @@ class _$_OnSaveNewPet implements _OnSaveNewPet {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return onSaveNewPet(this);
   }
 
@@ -2684,6 +2971,7 @@ class _$_OnSaveNewPet implements _OnSaveNewPet {
     TResult onAddNewPost(_OnAddNewPost value),
     TResult onPetPostDeleted(_OnPetPostDeleted value),
     TResult onPetDeleted(_OnPetDeleted value),
+    TResult onReportPetPost(_OnReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2773,6 +3061,7 @@ class _$_OnGetMyPet implements _OnGetMyPet {
     @required TResult onAddNewPost(String status),
     @required TResult onPetPostDeleted(String status),
     @required TResult onPetDeleted(PetDataModel petData),
+    @required TResult onReportPetPost(String postResponse),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -2785,6 +3074,7 @@ class _$_OnGetMyPet implements _OnGetMyPet {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return onGetMyPet(list);
   }
 
@@ -2802,6 +3092,7 @@ class _$_OnGetMyPet implements _OnGetMyPet {
     TResult onAddNewPost(String status),
     TResult onPetPostDeleted(String status),
     TResult onPetDeleted(PetDataModel petData),
+    TResult onReportPetPost(String postResponse),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2825,6 +3116,7 @@ class _$_OnGetMyPet implements _OnGetMyPet {
     @required TResult onAddNewPost(_OnAddNewPost value),
     @required TResult onPetPostDeleted(_OnPetPostDeleted value),
     @required TResult onPetDeleted(_OnPetDeleted value),
+    @required TResult onReportPetPost(_OnReportPetPost value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -2837,6 +3129,7 @@ class _$_OnGetMyPet implements _OnGetMyPet {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return onGetMyPet(this);
   }
 
@@ -2854,6 +3147,7 @@ class _$_OnGetMyPet implements _OnGetMyPet {
     TResult onAddNewPost(_OnAddNewPost value),
     TResult onPetPostDeleted(_OnPetPostDeleted value),
     TResult onPetDeleted(_OnPetDeleted value),
+    TResult onReportPetPost(_OnReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2943,6 +3237,7 @@ class _$_OnGetPetPostById implements _OnGetPetPostById {
     @required TResult onAddNewPost(String status),
     @required TResult onPetPostDeleted(String status),
     @required TResult onPetDeleted(PetDataModel petData),
+    @required TResult onReportPetPost(String postResponse),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -2955,6 +3250,7 @@ class _$_OnGetPetPostById implements _OnGetPetPostById {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return onGetPetPostById(list);
   }
 
@@ -2972,6 +3268,7 @@ class _$_OnGetPetPostById implements _OnGetPetPostById {
     TResult onAddNewPost(String status),
     TResult onPetPostDeleted(String status),
     TResult onPetDeleted(PetDataModel petData),
+    TResult onReportPetPost(String postResponse),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2995,6 +3292,7 @@ class _$_OnGetPetPostById implements _OnGetPetPostById {
     @required TResult onAddNewPost(_OnAddNewPost value),
     @required TResult onPetPostDeleted(_OnPetPostDeleted value),
     @required TResult onPetDeleted(_OnPetDeleted value),
+    @required TResult onReportPetPost(_OnReportPetPost value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -3007,6 +3305,7 @@ class _$_OnGetPetPostById implements _OnGetPetPostById {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return onGetPetPostById(this);
   }
 
@@ -3024,6 +3323,7 @@ class _$_OnGetPetPostById implements _OnGetPetPostById {
     TResult onAddNewPost(_OnAddNewPost value),
     TResult onPetPostDeleted(_OnPetPostDeleted value),
     TResult onPetDeleted(_OnPetDeleted value),
+    TResult onReportPetPost(_OnReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -3114,6 +3414,7 @@ class _$_OnAddNewPost implements _OnAddNewPost {
     @required TResult onAddNewPost(String status),
     @required TResult onPetPostDeleted(String status),
     @required TResult onPetDeleted(PetDataModel petData),
+    @required TResult onReportPetPost(String postResponse),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -3126,6 +3427,7 @@ class _$_OnAddNewPost implements _OnAddNewPost {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return onAddNewPost(status);
   }
 
@@ -3143,6 +3445,7 @@ class _$_OnAddNewPost implements _OnAddNewPost {
     TResult onAddNewPost(String status),
     TResult onPetPostDeleted(String status),
     TResult onPetDeleted(PetDataModel petData),
+    TResult onReportPetPost(String postResponse),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -3166,6 +3469,7 @@ class _$_OnAddNewPost implements _OnAddNewPost {
     @required TResult onAddNewPost(_OnAddNewPost value),
     @required TResult onPetPostDeleted(_OnPetPostDeleted value),
     @required TResult onPetDeleted(_OnPetDeleted value),
+    @required TResult onReportPetPost(_OnReportPetPost value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -3178,6 +3482,7 @@ class _$_OnAddNewPost implements _OnAddNewPost {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return onAddNewPost(this);
   }
 
@@ -3195,6 +3500,7 @@ class _$_OnAddNewPost implements _OnAddNewPost {
     TResult onAddNewPost(_OnAddNewPost value),
     TResult onPetPostDeleted(_OnPetPostDeleted value),
     TResult onPetDeleted(_OnPetDeleted value),
+    TResult onReportPetPost(_OnReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -3284,6 +3590,7 @@ class _$_OnPetPostDeleted implements _OnPetPostDeleted {
     @required TResult onAddNewPost(String status),
     @required TResult onPetPostDeleted(String status),
     @required TResult onPetDeleted(PetDataModel petData),
+    @required TResult onReportPetPost(String postResponse),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -3296,6 +3603,7 @@ class _$_OnPetPostDeleted implements _OnPetPostDeleted {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return onPetPostDeleted(status);
   }
 
@@ -3313,6 +3621,7 @@ class _$_OnPetPostDeleted implements _OnPetPostDeleted {
     TResult onAddNewPost(String status),
     TResult onPetPostDeleted(String status),
     TResult onPetDeleted(PetDataModel petData),
+    TResult onReportPetPost(String postResponse),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -3336,6 +3645,7 @@ class _$_OnPetPostDeleted implements _OnPetPostDeleted {
     @required TResult onAddNewPost(_OnAddNewPost value),
     @required TResult onPetPostDeleted(_OnPetPostDeleted value),
     @required TResult onPetDeleted(_OnPetDeleted value),
+    @required TResult onReportPetPost(_OnReportPetPost value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -3348,6 +3658,7 @@ class _$_OnPetPostDeleted implements _OnPetPostDeleted {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return onPetPostDeleted(this);
   }
 
@@ -3365,6 +3676,7 @@ class _$_OnPetPostDeleted implements _OnPetPostDeleted {
     TResult onAddNewPost(_OnAddNewPost value),
     TResult onPetPostDeleted(_OnPetPostDeleted value),
     TResult onPetDeleted(_OnPetDeleted value),
+    TResult onReportPetPost(_OnReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -3466,6 +3778,7 @@ class _$_OnPetDeleted implements _OnPetDeleted {
     @required TResult onAddNewPost(String status),
     @required TResult onPetPostDeleted(String status),
     @required TResult onPetDeleted(PetDataModel petData),
+    @required TResult onReportPetPost(String postResponse),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -3478,6 +3791,7 @@ class _$_OnPetDeleted implements _OnPetDeleted {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return onPetDeleted(petData);
   }
 
@@ -3495,6 +3809,7 @@ class _$_OnPetDeleted implements _OnPetDeleted {
     TResult onAddNewPost(String status),
     TResult onPetPostDeleted(String status),
     TResult onPetDeleted(PetDataModel petData),
+    TResult onReportPetPost(String postResponse),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -3518,6 +3833,7 @@ class _$_OnPetDeleted implements _OnPetDeleted {
     @required TResult onAddNewPost(_OnAddNewPost value),
     @required TResult onPetPostDeleted(_OnPetPostDeleted value),
     @required TResult onPetDeleted(_OnPetDeleted value),
+    @required TResult onReportPetPost(_OnReportPetPost value),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -3530,6 +3846,7 @@ class _$_OnPetDeleted implements _OnPetDeleted {
     assert(onAddNewPost != null);
     assert(onPetPostDeleted != null);
     assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
     return onPetDeleted(this);
   }
 
@@ -3547,6 +3864,7 @@ class _$_OnPetDeleted implements _OnPetDeleted {
     TResult onAddNewPost(_OnAddNewPost value),
     TResult onPetPostDeleted(_OnPetPostDeleted value),
     TResult onPetDeleted(_OnPetDeleted value),
+    TResult onReportPetPost(_OnReportPetPost value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -3563,4 +3881,181 @@ abstract class _OnPetDeleted implements PetState {
   PetDataModel get petData;
   @JsonKey(ignore: true)
   _$OnPetDeletedCopyWith<_OnPetDeleted> get copyWith;
+}
+
+/// @nodoc
+abstract class _$OnReportPetPostCopyWith<$Res> {
+  factory _$OnReportPetPostCopyWith(
+          _OnReportPetPost value, $Res Function(_OnReportPetPost) then) =
+      __$OnReportPetPostCopyWithImpl<$Res>;
+  $Res call({String postResponse});
+}
+
+/// @nodoc
+class __$OnReportPetPostCopyWithImpl<$Res> extends _$PetStateCopyWithImpl<$Res>
+    implements _$OnReportPetPostCopyWith<$Res> {
+  __$OnReportPetPostCopyWithImpl(
+      _OnReportPetPost _value, $Res Function(_OnReportPetPost) _then)
+      : super(_value, (v) => _then(v as _OnReportPetPost));
+
+  @override
+  _OnReportPetPost get _value => super._value as _OnReportPetPost;
+
+  @override
+  $Res call({
+    Object postResponse = freezed,
+  }) {
+    return _then(_OnReportPetPost(
+      postResponse == freezed ? _value.postResponse : postResponse as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_OnReportPetPost implements _OnReportPetPost {
+  const _$_OnReportPetPost(this.postResponse) : assert(postResponse != null);
+
+  @override
+  final String postResponse;
+
+  @override
+  String toString() {
+    return 'PetState.onReportPetPost(postResponse: $postResponse)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _OnReportPetPost &&
+            (identical(other.postResponse, postResponse) ||
+                const DeepCollectionEquality()
+                    .equals(other.postResponse, postResponse)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(postResponse);
+
+  @JsonKey(ignore: true)
+  @override
+  _$OnReportPetPostCopyWith<_OnReportPetPost> get copyWith =>
+      __$OnReportPetPostCopyWithImpl<_OnReportPetPost>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult error(GeneralFailure failure),
+    @required TResult onGetPetListData(List<PetDataModel> petList),
+    @required TResult onUploadPhoto(String photo),
+    @required TResult onSaveNewPet(PetDataModel data),
+    @required TResult onGetMyPet(List<PetDataModel> list),
+    @required TResult onGetPetPostById(List<PetPostDataModel> list),
+    @required TResult onAddNewPost(String status),
+    @required TResult onPetPostDeleted(String status),
+    @required TResult onPetDeleted(PetDataModel petData),
+    @required TResult onReportPetPost(String postResponse),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(error != null);
+    assert(onGetPetListData != null);
+    assert(onUploadPhoto != null);
+    assert(onSaveNewPet != null);
+    assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
+    assert(onAddNewPost != null);
+    assert(onPetPostDeleted != null);
+    assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
+    return onReportPetPost(postResponse);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult error(GeneralFailure failure),
+    TResult onGetPetListData(List<PetDataModel> petList),
+    TResult onUploadPhoto(String photo),
+    TResult onSaveNewPet(PetDataModel data),
+    TResult onGetMyPet(List<PetDataModel> list),
+    TResult onGetPetPostById(List<PetPostDataModel> list),
+    TResult onAddNewPost(String status),
+    TResult onPetPostDeleted(String status),
+    TResult onPetDeleted(PetDataModel petData),
+    TResult onReportPetPost(String postResponse),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (onReportPetPost != null) {
+      return onReportPetPost(postResponse);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
+    @required TResult error(_Error value),
+    @required TResult onGetPetListData(_OnGetPetListData value),
+    @required TResult onUploadPhoto(_OnUploadPhoto value),
+    @required TResult onSaveNewPet(_OnSaveNewPet value),
+    @required TResult onGetMyPet(_OnGetMyPet value),
+    @required TResult onGetPetPostById(_OnGetPetPostById value),
+    @required TResult onAddNewPost(_OnAddNewPost value),
+    @required TResult onPetPostDeleted(_OnPetPostDeleted value),
+    @required TResult onPetDeleted(_OnPetDeleted value),
+    @required TResult onReportPetPost(_OnReportPetPost value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(error != null);
+    assert(onGetPetListData != null);
+    assert(onUploadPhoto != null);
+    assert(onSaveNewPet != null);
+    assert(onGetMyPet != null);
+    assert(onGetPetPostById != null);
+    assert(onAddNewPost != null);
+    assert(onPetPostDeleted != null);
+    assert(onPetDeleted != null);
+    assert(onReportPetPost != null);
+    return onReportPetPost(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
+    TResult error(_Error value),
+    TResult onGetPetListData(_OnGetPetListData value),
+    TResult onUploadPhoto(_OnUploadPhoto value),
+    TResult onSaveNewPet(_OnSaveNewPet value),
+    TResult onGetMyPet(_OnGetMyPet value),
+    TResult onGetPetPostById(_OnGetPetPostById value),
+    TResult onAddNewPost(_OnAddNewPost value),
+    TResult onPetPostDeleted(_OnPetPostDeleted value),
+    TResult onPetDeleted(_OnPetDeleted value),
+    TResult onReportPetPost(_OnReportPetPost value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (onReportPetPost != null) {
+      return onReportPetPost(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnReportPetPost implements PetState {
+  const factory _OnReportPetPost(String postResponse) = _$_OnReportPetPost;
+
+  String get postResponse;
+  @JsonKey(ignore: true)
+  _$OnReportPetPostCopyWith<_OnReportPetPost> get copyWith;
 }

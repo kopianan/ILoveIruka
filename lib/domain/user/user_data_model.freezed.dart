@@ -22,7 +22,7 @@ class _$UserDataModelTearOff {
       String id,
       String fullName,
       RoleDataModel role,
-      @JsonKey(defaultValue: '') String imageUrl,
+      @JsonKey(defaultValue: "") String imageUrl,
       String phoneNumber,
       @JsonKey(nullable: true) MemberInfoDataModel membership,
       String token,
@@ -56,7 +56,7 @@ mixin _$UserDataModel {
   String get id;
   String get fullName;
   RoleDataModel get role;
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: "")
   String get imageUrl;
   String get phoneNumber;
   @JsonKey(nullable: true)
@@ -80,7 +80,7 @@ abstract class $UserDataModelCopyWith<$Res> {
       String id,
       String fullName,
       RoleDataModel role,
-      @JsonKey(defaultValue: '') String imageUrl,
+      @JsonKey(defaultValue: "") String imageUrl,
       String phoneNumber,
       @JsonKey(nullable: true) MemberInfoDataModel membership,
       String token,
@@ -160,7 +160,7 @@ abstract class _$UserDataModelCopyWith<$Res>
       String id,
       String fullName,
       RoleDataModel role,
-      @JsonKey(defaultValue: '') String imageUrl,
+      @JsonKey(defaultValue: "") String imageUrl,
       String phoneNumber,
       @JsonKey(nullable: true) MemberInfoDataModel membership,
       String token,
@@ -221,7 +221,7 @@ class _$_UserDataModel implements _UserDataModel {
       this.id,
       this.fullName,
       this.role,
-      @JsonKey(defaultValue: '') this.imageUrl,
+      @JsonKey(defaultValue: "") this.imageUrl,
       this.phoneNumber,
       @JsonKey(nullable: true) this.membership,
       this.token,
@@ -239,7 +239,7 @@ class _$_UserDataModel implements _UserDataModel {
   @override
   final RoleDataModel role;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: "")
   final String imageUrl;
   @override
   final String phoneNumber;
@@ -315,7 +315,7 @@ abstract class _UserDataModel implements UserDataModel {
       String id,
       String fullName,
       RoleDataModel role,
-      @JsonKey(defaultValue: '') String imageUrl,
+      @JsonKey(defaultValue: "") String imageUrl,
       String phoneNumber,
       @JsonKey(nullable: true) MemberInfoDataModel membership,
       String token,
@@ -333,7 +333,7 @@ abstract class _UserDataModel implements UserDataModel {
   @override
   RoleDataModel get role;
   @override
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: "")
   String get imageUrl;
   @override
   String get phoneNumber;

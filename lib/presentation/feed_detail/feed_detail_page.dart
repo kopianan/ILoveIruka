@@ -9,6 +9,7 @@ import 'package:i_love_iruka/injection.dart';
 import 'package:i_love_iruka/presentation/core/photo_viewer_page.dart';
 import 'package:i_love_iruka/presentation/widgets/error_handling_widget.dart';
 import 'package:i_love_iruka/util/constants.dart';
+import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FeedDetailPage extends StatefulWidget {
@@ -91,7 +92,14 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
                 SliverAppBar(
                   backgroundColor: Colors.transparent,
                   actions: [
-                    IconButton(icon: Icon(Icons.share), onPressed: () {}),
+                    IconButton(
+                        icon: Icon(Icons.share),
+                        onPressed: () {
+                          Share.share(
+                            Constants.getStagingUrl() + data.imageUrl,
+                            subject: data.title,
+                          );
+                        }),
                   ],
                 ),
                 SliverPadding(padding: EdgeInsets.only(top: 10)),
@@ -145,6 +153,8 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
                         SizedBox(height: 20),
                         Markdown(
                           shrinkWrap: true,
+                          selectable: true,
+                          controller: scrollController,
                           data: data.content,
                           onTapLink: (link) {
                             launch(link);

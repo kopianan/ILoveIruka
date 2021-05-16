@@ -233,10 +233,11 @@ class _MyPetsPageState extends State<MyPetsPage> {
                                                             .getStagingUrl() +
                                                         myPet.getMyPet[index]
                                                             .profilePictureUrl),
+                                                            
                                                     onError: (e, trace) {
                                                       return Center(
                                                           child: Image.asset(
-                                                              'assets/no)image.jpg'));
+                                                              'assets/no_image.jpg'));
                                                     },
                                                     fit: BoxFit.cover))),
                                         SizedBox(

@@ -64,11 +64,15 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
             listener: (context, state) {
               state.maybeMap(
                 orElse: () {},
-                loading: (e) {},
+                loading: (e) {
+                  print(e);
+                },
                 error: (e) {
+                  print(e);
                   _refreshController.refreshCompleted();
                 },
                 onGetPetListData: (e) {
+                  print(e);
                   _refreshController.refreshCompleted();
                   pet.setListPet(e.petList);
                 },
@@ -113,37 +117,71 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
                       ),
                     ),
                     SliverToBoxAdapter(
-                      child: Container(
-                        margin:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                        decoration: BoxDecoration(boxShadow: [
-                          BoxShadow(
-                              blurRadius: 4,
-                              spreadRadius: 2,
-                              color: Colors.grey[300],
-                              offset: Offset.fromDirection(70, 3))
-                        ]),
-                        child: TextFormField(
-                          readOnly: true,
-                          onTap: () async {
-                            var _result = await Get.toNamed(PetSearchPage.TAG);
-                            print(_result);
-                            print(json.encode(_result));
-                            petBloc.add(PetEvent.getPetList(_result));
-                          },
-                          style: TextStyle(fontSize: 15),
-                          decoration: InputDecoration(
-                              contentPadding:
-                                  EdgeInsets.only(right: 10, left: 15),
-                              hintText: "Search",
-                              suffixIcon: Icon(Icons.search, size: 25),
-                              fillColor: Colors.white,
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide.none,
-                              )),
-                        ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 10),
+                              decoration: BoxDecoration(boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 4,
+                                    spreadRadius: 2,
+                                    color: Colors.grey[300],
+                                    offset: Offset.fromDirection(70, 3))
+                              ]),
+                              child: TextFormField(
+                                readOnly: true,
+                                onTap: () async {
+                                  var _result =
+                                      await Get.toNamed(PetSearchPage.TAG);
+                                  if (_result != null)
+                                    petBloc.add(PetEvent.getPetList(_result));
+                                },
+                                style: TextStyle(fontSize: 15),
+                                decoration: InputDecoration(
+                                    contentPadding:
+                                        EdgeInsets.only(right: 10, left: 15),
+                                    hintText: "Search",
+                                    suffixIcon: Icon(Icons.search, size: 25),
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide.none,
+                                    )),
+                              ),
+                            ),
+                          ),
+                          GetBuilder<PetController>(
+                              builder: (_) => (_.isFiltered.value)
+                                  ? Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          var _result = await Get.toNamed(
+                                              PetSearchPage.TAG);
+                                          if (_result != null)
+                                            petBloc.add(
+                                                PetEvent.getPetList(_result));
+                                        },
+                                        child: Stack(
+                                          children: [
+                                            Icon(
+                                              Icons.filter_alt_sharp,
+                                              size: 30,
+                                              color: Colors.grey,
+                                            ),
+                                            CircleAvatar(
+                                              backgroundColor: Colors.red,
+                                              radius: 5,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  : SizedBox())
+                        ],
                       ),
                     ),
                     SliverToBoxAdapter(

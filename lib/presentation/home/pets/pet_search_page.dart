@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tags/flutter_tags.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
+import 'package:i_love_iruka/application/pet/pet_controller.dart';
+import 'package:i_love_iruka/domain/pets/pet_pref.dart';
+import 'package:i_love_iruka/domain/pets/pet_preferences.dart';
 import 'package:i_love_iruka/domain/pets/pet_req_res.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_outline.dart';
-import 'package:i_love_iruka/util/pet_list.dart';
 
 class PetSearchPage extends StatefulWidget {
   static final String TAG = '/pet_search_page';
@@ -14,12 +16,16 @@ class PetSearchPage extends StatefulWidget {
 
 final GlobalKey<TagsState> animalTagsKey = GlobalKey<TagsState>();
 final GlobalKey<TagsState> genderTagsKey = GlobalKey<TagsState>();
+final GlobalKey<TagsState> petPreference = GlobalKey<TagsState>();
 
 class _PetSearchPageState extends State<PetSearchPage> {
   GetPetRequestData request = GetPetRequestData();
   RangeValues weightRange = RangeValues(1, 5);
+  final petController = Get.put(PetController());
+
   final name = TextEditingController();
   final race = TextEditingController();
+  List<PetPref> localPetType;
   List<String> getAnimalType() {
     List<String> _list = [];
     List<Item> lst = animalTagsKey.currentState?.getAllItem;
@@ -30,6 +36,7 @@ class _PetSearchPageState extends State<PetSearchPage> {
         }
       });
     }
+
     return _list;
   }
 
@@ -44,6 +51,34 @@ class _PetSearchPageState extends State<PetSearchPage> {
       });
     }
     return _list;
+  }
+
+  bool stumbum;
+  bool sterile;
+  bool pedigree;
+  void setPetPreferences() {
+    var _list = petController.getPetPReferences;
+    _list.forEach((element) {
+      switch (element.label) {
+        case "Stumbum":
+          (element.status) ? stumbum = true : stumbum = false;
+          break;
+        case "Sterile":
+          (element.status) ? sterile = true : sterile = false;
+          break;
+        case "Pedigree":
+          (element.status) ? pedigree = true : pedigree = false;
+          break;
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    name.text = petController.getSearchName;
+    race.text = petController.getSearchRace;
+    localPetType = petController.getPetType;
+    super.initState();
   }
 
   @override
@@ -133,10 +168,29 @@ class _PetSearchPageState extends State<PetSearchPage> {
                     Center(
                       child: Tags(
                         key: animalTagsKey,
-                        itemCount: petType.length,
+                        itemCount: localPetType.length,
                         spacing: 20,
                         itemBuilder: (int index) {
-                          return buildItemTags(index, petType);
+                          return ItemTags(
+                            key: Key(index.toString()),
+                            index: index,
+                            active: localPetType[index].isActived,
+                            color: Colors.white,
+                            activeColor: Colors.blue,
+                            combine: ItemTagsCombine.withTextBefore,
+                            textStyle: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            title: localPetType[index].name,
+                            onPressed: (it) {
+                              petController.setPetType(
+                                  index,
+                                  localPetType[index]
+                                      .copyWith(isActived: it.active));
+                            },
+                          );
+                          // return buildItemTags(index, _petType);
                         },
                       ),
                     ),
@@ -158,9 +212,72 @@ class _PetSearchPageState extends State<PetSearchPage> {
                       child: Tags(
                         key: genderTagsKey,
                         spacing: 20,
-                        itemCount: gender.length,
+                        itemCount: petController.getPetGender.length,
                         itemBuilder: (int index) {
-                          return buildItemTags(index, gender);
+                          return ItemTags(
+                            key: Key(index.toString()),
+                            index: index,
+                            active: petController.getPetGender[index].isActived,
+                            color: Colors.white,
+                            activeColor: Colors.blue,
+                            combine: ItemTagsCombine.withTextBefore,
+                            textStyle: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            title: petController.getPetGender[index].name,
+                            onPressed: (it) {
+                              petController.setPetGender(
+                                  index,
+                                  petController.getPetGender[index]
+                                      .copyWith(isActived: it.active));
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Pet Preferences",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Center(
+                      child: Tags(
+                        key: petPreference,
+                        spacing: 20,
+                        itemCount: petController.getPetPReferences.length,
+                        itemBuilder: (int index) {
+                          return ItemTags(
+                            key: Key(index.toString()),
+                            index: index,
+                            active:
+                                petController.getPetPReferences[index].status,
+                            color: Colors.white,
+                            activeColor: Colors.blue,
+                            combine: ItemTagsCombine.withTextBefore,
+                            textStyle: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            title: petController.getPetPReferences[index].label,
+                            onPressed: (it) {
+                              petController.setPetPreferences(
+                                  index,
+                                  petController.getPetPReferences[index]
+                                      .copyWith(status: it.active));
+                            },
+                          );
                         },
                       ),
                     ),
@@ -218,6 +335,7 @@ class _PetSearchPageState extends State<PetSearchPage> {
                       flex: 2,
                       child: BtnPrimaryOutline(
                         onPressed: () {
+                          petController.removeFiltered();
                           Get.back(result: GetPetRequestData());
                         },
                         text: "Reset",
@@ -229,16 +347,24 @@ class _PetSearchPageState extends State<PetSearchPage> {
                         child: BtnPrimaryBlue(
                           text: "Apply",
                           onPressed: () {
+                            setPetPreferences();
                             request = GetPetRequestData(
                                 animal: getAnimalType(),
                                 gender: getGenderType(),
                                 name: name.text,
                                 race: race.text,
+                                isPedigree: pedigree,
+                                isSterile: sterile,
+                                isStumbum: stumbum,
                                 weight: [
                                   weightRange.start.round(),
                                   weightRange.end.round()
                                 ]);
 
+                            print(request);
+                            petController.setFiltered();
+                            petController.setSearchName(name.text);
+                            petController.setSearchRace(race.text);
                             Get.back(result: request);
                           },
                         )),
@@ -252,17 +378,17 @@ class _PetSearchPageState extends State<PetSearchPage> {
     );
   }
 
-  ItemTags buildItemTags(int index, List items) {
+  ItemTags buildItemTags(int index, List<PetPref> items) {
     return ItemTags(
       key: Key(index.toString()),
       index: index,
-      active: false,
+      active: items[index].isActived,
       color: Colors.white,
       activeColor: Colors.blue,
       combine: ItemTagsCombine.withTextBefore,
       textStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      title: items[index].label,
+      title: items[index].name,
       onLongPressed: (item) => print(item),
     );
   }

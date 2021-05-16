@@ -83,7 +83,7 @@ class _PetPhotoGalleryState extends State<PetPhotoGallery> {
                           return InkWell(
                             onTap: () {
                               Get.toNamed(PetPostDetailPage.TAG,
-                                  arguments: photo);
+                                  arguments: [photo, widget.petDataModel.user]);
                             },
                             child: Container(
                               height: 150.0,

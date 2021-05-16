@@ -160,8 +160,11 @@ class _DoneGettingDataState extends State<DoneGettingData> {
           ),
           onMapCreated: (GoogleMapController controller) {
             _controller.complete(controller);
+            this.controller = controller;
+            Future.delayed(Duration(milliseconds: 800))
+                .then((value) => carouselController.jumpToPage(0));
             setState(() {
-              this.controller = controller;
+              isCarouselHide = true;
             });
           },
         ),

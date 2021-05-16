@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
@@ -6,6 +7,7 @@ import 'package:get/get.dart';
 
 import 'package:i_love_iruka/application/auth/authentication/authentication_bloc.dart';
 import 'package:i_love_iruka/application/auth/user_controller.dart';
+import 'package:i_love_iruka/domain/auth/role_enum.dart';
 import 'package:i_love_iruka/presentation/home/pets/my_pets_page.dart';
 import 'package:i_love_iruka/presentation/home/user_home/address/address_page.dart';
 import 'package:i_love_iruka/presentation/home/user_home/change_password/change_password_page.dart';
@@ -128,13 +130,16 @@ class _UserHomePageState extends State<UserHomePage> {
                               ),
                               Column(
                                 children: [
-                                  buildUserOptionListTile(
-                                      icon: Icons.pets_outlined,
-                                      color: Color(0xFF6D87FC),
-                                      title: "My Pets",
-                                      onTap: () {
-                                        Get.toNamed(MyPetsPage.TAG);
-                                      }),
+                                  (userController.getUserData().role.name ==
+                                          describeEnum(Role.CUSTOMER))
+                                      ? buildUserOptionListTile(
+                                          icon: Icons.pets_outlined,
+                                          color: Color(0xFF6D87FC),
+                                          title: "My Pets",
+                                          onTap: () {
+                                            Get.toNamed(MyPetsPage.TAG);
+                                          })
+                                      : SizedBox(),
                                   buildUserOptionListTile(
                                       icon: Icons.person_pin,
                                       title: "Profile",
@@ -157,7 +162,7 @@ class _UserHomePageState extends State<UserHomePage> {
                                         Get.toNamed(ChangePasswordPage.TAG);
                                       }),
                                   buildUserOptionListTile(
-                                      icon: Icons.security_sharp,
+                                      icon: Icons.logout,
                                       title: "Sign Out",
                                       color: Colors.red,
                                       textColor: Colors.red,

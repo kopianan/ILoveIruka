@@ -102,6 +102,7 @@ class _AccountPagehomeState extends State<AccountPagehome>
                             ),
                           ),
                       onGetSingleMembership: (e) {
+                        print(e.onSingleMembership);
                         return e.onSingleMembership.fold(
                           (l) => SilverCard(),
                           (r) {

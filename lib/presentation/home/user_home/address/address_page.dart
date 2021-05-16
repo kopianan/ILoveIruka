@@ -120,7 +120,7 @@ class _AddressPageState extends State<AddressPage> {
 
   Scaffold onDataScaffold(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -142,202 +142,192 @@ class _AddressPageState extends State<AddressPage> {
           )
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Stack(
-            children: [
-              Positioned(
-                  bottom: 0,
-                  right: -20,
-                  child: Image.asset(
-                    'images/assets/iruka_cloud.png',
-                    height: 200,
-                  )),
-              SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Container(
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: SingleChildScrollView(
+              child: Stack(
+          children: [
+            Positioned(
+                bottom: 0,
+                right: -20,
+                child: Image.asset(
+                  'images/assets/iruka_cloud.png',
+                  height: 200,
+                )),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      GlobalWidgetMethod.pageTitle("Change Address"),
+                      SizedBox(height: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          GlobalWidgetMethod.pageTitle("Change Address"),
-                          SizedBox(height: 20),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              labelText("Select Province"),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              BlocProvider(
-                                create: (context) => provinceCubit,
-                                child: BlocConsumer<AddressCubit, AddressState>(
-                                  listener: (context, state) {
-                                    state.maybeMap(
-                                      orElse: () {},
-                                      loading: (e) => print("Loading"),
-                                      error: (e) => print("errsdfsdfor"),
-                                      getProvince: (e) {
-                                        provinceList = e.data;
-
-                                        try {
-                                          selectedProvince = e.data.firstWhere(
-                                              (element) =>
-                                                  element.provinceId ==
-                                                  dataAddress.provinceId);
-                                        } catch (err) {
-                                          selectedProvince = e.data.first;
-                                        }
-
-                                        cityCubit.getCity(
-                                            selectedProvince.provinceId);
-                                      },
-                                    );
-                                  },
-                                  builder: (context, state) {
-                                    return state.maybeMap(
-                                        orElse: () => defaultDropDown(),
-                                        loading: (e) => loadingDropDown(),
-                                        error: (e) => errorDropDown(),
-                                        getProvince: (e) =>
-                                            DropdownButtonFormField<
-                                                ProvinceDataModel>(
-                                              decoration: dropDownDecoration(),
-                                              items: (provinceList == null)
-                                                  ? []
-                                                  : provinceList
-                                                      .map((province) =>
-                                                          DropdownMenuItem(
-                                                              child: Text(
-                                                                  province
-                                                                      .province),
-                                                              value: province))
-                                                      .toList(),
-                                              value: (provinceList == null)
-                                                  ? null
-                                                  : selectedProvince,
-                                              onTap: () {},
-                                              onChanged: (newData) {
-                                                setState(() {
-                                                  selectedProvince = newData;
-                                                  cityCubit.getCity(
-                                                      selectedProvince
-                                                          .provinceId);
-                                                });
-                                              },
-                                            ));
-                                  },
-                                ),
-                              ),
-                            ],
+                          labelText("Select Province"),
+                          SizedBox(
+                            height: 8,
                           ),
-                          SizedBox(height: 20),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              labelText("Select City"),
-                              SizedBox(height: 8),
-                              BlocProvider(
-                                create: (context) => cityCubit,
-                                child: BlocConsumer<AddressCubit, AddressState>(
-                                  listener: (context, state) {
-                                    state.maybeMap(
-                                      orElse: () {},
-                                      error: (e) =>
-                                          showBasicFlash(context, e.toString()),
-                                      getCity: (e) {
-                                        cityList = e.data;
-                                        try {
-                                          selectedCity = cityList.firstWhere(
-                                              (element) =>
-                                                  element.cityId ==
-                                                  dataAddress.cityId);
-                                        } catch (e) {
-                                          selectedCity = cityList.first;
-                                          postalController.text =
-                                              selectedCity.postalCode;
-                                        }
-                                      },
-                                    );
+                          BlocProvider(
+                            create: (context) => provinceCubit,
+                            child: BlocConsumer<AddressCubit, AddressState>(
+                              listener: (context, state) {
+                                state.maybeMap(
+                                  orElse: () {},
+                                  loading: (e) => print("Loading"),
+                                  error: (e) => print("errsdfsdfor"),
+                                  getProvince: (e) {
+                                    provinceList = e.data;
+
+                                    try {
+                                      selectedProvince = e.data.firstWhere(
+                                          (element) =>
+                                              element.provinceId ==
+                                              dataAddress.provinceId);
+                                    } catch (err) {
+                                      selectedProvince = e.data.first;
+                                    }
+
+                                    cityCubit
+                                        .getCity(selectedProvince.provinceId);
                                   },
-                                  builder: (context, state) {
-                                    return state.maybeMap(
-                                        orElse: () => defaultDropDown(),
-                                        loading: (e) => loadingDropDown(),
-                                        error: (e) => errorDropDown(),
-                                        getCity: (e) => DropdownButtonFormField<
-                                                AddressDataModel>(
-                                              decoration: dropDownDecoration(),
-                                              items: cityList
-                                                  .map((val) =>
+                                );
+                              },
+                              builder: (context, state) {
+                                return state.maybeMap(
+                                    orElse: () => defaultDropDown(),
+                                    loading: (e) => loadingDropDown(),
+                                    error: (e) => errorDropDown(),
+                                    getProvince: (e) => DropdownButtonFormField<
+                                            ProvinceDataModel>(
+                                          decoration: dropDownDecoration(),
+                                          items: (provinceList == null)
+                                              ? []
+                                              : provinceList
+                                                  .map((province) =>
                                                       DropdownMenuItem(
-                                                          child: Text(val.type +
-                                                              " " +
-                                                              val.cityName),
-                                                          value: val))
+                                                          child: Text(
+                                                              province.province),
+                                                          value: province))
                                                   .toList(),
-                                              value: selectedCity,
-                                              onTap: () {},
-                                              onChanged: (newData) {
-                                                postalController.text =
-                                                    newData.postalCode;
-                                                selectedCity = newData;
-                                              },
-                                            ));
-                                  },
-                                ),
-                              ),
-                            ],
+                                          value: (provinceList == null)
+                                              ? null
+                                              : selectedProvince,
+                                          onTap: () {},
+                                          onChanged: (newData) {
+                                            setState(() {
+                                              selectedProvince = newData;
+                                              cityCubit.getCity(
+                                                  selectedProvince.provinceId);
+                                            });
+                                          },
+                                        ));
+                              },
+                            ),
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              labelText("Postal Code"),
-                              SizedBox(height: 8),
-                              TextFormField(
-                                controller: postalController,
-                                decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    enabled: false,
-                                    labelText: "Postal Code"),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              labelText("Address"),
-                              SizedBox(height: 8),
-                              TextFormField(
-                                controller: addressController,
-                                minLines: 3,
-                                maxLines: 4,
-                                decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    hintText: "Input your complete address",
-                                    labelText: "Address"),
-                              ),
-                            ],
-                          )
                         ],
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          labelText("Select City"),
+                          SizedBox(height: 8),
+                          BlocProvider(
+                            create: (context) => cityCubit,
+                            child: BlocConsumer<AddressCubit, AddressState>(
+                              listener: (context, state) {
+                                state.maybeMap(
+                                  orElse: () {},
+                                  error: (e) =>
+                                      showBasicFlash(context, e.toString()),
+                                  getCity: (e) {
+                                    cityList = e.data;
+                                    try {
+                                      selectedCity = cityList.firstWhere(
+                                          (element) =>
+                                              element.cityId ==
+                                              dataAddress.cityId);
+                                    } catch (e) {
+                                      selectedCity = cityList.first;
+                                      postalController.text =
+                                          selectedCity.postalCode;
+                                    }
+                                  },
+                                );
+                              },
+                              builder: (context, state) {
+                                return state.maybeMap(
+                                    orElse: () => defaultDropDown(),
+                                    loading: (e) => loadingDropDown(),
+                                    error: (e) => errorDropDown(),
+                                    getCity: (e) =>
+                                        DropdownButtonFormField<AddressDataModel>(
+                                          decoration: dropDownDecoration(),
+                                          items: cityList
+                                              .map((val) => DropdownMenuItem(
+                                                  child: Text(val.type +
+                                                      " " +
+                                                      val.cityName),
+                                                  value: val))
+                                              .toList(),
+                                          value: selectedCity,
+                                          onTap: () {},
+                                          onChanged: (newData) {
+                                            postalController.text =
+                                                newData.postalCode;
+                                            selectedCity = newData;
+                                          },
+                                        ));
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          labelText("Postal Code"),
+                          SizedBox(height: 8),
+                          TextFormField(
+                            controller: postalController,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                enabled: false,
+                                labelText: "Postal Code"),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          labelText("Address"),
+                          SizedBox(height: 8),
+                          TextFormField(
+                            controller: addressController,
+                            minLines: 3,
+                            maxLines: 4,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: "Input your complete address",
+                                labelText: "Address"),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-              )
-            ],
-          ),
-        ],
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

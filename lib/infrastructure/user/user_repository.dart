@@ -150,15 +150,20 @@ class UserRepository extends IUserFacade {
 
     try {
       response = await _dio.post(
-        Constants.getStagingUrl() + "/api/v1/users/forgot-password",
+        Constants.getStagingUrl() + "/api/v1/users/forgot-password/request",
         data: {"email": email},
       );
       if (response.statusCode == 200) {
         return right("We have been sent password reset to your email");
+      } else if (response.statusCode == 404) {
+        return left(GeneralFailure("No email found"));
       } else {
         return left(GeneralFailure("Error forgot password"));
       }
     } on DioError catch (e) {
+      if(e.response.statusCode == 404){
+         return left(GeneralFailure("No email found"));
+      }
       return left(dioErrorChecker(e));
     } catch (e) {
       return left(GeneralFailure("Something Wrong"));
