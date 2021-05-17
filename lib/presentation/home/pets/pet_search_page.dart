@@ -37,6 +37,10 @@ class _PetSearchPageState extends State<PetSearchPage> {
       });
     }
 
+    if (_list.isEmpty) {
+      return ["0", "1"];
+    }
+
     return _list;
   }
 

@@ -23,7 +23,7 @@ class Constants {
   static Map<String, String> _requestHeaders = {
     'Content-type': 'application/json',
     'accessKey': 'd78c1a5c-ccbe-4c26-ac08-43ed66c8afb9'
-  };
+  };  
 
   static Map<String, String> _rajaOngkirHeader = {'key': _rajaOngkirApi};
 
