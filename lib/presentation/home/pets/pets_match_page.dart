@@ -223,7 +223,7 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
                                 children: [
                                   Container(
                                       child: Text(
-                                    "No Data",
+                                    "No Pets",
                                     style: TextStyle(
                                         fontSize: 30, color: Colors.grey),
                                   )),
