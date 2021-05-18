@@ -170,7 +170,7 @@ class _AccountPagehomeState extends State<AccountPagehome>
                                   color: Colors.black87),
                             ),
                             Text(
-                              "0",
+                              dataUser.getUserData().points.toString(),
                               style: TextStyle(
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold,
