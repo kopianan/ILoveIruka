@@ -1,6 +1,6 @@
 name: i_love_iruka
 description: A new Flutter project.
-version: 1.2.3+28
+version: 1.2.3+29
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
