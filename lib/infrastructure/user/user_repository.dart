@@ -177,7 +177,7 @@ class UserRepository extends IUserFacade {
 
     try {
       response = await _dio.get(
-          Constants.getStagingUrl() + "/api/v1/users/$userId",
+          Constants.getStagingUrl() + "/api/v1/end-user/$userId",
           options: getDioOptions());
       var _data = UserDataModel.fromJson(response.data['data']);
 
