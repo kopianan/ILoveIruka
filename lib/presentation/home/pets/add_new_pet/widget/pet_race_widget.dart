@@ -21,12 +21,15 @@ class PetRaceWidget extends StatefulWidget {
 
 class _PetRaceWidgetState extends State<PetRaceWidget> {
   final addPetController = Get.put(AddPetController());
-  List<PetPreferenceDataModel> _petSterile;
+
   String selectedBreed;
 
   @override
   void initState() {
-    _petSterile = addPetController.getPetSterile;
+    if (addPetController.getPetBreed == null) {
+      selectedBreed = null;
+    }
+    selectedBreed = addPetController.getPetBreed;
     super.initState();
   }
 
@@ -45,30 +48,41 @@ class _PetRaceWidgetState extends State<PetRaceWidget> {
             "Pet Race",
             style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
           ),
+          Expanded(child: Image.asset('images/assets/adopt.jpg')),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                (breed.text.isNotEmpty)
-                    ? SizedBox()
-                    : DropdownButtonFormField(
-                        value: selectedBreed,
-                        onChanged: (val) {
-                          setState(() {
-                            selectedBreed = val;
-                          });
-                          if (val == dogRaces.first || val == catRaces.first) {
-                            selectedBreed = null;
-                          }
-                          FocusScope.of(context).requestFocus(FocusNode());
-                        },
-                        decoration: DecorationWidget.getInput("Pet Breed"),
-                        items: ((addPetController.checkPetType()
-                                ? dogRaces
-                                : catRaces))
-                            .map((e) =>
-                                DropdownMenuItem(child: Text(e), value: e))
-                            .toList()),
+                (breed.text.isNotEmpty) ? SizedBox() : SizedBox(height: 15),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(
+                    "Breed",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  DropdownButtonFormField(
+                      value: selectedBreed,
+                      onChanged: (val) {
+                        setState(() {
+                          selectedBreed = val;
+                        });
+                        if (val == dogRaces.first || val == catRaces.first) {
+                          selectedBreed = null;
+                        }
+                        FocusScope.of(context).requestFocus(FocusNode());
+                      },
+                      decoration: DecorationWidget.getInput("Pet Breed"),
+                      items: ((addPetController.checkPetType()
+                              ? dogRaces
+                              : catRaces))
+                          .map(
+                              (e) => DropdownMenuItem(child: Text(e), value: e))
+                          .toList()),
+                ]),
                 SizedBox(
                   height: 20,
                 ),
@@ -79,12 +93,6 @@ class _PetRaceWidgetState extends State<PetRaceWidget> {
                   ),
                   SizedBox(height: 5),
                   TextFormField(
-                    onChanged: (e) {
-                      if (e.isNotEmpty) {
-                        setState(() {
-                        selectedBreed = null;});
-                      }
-                    },
                     controller: breed,
                     decoration:
                         DecorationWidget.getInput("Write other race type"),
@@ -96,9 +104,21 @@ class _PetRaceWidgetState extends State<PetRaceWidget> {
                 BtnPrimaryBlue(
                   text: "Confirm",
                   onPressed: () {
-                    print(_petSterile);
-                    addPetController.setPetSterile(_petSterile);
-                    addPetController.pageNextPage();
+                    //check if user choose pet breed
+                    if (selectedBreed == null && breed.text.isEmpty) {
+                      Get.showSnackbar(GetBar(
+                        message:
+                            "Please choose breed or type the field if you don't find the breed list",
+                        duration: Duration(seconds: 5),
+                      ));
+                    } else {
+                      if (breed.text.isNotEmpty) {
+                        addPetController.setPetBreed(breed.text);
+                      } else {
+                        addPetController.setPetBreed(selectedBreed);
+                      }
+                      addPetController.pageNextPage();
+                    }
                   },
                 )
               ],

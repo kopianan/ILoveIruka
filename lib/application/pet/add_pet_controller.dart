@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:i_love_iruka/domain/pets/pet_preference_data_model.dart';
+import 'package:i_love_iruka/domain/pets/pet_req_res.dart';
 import 'package:i_love_iruka/util/pet_list.dart' as petList;
 
 class AddPetController extends GetxController {
@@ -8,18 +11,21 @@ class AddPetController extends GetxController {
   List<PetPreferenceDataModel> _petGender = <PetPreferenceDataModel>[].obs;
   List<PetPreferenceDataModel> _petSterile = <PetPreferenceDataModel>[].obs;
   List<PetPreferenceDataModel> _petStatus = <PetPreferenceDataModel>[].obs;
-  RxString petBreed = "".obs;
+  String petBreed;
+  RxString petImage = "".obs;
+  File dummyImage;
   PageController petPageController = PageController(initialPage: 0);
 
-  // @override
-  // void onInit() {
-  //   _petType.assignAll(petList.getPetType);
-  //   _petGender.assignAll(petList.getPetGender);
-  //   super.onInit();
-  // }
+  void setDummyImage(File image) {
+    dummyImage = image;
+  }
+
+  void setPetImage(String image) {
+    this.petImage.value = image;
+  }
 
   void setPetBreed(String pet) {
-    this.petBreed.value = pet;
+    this.petBreed = pet;
   }
 
   void setPetType(List<PetPreferenceDataModel> data) {
@@ -44,6 +50,15 @@ class AddPetController extends GetxController {
     petPageController.jumpToPage(_currPage + 1);
   }
 
+  void previousePage() {
+    var _currPage = int.parse(petPageController.page.toStringAsFixed(0));
+    if (_currPage == 0) {
+      throw Error();
+    } else {
+      petPageController.jumpToPage(_currPage - 1);
+    }
+  }
+
   ///return true if pet type is DOG , return false if pet type is CAT
   bool checkPetType() {
     var _data = _petType.firstWhere((element) => element.selected == true);
@@ -53,7 +68,48 @@ class AddPetController extends GetxController {
     return false;
   }
 
-  String get getPetBreed => this.petBreed.value;
+  SavePetRequestData fillAllDataRequest(
+      {String id, String name, String brithDate, String weight, String bio}) {
+    bool _isDog = this.checkPetType();
+
+    SavePetRequestData petRequestData = SavePetRequestData(
+        id: id,
+        name: name,
+        birthDate: brithDate,
+        weight: weight,
+        race: this.getPetBreed,
+        profilePictureUrl: this.petImage.value,
+        gender: this
+            .getPetGender
+            .firstWhere((element) => element.selected == true)
+            .code,
+        animal: this
+            .getPetType
+            .firstWhere((element) => element.selected == true)
+            .code,
+        bio: bio,
+        isPedigree: (_isDog)
+            ? null
+            : this
+                .getPetStatus
+                .firstWhere((element) => element.selected == true)
+                .selected,
+        isSterile: this
+            .getPetSterile
+            .firstWhere((element) => element.selected == true)
+            .selected,
+        isStumbum: (_isDog)
+            ? this
+                .getPetSterile
+                .firstWhere((element) => element.selected == true)
+                .selected
+            : null);
+    return petRequestData;
+  }
+
+  String get getImagePath => this.petImage.value;
+  String get getPetBreed => this.petBreed;
+  File get getDummyImage => this.dummyImage;
   List<PetPreferenceDataModel> get getPetType => this._petType;
   List<PetPreferenceDataModel> get getPetGender => this._petGender;
   List<PetPreferenceDataModel> get getPetStatus => this._petStatus;

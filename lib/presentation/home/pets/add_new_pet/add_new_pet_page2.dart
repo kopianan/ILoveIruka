@@ -7,6 +7,7 @@ import 'package:i_love_iruka/presentation/home/pets/add_new_pet/widget/pet_steri
 import 'package:i_love_iruka/presentation/home/pets/add_new_pet/widget/pet_data_widget.dart';
 import 'package:i_love_iruka/util/pet_list.dart';
 
+import 'widget/pet_photo_widget.dart';
 import 'widget/pet_race_widget.dart';
 import 'widget/pet_type_widget.dart';
 
@@ -33,23 +34,37 @@ class _AddNewPetPage2State extends State<AddNewPetPage2> {
     controller = addPetController.getPageController;
   }
 
+  Future<bool> _onWillPop() async {
+    try {
+      addPetController.previousePage();
+    } catch (e) {
+      return true;
+    }
+
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-      child: PageView(
-        physics: NeverScrollableScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        controller: controller,
-        children: <Widget>[
-          PetTypeWidget(),
-          PetGenderWidget(),
-          PetStatusWidget(),
-          PetSterileWidget(),
-          PetRaceWidget(),
-          PetDataWidget(),
-        ],
-      ),
-    ));
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+          body: SafeArea(
+        child: PageView(
+          physics: NeverScrollableScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          controller: controller,
+          children: <Widget>[
+            PetTypeWidget(),
+            PetGenderWidget(),
+            PetStatusWidget(),
+            PetSterileWidget(),
+            PetRaceWidget(),
+            PetPhotoWidget(),
+            PetDataWidget(),
+          ],
+        ),
+      )),
+    );
   }
 }
