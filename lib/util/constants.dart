@@ -11,12 +11,12 @@ class Constants {
   static String _webUrl = "https://irukacms.com";
   static String _apiUrl = "/api/Mobile";
   static String _accessKey = 'd78c1a5c-ccbe-4c26-ac08-43ed66c8afb9';
-  static String _rajaOngkirApi = 'd3378ccdaa201c0b0bffbd673aab43c2';
+  static String _rajaOngkirApi = 'cd47730caa8c5fc6e2daaf5133b27dd1';
   static String _rajaOngkirBaseUrl = 'https://api.rajaongkir.com/';
 
   // static String _stagingUrl = 'http://api-staging.irukacms.com:5005';
-  // static String _stagingUrl = 'http://apidev.irukacms.com';
-  static String _stagingUrl = 'http://api.irukacms.com';
+  static String _stagingUrl = 'http://apidev.irukacms.com';
+  // static String _stagingUrl = 'http://api.irukacms.com';
 
   static String _userSharedPref = "user_login_data";
 

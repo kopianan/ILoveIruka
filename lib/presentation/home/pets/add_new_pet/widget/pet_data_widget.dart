@@ -31,7 +31,6 @@ class _PetDataWidgetState extends State<PetDataWidget> {
   TextEditingController breed = TextEditingController();
   TextEditingController bio = TextEditingController();
   DateTime date;
-  String selectedBreed;
   String id;
   String image;
   final picker = ImagePicker();
@@ -53,12 +52,6 @@ class _PetDataWidgetState extends State<PetDataWidget> {
               print(e.failure);
             },
             onUploadPhoto: (e) {
-              var _breed = "other";
-              if (selectedBreed == null)
-                _breed = breed.text;
-              else
-                _breed = selectedBreed;
-
               // petRequestData = SavePetRequestData(
               //     name: name.text,
               //     birthDate: date.toIso8601String(),
@@ -164,39 +157,8 @@ class _PetDataWidgetState extends State<PetDataWidget> {
                           SizedBox(
                             height: 5,
                           ),
-                          DropdownButtonFormField(
-                              value: selectedBreed,
-                              onChanged: (val) {
-                                setState(() {
-                                  selectedBreed = val;
-                                });
-                                if (val == dogRaces.first ||
-                                    val == catRaces.first) {
-                                  selectedBreed = null;
-                                }
-                                FocusScope.of(context)
-                                    .requestFocus(FocusNode());
-                              },
-                              decoration: DecorationWidget.getInput("Pet Race"),
-                              items: ((addPetController.checkPetType()
-                                      ? dogRaces
-                                      : catRaces))
-                                  .map((e) => DropdownMenuItem(
-                                      child: Text(e), value: e))
-                                  .toList()),
                         ]),
                     SizedBox(height: 15),
-                    selectedBreed == null
-                        ? Column(
-                            children: [
-                              PetCustomFormField(
-                                controller: breed,
-                                label: "Breed",
-                                hintText: "Write other race type",
-                              ),
-                            ],
-                          )
-                        : SizedBox(),
                     SizedBox(height: 15),
                     PetCustomFormField(
                       controller: bio,
@@ -224,12 +186,6 @@ class _PetDataWidgetState extends State<PetDataWidget> {
   }
 
   void onSaveButton() {
-    var _breed = "other";
-    if (selectedBreed == null)
-      _breed = breed.text;
-    else
-      _breed = selectedBreed;
-
     if (_image == null) {
       Fluttertoast.showToast(msg: "Please upload photo ");
     } else {
@@ -246,7 +202,6 @@ class _PetDataWidgetState extends State<PetDataWidget> {
           animal: addPetController.getPetType
               .firstWhere((element) => element.selected == true)
               .code,
-          race: _breed,
           bio: bio.text,
           isPedigree: (_isDog)
               ? null

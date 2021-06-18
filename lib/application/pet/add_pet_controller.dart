@@ -8,6 +8,7 @@ class AddPetController extends GetxController {
   List<PetPreferenceDataModel> _petGender = <PetPreferenceDataModel>[].obs;
   List<PetPreferenceDataModel> _petSterile = <PetPreferenceDataModel>[].obs;
   List<PetPreferenceDataModel> _petStatus = <PetPreferenceDataModel>[].obs;
+  RxString petBreed = "".obs;
   PageController petPageController = PageController(initialPage: 0);
 
   // @override
@@ -16,6 +17,10 @@ class AddPetController extends GetxController {
   //   _petGender.assignAll(petList.getPetGender);
   //   super.onInit();
   // }
+
+  void setPetBreed(String pet) {
+    this.petBreed.value = pet;
+  }
 
   void setPetType(List<PetPreferenceDataModel> data) {
     this._petType = (data);
@@ -48,6 +53,7 @@ class AddPetController extends GetxController {
     return false;
   }
 
+  String get getPetBreed => this.petBreed.value;
   List<PetPreferenceDataModel> get getPetType => this._petType;
   List<PetPreferenceDataModel> get getPetGender => this._petGender;
   List<PetPreferenceDataModel> get getPetStatus => this._petStatus;

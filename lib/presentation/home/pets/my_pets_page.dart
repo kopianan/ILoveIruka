@@ -110,8 +110,8 @@ class _MyPetsPageState extends State<MyPetsPage> {
                           TextButton(
                             onPressed: () {
                               petController.emptySelectedPet();
-                              // Get.toNamed(AddNewPetPage2.TAG);
-                              Get.toNamed(AddNewPetPage.TAG);
+                              Get.toNamed(AddNewPetPage2.TAG);
+                              // Get.toNamed(AddNewPetPage.TAG);
                             },
                             child: Text("Add Pet",
                                 style: TextStyle(
