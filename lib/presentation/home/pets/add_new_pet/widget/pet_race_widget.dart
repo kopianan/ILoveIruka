@@ -4,6 +4,7 @@ import 'package:i_love_iruka/application/pet/add_pet_controller.dart';
 import 'package:i_love_iruka/application/pet/pet_controller.dart';
 import 'package:i_love_iruka/domain/pets/pet_preference_data_model.dart';
 import 'package:i_love_iruka/presentation/home/pets/add_new_pet/components/pet_type_choices.dart';
+import 'package:i_love_iruka/presentation/home/pets/add_new_pet/widget/widget_collection.dart';
 import 'package:i_love_iruka/presentation/home/pets/widgets/decoration_widget.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
 import 'package:i_love_iruka/util/pet_list.dart';
@@ -38,18 +39,15 @@ class _PetRaceWidgetState extends State<PetRaceWidget> {
   @override
   Widget build(BuildContext context) {
     breed = TextEditingController();
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
+    return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Pet Race",
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
-          ),
-          Expanded(child: Image.asset('images/assets/adopt.jpg')),
-          Expanded(
+          WidgetCollection.getTitle("Choose Pet Breed"),
+          Center(child: Image.asset('images/assets/pet_choose.jpg')),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

@@ -8,6 +8,7 @@ import 'package:i_love_iruka/application/pet/add_pet_controller.dart';
 import 'package:i_love_iruka/application/pet/pet_bloc.dart';
 import 'package:i_love_iruka/domain/pets/label.dart';
 import 'package:i_love_iruka/domain/pets/pet_req_res.dart';
+import 'package:i_love_iruka/presentation/home/pets/add_new_pet/widget/widget_collection.dart';
 import 'package:i_love_iruka/presentation/home/pets/widgets/decoration_widget.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primarary_blue_loading.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
@@ -62,11 +63,7 @@ class _PetDataWidgetState extends State<PetDataWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Pet Data",
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
-                    ),
+                    WidgetCollection.getTitle("Pet Data"),
                     SizedBox(height: 20),
                     PetCustomFormField(
                       validator: (e) {

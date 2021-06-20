@@ -8,6 +8,7 @@ import 'package:i_love_iruka/application/pet/add_pet_controller.dart';
 import 'package:i_love_iruka/application/pet/pet_bloc.dart';
 import 'package:i_love_iruka/infrastructure/functions/custom_functions.dart';
 import 'package:i_love_iruka/injection.dart';
+import 'package:i_love_iruka/presentation/home/pets/add_new_pet/widget/widget_collection.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primarary_blue_loading.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
 import 'package:image_picker/image_picker.dart';
@@ -59,10 +60,7 @@ class _PetPhotoWidgetState extends State<PetPhotoWidget> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Pet Profile Photo",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
-                  ),
+                  WidgetCollection.getTitle("Pet Profile Photo"),
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

@@ -4,6 +4,7 @@ import 'package:i_love_iruka/application/pet/add_pet_controller.dart';
 import 'package:i_love_iruka/application/pet/pet_controller.dart';
 import 'package:i_love_iruka/domain/pets/pet_preference_data_model.dart';
 import 'package:i_love_iruka/presentation/home/pets/add_new_pet/components/pet_type_choices.dart';
+import 'package:i_love_iruka/presentation/home/pets/add_new_pet/widget/widget_collection.dart';
 import 'package:i_love_iruka/presentation/widgets/btn_primary_blue.dart';
 import 'package:i_love_iruka/util/pet_list.dart';
 
@@ -32,11 +33,10 @@ class _PetGenderWidgetState extends State<PetGenderWidget> {
       margin: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         mainAxisSize: MainAxisSize.max,
-  crossAxisAlignment: CrossAxisAlignment.start,        children: [
-          Text(
-            "Choose pet gender",
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
-          ),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          WidgetCollection.getTitle("Choose Pet Gender")
+         ,
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
