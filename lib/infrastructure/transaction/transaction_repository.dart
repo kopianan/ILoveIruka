@@ -32,7 +32,6 @@ class TransactionRepository extends ITransactionFacade {
     Options options = Options(headers: {"Authorization": "Bearer $_token"});
     return options;
   }
-
   @override
   Future<Either<GeneralFailure, TransactionResponseData>>
       getTransaction() async {
