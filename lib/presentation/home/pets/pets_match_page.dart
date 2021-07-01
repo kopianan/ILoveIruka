@@ -64,15 +64,11 @@ class _PetsMatchPageState extends State<PetsMatchPage> {
             listener: (context, state) {
               state.maybeMap(
                 orElse: () {},
-                loading: (e) {
-                  print(e);
-                },
+                loading: (e) {},
                 error: (e) {
-                  print(e);
                   _refreshController.refreshCompleted();
                 },
                 onGetPetListData: (e) {
-                  print(e);
                   _refreshController.refreshCompleted();
                   pet.setListPet(e.petList);
                 },

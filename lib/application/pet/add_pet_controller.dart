@@ -16,6 +16,11 @@ class AddPetController extends GetxController {
   File dummyImage;
   PageController petPageController = PageController(initialPage: 0);
 
+  void removeAllData() {
+    dummyImage = null;
+    petBreed = null;
+  }
+
   void setDummyImage(File image) {
     dummyImage = image;
   }

@@ -38,6 +38,7 @@ class _AddNewPetPage2State extends State<AddNewPetPage2> {
     try {
       addPetController.previousePage();
     } catch (e) {
+      addPetController.removeAllData(); 
       return true;
     }
 

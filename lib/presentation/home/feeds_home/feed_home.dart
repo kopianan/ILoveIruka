@@ -121,21 +121,6 @@ class _FeedHomeState extends State<FeedHome>
                   onRefresh: _onRefresh,
                   onLoading: _onLoading,
                   child: CustomScrollView(slivers: [
-                    // SliverAppBar(
-                    //   title: Text(
-                    //     "I Love Iruka",
-                    //     style: TextStyle(
-                    //       fontSize: 25,
-                    //       fontWeight: FontWeight.bold,
-                    //     ),
-                    //   ),
-                    //   backgroundColor: Color(0xFF3DA3EC),
-                    // ),
-                    // SliverToBoxAdapter(
-                    //   child: Container(
-                    //     height: kToolbarHeight,
-                    //   ),
-                    // ),
                     SliverToBoxAdapter(
                         child: Padding(
                       padding: EdgeInsets.symmetric(
@@ -194,7 +179,6 @@ class _FeedHomeState extends State<FeedHome>
                                 state.maybeMap(
                                   orElse: () {},
                                   failOrSuccessGetData: (val) {
-                                    if (val.isLoading) print("Loading kok");
                                     val.responseOptions.fold(
                                         () {},
                                         (a) => a.fold(
@@ -359,10 +343,9 @@ class _FeedHomeState extends State<FeedHome>
         aspectRatio: 3,
         child: Container(child: Center(child: CircularProgressIndicator())));
     var errorContainer = AspectRatio(
-        aspectRatio: 3,
-        child: Container(
-            child: Center(
-                child: Column(
+      aspectRatio: 3,
+      child: Container(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
@@ -373,7 +356,9 @@ class _FeedHomeState extends State<FeedHome>
                 }),
             Text("Error, Please refresh")
           ],
-        ))));
+        ),
+      ),
+    );
 
     return state.maybeMap(
         orElse: () => Container(),
@@ -465,9 +450,9 @@ class _FeedHomeState extends State<FeedHome>
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-                offset: Offset(3, 3),
-                blurRadius: 2,
-                spreadRadius: 2,
+                offset: Offset(2, 2),
+                blurRadius: 1,
+                spreadRadius: 1,
                 color: Colors.grey[200])
           ],
           color: Colors.white,
@@ -565,15 +550,9 @@ class _FeedHomeState extends State<FeedHome>
       width: double.infinity,
       margin: EdgeInsets.all(5.0),
       decoration: BoxDecoration(
-          color: Colors.grey[200],
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.grey[200],
-                offset: Offset(2, 2),
-                spreadRadius: 1,
-                blurRadius: 1)
-          ]),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+      ),
       child: InkWell(
         onTap: () {
           Get.toNamed(FeedDetailPage.TAG, arguments: item);
@@ -597,9 +576,12 @@ class _FeedHomeState extends State<FeedHome>
                   );
               },
               errorBuilder: (context, exception, err) {
-                return Image.asset(
-                  'images/assets/broken_image.png',
-                  fit: BoxFit.contain,
+                return Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Image.asset(
+                    'images/assets/broken_image.png',
+                    fit: BoxFit.contain,
+                  ),
                 );
               },
             )),

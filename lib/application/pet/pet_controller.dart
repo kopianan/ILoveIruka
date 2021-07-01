@@ -87,8 +87,8 @@ class PetController extends GetxController {
   }
 
   void setListPet(List<PetDataModel> dataList) {
-    dataList.removeWhere(
-        (element) => element.user == userController.getUserData().id);
+    // dataList.removeWhere(
+    //     (element) => element.user == userController.getUserData().id);
     listPetDataModel.assignAll(dataList);
   }
 

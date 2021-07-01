@@ -118,7 +118,7 @@ class _PetRaceWidgetState extends State<PetRaceWidget> {
                       addPetController.pageNextPage();
                     }
                   },
-                )
+                ), SizedBox(height: 20)
               ],
             ),
           ),

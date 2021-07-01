@@ -14,18 +14,7 @@ class ServiceMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-              color: Colors.grey[300],
-              blurRadius: 2,
-              spreadRadius: 2,
-              offset: Offset(3, 3))
-        ],
-        borderRadius: BorderRadius.circular(5),
-      ),
+    return Card(
       child: InkWell(
         onTap: onClick,
         child: Column(
@@ -33,14 +22,14 @@ class ServiceMenuItem extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Container(
-                padding: EdgeInsets.only(top: 10),
+                padding: EdgeInsets.only(top: 5),
                 width: double.infinity,
                 child: Image.network(
                   assetUrl,
                   errorBuilder: (context, obj, err) {
                     return Image.asset(
                       'images/assets/broken_image.png',
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                       width: 1000.0,
                     );
                   },
