@@ -29,50 +29,52 @@ class _PetTypeWidgetState extends State<PetTypeWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           WidgetCollection.getTitle("Choose Pet Breed"),
           Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GridView.builder(
-                    shrinkWrap: true,
-                    itemCount: _petType.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                        childAspectRatio: 1 / 1.2,
-                        crossAxisSpacing: 10),
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                          onTap: () {
-                            setState(() {
-                              var _newList = _petType
-                                  .map((e) => e.copyWith(selected: false))
-                                  .toList();
-                              _petType = _newList;
-                              var _data =
-                                  _petType[index].copyWith(selected: true);
-                              _petType[index] = _data;
-                            });
-                          },
-                          child: PetTypeChoices(
-                            petType: _petType[index],
-                          ));
-                    }),
-                SizedBox(height: 40),
-                BtnPrimaryBlue(
-                  text: "Confirm",
-                  onPressed: () {
-                    addPetController.setPetType(_petType);
-                    addPetController.pageNextPage();
-                  },
-                )
-              ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GridView.builder(
+                      shrinkWrap: true,
+                      itemCount: _petType.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 1 / 1.2,
+                          crossAxisSpacing: 10),
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                            onTap: () {
+                              setState(() {
+                                var _newList = _petType
+                                    .map((e) => e.copyWith(selected: false))
+                                    .toList();
+                                _petType = _newList;
+                                var _data =
+                                    _petType[index].copyWith(selected: true);
+                                _petType[index] = _data;
+                              });
+                            },
+                            child: PetTypeChoices(
+                              petType: _petType[index],
+                            ));
+                      }),
+                  SizedBox(height: 40),
+                  BtnPrimaryBlue(
+                    text: "Confirm",
+                    onPressed: () {
+                      addPetController.setPetType(_petType);
+                      addPetController.pageNextPage();
+                    },
+                  )
+                ],
+              ),
             ),
           ),
         ],

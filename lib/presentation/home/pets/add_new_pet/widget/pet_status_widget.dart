@@ -45,51 +45,52 @@ class _PetStatusWidgetState extends State<PetStatusWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         mainAxisSize: MainAxisSize.max,
-  crossAxisAlignment: CrossAxisAlignment.start,        children: [
-         
-         WidgetCollection.getTitle("Choose Pet Status")
-         ,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          WidgetCollection.getTitle("Choose Pet Status"),
           Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GridView.builder(
-                    shrinkWrap: true,
-                    itemCount: _petStatus.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                        childAspectRatio: 1 / 1.2,
-                        crossAxisSpacing: 10),
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                          onTap: () {
-                            setState(() {
-                              var _newList = _petStatus
-                                  .map((e) => e.copyWith(selected: false))
-                                  .toList();
-                              _petStatus = _newList;
-                              var _data =
-                                  _petStatus[index].copyWith(selected: true);
-                              _petStatus[index] = _data;
-                            });
-                          },
-                          child: PetTypeChoices(
-                            petType: _petStatus[index],
-                          ));
-                    }),
-                SizedBox(height: 40),
-                BtnPrimaryBlue(
-                  text: "Confirm",
-                  onPressed: () {
-                    addPetController.setPetStatus(_petStatus);
-                    addPetController.pageNextPage();
-                  },
-                )
-              ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GridView.builder(
+                      shrinkWrap: true,
+                      itemCount: _petStatus.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 1 / 1.2,
+                          crossAxisSpacing: 10),
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                            onTap: () {
+                              setState(() {
+                                var _newList = _petStatus
+                                    .map((e) => e.copyWith(selected: false))
+                                    .toList();
+                                _petStatus = _newList;
+                                var _data =
+                                    _petStatus[index].copyWith(selected: true);
+                                _petStatus[index] = _data;
+                              });
+                            },
+                            child: PetTypeChoices(
+                              petType: _petStatus[index],
+                            ));
+                      }),
+                  SizedBox(height: 40),
+                  BtnPrimaryBlue(
+                    text: "Confirm",
+                    onPressed: () {
+                      addPetController.setPetStatus(_petStatus);
+                      addPetController.pageNextPage();
+                    },
+                  )
+                ],
+              ),
             ),
           ),
         ],

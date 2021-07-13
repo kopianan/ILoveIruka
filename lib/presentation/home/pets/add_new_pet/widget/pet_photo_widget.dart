@@ -38,11 +38,11 @@ class _PetPhotoWidgetState extends State<PetPhotoWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.symmetric(horizontal: 20),
         child: BlocProvider(
             create: (context) => petBloc,
             child: BlocConsumer<PetBloc, PetState>(
               listener: (context, state) {
+                print(state);
                 state.maybeMap(
                     orElse: () {},
                     onUploadPhoto: (e) {
@@ -62,116 +62,121 @@ class _PetPhotoWidgetState extends State<PetPhotoWidget> {
                 children: [
                   WidgetCollection.getTitle("Pet Profile Photo"),
                   Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: Get.size.width / 2,
-                          height: Get.size.width / 2,
-                          decoration: BoxDecoration(
-                              border: Border.all(),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: InkWell(
-                            onTap: () {
-                              Get.dialog(AlertDialog(
-                                title: Text("Choose Action"),
-                                actionsPadding: EdgeInsets.zero,
-                                actions: [
-                                  TextButton(
-                                      onPressed: () {
-                                        Get.back();
-                                        getImageFromPhone(ImageSource.gallery)
-                                            .then((value) {
-                                          setState(() {
-                                            selectedImage = value;
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: Get.size.width / 2,
+                            height: Get.size.width / 2,
+                            decoration: BoxDecoration(
+                                border: Border.all(),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: InkWell(
+                              onTap: () {
+                                Get.dialog(AlertDialog(
+                                  title: Text("Choose Action"),
+                                  actionsPadding: EdgeInsets.zero,
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () {
+                                          Get.back();
+                                          getImageFromPhone(ImageSource.gallery)
+                                              .then((value) {
+                                            setState(() {
+                                              selectedImage = value;
+                                            });
+                                          }).catchError((onError) {
+                                            Get.showSnackbar(GetBar(
+                                              message: "No image selected",
+                                              duration: Duration(seconds: 3),
+                                            ));
                                           });
-                                        }).catchError((onError) {
-                                          Get.showSnackbar(GetBar(
-                                            message: "No image selected",
-                                            duration: Duration(seconds: 3),
-                                          ));
-                                        });
-                                      },
-                                      child: Text("Gallery")),
-                                  TextButton(
-                                      onPressed: () {
-                                        Get.back();
-                                        getImageFromPhone(ImageSource.camera)
-                                            .then((value) {
-                                          setState(() {
-                                            selectedImage = value;
+                                        },
+                                        child: Text("Gallery")),
+                                    TextButton(
+                                        onPressed: () {
+                                          Get.back();
+                                          getImageFromPhone(ImageSource.camera)
+                                              .then((value) {
+                                            setState(() {
+                                              selectedImage = value;
+                                            });
+                                          }).catchError((onError) {
+                                            Get.showSnackbar(GetBar(
+                                              message: "No image selected",
+                                              duration: Duration(seconds: 3),
+                                            ));
                                           });
-                                        }).catchError((onError) {
-                                          Get.showSnackbar(GetBar(
-                                            message: "No image selected",
-                                            duration: Duration(seconds: 3),
-                                          ));
-                                        });
-                                      },
-                                      child: Text("Camera")),
-                                ],
-                              ));
-                            },
-                            child: (selectedImage != null)
-                                ? ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.file(
-                                      selectedImage,
-                                      fit: BoxFit.cover,
+                                        },
+                                        child: Text("Camera")),
+                                  ],
+                                ));
+                              },
+                              child: (selectedImage != null)
+                                  ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.file(
+                                        selectedImage,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )
+                                  : Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.image_outlined,
+                                          size: Get.size.width / 4,
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "Add Image",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18),
+                                        )
+                                      ],
                                     ),
-                                  )
-                                : Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.image_outlined,
-                                        size: Get.size.width / 4,
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "Add Image",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18),
-                                      )
-                                    ],
-                                  ),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        SizedBox(
-                          height: 40,
-                        ),
-                        state.maybeMap(orElse: () {
-                          return BtnPrimaryBlue(
-                            text: "Confirm Image",
-                            onPressed: () {
-                              //check if save to controller
-                              if (addPetController.getImagePath == "") {
-                                if (selectedImage == null) {
-                                  Get.showSnackbar(GetBar(
-                                    message: "Please uplaod pet image",
-                                    duration: Duration(seconds: 5),
-                                  ));
+                          SizedBox(
+                            height: 20,
+                          ),
+                          SizedBox(
+                            height: 40,
+                          ),
+                          state.maybeMap(orElse: () {
+                            return BtnPrimaryBlue(
+                              text: "Confirm Image",
+                              onPressed: () {
+                                //check if save to controller
+                                if (addPetController.getImagePath == "") {
+                                  if (selectedImage == null) {
+                                    Get.showSnackbar(GetBar(
+                                      message: "Please uplaod pet image",
+                                      duration: Duration(seconds: 5),
+                                    ));
+                                  } else {
+                                    addPetController
+                                        .setDummyImage(selectedImage);
+                                    petBloc.add(PetEvent.uploadPhoto(
+                                        selectedImage,
+                                        userController.getUserData().id));
+                                  }
                                 } else {
-                                  addPetController.setDummyImage(selectedImage);
-                                  petBloc.add(PetEvent.uploadPhoto(
-                                      selectedImage,
-                                      userController.getUserData().id));
+                                  addPetController.pageNextPage();
                                 }
-                              } else {
-                                addPetController.pageNextPage();
-                              }
-                            },
-                          );
-                        }, loading: (e) {
-                          return BtnPrimaryBlueLoading();
-                        })
-                      ],
+                              },
+                            );
+                          }, loading: (e) {
+                            return BtnPrimaryBlueLoading();
+                          })
+                        ],
+                      ),
                     ),
                   ),
                 ],

@@ -55,90 +55,94 @@ class _PetDataWidgetState extends State<PetDataWidget> {
           );
         }, builder: (context, state) {
           return SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Form(
-                key: formKey,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    WidgetCollection.getTitle("Pet Data"),
-                    SizedBox(height: 20),
-                    PetCustomFormField(
-                      validator: (e) {
-                        if (GetUtils.isBlank(e)) {
-                          return "Name can not be empty";
-                        }
-                        return null;
-                      },
-                      controller: name,
-                      inputAction: TextInputAction.next,
-                      onEditingComplete: () => node.nextFocus(),
-                      label: "Pet name",
-                      hintText: "Your new pet name",
-                    ),
-                    SizedBox(height: 15),
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Date of birth",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          DateTextFormField(
-                            validator: (e) {
-                              if (GetUtils.isBlank(e)) {
-                                return "Plsease insert birth date";
-                              }
+            child: Form(
+              key: formKey,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  WidgetCollection.getTitle("Pet Data"),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      children: [
+                        PetCustomFormField(
+                          validator: (e) {
+                            if (GetUtils.isBlank(e)) {
+                              return "Name can not be empty";
+                            }
+                            return null;
+                          },
+                          controller: name,
+                          inputAction: TextInputAction.next,
+                          onEditingComplete: () => node.nextFocus(),
+                          label: "Pet name",
+                          hintText: "Your new pet name",
+                        ),
+                        SizedBox(height: 15),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Date of birth",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              DateTextFormField(
+                                validator: (e) {
+                                  if (GetUtils.isBlank(e)) {
+                                    return "Plsease insert birth date";
+                                  }
+                                  return null;
+                                },
+                                birthDate: birthDate,
+                                dateTime: (e) {
+                                  this.date = e;
+                                },
+                              ),
+                            ]),
+                        SizedBox(height: 15),
+                        PetCustomFormField(
+                          controller: weight,
+                          validator: (e) {
+                            if (GetUtils.isNullOrBlank(e)) {
+                              return "Weight must not empty";
+                            } else if (e.contains(",")) {
+                              return "Use '.' (dot), not ',' (coma)";
+                            } else
                               return null;
-                            },
-                            birthDate: birthDate,
-                            dateTime: (e) {
-                              this.date = e;
-                            },
-                          ),
-                        ]),
-                    SizedBox(height: 15),
-                    PetCustomFormField(
-                      controller: weight,
-                      validator: (e) {
-                        if (GetUtils.isNullOrBlank(e)) {
-                          return "Weight must not empty";
-                        } else if (e.contains(",")) {
-                          return "Use '.' (dot), not ',' (coma)";
-                        } else
-                          return null;
-                      },
-                      type: TextInputType.number,
-                      label: "Weight",
-                      hintText: "Kilogram",
-                      suffix: 'kg',
+                          },
+                          type: TextInputType.number,
+                          label: "Weight",
+                          hintText: "Kilogram",
+                          suffix: 'kg',
+                        ),
+                        SizedBox(height: 15),
+                        SizedBox(height: 15),
+                        PetCustomFormField(
+                          controller: bio,
+                          label: "Pet Bio",
+                          hintText: "Description",
+                          minLines: 4,
+                        ),
+                        SizedBox(height: 30),
+                        state.maybeMap(
+                            orElse: () => BtnPrimaryBlue(
+                                  text: "Confirm",
+                                  onPressed: () {
+                                    if (formKey.currentState.validate()) {
+                                      onSaveButton();
+                                    }
+                                  },
+                                ),
+                            loading: (e) => BtnPrimaryBlueLoading()),
+                      ],
                     ),
-                    SizedBox(height: 15),
-                    SizedBox(height: 15),
-                    PetCustomFormField(
-                      controller: bio,
-                      label: "Pet Bio",
-                      hintText: "Description",
-                      minLines: 4,
-                    ),
-                    SizedBox(height: 30),
-                    state.maybeMap(
-                        orElse: () => BtnPrimaryBlue(
-                              text: "Confirm",
-                              onPressed: () {
-                                if (formKey.currentState.validate()) {
-                                  onSaveButton();
-                                }
-                              },
-                            ),
-                        loading: (e) => BtnPrimaryBlueLoading()),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           );
