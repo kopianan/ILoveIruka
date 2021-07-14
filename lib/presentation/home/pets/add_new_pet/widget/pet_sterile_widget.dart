@@ -34,7 +34,8 @@ class _PetSterileWidgetState extends State<PetSterileWidget> {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          WidgetCollection.getTitle("Choose Pet Sterile"),
+         
+           AddPetTitle("PET STERILE"),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),

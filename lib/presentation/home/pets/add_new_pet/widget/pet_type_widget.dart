@@ -33,11 +33,12 @@ class _PetTypeWidgetState extends State<PetTypeWidget> {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          WidgetCollection.getTitle("Choose Pet Breed"),
+          AddPetTitle("PET TYPE"),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GridView.builder(

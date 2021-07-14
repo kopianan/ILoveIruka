@@ -61,7 +61,8 @@ class _PetDataWidgetState extends State<PetDataWidget> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  WidgetCollection.getTitle("Pet Data"),
+                  AddPetTitle("PET DATA"),
+                
                   SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),

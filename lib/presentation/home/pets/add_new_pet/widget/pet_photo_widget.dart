@@ -60,7 +60,7 @@ class _PetPhotoWidgetState extends State<PetPhotoWidget> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  WidgetCollection.getTitle("Pet Profile Photo"),
+                  AddPetTitle("PET PHOTO"),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),

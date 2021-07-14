@@ -55,12 +55,13 @@ class AddPetController extends GetxController {
     petPageController.jumpToPage(_currPage + 1);
   }
 
-  void previousePage() {
+  bool isPreviousePage() {
     var _currPage = int.parse(petPageController.page.toStringAsFixed(0));
     if (_currPage == 0) {
-      throw Error();
+      return false;
     } else {
       petPageController.jumpToPage(_currPage - 1);
+      return true;
     }
   }
 

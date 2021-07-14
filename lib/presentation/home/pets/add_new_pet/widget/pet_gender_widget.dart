@@ -34,7 +34,7 @@ class _PetGenderWidgetState extends State<PetGenderWidget> {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          WidgetCollection.getTitle("Choose Pet Gender"),
+          AddPetTitle("PET GENDER"),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),

@@ -44,7 +44,7 @@ class _PetRaceWidgetState extends State<PetRaceWidget> {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          WidgetCollection.getTitle("Choose Pet Breed"),
+          AddPetTitle("PET BREED"),
           Center(child: Image.asset('images/assets/pet_choose.jpg')),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20),
@@ -118,7 +118,8 @@ class _PetRaceWidgetState extends State<PetRaceWidget> {
                       addPetController.pageNextPage();
                     }
                   },
-                ), SizedBox(height: 20)
+                ),
+                SizedBox(height: 20)
               ],
             ),
           ),

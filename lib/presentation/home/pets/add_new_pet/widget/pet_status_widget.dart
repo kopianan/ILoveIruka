@@ -49,7 +49,7 @@ class _PetStatusWidgetState extends State<PetStatusWidget> {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          WidgetCollection.getTitle("Choose Pet Status"),
+          AddPetTitle("PET STATUS"),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),

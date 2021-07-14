@@ -5,6 +5,7 @@ import 'package:i_love_iruka/presentation/home/pets/add_new_pet/widget/pet_gende
 import 'package:i_love_iruka/presentation/home/pets/add_new_pet/widget/pet_status_widget.dart';
 import 'package:i_love_iruka/presentation/home/pets/add_new_pet/widget/pet_sterile_widget.dart';
 import 'package:i_love_iruka/presentation/home/pets/add_new_pet/widget/pet_data_widget.dart';
+import 'package:i_love_iruka/presentation/home/pets/add_new_pet/widget/widget_collection.dart';
 import 'package:i_love_iruka/util/pet_list.dart';
 
 import 'widget/pet_photo_widget.dart';
@@ -36,9 +37,9 @@ class _AddNewPetPage2State extends State<AddNewPetPage2> {
 
   Future<bool> _onWillPop() async {
     try {
-      addPetController.previousePage();
+      addPetController.isPreviousePage();
     } catch (e) {
-      addPetController.removeAllData(); 
+      addPetController.removeAllData();
       return true;
     }
 
@@ -51,18 +52,61 @@ class _AddNewPetPage2State extends State<AddNewPetPage2> {
       onWillPop: _onWillPop,
       child: Scaffold(
           body: SafeArea(
-        child: PageView(
-          physics: NeverScrollableScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          controller: controller,
-          children: <Widget>[
-            PetTypeWidget(),
-            PetGenderWidget(),
-            PetStatusWidget(),
-            PetSterileWidget(),
-            PetRaceWidget(),
-            PetPhotoWidget(),
-            PetDataWidget(),
+        child: Column(
+          children: [
+            GetTitle(
+              title: "Add New Pet",
+              onBack: () {
+                if (!addPetController.isPreviousePage()) {
+                  addPetController.removeAllData();
+                  Get.back();
+                }
+                ;
+              },
+              onClose: () {
+                Get.dialog(AlertDialog(
+                  title: Text("EXIT PROCESS "),
+                  content: Text("Are you sure want to cancel the proccess ? "),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        addPetController.removeAllData();
+                        Get.back(closeOverlays: true);
+                      },
+                      child: Text(
+                        "Yes",
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      child: Text(
+                        "No",
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ),
+                  ],
+                ));
+              },
+            ),
+            Expanded(
+              child: PageView(
+                physics: NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                controller: controller,
+                children: <Widget>[
+                  PetTypeWidget(),
+                  PetGenderWidget(),
+                  PetStatusWidget(),
+                  PetSterileWidget(),
+                  PetRaceWidget(),
+                  PetPhotoWidget(),
+                  PetDataWidget(),
+                ],
+              ),
+            ),
           ],
         ),
       )),
